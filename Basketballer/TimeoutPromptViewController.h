@@ -24,8 +24,8 @@ enum PromptMode {
 @property (nonatomic) NSInteger mode;
 @property (nonatomic, weak) IBOutlet UIButton * resumeMathButton;
 @property (nonatomic, weak) IBOutlet UIButton * stopTimeOutButton;
-- (IBAction)resumeGame:(id)sender;
 
+- (IBAction)resumeGame:(id)sender;
 - (void)startTimeout;
 
 @end
