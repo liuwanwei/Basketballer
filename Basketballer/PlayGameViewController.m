@@ -61,8 +61,8 @@
     if(self.gameState == playing){
         [self setLastTimeoutTime];
         [self stopGameCountDown];
-        [self.operateGameView1 setButtonEnabled:NO];
-        [self.operateGameView2 setButtonEnabled:NO];
+        //[self.operateGameView1 setButtonEnabled:NO];
+        //[self.operateGameView2 setButtonEnabled:NO];
         self.gameState = timeout;
         [self showTimeoutPromptView:timeoutMode];
     }
@@ -124,12 +124,26 @@
 
 }
 
-/*初始化导航View*/
-- (void)initNavBarItem {
+/*根据条件显示导航上飞item*/
+- (void)showNavBarLeftItem:(BOOL)left withRightItem:(BOOL)right{
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithTitle:@". . ." style:(UIBarButtonItemStyleBordered) target:self action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    if (left == YES) {
+        UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+        [self.navigationItem setHidesBackButton:YES];
+        self.navigationItem.leftBarButtonItem = leftItem;
+        
+    }else {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+   
+    if (right == YES) {
+        UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
+        self.navigationItem.rightBarButtonItem = rightItem;
+
+    }else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 /*设置暂停时的时间*/
@@ -196,14 +210,14 @@
  显示暂停或比赛单节/半场休息提示VIEW
  */
 - (void)showTimeoutPromptView:(NSInteger) mode {
-    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, 91.0, 320.0, 369.0)];
+    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 90.0)];
     timeoutPromptViewController.parentController = self;
     timeoutPromptViewController.mode = mode;
     timeoutPromptViewController.backgroundColor = [UIColor blackColor];
     [timeoutPromptViewController startTimeout];
     self.timeoutTargetTime = timeoutPromptViewController.timeoutTargetTime;
     [self.view addSubview:timeoutPromptViewController];
-    timeoutPromptViewController.alpha = 0.85;
+    timeoutPromptViewController.alpha = 0.9;
 }
 
 /*
@@ -213,7 +227,7 @@
     TimeStopPromptView * timeStopPromptView = [[TimeStopPromptView alloc] initWithFrame:CGRectMake(0.0, 91.0, 320.0, 369.0)];
     timeStopPromptView.parentController = self;
     timeStopPromptView.backgroundColor = [UIColor blackColor];
-    timeStopPromptView.alpha = 0.85;
+    timeStopPromptView.alpha = 0.9;
     [self.view addSubview:timeStopPromptView];
 }
 
@@ -255,8 +269,6 @@
     self.gameTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
     if(minute <= 0 && second <= 0) {
         [self stopGameCountDown];
-        [self.operateGameView1 setButtonEnabled:NO];
-        [self.operateGameView2 setButtonEnabled:NO];
         AudioServicesPlayAlertSound (self.soundFileObject);
         if (_gameMode == kGameModeTwoHalf) {
             if (_curPeroid == 0) {
@@ -362,6 +374,8 @@
     [self.navigationController pushViewController:gameSettingontroller animated:YES];
 }
 
+/*显示开始计时View。
+ 比赛开始前显示一次。*/
 - (void)showStartMatchView {
     StartMatchView * startMatchView = [[StartMatchView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 90.0)];
     startMatchView.parentController = self;
@@ -402,9 +416,7 @@
         [AppDelegate delegate].playGameViewController = self;
     }
     
-    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
-    [self.navigationItem setHidesBackButton:YES];
-    self.navigationItem.leftBarButtonItem = leftItem;
+    [self showNavBarLeftItem:YES withRightItem:NO];
     
     //[LocationManager defaultManager].delegate = self;
     //[self startGame:nil];
@@ -452,7 +464,7 @@
         _operateGameView2.match = _match;
         _curPeroid = -1;
         _gameStart = YES;
-        [self initNavBarItem];
+        [self showNavBarLeftItem:NO withRightItem:YES];
         
         if (_gameMode == kGameModePoints) {
             _operateGameView1.period = 0;
