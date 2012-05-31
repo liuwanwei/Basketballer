@@ -94,6 +94,8 @@
 		E65FF05315C455F300E96D6A /* TeamImageEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65FF05215C455F200E96D6A /* TeamImageEditCell.xib */; };
 		E65FF05A15C5057600E96D6A /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05915C5057600E96D6A /* RulesViewController.m */; };
 		E65FF05D15C6261F00E96D6A /* Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05C15C6261F00E96D6A /* Feature.m */; };
+		E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */; };
+		E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */; };
 		E68D111315A2FAA40074982D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111215A2FAA40074982D /* GameSettingViewController.m */; };
 		E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111D15A3DA0C0074982D /* GameSetting.m */; };
 		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
@@ -249,6 +251,8 @@
 		E65FF05915C5057600E96D6A /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
 		E65FF05B15C6261F00E96D6A /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
 		E65FF05C15C6261F00E96D6A /* Feature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feature.m; sourceTree = "<group>"; };
+		E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZhiHuNavigationBar.png; sourceTree = "<group>"; };
+		E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZhiHuNavigationBar@2x.png"; sourceTree = "<group>"; };
 		E68D111115A2FAA30074982D /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingViewController.h; sourceTree = "<group>"; };
 		E68D111215A2FAA40074982D /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingViewController.m; sourceTree = "<group>"; };
 		E68D111C15A3DA0C0074982D /* GameSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetting.h; sourceTree = "<group>"; };
@@ -466,7 +470,7 @@
 			children = (
 				3CC1683515A2E60200A2AB44 /* xib */,
 				E6BECB1615BB101700AABC38 /* Operation */,
-				E6CEFCD215B9571400324713 /* TabBar */,
+				E6CEFCD215B9571400324713 /* BarImage */,
 				3C12203015A6D9C60062BECD /* music */,
 				3C121F6715A437530062BECD /* images */,
 			);
@@ -588,9 +592,11 @@
 			name = Operation;
 			sourceTree = "<group>";
 		};
-		E6CEFCD215B9571400324713 /* TabBar */ = {
+		E6CEFCD215B9571400324713 /* BarImage */ = {
 			isa = PBXGroup;
 			children = (
+				E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */,
+				E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */,
 				E6CEFCE715B9597900324713 /* TabBarHistory.png */,
 				E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */,
 				E6CEFCE915B9597900324713 /* TabBarSetting.png */,
@@ -598,7 +604,7 @@
 				E6CEFCEB15B9597900324713 /* TabBarTeam.png */,
 				E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */,
 			);
-			name = TabBar;
+			name = BarImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +735,8 @@
 				3CE1876115C6DA9900A17E4F /* close@2x.png in Resources */,
 				3CE1876215C6DA9900A17E4F /* menu.png in Resources */,
 				3CE1876315C6DA9900A17E4F /* menu@2x.png in Resources */,
+				E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */,
+				E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
