@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3CBF710215A28FEC000C915A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF710115A28FEC000C915A /* UIKit.framework */; };
+		3CBF710415A28FEC000C915A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF710315A28FEC000C915A /* Foundation.framework */; };
+		3CBF710615A28FEC000C915A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF710515A28FEC000C915A /* CoreGraphics.framework */; };
+		3CBF710815A28FEC000C915A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF710715A28FEC000C915A /* CoreData.framework */; };
+		3CBF710E15A28FEC000C915A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CBF710C15A28FEC000C915A /* InfoPlist.strings */; };
+		3CBF711015A28FEC000C915A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF710F15A28FEC000C915A /* main.m */; };
+		3CBF711415A28FEC000C915A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF711315A28FEC000C915A /* AppDelegate.m */; };
+		3CBF711715A28FEC000C915A /* Basketballer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF711515A28FEC000C915A /* Basketballer.xcdatamodeld */; };
+		3CBF712415A29210000C915A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CBF712315A29210000C915A /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3CBF70FD15A28FEC000C915A /* Basketballer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Basketballer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CBF710115A28FEC000C915A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3CBF710315A28FEC000C915A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3CBF710515A28FEC000C915A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3CBF710715A28FEC000C915A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3CBF710B15A28FEC000C915A /* Basketballer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Basketballer-Info.plist"; sourceTree = "<group>"; };
+		3CBF710D15A28FEC000C915A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3CBF710F15A28FEC000C915A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3CBF711115A28FEC000C915A /* Basketballer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basketballer-Prefix.pch"; sourceTree = "<group>"; };
+		3CBF711215A28FEC000C915A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3CBF711315A28FEC000C915A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3CBF711615A28FEC000C915A /* Basketballer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer.xcdatamodel; sourceTree = "<group>"; };
+		3CBF712315A29210000C915A /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CBF70FA15A28FEC000C915A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF710215A28FEC000C915A /* UIKit.framework in Frameworks */,
+				3CBF710415A28FEC000C915A /* Foundation.framework in Frameworks */,
+				3CBF710615A28FEC000C915A /* CoreGraphics.framework in Frameworks */,
+				3CBF710815A28FEC000C915A /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CBF70F215A28FEB000C915A = {
+			isa = PBXGroup;
+			children = (
+				3CBF710915A28FEC000C915A /* Basketballer */,
+				3CBF710015A28FEC000C915A /* Frameworks */,
+				3CBF70FE15A28FEC000C915A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3CBF70FE15A28FEC000C915A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF70FD15A28FEC000C915A /* Basketballer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CBF710015A28FEC000C915A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF710115A28FEC000C915A /* UIKit.framework */,
+				3CBF710315A28FEC000C915A /* Foundation.framework */,
+				3CBF710515A28FEC000C915A /* CoreGraphics.framework */,
+				3CBF710715A28FEC000C915A /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CBF710915A28FEC000C915A /* Basketballer */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF712115A2916D000C915A /* Resources */,
+				3CBF711215A28FEC000C915A /* AppDelegate.h */,
+				3CBF711315A28FEC000C915A /* AppDelegate.m */,
+				3CBF711515A28FEC000C915A /* Basketballer.xcdatamodeld */,
+				3CBF710A15A28FEC000C915A /* Supporting Files */,
+			);
+			path = Basketballer;
+			sourceTree = "<group>";
+		};
+		3CBF710A15A28FEC000C915A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF710B15A28FEC000C915A /* Basketballer-Info.plist */,
+				3CBF710C15A28FEC000C915A /* InfoPlist.strings */,
+				3CBF710F15A28FEC000C915A /* main.m */,
+				3CBF711115A28FEC000C915A /* Basketballer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3CBF712115A2916D000C915A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF712215A29182000C915A /* xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3CBF712215A29182000C915A /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF712315A29210000C915A /* MainWindow.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CBF70FC15A28FEC000C915A /* Basketballer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CBF711A15A28FEC000C915A /* Build configuration list for PBXNativeTarget "Basketballer" */;
+			buildPhases = (
+				3CBF70F915A28FEC000C915A /* Sources */,
+				3CBF70FA15A28FEC000C915A /* Frameworks */,
+				3CBF70FB15A28FEC000C915A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Basketballer;
+			productName = Basketballer;
+			productReference = 3CBF70FD15A28FEC000C915A /* Basketballer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CBF70F415A28FEB000C915A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 3CBF70F715A28FEB000C915A /* Build configuration list for PBXProject "Basketballer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3CBF70F215A28FEB000C915A;
+			productRefGroup = 3CBF70FE15A28FEC000C915A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CBF70FC15A28FEC000C915A /* Basketballer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CBF70FB15A28FEC000C915A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF710E15A28FEC000C915A /* InfoPlist.strings in Resources */,
+				3CBF712415A29210000C915A /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CBF70F915A28FEC000C915A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF711015A28FEC000C915A /* main.m in Sources */,
+				3CBF711415A28FEC000C915A /* AppDelegate.m in Sources */,
+				3CBF711715A28FEC000C915A /* Basketballer.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3CBF710C15A28FEC000C915A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CBF710D15A28FEC000C915A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CBF711815A28FEC000C915A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3CBF711915A28FEC000C915A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CBF711B15A28FEC000C915A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
+				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3CBF711C15A28FEC000C915A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
+				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CBF70F715A28FEB000C915A /* Build configuration list for PBXProject "Basketballer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CBF711815A28FEC000C915A /* Debug */,
+				3CBF711915A28FEC000C915A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CBF711A15A28FEC000C915A /* Build configuration list for PBXNativeTarget "Basketballer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CBF711B15A28FEC000C915A /* Debug */,
+				3CBF711C15A28FEC000C915A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3CBF711515A28FEC000C915A /* Basketballer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3CBF711615A28FEC000C915A /* Basketballer.xcdatamodel */,
+			);
+			currentVersion = 3CBF711615A28FEC000C915A /* Basketballer.xcdatamodel */;
+			path = Basketballer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3CBF70F415A28FEB000C915A /* Project object */;
+}
