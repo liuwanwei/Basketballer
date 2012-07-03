@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3CC1681015A2E52A00A2AB44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
+		3CC1681215A2E52A00A2AB44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
+		3CC1681415A2E52A00A2AB44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */; };
+		3CC1681615A2E52A00A2AB44 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681515A2E52A00A2AB44 /* CoreData.framework */; };
+		3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1681A15A2E52B00A2AB44 /* InfoPlist.strings */; };
+		3CC1681E15A2E52B00A2AB44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1681D15A2E52B00A2AB44 /* main.m */; };
+		3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1682115A2E52B00A2AB44 /* AppDelegate.m */; };
+		3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */; };
+		3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1683615A2E61A00A2AB44 /* MainWindow.xib */; };
+		3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */; };
+		3CC1683D15A2E71400A2AB44 /* GameHistoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3CC1680B15A2E52A00A2AB44 /* Basketballer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Basketballer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CC1680F15A2E52A00A2AB44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3CC1681115A2E52A00A2AB44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3CC1681515A2E52A00A2AB44 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3CC1681915A2E52B00A2AB44 /* Basketballer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Basketballer-Info.plist"; sourceTree = "<group>"; };
+		3CC1681B15A2E52B00A2AB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3CC1681D15A2E52B00A2AB44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3CC1681F15A2E52B00A2AB44 /* Basketballer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basketballer-Prefix.pch"; sourceTree = "<group>"; };
+		3CC1682015A2E52B00A2AB44 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3CC1682115A2E52B00A2AB44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3CC1682415A2E52B00A2AB44 /* Basketballer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer.xcdatamodel; sourceTree = "<group>"; };
+		3CC1683615A2E61A00A2AB44 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoriesViewController.h; sourceTree = "<group>"; };
+		3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoriesViewController.m; sourceTree = "<group>"; };
+		3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoriesViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CC1680815A2E52A00A2AB44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CC1681015A2E52A00A2AB44 /* UIKit.framework in Frameworks */,
+				3CC1681215A2E52A00A2AB44 /* Foundation.framework in Frameworks */,
+				3CC1681415A2E52A00A2AB44 /* CoreGraphics.framework in Frameworks */,
+				3CC1681615A2E52A00A2AB44 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CC1680015A2E52A00A2AB44 = {
+			isa = PBXGroup;
+			children = (
+				3CC1681715A2E52B00A2AB44 /* Basketballer */,
+				3CC1680E15A2E52A00A2AB44 /* Frameworks */,
+				3CC1680C15A2E52A00A2AB44 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3CC1680C15A2E52A00A2AB44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1680B15A2E52A00A2AB44 /* Basketballer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CC1680E15A2E52A00A2AB44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1680F15A2E52A00A2AB44 /* UIKit.framework */,
+				3CC1681115A2E52A00A2AB44 /* Foundation.framework */,
+				3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */,
+				3CC1681515A2E52A00A2AB44 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CC1681715A2E52B00A2AB44 /* Basketballer */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1683815A2E6EE00A2AB44 /* Classes */,
+				3CC1683315A2E5E400A2AB44 /* Resources */,
+				3CC1682015A2E52B00A2AB44 /* AppDelegate.h */,
+				3CC1682115A2E52B00A2AB44 /* AppDelegate.m */,
+				3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */,
+				3CC1681815A2E52B00A2AB44 /* Supporting Files */,
+			);
+			path = Basketballer;
+			sourceTree = "<group>";
+		};
+		3CC1681815A2E52B00A2AB44 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1681915A2E52B00A2AB44 /* Basketballer-Info.plist */,
+				3CC1681A15A2E52B00A2AB44 /* InfoPlist.strings */,
+				3CC1681D15A2E52B00A2AB44 /* main.m */,
+				3CC1681F15A2E52B00A2AB44 /* Basketballer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3CC1683315A2E5E400A2AB44 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1683515A2E60200A2AB44 /* xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3CC1683515A2E60200A2AB44 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */,
+				3CC1683615A2E61A00A2AB44 /* MainWindow.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
+		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */,
+				3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CC1680A15A2E52A00A2AB44 /* Basketballer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "Basketballer" */;
+			buildPhases = (
+				3CC1680715A2E52A00A2AB44 /* Sources */,
+				3CC1680815A2E52A00A2AB44 /* Frameworks */,
+				3CC1680915A2E52A00A2AB44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Basketballer;
+			productName = Basketballer;
+			productReference = 3CC1680B15A2E52A00A2AB44 /* Basketballer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CC1680215A2E52A00A2AB44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 3CC1680515A2E52A00A2AB44 /* Build configuration list for PBXProject "Basketballer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3CC1680015A2E52A00A2AB44;
+			productRefGroup = 3CC1680C15A2E52A00A2AB44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CC1680A15A2E52A00A2AB44 /* Basketballer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CC1680915A2E52A00A2AB44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */,
+				3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */,
+				3CC1683D15A2E71400A2AB44 /* GameHistoriesViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CC1680715A2E52A00A2AB44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CC1681E15A2E52B00A2AB44 /* main.m in Sources */,
+				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
+				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
+				3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3CC1681A15A2E52B00A2AB44 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CC1681B15A2E52B00A2AB44 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CC1682615A2E52B00A2AB44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: WANWEI LIU (5Y6RV2MD2B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "6BC06E57-3B09-4524-A158-5451A6A07668";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3CC1682715A2E52B00A2AB44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: WANWEI LIU (5Y6RV2MD2B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "6BC06E57-3B09-4524-A158-5451A6A07668";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CC1682915A2E52B00A2AB44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
+				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3CC1682A15A2E52B00A2AB44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
+				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CC1680515A2E52A00A2AB44 /* Build configuration list for PBXProject "Basketballer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CC1682615A2E52B00A2AB44 /* Debug */,
+				3CC1682715A2E52B00A2AB44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "Basketballer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CC1682915A2E52B00A2AB44 /* Debug */,
+				3CC1682A15A2E52B00A2AB44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3CC1682415A2E52B00A2AB44 /* Basketballer.xcdatamodel */,
+			);
+			currentVersion = 3CC1682415A2E52B00A2AB44 /* Basketballer.xcdatamodel */;
+			path = Basketballer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3CC1680215A2E52A00A2AB44 /* Project object */;
+}
