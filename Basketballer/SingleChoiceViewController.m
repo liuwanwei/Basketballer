@@ -1,32 +1,24 @@
 //
-//  GameHistoriesViewController.m
+//  SingleChoiceViewController.m
 //  Basketballer
 //
-//  Created by maoyu on 12-7-3.
+//  Created by Liu Wanwei on 12-7-4.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "GameHistoriesViewController.h"
-#import "GameSettingViewController.h"
-#import "AppDelegate.h"
+#import "SingleChoiceViewController.h"
+#import "GameSetting.h"
 
-@interface GameHistoriesViewController (){
-    UINavigationController * _settingsViewController;
-}
+@interface SingleChoiceViewController ()
 
 @end
 
-@implementation GameHistoriesViewController
+@implementation SingleChoiceViewController
 
-- (void)showSettingView{
-    if (nil == _settingsViewController) {
-        GameSettingViewController * viewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    }
-    
-    AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
-}
+@synthesize parameterKey = _parameterKey;
+@synthesize unitString = _unitString;
+@synthesize choices = _choices;
+@synthesize currentChoice = _currentChoice;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,14 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettingView)];
-    self.navigationItem.leftBarButtonItem = settingsItem;
 }
 
 - (void)viewDidUnload
@@ -55,6 +39,12 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -66,22 +56,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 0;
+    return self.choices.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    if (nil == cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     // Configure the cell...
+    NSString * value = [self.choices objectAtIndex:indexPath.row];
+    cell.textLabel.text = value;
+    if ([value isEqualToString:self.currentChoice]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
@@ -129,13 +126,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString * value = cell.textLabel.text;
+    [[GameSetting defaultSetting] setParameter:value forKey:self.parameterKey];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    NSString * header = [NSString stringWithFormat:@"单位：%@", self.unitString];
+    return header;
 }
 
 @end
