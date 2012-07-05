@@ -9,6 +9,8 @@
 #import "GameHistoriesViewController.h"
 #import "GameSettingViewController.h"
 #import "AppDelegate.h"
+#import "MatchManager.h"
+#import "GameSetting.h"
 
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
@@ -18,6 +20,8 @@
 
 @implementation GameHistoriesViewController
 
+@synthesize tvCell = _tvCell;
+
 - (void)showSettingView{
     if (nil == _settingsViewController) {
         GameSettingViewController * viewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -26,6 +30,21 @@
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
+}
+
+- (void)showAddView{
+    NSString * mode = [[GameSetting defaultSetting] mode];
+    Match * match = [[MatchManager defaultManager] newMatchWithMode:mode];
+    
+    match.homePoints = [NSNumber numberWithInteger:68];
+    match.guestPoints = [NSNumber numberWithInteger:36];
+    
+    if(! [[MatchManager defaultManager] save]){
+        return;
+    }
+    
+    // TODO 不能刷新？
+    [self.tableView reloadData];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -48,6 +67,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettingView)];
     self.navigationItem.leftBarButtonItem = settingsItem;
+    
+    UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
+    self.navigationItem.rightBarButtonItem = addItem;
 }
 
 - (void)viewDidUnload
@@ -64,24 +86,65 @@
 
 #pragma mark - Table view data source
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 85.0;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 0;
+    return [[[MatchManager defaultManager] matchesArray] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell) {
+        [[NSBundle mainBundle] loadNibNamed:@"MatchRecordCell" owner:self options:nil];
+        cell = _tvCell;
+        self.tvCell = nil;
+    }
     
-    // Configure the cell...
+    Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+    
+    UIImage * defaultTeamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
+    
+    // 主队图像。
+    UIImageView * homeImageProfile = (UIImageView *)[cell viewWithTag:UIHomeTeamProfileTag];
+    homeImageProfile.image = defaultTeamProfile;
+    
+    // 主队名字。    
+    UILabel * homeTeamNameLabel = (UILabel *)[cell viewWithTag:UIHomeTeamNameTag];
+    homeTeamNameLabel.text = @"曦光科技";
+    
+    // 主队得分。
+    UILabel * homeTeamPointsLabel = (UILabel *)[cell viewWithTag:UIHomeTeamPointsTag];
+    homeTeamPointsLabel.text = [[match homePoints] stringValue];
+    
+    // 比赛时间。
+    UILabel * dateLabel = (UILabel *)[cell viewWithTag:UIMatchDateTag];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString * dateString = [dateFormatter stringFromDate:[match date]];
+    dateLabel.text = dateString;
+    
+    // 客队图像。
+    UIImageView * guestTeamProfile = (UIImageView *)[cell viewWithTag:UIGuestTeamProfileTag];
+    guestTeamProfile.image = defaultTeamProfile;
+    
+    // 客队名字。
+    UILabel * guestTeamNameLabel = (UILabel *)[cell viewWithTag:UIGuestTeamNameTag];
+    guestTeamNameLabel.text = @"洛阳大学";
+    
+    // 客队得分。
+    UILabel * guestTeamPointsLabel = (UILabel *)[cell viewWithTag:UIGuestTeamPointsTag];
+    guestTeamPointsLabel.text = [[match guestPoints] stringValue];
     
     return cell;
 }
@@ -126,6 +189,25 @@
 */
 
 #pragma mark - Table view delegate
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return @"删除";
+//}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // TODO remove from data store.
+        Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+        [[MatchManager defaultManager] deleteMatch:match];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

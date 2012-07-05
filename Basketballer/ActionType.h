@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// TODO 库为空时，创建默认的action类型记录。
 
 @interface ActionType : NSManagedObject
 

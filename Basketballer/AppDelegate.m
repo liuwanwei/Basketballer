@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MatchManager.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[MatchManager defaultManager] loadMatches];
+    
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     return YES;

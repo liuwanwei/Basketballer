@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    UIHomeTeamProfileTag    = 1,
+    UIHomeTeamNameTag       = 2,
+    UIHomeTeamPointsTag     = 3,
+    UIMatchDateTag          = 4,
+    UIGuestTeamPointsTag    = 5,        
+    UIGuestTeamProfileTag   = 6,
+    UIGuestTeamNameTag      = 7    
+        
+} TagsInMatchRecordCell;
+
 @interface GameHistoriesViewController : UITableViewController
+
+@property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 
 @end

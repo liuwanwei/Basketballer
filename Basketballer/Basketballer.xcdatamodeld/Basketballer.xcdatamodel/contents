@@ -12,12 +12,13 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Match" representedClassName="Match" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="guestPoints" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="guestTeam" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="homePoints" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="homeTeam" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="mode" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -28,6 +29,6 @@
         <element name="Action" positionX="160" positionY="192" width="128" height="120"/>
         <element name="ActionType" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Team" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Match" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Match" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>
