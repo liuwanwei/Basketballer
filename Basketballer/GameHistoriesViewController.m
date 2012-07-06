@@ -8,12 +8,14 @@
 
 #import "GameHistoriesViewController.h"
 #import "GameSettingViewController.h"
+#import "GameDetailsViewController.h"
 #import "AppDelegate.h"
 #import "MatchManager.h"
 #import "GameSetting.h"
 
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
+    GameDetailsViewController * _gameDetailsViewController;
 }
 
 @end
@@ -33,7 +35,10 @@
 }
 
 - (void)showAddView{
-    NSString * mode = [[GameSetting defaultSetting] mode];
+    static int i = 0;
+    i++;
+    
+    NSString * mode = (i % 2) == 0 ? kGameModeFourQuarter : kGameModeTwoHalf;
     Match * match = [[MatchManager defaultManager] newMatchWithMode:mode];
     
     match.homePoints = [NSNumber numberWithInteger:68];
@@ -43,7 +48,6 @@
         return;
     }
     
-    // TODO 不能刷新？
     [self.tableView reloadData];
 }
 
@@ -87,7 +91,7 @@
 #pragma mark - Table view data source
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 85.0;
+    return 74.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -211,13 +215,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (_gameDetailsViewController == nil) {
+        _gameDetailsViewController = [[GameDetailsViewController alloc] initWithNibName:@"GameDetailsViewController" bundle:nil];
+    }
+    
+    Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+    _gameDetailsViewController.match = match;
+    [self.navigationController pushViewController:_gameDetailsViewController animated:YES];
 }
 
 @end

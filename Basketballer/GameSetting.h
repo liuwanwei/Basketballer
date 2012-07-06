@@ -25,20 +25,25 @@
 
 @interface GameSetting : NSObject
 
+@property (nonatomic, strong) NSString * mode;
 @property (nonatomic, strong) NSMutableDictionary * dictionaryStore;
 
-@property (nonatomic, strong) NSString * mode;
+// 下面是用户通过“设置”界面配置好的比赛参数，分为“四节制参数”，“上下半场制参数”，“公有参数”三个部分。
 
-@property (nonatomic, strong) NSNumber * quarterLength;                 // 单节时长。
-@property (nonatomic, strong) NSNumber * quarterTimeLength;             // 节间休息时长。
-@property (nonatomic, strong) NSNumber * halfTimeLength;                // 中场休息时长。半场、四节共有属性。
+// 四节制。
+@property (nonatomic, strong) NSNumber * quarterLength;                 // 单节时长，单位：分钟。
+@property (nonatomic, strong) NSNumber * quarterTimeLength;             // 节间休息时长，单位：分钟。
 @property (nonatomic, strong) NSNumber * foulsOverQuarterLimit;         // 单节犯规罚球次数。
 @property (nonatomic, strong) NSNumber * timeoutsOverQuarterLimit;      // 单节暂停次数。
-@property (nonatomic, strong) NSNumber * timeoutLength;                 // 暂停时长。
 
-@property (nonatomic, strong) NSNumber * halfLength;                    // 半场时长。
+// 上下半场制。
+@property (nonatomic, strong) NSNumber * halfLength;                    // 半场时长：单位：分钟。
 @property (nonatomic, strong) NSNumber * foulsOverHalfLimit;            // 半场犯规罚球次数。
 @property (nonatomic, strong) NSNumber * timeoutsOverHalfLimit;         // 半场暂停次数。
+
+// 公有。
+@property (nonatomic, strong) NSNumber * halfTimeLength;                // 中场休息时长。单位：分钟。
+@property (nonatomic, strong) NSNumber * timeoutLength;                 // 暂停时长，单位：秒。
 
 + (GameSetting *) defaultSetting;
 + (NSString *)unitStringForKey:(NSString *)key;

@@ -2,7 +2,7 @@
 //  Action.h
 //  Basketballer
 //
-//  Created by Liu Wanwei on 12-7-3.
+//  Created by Liu Wanwei on 12-7-6.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,10 +12,10 @@
 
 @interface Action : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) NSNumber * match;
-@property (nonatomic, retain) NSNumber * time;
 @property (nonatomic, retain) NSNumber * team;
+@property (nonatomic, retain) NSNumber * time;
+@property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSNumber * period;
 
 @end

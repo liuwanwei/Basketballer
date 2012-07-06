@@ -2,7 +2,7 @@
 //  Action.m
 //  Basketballer
 //
-//  Created by Liu Wanwei on 12-7-3.
+//  Created by Liu Wanwei on 12-7-6.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,10 +11,10 @@
 
 @implementation Action
 
-@dynamic id;
-@dynamic type;
 @dynamic match;
-@dynamic time;
 @dynamic team;
+@dynamic time;
+@dynamic type;
+@dynamic period;
 
 @end

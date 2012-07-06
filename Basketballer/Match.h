@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#define kMatchEntity            @"Match"
-
 @interface Match : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * id;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// TODO id==0 留给默认主队，id==1留给默认客队。所以一开始就要在表中创建默认的主客队记录。
 
 @interface Team : NSManagedObject
 

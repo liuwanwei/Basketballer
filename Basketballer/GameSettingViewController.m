@@ -62,10 +62,10 @@
         _mode = [NSArray arrayWithObjects:@"上下半场", @"四节", nil];
         
         // Two half mode settings and the keywords used to store the settings.
-        _twoHalfSettings = [NSArray arrayWithObjects:@"半场时间", 
+        _twoHalfSettings = [NSArray arrayWithObjects:@"半场比赛时间", 
                                                      @"中场休息时间", 
-                                                     @"半场犯规罚球次数", 
-                                                     @"允许暂停次数", 
+                                                     @"球队最大犯规次数", 
+                                                     @"半场允许暂停次数", 
                                                      @"暂停时间", nil];
         _twoHalfSettingsKey = [NSArray arrayWithObjects:kGameHalfLength, 
                                                         kGameHalfTimeLength, 
@@ -73,11 +73,11 @@
                                                         kGameTimeoutsOverHalfLimit, 
                                                         kGameTimeoutLength, nil];
         
-        _fourQuarterSettings = [NSArray arrayWithObjects:@"单节时间", 
+        _fourQuarterSettings = [NSArray arrayWithObjects:@"单节比赛时间", 
                                                          @"节间休息时间", 
                                                          @"中场休息时间", 
-                                                         @"单节犯规罚球次数", 
-                                                         @"允许暂停次数", 
+                                                         @"球队最大犯规次数", 
+                                                         @"单节允许暂停次数", 
                                                          @"暂停时间", nil];
         _fourQuarterSettingsKey = [NSArray arrayWithObjects:kGameQuarterLength, 
                                                             kGameQuarterTimeLength, 
@@ -105,7 +105,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissMyself)];
+    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissMyself)];
     self.navigationItem.leftBarButtonItem = cancelItem;
     
     // TODO move to string file.
@@ -262,6 +262,9 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return nil;
+    }
     return [_header objectAtIndex:section];
 }
 
