@@ -7,7 +7,7 @@
 //
 
 #import "GameHistoriesViewController.h"
-#import "GameSettingViewController.h"
+#import "SettingViewController.h"
 #import "GameDetailsViewController.h"
 #import "AppDelegate.h"
 #import "MatchManager.h"
@@ -26,8 +26,8 @@
 
 - (void)showSettingView{
     if (nil == _settingsViewController) {
-        GameSettingViewController * viewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        SettingViewController * settingViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:settingViewController];
     }
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -44,7 +44,7 @@
     match.homePoints = [NSNumber numberWithInteger:68];
     match.guestPoints = [NSNumber numberWithInteger:36];
     
-    if(! [[MatchManager defaultManager] save]){
+    if(! [[MatchManager defaultManager] synchroniseToStore]){
         return;
     }
     
@@ -221,6 +221,7 @@
     
     Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
     _gameDetailsViewController.match = match;
+    [_gameDetailsViewController reloadActionsInMatch];
     [self.navigationController pushViewController:_gameDetailsViewController animated:YES];
 }
 

@@ -9,17 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Match.h"
 #import "Action.h"
+#import "ActionManager.h"
 
 #define kMatchEntity            @"Match"
 #define kActionEntity           @"Action"
-
-typedef enum {
-    ActionType1Point    = 1,
-    ActionType2Points   = 2,
-    ActionType3Points   = 3,
-    ActionTypeFoul      = 4,        // 犯规。
-    ActionTypeTimeout   = 5         // 暂停。
-}ActionType;
 
 @protocol FoulActionDelegate;
 
@@ -46,7 +39,7 @@ typedef enum {
 
 + (MatchManager *)defaultManager;
 
-- (BOOL)save;       // TODO 需要想个好名称。
+- (BOOL)synchroniseToStore;       // TODO 需要想个好名称。
 
 - (void)loadMatches;
 - (Match *)newMatchWithMode:(NSString *)mode;

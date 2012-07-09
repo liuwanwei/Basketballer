@@ -10,4 +10,6 @@
 
 @interface GameSettingViewController : UITableViewController
 
+@property (nonatomic, strong) NSString * gameMode;
+
 @end

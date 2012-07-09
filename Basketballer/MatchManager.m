@@ -89,7 +89,6 @@ static MatchManager * sDefaultManager;
     request.sortDescriptors = sortDescriptors;
     
     NSError * error = nil;
-    // TODO why mutableCopy?
     NSMutableArray * mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
     if (nil == mutableFetchResults) {
         NSLog(@"executeFetchRequest: %@", [error description]);
@@ -125,7 +124,7 @@ static MatchManager * sDefaultManager;
     
     newOne.mode = mode;
     
-    if(! [self save]){
+    if(! [self synchroniseToStore]){
         return nil;
     }
     
@@ -139,7 +138,7 @@ static MatchManager * sDefaultManager;
 - (BOOL)deleteMatch:(Match *)match{
     [self.managedObjectContext deleteObject:match];
     
-    if (! [self save]) {
+    if (! [self synchroniseToStore]) {
         return NO;
     }
     
@@ -148,7 +147,7 @@ static MatchManager * sDefaultManager;
     return YES;
 }
 
-- (BOOL)save{
+- (BOOL)synchroniseToStore{
     NSError * error = nil;
     if (! [self.managedObjectContext save:&error]) {
         NSLog(@"save error: %@", [error description]);
@@ -181,7 +180,7 @@ static MatchManager * sDefaultManager;
     Action * action = [self newActionInMatch:match withType:actionType atTime:time inPeriod:period];
     action.team = match.homeTeam;
     
-    if( ![self save]){
+    if( ![self synchroniseToStore]){
         return NO;
     }
     
@@ -230,7 +229,7 @@ static MatchManager * sDefaultManager;
     Action * action = [self newActionInMatch:match withType:actionType atTime:time inPeriod:period];
     action.team = match.guestTeam;
     
-    if( ![self save]){
+    if( ![self synchroniseToStore]){
         return NO;
     }
     
@@ -269,7 +268,7 @@ static MatchManager * sDefaultManager;
 
 - (BOOL)deleteAction:(Action *)action{
     [self.managedObjectContext deleteObject:action];
-    if(! [self save]){
+    if(! [self synchroniseToStore]){
         return NO;
     }
     

@@ -7,6 +7,7 @@
 //
 
 #import "GameDetailsViewController.h"
+#import "ActionManager.h"
 
 typedef enum {
     UICellItemTitle = 1,
@@ -16,10 +17,23 @@ typedef enum {
 }UIMatchPartSummaryCellTag;
 
 @interface GameDetailsViewController (){
-    NSArray * _fourQuarterDescriptions;
-    NSArray * _twoHalfDescriptions;
+    // 从比赛历史界面第二次进入当前view时，需要刷新tableview。从下级菜单返回时，不用刷新tableview。
+    BOOL _viewNeedRefresh;
     
-    NSArray * __weak _currentModeDescriptions;      // TODO
+    // 比赛若是上下半场，指向_twohalfDescriptions；若是四节，指向_fourQuarterDescriptions.
+    NSArray * __weak _periodNameArray;      
+    NSArray * _fourQuarterDescriptions;
+    NSArray * _twoHalfDescriptions;    
+    
+    NSString * _homeTeamName;
+    NSString * _guestTeamName;
+    NSMutableArray * _actionsInMatch;
+    
+    NSInteger _actionFilterValue;
+    NSMutableArray * _homeTeamActionSummaryArray;
+    NSMutableArray * _guestTeamActionSummaryArray;
+    
+    NSInteger _actionFilterSelectedIndex;
 }
 @end
 
@@ -34,15 +48,46 @@ typedef enum {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)actionFilterChanged{
-    NSLog(@"I'm changed to %d", self.actionFilter.selectedSegmentIndex);
-
-    NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < _currentModeDescriptions.count; i++) {
-        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        [indexPaths addObject:indexPath];
+- (void)actionFilterChanged:(id)sender{
+    _actionFilterSelectedIndex = self.actionFilter.selectedSegmentIndex;
+    switch (_actionFilterSelectedIndex) {
+        default:            
+        case 0:
+            _actionFilterValue = ActionTypePoints;
+            break;
+        case 1:
+            _actionFilterValue = ActionTypeFoul;
+            break;
+        case 2:
+            _actionFilterValue = ActionTypeTimeout;
+            break;
     }
-    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic]; // TODO animation ?
+    
+    
+    // 加载技术统计信息。
+    ActionManager * am = [ActionManager defaultManager];
+    _homeTeamActionSummaryArray = [am summaryForFilter:_actionFilterValue 
+                                            withTeam:[_match.homeTeam integerValue] 
+                                            inActions:_actionsInMatch];
+    _guestTeamActionSummaryArray = [am summaryForFilter:_actionFilterValue 
+                                            withTeam:[_match.guestTeam integerValue] 
+                                            inActions:_actionsInMatch];
+
+    // 刷新主客队技术统计”table group“。
+//    NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
+//    for (NSInteger i = 0; i < _periodNameArray.count; i++) {
+//        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//        [indexPaths addObject:indexPath];
+//    }
+//    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic]; // TODO animation ?
+    [self.tableView reloadData];
+}
+
+- (void)reloadActionsInMatch{
+    _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:_match];
+    [_actionFilter setSelectedSegmentIndex:0];
+    
+    [self actionFilterChanged:_actionFilter];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,7 +97,10 @@ typedef enum {
         // Custom initialization
         _fourQuarterDescriptions = [NSArray arrayWithObjects:@"第一节", @"第二节", @"第三节", @"第四节", nil];
         _twoHalfDescriptions = [NSArray arrayWithObjects:@"上半场", @"下半场", nil];
-        _currentModeDescriptions = _fourQuarterDescriptions;
+        _periodNameArray = _fourQuarterDescriptions;
+        
+        _viewNeedRefresh = NO;
+        _actionFilterSelectedIndex = 0;
     }
     return self;
 }
@@ -89,17 +137,22 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.tableView reloadData];
+    if (_viewNeedRefresh) {
+        _actionFilterSelectedIndex = 0;
+        [self.tableView reloadData];
+    }else{
+        _viewNeedRefresh = YES;
+    }
 }
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([self.match.mode isEqualToString:kGameModeFourQuarter]) {
-        _currentModeDescriptions = _fourQuarterDescriptions;
+        _periodNameArray = _fourQuarterDescriptions;
     }else if([self.match.mode isEqualToString:kGameModeTwoHalf]){
-        _currentModeDescriptions = _twoHalfDescriptions;
+        _periodNameArray = _twoHalfDescriptions;
     }else{
-        _currentModeDescriptions = nil;
+        _periodNameArray = nil;
     }
     
     return 2;
@@ -116,7 +169,7 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return [_currentModeDescriptions count];
+        return [_periodNameArray count];
     }else{
         return 1;
     }
@@ -134,20 +187,24 @@ typedef enum {
             [[NSBundle mainBundle] loadNibNamed:@"MatchActionFilterCell" owner:self options:nil];
             cell = _actionFilterCell;
             self.actionFilterCell = nil;
-            UISegmentedControl * segmentedFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
-            [segmentedFilter addTarget:self action:@selector(actionFilterChanged) forControlEvents:UIControlEventValueChanged];
+            
+            self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
+            [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
+            self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
         }
     }
     
     if (indexPath.section == 0) {
         UILabel * title = (UILabel *)[cell viewWithTag:UICellItemTitle];
-        title.text = [_currentModeDescriptions objectAtIndex:indexPath.row];
+        title.text = [_periodNameArray objectAtIndex:indexPath.row];
         
         UILabel * firstValue = (UILabel *)[cell viewWithTag:UICellFirstValue];
-        firstValue.text = @"3"; // TODO summary from db.
+        NSNumber * statistics = [_homeTeamActionSummaryArray objectAtIndex:indexPath.row];
+        firstValue.text = [statistics stringValue]; 
         
         UILabel * secondValue = (UILabel *)[cell viewWithTag:UICellSecondValue];
-        secondValue.text = @"2";
+        statistics = [_guestTeamActionSummaryArray objectAtIndex:indexPath.row];
+        secondValue.text = [statistics stringValue];
     }
     
     return cell;

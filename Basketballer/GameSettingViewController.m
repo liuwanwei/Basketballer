@@ -12,37 +12,36 @@
 #import "AppDelegate.h"
 
 @interface GameSettingViewController (){
-    NSMutableArray * _settings;
     NSArray * _header;
-    NSArray * _mode;
+    NSArray * _modeString;
+    
     NSArray * _twoHalfSettings;
     NSArray * _twoHalfSettingsKey;
     NSArray * _fourQuarterSettings;
     NSArray * _fourQuarterSettingsKey;
     
+    NSArray * __weak _settingsArray;
+    NSArray * __weak _settingsKeyArray;
+    
     SingleChoiceViewController * _singleChoiceController;
-    NSIndexPath * _enteredSetting;
 }
 
 @end
 
 @implementation GameSettingViewController
 
-- (NSArray *)settingsArray{
-    if([[[GameSetting defaultSetting] mode] isEqualToString:kGameModeFourQuarter]){
-        return _fourQuarterSettings;
+@synthesize gameMode = _gameMode;
+
+- (void)initSettingsArray{
+    if([_gameMode isEqualToString:kGameModeFourQuarter]){
+        _settingsArray = _fourQuarterSettings;
+        _settingsKeyArray = _fourQuarterSettingsKey;
     }else{
-        return _twoHalfSettings;
+        _settingsArray = _twoHalfSettings;
+        _settingsKeyArray = _twoHalfSettingsKey;
     }    
 }
 
-- (NSArray *)settingKeysArray{
-    if([[[GameSetting defaultSetting] mode] isEqualToString:kGameModeFourQuarter]){
-        return _fourQuarterSettingsKey;
-    }else{
-        return _twoHalfSettingsKey;
-    }
-}
 
 - (SingleChoiceViewController *)singleChoiceController{
     if (_singleChoiceController == nil) {
@@ -59,7 +58,7 @@
         // Custom initialization
         _header = [NSArray arrayWithObjects:@"比赛模式", @"技术参数", nil];
         
-        _mode = [NSArray arrayWithObjects:@"上下半场", @"四节", nil];
+        _modeString = [NSArray arrayWithObjects:@"上下半场", @"四节", nil];
         
         // Two half mode settings and the keywords used to store the settings.
         _twoHalfSettings = [NSArray arrayWithObjects:@"半场比赛时间", 
@@ -90,26 +89,10 @@
     return self;
 }
 
-- (void)dismissMyself{
-    AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
-    [delegate.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissMyself)];
-    self.navigationItem.leftBarButtonItem = cancelItem;
-    
-    // TODO move to string file.
-    [self setTitle:@"比赛设置"];
 }
 
 - (void)viewDidUnload
@@ -122,10 +105,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if (_enteredSetting != nil) {
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:_enteredSetting] withRowAnimation:UITableViewRowAnimationAutomatic];
-        _enteredSetting = nil;  // TODO do I need to release object obtained by copy message?
-    }
+    [self initSettingsArray];
+    [self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -137,16 +118,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return [_mode count];
-    }else {
-        return  [[self settingsArray] count];
-    }
+    return  _settingsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,28 +146,17 @@
     }
     
     // Configure the cell...
-    if (indexPath.section == 0) {
-        cell.textLabel.text = [_mode objectAtIndex:indexPath.row];
-        NSInteger selectedMode = [[[GameSetting defaultSetting] mode] isEqualToString:kGameModeFourQuarter] ? 1 : 0;
-        
-        if (indexPath.row == selectedMode) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }else if(indexPath.section == 1){
-        cell.textLabel.text = [[self settingsArray] objectAtIndex:indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-        NSString * parameterKey = [[self settingKeysArray] objectAtIndex:indexPath.row];
-        NSNumber * parameter = [[GameSetting defaultSetting] parameterForKey:parameterKey];
-        NSString * parameterString = [parameter stringValue];
-        parameterString = parameterString == nil ? @"0" : parameterString;
-        NSString * parameterUnitString = [GameSetting unitStringForKey:parameterKey];
-        
-        UILabel * label = (UILabel *)[cell viewWithTag:ParamLabelTag];
-        label.text = [NSString stringWithFormat:@"%@%@", parameterString, parameterUnitString];
-    }
+    cell.textLabel.text = [_settingsArray objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    NSString * parameterKey = [_settingsKeyArray objectAtIndex:indexPath.row];
+    NSNumber * parameter = [[GameSetting defaultSetting] parameterForKey:parameterKey];
+    NSString * parameterString = [parameter stringValue];
+    parameterString = parameterString == nil ? @"0" : parameterString;
+    NSString * parameterUnitString = [GameSetting unitStringForKey:parameterKey];
+    
+    UILabel * label = (UILabel *)[cell viewWithTag:ParamLabelTag];
+    label.text = [NSString stringWithFormat:@"%@%@", parameterString, parameterUnitString];
     
     return cell;
 }
@@ -237,14 +203,9 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.section == 0){
-        NSString * mode = (indexPath.row == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
-        [[GameSetting defaultSetting] setParameter:mode forKey:kGameMode]; 
-        [self.tableView reloadData];
-//        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }else if(indexPath.section == 1){        
-        NSString * parameterKey = [[self settingKeysArray] objectAtIndex:indexPath.row];
+{   
+    if(indexPath.section == 0){        
+        NSString * parameterKey = [_settingsKeyArray objectAtIndex:indexPath.row];
         NSNumber * parameterValue = [[GameSetting defaultSetting] parameterForKey:parameterKey];
         NSString * unitString = [GameSetting unitStringForKey:parameterKey];
         NSArray * choices = [[GameSetting defaultSetting] choicesForKey:parameterKey];
@@ -254,18 +215,11 @@
         controller.unitString = unitString;
         controller.currentChoice = [parameterValue stringValue];
         controller.choices = choices;
-        [controller setTitle:[[self settingsArray] objectAtIndex:indexPath.row]];
+        [controller setTitle:[_settingsArray objectAtIndex:indexPath.row]];
         
         [self.navigationController pushViewController:controller animated:YES];
-        _enteredSetting = [indexPath copy];
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return nil;
-    }
-    return [_header objectAtIndex:section];
-}
 
 @end

@@ -19,4 +19,6 @@
 
 @property (nonatomic, weak) Match * match;
 
+- (void)reloadActionsInMatch;
+
 @end

@@ -9,9 +9,9 @@
     </entity>
     <entity name="Match" representedClassName="Match" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="guestPoints" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="guestPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="guestTeam" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="homePoints" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="homePoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="homeTeam" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="mode" optional="YES" attributeType="String" syncable="YES"/>
