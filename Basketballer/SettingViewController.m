@@ -14,6 +14,7 @@
 
 @interface SettingViewController (){
     NSArray * _tableStrings;
+    NSArray * _groupHeaders;
     
     GameSettingViewController * _gameSettingViewController;
     TeamSettingViewController * _teamSettingViewController;
@@ -33,9 +34,11 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _tableStrings = [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"球队设置", nil], 
-                                               [NSArray arrayWithObjects: @"上下半场", @"四节", nil], 
+        _tableStrings = [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"前三至球队名称排列。。。", nil], 
+                                               [NSArray arrayWithObjects: @"上下半场模式", @"四节模式", nil], 
                                                nil];
+        
+        _groupHeaders = [NSArray arrayWithObjects:@"修改、添加球队", @"设置不同比赛模式下的规则", nil];
     }
     return self;
 }
@@ -74,6 +77,10 @@
 {
     NSArray * object = [_tableStrings objectAtIndex:section];
     return object.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [_groupHeaders objectAtIndex:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -8,17 +8,27 @@
 
 #import "TeamSettingViewController.h"
 
-@interface TeamSettingViewController ()
+@interface TeamSettingViewController (){
+    NSMutableArray * _teams;
+    NSArray * _groupHeaders;
+}
 
 @end
 
 @implementation TeamSettingViewController
+
+- (void)editTeams{
+    // TODO enter edit mode, or just flick to delete?
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        // TODO loading from db.
+        _teams = [NSMutableArray arrayWithObjects:@"主队", @"客队", @"某个球队", nil];
+        _groupHeaders = [NSArray arrayWithObjects:@"已添加球队", nil];
     }
     return self;
 }
@@ -30,8 +40,10 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editTeams)];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    [self setTitle:@"球队设置"];
 }
 
 - (void)viewDidUnload
@@ -50,24 +62,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    if (section == 0) {
+        return _teams.count;
+    }else{
+        return 1;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section < _groupHeaders.count) {
+        return [_groupHeaders objectAtIndex:section];
+    }else{
+        return nil;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     
     // Configure the cell...
+    if (indexPath.section == 0) {
+        cell.textLabel.text = [_teams objectAtIndex:indexPath.row];
+    }else{
+        cell.textLabel.text = @"创建新球队";
+        cell.textLabel.textColor = [UIColor blueColor];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+    }
     
     return cell;
 }

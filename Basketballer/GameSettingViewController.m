@@ -23,6 +23,8 @@
     NSArray * __weak _settingsArray;
     NSArray * __weak _settingsKeyArray;
     
+    NSArray * _groupHeaders;
+    
     SingleChoiceViewController * _singleChoiceController;
 }
 
