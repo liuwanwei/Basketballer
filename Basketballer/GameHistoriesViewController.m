@@ -8,8 +8,21 @@
 
 #import "GameHistoriesViewController.h"
 #import "PlayGameViewController.h"
+#import "SettingViewController.h"
+#import "GameDetailsViewController.h"
+#import "AppDelegate.h"
+#import "MatchManager.h"
+#import "GameSetting.h"
+#import "StartGameViewController.h"
+
+@interface GameHistoriesViewController (){
+    UINavigationController * _settingsViewController;
+    GameDetailsViewController * _gameDetailsViewController;
+}
+@end
 
 @implementation GameHistoriesViewController
+@synthesize tvCell = _tvCell;
 
 #pragma 私有函数
 - (void)initNavigationItem {
@@ -22,9 +35,36 @@
 
 #pragma 事件函数
 - (void)startGame {
-    PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName:@"PlayGameViewController" bundle:nil];
+    StartGameViewController * startGameViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
     
-    [self.navigationController pushViewController:playGameViewController animated:YES];
+    [self.navigationController pushViewController:startGameViewController animated:YES];
+}
+
+- (void)showSettingView{
+    if (nil == _settingsViewController) {
+        SettingViewController * settingViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:settingViewController];
+    }
+    
+    AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
+}
+
+- (void)showAddView{
+    static int i = 0;
+    i++;
+    
+    NSString * mode = (i % 2) == 0 ? kGameModeFourQuarter : kGameModeTwoHalf;
+    Match * match = [[MatchManager defaultManager] newMatchWithMode:mode];
+    
+    match.homePoints = [NSNumber numberWithInteger:68];
+    match.guestPoints = [NSNumber numberWithInteger:36];
+    
+    if(! [[MatchManager defaultManager] synchroniseToStore]){
+        return;
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,6 +86,11 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettingView)];
+    self.navigationItem.leftBarButtonItem = settingsItem;
+    
+    /*UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
+    self.navigationItem.rightBarButtonItem = addItem;*/
 }
 
 - (void)viewDidUnload
@@ -62,24 +107,65 @@
 
 #pragma mark - Table view data source
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 74.0;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 0;
+    return [[[MatchManager defaultManager] matchesArray] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (nil == cell) {
+        [[NSBundle mainBundle] loadNibNamed:@"MatchRecordCell" owner:self options:nil];
+        cell = _tvCell;
+        self.tvCell = nil;
+    }
     
-    // Configure the cell...
+    Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+    
+    UIImage * defaultTeamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
+    
+    // 主队图像。
+    UIImageView * homeImageProfile = (UIImageView *)[cell viewWithTag:UIHomeTeamProfileTag];
+    homeImageProfile.image = defaultTeamProfile;
+    
+    // 主队名字。    
+    UILabel * homeTeamNameLabel = (UILabel *)[cell viewWithTag:UIHomeTeamNameTag];
+    homeTeamNameLabel.text = @"曦光科技";
+    
+    // 主队得分。
+    UILabel * homeTeamPointsLabel = (UILabel *)[cell viewWithTag:UIHomeTeamPointsTag];
+    homeTeamPointsLabel.text = [[match homePoints] stringValue];
+    
+    // 比赛时间。
+    UILabel * dateLabel = (UILabel *)[cell viewWithTag:UIMatchDateTag];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString * dateString = [dateFormatter stringFromDate:[match date]];
+    dateLabel.text = dateString;
+    
+    // 客队图像。
+    UIImageView * guestTeamProfile = (UIImageView *)[cell viewWithTag:UIGuestTeamProfileTag];
+    guestTeamProfile.image = defaultTeamProfile;
+    
+    // 客队名字。
+    UILabel * guestTeamNameLabel = (UILabel *)[cell viewWithTag:UIGuestTeamNameTag];
+    guestTeamNameLabel.text = @"洛阳大学";
+    
+    // 客队得分。
+    UILabel * guestTeamPointsLabel = (UILabel *)[cell viewWithTag:UIGuestTeamPointsTag];
+    guestTeamPointsLabel.text = [[match guestPoints] stringValue];
     
     return cell;
 }
@@ -125,15 +211,35 @@
 
 #pragma mark - Table view delegate
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return @"删除";
+//}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // TODO remove from data store.
+        Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+        [[MatchManager defaultManager] deleteMatch:match];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (_gameDetailsViewController == nil) {
+        _gameDetailsViewController = [[GameDetailsViewController alloc] initWithNibName:@"GameDetailsViewController" bundle:nil];
+    }
+    
+    Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+    _gameDetailsViewController.match = match;
+    [_gameDetailsViewController reloadActionsInMatch];
+    [self.navigationController pushViewController:_gameDetailsViewController animated:YES];
 }
 
 @end

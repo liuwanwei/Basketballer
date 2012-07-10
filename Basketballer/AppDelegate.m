@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MatchManager.h"
+#import "TeamManager.h"
 
 @implementation AppDelegate
 
@@ -23,6 +25,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[MatchManager defaultManager] loadMatches];
+    [[TeamManager defaultManager] loadTeams];
+    
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     return YES;

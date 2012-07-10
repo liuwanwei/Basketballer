@@ -8,6 +8,12 @@
 
 #import "EditTeamInfoViewController.h"
 #import "define.h"
+#import "TeamManager.h"
+
+@interface EditTeamInfoViewController() {
+    UIImage * _image;
+}
+@end
 
 @implementation EditTeamInfoViewController
 
@@ -15,6 +21,11 @@
 @synthesize teamType = _teamType;
 
 #pragma 私有函数
+- (void)initNavigationItem {
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePhoto:)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
 - (void)initRowsTitle {
     self.rowsTitle = [NSArray arrayWithObjects:@"选择头像",@"球队名称", nil]; 
 }
@@ -58,6 +69,7 @@
     return image;
 }
 
+#pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -71,6 +83,7 @@
     [super viewDidLoad];
     self.title = @"设置球队";
     [self initRowsTitle];
+    [self initNavigationItem];
 }
 
 - (void)viewDidUnload
@@ -151,36 +164,30 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UIImage * image = [info valueForKey:UIImagePickerControllerEditedImage];
+    _image = [info valueForKey:UIImagePickerControllerEditedImage];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
-    NSData *data;
-    if (UIImageJPEGRepresentation(image, 1) == nil) {
-        data = UIImagePNGRepresentation(image);
-
-    } else {
-        data = UIImageJPEGRepresentation(image, 1);
-
-    }
-    /*if (UIImagePNGRepresentation(image) == nil) {
-        data = UIImageJPEGRepresentation(image, 1);
-        
-    } else {
-        
-        data = UIImagePNGRepresentation(image);
-        
-    }*/
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSString *filePath = [[NSString stringWithString:[self dataPath]] stringByAppendingString:@"/image"];         //将图片存储到本地documents
-    
-    
-    [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    [fileManager createFileAtPath:[filePath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
-    
-
-    cell.imageView.image = [UIImage imageWithContentsOfFile:[filePath stringByAppendingString:@"/image.png"]];
+    cell.imageView.image = _image;
     [self dismissModalViewControllerAnimated:YES];
 }
+
+#warning 为了测试图片文件存储暂时先这样写
+- (void)savePhoto:(id) send {
+    if(_image != nil) {
+        NSData * data;
+        data = UIImagePNGRepresentation(_image);
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *filePath = [[NSString stringWithString:[self dataPath]] stringByAppendingString:@"/image"];         //将图片存储到本地documents
+        NSDate * date = [NSDate date];
+        NSString * fileName = [date description];
+        [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createFileAtPath:[filePath stringByAppendingString:fileName] contents:data attributes:nil];  
+    }
+    
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NSString * teamName = cell.textLabel.text;
+    
+    TeamManager * teamManager = [TeamManager defaultManager];
+}
+
 @end
