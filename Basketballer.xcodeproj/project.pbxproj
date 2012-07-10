@@ -18,6 +18,24 @@
 		3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1683615A2E61A00A2AB44 /* MainWindow.xib */; };
 		3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */; };
 		3CC1683D15A2E71400A2AB44 /* GameHistoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */; };
+		E68D111015A2F7400074982D /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D110F15A2F7400074982D /* Team.m */; };
+		E68D111315A2FAA40074982D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111215A2FAA40074982D /* GameSettingViewController.m */; };
+		E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111D15A3DA0C0074982D /* GameSetting.m */; };
+		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
+		E68D116815A53CE50074982D /* MatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116715A53CE50074982D /* MatchManager.m */; };
+		E68D116F15A591AA0074982D /* MatchRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D116E15A591AA0074982D /* MatchRecordCell.xib */; };
+		E68D117115A59DA20074982D /* DefaultTeamProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = E68D117015A59DA20074982D /* DefaultTeamProfile.png */; };
+		E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D117815A5F2900074982D /* GameDetailsViewController.m */; };
+		E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D117915A5F2900074982D /* GameDetailsViewController.xib */; };
+		E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118415A684B30074982D /* MatchPartSummaryCell.xib */; };
+		E68D118815A68D090074982D /* MatchActionFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118715A68D090074982D /* MatchActionFilterCell.xib */; };
+		E68D118A15A696B60074982D /* DefaultTeamProfile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */; };
+		E68D119315A6C7460074982D /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D119215A6C7460074982D /* Action.m */; };
+		E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94915AA7F4700CB0C0E /* Match.m */; };
+		E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94C15AA87F800CB0C0E /* ActionManager.m */; };
+		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
+		E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95515AB183500CB0C0E /* TeamManager.m */; };
+		E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +55,36 @@
 		3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoriesViewController.h; sourceTree = "<group>"; };
 		3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoriesViewController.m; sourceTree = "<group>"; };
 		3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoriesViewController.xib; sourceTree = "<group>"; };
+		E68D110E15A2F7400074982D /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		E68D110F15A2F7400074982D /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		E68D111115A2FAA30074982D /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingViewController.h; sourceTree = "<group>"; };
+		E68D111215A2FAA40074982D /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingViewController.m; sourceTree = "<group>"; };
+		E68D111C15A3DA0C0074982D /* GameSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetting.h; sourceTree = "<group>"; };
+		E68D111D15A3DA0C0074982D /* GameSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetting.m; sourceTree = "<group>"; };
+		E68D116015A4245A0074982D /* SingleChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleChoiceViewController.h; sourceTree = "<group>"; };
+		E68D116115A4245A0074982D /* SingleChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleChoiceViewController.m; sourceTree = "<group>"; };
+		E68D116615A53CE40074982D /* MatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchManager.h; sourceTree = "<group>"; };
+		E68D116715A53CE50074982D /* MatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchManager.m; sourceTree = "<group>"; };
+		E68D116E15A591AA0074982D /* MatchRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchRecordCell.xib; sourceTree = "<group>"; };
+		E68D117015A59DA20074982D /* DefaultTeamProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultTeamProfile.png; sourceTree = "<group>"; };
+		E68D117715A5F28F0074982D /* GameDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailsViewController.h; sourceTree = "<group>"; };
+		E68D117815A5F2900074982D /* GameDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailsViewController.m; sourceTree = "<group>"; };
+		E68D117915A5F2900074982D /* GameDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameDetailsViewController.xib; sourceTree = "<group>"; };
+		E68D118415A684B30074982D /* MatchPartSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchPartSummaryCell.xib; sourceTree = "<group>"; };
+		E68D118715A68D090074982D /* MatchActionFilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchActionFilterCell.xib; sourceTree = "<group>"; };
+		E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultTeamProfile@2x.png"; sourceTree = "<group>"; };
+		E68D119115A6C7460074982D /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
+		E68D119215A6C7460074982D /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
+		E6E1D94815AA7F4700CB0C0E /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		E6E1D94915AA7F4700CB0C0E /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		E6E1D94B15AA87F800CB0C0E /* ActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionManager.h; sourceTree = "<group>"; };
+		E6E1D94C15AA87F800CB0C0E /* ActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionManager.m; sourceTree = "<group>"; };
+		E6E1D94E15AAD74B00CB0C0E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		E6E1D95415AB183500CB0C0E /* TeamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamManager.h; sourceTree = "<group>"; };
+		E6E1D95515AB183500CB0C0E /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
+		E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManager.h; sourceTree = "<group>"; };
+		E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +133,7 @@
 		3CC1681715A2E52B00A2AB44 /* Basketballer */ = {
 			isa = PBXGroup;
 			children = (
+				E68D110315A2F7020074982D /* DataStore */,
 				3CC1683815A2E6EE00A2AB44 /* Classes */,
 				3CC1683315A2E5E400A2AB44 /* Resources */,
 				3CC1682015A2E52B00A2AB44 /* AppDelegate.h */,
@@ -109,6 +158,8 @@
 		3CC1683315A2E5E400A2AB44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */,
+				E68D117015A59DA20074982D /* DefaultTeamProfile.png */,
 				3CC1683515A2E60200A2AB44 /* xib */,
 			);
 			name = Resources;
@@ -117,8 +168,12 @@
 		3CC1683515A2E60200A2AB44 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				E68D117915A5F2900074982D /* GameDetailsViewController.xib */,
 				3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */,
 				3CC1683615A2E61A00A2AB44 /* MainWindow.xib */,
+				E68D116E15A591AA0074982D /* MatchRecordCell.xib */,
+				E68D118415A684B30074982D /* MatchPartSummaryCell.xib */,
+				E68D118715A68D090074982D /* MatchActionFilterCell.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -126,10 +181,41 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
+				E68D117815A5F2900074982D /* GameDetailsViewController.m */,
 				3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */,
 				3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */,
+				E68D111115A2FAA30074982D /* GameSettingViewController.h */,
+				E68D111215A2FAA40074982D /* GameSettingViewController.m */,
+				E6E1D94E15AAD74B00CB0C0E /* SettingViewController.h */,
+				E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */,
+				E68D116015A4245A0074982D /* SingleChoiceViewController.h */,
+				E68D116115A4245A0074982D /* SingleChoiceViewController.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		E68D110315A2F7020074982D /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */,
+				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
+				E6E1D94815AA7F4700CB0C0E /* Match.h */,
+				E6E1D94915AA7F4700CB0C0E /* Match.m */,
+				E68D116615A53CE40074982D /* MatchManager.h */,
+				E68D116715A53CE50074982D /* MatchManager.m */,
+				E68D119115A6C7460074982D /* Action.h */,
+				E68D119215A6C7460074982D /* Action.m */,
+				E6E1D94B15AA87F800CB0C0E /* ActionManager.h */,
+				E6E1D94C15AA87F800CB0C0E /* ActionManager.m */,
+				E68D110E15A2F7400074982D /* Team.h */,
+				E68D110F15A2F7400074982D /* Team.m */,
+				E6E1D95415AB183500CB0C0E /* TeamManager.h */,
+				E6E1D95515AB183500CB0C0E /* TeamManager.m */,
+				E68D111C15A3DA0C0074982D /* GameSetting.h */,
+				E68D111D15A3DA0C0074982D /* GameSetting.m */,
+			);
+			name = DataStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +271,12 @@
 				3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */,
 				3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */,
 				3CC1683D15A2E71400A2AB44 /* GameHistoriesViewController.xib in Resources */,
+				E68D116F15A591AA0074982D /* MatchRecordCell.xib in Resources */,
+				E68D117115A59DA20074982D /* DefaultTeamProfile.png in Resources */,
+				E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */,
+				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
+				E68D118815A68D090074982D /* MatchActionFilterCell.xib in Resources */,
+				E68D118A15A696B60074982D /* DefaultTeamProfile@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +291,18 @@
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */,
+				E68D111015A2F7400074982D /* Team.m in Sources */,
+				E68D111315A2FAA40074982D /* GameSettingViewController.m in Sources */,
+				E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */,
+				E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */,
+				E68D116815A53CE50074982D /* MatchManager.m in Sources */,
+				E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */,
+				E68D119315A6C7460074982D /* Action.m in Sources */,
+				E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */,
+				E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */,
+				E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */,
+				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
+				E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
