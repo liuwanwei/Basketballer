@@ -21,10 +21,11 @@
 
 - (void)loadTeams;
 
-- (Team *)newTeam:(NSString *)name withImage:(NSURL *)imageURL;
+- (Team *)newTeam:(NSString *)name withImage:(UIImage *)image;
 
 - (BOOL)deleteTeam:(Team *)team;
 
-- (BOOL)modifyTeam:(Team *)team;
+- (BOOL)modifyTeam:(Team *)team withNewName:(NSString *)name;
+- (BOOL)modifyTeam:(Team *)team withNewImage:(UIImage *)image;
 
 @end
