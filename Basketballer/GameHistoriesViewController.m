@@ -7,12 +7,25 @@
 //
 
 #import "GameHistoriesViewController.h"
-
-@interface GameHistoriesViewController ()
-
-@end
+#import "PlayGameViewController.h"
 
 @implementation GameHistoriesViewController
+
+#pragma 私有函数
+- (void)initNavigationItem {
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(setGame)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+#pragma 事件函数
+- (void)startGame {
+    PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName:@"PlayGameViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:playGameViewController animated:YES];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavigationItem];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
