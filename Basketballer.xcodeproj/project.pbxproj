@@ -34,7 +34,8 @@
 		E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94915AA7F4700CB0C0E /* Match.m */; };
 		E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94C15AA87F800CB0C0E /* ActionManager.m */; };
 		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
-		E6E1D95315AADB3B00CB0C0E /* TeamSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95215AADB3A00CB0C0E /* TeamSettingViewController.m */; };
+		E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95515AB183500CB0C0E /* TeamManager.m */; };
+		E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,8 +81,10 @@
 		E6E1D94C15AA87F800CB0C0E /* ActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionManager.m; sourceTree = "<group>"; };
 		E6E1D94E15AAD74B00CB0C0E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		E6E1D95115AADB3A00CB0C0E /* TeamSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamSettingViewController.h; sourceTree = "<group>"; };
-		E6E1D95215AADB3A00CB0C0E /* TeamSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamSettingViewController.m; sourceTree = "<group>"; };
+		E6E1D95415AB183500CB0C0E /* TeamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamManager.h; sourceTree = "<group>"; };
+		E6E1D95515AB183500CB0C0E /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
+		E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManager.h; sourceTree = "<group>"; };
+		E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,8 +191,6 @@
 				E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */,
 				E68D116015A4245A0074982D /* SingleChoiceViewController.h */,
 				E68D116115A4245A0074982D /* SingleChoiceViewController.m */,
-				E6E1D95115AADB3A00CB0C0E /* TeamSettingViewController.h */,
-				E6E1D95215AADB3A00CB0C0E /* TeamSettingViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -197,6 +198,8 @@
 		E68D110315A2F7020074982D /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */,
+				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
 				E6E1D94815AA7F4700CB0C0E /* Match.h */,
 				E6E1D94915AA7F4700CB0C0E /* Match.m */,
 				E68D116615A53CE40074982D /* MatchManager.h */,
@@ -207,6 +210,8 @@
 				E6E1D94C15AA87F800CB0C0E /* ActionManager.m */,
 				E68D110E15A2F7400074982D /* Team.h */,
 				E68D110F15A2F7400074982D /* Team.m */,
+				E6E1D95415AB183500CB0C0E /* TeamManager.h */,
+				E6E1D95515AB183500CB0C0E /* TeamManager.m */,
 				E68D111C15A3DA0C0074982D /* GameSetting.h */,
 				E68D111D15A3DA0C0074982D /* GameSetting.m */,
 			);
@@ -296,7 +301,8 @@
 				E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */,
 				E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */,
 				E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */,
-				E6E1D95315AADB3B00CB0C0E /* TeamSettingViewController.m in Sources */,
+				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
+				E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

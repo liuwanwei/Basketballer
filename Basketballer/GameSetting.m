@@ -21,6 +21,7 @@ static GameSetting * gameSettings;
 
 @synthesize dictionaryStore = _dictionaryStore;
 @synthesize mode = _mode;
+@synthesize gameModeNames = _gameModeNames;
 @synthesize quarterLength = _quarterLength;
 @synthesize quarterTimeLength = _quarterTimeLength;
 @synthesize halfTimeLength = _halfTimeLength;
@@ -85,6 +86,15 @@ static GameSetting * gameSettings;
     return self;
 }
 
+- (NSArray *)gameModeNames{
+    if (_gameModeNames == nil) {
+        // TODO loading from multi language file.
+        _gameModeNames = [NSArray arrayWithObjects:@"上下半场", @"打满四节", nil];
+    }
+    
+    return _gameModeNames;
+}
+
 - (id)parameterForKey:(NSString *)key{
     id parameter = [self.dictionaryStore objectForKey:key];
     if (nil == parameter) {
@@ -116,11 +126,11 @@ static GameSetting * gameSettings;
 }
 
 - (void) setParameter:(NSString *)parameter forKey:key{
-    if (! [key isEqualToString:kGameMode]) {
+    if ([key isEqualToString:kGameMode]) {
+        [self.dictionaryStore setObject:parameter forKey:key];
+    }else{
         NSNumber * number = [NSNumber numberWithInteger:[parameter integerValue]];
         [self.dictionaryStore setObject:number forKey:key];
-    }else{
-        [self.dictionaryStore setObject:parameter forKey:key];
     }
     
     [self.dictionaryStore writeToURL:[self documentURL] atomically:YES];

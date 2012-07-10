@@ -10,16 +10,16 @@
 #import "Match.h"
 #import "Action.h"
 #import "ActionManager.h"
+#import "BaseManager.h"
 
 #define kMatchEntity            @"Match"
 #define kActionEntity           @"Action"
 
 @protocol FoulActionDelegate;
 
-@interface MatchManager : NSObject
+@interface MatchManager : BaseManager
 
 @property (nonatomic, strong) NSMutableArray * matchesArray;  // 所有已完成的比赛。
-@property (nonatomic, weak) NSManagedObjectContext * managedObjectContext;
 @property (nonatomic, weak) id<FoulActionDelegate> delegate;
 
 // 当前比赛的实时汇总信息。
@@ -39,10 +39,11 @@
 
 + (MatchManager *)defaultManager;
 
-- (BOOL)synchroniseToStore;       // TODO 需要想个好名称。
-
 - (void)loadMatches;
+
+// 注意：返回的Match对象指针不能copy给其他变量，往后的删除、添加动作等接口必须使用这个返回的Match对象指针。
 - (Match *)newMatchWithMode:(NSString *)mode;
+
 - (BOOL)deleteMatch:(Match *)match;
 
 - (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period;

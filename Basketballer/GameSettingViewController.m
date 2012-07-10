@@ -12,9 +12,6 @@
 #import "AppDelegate.h"
 
 @interface GameSettingViewController (){
-    NSArray * _header;
-    NSArray * _modeString;
-    
     NSArray * _twoHalfSettings;
     NSArray * _twoHalfSettingsKey;
     NSArray * _fourQuarterSettings;
@@ -22,6 +19,7 @@
     
     NSArray * __weak _settingsArray;
     NSArray * __weak _settingsKeyArray;
+    NSString * _header;
     
     NSArray * _groupHeaders;
     
@@ -38,9 +36,11 @@
     if([_gameMode isEqualToString:kGameModeFourQuarter]){
         _settingsArray = _fourQuarterSettings;
         _settingsKeyArray = _fourQuarterSettingsKey;
+        _header = @"当选择“打满四节”模式开始比赛后，这些规则将会被自动使用：";
     }else{
         _settingsArray = _twoHalfSettings;
         _settingsKeyArray = _twoHalfSettingsKey;
+        _header = @"当选择“上下半场”模式开始比赛后，这些规则将会被自动使用：";
     }    
 }
 
@@ -58,9 +58,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _header = [NSArray arrayWithObjects:@"比赛模式", @"技术参数", nil];
-        
-        _modeString = [NSArray arrayWithObjects:@"上下半场", @"四节", nil];
         
         // Two half mode settings and the keywords used to store the settings.
         _twoHalfSettings = [NSArray arrayWithObjects:@"半场比赛时间", 
@@ -203,6 +200,10 @@
 */
 
 #pragma mark - Table view delegate
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return _header;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   

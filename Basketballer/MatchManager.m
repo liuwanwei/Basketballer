@@ -21,7 +21,6 @@ static MatchManager * sDefaultManager;
 
 @implementation MatchManager
 
-@synthesize managedObjectContext = _managedObjectContext;
 @synthesize matchesArray = _matchesArray;
 @synthesize delegate = _delegate;
 
@@ -70,15 +69,6 @@ static MatchManager * sDefaultManager;
     }else{
         [_actionArray removeAllObjects];
     }
-}
-
-- (NSManagedObjectContext *)managedObjectContext{
-    if (_managedObjectContext == nil) {
-        AppDelegate * delegate = [[UIApplication sharedApplication] delegate]; 
-        _managedObjectContext = delegate.managedObjectContext;
-    }
-    
-    return _managedObjectContext;
 }
 
 - (void)loadMatches{
@@ -136,23 +126,11 @@ static MatchManager * sDefaultManager;
 }
 
 - (BOOL)deleteMatch:(Match *)match{
-    [self.managedObjectContext deleteObject:match];
-    
-    if (! [self synchroniseToStore]) {
+    if (! [self deleteFromStore:match]) {
         return NO;
     }
     
     [self.matchesArray removeObject:match];
-    
-    return YES;
-}
-
-- (BOOL)synchroniseToStore{
-    NSError * error = nil;
-    if (! [self.managedObjectContext save:&error]) {
-        NSLog(@"save error: %@", [error description]);
-        return NO;        
-    }
     
     return YES;
 }

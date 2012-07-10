@@ -14,17 +14,6 @@ static ActionManager * sActionManager;
 
 @implementation ActionManager
 
-@synthesize managedObjectContext = _managedObjectContext;
-
-- (NSManagedObjectContext *)managedObjectContext{
-    if (_managedObjectContext == nil) {
-        AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
-        _managedObjectContext = delegate.managedObjectContext;
-    }
-    
-    return _managedObjectContext;
-}
-
 + (ActionManager *)defaultManager{
     if (nil == sActionManager) {
         sActionManager = [[ActionManager alloc] init];

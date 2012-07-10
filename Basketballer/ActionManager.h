@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseManager.h"
 #import "Match.h"
 
 #define kActionEntity       @"Action"
@@ -25,9 +26,7 @@ typedef enum {
     ActionTypeTimeout   = 5         // 暂停。
 }ActionType;
 
-@interface ActionManager : NSObject
-
-@property (nonatomic, weak) NSManagedObjectContext * managedObjectContext;
+@interface ActionManager : BaseManager
 
 + (ActionManager *)defaultManager;
 

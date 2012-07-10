@@ -9,15 +9,13 @@
 #import "SettingViewController.h"
 #import "AppDelegate.h"
 #import "GameSetting.h"
-#import "TeamSettingViewController.h"
+#import "TeamManager.h"
 #import "GameSettingViewController.h"
 
 @interface SettingViewController (){
-    NSArray * _tableStrings;
     NSArray * _groupHeaders;
     
     GameSettingViewController * _gameSettingViewController;
-    TeamSettingViewController * _teamSettingViewController;
 }
 @end
 
@@ -34,11 +32,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _tableStrings = [NSArray arrayWithObjects:[NSArray arrayWithObjects:@"前三至球队名称排列。。。", nil], 
-                                               [NSArray arrayWithObjects: @"上下半场模式", @"四节模式", nil], 
-                                               nil];
-        
-        _groupHeaders = [NSArray arrayWithObjects:@"修改、添加球队", @"设置不同比赛模式下的规则", nil];
+        _groupHeaders = [NSArray arrayWithObjects:@"球队", @"规则", nil];
     }
     return self;
 }
@@ -47,9 +41,10 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
-                                                                                 target:self action:@selector(dismissMyself)];
-    self.navigationItem.leftBarButtonItem = cancelItem;    
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] 
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                    target:self action:@selector(dismissMyself)];
+    self.navigationItem.leftBarButtonItem = item;    
     
     [self setTitle:@"游戏设置"];
 }
@@ -70,13 +65,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _tableStrings.count;
+    return _groupHeaders.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray * object = [_tableStrings objectAtIndex:section];
-    return object.count;
+    if (0 == section) {
+        return ([[[TeamManager defaultManager] teams] count] + 1);
+    }else{
+        return [[[GameSetting defaultSetting] gameModeNames] count];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -92,9 +90,19 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
+    NSArray * teams = [[TeamManager defaultManager] teams];
+    
     // Configure the cell...
-    NSArray * object = [_tableStrings objectAtIndex:indexPath.section];
-    cell.textLabel.text = [object objectAtIndex:indexPath.row];
+    if (0 == indexPath.section) {
+        if (indexPath.row < teams.count) {
+            Team * team = [teams objectAtIndex:indexPath.row];
+            cell.textLabel.text = team.name;
+        }else{
+            cell.textLabel.text = @"添加球队...";
+        }
+    }else{
+        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
+    }
     
     return cell;
 }
@@ -143,12 +151,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        if (_teamSettingViewController == nil) {
-            _teamSettingViewController = [[TeamSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        }
-        
-        [_teamSettingViewController setTitle:[tableView cellForRowAtIndexPath:indexPath].textLabel.text];        
-        [self.navigationController pushViewController:_teamSettingViewController animated:YES];
+        // TODO waiting for maoyu to add.
     }else if(indexPath.section == 1){
         if (_gameSettingViewController == nil) {
             _gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
