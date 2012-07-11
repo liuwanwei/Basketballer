@@ -41,8 +41,8 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] 
-                                    initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+    UIBarButtonItem * item;
+    item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered
                                     target:self action:@selector(dismissMyself)];
     self.navigationItem.leftBarButtonItem = item;    
     
