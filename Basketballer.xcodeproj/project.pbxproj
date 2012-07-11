@@ -36,6 +36,8 @@
 		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
 		E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95515AB183500CB0C0E /* TeamManager.m */; };
 		E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */; };
+		E6E1D96C15AD6DED00CB0C0E /* TeamEntry.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */; };
+		E6E1D96D15AD6DED00CB0C0E /* TeamEntry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		E6E1D95515AB183500CB0C0E /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
 		E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManager.h; sourceTree = "<group>"; };
 		E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManager.m; sourceTree = "<group>"; };
+		E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TeamEntry.png; sourceTree = "<group>"; };
+		E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TeamEntry@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,8 @@
 		3CC1683315A2E5E400A2AB44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */,
+				E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */,
 				E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */,
 				E68D117015A59DA20074982D /* DefaultTeamProfile.png */,
 				3CC1683515A2E60200A2AB44 /* xib */,
@@ -277,6 +283,8 @@
 				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
 				E68D118815A68D090074982D /* MatchActionFilterCell.xib in Resources */,
 				E68D118A15A696B60074982D /* DefaultTeamProfile@2x.png in Resources */,
+				E6E1D96C15AD6DED00CB0C0E /* TeamEntry.png in Resources */,
+				E6E1D96D15AD6DED00CB0C0E /* TeamEntry@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
