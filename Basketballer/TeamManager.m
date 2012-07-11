@@ -238,12 +238,8 @@ static TeamManager * sDefaultManager;
 }
 
 - (UIImage *)imageForTeam:(Team *)team{
-    if (nil == team) {
-        return nil;
-    }
-        
     UIImage * image = nil;
-    if(nil == team.profileURL || _defaultProfileImageName == team.profileURL){
+    if(nil == team || nil == team.profileURL || [_defaultProfileImageName isEqualToString:team.profileURL]){
         image = [UIImage imageNamed:_defaultProfileImageName];
         return image;
     }else{
