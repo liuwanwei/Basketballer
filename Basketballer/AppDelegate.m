@@ -18,6 +18,11 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
++(AppDelegate *)delegate{
+	AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	return delegate;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[MatchManager defaultManager] loadMatches];

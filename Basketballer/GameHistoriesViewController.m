@@ -7,22 +7,38 @@
 //
 
 #import "GameHistoriesViewController.h"
+#import "PlayGameViewController.h"
 #import "SettingViewController.h"
 #import "GameDetailsViewController.h"
 #import "AppDelegate.h"
 #import "MatchManager.h"
 #import "GameSetting.h"
+#import "StartGameViewController.h"
 
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
     GameDetailsViewController * _gameDetailsViewController;
 }
-
 @end
 
 @implementation GameHistoriesViewController
-
 @synthesize tvCell = _tvCell;
+
+#pragma 私有函数
+- (void)initNavigationItem {
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(setGame)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+#pragma 事件函数
+- (void)startGame {
+    StartGameViewController * startGameViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:startGameViewController animated:YES];
+}
 
 - (void)showSettingView{
     if (nil == _settingsViewController) {
@@ -63,6 +79,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initNavigationItem];
 
     // left button item.
     UIButton * settingButton = [[UIButton alloc] initWithFrame:CGRectMake(2, 2, 32, 32)];
