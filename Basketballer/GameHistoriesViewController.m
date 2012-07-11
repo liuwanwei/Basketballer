@@ -64,14 +64,15 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettingView)];
-    self.navigationItem.leftBarButtonItem = settingsItem;
+    // left button item.
+    UIButton * settingButton = [[UIButton alloc] initWithFrame:CGRectMake(2, 2, 32, 32)];
+    [settingButton addTarget:self action:@selector(showSettingView) forControlEvents:UIControlEventTouchUpInside];
+    UIImage * image = [UIImage imageNamed:@"TeamEntry"];    
+    [settingButton setImage:image forState:UIControlStateNormal];
+    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
+    self.navigationItem.leftBarButtonItem = settingItem;
     
+    // right button item.
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
     self.navigationItem.rightBarButtonItem = addItem;
 }
