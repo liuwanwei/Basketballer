@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Team;
+
+typedef enum {
+    Insert = 1,
+    Update = 2
+} OperateMode;
 
 @interface EditTeamInfoViewController : UITableViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic) NSInteger teamType;
 @property (nonatomic, strong) NSArray * rowsTitle;
+@property (nonatomic) NSInteger operateMode;
+@property (nonatomic, weak) Team * team;
+
+- (void) refreshViewWithTeamName:(NSString *) teamName;
 
 @end

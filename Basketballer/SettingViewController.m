@@ -97,6 +97,7 @@
     if (0 == indexPath.section) {
         if (indexPath.row < teams.count) {
             Team * team = [teams objectAtIndex:indexPath.row];
+            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
             cell.textLabel.text = team.name;
         }else{
             cell.textLabel.text = @"添加球队...";
@@ -152,8 +153,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        // TODO waiting for maoyu to add.
-        EditTeamInfoViewController * editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        EditTeamInfoViewController *  editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        NSArray * teams = [[TeamManager defaultManager] teams];
+        if (indexPath.row < teams.count) {
+            editTeamInfoViewController.operateMode = Update;
+            editTeamInfoViewController.team = [teams objectAtIndex:indexPath.row];
+        }else {
+            editTeamInfoViewController.operateMode = Insert;
+            editTeamInfoViewController.team = nil;
+        }
+      
         [self.navigationController pushViewController:editTeamInfoViewController animated:YES];
         
     }else if(indexPath.section == 1){

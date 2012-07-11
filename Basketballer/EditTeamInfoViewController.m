@@ -9,6 +9,8 @@
 #import "EditTeamInfoViewController.h"
 #import "define.h"
 #import "TeamManager.h"
+#import "EditTeamNameViewController.h"
+#import "AppDelegate.h"
 
 @interface EditTeamInfoViewController() {
     UIImage * _image;
@@ -18,22 +20,28 @@
 @implementation EditTeamInfoViewController
 
 @synthesize rowsTitle = _rowsTitle;
-@synthesize teamType = _teamType;
+@synthesize operateMode = _operateMode;
+@synthesize team = _team;
 
 #pragma 私有函数
+/*设置右导航按钮的enabled*/
+- (void)setRightBarButtonItemEnable:(BOOL) enabled {
+    self.navigationItem.rightBarButtonItem.enabled = enabled;
+}
+
+/*初始化导航按钮*/
 - (void)initNavigationItem {
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePhoto:)];
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    if (_operateMode == Insert) {
+        [self setRightBarButtonItemEnable:NO];
+    }else {
+        [self setRightBarButtonItemEnable:YES];
+    }
 }
 
 - (void)initRowsTitle {
-    self.rowsTitle = [NSArray arrayWithObjects:@"选择头像",@"球队名称", nil]; 
-}
-
--(NSString *)dataPath{
-	NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString * documentsDirectory = [paths objectAtIndex:0];
-	return documentsDirectory;
+    self.rowsTitle = [NSArray arrayWithObjects:@"球队名称",@"选择头像", nil]; 
 }
 
 - (void)showActionSheet {
@@ -61,12 +69,17 @@
     }
 }
 
-- (UIImage *)loadTeamImage {
-    UIImage * image = nil;
-    if(self.teamType == host) {
-        image = [UIImage imageNamed:@"host_basketball"];
+#pragma 类成员函数
+- (void) refreshViewWithTeamName:(NSString *) teamName {
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if(teamName == nil || teamName.length == 0) {
+        [self setRightBarButtonItemEnable:NO];
+        cell.textLabel.text = @"";
+    }else {
+        [self setRightBarButtonItemEnable:YES];
+        cell.textLabel.text = teamName;
     }
-    return image;
 }
 
 #pragma 事件函数
@@ -82,8 +95,8 @@
 {
     [super viewDidLoad];
     self.title = @"设置球队";
-    [self initRowsTitle];
     [self initNavigationItem];
+    [self initRowsTitle];
 }
 
 - (void)viewDidUnload
@@ -116,7 +129,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
 {
-    return 55;
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,11 +140,12 @@
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if(indexPath.section == 0) {
-        cell.imageView.image = [self loadTeamImage];
-       
+    TeamManager * teamManager = [TeamManager defaultManager]; 
+    if(indexPath.section == 1) {
+        cell.imageView.image = [teamManager imageForTeam:self.team];  
+        _image = [teamManager imageForTeam:self.team]; 
     }else {
-        cell.textLabel.text = @"球队名称";
+        cell.textLabel.text = self.team.name;
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -143,11 +157,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0) {
+    if(indexPath.section == 1) {
         [self showActionSheet];
+        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    }else {
+        EditTeamNameViewController * editTeamNameViewController = [[EditTeamNameViewController alloc] initWithNibName:@"EditTeamNameViewController" bundle:nil];
+        editTeamNameViewController.teamName = self.team.name;
+        editTeamNameViewController.parentController = self;
+        [self.navigationController pushViewController:editTeamNameViewController animated:YES];
     }
-    
-    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
 
 #pragma mark - ActionSheet view delegate
@@ -163,31 +181,28 @@
 #pragma mark - ImagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     _image = [info valueForKey:UIImagePickerControllerEditedImage];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.imageView.image = _image;
     [self dismissModalViewControllerAnimated:YES];
 }
 
-#warning 为了测试图片文件存储暂时先这样写
-- (void)savePhoto:(id) send {
-    if(_image != nil) {
-        NSData * data;
-        data = UIImagePNGRepresentation(_image);
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [[NSString stringWithString:[self dataPath]] stringByAppendingString:@"/image"];         //将图片存储到本地documents
-        NSDate * date = [NSDate date];
-        NSString * fileName = [date description];
-        [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
-        [fileManager createFileAtPath:[filePath stringByAppendingString:fileName] contents:data attributes:nil];  
-    }
-    
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+- (void)save:(id) send {
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     NSString * teamName = cell.textLabel.text;
+    if (teamName.length != 0) {
+        TeamManager * teamManager = [TeamManager defaultManager];
+        if(self.operateMode == Insert) {
+            [teamManager newTeam:teamName withImage:_image];
+        }else {
+            [teamManager modifyTeam:self.team withNewName:teamName];
+            [teamManager modifyTeam:self.team withNewImage:_image];
+        }
+    }
     
-    TeamManager * teamManager = [TeamManager defaultManager];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

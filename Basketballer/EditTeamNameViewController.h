@@ -12,6 +12,7 @@
 @interface EditTeamNameViewController : UIViewController
 
 @property (nonatomic, weak) EditTeamInfoViewController * parentController;
+@property (nonatomic, weak) NSString * teamName;
 @property (nonatomic, weak) IBOutlet UITextField * teamNameText;
 
 @end

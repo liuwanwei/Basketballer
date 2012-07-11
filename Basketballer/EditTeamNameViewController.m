@@ -17,12 +17,17 @@
 
 @synthesize parentController = _parentController;
 @synthesize teamNameText = _teamNameText;
+@synthesize teamName = _teamName;
+
+#pragma 私有函数
+- (void)initTeamNameText {
+    self.teamNameText.text = self.teamName;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -31,7 +36,9 @@
 {
     [super viewDidLoad];
     self.title = @"球队名称";
+    [self initTeamNameText];
     [self.teamNameText becomeFirstResponder];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 - (void)viewDidUnload
