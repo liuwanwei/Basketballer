@@ -30,9 +30,6 @@
 - (void)initNavigationItem {
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
     self.navigationItem.rightBarButtonItem = rightItem;
-    
-    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(setGame)];
-    self.navigationItem.leftBarButtonItem = leftItem;
 }
 
 #pragma 事件函数
