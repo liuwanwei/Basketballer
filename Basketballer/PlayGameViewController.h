@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Team.h"
 @class  OperateGameViewController;
 
 @interface PlayGameViewController : UIViewController
@@ -15,14 +15,18 @@
 @property (nonatomic, weak) IBOutlet UILabel * gameTimeLable;
 @property (nonatomic, weak) IBOutlet UILabel * timeoutTimeLabel;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem * playBarItem;
-@property (nonatomic, strong) OperateGameViewController * operateGameView1;
-@property (nonatomic, strong) OperateGameViewController * operateGameView2;
+@property (nonatomic, weak) IBOutlet UIView * gameTimeView;
+@property (nonatomic, weak) OperateGameViewController * operateGameView1;
+@property (nonatomic, weak) OperateGameViewController * operateGameView2;
 @property (nonatomic, weak) NSTimer * countDownTimer;
 @property (nonatomic, weak) NSTimer * timeoutCountDownTimer;
 @property (nonatomic, strong) NSDate * timeoutTargetTime;
 @property (nonatomic, strong) NSDate * targetTime;
 @property (nonatomic, strong) NSDate * lastTimeoutTime;
 @property (nonatomic) NSInteger gameState; 
+@property (nonatomic, weak) Team * hostTeam;
+@property (nonatomic, weak) Team * guestTeam;
+@property (nonatomic, weak) NSString * gameMode;
 
 - (IBAction)startGame:(id)sender;
 - (IBAction)stopGame:(id)sender;
