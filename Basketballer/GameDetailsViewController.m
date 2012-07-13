@@ -8,6 +8,7 @@
 
 #import "GameDetailsViewController.h"
 #import "ActionManager.h"
+#import "TeamManager.h"
 
 typedef enum {
     UICellItemTitle = 1,
@@ -163,6 +164,15 @@ typedef enum {
     if (nil == Headers) {
         // TODO query team names from db.        
         Headers = [NSArray arrayWithObjects:@"主队 vs 客队", @"筛选", nil];
+    }
+    if (section == 0) {
+        TeamManager * tm =  [TeamManager defaultManager];
+        NSString * homeTeamName = [[tm teamWithId:self.match.homeTeam] name];
+        NSString * guestTeamName = [[tm teamWithId:self.match.guestTeam] name];
+        NSString * header = [NSString stringWithFormat:@"%@ vs %@", homeTeamName, guestTeamName];
+        return header;
+    }else{
+        return @"筛选条件";
     }
     return [Headers objectAtIndex:section];
 }
