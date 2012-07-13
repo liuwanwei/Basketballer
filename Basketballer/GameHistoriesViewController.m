@@ -90,8 +90,8 @@
     self.navigationItem.leftBarButtonItem = settingItem;
     
     // right button item.
-    UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
-    self.navigationItem.rightBarButtonItem = addItem;
+    /*UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
+    self.navigationItem.rightBarButtonItem = addItem;*/
 }
 
 - (void)viewDidUnload
