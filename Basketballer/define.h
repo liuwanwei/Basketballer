@@ -18,6 +18,8 @@ enum GameState {
     finish = 4
 };
 
-# define kTimeoutMessage @"kTimeout"
+#define host 0
+#define guest 1
 
+#define kTimeoutMessage @"kTimeout"
 #endif
