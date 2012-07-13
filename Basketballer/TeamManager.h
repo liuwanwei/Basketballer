@@ -22,8 +22,10 @@
 
 - (void)loadTeams;
 
-// 查询同名球队是否存在。
-- (Team *)queryTeamWithName:(NSString *)name;
+// 查询球队。
+- (Team *)queryTeamWithName:(NSString *)name;   // Deprecated, use "teamWithName:" instead.
+- (Team *)teamWithName:(NSString *)name;
+- (Team *)teamWithId:(NSNumber *)id;
 
 // 新增一支球队。
 // name必须非空。
