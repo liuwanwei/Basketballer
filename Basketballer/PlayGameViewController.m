@@ -9,12 +9,22 @@
 #import "PlayGameViewController.h"
 #import "OperateGameViewController.h"
 #import "define.h"
+#import "GameSetting.h"
+#import "MatchManager.h"
+
+@interface PlayGameViewController() {
+    BOOL _gameStart;
+    Match * _match;
+    NSInteger _curPeroid;
+}
+@end
 
 @implementation PlayGameViewController
 
 @synthesize operateGameView1 = _operateGameView1;
 @synthesize operateGameView2 = _operateGameView2;
 @synthesize gameTimeLable = _gameTimeLable;
+@synthesize gameTimeView = _gameTimeView;
 @synthesize timeoutTimeLabel = _timeoutTimeLabel;
 @synthesize countDownTimer = _countDownTimer;
 @synthesize timeoutCountDownTimer = _timeoutCountDownTimer;
@@ -23,8 +33,23 @@
 @synthesize playBarItem = _playBarItem;
 @synthesize gameState = _gameState;
 @synthesize lastTimeoutTime = _lastTimeoutTime;
+@synthesize hostTeam = _hostTeam;
+@synthesize guestTeam = _guestTeam;
+@synthesize gameMode = _gameMode;
 
 #pragma 私有函数
+/*获取单节时长*/
+- (NSInteger) getQuarterLength {
+    NSInteger quarterLength = 0;
+    if(_gameMode == kGameModeTwoHalf) {
+        quarterLength = [[GameSetting defaultSetting].halfLength intValue];
+    }else {
+        quarterLength = [[GameSetting defaultSetting].quarterLength intValue];
+    }
+    
+    return quarterLength;
+}
+
 /*设置导航栏是否隐藏*/
 - (void) setNavTitleVisble:(BOOL) visible {
     [self.navigationController setNavigationBarHidden:!visible animated:NO];
@@ -37,8 +62,10 @@
 }
 
 - (void)initGameCountDownLable {
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationItem.titleView = self.gameTimeView;
     self.gameTimeLable.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
-    self.gameTimeLable.text = [NSString stringWithFormat:@"%.2d : %.2d",5,0];
+    self.gameTimeLable.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getQuarterLength],0];
 }
 
 - (void)initTimeoutDownLable {
@@ -52,10 +79,15 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps;
     comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
-    [comps setMinute:comps.minute + 5];
+    [comps setMinute:comps.minute + [self getQuarterLength]];
     [comps setSecond:comps.second + 1];
 
     self.targetTime = [calendar dateFromComponents:comps];//把目标时间装载入date
+    
+    _operateGameView1.gameStartTime = date;
+    _operateGameView2.gameStartTime = date;
+    _operateGameView1.period = _curPeroid;
+    _operateGameView2.period = _curPeroid;
 }
 
 /*
@@ -140,16 +172,21 @@
 }
 
 - (void) initOperateGameView {
-    self.operateGameView1 = [[OperateGameViewController alloc] initWithNibName:@"OperateGameViewController" bundle:nil];
+  
+    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(7.0,10.0f, 306.0f, 168.0f)];
+    self.operateGameView1.team = _hostTeam;
     self.operateGameView1.teamType = host;
-    self.operateGameView1.view.frame = CGRectMake(0.0,20.0f, 320.0f, 168.0f);
-    [self.view addSubview:self.operateGameView1.view];
+    [self.operateGameView1 initTeam];
+    [self.operateGameView1 setButtonEnabled:NO];
+    [self.view addSubview:self.operateGameView1];
 
     
-    self.operateGameView2 = [[OperateGameViewController alloc] initWithNibName:@"OperateGameViewController" bundle:nil];
+    self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(7.0,195.0f, 306.0f, 168.0f)];
+    self.operateGameView2.team = _guestTeam;
     self.operateGameView2.teamType = guest;
-    self.operateGameView2.view.frame = CGRectMake(0.0,250.0f, 320.0f, 168.0f);
-    [self.view addSubview:self.operateGameView2.view];
+    [self.operateGameView2 initTeam];
+    [self.operateGameView2 setButtonEnabled:NO];
+    [self.view addSubview:self.operateGameView2];
 }
 
 /*消息处理函数*/
@@ -179,7 +216,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -202,7 +238,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNavTitleVisble:NO];
+    [self setNavTitleVisble:YES];
     [self initGameCountDownLable];
     [self initTimeoutDownLable];
 }
@@ -210,7 +246,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
 #warning 功能未完成
     [super viewWillDisappear:animated];
-    [self setNavTitleVisble:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -219,6 +254,13 @@
 }
 
 - (IBAction)startGame:(id)sender {
+    if(_gameStart == NO) {
+        _match = [[MatchManager defaultManager] newMatchWithMode:self.gameMode];
+        _operateGameView1.match = _match;
+        _operateGameView2.match = _match;
+        _curPeroid = 0;
+        _gameStart = YES;
+    }
     if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout) {
        
         if(self.gameState == prepare || self.gameState == over_quarter_finish) {
@@ -245,7 +287,9 @@
 
 - (IBAction)stopGame:(id)sender {
     [self stopGameCountDown];
-    //[self.navigationController popViewControllerAnimated:YES];
+    _gameStart = NO;
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
