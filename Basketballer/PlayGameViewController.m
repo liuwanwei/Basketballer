@@ -255,7 +255,8 @@
 
 - (IBAction)startGame:(id)sender {
     if(_gameStart == NO) {
-        _match = [[MatchManager defaultManager] newMatchWithMode:self.gameMode];
+        _match = [[MatchManager defaultManager] newMatchWithMode:self.gameMode
+                                                    withHomeTeam:_hostTeam  withGuestTeam:_guestTeam];
         _operateGameView1.match = _match;
         _operateGameView2.match = _match;
         _curPeroid = 0;
