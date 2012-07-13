@@ -115,11 +115,12 @@
             cell = _teamCell;
             self.teamCell = nil;
             
+            // 图片圆角化。
             UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
             profileImageView.layer.masksToBounds = YES;
             profileImageView.layer.cornerRadius = 5.0f;
 //            profileImageView.layer.borderWidth = 1.0f;
-//            profileImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+//            profileImageView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
         }
         
         NSArray * teams = [[TeamManager defaultManager] teams];
@@ -135,9 +136,9 @@
             //            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
             //            cell.textLabel.text = team.name;
         }else{
-            imageView.image = [UIImage imageNamed:@"add"];
+            UIImage * image = [UIImage imageNamed:@"Add"];
+            imageView.image = image;
             label.text = @"添加球队...";
-            //            cell.textLabel.text = @"添加球队...";
         }
     }else{
         static NSString * CellIdentifier1 = @"Cell1";  
@@ -147,6 +148,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
+        cell.textLabel.font = [UIFont systemFontOfSize:18.0f];
         cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
     }
 

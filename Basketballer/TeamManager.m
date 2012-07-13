@@ -44,7 +44,7 @@ static TeamManager * sDefaultManager;
         _defaultGuestTeamName = @"客队";
         
         // Equal to default image in resource.
-        _defaultProfileImageName = @"DefaultTeamProfile";
+        _defaultProfileImageName = @"DefaultTeamProfile";        
     }
     
     return self;
@@ -78,22 +78,41 @@ static TeamManager * sDefaultManager;
 
 // 根据球队名称查询球队记录。
 - (Team *)queryTeamWithName:(NSString *)name{
-    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kTeamEntity];
-    
-    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", kTeamNameField, name];
-    
-    request.predicate = predicate;
-    
-    NSError * error = nil;
-    NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-    if (nil == result) {
-        NSLog(@"query team executeFetchRequest error");
-        return nil;
-    }else if(result.count == 0){
-        return nil;
-    }else {
-        return [result objectAtIndex:0];
+//    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kTeamEntity];
+//    
+//    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", kTeamNameField, name];
+//    
+//    request.predicate = predicate;
+//    
+//    NSError * error = nil;
+//    NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+//    if (nil == result) {
+//        NSLog(@"query team executeFetchRequest error");
+//        return nil;
+//    }else if(result.count == 0){
+//        return nil;
+//    }else {
+//        return [result objectAtIndex:0];
+//    }
+    for (Team * team in self.teams) {
+        if ([team.name isEqualToString:name]) {
+            return team;
+        }
     }
+    return nil;
+}
+
+- (Team *)teamWithName:(NSString *)name{
+    return [self queryTeamWithName:name];
+}
+
+- (Team *)teamWithId:(NSNumber *)id{
+    for (Team * team in self.teams){
+        if ([team.id integerValue] == [id integerValue]){
+            return team;
+        }
+    }
+    return nil;
 }
 
 // 生成一个不会重复的比赛id     
@@ -223,7 +242,7 @@ static TeamManager * sDefaultManager;
         return  NO;
     }
     
-    if (nil == team.profileURL || _defaultProfileImageName == team.profileURL) {
+    if (nil == team.profileURL || [_defaultProfileImageName isEqualToString:team.profileURL]) {
         // 用新设置的图片代替默认图片。
         [self setProfileImage:image forTeam:team];
     }else{

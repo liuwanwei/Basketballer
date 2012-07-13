@@ -12,8 +12,10 @@
 #import "GameDetailsViewController.h"
 #import "AppDelegate.h"
 #import "MatchManager.h"
+#import "TeamManager.h"
 #import "GameSetting.h"
 #import "StartGameViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
@@ -56,6 +58,8 @@
     
     NSString * mode = (i % 2) == 0 ? kGameModeFourQuarter : kGameModeTwoHalf;
     Match * match = [[MatchManager defaultManager] newMatchWithMode:mode];
+    match.homeTeam = [NSNumber numberWithInt:0];
+    match.guestTeam = [NSNumber numberWithInt:1];
     
     match.homePoints = [NSNumber numberWithInteger:68];
     match.guestPoints = [NSNumber numberWithInteger:36];
@@ -90,8 +94,10 @@
     self.navigationItem.leftBarButtonItem = settingItem;
     
     // right button item.
-    /*UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
-    self.navigationItem.rightBarButtonItem = addItem;*/
+    UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
+    self.navigationItem.rightBarButtonItem = addItem;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidUnload
@@ -109,7 +115,7 @@
 #pragma mark - Table view data source
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50.0;
+    return 72.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -134,15 +140,22 @@
     
     Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
     
-    UIImage * defaultTeamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
+//    UIImage * defaultTeamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
+    UIImage * image;
+    Team * team;
+    TeamManager * tm = [TeamManager defaultManager];
     
     // 主队图像。
+    team = [tm teamWithId:match.homeTeam];
+    image = [tm imageForTeam:team];
     UIImageView * homeImageProfile = (UIImageView *)[cell viewWithTag:UIHomeTeamProfileTag];
-    homeImageProfile.image = defaultTeamProfile;
+    homeImageProfile.image = image;
+    homeImageProfile.layer.masksToBounds = YES;
+    homeImageProfile.layer.cornerRadius = 5.0f;    
     
     // 主队名字。    
     UILabel * homeTeamNameLabel = (UILabel *)[cell viewWithTag:UIHomeTeamNameTag];
-    homeTeamNameLabel.text = @"曦光科技";
+    homeTeamNameLabel.text = team.name;
     
     // 主队得分。
     UILabel * homeTeamPointsLabel = (UILabel *)[cell viewWithTag:UIHomeTeamPointsTag];
@@ -157,12 +170,17 @@
     dateLabel.text = dateString;
     
     // 客队图像。
+    team = [tm teamWithId:match.guestTeam];
+    image = [tm imageForTeam:team];
     UIImageView * guestTeamProfile = (UIImageView *)[cell viewWithTag:UIGuestTeamProfileTag];
-    guestTeamProfile.image = defaultTeamProfile;
+    guestTeamProfile.image = image;
+    guestTeamProfile.layer.masksToBounds = YES;
+    guestTeamProfile.layer.cornerRadius = 5.0f;
+    
     
     // 客队名字。
     UILabel * guestTeamNameLabel = (UILabel *)[cell viewWithTag:UIGuestTeamNameTag];
-    guestTeamNameLabel.text = @"洛阳大学";
+    guestTeamNameLabel.text = team.name;
     
     // 客队得分。
     UILabel * guestTeamPointsLabel = (UILabel *)[cell viewWithTag:UIGuestTeamPointsTag];
