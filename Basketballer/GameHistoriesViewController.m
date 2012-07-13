@@ -42,8 +42,8 @@
 
 - (void)showSettingView{
     if (nil == _settingsViewController) {
-        SettingViewController * settingViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:settingViewController];
+        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStylePlain];
+        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     }
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -109,7 +109,7 @@
 #pragma mark - Table view data source
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 74.0;
+    return 50.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
