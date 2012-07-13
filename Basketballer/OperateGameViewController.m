@@ -10,33 +10,34 @@
 #import "EditTeamInfoViewController.h"
 #import "AppDelegate.h"
 #import "define.h"
+#import "TeamManager.h"
+#import "MatchManager.h"
+
+@interface OperateGameViewController() {
+    WEPopoverController * _popoverController;
+    WEPopoverContentViewController * _popoverContentController;
+}
+@end
 
 @implementation OperateGameViewController
 
+@synthesize team = _team;
 @synthesize teamType = _teamType;
-@synthesize teamImageView = teamImageView;
+@synthesize gameStartTime = _gameStartTime;
+@synthesize teamImageView = _teamImageView;
+@synthesize match = _match;
+@synthesize period = _period;
 @synthesize teamNameLabel = _teamNameLabel;
 @synthesize scoreLabel = _scoreLabel;
 @synthesize timeoutLabel = _timeoutLabel;
 @synthesize foulLabel = _foulLabel;
 
 #pragma 私有函数
-/*初始化球队图片*/
-- (void)initTeamImage {
-    if(self.teamType == host) {
-        self.teamImageView.image = [UIImage imageNamed:@"host_basketball"];
-    }else {
-        self.teamImageView.image = [UIImage imageNamed:@"guest_basketball"];
-    }
-}
-
-/*初始化球队名称*/
-- (void)initTeamName {
-    if(self.teamType == host) {
-        self.teamNameLabel.text = @"主队";
-    }else {
-        self.teamNameLabel.text = @"客队";
-    }
+/*计算时间差*/
+- (NSInteger)computeTimeDifference {
+    NSDate * nowDate = [NSDate date];
+    NSTimeInterval timeDifference = [nowDate timeIntervalSinceDate:self.gameStartTime]; 
+    return timeDifference;
 }
 
 #pragma 类成员函数
@@ -47,53 +48,58 @@
  注：设置球队按钮除外
  */
 - (void)setButtonEnabled:(BOOL) enabled {
-    NSInteger size = self.view.subviews.count;
+    NSInteger size = self.subviews.count;
     for (NSInteger index = 0; index < size; index++) {
-        if([[self.view.subviews objectAtIndex:index] isKindOfClass:[UIButton class]]) {
-            if([[self.view.subviews objectAtIndex:index] tag] != 10) {
-                [[self.view.subviews objectAtIndex:index] setEnabled:enabled];
-            }
+        if([[self.subviews objectAtIndex:index] isKindOfClass:[UIButton class]]) {
+            [[self.subviews objectAtIndex:index] setEnabled:enabled];
         }
     }
 }
 
-#pragma 事件函数
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+/*初始化球队信息*/
+- (void)initTeam {
+    if(_team != nil) {
+        self.teamImageView.image = [[TeamManager defaultManager] imageForTeam:_team];
+        self.teamNameLabel.text = _team.name;
     }
+}
+
+#pragma 事件函数
+- (id)initWithFrame:(CGRect)frame {
+    NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"OperateGameViewController" owner:self options:nil];
+    self = [nib objectAtIndex:0];
+    self.frame = frame;
+    
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initTeamImage];
-    [self initTeamName];
-    [self setButtonEnabled:NO];
+- (IBAction)showPopoer:(UIButton *)sender {
+    if(_popoverController == nil && _popoverContentController == nil) {
+        _popoverContentController = [[WEPopoverContentViewController alloc] initWithStyle:UITableViewStylePlain];
+        _popoverController = [[WEPopoverController alloc] initWithContentViewController:_popoverContentController];
+        
+        _popoverContentController.wePopoverController = _popoverController;
+        _popoverContentController.opereteGameViewController = self;
+    }
+    
+    [_popoverController presentPopoverFromRect:sender.frame 
+                                            inView:self
+                          permittedArrowDirections:UIPopoverArrowDirectionLeft
+                                          animated:YES];
+
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (IBAction)editTeamInfo:(id)sender {
-    EditTeamInfoViewController * editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [[AppDelegate delegate].navigationController pushViewController:editTeamInfoViewController animated:YES];
-}
-
-- (IBAction)addScore:(id)sender {
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d",[self.scoreLabel.text intValue] + [sender tag]];
+- (void)addScore:(NSInteger) score {
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",[self.scoreLabel.text intValue] + score];
+    
+    MatchManager * matchManager = [MatchManager defaultManager];
+    NSInteger time = [self computeTimeDifference];
+    BOOL result;
+    if(_teamType == host) {
+        result = [matchManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+    }else {
+        result = [matchManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+    }
 }
 
 - (IBAction)addTimeOver:(id)sender {
