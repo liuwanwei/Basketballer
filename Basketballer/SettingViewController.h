@@ -10,4 +10,6 @@
 
 @interface SettingViewController : UITableViewController
 
+@property (nonatomic, weak) IBOutlet UITableViewCell * teamCell;
+
 @end
