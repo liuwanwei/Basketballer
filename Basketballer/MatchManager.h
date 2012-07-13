@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Match.h"
 #import "Action.h"
+#import "Team.h"
 #import "ActionManager.h"
 #import "BaseManager.h"
 
@@ -43,6 +44,8 @@
 
 // 注意：返回的Match对象指针不能copy给其他变量，往后的删除、添加动作等接口必须使用这个返回的Match对象指针。
 - (Match *)newMatchWithMode:(NSString *)mode;
+
+- (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam;
 
 - (BOOL)deleteMatch:(Match *)match;
 

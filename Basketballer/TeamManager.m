@@ -20,9 +20,6 @@ static TeamManager * sDefaultManager;
     NSString * _defaultProfileImageName;
 }
 
--(NSURL *)profileImageURLGenerator:(NSString *)name;
--(id)test;
-
 @end
 
 @implementation TeamManager
@@ -61,7 +58,7 @@ static TeamManager * sDefaultManager;
 - (void)loadTeams{
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kTeamEntity];
     
-    NSSortDescriptor * sortDescripter = [[NSSortDescriptor alloc] initWithKey:kTeamNameField ascending:YES];
+    NSSortDescriptor * sortDescripter = [[NSSortDescriptor alloc] initWithKey:kTeamIdField ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescripter];
     
     NSError * error = nil;
@@ -200,7 +197,7 @@ static TeamManager * sDefaultManager;
         return nil;
     }
     
-    [self.teams insertObject:team atIndex:0];
+    [self.teams insertObject:team atIndex:self.teams.count];
     
     return team;
 }

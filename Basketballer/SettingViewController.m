@@ -12,6 +12,7 @@
 #import "TeamManager.h"
 #import "GameSettingViewController.h"
 #import "EditTeamInfoViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SettingViewController (){
     NSArray * _groupHeaders;
@@ -22,6 +23,7 @@
 
 @implementation SettingViewController
 
+@synthesize teamCell = _teamCell;
 
 - (void)dismissMyself{
     AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
@@ -33,7 +35,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _groupHeaders = [NSArray arrayWithObjects:@"球队", @"规则", nil];
+        _groupHeaders = [NSArray arrayWithObjects:@"比赛球队", @"比赛规则", nil];
     }
     return self;
 }
@@ -42,8 +44,8 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] 
-                                    initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+    UIBarButtonItem * item;
+    item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered
                                     target:self action:@selector(dismissMyself)];
     self.navigationItem.leftBarButtonItem = item;    
     
@@ -57,6 +59,17 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    static BOOL firstTimeShow = YES;
+    if (firstTimeShow == YES) {
+        firstTimeShow = NO;
+    }else{
+        [self.tableView reloadData];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -68,6 +81,15 @@
 {
     return _groupHeaders.count;
 }
+
+//- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 48.0f;
+//    if (indexPath.section == 0) {
+//        return 48.0f;
+//    }else{
+//        return 44.0f;
+//    }
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -84,27 +106,82 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    NSArray * teams = [[TeamManager defaultManager] teams];
-    
-    // Configure the cell...
-    if (0 == indexPath.section) {
+    UITableViewCell * cell;
+    if (indexPath.section == 0) {
+        static NSString * CellIdentifier0 = @"Cell0";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier0];        
+        if (nil == cell) {
+            [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+            cell = _teamCell;
+            self.teamCell = nil;
+            
+            UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
+            profileImageView.layer.masksToBounds = YES;
+            profileImageView.layer.cornerRadius = 5.0f;
+//            profileImageView.layer.borderWidth = 1.0f;
+//            profileImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+        }
+        
+        NSArray * teams = [[TeamManager defaultManager] teams];
+        
+        UIImageView * imageView = (UIImageView *)[cell viewWithTag:1];        
+        UILabel * label = (UILabel *)[cell viewWithTag:2];        
         if (indexPath.row < teams.count) {
             Team * team = [teams objectAtIndex:indexPath.row];
-            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-            cell.textLabel.text = team.name;
+            
+            
+            imageView.image = [[TeamManager defaultManager] imageForTeam:team];
+            label.text = team.name;
+            //            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
+            //            cell.textLabel.text = team.name;
         }else{
-            cell.textLabel.text = @"添加球队...";
+            imageView.image = [UIImage imageNamed:@"add"];
+            label.text = @"添加球队...";
+            //            cell.textLabel.text = @"添加球队...";
         }
     }else{
+        static NSString * CellIdentifier1 = @"Cell1";  
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        if (nil == cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier1];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
         cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
     }
+
+//    if (nil == cell) {
+//        if (indexPath.section == 0) {
+//            [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+//            cell = _teamCell;
+//            self.teamCell = nil;
+//        }else{
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
+//        }
+//    }
+//    
+//    NSArray * teams = [[TeamManager defaultManager] teams];
+//    
+//    // Configure the cell...
+//    if (0 == indexPath.section) {
+//        UIImageView * imageView = (UIImageView *)[cell viewWithTag:1];        
+//        UILabel * label = (UILabel *)[cell viewWithTag:2];        
+//        if (indexPath.row < teams.count) {
+//            Team * team = [teams objectAtIndex:indexPath.row];
+//            
+//
+//            imageView.image = [[TeamManager defaultManager] imageForTeam:team];
+//            label.text = team.name;
+////            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
+////            cell.textLabel.text = team.name;
+//        }else{
+//            label.text = @"添加球队...";
+////            cell.textLabel.text = @"添加球队...";
+//        }
+//    }else{
+//        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
+//    }
     
     return cell;
 }

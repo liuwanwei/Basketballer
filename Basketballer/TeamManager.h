@@ -12,6 +12,7 @@
 
 #define kTeamEntity     @"Team"
 #define kTeamNameField  @"name"
+#define kTeamIdField    @"id"
 
 @interface TeamManager : BaseManager
 

@@ -125,6 +125,18 @@ static MatchManager * sDefaultManager;
     return newOne;
 }
 
+- (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam{
+    Match * newOne = [self newMatchWithMode:mode];
+    if (newOne != nil) {
+        newOne.homeTeam = home.id;
+        newOne.guestTeam = guestTeam.id;
+        
+        [self synchroniseToStore];
+    }
+    
+    return newOne;
+}
+
 - (BOOL)deleteMatch:(Match *)match{
     if (! [self deleteFromStore:match]) {
         return NO;

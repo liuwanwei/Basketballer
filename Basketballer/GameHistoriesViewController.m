@@ -42,8 +42,8 @@
 
 - (void)showSettingView{
     if (nil == _settingsViewController) {
-        SettingViewController * settingViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:settingViewController];
+        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStylePlain];
+        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     }
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -81,16 +81,17 @@
     [super viewDidLoad];
     [self initNavigationItem];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(showSettingView)];
-    self.navigationItem.leftBarButtonItem = settingsItem;
+    // left button item.
+    UIButton * settingButton = [[UIButton alloc] initWithFrame:CGRectMake(2, 2, 32, 32)];
+    [settingButton addTarget:self action:@selector(showSettingView) forControlEvents:UIControlEventTouchUpInside];
+    UIImage * image = [UIImage imageNamed:@"TeamEntry"];    
+    [settingButton setImage:image forState:UIControlStateNormal];
+    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
+    self.navigationItem.leftBarButtonItem = settingItem;
     
-    /*UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
-    self.navigationItem.rightBarButtonItem = addItem;*/
+    // right button item.
+    UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
+    self.navigationItem.rightBarButtonItem = addItem;
 }
 
 - (void)viewDidUnload
@@ -108,7 +109,7 @@
 #pragma mark - Table view data source
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 74.0;
+    return 50.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

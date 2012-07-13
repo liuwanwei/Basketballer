@@ -75,6 +75,10 @@
 		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
 		E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95515AB183500CB0C0E /* TeamManager.m */; };
 		E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */; };
+		E6E1D96C15AD6DED00CB0C0E /* TeamEntry.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */; };
+		E6E1D96D15AD6DED00CB0C0E /* TeamEntry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */; };
+		E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */; };
+		E6E1D97A15AED9D300CB0C0E /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D97915AED9D300CB0C0E /* add.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +180,10 @@
 		E6E1D95515AB183500CB0C0E /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
 		E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManager.h; sourceTree = "<group>"; };
 		E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManager.m; sourceTree = "<group>"; };
+		E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TeamEntry.png; sourceTree = "<group>"; };
+		E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TeamEntry@2x.png"; sourceTree = "<group>"; };
+		E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamRecordCell.xib; sourceTree = "<group>"; };
+		E6E1D97915AED9D300CB0C0E /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +319,9 @@
 		3CC1683315A2E5E400A2AB44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E6E1D97915AED9D300CB0C0E /* add.png */,
+				E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */,
+				E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */,
 				3C12203015A6D9C60062BECD /* music */,
 				3C121F6715A437530062BECD /* images */,
 				E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */,
@@ -335,6 +346,7 @@
 				E68D116E15A591AA0074982D /* MatchRecordCell.xib */,
 				E68D118415A684B30074982D /* MatchPartSummaryCell.xib */,
 				E68D118715A68D090074982D /* MatchActionFilterCell.xib */,
+				E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -462,6 +474,8 @@
 				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
 				E68D118815A68D090074982D /* MatchActionFilterCell.xib in Resources */,
 				E68D118A15A696B60074982D /* DefaultTeamProfile@2x.png in Resources */,
+				E6E1D96C15AD6DED00CB0C0E /* TeamEntry.png in Resources */,
+				E6E1D96D15AD6DED00CB0C0E /* TeamEntry@2x.png in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CFE1D3015AC876A00247B80 /* EditTeamNameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamChoiceViewController.xib in Resources */,
@@ -469,7 +483,7 @@
 				3CBA0C2315AED332003505BC /* popoverArrowDown@2x.png in Resources */,
 				3CBA0C2415AED332003505BC /* popoverArrowDownSimple.png in Resources */,
 				3CBA0C2515AED332003505BC /* popoverArrowLeft.png in Resources */,
-				3CBA0C2615AED332003505BC /* popoverArrowLeft@2x.png in Resources */,
+				3CBA0C2615AED332003505BC /* popoverArrowLeft@2x.png in Resources *,
 				3CBA0C2715AED332003505BC /* popoverArrowLeftSimple.png in Resources */,
 				3CBA0C2815AED332003505BC /* popoverArrowRight.png in Resources */,
 				3CBA0C2915AED332003505BC /* popoverArrowRight@2x.png in Resources */,
@@ -480,6 +494,8 @@
 				3CBA0C2E15AED332003505BC /* popoverBg.png in Resources */,
 				3CBA0C2F15AED332003505BC /* popoverBg@2x.png in Resources */,
 				3CBA0C3015AED332003505BC /* popoverBgSimple.png in Resources */,
+				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
+				E6E1D97A15AED9D300CB0C0E /* add.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
