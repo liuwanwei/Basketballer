@@ -68,6 +68,11 @@
     [self.tableView reloadData];
 }
 
+- (void)historyChangedHandler:(NSNotification *)notification{
+    NSLog(@"got notification: %@", notification.name);
+    [self.tableView reloadData];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -91,10 +96,16 @@
     self.navigationItem.leftBarButtonItem = settingItem;
     
     // right button item.
+    /*
     UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
     self.navigationItem.rightBarButtonItem = addItem;
+     */
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
+    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];    
 }
 
 - (void)viewDidUnload
@@ -112,7 +123,7 @@
 #pragma mark - Table view data source
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 72.0;
+    return 100.0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -14,6 +14,8 @@
 #define kTeamNameField  @"name"
 #define kTeamIdField    @"id"
 
+#define kTeamChanged    @"TeamChangedNotification"
+
 @interface TeamManager : BaseManager
 
 @property (nonatomic, strong) NSMutableArray * teams;

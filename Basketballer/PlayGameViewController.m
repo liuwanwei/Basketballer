@@ -290,6 +290,8 @@
     [self stopGameCountDown];
     _gameStart = NO;
     
+    [[MatchManager defaultManager] finishMatch:_match];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
