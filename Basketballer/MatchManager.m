@@ -10,65 +10,19 @@
 #import "AppDelegate.h"
 #import "GameSetting.h"
 #import "Action.h"
+#import "ActionManager.h"
 
 static MatchManager * sDefaultManager;
-
-@interface MatchManager(){
-    GameSetting * _gameSettings;
-    NSInteger _period;    
-}
-@end
 
 @implementation MatchManager
 
 @synthesize matchesArray = _matchesArray;
-@synthesize delegate = _delegate;
-
-@synthesize homeTeamPoints = _homeTeamPoints;
-@synthesize homeTeamTimeouts = _homeTeamTimeouts;
-@synthesize homeTeamFouls = _homeTeamFouls;
-@synthesize guestTeamPoints = _guestTeamPoints;
-@synthesize guestTeamTimeouts = _guestTeamTimeouts;
-@synthesize guestTeamFouls = _guestTeamFouls;
-@synthesize periodFoulsLimit = _periodFoulsLimit;
-@synthesize periodLength = _periodLength;
-@synthesize periodTimeoutsLimit = _periodTimeoutsLimit;
-@synthesize actionArray = _actionArray;
 
 + (MatchManager *)defaultManager{
     if (sDefaultManager == nil) {
         sDefaultManager = [[MatchManager alloc] init];
     }
     return sDefaultManager;
-}
-
-- (void)initRealtimeInfo:(Match *)match{
-    _gameSettings = [GameSetting defaultSetting];
-    
-    _homeTeamPoints = 0;
-    _homeTeamFouls = 0;
-    _homeTeamTimeouts = 0;
-    _guestTeamPoints = 0;
-    _guestTeamFouls = 0;
-    _guestTeamTimeouts = 0;
-
-    _period = -1;
-    
-    if ([match.mode isEqualToString:kGameModeFourQuarter]) {
-        _periodLength = [_gameSettings.quarterLength integerValue];
-        _periodFoulsLimit = [_gameSettings.foulsOverQuarterLimit integerValue];
-        _periodTimeoutsLimit = [_gameSettings.timeoutsOverQuarterLimit integerValue];
-    }else{
-        _periodLength = [_gameSettings.halfLength integerValue];
-        _periodFoulsLimit = [_gameSettings.foulsOverHalfLimit integerValue];
-        _periodTimeoutsLimit = [_gameSettings.timeoutsOverHalfLimit integerValue];
-    }
-    
-    if (nil == _actionArray) {
-        _actionArray = [[NSMutableArray alloc] init];
-    }else{
-        [_actionArray removeAllObjects];
-    }
 }
 
 - (void)loadMatches{
@@ -120,7 +74,7 @@ static MatchManager * sDefaultManager;
     
     [self.matchesArray insertObject:newOne atIndex:0];
     
-    [self initRealtimeInfo:newOne];
+    [[ActionManager defaultManager] resetRealtimeActions:newOne];
     
     return newOne;
 }
@@ -137,6 +91,16 @@ static MatchManager * sDefaultManager;
     return newOne;
 }
 
+- (void)finishMatch:(Match *)match{
+    // 计算并更新比赛信息中的得分记录字段。
+    [[ActionManager defaultManager] calculateTeamPointsForMatch:match];
+    [self synchroniseToStore];
+    
+    // 发送比赛结束消息。
+    NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
+
 - (BOOL)deleteMatch:(Match *)match{
     if (! [self deleteFromStore:match]) {
         return NO;
@@ -145,135 +109,6 @@ static MatchManager * sDefaultManager;
     [self.matchesArray removeObject:match];
     
     return YES;
-}
-
-- (Action *)newActionInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
-    Action * action = (Action *)[NSEntityDescription insertNewObjectForEntityForName:kActionEntity 
-                                                              inManagedObjectContext:self.managedObjectContext];
-    action.type = [NSNumber numberWithInteger:actionType];
-    action.match = match.id;
-    action.period = [NSNumber numberWithInteger:period];
-    action.time = [NSNumber numberWithInteger:time];
-
-    return action;
-}
-
-- (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
-    // 暂停有总数限制，要先检查一下。
-    if ((actionType == ActionTypeTimeout) && (period == _period)) {
-        // period发生改变时，意味着进入下一节，靠后续处理来清零犯规、暂停数据。        
-        if (_homeTeamTimeouts >= _periodTimeoutsLimit) {
-            return NO;
-        }
-    }
-    
-    Action * action = [self newActionInMatch:match withType:actionType atTime:time inPeriod:period];
-    action.team = match.homeTeam;
-    
-    if( ![self synchroniseToStore]){
-        return NO;
-    }
-    
-    [_actionArray insertObject:action atIndex:0];
-
-    // 更新本场比赛实时数据。
-    
-    // 进入下一节时，清零犯规和暂停计数。
-    if (period != _period) {
-        _homeTeamFouls = 0;
-        _homeTeamTimeouts = 0;
-    }
-    
-    if(actionType == ActionTypeFoul){
-        _homeTeamFouls ++;
-    }else if(actionType == ActionType1Point){
-        _homeTeamPoints += 1;
-    }else if(actionType == ActionType2Points){
-        _homeTeamPoints += 2;
-    }else if(actionType == ActionType3Points){
-        _homeTeamPoints += 3;
-    }else if(actionType == ActionTypeTimeout){
-        _homeTeamTimeouts ++;
-    }else if (actionType == ActionTypeFoul) {
-        // 犯规伴随着罚球，如果超出单节允许犯规次数的话。
-        _homeTeamFouls ++;
-        if (_homeTeamFouls > _periodFoulsLimit) {
-            if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
-                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:[NSNumber numberWithInt:0]];
-            }
-        }
-    }
-    
-    return YES;
-}
-
-- (BOOL)actionForGuestTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
-    // 暂停有总数限制，要先检查一下。
-    if ((actionType == ActionTypeTimeout) && (period == _period)) {
-        // period发生改变时，意味着进入下一节，靠后续处理来清零犯规、暂停数据。        
-        if (_guestTeamTimeouts >= _periodTimeoutsLimit) {
-            return NO;
-        }
-    }
-    
-    Action * action = [self newActionInMatch:match withType:actionType atTime:time inPeriod:period];
-    action.team = match.guestTeam;
-    
-    if( ![self synchroniseToStore]){
-        return NO;
-    }
-    
-    [_actionArray insertObject:action atIndex:0];
-    
-    // 更新本场比赛实时数据。
-    
-    // 进入下一节时，清零犯规和暂停计数。
-    if (period != _period) {
-        _guestTeamFouls = 0;
-        _guestTeamTimeouts = 0;
-    }
-    
-    if(actionType == ActionTypeFoul){
-        _guestTeamFouls ++;
-    }else if(actionType == ActionType1Point){
-        _guestTeamPoints += 1;
-    }else if(actionType == ActionType2Points){
-        _guestTeamPoints += 2;
-    }else if(actionType == ActionType3Points){
-        _guestTeamPoints += 3;
-    }else if(actionType == ActionTypeTimeout){
-        _guestTeamTimeouts ++;
-    }else if (actionType == ActionTypeFoul) {
-        // 犯规伴随着罚球，如果超出单节允许犯规次数的话。
-        _guestTeamFouls ++;
-        if (_guestTeamFouls > _periodFoulsLimit) {
-            if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
-                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:[NSNumber numberWithInt:1]];
-            }
-        }
-    }
-    
-    return YES;
-}
-
-- (BOOL)deleteAction:(Action *)action{
-    [self.managedObjectContext deleteObject:action];
-    if(! [self synchroniseToStore]){
-        return NO;
-    }
-    
-    [_actionArray removeObject:action];
-    
-    return YES;
-}
-
-- (BOOL)deleteActionAtIndex:(NSInteger)index{
-    if (index >= _actionArray.count) {
-        NSLog(@"index beyond actionArray count");
-        return NO;
-    }
-    
-    return [self deleteAction:[_actionArray objectAtIndex:index]];
 }
 
 @end
