@@ -92,13 +92,13 @@
 - (void)addScore:(NSInteger) score {
     self.scoreLabel.text = [NSString stringWithFormat:@"%d",[self.scoreLabel.text intValue] + score];
     
-    MatchManager * matchManager = [MatchManager defaultManager];
+    ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
     BOOL result;
     if(_teamType == host) {
-        result = [matchManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        result = [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
     }else {
-        result = [matchManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        result = [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
     }
 }
 

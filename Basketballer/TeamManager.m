@@ -18,6 +18,8 @@ static TeamManager * sDefaultManager;
     NSString * _defaultHomeTeamName;
     NSString * _defaultGuestTeamName;
     NSString * _defaultProfileImageName;
+    
+    NSMutableDictionary * _imageCache;
 }
 
 @end
@@ -44,7 +46,9 @@ static TeamManager * sDefaultManager;
         _defaultGuestTeamName = @"客队";
         
         // Equal to default image in resource.
-        _defaultProfileImageName = @"DefaultTeamProfile";        
+        _defaultProfileImageName = @"DefaultTeamProfile";  
+        
+        _imageCache = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -169,6 +173,13 @@ static TeamManager * sDefaultManager;
     return image2;
 }
 
+// 发送球队修改通知。
+- (void)sendTeamChangedNotification{
+    NSNotification * notification = [NSNotification notificationWithName:kTeamChanged object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    NSLog(@"send notification %@", kTeamChanged);
+}
+
 - (void)saveProfileImage:(UIImage *)image toURL:(NSURL *) url{
    // TODO 暂时制作本地存储，调通后再往iCloud里加。 
     NSData * data = UIImagePNGRepresentation(image);
@@ -179,11 +190,23 @@ static TeamManager * sDefaultManager;
     // 根据Team.id生成图片保存路径。    
     NSURL * imageURL = [self profileImageURLGenerator:[team.id stringValue]];
     
+    // 保存图片路径到球队信息记录。    
+    team.profileURL = [imageURL absoluteString];    
+    
     // 保存图片到文件系统。
     [self saveProfileImage:image toURL:imageURL];
     
-    // 保存图片路径到球队信息记录。    
-    team.profileURL = [imageURL absoluteString];
+    // 更新图片缓存。
+    [_imageCache setObject:image forKey:team.profileURL];
+}
+
+- (BOOL)synchroniseToStore{
+    BOOL ret = [super synchroniseToStore];
+    if (ret) {
+        [self sendTeamChangedNotification];
+    }
+    
+    return ret;
 }
 
 - (Team *)newTeam:(NSString *)name withImage:(UIImage *)image{
@@ -222,13 +245,9 @@ static TeamManager * sDefaultManager;
 }
 
 - (BOOL)deleteTeam:(Team *)team{
-    if (! [self deleteFromStore:team]) {
-        return NO;
-    } 
-    
     [self.teams removeObject:team];
     
-    return YES;
+    return [self deleteFromStore:team];
 }
 
 - (BOOL)modifyTeam:(Team *)team withNewName:(NSString *)name{
@@ -248,6 +267,8 @@ static TeamManager * sDefaultManager;
     }else{
         // 覆盖保存过的文件。
         [self saveProfileImage:image toURL:[NSURL URLWithString:team.profileURL]];
+        
+        [_imageCache setObject:image forKey:team.profileURL];
     }
     
     return [self synchroniseToStore];
@@ -259,9 +280,15 @@ static TeamManager * sDefaultManager;
         image = [UIImage imageNamed:_defaultProfileImageName];
         return image;
     }else{
-        NSURL * url = [NSURL URLWithString:team.profileURL];
-        NSData * data = [NSData dataWithContentsOfURL:url];
-        image = [UIImage imageWithData:data]; 
+        image = [_imageCache objectForKey:team.profileURL];
+        if (image) {
+            return image;
+        }else{
+            NSURL * url = [NSURL URLWithString:team.profileURL];
+            NSData * data = [NSData dataWithContentsOfURL:url];
+            image = [UIImage imageWithData:data]; 
+            [_imageCache setObject:image forKey:team.profileURL];
+        }
     }
     
     return image;
