@@ -219,6 +219,8 @@
 /*消息处理函数*/
 - (void)handleShowActionRecordMessage:(NSNotification *)note {
     ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
+    NSArray * actionRecords = [[ActionManager defaultManager] actionsForMatch:_match];
+    actionRecordontroller.actionRecords = actionRecords;
     [self.navigationController pushViewController:actionRecordontroller animated:YES];
 }
 
@@ -311,7 +313,7 @@
         _gameStart = NO;
         [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
-        CFRelease (self.soundFileURLRef);
+        //CFRelease (self.soundFileURLRef);
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
