@@ -8,25 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "Team.h"
+#import <AudioToolbox/AudioToolbox.h>
 @class  OperateGameViewController;
 
-@interface PlayGameViewController : UIViewController
+@interface PlayGameViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel * gameTimeLable;
-@property (nonatomic, weak) IBOutlet UILabel * timeoutTimeLabel;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem * playBarItem;
 @property (nonatomic, weak) IBOutlet UIView * gameTimeView;
 @property (nonatomic, weak) OperateGameViewController * operateGameView1;
 @property (nonatomic, weak) OperateGameViewController * operateGameView2;
 @property (nonatomic, weak) NSTimer * countDownTimer;
-@property (nonatomic, weak) NSTimer * timeoutCountDownTimer;
-@property (nonatomic, strong) NSDate * timeoutTargetTime;
 @property (nonatomic, strong) NSDate * targetTime;
 @property (nonatomic, strong) NSDate * lastTimeoutTime;
 @property (nonatomic) NSInteger gameState; 
 @property (nonatomic, weak) Team * hostTeam;
 @property (nonatomic, weak) Team * guestTeam;
 @property (nonatomic, weak) NSString * gameMode;
+@property (nonatomic) NSInteger curPeroid;
+@property (nonatomic, readwrite) CFURLRef soundFileURLRef;
+@property (nonatomic, readonly) SystemSoundID soundFileObject;
+
 
 - (IBAction)startGame:(id)sender;
 - (IBAction)stopGame:(id)sender;

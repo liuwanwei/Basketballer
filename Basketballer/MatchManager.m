@@ -93,7 +93,7 @@ static MatchManager * sDefaultManager;
 
 - (void)finishMatch:(Match *)match{
     // 计算并更新比赛信息中的得分记录字段。
-    [[ActionManager defaultManager] calculateTeamPointsForMatch:match];
+    [[ActionManager defaultManager] updateTeamPointsForMatch:match];
     [self synchroniseToStore];
     
     // 发送比赛结束消息。

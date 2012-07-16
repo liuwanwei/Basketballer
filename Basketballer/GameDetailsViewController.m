@@ -91,6 +91,21 @@ typedef enum {
     [self actionFilterChanged:_actionFilter];
 }
 
+- (NSArray *)actionsWithType:(ActionType)actionType inPeriod:(NSInteger)period{
+    NSMutableArray * actionArray = [[NSMutableArray alloc] init];
+    for (Action * action in _actionsInMatch) {
+        NSInteger tmpType = [action.type integerValue];
+        if ((actionType == ActionTypeFoul || actionType == ActionTypeTimeout) &&
+            (actionType == tmpType)) {
+            [actionArray addObject:action];
+        }else{
+            [actionArray addObject:action];
+        }
+    }
+    
+    return actionArray;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -221,5 +236,11 @@ typedef enum {
 }
 
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        NSArray * actions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
+    }
+}
  
 @end
