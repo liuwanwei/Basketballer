@@ -17,7 +17,6 @@
 @interface PlayGameViewController() {
     BOOL _gameStart;
     Match * _match;
-    NSURL * _tapSound;
 }
 @end
 
@@ -219,8 +218,7 @@
 /*消息处理函数*/
 - (void)handleShowActionRecordMessage:(NSNotification *)note {
     ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
-    NSArray * actionRecords = [[ActionManager defaultManager] actionsForMatch:_match];
-    actionRecordontroller.actionRecords = actionRecords;
+    actionRecordontroller.actionRecords = [[ActionManager defaultManager] actionArray];
     [self.navigationController pushViewController:actionRecordontroller animated:YES];
 }
 
@@ -252,9 +250,9 @@
     [self registerHandleMessage];
     self.gameState = prepare;
     self.curPeroid = -1;
-    _tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
+    NSURL * tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
                                                 withExtension: @"caf"];
-    self.soundFileURLRef = (__bridge CFURLRef)_tapSound;
+    self.soundFileURLRef = (__bridge_retained CFURLRef)tapSound;
     AudioServicesCreateSystemSoundID (self.soundFileURLRef,&_soundFileObject);
 }
 
@@ -313,7 +311,7 @@
         _gameStart = NO;
         [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
-        //CFRelease (self.soundFileURLRef);
+        CFRelease (self.soundFileURLRef);
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
