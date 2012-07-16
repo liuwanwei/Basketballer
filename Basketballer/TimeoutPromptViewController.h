@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayGameViewController.h"
 
-@interface TimeoutPromptViewController : UIViewController
+enum PromptMode {
+    timeoutMode = 0,
+    restMode = 1
+    };
+
+@interface TimeoutPromptViewController : UIView
+
+@property (nonatomic, strong) NSDate * timeoutTargetTime;
+@property (nonatomic, weak) NSTimer * timeoutCountDownTimer;
+@property (nonatomic, weak) IBOutlet UILabel * timeoutTimeLabel;
+@property (nonatomic, weak) PlayGameViewController * parentController;
+@property (nonatomic) NSInteger mode;
+
+- (IBAction)resumeGame:(id)sender;
+
+- (void)startTimeout;
 
 @end
