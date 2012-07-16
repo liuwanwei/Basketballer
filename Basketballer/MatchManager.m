@@ -74,8 +74,6 @@ static MatchManager * sDefaultManager;
     
     [self.matchesArray insertObject:newOne atIndex:0];
     
-    [[ActionManager defaultManager] resetRealtimeActions:newOne];
-    
     return newOne;
 }
 
@@ -86,6 +84,8 @@ static MatchManager * sDefaultManager;
         newOne.guestTeam = guestTeam.id;
         
         [self synchroniseToStore];
+        
+        [[ActionManager defaultManager] resetRealtimeActions:newOne];        
     }
     
     return newOne;
