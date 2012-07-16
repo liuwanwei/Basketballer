@@ -18,6 +18,10 @@
 		3C121FED15A673460062BECD /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C121FEA15A673460062BECD /* stop.png */; };
 		3C121FEE15A673460062BECD /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C121FEB15A673460062BECD /* stop@2x.png */; };
 		3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3C12203115A6D9DA0062BECD /* sendmsg.caf */; };
+		3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */; };
+		3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */; };
+		3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */; };
+		3C82956115B3EE7800A5E7E7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C82956015B3EE7800A5E7E7 /* AudioToolbox.framework */; };
 		3CBA0BFB15AE7726003505BC /* TeamChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0BF915AE7726003505BC /* TeamChoiceViewController.m */; };
 		3CBA0BFC15AE7726003505BC /* TeamChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0BFA15AE7726003505BC /* TeamChoiceViewController.xib */; };
 		3CBA0C0C15AECD2E003505BC /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0C0415AECD2E003505BC /* UIBarButtonItem+WEPopover.m */; };
@@ -30,7 +34,6 @@
 		3CBA0C2415AED332003505BC /* popoverArrowDownSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1515AED332003505BC /* popoverArrowDownSimple.png */; };
 		3CBA0C2515AED332003505BC /* popoverArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1615AED332003505BC /* popoverArrowLeft.png */; };
 		3CBA0C2615AED332003505BC /* popoverArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1715AED332003505BC /* popoverArrowLeft@2x.png */; };
-		3CBA0C2715AED332003505BC /* popoverArrowLeftSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1815AED332003505BC /* popoverArrowLeftSimple.png */; };
 		3CBA0C2815AED332003505BC /* popoverArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1915AED332003505BC /* popoverArrowRight.png */; };
 		3CBA0C2915AED332003505BC /* popoverArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1A15AED332003505BC /* popoverArrowRight@2x.png */; };
 		3CBA0C2A15AED332003505BC /* popoverArrowRightSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1B15AED332003505BC /* popoverArrowRightSimple.png */; };
@@ -53,6 +56,8 @@
 		3CC1683D15A2E71400A2AB44 /* GameHistoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1683B15A2E71400A2AB44 /* GameHistoriesViewController.xib */; };
 		3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */; };
 		3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */; };
+		3CC9129F15B1C477003C74D4 /* TimeoutPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */; };
+		3CC912A015B1C477003C74D4 /* TimeoutPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		3CFE1D2F15AC876A00247B80 /* EditTeamNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2D15AC876900247B80 /* EditTeamNameViewController.m */; };
@@ -97,6 +102,11 @@
 		3C121FEA15A673460062BECD /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Resources/images/stop.png; sourceTree = "<group>"; };
 		3C121FEB15A673460062BECD /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stop@2x.png"; path = "Resources/images/stop@2x.png"; sourceTree = "<group>"; };
 		3C12203115A6D9DA0062BECD /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sendmsg.caf; path = Resources/music/sendmsg.caf; sourceTree = "<group>"; };
+		3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionRecordCell.xib; sourceTree = "<group>"; };
+		3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordViewController.h; sourceTree = "<group>"; };
+		3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRecordViewController.m; sourceTree = "<group>"; };
+		3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionRecordViewController.xib; sourceTree = "<group>"; };
+		3C82956015B3EE7800A5E7E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3CBA0BF815AE7726003505BC /* TeamChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamChoiceViewController.h; sourceTree = "<group>"; };
 		3CBA0BF915AE7726003505BC /* TeamChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamChoiceViewController.m; sourceTree = "<group>"; };
 		3CBA0BFA15AE7726003505BC /* TeamChoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamChoiceViewController.xib; sourceTree = "<group>"; };
@@ -145,6 +155,9 @@
 		3CC1687B15A2F70E00A2AB44 /* PlayGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameViewController.h; sourceTree = "<group>"; };
 		3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameViewController.m; sourceTree = "<group>"; };
 		3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayGameViewController.xib; sourceTree = "<group>"; };
+		3CC9129C15B1C477003C74D4 /* TimeoutPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeoutPromptViewController.h; sourceTree = "<group>"; };
+		3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeoutPromptViewController.m; sourceTree = "<group>"; };
+		3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeoutPromptViewController.xib; sourceTree = "<group>"; };
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartGameViewController.xib; sourceTree = "<group>"; };
@@ -193,6 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C82956115B3EE7800A5E7E7 /* AudioToolbox.framework in Frameworks */,
 				3CC1681015A2E52A00A2AB44 /* UIKit.framework in Frameworks */,
 				3CC1681215A2E52A00A2AB44 /* Foundation.framework in Frameworks */,
 				3CC1681415A2E52A00A2AB44 /* CoreGraphics.framework in Frameworks */,
@@ -283,6 +297,7 @@
 		3CC1680E15A2E52A00A2AB44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3C82956015B3EE7800A5E7E7 /* AudioToolbox.framework */,
 				3CC1680F15A2E52A00A2AB44 /* UIKit.framework */,
 				3CC1681115A2E52A00A2AB44 /* Foundation.framework */,
 				3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */,
@@ -337,6 +352,8 @@
 		3CC1683515A2E60200A2AB44 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
+				3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */,
 				3CBA0BFA15AE7726003505BC /* TeamChoiceViewController.xib */,
 				3CFE1D2E15AC876A00247B80 /* EditTeamNameViewController.xib */,
 				3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */,
@@ -350,6 +367,7 @@
 				E68D118415A684B30074982D /* MatchPartSummaryCell.xib */,
 				E68D118715A68D090074982D /* MatchActionFilterCell.xib */,
 				E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */,
+				3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -381,6 +399,10 @@
 				3CFE1D2D15AC876900247B80 /* EditTeamNameViewController.m */,
 				3CBA0BF815AE7726003505BC /* TeamChoiceViewController.h */,
 				3CBA0BF915AE7726003505BC /* TeamChoiceViewController.m */,
+				3CC9129C15B1C477003C74D4 /* TimeoutPromptViewController.h */,
+				3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */,
+				3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */,
+				3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -486,8 +508,7 @@
 				3CBA0C2315AED332003505BC /* popoverArrowDown@2x.png in Resources */,
 				3CBA0C2415AED332003505BC /* popoverArrowDownSimple.png in Resources */,
 				3CBA0C2515AED332003505BC /* popoverArrowLeft.png in Resources */,
-				3CBA0C2615AED332003505BC /* popoverArrowLeft@2x.png in Resources *,
-				3CBA0C2715AED332003505BC /* popoverArrowLeftSimple.png in Resources */,
+				3CBA0C2615AED332003505BC /* popoverArrowLeft@2x.png in Resources */,
 				3CBA0C2815AED332003505BC /* popoverArrowRight.png in Resources */,
 				3CBA0C2915AED332003505BC /* popoverArrowRight@2x.png in Resources */,
 				3CBA0C2A15AED332003505BC /* popoverArrowRightSimple.png in Resources */,
@@ -500,6 +521,9 @@
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
 				E6E1D98415B01EC800CB0C0E /* Add@2x.png in Resources */,
 				E6E1D98615B01F6900CB0C0E /* Add.png in Resources */,
+				3CC912A015B1C477003C74D4 /* TimeoutPromptViewController.xib in Resources */,
+				3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */,
+				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +561,8 @@
 				3CBA0C0E15AECD2E003505BC /* WEPopoverController.m in Sources */,
 				3CBA0C0F15AECD2E003505BC /* WETouchableView.m in Sources */,
 				3CBA0C1215AECD4B003505BC /* WEPopoverContentViewController.m in Sources */,
+				3CC9129F15B1C477003C74D4 /* TimeoutPromptViewController.m in Sources */,
+				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
