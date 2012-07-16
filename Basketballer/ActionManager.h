@@ -31,7 +31,7 @@ typedef enum {
 }ActionType;
 
 @protocol FoulActionDelegate <NSObject>
-- (void)FoulsBeyondLimit:(NSNumber *)teamId; // 0 for home team, 1 for guest team.
+- (void)FoulsBeyondLimit:(NSNumber *)teamId;
 @end
 
 @interface ActionManager : BaseManager

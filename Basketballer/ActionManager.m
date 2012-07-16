@@ -152,9 +152,7 @@ static ActionManager * sActionManager;
         _period = period;
     }
     
-    if(actionType == ActionTypeFoul){
-        _homeTeamFouls ++;
-    }else if(actionType == ActionType1Point){
+    if(actionType == ActionType1Point){
         _homeTeamPoints += 1;
     }else if(actionType == ActionType2Points){
         _homeTeamPoints += 2;
@@ -167,7 +165,7 @@ static ActionManager * sActionManager;
         _homeTeamFouls ++;
         if (_homeTeamFouls > _periodFoulsLimit) {
             if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
-                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:[NSNumber numberWithInt:0]];
+                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:match.homeTeam];
             }
         }
     }
@@ -202,9 +200,7 @@ static ActionManager * sActionManager;
         _period = period;
     }
     
-    if(actionType == ActionTypeFoul){
-        _guestTeamFouls ++;
-    }else if(actionType == ActionType1Point){
+    if(actionType == ActionType1Point){
         _guestTeamPoints += 1;
     }else if(actionType == ActionType2Points){
         _guestTeamPoints += 2;
@@ -217,7 +213,7 @@ static ActionManager * sActionManager;
         _guestTeamFouls ++;
         if (_guestTeamFouls > _periodFoulsLimit) {
             if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
-                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:[NSNumber numberWithInt:1]];
+                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:match.guestTeam];
             }
         }
     }
