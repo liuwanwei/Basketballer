@@ -215,6 +215,9 @@ static ActionManager * sActionManager;
 
 - (BOOL)deleteAction:(Action *)action{
     if (action) {
+        NSInteger actionType = [action.type integerValue];
+        NSInteger teamId = [action.team integerValue];
+        
         // 从数据库删除该条记录。
         [self.managedObjectContext deleteObject:action];
         if(! [self synchroniseToStore]){
@@ -222,12 +225,12 @@ static ActionManager * sActionManager;
         }
         
         // 更新实时技术统计缓存TeamStatistics中的信息。
-        if ([action.team integerValue] == [_home.teamId integerValue]) {
+        if (teamId == [_home.teamId integerValue]) {
             _currentTeam = _home;
         }else{
             _currentTeam = _guest;
         }
-        [_currentTeam subtractStatistic:[action.type integerValue]];
+        [_currentTeam subtractStatistic:actionType];
         
         // 从当前比赛action表中删除记录。
         [_actionArray removeObject:action];
