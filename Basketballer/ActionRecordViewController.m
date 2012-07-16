@@ -55,7 +55,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[ActionManager defaultManager].actionArray count];
+    return [self.actionRecords count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +67,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    Action * action = [[[ActionManager defaultManager] actionArray] objectAtIndex:indexPath.row];
+    Action * action = [self.actionRecords objectAtIndex:indexPath.row];
     
     Team * team;
     TeamManager * tm = [TeamManager defaultManager];
@@ -130,7 +130,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Action * action = [[[ActionManager defaultManager] actionArray] objectAtIndex:indexPath.row];
+        Action * action = [self.actionRecords objectAtIndex:indexPath.row];
         [[ActionManager defaultManager] deleteAction:action];
 
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
