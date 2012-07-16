@@ -75,6 +75,7 @@
 		E68D118815A68D090074982D /* MatchActionFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118715A68D090074982D /* MatchActionFilterCell.xib */; };
 		E68D118A15A696B60074982D /* DefaultTeamProfile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */; };
 		E68D119315A6C7460074982D /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D119215A6C7460074982D /* Action.m */; };
+		E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = E69255F115B3EA7500CBF606 /* TeamStatistics.m */; };
 		E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94915AA7F4700CB0C0E /* Match.m */; };
 		E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94C15AA87F800CB0C0E /* ActionManager.m */; };
 		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
@@ -184,6 +185,8 @@
 		E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultTeamProfile@2x.png"; sourceTree = "<group>"; };
 		E68D119115A6C7460074982D /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		E68D119215A6C7460074982D /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
+		E69255F015B3EA7500CBF606 /* TeamStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamStatistics.h; sourceTree = "<group>"; };
+		E69255F115B3EA7500CBF606 /* TeamStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamStatistics.m; sourceTree = "<group>"; };
 		E6E1D94815AA7F4700CB0C0E /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		E6E1D94915AA7F4700CB0C0E /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		E6E1D94B15AA87F800CB0C0E /* ActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionManager.h; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				E68D119215A6C7460074982D /* Action.m */,
 				E6E1D94B15AA87F800CB0C0E /* ActionManager.h */,
 				E6E1D94C15AA87F800CB0C0E /* ActionManager.m */,
+				E69255F015B3EA7500CBF606 /* TeamStatistics.h */,
+				E69255F115B3EA7500CBF606 /* TeamStatistics.m */,
 				E68D110E15A2F7400074982D /* Team.h */,
 				E68D110F15A2F7400074982D /* Team.m */,
 				E6E1D95415AB183500CB0C0E /* TeamManager.h */,
@@ -561,6 +566,7 @@
 				3CBA0C0E15AECD2E003505BC /* WEPopoverController.m in Sources */,
 				3CBA0C0F15AECD2E003505BC /* WETouchableView.m in Sources */,
 				3CBA0C1215AECD4B003505BC /* WEPopoverContentViewController.m in Sources */,
+				E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */,
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptViewController.m in Sources */,
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 			);

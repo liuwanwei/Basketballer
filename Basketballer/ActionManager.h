@@ -37,13 +37,13 @@ typedef enum {
 @interface ActionManager : BaseManager
 
 // 当前比赛的实时汇总信息。
-@property (nonatomic) NSInteger homeTeamPoints;
-@property (nonatomic) NSInteger homeTeamFouls;
-@property (nonatomic) NSInteger homeTeamTimeouts;
+@property (nonatomic, readonly) NSInteger homeTeamPoints;
+@property (nonatomic, readonly) NSInteger homeTeamFouls;
+@property (nonatomic, readonly) NSInteger homeTeamTimeouts;
 
-@property (nonatomic) NSInteger guestTeamPoints;
-@property (nonatomic) NSInteger guestTeamFouls;
-@property (nonatomic) NSInteger guestTeamTimeouts;
+@property (nonatomic, readonly) NSInteger guestTeamPoints;
+@property (nonatomic, readonly) NSInteger guestTeamFouls;
+@property (nonatomic, readonly) NSInteger guestTeamTimeouts;
 
 @property (nonatomic) NSInteger periodLength;
 @property (nonatomic) NSInteger periodTimeoutsLimit;
@@ -68,6 +68,6 @@ typedef enum {
 
 - (void)resetRealtimeActions:(Match *)match;
 
-- (void)calculateTeamPointsForMatch:(Match *)match;
+- (void)updateTeamPointsForMatch:(Match *)match;
 
 @end

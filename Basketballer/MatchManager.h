@@ -29,8 +29,6 @@
 - (void)loadMatches;
 
 // 注意：返回的Match对象指针不能copy给其他变量，往后的删除、添加动作等接口必须使用这个返回的Match对象指针。
-- (Match *)newMatchWithMode:(NSString *)mode;
-
 - (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam;
 
 // 声明比赛结束。
