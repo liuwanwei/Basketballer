@@ -24,7 +24,8 @@
 
 @synthesize operateGameView1 = _operateGameView1;
 @synthesize operateGameView2 = _operateGameView2;
-@synthesize gameTimeLable = _gameTimeLable;
+@synthesize gameTimeLabel = _gameTimeLabel;
+@synthesize gamePeroidLabel = _gamePeroidLabel;
 @synthesize gameTimeView = _gameTimeView;
 @synthesize countDownTimer = _countDownTimer;
 @synthesize targetTime = _targetTime;
@@ -58,6 +59,15 @@
     _operateGameView2.foulLabel.text = @"0";
 }
 
+- (void)refreshMatchData {
+    ActionManager * actionManager = [ActionManager defaultManager];
+    NSInteger length = actionManager.homeTeamPoints;
+    _operateGameView1.scoreLabel.text = [NSString stringWithFormat:@"%d",length];
+    _operateGameView1.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+    _operateGameView1.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts];
+    _operateGameView2.scoreLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamPoints];
+    _operateGameView2.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+    _operateGameView2.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts];}
 
 /*获取单节时长*/
 - (NSInteger) getQuarterLength {
@@ -86,8 +96,32 @@
 - (void)initGameCountDownLable {
     [self.navigationItem setHidesBackButton:YES];
     self.navigationItem.titleView = self.gameTimeView;
-    self.gameTimeLable.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
-    self.gameTimeLable.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getQuarterLength],0];
+    self.gameTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
+    self.gameTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getQuarterLength],0];
+}
+
+- (void)initGamePeriodLabel {
+    self.gameTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
+    NSString * prtoidStr;
+    switch (_curPeroid) {
+        case -1:
+        case 0:
+            prtoidStr = @"1ST";
+            break;
+        case 1:
+            prtoidStr = @"2ND";
+            break;
+        case 2:
+            prtoidStr = @"3RD";
+            break;
+        case 3:
+            prtoidStr = @"4TH";
+            break;
+
+        default:
+            break;
+    }
+    self.gamePeroidLabel.text = prtoidStr;
 }
 
 /*初始化某节比赛结束时间*/
@@ -150,7 +184,7 @@
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date toDate:self.targetTime options:0];
     NSInteger minute = [comps minute];
     NSInteger second = [comps second];
-    self.gameTimeLable.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
+    self.gameTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
     if(minute <= 0 && second <= 0) {
         [self stopGameCountDown];
         [self.operateGameView1 setButtonEnabled:NO];
@@ -250,6 +284,7 @@
     [self registerHandleMessage];
     self.gameState = prepare;
     self.curPeroid = -1;
+    [self initGamePeriodLabel];
     NSURL * tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
                                                 withExtension: @"caf"];
     self.soundFileURLRef = (__bridge_retained CFURLRef)tapSound;
@@ -261,12 +296,17 @@
     [super viewDidUnload];
     self.operateGameView1 = nil;
     self.operateGameView2 = nil;
-    self.gameTimeLable = nil;
+    self.gameTimeLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self refreshMatchData];
 }
 
 - (IBAction)startGame:(id)sender {
@@ -282,6 +322,7 @@
        
         if(self.gameState == prepare || self.gameState == over_quarter_finish) {
             [self initGameTargetTime];
+            [self initGamePeriodLabel];
         }else {
             [self updateGameTargetTime];
         }
