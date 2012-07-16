@@ -13,7 +13,8 @@
 
 @interface PlayGameViewController : UIViewController <UIAlertViewDelegate>
 
-@property (nonatomic, weak) IBOutlet UILabel * gameTimeLable;
+@property (nonatomic, weak) IBOutlet UILabel * gameTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel * gamePeroidLabel;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem * playBarItem;
 @property (nonatomic, weak) IBOutlet UIView * gameTimeView;
 @property (nonatomic, weak) OperateGameViewController * operateGameView1;
