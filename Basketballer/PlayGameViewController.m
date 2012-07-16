@@ -11,11 +11,13 @@
 #import "define.h"
 #import "GameSetting.h"
 #import "MatchManager.h"
+#import "TimeoutPromptViewController.h"
+#import "ActionRecordViewController.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
     Match * _match;
-    NSInteger _curPeroid;
+    NSURL * _tapSound;
 }
 @end
 
@@ -25,10 +27,7 @@
 @synthesize operateGameView2 = _operateGameView2;
 @synthesize gameTimeLable = _gameTimeLable;
 @synthesize gameTimeView = _gameTimeView;
-@synthesize timeoutTimeLabel = _timeoutTimeLabel;
 @synthesize countDownTimer = _countDownTimer;
-@synthesize timeoutCountDownTimer = _timeoutCountDownTimer;
-@synthesize timeoutTargetTime = _timeoutTargetTime;
 @synthesize targetTime = _targetTime;
 @synthesize playBarItem = _playBarItem;
 @synthesize gameState = _gameState;
@@ -36,13 +35,37 @@
 @synthesize hostTeam = _hostTeam;
 @synthesize guestTeam = _guestTeam;
 @synthesize gameMode = _gameMode;
+@synthesize curPeroid = _curPeroid;
+@synthesize soundFileObject = _soundFileObject;
+@synthesize soundFileURLRef = _soundFileURLRef;
 
 #pragma 私有函数
+- (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
+    UIAlertView * alertView;
+    if(cancel == YES) {
+        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消" , nil];
+    }else {
+        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil , nil];
+    }
+    [alertView show];
+}
+
+/*初始化暂停、犯规显示数据。
+ 用途：当本节比赛结束时调用。*/
+- (void)initTimeoutAndFoulView {
+    _operateGameView1.timeoutLabel.text = @"0";
+    _operateGameView1.foulLabel.text = @"0";
+    _operateGameView2.timeoutLabel.text = @"0";
+    _operateGameView2.foulLabel.text = @"0";
+}
+
+
 /*获取单节时长*/
 - (NSInteger) getQuarterLength {
     NSInteger quarterLength = 0;
     if(_gameMode == kGameModeTwoHalf) {
-        quarterLength = [[GameSetting defaultSetting].halfLength intValue];
+        quarterLength = 1;
+        //quarterLength = [[GameSetting defaultSetting].halfLength intValue];
     }else {
         quarterLength = [[GameSetting defaultSetting].quarterLength intValue];
     }
@@ -68,11 +91,6 @@
     self.gameTimeLable.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getQuarterLength],0];
 }
 
-- (void)initTimeoutDownLable {
-    self.timeoutTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
-    self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",0,20];
-}
-
 /*初始化某节比赛结束时间*/
 - (void)initGameTargetTime {
     NSDate *date = [NSDate date];
@@ -86,8 +104,22 @@
     
     _operateGameView1.gameStartTime = date;
     _operateGameView2.gameStartTime = date;
+    ++_curPeroid;
     _operateGameView1.period = _curPeroid;
     _operateGameView2.period = _curPeroid;
+}
+
+/*
+ 显示暂停或比赛单节/半场休息提示VIEW
+ */
+- (void)showTimeoutPromptView:(NSInteger) mode {
+    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, -44.0, 320.0, 460.0)];
+    timeoutPromptViewController.parentController = self;
+    timeoutPromptViewController.mode = mode;
+    timeoutPromptViewController.backgroundColor = [UIColor blackColor];
+    [timeoutPromptViewController startTimeout];
+    [self.view addSubview:timeoutPromptViewController];
+    timeoutPromptViewController.alpha = 0.85;
 }
 
 /*
@@ -105,17 +137,6 @@
     [targetComps setSecond:targetComps.second + exterTime + 1];
     
     self.targetTime = [targetCalendar dateFromComponents:targetComps];
-}
-
-/*初始化暂停结束时间*/
-- (void)initTimeoutTargetTime {
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps;
-    comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
-    [comps setSecond:comps.second + 21];
-    
-    self.timeoutTargetTime = [calendar dateFromComponents:comps];//把目标时间装载入date
 }
 
 /*
@@ -137,22 +158,23 @@
         [self.operateGameView2 setButtonEnabled:NO];
         [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
         self.gameState = over_quarter_finish;
+        AudioServicesPlayAlertSound (self.soundFileObject);
+        if (_gameMode == kGameModeTwoHalf) {
+            if (_curPeroid == 0) {
+                [self showTimeoutPromptView:restMode];
+                [self initTimeoutAndFoulView];
+            }else {
+                [self showAlertView:@"比赛结束" withCancel:NO];
+            }
+        }else {
+            if (_curPeroid != 3) {
+                [self showTimeoutPromptView:restMode];
+                [self initTimeoutAndFoulView];
+            }else {
+                [self showAlertView:@"比赛结束" withCancel:NO];
+            }
+        }
     }
-}
-
-- (void)updateTimeoutCountDown {
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    //用来得到具体的时差
-    unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *comps = [calendar components:unitFlags fromDate:date toDate:self.timeoutTargetTime options:0];
-    NSInteger minute = [comps minute];
-    NSInteger second = [comps second];
-    self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
-    if(minute <= 0 && second <= 0) {
-        [self stopTimeoutCountDown];
-    }
-
 }
 
 - (void)startGameCountDown {
@@ -161,14 +183,6 @@
 
 - (void)stopGameCountDown {
     [self.countDownTimer invalidate];
-}
-
-- (void)startTimeoutCountDown {
-     self.timeoutCountDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeoutCountDown) userInfo:nil repeats:YES];
-}
-
-- (void)stopTimeoutCountDown {
-    [self.timeoutCountDownTimer invalidate];
 }
 
 - (void) initOperateGameView {
@@ -193,14 +207,19 @@
 - (void)handleMessage:(NSNotification *)note {
     if(self.gameState == playing){
         [self setLastTimeoutTime];
-        [self initTimeoutTargetTime];
-        [self startTimeoutCountDown];
         [self stopGameCountDown];
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
         [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
         self.gameState = timeout;
+        [self showTimeoutPromptView:timeoutMode];
     }
+}
+
+/*消息处理函数*/
+- (void)handleShowActionRecordMessage:(NSNotification *)note {
+    ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
+    [self.navigationController pushViewController:actionRecordontroller animated:YES];
 }
 
 /*
@@ -209,6 +228,8 @@
  */
 - (void)registerHandleMessage {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessage:) name:kTimeoutMessage object:nil];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowActionRecordMessage:) name:kShowActionRecordControllerMessage object:nil];
 }
 
 #pragma 事件函数
@@ -224,8 +245,15 @@
 {
     [super viewDidLoad];
     [self initOperateGameView];
+    [self setNavTitleVisble:YES];
+    [self initGameCountDownLable];
     [self registerHandleMessage];
     self.gameState = prepare;
+    self.curPeroid = -1;
+    _tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
+                                                withExtension: @"caf"];
+    self.soundFileURLRef = (__bridge CFURLRef)_tapSound;
+    AudioServicesCreateSystemSoundID (self.soundFileURLRef,&_soundFileObject);
 }
 
 - (void)viewDidUnload
@@ -234,18 +262,6 @@
     self.operateGameView1 = nil;
     self.operateGameView2 = nil;
     self.gameTimeLable = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setNavTitleVisble:YES];
-    [self initGameCountDownLable];
-    [self initTimeoutDownLable];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-#warning 功能未完成
-    [super viewWillDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -259,7 +275,7 @@
                                                     withHomeTeam:_hostTeam  withGuestTeam:_guestTeam];
         _operateGameView1.match = _match;
         _operateGameView2.match = _match;
-        _curPeroid = 0;
+        _curPeroid = -1;
         _gameStart = YES;
     }
     if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout) {
@@ -269,12 +285,10 @@
         }else {
             [self updateGameTargetTime];
         }
-        [self stopTimeoutCountDown];
         [self startGameCountDown];
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
         [self.playBarItem setImage:[UIImage imageNamed:@"pause"]];
-        [self initTimeoutDownLable];
         self.gameState = playing;
     }else if(self.gameState == playing){
         [self setLastTimeoutTime];
@@ -287,12 +301,19 @@
 }
 
 - (IBAction)stopGame:(id)sender {
-    [self stopGameCountDown];
-    _gameStart = NO;
-    
-    [[MatchManager defaultManager] finishMatch:_match];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [self showAlertView:@"您要强制结束比赛吗？" withCancel:YES];
+}
+
+#pragma alert delete
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self stopGameCountDown];
+        _gameStart = NO;
+        [[MatchManager defaultManager] finishMatch:_match];
+        AudioServicesDisposeSystemSoundID (self.soundFileObject);
+        CFRelease (self.soundFileURLRef);
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 @end
