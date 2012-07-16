@@ -17,8 +17,7 @@
 @end
 
 @implementation ActionRecordViewController
-@synthesize match = _match;
-@synthesize tvCell = _tvCell;
+@synthesize actionRecords = _actionRecords;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
