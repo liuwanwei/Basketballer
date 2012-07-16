@@ -7,6 +7,7 @@
 //
 
 #import "GameDetailsViewController.h"
+#import "ActionRecordViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
 
@@ -18,8 +19,6 @@ typedef enum {
 }UIMatchPartSummaryCellTag;
 
 @interface GameDetailsViewController (){
-    // 从比赛历史界面第二次进入当前view时，需要刷新tableview。从下级菜单返回时，不用刷新tableview。
-    BOOL _viewNeedRefresh;
     
     // 比赛若是上下半场，指向_twohalfDescriptions；若是四节，指向_fourQuarterDescriptions.
     NSArray * __weak _periodNameArray;      
@@ -35,6 +34,9 @@ typedef enum {
     NSMutableArray * _guestTeamActionSummaryArray;
     
     NSInteger _actionFilterSelectedIndex;
+    
+    NSArray * _filteredActions;
+    ActionRecordViewController * _actionsViewController;
 }
 @end
 
@@ -74,13 +76,6 @@ typedef enum {
                                             withTeam:[_match.guestTeam integerValue] 
                                             inActions:_actionsInMatch];
 
-    // 刷新主客队技术统计”table group“。
-//    NSMutableArray * indexPaths = [[NSMutableArray alloc] init];
-//    for (NSInteger i = 0; i < _periodNameArray.count; i++) {
-//        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//        [indexPaths addObject:indexPath];
-//    }
-//    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic]; // TODO animation ?
     [self.tableView reloadData];
 }
 
@@ -94,13 +89,21 @@ typedef enum {
 - (NSArray *)actionsWithType:(ActionType)actionType inPeriod:(NSInteger)period{
     NSMutableArray * actionArray = [[NSMutableArray alloc] init];
     for (Action * action in _actionsInMatch) {
-        NSInteger tmpType = [action.type integerValue];
-        if ((actionType == ActionTypeFoul || actionType == ActionTypeTimeout) &&
-            (actionType == tmpType)) {
-            [actionArray addObject:action];
-        }else{
-            [actionArray addObject:action];
-        }
+        if ([action.period integerValue] == period) {
+            NSInteger tmpType = [action.type integerValue];
+            if (actionType == tmpType){
+                if (actionType == ActionTypeFoul || 
+                    actionType == ActionTypeTimeout) {
+                    [actionArray addObject:action];
+                }
+            }else if(actionType == ActionTypePoints){
+                if (tmpType == ActionType1Point || 
+                    tmpType == ActionType2Points || 
+                    tmpType == ActionType3Points) {
+                    [actionArray addObject:action];
+                }
+            }
+        }        
     }
     
     return actionArray;
@@ -115,7 +118,6 @@ typedef enum {
         _twoHalfDescriptions = [NSArray arrayWithObjects:@"上半场", @"下半场", nil];
         _periodNameArray = _fourQuarterDescriptions;
         
-        _viewNeedRefresh = NO;
         _actionFilterSelectedIndex = 0;
     }
     return self;
@@ -129,12 +131,8 @@ typedef enum {
     UIBarButtonItem * back = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     self.navigationItem.leftBarButtonItem = back;
     
-    /*
-    [self.actionFilter addTarget:self action:@selector(actionFilterChanged) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = self.actionFilter;
-     */
-    
     self.tableView.delegate = self;
+    
     [self setTitle:@"比赛概况"];
 }
 
@@ -145,20 +143,14 @@ typedef enum {
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    if (_viewNeedRefresh) {
-        _actionFilterSelectedIndex = 0;
-        [self.tableView reloadData];
-    }else{
-        _viewNeedRefresh = YES;
-    }
 }
 
 #pragma mark UITableViewDataSource
@@ -239,7 +231,13 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        NSArray * actions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
+        if (_actionsViewController == nil) {
+            _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];
+        }
+        _filteredActions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
+        _actionsViewController.actionRecords = _filteredActions;
+        [_actionsViewController.tableView reloadData];
+        [self.navigationController pushViewController:_actionsViewController animated:YES];
     }
 }
  
