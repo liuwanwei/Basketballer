@@ -406,6 +406,33 @@
 					</object>
 					<int key="connectionID">86</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">addTimeOver:</string>
+						<reference key="source" ref="154327199"/>
+						<reference key="destination" ref="667403990"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">addFoul:</string>
+						<reference key="source" ref="446510043"/>
+						<reference key="destination" ref="667403990"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">95</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">showActionRecordController:</string>
+						<reference key="source" ref="673292960"/>
+						<reference key="destination" ref="667403990"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">96</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -537,7 +564,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">93</int>
+			<int key="maxID">96</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -547,6 +574,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="addFoul:">id</string>
 						<string key="addTimeOver:">id</string>
+						<string key="showActionRecordController:">id</string>
 						<string key="showPopoer:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -556,6 +584,10 @@
 						</object>
 						<object class="IBActionInfo" key="addTimeOver:">
 							<string key="name">addTimeOver:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showActionRecordController:">
+							<string key="name">showActionRecordController:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="showPopoer:">

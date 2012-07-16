@@ -12,7 +12,7 @@
 #import "WEPopoverController.h"
 #import "WEPopoverContentViewController.h"
 
-@interface OperateGameViewController : UIView
+@interface OperateGameViewController : UIView <FoulActionDelegate>
 
 @property (nonatomic) NSInteger teamType;
 @property (nonatomic, weak) Team * team;
@@ -31,6 +31,7 @@
 - (IBAction)showPopoer:(id)sender;
 - (IBAction)addTimeOver:(id)sender;
 - (IBAction)addFoul:(id)sender;
+- (IBAction)showActionRecordController:(id)sender;
 
 - (void)setButtonEnabled:(BOOL) enabled;
 

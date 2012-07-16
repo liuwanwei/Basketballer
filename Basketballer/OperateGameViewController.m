@@ -40,6 +40,11 @@
     return timeDifference;
 }
 
+- (void)showAlertView:(NSString *)message {
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil , nil];
+    [alertView show];
+}
+
 #pragma 类成员函数
 /*
  设置button可用状态
@@ -69,7 +74,8 @@
     NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"OperateGameViewController" owner:self options:nil];
     self = [nib objectAtIndex:0];
     self.frame = frame;
-    
+    ActionManager * actionManager = [ActionManager defaultManager];
+    actionManager.delegate = self;
     return self;
 }
 
@@ -90,26 +96,58 @@
 }
 
 - (void)addScore:(NSInteger) score {
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d",[self.scoreLabel.text intValue] + score];
-    
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
     BOOL result;
     if(_teamType == host) {
         result = [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d", actionManager.homeTeamPoints];
     }else {
         result = [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        self.scoreLabel.text = [NSString stringWithFormat:@"%d", actionManager.guestTeamPoints];
     }
 }
 
 - (IBAction)addTimeOver:(id)sender {
-    self.timeoutLabel.text = [NSString stringWithFormat:@"%d",[self.timeoutLabel.text intValue] + 1];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
+    ActionManager * actionManager = [ActionManager defaultManager];
+    NSInteger time = [self computeTimeDifference];
+    BOOL result;
+    if(_teamType == host) {
+        result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
+    }else {
+        result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
+    }
+    if (result) {
+        if (_teamType == host) {
+            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts]; 
+        }else {
+            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts]; 
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
+    }else {
+        [self showAlertView:@"本节暂停次数已经使用完"];
+    }
 }
 
 - (IBAction)addFoul:(id)sender {
-    self.foulLabel.text = [NSString stringWithFormat:@"%d",[self.foulLabel.text intValue] + 1];
+    ActionManager * actionManager = [ActionManager defaultManager];
+    NSInteger time = [self computeTimeDifference];
+    if (_teamType == host) {
+        [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
+        self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+    }else {
+        [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
+        self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+    }
+}
+
+- (IBAction)showActionRecordController:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kShowActionRecordControllerMessage object:nil];
+}
+
+#pragma FoulActionDelegate
+- (void)FoulsBeyondLimit:(NSNumber *)teamId {
+    [self showAlertView:@"本节犯规已达最大数，请进行罚球"];
 }
 
 @end
