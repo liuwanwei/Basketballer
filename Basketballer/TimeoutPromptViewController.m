@@ -8,7 +8,7 @@
 
 #import "TimeoutPromptViewController.h"
 #import "GameSetting.h"
-
+#import "define.h"
 @interface TimeoutPromptViewController ()
 
 @end
@@ -44,7 +44,7 @@
 - (void)initTimeoutDownLable {
     self.timeoutTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:70.0f];
     if (_mode == timeoutMode) {
-        self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",0,[self getTimeoutLength]];
+        self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d",[self getTimeoutLength]];
     }else {
         self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getTimeoutLength],0];
     }
@@ -83,9 +83,26 @@
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date toDate:self.timeoutTargetTime options:0];
     NSInteger minute = [comps minute];
     NSInteger second = [comps second];
-    self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
+    if(minute < 0) {
+        minute = 0;
+    }
+    if(second < 0) {
+        second = 0;
+    }
+    if (_mode == timeoutMode) {
+        if(minute > 0) {
+            self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
+        }else {
+            self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d",second]; 
+        }
+        
+    }else {
+         self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
+    }
+   
     if(minute <= 0 && second <= 0) {
         [self stopTimeoutCountDown];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
     }
     
 }
