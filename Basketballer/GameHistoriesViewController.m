@@ -109,7 +109,7 @@
 #pragma mark - Table view data source
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100.0;
+    return 83;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -155,13 +155,20 @@
     UILabel * homeTeamPointsLabel = (UILabel *)[cell viewWithTag:UIHomeTeamPointsTag];
     homeTeamPointsLabel.text = [[match homePoints] stringValue];
     
-    // 比赛时间。
+    // TODO 将两个NSDateFormatter缓存起来用。
+    
+    // 比赛日期。
     UILabel * dateLabel = (UILabel *)[cell viewWithTag:UIMatchDateTag];
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateFormat:@"yy-MM-dd"];
     NSString * dateString = [dateFormatter stringFromDate:[match date]];
     dateLabel.text = dateString;
+    
+    // 比赛时间。
+    UILabel * timeLabel = (UILabel *)[cell viewWithTag:UIMatchTimeTag];
+    NSDateFormatter * timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"hh:mm"];
+    timeLabel.text = [timeFormatter stringFromDate:[match date]];
     
     // 客队图像。
     team = [tm teamWithId:match.guestTeam];
