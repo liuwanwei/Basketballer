@@ -132,7 +132,15 @@
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.section];
+    if (indexPath.section == 0) {
+        _hostTeam = team;
+    }else {
+        _guestTeam = team;
+    }
     
+    cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
+    cell.textLabel.text = team.name;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
