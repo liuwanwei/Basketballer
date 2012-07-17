@@ -17,6 +17,8 @@
 
 #define kTeamChanged    @"TeamChangedNotification"
 
+#define TeamDeleted     1
+
 @interface TeamManager : BaseManager
 
 @property (nonatomic, strong) NSMutableArray * teams;
