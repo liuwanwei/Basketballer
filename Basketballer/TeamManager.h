@@ -13,6 +13,7 @@
 #define kTeamEntity     @"Team"
 #define kTeamNameField  @"name"
 #define kTeamIdField    @"id"
+#define kTeamDeleted    @"deleted"
 
 #define kTeamChanged    @"TeamChangedNotification"
 

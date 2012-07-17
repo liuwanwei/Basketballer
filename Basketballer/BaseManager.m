@@ -32,11 +32,13 @@
     return YES;
 }
 
-- (BOOL)deleteFromStore:(id)record{
+- (BOOL)deleteFromStore:(id)record synchronized:(BOOL)synchronized{
     [self.managedObjectContext deleteObject:record];
     
-    if (! [self synchroniseToStore]) {
-        return NO;
+    if (synchronized) {
+        if (! [self synchroniseToStore]) {
+            return NO;
+        }
     }
     
     return YES;

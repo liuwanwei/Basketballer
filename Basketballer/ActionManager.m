@@ -50,9 +50,6 @@ static ActionManager * sActionManager;
 
 - (id)init{
     if (self = [super init]) {
-        _actionArray = [[NSMutableArray alloc] init];
-        _home = [[TeamStatistics alloc] init];
-        _guest = [[TeamStatistics alloc] init];
     }
     
     return self;
@@ -78,25 +75,21 @@ static ActionManager * sActionManager;
     return _guest.timeouts;
 }
 
-- (NSMutableArray *)actionsForMatch:(Match *)match{
-    if (match) {
-        NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kActionEntity];
-        
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %d", kMatchField, [match.id integerValue]];
-        
-        request.predicate = predicate;
-        
-        NSError * error = nil;
-        NSMutableArray * mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-        if (nil == mutableFetchResults) {
-            NSLog(@"executeFetchRequest: %@", [error description]);
-            return nil;
-        }    
-        
-        return mutableFetchResults;
-    }else{
+- (NSMutableArray *)actionsForMatch:(NSInteger)matchId{
+    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kActionEntity];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %d", kMatchField, matchId];
+    
+    request.predicate = predicate;
+    
+    NSError * error = nil;
+    NSMutableArray * mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (nil == mutableFetchResults) {
+        NSLog(@"executeFetchRequest: %@", [error description]);
         return nil;
-    }
+    }    
+    
+    return mutableFetchResults;
 }
 
 // 根据过滤器的值，计算每节或每个半场、某个队在某个单项上的技术统计。
@@ -146,6 +139,7 @@ static ActionManager * sActionManager;
     return summaryArray;
 }
 
+// TODO 这个接口还是不好，用_currentTeam来做函数间的联系人，不如用参数。
 - (Action *)newActionInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
     // 暂停有总数限制，要先检查一下。
     if ((actionType == ActionTypeTimeout) && (period == _period)) {
@@ -213,6 +207,7 @@ static ActionManager * sActionManager;
     return NO;
 }
 
+// 删除实时比赛中的活动。
 - (BOOL)deleteAction:(Action *)action{
     if (action) {
         NSInteger actionType = [action.type integerValue];
@@ -225,12 +220,14 @@ static ActionManager * sActionManager;
         }
         
         // 更新实时技术统计缓存TeamStatistics中的信息。
+        TeamStatistics * __weak statistics = nil;
         if (teamId == [_home.teamId integerValue]) {
-            _currentTeam = _home;
-        }else{
-            _currentTeam = _guest;
+            statistics = _home;
+        }else if(teamId == [_guest.teamId integerValue]){
+            statistics = _guest;
         }
-        [_currentTeam subtractStatistic:actionType];
+        
+        [statistics subtractStatistic:actionType];
         
         // 从当前比赛action表中删除记录。
         [_actionArray removeObject:action];
@@ -241,6 +238,7 @@ static ActionManager * sActionManager;
     }
 }
 
+// 删除实时比赛中的活动。
 - (BOOL)deleteActionAtIndex:(NSInteger)index{
     if (index >= _actionArray.count) {
         NSLog(@"index beyond actionArray count");
@@ -250,15 +248,23 @@ static ActionManager * sActionManager;
     return [self deleteAction:[_actionArray objectAtIndex:index]];
 }
 
+- (void)deleteActionsInMatch:(NSInteger)matchId{
+    NSArray * actions = [self actionsForMatch:matchId];
+    for (Action * action in actions) {
+        [self deleteFromStore:action synchronized:NO];
+    }
+    
+    [self synchroniseToStore];
+}
+
 - (void)resetRealtimeActions:(Match *)match{
     if (match) {
         _gameSettings = [GameSetting defaultSetting];
         
-        _home.teamId = match.homeTeam;
-        [_home clearData];
+        _home = [[TeamStatistics alloc] initWithTeamId:match.homeTeam];
+        _guest = [[TeamStatistics alloc] initWithTeamId:match.guestTeam];
         
-        _guest.teamId = match.guestTeam;
-        [_guest clearData];
+        self.actionArray = [[NSMutableArray alloc] init];
         
         _period = -1;
         
@@ -271,17 +277,17 @@ static ActionManager * sActionManager;
             _periodFoulsLimit = [_gameSettings.foulsOverHalfLimit integerValue];
             _periodTimeoutsLimit = [_gameSettings.timeoutsOverHalfLimit integerValue];
         }
-        
-        [_actionArray removeAllObjects];
-
     }
 }
 
-- (void)updateTeamPointsForMatch:(Match *)match{
+- (void)finishMatch:(Match *)match{
     if (nil != match) {
         match.homePoints = [NSNumber numberWithInteger: _home.points];
         match.guestPoints = [NSNumber numberWithInteger: _guest.points];
     }
+    
+    _home = nil;
+    _guest = nil;
 }
 
 @end

@@ -42,8 +42,8 @@ static TeamManager * sDefaultManager;
         _teamProfileExtension = @".png";
         
         // TODO loading from i18n file.
-        _defaultHomeTeamName  = @"主队";
-        _defaultGuestTeamName = @"客队";
+        _defaultHomeTeamName  = @"主场球队";
+        _defaultGuestTeamName = @"客场球队";
         
         // Equal to default image in resource.
         _defaultProfileImageName = @"DefaultTeamProfile";  
@@ -64,6 +64,9 @@ static TeamManager * sDefaultManager;
     
     NSSortDescriptor * sortDescripter = [[NSSortDescriptor alloc] initWithKey:kTeamIdField ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescripter];
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == 0", kTeamDeleted];
+    request.predicate = predicate;
     
     NSError * error = nil;
     NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
@@ -247,7 +250,10 @@ static TeamManager * sDefaultManager;
 - (BOOL)deleteTeam:(Team *)team{
     [self.teams removeObject:team];
     
-    return [self deleteFromStore:team];
+    // 并不真的删除球队，而是修改删除标记。
+    team.deleted = [NSNumber numberWithInteger:1];
+    
+    return [self synchroniseToStore];
 }
 
 - (BOOL)modifyTeam:(Team *)team withNewName:(NSString *)name{

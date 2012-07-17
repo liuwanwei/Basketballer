@@ -15,6 +15,14 @@
 @synthesize fouls = _fouls;
 @synthesize timeouts = _timeouts;
 
+- (id)initWithTeamId:(NSNumber *)teamId{
+    if (self = [super init]) {
+        _teamId = teamId;
+    }
+    
+    return self;
+}
+
 - (void)addStatistic:(ActionType)actionType{
     if(actionType == ActionType1Point){
         _points += 1;
@@ -58,10 +66,5 @@
     }     
 }
 
-- (void)clearData{
-    _points = 0;
-    _fouls = 0;
-    _timeouts = 0;
-}
 
 @end
