@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
+#import "PlayGameViewController.h"
+#import "define.h"
+#import "GameSetting.h"
 
 @implementation AppDelegate
 
@@ -17,6 +20,7 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize playGameViewController = _playGameViewController;
 
 +(AppDelegate *)delegate{
 	AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -41,13 +45,49 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    if (self.playGameViewController != nil) {
+        UILocalNotification *newNotification = [[UILocalNotification alloc] init];
+        NSString * body;
+        if (self.playGameViewController.gameState == playing) {
+            if (newNotification) {
+                newNotification.fireDate = self.playGameViewController.targetTime;
+                if (self.playGameViewController.curPeroid == 0) {
+                    body = @"第一节比赛结束";
+                }else if (self.playGameViewController.curPeroid == 1){
+                    if (self.playGameViewController.gameMode == kGameModeTwoHalf) {
+                        body = @"整场比赛结束";
+                    }else {
+                        body = @"第二节比赛结束";
+                    }
+                }else if(self.playGameViewController.curPeroid == 2){
+                    body = @"第三节比赛结束";
+                }else if(self.playGameViewController.curPeroid ==3) {
+                    body = @"整场比赛结束";
+                }else {
+                    body = @"本节比赛结束";
+                }
+                newNotification.alertBody = body;
+                newNotification.soundName = UILocalNotificationDefaultSoundName;
+                newNotification.alertAction = @"查看应用";
+                newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
+                [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
+            }
+        }else if(self.playGameViewController.gameState == timeout || self.playGameViewController.gameState == over_quarter_finish){
+            body = @"暂停时间到";
+            newNotification.fireDate = self.playGameViewController.timeoutTargetTime;
+            newNotification.alertBody = body;
+            newNotification.soundName = UILocalNotificationDefaultSoundName;
+            newNotification.alertAction = @"查看应用";
+            newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
+            [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
+        }
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -59,6 +99,7 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)saveContext

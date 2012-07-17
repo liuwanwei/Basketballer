@@ -11,6 +11,7 @@
 #import "TeamManager.h"
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
+#import "AppDelegate.h"
 
 @interface StartGameViewController () {
     NSArray * _sectionsTitle;
@@ -42,6 +43,11 @@
     }
 }
 
+- (void)dismissMyself{
+
+    [[AppDelegate delegate].navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma 类成员函数
 - (void)refreshTableData:(Team *) team{
     if(team == nil) {
@@ -71,7 +77,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"开始比赛";
+    
+    UIBarButtonItem * item;
+    item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered
+                                           target:self action:@selector(dismissMyself)];
+    self.navigationItem.leftBarButtonItem = item;    
+    [self setTitle:@"开始比赛"];
     _sectionsTitle = [NSArray arrayWithObjects:@"主队",@"客队",nil];
     [self initGameModeView];
 }

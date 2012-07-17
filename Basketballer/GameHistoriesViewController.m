@@ -20,6 +20,7 @@
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
     GameDetailsViewController * _gameDetailsViewController;
+    UINavigationController * _startGameViewController;
 }
 @end
 
@@ -34,9 +35,10 @@
 
 #pragma 事件函数
 - (void)startGame {
-    StartGameViewController * startGameViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
+    StartGameViewController * rootViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
+    _startGameViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
-    [self.navigationController pushViewController:startGameViewController animated:YES];
+    [self.navigationController presentViewController:_startGameViewController animated:YES completion:nil];
 }
 
 - (void)showSettingView{
@@ -48,25 +50,6 @@
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
 }
-
-//- (void)showAddView{
-//    static int i = 0;
-//    i++;
-//    
-//    NSString * mode = (i % 2) == 0 ? kGameModeFourQuarter : kGameModeTwoHalf;
-//    Match * match = [[MatchManager defaultManager] newMatchWithMode:mode];
-//    match.homeTeam = [NSNumber numberWithInt:0];
-//    match.guestTeam = [NSNumber numberWithInt:1];
-//    
-//    match.homePoints = [NSNumber numberWithInteger:68];
-//    match.guestPoints = [NSNumber numberWithInteger:36];
-//    
-//    if(! [[MatchManager defaultManager] synchroniseToStore]){
-//        return;
-//    }
-//    
-//    [self.tableView reloadData];
-//}
 
 - (void)historyChangedHandler:(NSNotification *)notification{
     NSLog(@"got notification: %@", notification.name);

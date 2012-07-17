@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PlayGameViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -16,6 +17,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) PlayGameViewController *playGameViewController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
