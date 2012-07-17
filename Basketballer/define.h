@@ -22,5 +22,6 @@ enum GameState {
 #define guest 1
 
 #define kTimeoutMessage @"kTimeout"
+#define kTimeoutOverMessage @"kTimeoutOver"
 #define kShowActionRecordControllerMessage @"kShowActionRecordController"
 #endif
