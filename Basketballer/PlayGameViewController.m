@@ -13,6 +13,7 @@
 #import "MatchManager.h"
 #import "TimeoutPromptViewController.h"
 #import "ActionRecordViewController.h"
+#import "AppDelegate.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
@@ -38,6 +39,7 @@
 @synthesize curPeroid = _curPeroid;
 @synthesize soundFileObject = _soundFileObject;
 @synthesize soundFileURLRef = _soundFileURLRef;
+@synthesize timeoutTargetTime = _timeoutTargetTime;
 
 #pragma 私有函数
 - (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
@@ -151,6 +153,7 @@
     timeoutPromptViewController.mode = mode;
     timeoutPromptViewController.backgroundColor = [UIColor blackColor];
     [timeoutPromptViewController startTimeout];
+    self.timeoutTargetTime = timeoutPromptViewController.timeoutTargetTime;
     [self.view addSubview:timeoutPromptViewController];
     timeoutPromptViewController.alpha = 0.85;
 }
@@ -184,26 +187,35 @@
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date toDate:self.targetTime options:0];
     NSInteger minute = [comps minute];
     NSInteger second = [comps second];
+    if(minute < 0) {
+        minute = 0;
+    }
+    if(second < 0) {
+        second = 0;
+    }
     self.gameTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
     if(minute <= 0 && second <= 0) {
         [self stopGameCountDown];
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
         [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
-        self.gameState = over_quarter_finish;
         AudioServicesPlayAlertSound (self.soundFileObject);
         if (_gameMode == kGameModeTwoHalf) {
             if (_curPeroid == 0) {
                 [self showTimeoutPromptView:restMode];
                 [self initTimeoutAndFoulView];
+                self.gameState = over_quarter_finish;
             }else {
+                self.gameState = finish;
                 [self showAlertView:@"比赛结束" withCancel:NO];
             }
         }else {
             if (_curPeroid != 3) {
                 [self showTimeoutPromptView:restMode];
                 [self initTimeoutAndFoulView];
+                self.gameState = over_quarter_finish;
             }else {
+                self.gameState = finish;
                 [self showAlertView:@"比赛结束" withCancel:NO];
             }
         }
@@ -256,6 +268,11 @@
     [self.navigationController pushViewController:actionRecordontroller animated:YES];
 }
 
+/*消息处理函数*/
+- (void)handleTimroutOverMessage:(NSNotification *)note {
+     AudioServicesPlayAlertSound (self.soundFileObject);
+}
+
 /*
  注册消息处理函数
  接受来自OperateGameViewController发来的消息
@@ -263,7 +280,10 @@
 - (void)registerHandleMessage {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessage:) name:kTimeoutMessage object:nil];
     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowActionRecordMessage:) name:kShowActionRecordControllerMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowActionRecordMessage:) name:kShowActionRecordControllerMessage object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimroutOverMessage:) name:kTimeoutOverMessage object:nil];
 }
 
 #pragma 事件函数
@@ -285,10 +305,13 @@
     self.gameState = prepare;
     self.curPeroid = -1;
     [self initGamePeriodLabel];
+    [AppDelegate delegate].playGameViewController = self;
     NSURL * tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
                                                 withExtension: @"caf"];
     self.soundFileURLRef = (__bridge_retained CFURLRef)tapSound;
     AudioServicesCreateSystemSoundID (self.soundFileURLRef,&_soundFileObject);
+    
+    [self startGame:nil];
 }
 
 - (void)viewDidUnload
@@ -353,6 +376,7 @@
         [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
         CFRelease (self.soundFileURLRef);
+        [AppDelegate delegate].playGameViewController = self;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
