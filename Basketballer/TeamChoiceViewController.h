@@ -13,5 +13,6 @@
 @interface TeamChoiceViewController : UITableViewController
 
 @property (nonatomic, weak) StartGameViewController * parentController;
+@property (nonatomic, weak) UITableViewCell * teamCell;
 
 @end

@@ -9,6 +9,7 @@
 #import "TeamChoiceViewController.h"
 #import "TeamManager.h"
 #import "StartGameViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TeamChoiceViewController () {
       
@@ -17,7 +18,7 @@
 
 @implementation TeamChoiceViewController
 @synthesize parentController = _parentController;
-
+@synthesize teamCell = _teamCell;
 
 #pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
@@ -62,14 +63,25 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UIImageView * profileImageView;
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+        cell = _teamCell;
+        self.teamCell = nil;
+        
+        // 图片圆角化。
+        profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
+        profileImageView.frame = CGRectMake(2.0, 1.0, 42.0, 42.0);
     }
-    
+    profileImageView = (UIImageView *)[cell viewWithTag:1];
+    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.row];
-    cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-    cell.textLabel.text = team.name;
+    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+    label.text = team.name;
+    cell.accessoryType = UITableViewCellAccessoryNone;
    
     return cell;
 }
