@@ -20,6 +20,7 @@
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
     GameDetailsViewController * _gameDetailsViewController;
+    UINavigationController * _startGameViewController;
 }
 @end
 
@@ -34,9 +35,10 @@
 
 #pragma 事件函数
 - (void)startGame {
-    StartGameViewController * startGameViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
+    StartGameViewController * rootViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
+    _startGameViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
-    [self.navigationController pushViewController:startGameViewController animated:YES];
+    [self.navigationController presentViewController:_startGameViewController animated:YES completion:nil];
 }
 
 - (void)showSettingView{
@@ -49,7 +51,7 @@
     [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
 }
 
-- (void)showAddView{
+/*- (void)showAddView{
     static int i = 0;
     i++;
     
@@ -66,7 +68,7 @@
     }
     
     [self.tableView reloadData];
-}
+}*/
 
 - (void)historyChangedHandler:(NSNotification *)notification{
     NSLog(@"got notification: %@", notification.name);
