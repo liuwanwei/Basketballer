@@ -22,6 +22,7 @@
 @synthesize rowsTitle = _rowsTitle;
 @synthesize operateMode = _operateMode;
 @synthesize team = _team;
+@synthesize delTeamBtn = _delTeamBtn;
 
 #pragma 私有函数
 /*设置右导航按钮的enabled*/
@@ -69,6 +70,16 @@
     }
 }
 
+- (void)initDelTeamBtn {
+    if (_operateMode == Insert || _team == nil) {
+        [self.delTeamBtn setHidden:YES];
+    }else if(_team != nil){
+        if ([_team.id intValue] == 0 || [_team.id intValue] == 1) {
+            [self.delTeamBtn setHidden:YES];
+        }
+    }
+}
+
 #pragma 类成员函数
 - (void) refreshViewWithTeamName:(NSString *) teamName {
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -97,6 +108,7 @@
     self.title = @"设置球队";
     [self initNavigationItem];
     [self initRowsTitle];
+    [self initDelTeamBtn];
 }
 
 - (void)viewDidUnload
@@ -107,6 +119,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)delTeam:(id)sender {
+    if (_team != nil) {
+        [[TeamManager defaultManager] deleteTeam:_team];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Table view data source
