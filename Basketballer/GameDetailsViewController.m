@@ -80,7 +80,7 @@ typedef enum {
 }
 
 - (void)reloadActionsInMatch{
-    _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:_match];
+    _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:[_match.id integerValue]];
     [_actionFilter setSelectedSegmentIndex:0];
     
     [self actionFilterChanged:_actionFilter];

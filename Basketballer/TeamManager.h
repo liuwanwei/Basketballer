@@ -13,8 +13,11 @@
 #define kTeamEntity     @"Team"
 #define kTeamNameField  @"name"
 #define kTeamIdField    @"id"
+#define kTeamDeleted    @"deleted"
 
 #define kTeamChanged    @"TeamChangedNotification"
+
+#define TeamDeleted     1
 
 @interface TeamManager : BaseManager
 

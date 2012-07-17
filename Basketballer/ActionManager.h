@@ -55,7 +55,7 @@ typedef enum {
 
 + (ActionManager *)defaultManager;
 
-- (NSMutableArray *)actionsForMatch:(Match *)match;
+- (NSMutableArray *)actionsForMatch:(NSInteger)matchId;
 
 - (NSMutableArray *)summaryForFilter:(NSInteger)filter withTeam:(NSInteger)team inActions:(NSArray *)actions;
 
@@ -65,9 +65,10 @@ typedef enum {
 
 - (BOOL)deleteAction:(Action *)action;
 - (BOOL)deleteActionAtIndex:(NSInteger)index;
+- (void)deleteActionsInMatch:(NSInteger)matchId;
 
 - (void)resetRealtimeActions:(Match *)match;
 
-- (void)updateTeamPointsForMatch:(Match *)match;
+- (void)finishMatch:(Match *)match;
 
 @end

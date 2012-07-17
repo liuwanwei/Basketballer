@@ -12,6 +12,9 @@
 static TeamManager * sDefaultManager;
 
 @interface TeamManager (){
+    NSMutableArray * _allTeams;
+    NSMutableArray * _availableTeams;
+    
     NSString * _teamProfilePrefix;
     NSString * _teamProfileExtension;
     
@@ -42,8 +45,8 @@ static TeamManager * sDefaultManager;
         _teamProfileExtension = @".png";
         
         // TODO loading from i18n file.
-        _defaultHomeTeamName  = @"主队";
-        _defaultGuestTeamName = @"客队";
+        _defaultHomeTeamName  = @"主场球队";
+        _defaultGuestTeamName = @"客场球队";
         
         // Equal to default image in resource.
         _defaultProfileImageName = @"DefaultTeamProfile";  
@@ -65,40 +68,49 @@ static TeamManager * sDefaultManager;
     NSSortDescriptor * sortDescripter = [[NSSortDescriptor alloc] initWithKey:kTeamIdField ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescripter];
     
+//    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == 0", kTeamDeleted];
+//    request.predicate = predicate;
+    
     NSError * error = nil;
     NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
     if (nil == result) {
         NSLog(@"team executeFetchRequest error");
+        _allTeams = [[NSMutableArray alloc] init];
         return;
     }
     
     if (result.count == 0) {
-        self.teams = [[NSMutableArray alloc] init];
+        _allTeams = [[NSMutableArray alloc] init];
         [self createDefaultTeams];
     }else {
-        self.teams = result;
+        _allTeams = result;        
+    }
+}
+
+// 读取球队时，滤掉已删除球队信息。TODO 应该放到缓存里，当发生球队添加、删除时再更新。
+- (NSMutableArray *)teams{
+    if (_availableTeams != nil) {
+        return _availableTeams;
+    }else{
+        NSMutableArray * availableTeams = nil;
+        for (Team * team in _allTeams) {
+            if ([team.deleted integerValue] != TeamDeleted) {
+                if (nil == availableTeams) {
+                    availableTeams = [[NSMutableArray alloc] init];
+                }
+                
+                [availableTeams addObject:team];
+            }
+        }
+        
+        _availableTeams = availableTeams;
+        return _availableTeams;        
     }
 }
 
 // 根据球队名称查询球队记录。
 - (Team *)queryTeamWithName:(NSString *)name{
-//    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kTeamEntity];
-//    
-//    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == %@", kTeamNameField, name];
-//    
-//    request.predicate = predicate;
-//    
-//    NSError * error = nil;
-//    NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-//    if (nil == result) {
-//        NSLog(@"query team executeFetchRequest error");
-//        return nil;
-//    }else if(result.count == 0){
-//        return nil;
-//    }else {
-//        return [result objectAtIndex:0];
-//    }
-    for (Team * team in self.teams) {
+    for (Team * team in _allTeams) {
         if ([team.name isEqualToString:name]) {
             return team;
         }
@@ -111,7 +123,7 @@ static TeamManager * sDefaultManager;
 }
 
 - (Team *)teamWithId:(NSNumber *)id{
-    for (Team * team in self.teams){
+    for (Team * team in _allTeams){
         if ([team.id integerValue] == [id integerValue]){
             return team;
         }
@@ -122,7 +134,7 @@ static TeamManager * sDefaultManager;
 // 生成一个不会重复的比赛id     
 - (NSNumber *)idGenerator{
     NSMutableIndexSet * idSet = [[NSMutableIndexSet alloc] init];
-    for (Team * object in _teams) {
+    for (Team * object in _allTeams) {
         [idSet addIndex:[[object id] integerValue]];
     }
     
@@ -239,15 +251,30 @@ static TeamManager * sDefaultManager;
         return nil;
     }
     
-    [self.teams insertObject:team atIndex:self.teams.count];
+    [_allTeams insertObject:team atIndex:_allTeams.count];
+    
+    [self resetAvailableTeams];
     
     return team;
 }
 
+- (void)resetAvailableTeams{
+    // 强制- (NSMutableArray*)teams重新生成可用球队数组。
+    _availableTeams = nil;
+}
+
 - (BOOL)deleteTeam:(Team *)team{
-    [self.teams removeObject:team];
+//    [_allTeams removeObject:team];
     
-    return [self deleteFromStore:team];
+    // TODO 当球队已有比赛时，不删除。无比赛，删除。
+    // TODO 删除比赛时，如球队已经无用，也要删除球队。
+    
+    // 并不真的删除球队，而是修改删除标记。
+    team.deleted = [NSNumber numberWithInteger:1];
+    
+    [self resetAvailableTeams];
+    
+    return [self synchroniseToStore];
 }
 
 - (BOOL)modifyTeam:(Team *)team withNewName:(NSString *)name{

@@ -11,14 +11,14 @@
 
 @interface TeamStatistics : NSObject
 
-@property (nonatomic, weak) NSNumber * teamId;
+@property (nonatomic, strong) NSNumber * teamId;
 @property (nonatomic) NSInteger points;
 @property (nonatomic) NSInteger fouls;
 @property (nonatomic) NSInteger timeouts;
 
+- (id)initWithTeamId:(NSNumber *)teamId;
+
 - (void)addStatistic:(ActionType)actionType;
 - (void)subtractStatistic:(ActionType)actionType;
-
-- (void)clearData;
 
 @end
