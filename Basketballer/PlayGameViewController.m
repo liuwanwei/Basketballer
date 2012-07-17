@@ -18,6 +18,7 @@
 @interface PlayGameViewController() {
     BOOL _gameStart;
     Match * _match;
+    CGPoint _touchBeganPoint;
 }
 @end
 
@@ -75,8 +76,7 @@
 - (NSInteger) getQuarterLength {
     NSInteger quarterLength = 0;
     if(_gameMode == kGameModeTwoHalf) {
-        quarterLength = 1;
-        //quarterLength = [[GameSetting defaultSetting].halfLength intValue];
+        quarterLength = [[GameSetting defaultSetting].halfLength intValue];
     }else {
         quarterLength = [[GameSetting defaultSetting].quarterLength intValue];
     }
@@ -262,13 +262,6 @@
 }
 
 /*消息处理函数*/
-- (void)handleShowActionRecordMessage:(NSNotification *)note {
-    ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
-    actionRecordontroller.actionRecords = [[ActionManager defaultManager] actionArray];
-    [self.navigationController pushViewController:actionRecordontroller animated:YES];
-}
-
-/*消息处理函数*/
 - (void)handleTimroutOverMessage:(NSNotification *)note {
      AudioServicesPlayAlertSound (self.soundFileObject);
 }
@@ -279,9 +272,6 @@
  */
 - (void)registerHandleMessage {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessage:) name:kTimeoutMessage object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowActionRecordMessage:) name:kShowActionRecordControllerMessage object:nil];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimroutOverMessage:) name:kTimeoutOverMessage object:nil];
 }
@@ -308,7 +298,7 @@
     [AppDelegate delegate].playGameViewController = self;
     NSURL * tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
                                                 withExtension: @"caf"];
-    self.soundFileURLRef = (__bridge_retained CFURLRef)tapSound;
+    self.soundFileURLRef = (__bridge CFURLRef)tapSound;
     AudioServicesCreateSystemSoundID (self.soundFileURLRef,&_soundFileObject);
     
     [self startGame:nil];
@@ -368,6 +358,24 @@
     [self showAlertView:@"您要强制结束比赛吗？" withCancel:YES];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch=[touches anyObject];
+    _touchBeganPoint = [touch locationInView:[[UIApplication sharedApplication] keyWindow]];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:[[UIApplication sharedApplication] keyWindow]];
+    
+    CGFloat xOffSet = touchPoint.x - _touchBeganPoint.x;
+    if (xOffSet < -10) {
+        ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
+        actionRecordontroller.actionRecords = [[ActionManager defaultManager] actionArray];
+        [self.navigationController pushViewController:actionRecordontroller animated:YES];
+
+    }
+}
+
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
@@ -375,8 +383,7 @@
         _gameStart = NO;
         [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
-        CFRelease (self.soundFileURLRef);
-        [AppDelegate delegate].playGameViewController = self;
+        [AppDelegate delegate].playGameViewController = nil;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
