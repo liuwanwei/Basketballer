@@ -29,6 +29,7 @@
 @property (nonatomic) NSInteger curPeroid;
 @property (nonatomic, readwrite) CFURLRef soundFileURLRef;
 @property (nonatomic, readonly) SystemSoundID soundFileObject;
+@property (nonatomic, weak) NSDate * timeoutTargetTime;
 
 
 - (IBAction)startGame:(id)sender;
