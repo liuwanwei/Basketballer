@@ -12,12 +12,16 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface ActionRecordViewController () {
-
+    CGPoint _touchBeganPoint;
 }
 @end
 
 @implementation ActionRecordViewController
 @synthesize actionRecords = _actionRecords;
+
+-(void) swip:(UISwipeGestureRecognizer *)swip {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,6 +35,9 @@
 {
     [super viewDidLoad];
     self.title = @"比赛记录";
+    UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
+    swip.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swip];
 }
 
 - (void)viewDidUnload
@@ -87,10 +94,10 @@
             actionStr = @"+3分";
             break;
         case ActionTypeFoul:
-            actionStr = @"+1次犯规";
+            actionStr = @"+犯规";
             break;
         case ActionTypeTimeout:
-            actionStr = @"+1次暂停";
+            actionStr = @"+暂停";
             break;
 
         default:
