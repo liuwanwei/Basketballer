@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"球队列表"];
 }
 
 - (void)viewDidUnload
