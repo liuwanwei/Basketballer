@@ -27,8 +27,7 @@
         timeoutLength = [[GameSetting defaultSetting].timeoutLength intValue];
     }else {
         if (self.parentController.gameMode == kGameModeTwoHalf) {
-            timeoutLength = 1;
-            //timeoutLength = [[GameSetting defaultSetting].halfTimeLength intValue];
+            timeoutLength = [[GameSetting defaultSetting].halfTimeLength intValue];
         }else {
             if (self.parentController.curPeroid == 0 || self.parentController.curPeroid == 2) {
                 timeoutLength = [[GameSetting defaultSetting].quarterTimeLength intValue];
