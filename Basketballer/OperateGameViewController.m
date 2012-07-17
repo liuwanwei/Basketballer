@@ -98,12 +98,11 @@
 - (void)addScore:(NSInteger) score {
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
-    BOOL result;
     if(_teamType == host) {
-        result = [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
         self.scoreLabel.text = [NSString stringWithFormat:@"%d", actionManager.homeTeamPoints];
     }else {
-        result = [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
         self.scoreLabel.text = [NSString stringWithFormat:@"%d", actionManager.guestTeamPoints];
     }
 }
@@ -139,10 +138,6 @@
         [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
         self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
     }
-}
-
-- (IBAction)showActionRecordController:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShowActionRecordControllerMessage object:nil];
 }
 
 #pragma FoulActionDelegate

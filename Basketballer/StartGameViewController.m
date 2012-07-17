@@ -12,6 +12,7 @@
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface StartGameViewController () {
     NSArray * _sectionsTitle;
@@ -24,6 +25,7 @@
 @implementation StartGameViewController
 
 @synthesize gameModeView = _gameModeView;
+@synthesize teamCell = _teamCell;
 
 #pragma 私有函数
 /*显示提示信息*/
@@ -61,8 +63,10 @@
     
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:_curClickRowIndex];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-    cell.textLabel.text = team.name;
+    UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
+    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
+    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+    label.text = team.name;
 }
 
 #pragma 事件函数
@@ -140,9 +144,21 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UIImageView * profileImageView;
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+        cell = _teamCell;
+        self.teamCell = nil;
+        
+        // 图片圆角化。
+        profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
+        profileImageView.frame = CGRectMake(2.0, 1.0, 42.0, 42.0);
     }
+    profileImageView = (UIImageView *)[cell viewWithTag:1];
+    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
     Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.section];
     if (indexPath.section == 0) {
         _hostTeam = team;
@@ -150,9 +166,8 @@
         _guestTeam = team;
     }
     
-    cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-    cell.textLabel.text = team.name;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+    label.text = team.name;
     
     return cell;
 }

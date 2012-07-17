@@ -31,7 +31,6 @@
 - (IBAction)showPopoer:(id)sender;
 - (IBAction)addTimeOver:(id)sender;
 - (IBAction)addFoul:(id)sender;
-- (IBAction)showActionRecordController:(id)sender;
 
 - (void)setButtonEnabled:(BOOL) enabled;
 

@@ -232,7 +232,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        EditTeamInfoViewController *  editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        EditTeamInfoViewController *  editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
         
         NSArray * teams = [[TeamManager defaultManager] teams];
         if (indexPath.row < teams.count) {
