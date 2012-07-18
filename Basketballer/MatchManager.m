@@ -93,7 +93,7 @@ static MatchManager * sDefaultManager;
 
 - (void)finishMatch:(Match *)match{
     // 计算并更新比赛信息中的得分记录字段。
-    [[ActionManager defaultManager] updateTeamPointsForMatch:match];
+    [[ActionManager defaultManager] finishMatch:match];
     [self synchroniseToStore];
     
     // 发送比赛结束消息。
@@ -102,11 +102,15 @@ static MatchManager * sDefaultManager;
 }
 
 - (BOOL)deleteMatch:(Match *)match{
-    if (! [self deleteFromStore:match]) {
+    NSInteger matchId = [match.id integerValue];
+    
+    if (! [self deleteFromStore:match synchronized:NO]) {
         return NO;
     }
     
     [self.matchesArray removeObject:match];
+    
+    [[ActionManager defaultManager] deleteActionsInMatch:matchId];
     
     return YES;
 }

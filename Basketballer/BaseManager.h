@@ -13,6 +13,6 @@
 @property (nonatomic, weak) NSManagedObjectContext * managedObjectContext;
 
 - (BOOL)synchroniseToStore;
-- (BOOL)deleteFromStore:(id)record;
+- (BOOL)deleteFromStore:(id)record synchronized:(BOOL)synchronized;
 
 @end
