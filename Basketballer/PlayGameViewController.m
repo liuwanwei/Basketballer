@@ -288,6 +288,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"比赛"];
     [self initOperateGameView];
     [self setNavTitleVisble:YES];
     [self initGameCountDownLable];
