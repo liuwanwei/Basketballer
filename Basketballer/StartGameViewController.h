@@ -15,4 +15,5 @@
 
 - (void)refreshTableData:(Team *) team;
 - (IBAction)startGame:(id)sender;
+- (IBAction)showGameSettingController:(id)sender;
 @end
