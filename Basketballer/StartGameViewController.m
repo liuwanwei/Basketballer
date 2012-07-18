@@ -12,6 +12,7 @@
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
+#import "GameSettingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface StartGameViewController () {
@@ -19,6 +20,7 @@
     Team * _hostTeam;
     Team * _guestTeam;
     NSInteger _curClickRowIndex;
+    BOOL _close;
 }
 @end
 
@@ -46,7 +48,6 @@
 }
 
 - (void)dismissMyself{
-
     [[AppDelegate delegate].navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -91,8 +92,15 @@
     [self initGameModeView];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super   viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (_close == YES) {
+        [self dismissMyself];
+    }
 }
 
 - (void)viewDidUnload
@@ -116,11 +124,21 @@
         return;
     }
     
+    _close = YES;
+    
     PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName: @"PlayGameViewController" bundle:nil];
     playGameViewController.hostTeam = _hostTeam;
     playGameViewController.guestTeam = _guestTeam;
     playGameViewController.gameMode = (self.gameModeView.selectedSegmentIndex == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
     [self.navigationController pushViewController:playGameViewController animated:YES];
+}
+
+- (IBAction)showGameSettingController:(id)sender {
+   GameSettingViewController * gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    gameSettingViewController.gameMode = (self.gameModeView.selectedSegmentIndex == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
+    [gameSettingViewController setTitle:[self.gameModeView titleForSegmentAtIndex:self.gameModeView.selectedSegmentIndex]];
+    [self.navigationController pushViewController:gameSettingViewController animated:YES];
 }
 
 #pragma mark - Table view data source
