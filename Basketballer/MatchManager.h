@@ -31,6 +31,11 @@
 // 注意：返回的Match对象指针不能copy给其他变量，往后的删除、添加动作等接口必须使用这个返回的Match对象指针。
 - (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam;
 
+- (NSArray *)matchesWithTeamId:(NSInteger) teamId;
+
+// 声明比赛开始。调用该接口后，记录比赛的真实开始时间。（暂时不支持）
+- (void)startMatch:(Match *)match;
+
 // 声明比赛结束。
 - (void)finishMatch:(Match *)match;
 
