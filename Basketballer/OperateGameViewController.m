@@ -12,6 +12,7 @@
 #import "define.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface OperateGameViewController() {
     WEPopoverController * _popoverController;
@@ -64,6 +65,8 @@
 /*初始化球队信息*/
 - (void)initTeam {
     if(_team != nil) {
+        self.teamImageView.layer.masksToBounds = YES;
+        self.teamImageView.layer.cornerRadius = 5.0f;
         self.teamImageView.image = [[TeamManager defaultManager] imageForTeam:_team];
         self.teamNameLabel.text = _team.name;
     }

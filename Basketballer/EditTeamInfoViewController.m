@@ -11,6 +11,7 @@
 #import "TeamManager.h"
 #import "EditTeamNameViewController.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface EditTeamInfoViewController() {
     UIImage * _image;
@@ -23,6 +24,7 @@
 @synthesize operateMode = _operateMode;
 @synthesize team = _team;
 @synthesize delTeamBtn = _delTeamBtn;
+@synthesize teamCell = _teamCell;
 
 #pragma 私有函数
 /*设置右导航按钮的enabled*/
@@ -128,6 +130,23 @@
     }
 }
 
+- (void)save:(id) send {
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];;
+    NSString * teamName = cell.textLabel.text;
+    if (teamName.length != 0) {
+        TeamManager * teamManager = [TeamManager defaultManager];
+        if(self.operateMode == Insert) {
+            [teamManager newTeam:teamName withImage:_image];
+        }else {
+            [teamManager modifyTeam:self.team withNewName:teamName];
+            [teamManager modifyTeam:self.team withNewImage:_image];
+        }
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -155,19 +174,31 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    UIImageView * profileImageView;
     if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+        cell = _teamCell;
+        self.teamCell = nil;
+        
+        // 图片圆角化。
+        profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
+        profileImageView.frame = CGRectMake(2.0, 1.0, 42.0, 42.0);
+
     }
     TeamManager * teamManager = [TeamManager defaultManager]; 
+    profileImageView = (UIImageView *)[cell viewWithTag:1];
+    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
     if(indexPath.section == 1) {
-        cell.imageView.image = [teamManager imageForTeam:self.team];  
+        UILabel * label = (UILabel *)[cell viewWithTag:2]; 
+        profileImageView.image = [teamManager imageForTeam:self.team];  
         _image = [teamManager imageForTeam:self.team]; 
+        label.text = @"";
     }else {
+        label.text = @"";
         cell.textLabel.text = self.team.name;
     }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -203,25 +234,11 @@
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     _image = [info valueForKey:UIImagePickerControllerEditedImage];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.imageView.image = _image;
-    [self dismissModalViewControllerAnimated:YES];
-}
+    UIImageView * profileImageView;
+    profileImageView = (UIImageView *)[cell viewWithTag:1];
 
-- (void)save:(id) send {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    NSString * teamName = cell.textLabel.text;
-    if (teamName.length != 0) {
-        TeamManager * teamManager = [TeamManager defaultManager];
-        if(self.operateMode == Insert) {
-            [teamManager newTeam:teamName withImage:_image];
-        }else {
-            [teamManager modifyTeam:self.team withNewName:teamName];
-            [teamManager modifyTeam:self.team withNewImage:_image];
-        }
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    profileImageView.image = _image;
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -20,6 +20,7 @@ typedef enum {
 @property (nonatomic) NSInteger operateMode;
 @property (nonatomic, weak) Team * team;
 @property (nonatomic, weak) IBOutlet UIButton * delTeamBtn;
+@property (nonatomic, weak) UITableViewCell * teamCell;
 
 - (void) refreshViewWithTeamName:(NSString *) teamName;
 - (IBAction)delTeam:(id)sender;
