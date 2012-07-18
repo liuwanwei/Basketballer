@@ -7,6 +7,7 @@
 //
 
 #import "TeamManager.h"
+#import "MatchManager.h"
 #import "AppDelegate.h"
 
 static TeamManager * sDefaultManager;
@@ -87,7 +88,7 @@ static TeamManager * sDefaultManager;
     }
 }
 
-// 读取球队时，滤掉已删除球队信息。TODO 应该放到缓存里，当发生球队添加、删除时再更新。
+// 读取球队时，滤掉已删除球队信息。
 - (NSMutableArray *)teams{
     if (_availableTeams != nil) {
         return _availableTeams;
@@ -129,6 +130,16 @@ static TeamManager * sDefaultManager;
         }
     }
     return nil;
+}
+
+- (NSString *)teamNameWithDeletedStatus:(Team *)team{
+    if ([team.deleted integerValue] == TeamDeleted) {
+        static NSString * deletedAffix = @"(已删除)";
+        NSString * name = [NSString stringWithFormat:@"%@%@", team.name, deletedAffix];
+        return name;
+    }else{
+        return team.name;
+    }
 }
 
 // 生成一个不会重复的比赛id     
@@ -264,13 +275,17 @@ static TeamManager * sDefaultManager;
 }
 
 - (BOOL)deleteTeam:(Team *)team{
-//    [_allTeams removeObject:team];
-    
-    // TODO 当球队已有比赛时，不删除。无比赛，删除。
-    // TODO 删除比赛时，如球队已经无用，也要删除球队。
-    
-    // 并不真的删除球队，而是修改删除标记。
-    team.deleted = [NSNumber numberWithInteger:1];
+    NSArray * matches = [[MatchManager defaultManager] matchesWithTeamId:[team.id integerValue]];
+    if (nil == matches || matches.count == 0) {
+        // 该球队名下无比赛，可以直接删除。
+        NSLog(@"actually delete team: %@", team.name);       
+        [self deleteFromStore:team synchronized:NO];
+        [_allTeams removeObject:team];
+    }else{
+        // 并不真的删除球队，而是修改删除标记。
+        NSLog(@"mark team as deleted: %@", team.name);
+        team.deleted = [NSNumber numberWithInteger:1];    
+    }
     
     [self resetAvailableTeams];
     
