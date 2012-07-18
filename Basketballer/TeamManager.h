@@ -31,6 +31,7 @@
 - (Team *)queryTeamWithName:(NSString *)name;   // Deprecated, use "teamWithName:" instead.
 - (Team *)teamWithName:(NSString *)name;
 - (Team *)teamWithId:(NSNumber *)id;
+- (NSString *)teamNameWithDeletedStatus:(Team *)team;
 
 // 新增一支球队。
 // name必须非空。

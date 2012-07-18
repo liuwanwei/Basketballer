@@ -10,12 +10,13 @@
 #import "GameSetting.h"
 #import "Match.h"
 
-@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl * actionFilter;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 @property (nonatomic, weak) IBOutlet UITableViewCell * actionFilterCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell * deletionCell;
 
 @property (nonatomic, weak) Match * match;
 

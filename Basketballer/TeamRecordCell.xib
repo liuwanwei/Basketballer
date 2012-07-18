@@ -54,7 +54,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">add.png</string>
+									<string key="NSResourceName">DefaultTeamProfile@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="381963223">
@@ -217,8 +217,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">add.png</string>
-			<string key="NS.object.0">{32, 32}</string>
+			<string key="NS.key.0">DefaultTeamProfile@2x.png</string>
+			<string key="NS.object.0">{128, 128}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

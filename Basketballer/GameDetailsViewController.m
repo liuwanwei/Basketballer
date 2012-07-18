@@ -10,12 +10,14 @@
 #import "ActionRecordViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
+#import "MatchManager.h"
 
 typedef enum {
     UICellItemTitle = 1,
     UICellFirstValue = 2,
     UICellSecondValue = 3,
-    UICellActionFilter = 4
+    UICellActionFilter = 4,
+    UICellItemDelete = 5
 }UIMatchPartSummaryCellTag;
 
 @interface GameDetailsViewController (){
@@ -45,10 +47,23 @@ typedef enum {
 @synthesize tableView = _tableView;
 @synthesize tvCell = _tvCell;
 @synthesize actionFilterCell = _actionFilterCell;
+@synthesize deletionCell = _deletionCell;
 @synthesize match = _match;
 
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (1 == buttonIndex) {
+        [[MatchManager defaultManager] deleteMatch:_match];
+        [self back];
+    }
+}
+
+- (void)deleteCurrentMatch{    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"确认" message:@"删除本场比赛信息？删除后信息不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
 }
 
 - (void)actionFilterChanged:(id)sender{
@@ -133,6 +148,10 @@ typedef enum {
     
     self.tableView.delegate = self;
     
+    UIBarButtonItem * delete = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteCurrentMatch)];
+//    delete.tintColor = [UIColor redColor];
+    self.navigationItem.rightBarButtonItem = delete;
+    
     [self setTitle:@"比赛概况"];
 }
 
@@ -167,21 +186,17 @@ typedef enum {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    static NSArray * Headers = nil;
-    if (nil == Headers) {
-        // TODO query team names from db.        
-        Headers = [NSArray arrayWithObjects:@"主队 vs 客队", @"筛选", nil];
-    }
     if (section == 0) {
         TeamManager * tm =  [TeamManager defaultManager];
-        NSString * homeTeamName = [[tm teamWithId:self.match.homeTeam] name];
-        NSString * guestTeamName = [[tm teamWithId:self.match.guestTeam] name];
+        NSString * homeTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.homeTeam]];
+        NSString * guestTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.guestTeam]];
         NSString * header = [NSString stringWithFormat:@"%@ vs %@", homeTeamName, guestTeamName];
         return header;
-    }else{
+    }else if(section == 1){
         return @"筛选条件";
+    }else{
+        return nil;
     }
-    return [Headers objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -200,7 +215,7 @@ typedef enum {
             [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
             cell = _tvCell;
             self.tvCell = nil;
-        }else{
+        }else if(indexPath.section == 1){
             [[NSBundle mainBundle] loadNibNamed:@"MatchActionFilterCell" owner:self options:nil];
             cell = _actionFilterCell;
             self.actionFilterCell = nil;
@@ -208,6 +223,13 @@ typedef enum {
             self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
             [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
             self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
+        }else{
+            [[NSBundle mainBundle] loadNibNamed:@"DeletionCell" owner:self options:nil];
+            cell = _deletionCell;
+            self.deletionCell = nil;
+            
+            UIButton * deleteButton = (UIButton *)[cell viewWithTag:UICellItemDelete];
+            [deleteButton addTarget:self action:@selector(deleteCurrentMatch) forControlEvents:UIControlEventTouchUpInside];
         }
     }
     

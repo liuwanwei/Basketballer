@@ -11,6 +11,7 @@
 #import "GameSetting.h"
 #import "Action.h"
 #import "ActionManager.h"
+#import "TeamManager.h"
 
 static MatchManager * sDefaultManager;
 
@@ -91,20 +92,31 @@ static MatchManager * sDefaultManager;
     return newOne;
 }
 
-- (void)finishMatch:(Match *)match{
-    // 计算并更新比赛信息中的得分记录字段。
-    [[ActionManager defaultManager] finishMatch:match];
-    [self synchroniseToStore];
+- (void)startMatch:(Match *)match{
     
+}
+
+// TODO 放到重载的synchronizedToStore中去。
+- (void)postNotification{
     // 发送比赛结束消息。
     NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:nil];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
+- (void)finishMatch:(Match *)match{
+    // 计算并更新比赛信息中的得分记录字段。
+    [[ActionManager defaultManager] finishMatch:match];
+    [self synchroniseToStore];
+    
+    [self postNotification];
+}
+
 - (BOOL)deleteMatch:(Match *)match{
+    NSInteger homeTeamId = [match.homeTeam integerValue];
+    NSInteger guestTeamId = [match.guestTeam integerValue];
     NSInteger matchId = [match.id integerValue];
     
-    if (! [self deleteFromStore:match synchronized:NO]) {
+    if (! [self deleteFromStore:match synchronized:YES]) {
         return NO;
     }
     
@@ -112,7 +124,38 @@ static MatchManager * sDefaultManager;
     
     [[ActionManager defaultManager] deleteActionsInMatch:matchId];
     
+    // 删除比赛时，如球队已经被删除并且再无比赛记录，此时可以彻底删除球队。
+    TeamManager * tm = [TeamManager defaultManager];
+    Team * team = [tm teamWithId:[NSNumber numberWithInteger:homeTeamId]];
+    if ([team.deleted integerValue] == TeamDeleted) {
+        [tm deleteTeam:team];
+    }
+    
+    team = [tm teamWithId:[NSNumber numberWithInteger:guestTeamId]];
+    if ([team.deleted integerValue] == TeamDeleted) {
+        [tm deleteTeam:team];
+    }
+
+    [self postNotification];
+    
     return YES;
+}
+
+// 查询一个球队参与的所有比赛信息。
+- (NSArray *)matchesWithTeamId:(NSInteger)teamId{
+    NSMutableArray * teamMatches = nil;
+    for (Match * match in _matchesArray) {
+        if ([match.homeTeam integerValue] == teamId ||
+            [match.guestTeam integerValue] == teamId) {
+            if (nil == teamMatches) {
+                teamMatches = [NSMutableArray arrayWithObject:match];
+            }else{
+                [teamMatches addObject:match];
+            }
+        }
+    }
+    
+    return teamMatches;
 }
 
 @end

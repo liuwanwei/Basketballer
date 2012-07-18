@@ -21,6 +21,9 @@
     UINavigationController * _settingsViewController;
     GameDetailsViewController * _gameDetailsViewController;
     UINavigationController * _startGameViewController;
+    
+    NSDateFormatter * _dateFormatter;
+    NSDateFormatter * _timeFormatter;
 }
 @end
 
@@ -91,7 +94,9 @@
     
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
-    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];    
+    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];  
+    
+    self.tableView.rowHeight = 74.0f;
 }
 
 - (void)viewDidUnload
@@ -107,10 +112,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 83;
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -155,20 +156,21 @@
     UILabel * homeTeamPointsLabel = (UILabel *)[cell viewWithTag:UIHomeTeamPointsTag];
     homeTeamPointsLabel.text = [[match homePoints] stringValue];
     
-    // TODO 将两个NSDateFormatter缓存起来用。
-    
     // 比赛日期。
+    if (_dateFormatter == nil) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yy-MM-dd"];
+    }
     UILabel * dateLabel = (UILabel *)[cell viewWithTag:UIMatchDateTag];
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yy-MM-dd"];
-    NSString * dateString = [dateFormatter stringFromDate:[match date]];
-    dateLabel.text = dateString;
+    dateLabel.text = [_dateFormatter stringFromDate:[match date]];
     
     // 比赛时间。
+    if (_timeFormatter == nil) {
+        _timeFormatter = [[NSDateFormatter alloc] init];
+        [_timeFormatter setDateFormat:@"hh:mm"];
+    }
     UILabel * timeLabel = (UILabel *)[cell viewWithTag:UIMatchTimeTag];
-    NSDateFormatter * timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"hh:mm"];
-    timeLabel.text = [timeFormatter stringFromDate:[match date]];
+    timeLabel.text = [_timeFormatter stringFromDate:[match date]];
     
     // 客队图像。
     team = [tm teamWithId:match.guestTeam];
@@ -177,7 +179,6 @@
     guestTeamProfile.image = image;
     guestTeamProfile.layer.masksToBounds = YES;
     guestTeamProfile.layer.cornerRadius = 5.0f;
-    
     
     // 客队名字。
     UILabel * guestTeamNameLabel = (UILabel *)[cell viewWithTag:UIGuestTeamNameTag];
@@ -230,30 +231,26 @@
 */
 
 #pragma mark - Table view delegate
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
-
 //
-//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return @"删除";
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return YES;
 //}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // TODO remove from data store.
-        Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
-        [[MatchManager defaultManager] deleteMatch:match];
-        
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        MatchManager * mm = [MatchManager defaultManager];
+//        Match * match = [[mm matchesArray] objectAtIndex:indexPath.row];
+//        [mm deleteMatch:match];
+//        
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    }
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_gameDetailsViewController == nil) {
-        _gameDetailsViewController = [[GameDetailsViewController alloc] initWithNibName:@"GameDetailsViewController" bundle:nil];
+        _gameDetailsViewController = [[GameDetailsViewController alloc] 
+                                      initWithNibName:@"GameDetailsViewController" bundle:nil];
     }
     
     Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
