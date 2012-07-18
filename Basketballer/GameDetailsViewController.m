@@ -167,21 +167,15 @@ typedef enum {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    static NSArray * Headers = nil;
-    if (nil == Headers) {
-        // TODO query team names from db.        
-        Headers = [NSArray arrayWithObjects:@"主队 vs 客队", @"筛选", nil];
-    }
     if (section == 0) {
         TeamManager * tm =  [TeamManager defaultManager];
-        NSString * homeTeamName = [[tm teamWithId:self.match.homeTeam] name];
-        NSString * guestTeamName = [[tm teamWithId:self.match.guestTeam] name];
+        NSString * homeTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.homeTeam]];
+        NSString * guestTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.guestTeam]];
         NSString * header = [NSString stringWithFormat:@"%@ vs %@", homeTeamName, guestTeamName];
         return header;
     }else{
         return @"筛选条件";
     }
-    return [Headers objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
