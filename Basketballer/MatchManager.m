@@ -96,14 +96,19 @@ static MatchManager * sDefaultManager;
     
 }
 
+// TODO 放到重载的synchronizedToStore中去。
+- (void)postNotification{
+    // 发送比赛结束消息。
+    NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
+
 - (void)finishMatch:(Match *)match{
     // 计算并更新比赛信息中的得分记录字段。
     [[ActionManager defaultManager] finishMatch:match];
     [self synchroniseToStore];
     
-    // 发送比赛结束消息。
-    NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:nil];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    [self postNotification];
 }
 
 - (BOOL)deleteMatch:(Match *)match{
@@ -111,7 +116,7 @@ static MatchManager * sDefaultManager;
     NSInteger guestTeamId = [match.guestTeam integerValue];
     NSInteger matchId = [match.id integerValue];
     
-    if (! [self deleteFromStore:match synchronized:NO]) {
+    if (! [self deleteFromStore:match synchronized:YES]) {
         return NO;
     }
     
@@ -131,6 +136,7 @@ static MatchManager * sDefaultManager;
         [tm deleteTeam:team];
     }
 
+    [self postNotification];
     
     return YES;
 }
