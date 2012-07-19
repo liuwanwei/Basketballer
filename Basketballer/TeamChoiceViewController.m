@@ -59,11 +59,17 @@
     return [[TeamManager defaultManager].teams count];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
+{
+    return 70;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UIImageView * profileImageView;
+    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
         cell = _teamCell;
@@ -73,10 +79,13 @@
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         profileImageView.layer.masksToBounds = YES;
         profileImageView.layer.cornerRadius = 5.0f;
-        profileImageView.frame = CGRectMake(2.0, 1.0, 42.0, 42.0);
+        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);
+        
+        label = (UILabel *)[cell viewWithTag:2]; 
+        label.frame = CGRectMake(80.0, 25.0, 200.0, 21.0);
     }
     profileImageView = (UIImageView *)[cell viewWithTag:1];
-    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
+    label = (UILabel *)[cell viewWithTag:2]; 
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.row];
     profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
