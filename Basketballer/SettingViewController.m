@@ -44,9 +44,7 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem * item;
-    item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered
-                                    target:self action:@selector(dismissMyself)];
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissMyself)];
     self.navigationItem.leftBarButtonItem = item;    
     
     [self setTitle:@"游戏设置"];
