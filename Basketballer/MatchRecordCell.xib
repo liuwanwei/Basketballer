@@ -43,7 +43,7 @@
 							<object class="IBUIImageView" id="32743405">
 								<reference key="NSNextResponder" ref="185858558"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 5}, {64, 64}}</string>
+								<string key="NSFrame">{{12, 8}, {58, 58}}</string>
 								<reference key="NSSuperview" ref="185858558"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="159835552"/>
@@ -59,7 +59,7 @@
 							<object class="IBUIImageView" id="664609805">
 								<reference key="NSNextResponder" ref="185858558"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{247, 5}, {64, 64}}</string>
+								<string key="NSFrame">{{247, 8}, {58, 58}}</string>
 								<reference key="NSSuperview" ref="185858558"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="481997818"/>
