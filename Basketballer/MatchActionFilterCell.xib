@@ -41,7 +41,7 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUISegmentedControl" id="286906342">
 								<reference key="NSNextResponder" ref="957633481"/>
-								<int key="NSvFlags">298</int>
+								<int key="NSvFlags">258</int>
 								<string key="NSFrameSize">{320, 44}</string>
 								<reference key="NSSuperview" ref="957633481"/>
 								<reference key="NSWindow"/>
@@ -100,6 +100,7 @@
 				<reference key="NSNextKeyView" ref="957633481"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="957633481"/>
 			</object>
 		</array>
@@ -161,7 +162,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">5</int>
+			<int key="maxID">6</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -169,16 +170,12 @@
 					<string key="className">GameDetailsViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="actionFilter">UISegmentedControl</string>
 						<string key="actionFilterCell">UITableViewCell</string>
 						<string key="tableView">UITableView</string>
+						<string key="toolbar">UIToolbar</string>
 						<string key="tvCell">UITableViewCell</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="actionFilter">
-							<string key="name">actionFilter</string>
-							<string key="candidateClassName">UISegmentedControl</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="actionFilterCell">
 							<string key="name">actionFilterCell</string>
 							<string key="candidateClassName">UITableViewCell</string>
@@ -186,6 +183,10 @@
 						<object class="IBToOneOutletInfo" key="tableView">
 							<string key="name">tableView</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toolbar">
+							<string key="name">toolbar</string>
+							<string key="candidateClassName">UIToolbar</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tvCell">
 							<string key="name">tvCell</string>

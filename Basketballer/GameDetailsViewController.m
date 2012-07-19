@@ -47,7 +47,6 @@ typedef enum {
 @synthesize tableView = _tableView;
 @synthesize tvCell = _tvCell;
 @synthesize actionFilterCell = _actionFilterCell;
-@synthesize deletionCell = _deletionCell;
 @synthesize toolbar = _toolbar;
 @synthesize match = _match;
 
@@ -170,17 +169,8 @@ typedef enum {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
-//- (void)viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//    
-//    [self setToolbarItems:_toolbarItems];    
-//    [self.navigationController setToolbarHidden:NO animated:YES];
-//}
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
-//    [self.navigationController setToolbarHidden:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -239,13 +229,7 @@ typedef enum {
             self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
             [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
             self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
-        }else{
-            [[NSBundle mainBundle] loadNibNamed:@"DeletionCell" owner:self options:nil];
-            cell = _deletionCell;
-            self.deletionCell = nil;
-            
-            UIButton * deleteButton = (UIButton *)[cell viewWithTag:UICellItemDelete];
-            [deleteButton addTarget:self action:@selector(deleteCurrentMatch) forControlEvents:UIControlEventTouchUpInside];
+            self.actionFilter.frame = CGRectMake(0, 0, cell.frame.size.width, 45);
         }
     }
     
@@ -267,7 +251,19 @@ typedef enum {
 
 #pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section == 0) {
+//        if (_actionsViewController == nil) {
+//            _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];
+//        }
+//        _filteredActions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
+//        _actionsViewController.actionRecords = _filteredActions;
+//        [_actionsViewController.tableView reloadData];
+//        [self.navigationController pushViewController:_actionsViewController animated:YES];
+//    }
+//}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (_actionsViewController == nil) {
             _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];
