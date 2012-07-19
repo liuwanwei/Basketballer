@@ -23,23 +23,34 @@
 @synthesize rowsTitle = _rowsTitle;
 @synthesize operateMode = _operateMode;
 @synthesize team = _team;
-@synthesize delTeamBtn = _delTeamBtn;
 @synthesize teamCell = _teamCell;
 
 #pragma 私有函数
+- (void)showAlertView:(NSString *)message{
+    UIAlertView * alertView;
+    alertView = [[UIAlertView alloc] initWithTitle:@"确认" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+    
+    [alertView show];
+}
+
 /*设置右导航按钮的enabled*/
 - (void)setRightBarButtonItemEnable:(BOOL) enabled {
     self.navigationItem.rightBarButtonItem.enabled = enabled;
 }
 
+- (void)delTeam{    
+    [self showAlertView:@"删除球队信息?删除后信息不可恢复。"];
+}
+
 /*初始化导航按钮*/
 - (void)initNavigationItem {
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    if (_operateMode == Insert) {
-        [self setRightBarButtonItemEnable:NO];
-    }else {
-        [self setRightBarButtonItemEnable:YES];
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(save:)];
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    if (_operateMode == Update && [_team.id intValue] != 0 && [_team.id intValue] != 1) {
+        UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(delTeam)];
+        self.navigationItem.rightBarButtonItem = rightItem;
     }
 }
 
@@ -72,16 +83,6 @@
     }
 }
 
-- (void)initDelTeamBtn {
-    if (_operateMode == Insert || _team == nil) {
-        [self.delTeamBtn setHidden:YES];
-    }else if(_team != nil){
-        if ([_team.id intValue] == 0 || [_team.id intValue] == 1) {
-            [self.delTeamBtn setHidden:YES];
-        }
-    }
-}
-
 #pragma 类成员函数
 - (void) refreshViewWithTeamName:(NSString *) teamName {
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -110,24 +111,11 @@
     self.title = @"设置球队";
     [self initNavigationItem];
     [self initRowsTitle];
-    [self initDelTeamBtn];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (IBAction)delTeam:(id)sender {
-    if (_team != nil) {
-        [[TeamManager defaultManager] deleteTeam:_team];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 - (void)save:(id) send {
@@ -167,7 +155,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
 {
-    return 44;
+    if (indexPat.section == 0) {
+         return 44;
+    }else {
+         return 70;
+    }
+   
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,6 +168,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UIImageView * profileImageView;
+    UILabel * label;
     if (nil == cell) {
         [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
         cell = _teamCell;
@@ -184,18 +178,17 @@
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         profileImageView.layer.masksToBounds = YES;
         profileImageView.layer.cornerRadius = 5.0f;
-        profileImageView.frame = CGRectMake(2.0, 1.0, 42.0, 42.0);
-
+        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);
     }
     TeamManager * teamManager = [TeamManager defaultManager]; 
     profileImageView = (UIImageView *)[cell viewWithTag:1];
-    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
+    label = (UILabel *)[cell viewWithTag:2]; 
     if(indexPath.section == 1) {
-        UILabel * label = (UILabel *)[cell viewWithTag:2]; 
         profileImageView.image = [teamManager imageForTeam:self.team];  
         _image = [teamManager imageForTeam:self.team]; 
         label.text = @"";
     }else {
+        profileImageView.image = nil;
         label.text = @"";
         cell.textLabel.text = self.team.name;
     }
@@ -239,6 +232,16 @@
 
     profileImageView.image = _image;
     [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma alert delete
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        if (_team != nil) {
+            [[TeamManager defaultManager] deleteTeam:_team];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
 }
 
 @end

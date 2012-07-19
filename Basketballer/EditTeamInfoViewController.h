@@ -14,14 +14,12 @@ typedef enum {
     Update = 2
 } OperateMode;
 
-@interface EditTeamInfoViewController : UITableViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface EditTeamInfoViewController : UITableViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray * rowsTitle;
 @property (nonatomic) NSInteger operateMode;
 @property (nonatomic, weak) Team * team;
-@property (nonatomic, weak) IBOutlet UIButton * delTeamBtn;
 @property (nonatomic, weak) UITableViewCell * teamCell;
 
 - (void) refreshViewWithTeamName:(NSString *) teamName;
-- (IBAction)delTeam:(id)sender;
 @end
