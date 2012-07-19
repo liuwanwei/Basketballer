@@ -11,9 +11,9 @@
 
 @interface StartGameViewController : UITableViewController
 @property (nonatomic, weak) IBOutlet UISegmentedControl * gameModeView;
+@property (nonatomic, weak) IBOutlet UITableViewCell * modeCell;
 @property (nonatomic, weak) UITableViewCell * teamCell;
 
 - (void)refreshTableData:(Team *) team;
 - (IBAction)startGame:(id)sender;
-- (IBAction)showGameSettingController:(id)sender;
 @end
