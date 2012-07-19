@@ -50,7 +50,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">-----------------------------------------------</string>
+						<string key="IBUIText">----------------------------------------------</string>
 						<object class="NSColor" key="IBUITextColor" id="167322877">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>

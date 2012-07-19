@@ -124,7 +124,7 @@
 						<array class="NSMutableArray" key="IBUIItems">
 							<object class="IBUIBarButtonItem" id="48549897">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<float key="IBUIWidth">73</float>
+								<float key="IBUIWidth">62</float>
 								<reference key="IBUIToolbar" ref="382736008"/>
 								<int key="IBUISystemItemIdentifier">6</int>
 							</object>
@@ -139,7 +139,7 @@
 							</object>
 							<object class="IBUIBarButtonItem" id="922160020">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<float key="IBUIWidth">73</float>
+								<float key="IBUIWidth">84</float>
 								<reference key="IBUIToolbar" ref="382736008"/>
 								<int key="IBUISystemItemIdentifier">6</int>
 							</object>

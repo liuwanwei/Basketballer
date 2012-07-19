@@ -46,9 +46,9 @@
 - (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
     UIAlertView * alertView;
     if(cancel == YES) {
-        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消" , nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"确认" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
     }else {
-        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil , nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
     }
     [alertView show];
 }
@@ -148,7 +148,7 @@
  显示暂停或比赛单节/半场休息提示VIEW
  */
 - (void)showTimeoutPromptView:(NSInteger) mode {
-    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, -44.0, 320.0, 460.0)];
+    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0)];
     timeoutPromptViewController.parentController = self;
     timeoutPromptViewController.mode = mode;
     timeoutPromptViewController.backgroundColor = [UIColor blackColor];
@@ -379,13 +379,13 @@
 
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
+    if (buttonIndex == 1 || alertView.cancelButtonIndex == -1) {
         [self stopGameCountDown];
         _gameStart = NO;
         [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
         [AppDelegate delegate].playGameViewController = nil;
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
