@@ -10002,7 +10002,7 @@ AAEAAQABA</bytes>
 								<reference key="IBUIFont" ref="504959946"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 250}, {320, 214}}</string>
+						<string key="NSFrame">{{0, 248}, {320, 214}}</string>
 						<reference key="NSSuperview" ref="873029372"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="103722507"/>
@@ -10012,6 +10012,7 @@ AAEAAQABA</bytes>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
+				<string key="NSBounds">{{0, 2}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="671667191"/>
@@ -10078,7 +10079,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIBouncesZoom">NO</bool>
 				<int key="IBUIStyle">1</int>
-				<int key="IBUISeparatorStyle">2</int>
 				<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 				<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 				<float key="IBUIRowHeight">44</float>
