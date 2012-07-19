@@ -47,7 +47,7 @@ typedef enum {
 @synthesize tableView = _tableView;
 @synthesize tvCell = _tvCell;
 @synthesize actionFilterCell = _actionFilterCell;
-@synthesize deletionCell = _deletionCell;
+@synthesize toolbar = _toolbar;
 @synthesize match = _match;
 
 - (void)back{
@@ -62,7 +62,7 @@ typedef enum {
 }
 
 - (void)deleteCurrentMatch{    
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"确认" message:@"删除本场比赛信息？删除后信息不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"删除本场比赛所有相关信息？" message:@"删除后不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
 }
 
@@ -148,9 +148,10 @@ typedef enum {
     
     self.tableView.delegate = self;
     
-    UIBarButtonItem * delete = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteCurrentMatch)];
-//    delete.tintColor = [UIColor redColor];
-    self.navigationItem.rightBarButtonItem = delete;
+    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem * trash = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCurrentMatch)];
+    NSArray * toolbarItems = [NSArray arrayWithObjects:space, trash, nil];
+    [self.toolbar setItems:toolbarItems];
     
     [self setTitle:@"比赛概况"];
 }
@@ -164,7 +165,12 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -223,13 +229,7 @@ typedef enum {
             self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
             [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
             self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
-        }else{
-            [[NSBundle mainBundle] loadNibNamed:@"DeletionCell" owner:self options:nil];
-            cell = _deletionCell;
-            self.deletionCell = nil;
-            
-            UIButton * deleteButton = (UIButton *)[cell viewWithTag:UICellItemDelete];
-            [deleteButton addTarget:self action:@selector(deleteCurrentMatch) forControlEvents:UIControlEventTouchUpInside];
+            self.actionFilter.frame = CGRectMake(0, 0, cell.frame.size.width, 45);
         }
     }
     
@@ -251,7 +251,19 @@ typedef enum {
 
 #pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section == 0) {
+//        if (_actionsViewController == nil) {
+//            _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];
+//        }
+//        _filteredActions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
+//        _actionsViewController.actionRecords = _filteredActions;
+//        [_actionsViewController.tableView reloadData];
+//        [self.navigationController pushViewController:_actionsViewController animated:YES];
+//    }
+//}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (_actionsViewController == nil) {
             _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];

@@ -73,23 +73,10 @@
     [super viewDidLoad];
     [self initNavigationItem];
 
-    // left button item.
-//    UIButton * settingButton = [[UIButton alloc] initWithFrame:CGRectMake(2, 2, 32, 32)];
-//    [settingButton addTarget:self action:@selector(showSettingView) forControlEvents:UIControlEventTouchUpInside];
-//    UIImage * image = [UIImage imageNamed:@"TeamEntry"];    
-//    [settingButton setImage:image forState:UIControlStateNormal];
-//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc] initWithCustomView:settingButton];
-//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
     UIImage * image = [UIImage imageNamed:@"TeamEntry"];
     UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
     self.navigationItem.leftBarButtonItem = settingItem;
-    
-    // right button item.
-    /*
-    UIBarButtonItem * addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)];
-    self.navigationItem.rightBarButtonItem = addItem;
-     */
-    
+        
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
