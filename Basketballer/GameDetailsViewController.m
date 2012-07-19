@@ -48,6 +48,7 @@ typedef enum {
 @synthesize tvCell = _tvCell;
 @synthesize actionFilterCell = _actionFilterCell;
 @synthesize deletionCell = _deletionCell;
+@synthesize toolbar = _toolbar;
 @synthesize match = _match;
 
 - (void)back{
@@ -62,7 +63,7 @@ typedef enum {
 }
 
 - (void)deleteCurrentMatch{    
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"确认" message:@"删除本场比赛信息？删除后信息不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"删除本场比赛所有相关信息？" message:@"删除后不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
 }
 
@@ -148,9 +149,10 @@ typedef enum {
     
     self.tableView.delegate = self;
     
-    UIBarButtonItem * delete = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteCurrentMatch)];
-//    delete.tintColor = [UIColor redColor];
-    self.navigationItem.rightBarButtonItem = delete;
+    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem * trash = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCurrentMatch)];
+    NSArray * toolbarItems = [NSArray arrayWithObjects:space, trash, nil];
+    [self.toolbar setItems:toolbarItems];
     
     [self setTitle:@"比赛概况"];
 }
@@ -164,7 +166,21 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    
+//    [self setToolbarItems:_toolbarItems];    
+//    [self.navigationController setToolbarHidden:NO animated:YES];
+//}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+//    [self.navigationController setToolbarHidden:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

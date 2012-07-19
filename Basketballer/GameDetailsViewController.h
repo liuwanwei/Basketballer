@@ -17,6 +17,7 @@
 @property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 @property (nonatomic, weak) IBOutlet UITableViewCell * actionFilterCell;
 @property (nonatomic, weak) IBOutlet UITableViewCell * deletionCell;
+@property (nonatomic, weak) IBOutlet UIToolbar * toolbar;
 
 @property (nonatomic, weak) Match * match;
 
