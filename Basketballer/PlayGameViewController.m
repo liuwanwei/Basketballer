@@ -14,6 +14,7 @@
 #import "TimeoutPromptViewController.h"
 #import "ActionRecordViewController.h"
 #import "AppDelegate.h"
+#import "GameSettingViewController.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
@@ -84,9 +85,30 @@
     return quarterLength;
 }
 
-/*设置导航栏是否隐藏*/
-- (void) setNavTitleVisble:(BOOL) visible {
-    [self.navigationController setNavigationBarHidden:!visible animated:NO];
+/*显示比赛设置界面:非编辑状态*/
+- (void)showGameSettingController {
+    NSArray * modes = [[GameSetting defaultSetting] gameModeNames];
+    
+    GameSettingViewController * gameSettingontroller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    gameSettingontroller.viewStyle = UIGameSettingViewStyleShow;
+    
+    if (_gameMode == kGameModeTwoHalf) {
+        [gameSettingontroller setTitle:[modes objectAtIndex:0]];
+    }else {
+        [gameSettingontroller setTitle:[modes objectAtIndex:1]];
+    }
+
+
+    [self.navigationController pushViewController:gameSettingontroller animated:YES];
+}
+
+/*初始化导航item*/
+- (void)initNavBarItem {
+    UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [rightButton addTarget:self  action:@selector(showGameSettingController) forControlEvents:UIControlEventTouchUpInside]; 
+    UIBarButtonItem * rightItem = [[UIBarButtonItem  alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+
 }
 
 /*设置暂停时的时间*/
@@ -289,8 +311,8 @@
 {
     [super viewDidLoad];
     [self setTitle:@"比赛"];
+    [self initNavBarItem];
     [self initOperateGameView];
-    [self setNavTitleVisble:YES];
     [self initGameCountDownLable];
     [self registerHandleMessage];
     self.gameState = prepare;
