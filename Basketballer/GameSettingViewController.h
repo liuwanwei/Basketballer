@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum{
+    UIGameSettingViewStyleEdit = 0,
+    UIGameSettingViewStyleShow = 1
+}UIGameSettingViewStyle;
+
 @interface GameSettingViewController : UITableViewController
 
 @property (nonatomic, strong) NSString * gameMode;
+@property (nonatomic) NSInteger viewStyle;
 
 @end

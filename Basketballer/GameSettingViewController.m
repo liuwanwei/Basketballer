@@ -31,6 +31,7 @@
 @implementation GameSettingViewController
 
 @synthesize gameMode = _gameMode;
+@synthesize viewStyle = _viewStyle;
 
 - (void)initSettingsArray{
     if([_gameMode isEqualToString:kGameModeFourQuarter]){
@@ -105,6 +106,8 @@
     [super viewWillAppear:animated];
     
     [self initSettingsArray];
+    
+    // TODO 这个开销放这里是否必要？
     [self.tableView reloadData];
 }
 
@@ -142,11 +145,18 @@
         
         [cell addSubview:label];
         [cell.superview bringSubviewToFront:label];
+
+        if (_viewStyle == UIGameSettingViewStyleEdit) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;            
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;            
+        }
     }
     
     // Configure the cell...
     cell.textLabel.text = [_settingsArray objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     NSString * parameterKey = [_settingsKeyArray objectAtIndex:indexPath.row];
     NSNumber * parameter = [[GameSetting defaultSetting] parameterForKey:parameterKey];
@@ -207,7 +217,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   
-    if(indexPath.section == 0){        
+    if(indexPath.section == 0 && _viewStyle == UIGameSettingViewStyleEdit){        
         NSString * parameterKey = [_settingsKeyArray objectAtIndex:indexPath.row];
         NSNumber * parameterValue = [[GameSetting defaultSetting] parameterForKey:parameterKey];
         NSString * unitString = [GameSetting unitStringForKey:parameterKey];
