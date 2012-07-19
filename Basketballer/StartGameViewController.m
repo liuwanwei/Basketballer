@@ -20,7 +20,6 @@
     Team * _hostTeam;
     Team * _guestTeam;
     NSInteger _curClickRowIndex;
-    BOOL _close;
 }
 @end
 
@@ -32,7 +31,7 @@
 #pragma 私有函数
 /*显示提示信息*/
 - (void)showAlertView:(NSString *) message{
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil , nil];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
     [alertView show];
 }
 
@@ -45,6 +44,8 @@
             [self.gameModeView setTitle:[modes objectAtIndex:index] forSegmentAtIndex:index];
         }
     }
+    
+    self.gameModeView.frame = CGRectMake(self.gameModeView.frame.origin.x, self.gameModeView.frame.origin.y, self.gameModeView.frame.size.width, 38.0);
 }
 
 - (void)dismissMyself{
@@ -96,13 +97,6 @@
     [super   viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (_close == YES) {
-        [self dismissMyself];
-    }
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -123,8 +117,6 @@
         [self showAlertView:@"不能选择相同球队进行比赛"];
         return;
     }
-    
-    _close = YES;
     
     PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName: @"PlayGameViewController" bundle:nil];
     playGameViewController.hostTeam = _hostTeam;
@@ -164,7 +156,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UIImageView * profileImageView;
     if(cell == nil) {
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
         cell = _teamCell;
         self.teamCell = nil;
@@ -173,7 +164,7 @@
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         profileImageView.layer.masksToBounds = YES;
         profileImageView.layer.cornerRadius = 5.0f;
-        profileImageView.frame = CGRectMake(2.0, 1.0, 42.0, 42.0);
+        //profileImageView.frame = CGRectMake(2.0, 1.0, 32.0, 32.0);
     }
     profileImageView = (UIImageView *)[cell viewWithTag:1];
     UILabel * label = (UILabel *)[cell viewWithTag:2]; 
