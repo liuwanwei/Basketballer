@@ -18,7 +18,6 @@
 		3C121FED15A673460062BECD /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C121FEA15A673460062BECD /* stop.png */; };
 		3C121FEE15A673460062BECD /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C121FEB15A673460062BECD /* stop@2x.png */; };
 		3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3C12203115A6D9DA0062BECD /* sendmsg.caf */; };
-		3C6DE32515B56A27008301F6 /* del_button_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C6DE32115B56A27008301F6 /* del_button_image.png */; };
 		3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */; };
 		3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */; };
 		3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */; };
@@ -105,7 +104,6 @@
 		3C121FEA15A673460062BECD /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Resources/images/stop.png; sourceTree = "<group>"; };
 		3C121FEB15A673460062BECD /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stop@2x.png"; path = "Resources/images/stop@2x.png"; sourceTree = "<group>"; };
 		3C12203115A6D9DA0062BECD /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sendmsg.caf; path = Resources/music/sendmsg.caf; sourceTree = "<group>"; };
-		3C6DE32115B56A27008301F6 /* del_button_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = del_button_image.png; path = Resources/images/del_button_image.png; sourceTree = "<group>"; };
 		3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionRecordCell.xib; sourceTree = "<group>"; };
 		3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordViewController.h; sourceTree = "<group>"; };
 		3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRecordViewController.m; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				3CEDBF6615B63F37003EF7EF /* button_background.png */,
-				3C6DE32115B56A27008301F6 /* del_button_image.png */,
 				3CBA0C1315AED332003505BC /* popoverArrowDown.png */,
 				3CBA0C1415AED332003505BC /* popoverArrowDown@2x.png */,
 				3CBA0C1515AED332003505BC /* popoverArrowDownSimple.png */,
@@ -535,7 +532,6 @@
 				3CC912A015B1C477003C74D4 /* TimeoutPromptViewController.xib in Resources */,
 				3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */,
 				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
-				3C6DE32515B56A27008301F6 /* del_button_image.png in Resources */,
 				3CEDBF6715B63F37003EF7EF /* button_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
