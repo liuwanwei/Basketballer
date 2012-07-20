@@ -53,7 +53,7 @@
 }
 
 - (void)dismissMyself{
-    [[AppDelegate delegate].navigationController dismissViewControllerAnimated:YES completion:nil];
+    [[AppDelegate delegate] dismissModelViewController];
 }
 
 #pragma 类成员函数

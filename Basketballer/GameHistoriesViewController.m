@@ -46,12 +46,12 @@
 
 - (void)showSettingView{
     if (nil == _settingsViewController) {
-        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStylePlain];
+        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
         _settingsViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     }
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
+    [delegate presentModelViewController:_settingsViewController];
 }
 
 - (void)historyChangedHandler:(NSNotification *)notification{
@@ -73,9 +73,9 @@
     [super viewDidLoad];
     [self initNavigationItem];
 
-    UIImage * image = [UIImage imageNamed:@"TeamEntry"];
-    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
-    self.navigationItem.leftBarButtonItem = settingItem;
+//    UIImage * image = [UIImage imageNamed:@"TeamEntry"];
+//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
+//    self.navigationItem.leftBarButtonItem = settingItem;
         
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
