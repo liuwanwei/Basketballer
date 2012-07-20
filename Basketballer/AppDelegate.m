@@ -16,15 +16,24 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize navigationController = _navigationController;
+//@synthesize navigationController = _navigationController;
+@synthesize tabBarController = _tabBarController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize playGameViewController = _playGameViewController;
 
-+(AppDelegate *)delegate{
++ (AppDelegate *)delegate{
 	AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	return delegate;
+}
+
+- (void)presentModelViewController:(UIViewController *)controller{
+    [self.tabBarController presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)dismissModelViewController{
+    [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -32,7 +41,7 @@
     [[MatchManager defaultManager] loadMatches];
     [[TeamManager defaultManager] loadTeams];
     
-    [self.window addSubview:self.navigationController.view];
+    [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }

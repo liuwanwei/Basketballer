@@ -12,7 +12,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
-@property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
+@property (strong, nonatomic) IBOutlet UITabBarController * tabBarController;
+//@property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -22,6 +23,8 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
-+(AppDelegate *)delegate;
++ (AppDelegate *)delegate;
+- (void)presentModelViewController:(UIViewController *)controller;
+- (void)dismissModelViewController;
 
 @end
