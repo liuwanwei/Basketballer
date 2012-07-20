@@ -25,10 +25,14 @@
 
 @interface GameSetting : NSObject
 
-@property (nonatomic, strong) NSString * mode;
+// 比赛规则设定通过dictionary保存到文件中。
 @property (nonatomic, strong) NSMutableDictionary * dictionaryStore;
-@property (nonatomic, strong) NSArray * gameModeNames;                  // 注意：需要设置、选择比赛模式的界面都要使用这个数组中的内容。
-                                                                        // 目前有 “上下半场” 和 “打满四节” 两种模式字符串。
+
+// 注意：需要设置、选择比赛模式的界面都要使用这个数组中的内容。
+// 目前有 “上下半场” 和 “打满四节” 两种模式字符串用于界面显示，数据库内保存kGameModeTwoHalf、kGameModeFourQuarter。
+@property (nonatomic, readonly) NSArray * gameModes;
+@property (nonatomic, readonly) NSArray * gameModeNames;                  
+                                                                    
 
 // 下面是用户通过“设置”界面配置好的比赛参数，分为“四节制参数”，“上下半场制参数”，“公有参数”三个部分。
 
@@ -54,5 +58,7 @@
 
 - (id)parameterForKey:(NSString *)key;
 - (void) setParameter:(NSString *)parameter forKey:key;
+
+- (NSString *)gameModeForName:(NSString *)gameModeName;
 
 @end
