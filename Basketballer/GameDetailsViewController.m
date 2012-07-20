@@ -26,6 +26,7 @@ typedef enum {
     NSArray * __weak _periodNameArray;      
     NSArray * _fourQuarterDescriptions;
     NSArray * _twoHalfDescriptions;    
+    NSArray * _filterNames;
     
     NSString * _homeTeamName;
     NSString * _guestTeamName;
@@ -47,7 +48,7 @@ typedef enum {
 @synthesize tableView = _tableView;
 @synthesize tvCell = _tvCell;
 @synthesize actionFilterCell = _actionFilterCell;
-@synthesize toolbar = _toolbar;
+@synthesize tableHeaderView = _tableHeaderView;
 @synthesize match = _match;
 
 - (void)back{
@@ -133,6 +134,8 @@ typedef enum {
         _twoHalfDescriptions = [NSArray arrayWithObjects:@"上半场", @"下半场", nil];
         _periodNameArray = _fourQuarterDescriptions;
         
+        _filterNames = [NSArray arrayWithObjects:@"得分", @"犯规", @"暂停", nil];
+        
         _actionFilterSelectedIndex = 0;
     }
     return self;
@@ -148,10 +151,23 @@ typedef enum {
     
     self.tableView.delegate = self;
     
-    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+//    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem * trash = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCurrentMatch)];
-    NSArray * toolbarItems = [NSArray arrayWithObjects:space, trash, nil];
-    [self.toolbar setItems:toolbarItems];
+//    NSArray * toolbarItems = [NSArray arrayWithObjects:space, trash, nil];
+//    [self.toolbar setItems:toolbarItems];
+    self.navigationItem.rightBarButtonItem = trash;
+    
+    [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
+    self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
+    
+    CGRect frame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, self.tableHeaderView.frame.size.height);
+    self.tableHeaderView.backgroundColor = [UIColor clearColor];
+    self.tableHeaderView.frame = frame;
+    self.tableView.tableFooterView = self.tableHeaderView;
+    
+    frame = self.actionFilter.frame;
+    frame.size.height += 10;
+    self.actionFilter.frame = frame;
     
     [self setTitle:@"比赛概况"];
 }
@@ -188,7 +204,7 @@ typedef enum {
         _periodNameArray = nil;
     }
     
-    return 2;
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -196,7 +212,7 @@ typedef enum {
         TeamManager * tm =  [TeamManager defaultManager];
         NSString * homeTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.homeTeam]];
         NSString * guestTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.guestTeam]];
-        NSString * header = [NSString stringWithFormat:@"%@ vs %@", homeTeamName, guestTeamName];
+        NSString * header = [NSString stringWithFormat:@"%@ vs %@ : %@", homeTeamName, guestTeamName, [_filterNames objectAtIndex:_actionFilterSelectedIndex]];
         return header;
     }else if(section == 1){
         return @"筛选条件";
@@ -221,16 +237,17 @@ typedef enum {
             [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
             cell = _tvCell;
             self.tvCell = nil;
-        }else if(indexPath.section == 1){
-            [[NSBundle mainBundle] loadNibNamed:@"MatchActionFilterCell" owner:self options:nil];
-            cell = _actionFilterCell;
-            self.actionFilterCell = nil;
-            
-            self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
-            [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
-            self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
-            self.actionFilter.frame = CGRectMake(0, 0, cell.frame.size.width, 45);
         }
+//        }else if(indexPath.section == 1){
+//            [[NSBundle mainBundle] loadNibNamed:@"MatchActionFilterCell" owner:self options:nil];
+//            cell = _actionFilterCell;
+//            self.actionFilterCell = nil;
+//            
+//            self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
+//            [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
+//            self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
+//            self.actionFilter.frame = CGRectMake(0, 0, cell.frame.size.width, 45);
+//        }
     }
     
     if (indexPath.section == 0) {

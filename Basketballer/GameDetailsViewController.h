@@ -12,11 +12,11 @@
 
 @interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
-@property (nonatomic, weak) UISegmentedControl * actionFilter;
+@property (nonatomic, weak) IBOutlet UISegmentedControl * actionFilter;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 @property (nonatomic, weak) IBOutlet UITableViewCell * actionFilterCell;
-@property (nonatomic, weak) IBOutlet UIToolbar * toolbar;
+@property (nonatomic, weak) IBOutlet UIView * tableHeaderView;
 
 @property (nonatomic, weak) Match * match;
 
