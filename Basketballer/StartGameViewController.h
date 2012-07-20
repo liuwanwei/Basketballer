@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Team.h"
+#import "SingleChoiceViewController.h"
 
-@interface StartGameViewController : UITableViewController
+@protocol SingleChoiceViewDelegate;
+
+@interface StartGameViewController : UITableViewController <SingleChoiceViewDelegate>
 @property (nonatomic, weak) IBOutlet UISegmentedControl * gameModeView;
 @property (nonatomic, weak) IBOutlet UITableViewCell * modeCell;
 @property (nonatomic, weak) UITableViewCell * teamCell;
