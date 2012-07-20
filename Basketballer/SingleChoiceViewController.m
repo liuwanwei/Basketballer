@@ -19,6 +19,7 @@
 @synthesize unitString = _unitString;
 @synthesize choices = _choices;
 @synthesize currentChoice = _currentChoice;
+@synthesize delegate = _delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -127,15 +128,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSString * value = cell.textLabel.text;
-    [[GameSetting defaultSetting] setParameter:value forKey:self.parameterKey];
+    self.currentChoice = cell.textLabel.text;
+    
+    if (_parameterKey != nil) {
+        [[GameSetting defaultSetting] setParameter:self.currentChoice forKey:self.parameterKey];
+    }
+    
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(choosedParameter:)]) {
+        [_delegate performSelector:@selector(choosedParameter:) withObject:_currentChoice];
+    }
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSString * header = [NSString stringWithFormat:@"单位：%@", self.unitString];
-    return header;
+    if (_unitString != nil) {
+        NSString * header = [NSString stringWithFormat:@"单位：%@", self.unitString];
+        return header;
+    }else{
+        return nil;
+    }
 }
 
 @end

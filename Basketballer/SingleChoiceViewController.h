@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SingleChoiceViewDelegate <NSObject>
+
+- (void)choosedParameter:(NSString *)parameter;
+
+@end
+
 @interface SingleChoiceViewController : UITableViewController
+
+@property (nonatomic, strong) id<SingleChoiceViewDelegate> delegate;
 
 @property (nonatomic, strong) NSString * parameterKey;        // 选项名称，用于保存选项。
 @property (nonatomic, strong) NSString * unitString;          // 选项单位，用于显示。
