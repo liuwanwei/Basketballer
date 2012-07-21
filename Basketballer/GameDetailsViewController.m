@@ -28,8 +28,6 @@ typedef enum {
     NSArray * _twoHalfDescriptions;    
     NSArray * _filterNames;
     
-    NSString * _homeTeamName;
-    NSString * _guestTeamName;
     NSMutableArray * _actionsInMatch;
     
     NSInteger _actionFilterValue;
@@ -45,6 +43,8 @@ typedef enum {
 
 @implementation GameDetailsViewController
 @synthesize actionFilter = _actionFilter;
+@synthesize teams = _teams;
+@synthesize dateTime = _dateTime;
 @synthesize tableView = _tableView;
 @synthesize tvCell = _tvCell;
 @synthesize actionFilterCell = _actionFilterCell;
@@ -163,11 +163,12 @@ typedef enum {
     CGRect frame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, self.tableHeaderView.frame.size.height);
     self.tableHeaderView.backgroundColor = [UIColor clearColor];
     self.tableHeaderView.frame = frame;
-    self.tableView.tableFooterView = self.tableHeaderView;
+    self.tableView.tableHeaderView = self.tableHeaderView;
     
-    frame = self.actionFilter.frame;
-    frame.size.height += 10;
-    self.actionFilter.frame = frame;
+//    
+//    frame = self.actionFilter.frame;
+//    frame.size.height += 10;
+//    self.actionFilter.frame = frame;
     
     [self setTitle:@"比赛概况"];
 }
@@ -183,10 +184,20 @@ typedef enum {
     [super viewWillAppear:animated];
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    
+    
+    TeamManager * tm =  [TeamManager defaultManager];
+    NSString * home  = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.homeTeam]];
+    NSString * guest = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.guestTeam]];
+    NSString * teamNames = [NSString stringWithFormat:@"%@ vs %@", home, guest];
+    self.teams.text = teamNames;
+    
+    self.dateTime.text = [[self.match date] description];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -207,19 +218,9 @@ typedef enum {
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        TeamManager * tm =  [TeamManager defaultManager];
-        NSString * homeTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.homeTeam]];
-        NSString * guestTeamName = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.guestTeam]];
-        NSString * header = [NSString stringWithFormat:@"%@ vs %@ : %@", homeTeamName, guestTeamName, [_filterNames objectAtIndex:_actionFilterSelectedIndex]];
-        return header;
-    }else if(section == 1){
-        return @"筛选条件";
-    }else{
-        return nil;
-    }
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return [_filterNames objectAtIndex:_actionFilterSelectedIndex];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
