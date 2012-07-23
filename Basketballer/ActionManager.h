@@ -55,8 +55,13 @@ typedef enum {
 
 + (ActionManager *)defaultManager;
 
+// 一场比赛中的所有动作。
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId;
 
+// 从一组动作中筛选出某个时间段内的特定动作。
+- (NSArray *)actionsWithType:(ActionType)actionType inPeriod:(NSInteger)period inActions:(NSArray *)actions;
+
+// 返回每节比赛某个球队、某项技术统计的累计值数组。
 - (NSMutableArray *)summaryForFilter:(NSInteger)filter withTeam:(NSInteger)team inActions:(NSArray *)actions;
 
 - (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period;
