@@ -20,6 +20,7 @@
 		3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3C12203115A6D9DA0062BECD /* sendmsg.caf */; };
 		3C42823B15B7B1B500903F9D /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C42823A15B7B1B500903F9D /* buttonBackground.png */; };
 		3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
+		3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824215B8E00C00903F9D /* PopoverContentCell.xib */; };
 		3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */; };
 		3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */; };
 		3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */; };
@@ -60,6 +61,7 @@
 		3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */; };
 		3CC9129F15B1C477003C74D4 /* TimeoutPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */; };
 		3CC912A015B1C477003C74D4 /* TimeoutPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */; };
+		3CCAE3F915BCDC3D0030C302 /* greenCircleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE3F815BCDC3D0030C302 /* greenCircleButton.png */; };
 		3CEDBF6715B63F37003EF7EF /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEDBF6615B63F37003EF7EF /* button_background.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
@@ -106,9 +108,9 @@
 		3C121FEA15A673460062BECD /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Resources/images/stop.png; sourceTree = "<group>"; };
 		3C121FEB15A673460062BECD /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stop@2x.png"; path = "Resources/images/stop@2x.png"; sourceTree = "<group>"; };
 		3C12203115A6D9DA0062BECD /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sendmsg.caf; path = Resources/music/sendmsg.caf; sourceTree = "<group>"; };
-		3C4281FC15B79B1900903F9D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/ygzb/project/Basketballer/Basketballer/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		3C42823A15B7B1B500903F9D /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonBackground.png; path = Resources/images/buttonBackground.png; sourceTree = "<group>"; };
 		3C42824015B7C32200903F9D /* MatchModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchModeCell.xib; sourceTree = "<group>"; };
+		3C42824215B8E00C00903F9D /* PopoverContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverContentCell.xib; sourceTree = "<group>"; };
 		3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionRecordCell.xib; sourceTree = "<group>"; };
 		3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordViewController.h; sourceTree = "<group>"; };
 		3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRecordViewController.m; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		3CC9129C15B1C477003C74D4 /* TimeoutPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeoutPromptViewController.h; sourceTree = "<group>"; };
 		3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeoutPromptViewController.m; sourceTree = "<group>"; };
 		3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeoutPromptViewController.xib; sourceTree = "<group>"; };
+		3CCAE3F815BCDC3D0030C302 /* greenCircleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenCircleButton.png; path = Resources/images/greenCircleButton.png; sourceTree = "<group>"; };
 		3CEDBF6615B63F37003EF7EF /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background.png; path = Resources/images/button_background.png; sourceTree = "<group>"; };
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
@@ -230,6 +233,7 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3CCAE3F815BCDC3D0030C302 /* greenCircleButton.png */,
 				3C42823A15B7B1B500903F9D /* buttonBackground.png */,
 				3CEDBF6615B63F37003EF7EF /* button_background.png */,
 				3CBA0C1315AED332003505BC /* popoverArrowDown.png */,
@@ -381,6 +385,7 @@
 				E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */,
 				3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */,
 				3C42824015B7C32200903F9D /* MatchModeCell.xib */,
+				3C42824215B8E00C00903F9D /* PopoverContentCell.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -542,6 +547,8 @@
 				3CEDBF6715B63F37003EF7EF /* button_background.png in Resources */,
 				3C42823B15B7B1B500903F9D /* buttonBackground.png in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
+				3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */,
+				3CCAE3F915BCDC3D0030C302 /* greenCircleButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +599,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				3CC1681B15A2E52B00A2AB44 /* en */,
-				3C4281FC15B79B1900903F9D /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
