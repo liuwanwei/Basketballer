@@ -1,25 +1,18 @@
 //
-//  SingleChoiceViewController.m
+//  ConfiguratorViewController.m
 //  Basketballer
 //
-//  Created by Liu Wanwei on 12-7-4.
+//  Created by Liu Wanwei on 12-7-20.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "SingleChoiceViewController.h"
-#import "GameSetting.h"
+#import "ConfiguratorViewController.h"
 
-@interface SingleChoiceViewController ()
+@interface ConfiguratorViewController ()
 
 @end
 
-@implementation SingleChoiceViewController
-
-@synthesize parameterKey = _parameterKey;
-@synthesize unitString = _unitString;
-@synthesize choices = _choices;
-@synthesize currentChoice = _currentChoice;
-@synthesize delegate = _delegate;
+@implementation ConfiguratorViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 }
 
 - (void)viewDidUnload
@@ -40,12 +41,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -57,29 +52,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    // Return the number of sections.
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.choices.count;
+    // Return the number of rows in the section.
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    
     // Configure the cell...
-    NSString * value = [self.choices objectAtIndex:indexPath.row];
-    cell.textLabel.text = value;
-    if ([value isEqualToString:self.currentChoice]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     
     return cell;
 }
@@ -127,27 +115,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    self.currentChoice = cell.textLabel.text;
-    
-    if (_parameterKey != nil) {
-        [[GameSetting defaultSetting] setParameter:self.currentChoice forKey:self.parameterKey];
-    }
-    
-    if (_delegate != nil && [_delegate respondsToSelector:@selector(choosedParameter:)]) {
-        [_delegate performSelector:@selector(choosedParameter:) withObject:_currentChoice];
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (_unitString != nil) {
-        NSString * header = [NSString stringWithFormat:@"单位：%@", self.unitString];
-        return header;
-    }else{
-        return nil;
-    }
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
 }
 
 @end

@@ -27,27 +27,20 @@
 
 - (void)dismissMyself{
     AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
-    [delegate.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-        _groupHeaders = [NSArray arrayWithObjects:@"比赛球队", @"比赛规则", nil];
-    }
-    return self;
+    [delegate dismissModelViewController];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissMyself)];
-    self.navigationItem.leftBarButtonItem = item;    
+//    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissMyself)];
+//    self.navigationItem.leftBarButtonItem = item;    
     
-    [self setTitle:@"游戏设置"];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    
+    _groupHeaders = [NSArray arrayWithObject:@"球队"];    
+    [self setTitle:@"球队管理"];
 }
 
 - (void)viewDidUnload
@@ -77,181 +70,70 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _groupHeaders.count;
+    return 2;
 }
-
-//- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 48.0f;
-//    if (indexPath.section == 0) {
-//        return 48.0f;
-//    }else{
-//        return 44.0f;
-//    }
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (0 == section) {
-        return ([[[TeamManager defaultManager] teams] count] + 1);
+        return [[[TeamManager defaultManager] teams] count];
     }else{
-        return [[[GameSetting defaultSetting] gameModeNames] count];
+        return 1;
     }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [_groupHeaders objectAtIndex:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell;
-    if (indexPath.section == 0) {
-        static NSString * CellIdentifier0 = @"Cell0";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier0];        
-        if (nil == cell) {
-            [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
-            cell = _teamCell;
-            self.teamCell = nil;
-            
-            // 图片圆角化。
-            UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
-            profileImageView.layer.masksToBounds = YES;
-            profileImageView.layer.cornerRadius = 5.0f;
-//            profileImageView.layer.borderWidth = 1.0f;
-//            profileImageView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-        }
+    static NSString * CellIdentifier0 = @"Cell0";
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier0];        
+    if (nil == cell) {
+        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+        cell = _teamCell;
+        self.teamCell = nil;
         
-        NSArray * teams = [[TeamManager defaultManager] teams];
-        
-        UIImageView * imageView = (UIImageView *)[cell viewWithTag:1];        
-        UILabel * label = (UILabel *)[cell viewWithTag:2];        
-        if (indexPath.row < teams.count) {
-            Team * team = [teams objectAtIndex:indexPath.row];
-            
-            
-            imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-            label.text = team.name;
-            //            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-            //            cell.textLabel.text = team.name;
-        }else{
-            UIImage * image = [UIImage imageNamed:@"Add"];
-            imageView.image = image;
-            label.text = @"添加球队...";
-        }
-    }else{
-        static NSString * CellIdentifier1 = @"Cell1";  
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-        if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier1];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        
-        cell.textLabel.font = [UIFont systemFontOfSize:18.0f];
-        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
+        // 图片圆角化。
+        UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
+        //            profileImageView.layer.borderWidth = 1.0f;
+        //            profileImageView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
     }
-
-//    if (nil == cell) {
-//        if (indexPath.section == 0) {
-//            [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
-//            cell = _teamCell;
-//            self.teamCell = nil;
-//        }else{
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
-//        }
-//    }
-//    
-//    NSArray * teams = [[TeamManager defaultManager] teams];
-//    
-//    // Configure the cell...
-//    if (0 == indexPath.section) {
-//        UIImageView * imageView = (UIImageView *)[cell viewWithTag:1];        
-//        UILabel * label = (UILabel *)[cell viewWithTag:2];        
-//        if (indexPath.row < teams.count) {
-//            Team * team = [teams objectAtIndex:indexPath.row];
-//            
-//
-//            imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-//            label.text = team.name;
-////            cell.imageView.image = [[TeamManager defaultManager] imageForTeam:team];
-////            cell.textLabel.text = team.name;
-//        }else{
-//            label.text = @"添加球队...";
-////            cell.textLabel.text = @"添加球队...";
-//        }
-//    }else{
-//        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
-//    }
+        
+    NSArray * teams = [[TeamManager defaultManager] teams];
+    UIImageView * imageView = (UIImageView *)[cell viewWithTag:1];        
+    UILabel * label = (UILabel *)[cell viewWithTag:2];        
+    if (indexPath.section == 0) {    
+        Team * team = [teams objectAtIndex:indexPath.row];
+        imageView.image = [[TeamManager defaultManager] imageForTeam:team];
+        label.text = team.name;
+    }else{
+        UIImage * image = [UIImage imageNamed:@"Add"];
+        imageView.image = image;
+        label.text = @"添加球队...";
+    }
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    EditTeamInfoViewController *  editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
+    
     if (indexPath.section == 0) {
-        EditTeamInfoViewController *  editTeamInfoViewController = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
+        editTeamInfoViewController.operateMode = Update;
         
-        NSArray * teams = [[TeamManager defaultManager] teams];
-        if (indexPath.row < teams.count) {
-            editTeamInfoViewController.operateMode = Update;
-            editTeamInfoViewController.team = [teams objectAtIndex:indexPath.row];
-        }else {
-            editTeamInfoViewController.operateMode = Insert;
-            editTeamInfoViewController.team = nil;
-        }
-      
-        [self.navigationController pushViewController:editTeamInfoViewController animated:YES];
-        
-    }else if(indexPath.section == 1){
-        if (_gameSettingViewController == nil) {
-            _gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        }
-
-        _gameSettingViewController.gameMode = (indexPath.row == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
-        [_gameSettingViewController setTitle:[tableView cellForRowAtIndexPath:indexPath].textLabel.text];
-        [self.navigationController pushViewController:_gameSettingViewController animated:YES];
+        NSArray * teams = [[TeamManager defaultManager] teams];        
+        editTeamInfoViewController.team = [teams objectAtIndex:indexPath.row];
+    }else {
+        editTeamInfoViewController.operateMode = Insert;
+        editTeamInfoViewController.team = nil;
     }
+    
+    NSLog(@"editTeam...ViewController %@", editTeamInfoViewController);
+    [self.navigationController pushViewController:editTeamInfoViewController animated:YES];
 }
 
 @end

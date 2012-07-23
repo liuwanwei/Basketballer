@@ -41,8 +41,8 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUILabel" id="669858949">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{117, 11}, {42, 21}}</string>
+								<int key="NSvFlags">294</int>
+								<string key="NSFrame">{{85, 11.5}, {40, 21}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="679387964"/>
@@ -78,7 +78,7 @@
 							<object class="IBUILabel" id="679387964">
 								<reference key="NSNextResponder" ref="114108989"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{176, 9}, {10, 21}}</string>
+								<string key="NSFrame">{{145, 10}, {10, 21}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="981947102"/>
@@ -93,6 +93,7 @@
 								<reference key="IBUIHighlightedColor" ref="136098312"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="109504427">
 									<int key="type">1</int>
 									<double key="pointSize">17</double>
@@ -105,8 +106,8 @@
 							</object>
 							<object class="IBUILabel" id="981947102">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{202, 11}, {42, 21}}</string>
+								<int key="NSvFlags">291</int>
+								<string key="NSFrame">{{195, 11}, {40, 21}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -130,6 +131,7 @@
 								<string key="NSFrame">{{20, 11}, {80, 21}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="669858949"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -149,7 +151,7 @@
 						<string key="NSFrameSize">{287, 43}</string>
 						<reference key="NSSuperview" ref="828995322"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="669858949"/>
+						<reference key="NSNextKeyView" ref="971014114"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -207,10 +209,10 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="828995322"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="669858949"/>
+							<reference ref="971014114"/>
 							<reference ref="679387964"/>
 							<reference ref="981947102"/>
-							<reference ref="971014114"/>
+							<reference ref="669858949"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -259,23 +261,38 @@
 					<string key="className">GameDetailsViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="actionFilter">UISegmentedControl</string>
 						<string key="actionFilterCell">UITableViewCell</string>
+						<string key="guestTeam">UILabel</string>
+						<string key="homeTeam">UILabel</string>
+						<string key="tableHeaderView">UIView</string>
 						<string key="tableView">UITableView</string>
-						<string key="toolbar">UIToolbar</string>
 						<string key="tvCell">UITableViewCell</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="actionFilter">
+							<string key="name">actionFilter</string>
+							<string key="candidateClassName">UISegmentedControl</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="actionFilterCell">
 							<string key="name">actionFilterCell</string>
 							<string key="candidateClassName">UITableViewCell</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="guestTeam">
+							<string key="name">guestTeam</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="homeTeam">
+							<string key="name">homeTeam</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tableHeaderView">
+							<string key="name">tableHeaderView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="tableView">
 							<string key="name">tableView</string>
 							<string key="candidateClassName">UITableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="toolbar">
-							<string key="name">toolbar</string>
-							<string key="candidateClassName">UIToolbar</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tvCell">
 							<string key="name">tvCell</string>

@@ -20,7 +20,7 @@ static GameSetting * gameSettings;
 @implementation GameSetting
 
 @synthesize dictionaryStore = _dictionaryStore;
-@synthesize mode = _mode;
+@synthesize gameModes = _gameModes;
 @synthesize gameModeNames = _gameModeNames;
 @synthesize quarterLength = _quarterLength;
 @synthesize quarterTimeLength = _quarterTimeLength;
@@ -86,6 +86,14 @@ static GameSetting * gameSettings;
     return self;
 }
 
+- (NSArray *)gameModes{
+    if (_gameModes == nil) {
+        _gameModes = [NSArray arrayWithObjects:kGameModeTwoHalf, kGameModeFourQuarter, nil];
+    }
+    
+    return _gameModes;
+}
+
 - (NSArray *)gameModeNames{
     if (_gameModeNames == nil) {
         // TODO loading from multi language file.
@@ -134,6 +142,17 @@ static GameSetting * gameSettings;
     }
     
     [self.dictionaryStore writeToURL:[self documentURL] atomically:YES];
+}
+
+- (NSString *)gameModeForName:(NSString *)gameModeName{
+    NSArray * names = [self gameModeNames];
+    for (int i = 0; i < names.count; i++) {
+        if ([[names objectAtIndex:i] isEqualToString:gameModeName]) {
+            return [self.gameModes objectAtIndex:i];
+        }
+    }
+    
+    return nil;
 }
 
 // All parameters read from dynamic dictionary, not from interface's property storage.

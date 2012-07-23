@@ -20,6 +20,9 @@
     Team * _hostTeam;
     Team * _guestTeam;
     NSInteger _curClickRowIndex;
+    
+    NSString * __weak _gameMode;
+    SingleChoiceViewController * _chooseGameModeView;
 }
 @end
 
@@ -50,7 +53,7 @@
 }
 
 - (void)dismissMyself{
-    [[AppDelegate delegate].navigationController dismissViewControllerAnimated:YES completion:nil];
+    [[AppDelegate delegate] dismissModelViewController];
 }
 
 #pragma 类成员函数
@@ -75,7 +78,8 @@
 - (void)showGameSettingController {
     GameSettingViewController * gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    gameSettingViewController.gameMode = (self.gameModeView.selectedSegmentIndex == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
+    gameSettingViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
+//    gameSettingViewController.gameMode = (self.gameModeView.selectedSegmentIndex == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
     [gameSettingViewController setTitle:[self.gameModeView titleForSegmentAtIndex:self.gameModeView.selectedSegmentIndex]];
     [self.navigationController pushViewController:gameSettingViewController animated:YES];
 }
@@ -98,7 +102,9 @@
                                            target:self action:@selector(dismissMyself)];
     self.navigationItem.leftBarButtonItem = item;    
     [self setTitle:@"开始比赛"];
-    _sectionsTitle = [NSArray arrayWithObjects:@"球队",@"模式",nil];
+    _sectionsTitle = [NSArray arrayWithObjects:@"参赛球队",@"竞技规则",nil];
+    
+    _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -151,13 +157,12 @@
         return 2;
     }
     
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell * cell = nil;
     if (indexPath.section == 0) {
         UIImageView * profileImageView;
         if(cell == nil) {
@@ -182,15 +187,20 @@
         profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
         label.text = team.name;
     }else if (indexPath.section == 1){
-        if (indexPath.row == 0) {
-            if (cell == nil) {
-                [[NSBundle mainBundle] loadNibNamed:@"MatchModeCell" owner:self options:nil];
-                cell = _modeCell;
-                self.modeCell = nil;
-                
-                [self initGameModeView];
-            }
+        static NSString *CellIdentifier = @"Cell";        
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (nil == cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         }
+        
+        static NSArray * rulesString = nil;
+        if (nil == rulesString) {
+            rulesString = [NSArray arrayWithObjects:@"比赛模式:", @"比赛规则:", nil];
+        }    
+    
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.detailTextLabel.text = _gameMode;
+        cell.textLabel.text = [rulesString objectAtIndex:indexPath.row];
     }
         
     return cell;
@@ -204,6 +214,19 @@
         TeamChoiceViewController *teamChoiceViewController = [[TeamChoiceViewController alloc] initWithNibName:@"TeamChoiceViewController" bundle:nil];
         teamChoiceViewController.parentController = self;
         [self.navigationController pushViewController:teamChoiceViewController animated:YES];
+    }else if(indexPath.section == 1){
+        if (indexPath.row == 0) {
+            if (_chooseGameModeView == nil) {
+                _chooseGameModeView = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                _chooseGameModeView.choices = [[GameSetting defaultSetting] gameModeNames];  
+                _chooseGameModeView.delegate = self;
+            }
+            
+            _chooseGameModeView.currentChoice = _gameMode;
+            [self.navigationController pushViewController:_chooseGameModeView animated:YES];
+        }else {
+            [self showGameSettingController];
+        }
     }
 }
 
@@ -211,6 +234,13 @@
     if (indexPath.section == 1) {
         [self showGameSettingController];
     }
+}
+
+# pragma SingleChoiceViewDelegate
+- (void)choosedParameter:(NSString *)parameter{
+    _gameMode = parameter;
+    // TODO 只刷新group2就够了。
+    [self.tableView reloadData];
 }
 
 @end
