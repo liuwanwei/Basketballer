@@ -81,13 +81,25 @@
 		E68D119315A6C7460074982D /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D119215A6C7460074982D /* Action.m */; };
 		E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = E69255F115B3EA7500CBF606 /* TeamStatistics.m */; };
 		E69255FE15B551EA00CBF606 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = E69255FD15B551EA00CBF606 /* Team.m */; };
+		E6BECB1415BB07E700AABC38 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB1315BB07E700AABC38 /* Empty.xib */; };
+		E6BECB1815BB102700AABC38 /* BadgeCount.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB1715BB102700AABC38 /* BadgeCount.png */; };
+		E6BECB1A15BB11D300AABC38 /* red_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB1915BB11D300AABC38 /* red_button.png */; };
+		E6BECB1C15BB128D00AABC38 /* green_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB1B15BB128D00AABC38 /* green_button.png */; };
+		E6BECB1E15BB133D00AABC38 /* blue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB1D15BB133D00AABC38 /* blue_button.png */; };
+		E6BECB2015BB18BA00AABC38 /* badgeValueBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB1F15BB18BA00AABC38 /* badgeValueBlue@2x.png */; };
+		E6BECB2215BB1F3900AABC38 /* puppy-dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E6BECB2115BB1F3900AABC38 /* puppy-dog.jpg */; };
+		E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */; };
+		E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE715B9597900324713 /* TabBarHistory.png */; };
+		E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */; };
+		E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE915B9597900324713 /* TabBarSetting.png */; };
+		E6CEFCF015B9597900324713 /* TabBarSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */; };
+		E6CEFCF115B9597900324713 /* TabBarTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEB15B9597900324713 /* TabBarTeam.png */; };
+		E6CEFCF215B9597900324713 /* TabBarTeam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */; };
 		E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94915AA7F4700CB0C0E /* Match.m */; };
 		E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94C15AA87F800CB0C0E /* ActionManager.m */; };
 		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
 		E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95515AB183500CB0C0E /* TeamManager.m */; };
 		E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */; };
-		E6E1D96C15AD6DED00CB0C0E /* TeamEntry.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */; };
-		E6E1D96D15AD6DED00CB0C0E /* TeamEntry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */; };
 		E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */; };
 		E6E1D98415B01EC800CB0C0E /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D98215B01EC800CB0C0E /* Add@2x.png */; };
 		E6E1D98615B01F6900CB0C0E /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D98515B01F6900CB0C0E /* Add.png */; };
@@ -197,6 +209,21 @@
 		E69255F115B3EA7500CBF606 /* TeamStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamStatistics.m; sourceTree = "<group>"; };
 		E69255FC15B551EA00CBF606 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		E69255FD15B551EA00CBF606 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		E6BECB1315BB07E700AABC38 /* Empty.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
+		E6BECB1715BB102700AABC38 /* BadgeCount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BadgeCount.png; sourceTree = "<group>"; };
+		E6BECB1915BB11D300AABC38 /* red_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_button.png; sourceTree = "<group>"; };
+		E6BECB1B15BB128D00AABC38 /* green_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_button.png; sourceTree = "<group>"; };
+		E6BECB1D15BB133D00AABC38 /* blue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_button.png; sourceTree = "<group>"; };
+		E6BECB1F15BB18BA00AABC38 /* badgeValueBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badgeValueBlue@2x.png"; sourceTree = "<group>"; };
+		E6BECB2115BB1F3900AABC38 /* puppy-dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "puppy-dog.jpg"; sourceTree = "<group>"; };
+		E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfiguratorViewController.h; sourceTree = "<group>"; };
+		E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfiguratorViewController.m; sourceTree = "<group>"; };
+		E6CEFCE715B9597900324713 /* TabBarHistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarHistory.png; sourceTree = "<group>"; };
+		E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarHistory@2x.png"; sourceTree = "<group>"; };
+		E6CEFCE915B9597900324713 /* TabBarSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarSetting.png; sourceTree = "<group>"; };
+		E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarSetting@2x.png"; sourceTree = "<group>"; };
+		E6CEFCEB15B9597900324713 /* TabBarTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarTeam.png; sourceTree = "<group>"; };
+		E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarTeam@2x.png"; sourceTree = "<group>"; };
 		E6E1D94815AA7F4700CB0C0E /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		E6E1D94915AA7F4700CB0C0E /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		E6E1D94B15AA87F800CB0C0E /* ActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionManager.h; sourceTree = "<group>"; };
@@ -207,8 +234,6 @@
 		E6E1D95515AB183500CB0C0E /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
 		E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManager.h; sourceTree = "<group>"; };
 		E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManager.m; sourceTree = "<group>"; };
-		E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TeamEntry.png; sourceTree = "<group>"; };
-		E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TeamEntry@2x.png"; sourceTree = "<group>"; };
 		E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamRecordCell.xib; sourceTree = "<group>"; };
 		E6E1D98215B01EC800CB0C0E /* Add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add@2x.png"; sourceTree = "<group>"; };
 		E6E1D98515B01F6900CB0C0E /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -352,10 +377,10 @@
 		3CC1683315A2E5E400A2AB44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E6BECB1615BB101700AABC38 /* Operation */,
+				E6CEFCD215B9571400324713 /* TabBar */,
 				E6E1D98515B01F6900CB0C0E /* Add.png */,
 				E6E1D98215B01EC800CB0C0E /* Add@2x.png */,
-				E6E1D96A15AD6DED00CB0C0E /* TeamEntry.png */,
-				E6E1D96B15AD6DED00CB0C0E /* TeamEntry@2x.png */,
 				3C12203015A6D9C60062BECD /* music */,
 				3C121F6715A437530062BECD /* images */,
 				E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */,
@@ -371,6 +396,7 @@
 				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
 				3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */,
 				3CBA0BFA15AE7726003505BC /* TeamChoiceViewController.xib */,
+				E6BECB1315BB07E700AABC38 /* Empty.xib */,
 				3CFE1D2E15AC876A00247B80 /* EditTeamNameViewController.xib */,
 				3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */,
 				3C121F5E15A3D58A0062BECD /* OperateGameViewController.xib */,
@@ -393,6 +419,8 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */,
+				E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */,
 				3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */,
 				3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */,
 				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
@@ -448,6 +476,32 @@
 				E68D111D15A3DA0C0074982D /* GameSetting.m */,
 			);
 			name = DataStore;
+			sourceTree = "<group>";
+		};
+		E6BECB1615BB101700AABC38 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				E6BECB2115BB1F3900AABC38 /* puppy-dog.jpg */,
+				E6BECB1F15BB18BA00AABC38 /* badgeValueBlue@2x.png */,
+				E6BECB1D15BB133D00AABC38 /* blue_button.png */,
+				E6BECB1B15BB128D00AABC38 /* green_button.png */,
+				E6BECB1915BB11D300AABC38 /* red_button.png */,
+				E6BECB1715BB102700AABC38 /* BadgeCount.png */,
+			);
+			name = Operation;
+			sourceTree = "<group>";
+		};
+		E6CEFCD215B9571400324713 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E6CEFCE715B9597900324713 /* TabBarHistory.png */,
+				E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */,
+				E6CEFCE915B9597900324713 /* TabBarSetting.png */,
+				E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */,
+				E6CEFCEB15B9597900324713 /* TabBarTeam.png */,
+				E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */,
+			);
+			name = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,8 +573,6 @@
 				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
 				E68D118815A68D090074982D /* MatchActionFilterCell.xib in Resources */,
 				E68D118A15A696B60074982D /* DefaultTeamProfile@2x.png in Resources */,
-				E6E1D96C15AD6DED00CB0C0E /* TeamEntry.png in Resources */,
-				E6E1D96D15AD6DED00CB0C0E /* TeamEntry@2x.png in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CFE1D3015AC876A00247B80 /* EditTeamNameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamChoiceViewController.xib in Resources */,
@@ -549,6 +601,19 @@
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
 				3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */,
 				3CCAE3F915BCDC3D0030C302 /* greenCircleButton.png in Resources */,
+				E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */,
+				E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */,
+				E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */,
+				E6CEFCF015B9597900324713 /* TabBarSetting@2x.png in Resources */,
+				E6CEFCF115B9597900324713 /* TabBarTeam.png in Resources */,
+				E6CEFCF215B9597900324713 /* TabBarTeam@2x.png in Resources */,
+				E6BECB1415BB07E700AABC38 /* Empty.xib in Resources */,
+				E6BECB1815BB102700AABC38 /* BadgeCount.png in Resources */,
+				E6BECB1A15BB11D300AABC38 /* red_button.png in Resources */,
+				E6BECB1C15BB128D00AABC38 /* green_button.png in Resources */,
+				E6BECB1E15BB133D00AABC38 /* blue_button.png in Resources */,
+				E6BECB2015BB18BA00AABC38 /* badgeValueBlue@2x.png in Resources */,
+				E6BECB2215BB1F3900AABC38 /* puppy-dog.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +654,7 @@
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptViewController.m in Sources */,
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
+				E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@
     UINavigationController * _startGameViewController;
     
     NSDateFormatter * _dateFormatter;
-    NSDateFormatter * _timeFormatter;
+//    NSDateFormatter * _timeFormatter;
 }
 @end
 
@@ -46,12 +46,12 @@
 
 - (void)showSettingView{
     if (nil == _settingsViewController) {
-        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStylePlain];
+        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
         _settingsViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     }
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate.navigationController presentViewController:_settingsViewController animated:YES completion:nil];
+    [delegate presentModelViewController:_settingsViewController];
 }
 
 - (void)historyChangedHandler:(NSNotification *)notification{
@@ -73,17 +73,17 @@
     [super viewDidLoad];
     [self initNavigationItem];
 
-    UIImage * image = [UIImage imageNamed:@"TeamEntry"];
-    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
-    self.navigationItem.leftBarButtonItem = settingItem;
+//    UIImage * image = [UIImage imageNamed:@"TeamEntry"];
+//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
+//    self.navigationItem.leftBarButtonItem = settingItem;
         
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
     [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];  
     
-    self.tableView.rowHeight = 74.0f;
+    self.tableView.rowHeight = 48.0f;
 }
 
 - (void)viewDidUnload
@@ -152,12 +152,12 @@
     dateLabel.text = [_dateFormatter stringFromDate:[match date]];
     
     // 比赛时间。
-    if (_timeFormatter == nil) {
-        _timeFormatter = [[NSDateFormatter alloc] init];
-        [_timeFormatter setDateFormat:@"hh:mm"];
-    }
-    UILabel * timeLabel = (UILabel *)[cell viewWithTag:UIMatchTimeTag];
-    timeLabel.text = [_timeFormatter stringFromDate:[match date]];
+//    if (_timeFormatter == nil) {
+//        _timeFormatter = [[NSDateFormatter alloc] init];
+//        [_timeFormatter setDateFormat:@"hh:mm"];
+//    }
+//    UILabel * timeLabel = (UILabel *)[cell viewWithTag:UIMatchTimeTag];
+//    timeLabel.text = [_timeFormatter stringFromDate:[match date]];
     
     // 客队图像。
     team = [tm teamWithId:match.guestTeam];
