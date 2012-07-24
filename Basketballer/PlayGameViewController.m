@@ -151,16 +151,16 @@
     switch (_curPeroid) {
         case -1:
         case 0:
-            prtoidStr = @"1ST";
+            prtoidStr = @"1 ST";
             break;
-        case 1:
-            prtoidStr = @"2ND";
+        case 1: 
+            prtoidStr = @"2 ND";
             break;
         case 2:
-            prtoidStr = @"3RD";
+            prtoidStr = @"3 RD";
             break;
         case 3:
-            prtoidStr = @"4TH";
+            prtoidStr = @"4 TH";
             break;
 
         default:
