@@ -111,6 +111,14 @@ static MatchManager * sDefaultManager;
     [self postNotification];
 }
 
+- (void)stopMatch:(Match *)match withState:(MatchState)state{
+    [[ActionManager defaultManager] finishMatch:match];
+    match.state = [NSNumber numberWithInteger:state];
+    [self synchroniseToStore];
+    
+    [self postNotification];
+}
+
 - (BOOL)deleteMatch:(Match *)match{
     NSInteger homeTeamId = [match.homeTeam integerValue];
     NSInteger guestTeamId = [match.guestTeam integerValue];

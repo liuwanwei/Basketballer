@@ -100,7 +100,6 @@
 		E6CEFCF015B9597900324713 /* TabBarSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */; };
 		E6CEFCF115B9597900324713 /* TabBarTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEB15B9597900324713 /* TabBarTeam.png */; };
 		E6CEFCF215B9597900324713 /* TabBarTeam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */; };
-		E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94915AA7F4700CB0C0E /* Match.m */; };
 		E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94C15AA87F800CB0C0E /* ActionManager.m */; };
 		E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */; };
 		E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E1D95515AB183500CB0C0E /* TeamManager.m */; };
@@ -109,6 +108,7 @@
 		E6E1D98415B01EC800CB0C0E /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D98215B01EC800CB0C0E /* Add@2x.png */; };
 		E6E1D98615B01F6900CB0C0E /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D98515B01F6900CB0C0E /* Add.png */; };
 		E6E9691315BD45230073C5B8 /* PointDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */; };
+		E6E9691B15BE40050073C5B8 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691A15BE40050073C5B8 /* Match.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -237,8 +237,6 @@
 		E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarSetting@2x.png"; sourceTree = "<group>"; };
 		E6CEFCEB15B9597900324713 /* TabBarTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarTeam.png; sourceTree = "<group>"; };
 		E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarTeam@2x.png"; sourceTree = "<group>"; };
-		E6E1D94815AA7F4700CB0C0E /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
-		E6E1D94915AA7F4700CB0C0E /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		E6E1D94B15AA87F800CB0C0E /* ActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionManager.h; sourceTree = "<group>"; };
 		E6E1D94C15AA87F800CB0C0E /* ActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionManager.m; sourceTree = "<group>"; };
 		E6E1D94E15AAD74B00CB0C0E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -252,6 +250,8 @@
 		E6E1D98515B01F6900CB0C0E /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
 		E6E9691115BD45230073C5B8 /* PointDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDetailsViewController.h; sourceTree = "<group>"; };
 		E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDetailsViewController.m; sourceTree = "<group>"; };
+		E6E9691915BE40050073C5B8 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		E6E9691A15BE40050073C5B8 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,10 +482,10 @@
 		E68D110315A2F7020074982D /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				E6E9691915BE40050073C5B8 /* Match.h */,
+				E6E9691A15BE40050073C5B8 /* Match.m */,
 				E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */,
 				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
-				E6E1D94815AA7F4700CB0C0E /* Match.h */,
-				E6E1D94915AA7F4700CB0C0E /* Match.m */,
 				E68D116615A53CE40074982D /* MatchManager.h */,
 				E68D116715A53CE50074982D /* MatchManager.m */,
 				E68D119115A6C7460074982D /* Action.h */,
@@ -664,7 +664,6 @@
 				E68D116815A53CE50074982D /* MatchManager.m in Sources */,
 				E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */,
 				E68D119315A6C7460074982D /* Action.m in Sources */,
-				E6E1D94A15AA7F4700CB0C0E /* Match.m in Sources */,
 				E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */,
 				E6E1D95015AAD74C00CB0C0E /* SettingViewController.m in Sources */,
 				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
@@ -685,6 +684,7 @@
 				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
 				E6E9691315BD45230073C5B8 /* PointDetailsViewController.m in Sources */,
 				3CCAE45915BE25790030C302 /* GameHistoriesMapViewController.m in Sources */,
+				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
