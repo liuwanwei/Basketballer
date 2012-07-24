@@ -15,8 +15,12 @@
 
 #define kMatchEntity            @"Match"
 #define kActionEntity           @"Action"
-
 #define kMatchChanged           @"MatchChangedNotification"
+
+typedef enum {
+    MatchStopped = 1,
+    MatchFinished = 2
+}MatchState;
 
 @protocol FoulActionDelegate;
 
@@ -37,7 +41,8 @@
 - (void)startMatch:(Match *)match;
 
 // 声明比赛结束。
-- (void)finishMatch:(Match *)match;
+- (void)finishMatch:(Match *)match; // Deprecated
+- (void)stopMatch:(Match *)match withState:(MatchState) state;
 
 // 删除比赛。
 - (BOOL)deleteMatch:(Match *)match;
