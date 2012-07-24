@@ -61,7 +61,8 @@
 		3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */; };
 		3CC9129F15B1C477003C74D4 /* TimeoutPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */; };
 		3CC912A015B1C477003C74D4 /* TimeoutPromptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */; };
-		3CCAE3F915BCDC3D0030C302 /* greenCircleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE3F815BCDC3D0030C302 /* greenCircleButton.png */; };
+		3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE41515BD3E4F0030C302 /* LocationManager.m */; };
+		3CCAE41815BD4C900030C302 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCAE41715BD4C900030C302 /* CoreLocation.framework */; };
 		3CEDBF6715B63F37003EF7EF /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEDBF6615B63F37003EF7EF /* button_background.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
@@ -179,7 +180,9 @@
 		3CC9129C15B1C477003C74D4 /* TimeoutPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeoutPromptViewController.h; sourceTree = "<group>"; };
 		3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeoutPromptViewController.m; sourceTree = "<group>"; };
 		3CC9129E15B1C477003C74D4 /* TimeoutPromptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeoutPromptViewController.xib; sourceTree = "<group>"; };
-		3CCAE3F815BCDC3D0030C302 /* greenCircleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenCircleButton.png; path = Resources/images/greenCircleButton.png; sourceTree = "<group>"; };
+		3CCAE41415BD3E4F0030C302 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		3CCAE41515BD3E4F0030C302 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		3CCAE41715BD4C900030C302 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3CEDBF6615B63F37003EF7EF /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background.png; path = Resources/images/button_background.png; sourceTree = "<group>"; };
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
@@ -244,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCAE41815BD4C900030C302 /* CoreLocation.framework in Frameworks */,
 				3C82956115B3EE7800A5E7E7 /* AudioToolbox.framework in Frameworks */,
 				3CC1681015A2E52A00A2AB44 /* UIKit.framework in Frameworks */,
 				3CC1681215A2E52A00A2AB44 /* Foundation.framework in Frameworks */,
@@ -258,7 +262,6 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
-				3CCAE3F815BCDC3D0030C302 /* greenCircleButton.png */,
 				3C42823A15B7B1B500903F9D /* buttonBackground.png */,
 				3CEDBF6615B63F37003EF7EF /* button_background.png */,
 				3CBA0C1315AED332003505BC /* popoverArrowDown.png */,
@@ -290,6 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				3C121F7A15A43DC30062BECD /* define.h */,
+				3CCAE41415BD3E4F0030C302 /* LocationManager.h */,
+				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
 			);
 			name = library;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 		3CC1680E15A2E52A00A2AB44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3CCAE41715BD4C900030C302 /* CoreLocation.framework */,
 				3C82956015B3EE7800A5E7E7 /* AudioToolbox.framework */,
 				3CC1680F15A2E52A00A2AB44 /* UIKit.framework */,
 				3CC1681115A2E52A00A2AB44 /* Foundation.framework */,
@@ -600,7 +606,6 @@
 				3C42823B15B7B1B500903F9D /* buttonBackground.png in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
 				3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */,
-				3CCAE3F915BCDC3D0030C302 /* greenCircleButton.png in Resources */,
 				E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */,
 				E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */,
 				E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */,
@@ -655,6 +660,7 @@
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */,
+				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
