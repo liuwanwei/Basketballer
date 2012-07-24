@@ -31,29 +31,20 @@ typedef enum {
     
     NSMutableArray * _actionsInMatch;
     
-//    NSInteger _actionFilterValue;
     NSMutableArray * _homeTeamPointsSummary;
     NSMutableArray * _guestTeamPointsSummary;
     NSMutableArray * _homeTeamFoulsSummary;
     NSMutableArray * _guestTeamFoulsSummary;
-    
-    NSInteger _actionFilterSelectedIndex;
-    
-//    NSArray * _filteredActions;
-//    ActionRecordViewController * _actionsViewController;
     
     PointDetailsViewController * _pointDetailsViewController;
 }
 @end
 
 @implementation GameDetailsViewController
-@synthesize actionFilter = _actionFilter;
-@synthesize teams = _teams;
-@synthesize dateTime = _dateTime;
 @synthesize tableView = _tableView;
 @synthesize tvCell = _tvCell;
-@synthesize actionFilterCell = _actionFilterCell;
-@synthesize tableHeaderView = _tableHeaderView;
+@synthesize actionItem = _actionItem;
+@synthesize trashItem = _trashItem;
 @synthesize match = _match;
 
 - (void)back{
@@ -68,27 +59,14 @@ typedef enum {
     }
 }
 
+- (void)actionSheetForMatch{
+    // TODO
+    [self deleteCurrentMatch];
+}
+
 - (void)deleteCurrentMatch{    
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"删除本场比赛所有相关信息？" message:@"删除后不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
-}
-
-- (void)actionFilterChanged:(id)sender{
-//    _actionFilterSelectedIndex = self.actionFilter.selectedSegmentIndex;
-//    switch (_actionFilterSelectedIndex) {
-//        default:            
-//        case 0:
-//            _actionFilterValue = ActionTypePoints;
-//            break;
-//        case 1:
-//            _actionFilterValue = ActionTypeFoul;
-//            break;
-//        case 2:
-//            _actionFilterValue = ActionTypeTimeout;
-//            break;
-//    }
-    
-    
 }
 
 - (void)reloadActionsInMatch{
@@ -123,8 +101,6 @@ typedef enum {
         _periodNameArray = _fourQuarterDescriptions;
         
         _filterNames = [NSArray arrayWithObjects:@"得分", @"犯规", @"暂停", nil];
-        
-        _actionFilterSelectedIndex = 0;
     }
     return self;
 }
@@ -139,25 +115,7 @@ typedef enum {
     
     self.tableView.delegate = self;
     
-//    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    UIBarButtonItem * trash = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCurrentMatch)];
-//    NSArray * toolbarItems = [NSArray arrayWithObjects:space, trash, nil];
-//    [self.toolbar setItems:toolbarItems];
-//    self.navigationItem.rightBarButtonItem = trash;
-    
-//    [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
-//    self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
-    
-//    CGRect frame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, self.tableHeaderView.frame.size.height);
-//    self.tableHeaderView.backgroundColor = [UIColor clearColor];
-//    self.tableHeaderView.frame = frame;
-//    self.tableView.tableHeaderView = self.tableHeaderView;
-    
-//    
-//    frame = self.actionFilter.frame;
-//    frame.size.height += 10;
-//    self.actionFilter.frame = frame;
-    
+    // 设置title：主队 vs 客队。
     TeamManager * tm = [TeamManager defaultManager];
     NSString * title = [NSString stringWithFormat:@"%@ vs %@",
                         [tm teamWithId:_match.homeTeam].name,
@@ -250,7 +208,7 @@ typedef enum {
             self.tvCell = nil;
         }
         
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         UILabel * title = (UILabel *)[cell viewWithTag:UICellItemTitle];
         title.text = [_periodNameArray objectAtIndex:indexPath.row];
@@ -292,8 +250,10 @@ typedef enum {
 
 #pragma mark UITableViewDelegate
 
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//}
+//
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         if (_pointDetailsViewController == nil) {
             _pointDetailsViewController = [[PointDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
