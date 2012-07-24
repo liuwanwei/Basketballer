@@ -410,12 +410,19 @@
 
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1 || alertView.cancelButtonIndex == -1) {
+    if (buttonIndex != 0) {
         [self stopGameCountDown];
         _gameStart = NO;
-        [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
         [AppDelegate delegate].playGameViewController = nil;
+    }
+    
+    if (buttonIndex == 1) {
+        [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+
+    }else if (alertView.cancelButtonIndex == -1){
+        [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
