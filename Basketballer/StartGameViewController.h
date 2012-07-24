@@ -13,7 +13,6 @@
 @protocol SingleChoiceViewDelegate;
 
 @interface StartGameViewController : UITableViewController <SingleChoiceViewDelegate>
-@property (nonatomic, weak) IBOutlet UISegmentedControl * gameModeView;
 @property (nonatomic, weak) IBOutlet UITableViewCell * modeCell;
 @property (nonatomic, weak) UITableViewCell * teamCell;
 
