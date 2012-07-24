@@ -15,12 +15,14 @@
 #import "TeamManager.h"
 #import "GameSetting.h"
 #import "StartGameViewController.h"
+#import "GameHistoriesMapViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GameHistoriesViewController (){
     UINavigationController * _settingsViewController;
     GameDetailsViewController * _gameDetailsViewController;
     UINavigationController * _startGameViewController;
+    UINavigationController * _gameHistoriesMapViewController;
     
     NSDateFormatter * _dateFormatter;
 //    NSDateFormatter * _timeFormatter;
@@ -34,6 +36,10 @@
 - (void)initNavigationItem {
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIBarButtonItem * leftItem =  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showGameHistoriesMapView)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+
 }
 
 #pragma 事件函数
@@ -52,6 +58,15 @@
     
     AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate presentModelViewController:_settingsViewController];
+}
+
+- (void)showGameHistoriesMapView {
+    if (nil == _gameHistoriesMapViewController) {
+        GameHistoriesMapViewController * rootViewController = [[GameHistoriesMapViewController alloc] initWithNibName:@"GameHistoriesMapViewController" bundle:nil];
+        _gameHistoriesMapViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    }
+    
+    [[AppDelegate delegate] presentModelViewController:_gameHistoriesMapViewController];
 }
 
 - (void)historyChangedHandler:(NSNotification *)notification{
@@ -74,7 +89,7 @@
     [self initNavigationItem];
 
 //    UIImage * image = [UIImage imageNamed:@"TeamEntry"];
-//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(showSettingView)];
+//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(initNavigationItem)];
 //    self.navigationItem.leftBarButtonItem = settingItem;
         
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

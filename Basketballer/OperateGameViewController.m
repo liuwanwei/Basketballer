@@ -12,6 +12,7 @@
 #import "define.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
+#import "GameSetting.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface OperateGameViewController() {
@@ -29,9 +30,9 @@
 @synthesize match = _match;
 @synthesize period = _period;
 @synthesize teamNameLabel = _teamNameLabel;
-@synthesize scoreLabel = _scoreLabel;
-@synthesize timeoutLabel = _timeoutLabel;
-@synthesize foulLabel = _foulLabel;
+@synthesize foulButton = _foulButton;
+@synthesize timeoutButton = _timeoutButton;
+@synthesize buttonRegionView = _buttonRegionView;
 
 #pragma 私有函数
 /*计算时间差*/
@@ -54,10 +55,10 @@
  注：设置球队按钮除外
  */
 - (void)setButtonEnabled:(BOOL) enabled {
-    NSInteger size = self.subviews.count;
+    NSInteger size = self.buttonRegionView.subviews.count;
     for (NSInteger index = 0; index < size; index++) {
-        if([[self.subviews objectAtIndex:index] isKindOfClass:[UIButton class]]) {
-            [[self.subviews objectAtIndex:index] setEnabled:enabled];
+        if([[self.buttonRegionView.subviews objectAtIndex:index] isKindOfClass:[UIButton class]]) {
+            [[self.buttonRegionView.subviews objectAtIndex:index] setEnabled:enabled];
         }
     }
 }
@@ -70,6 +71,25 @@
         self.teamImageView.image = [[TeamManager defaultManager] imageForTeam:_team];
         self.teamNameLabel.text = _team.name;
     }
+}
+
+- (void)initTimeoutAndFoulView {
+    self.timeoutButton.titleLabel.text = @"0";
+    [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueBlue@2x"] forState:UIControlStateNormal];
+    self.foulButton.titleLabel.text = @"0";
+    [self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueBlue@2x"] forState:UIControlStateNormal];
+}
+
+- (void)refreshMatchData {
+    ActionManager * actionManager = [ActionManager defaultManager];
+    if(_teamType == host) {
+        self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts];
+        self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+    }else {
+        self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts];
+        self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+    }
+    
 }
 
 #pragma 事件函数
@@ -92,8 +112,8 @@
     }
     
     [_popoverController presentPopoverFromRect:sender.frame 
-                                            inView:self
-                          permittedArrowDirections:UIPopoverArrowDirectionLeft
+                                            inView:sender
+                          permittedArrowDirections:UIPopoverArrowDirectionDown
                                           animated:YES];
 
 }
@@ -103,11 +123,10 @@
     NSInteger time = [self computeTimeDifference];
     if(_teamType == host) {
         [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", actionManager.homeTeamPoints];
     }else {
         [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d", actionManager.guestTeamPoints];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAddScoreMessage object:nil];
 }
 
 - (IBAction)addTimeOver:(id)sender {
@@ -120,32 +139,57 @@
         result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
     }
     if (result) {
-        if (_teamType == host) {
-            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts]; 
+        NSInteger timeoutSize;
+        NSInteger timeoutLimit;
+        if (_match.mode == kGameModeTwoHalf) {
+            timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
         }else {
-            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts]; 
+            timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
         }
+        if (_teamType == host) {
+            timeoutSize = actionManager.homeTeamTimeouts;
+            
+        }else {
+            timeoutSize = actionManager.guestTeamTimeouts;
+        }
+        if (timeoutLimit == timeoutSize) {
+            [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+        }
+        self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",timeoutSize];
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
     }else {
-        [self showAlertView:@"本节暂停次数已经使用完"];
+        [self showAlertView:@"本节暂停已使用完"];
     }
 }
 
 - (IBAction)addFoul:(id)sender {
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
+    NSInteger foulSize;
+    NSInteger foulLimit;
+    if (_match.mode == kGameModeTwoHalf) {
+        foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
+    }else {
+        foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
+    }
+    
     if (_teamType == host) {
         [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
-        self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+        foulSize = actionManager.homeTeamFouls;
     }else {
         [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
-        self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+        foulSize = actionManager.guestTeamFouls;
     }
+    
+    if (foulSize >= foulLimit) {
+        [self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+    }
+    self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",foulSize];
 }
 
 #pragma FoulActionDelegate
 - (void)FoulsBeyondLimit:(NSNumber *)teamId {
-    [self showAlertView:@"本节犯规已达最大数，请进行罚球"];
+    [self showAlertView:@"本节犯规已超最大数，请进行罚球"];
 }
 
 @end

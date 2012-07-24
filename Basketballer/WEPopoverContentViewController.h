@@ -16,4 +16,11 @@
 @property (nonatomic, weak) WEPopoverController * wePopoverController;
 @property (nonatomic, weak) OperateGameViewController * opereteGameViewController;
 
+@property (nonatomic, weak) IBOutlet UITableViewCell * popoverCell;
+@property (nonatomic, weak) IBOutlet UIButton * firstButton;
+@property (nonatomic, weak) IBOutlet UIButton * secondButton;
+@property (nonatomic, weak) IBOutlet UIButton * thirdButton;
+
+- (IBAction) addScore:(UIButton *)button;
+
 @end

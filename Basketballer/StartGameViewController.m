@@ -27,8 +27,6 @@
 @end
 
 @implementation StartGameViewController
-
-@synthesize gameModeView = _gameModeView;
 @synthesize teamCell = _teamCell;
 @synthesize modeCell = _modeCell;
 
@@ -37,19 +35,6 @@
 - (void)showAlertView:(NSString *) message{
     UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
     [alertView show];
-}
-
-/*初始化赛事模式*/
-- (void)initGameModeView {
-    NSArray * modes = [[GameSetting defaultSetting] gameModeNames];
-    if(modes != nil) {
-        NSInteger size = [modes count];
-        for (NSInteger index = 0; index < size; index++) {
-            [self.gameModeView setTitle:[modes objectAtIndex:index] forSegmentAtIndex:index];
-        }
-    }
-    
-    self.gameModeView.frame = CGRectMake(4.0, 4.0, self.gameModeView.frame.size.width, 36.0);
 }
 
 - (void)dismissMyself{
@@ -79,8 +64,7 @@
     GameSettingViewController * gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     gameSettingViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
-//    gameSettingViewController.gameMode = (self.gameModeView.selectedSegmentIndex == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
-    [gameSettingViewController setTitle:[self.gameModeView titleForSegmentAtIndex:self.gameModeView.selectedSegmentIndex]];
+    [gameSettingViewController setTitle:_gameMode];
     [self.navigationController pushViewController:gameSettingViewController animated:YES];
 }
 
@@ -135,7 +119,11 @@
     PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName: @"PlayGameViewController" bundle:nil];
     playGameViewController.hostTeam = _hostTeam;
     playGameViewController.guestTeam = _guestTeam;
-    playGameViewController.gameMode = (self.gameModeView.selectedSegmentIndex == 0 ? kGameModeTwoHalf : kGameModeFourQuarter);
+    if ([_gameMode isEqualToString:@"上下半场"]) {
+        playGameViewController.gameMode = kGameModeTwoHalf;
+    }else {
+        playGameViewController.gameMode = kGameModeFourQuarter;
+    }
     [self.navigationController pushViewController:playGameViewController animated:YES];
 }
 
@@ -223,6 +211,7 @@
             }
             
             _chooseGameModeView.currentChoice = _gameMode;
+            [_chooseGameModeView setTitle:_gameMode];
             [self.navigationController pushViewController:_chooseGameModeView animated:YES];
         }else {
             [self showGameSettingController];

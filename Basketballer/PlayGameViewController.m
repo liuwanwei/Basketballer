@@ -15,6 +15,7 @@
 #import "ActionRecordViewController.h"
 #import "AppDelegate.h"
 #import "GameSettingViewController.h"
+#import "LocationManager.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
@@ -29,7 +30,9 @@
 @synthesize operateGameView2 = _operateGameView2;
 @synthesize gameTimeLabel = _gameTimeLabel;
 @synthesize gamePeroidLabel = _gamePeroidLabel;
-@synthesize gameTimeView = _gameTimeView;
+@synthesize gameHostScoreLable = _gameHostScoreLable;
+@synthesize gameGuestScoreLable = _gameGuestScoreLable;
+@synthesize gameNavView = _gameNavView;
 @synthesize countDownTimer = _countDownTimer;
 @synthesize targetTime = _targetTime;
 @synthesize playBarItem = _playBarItem;
@@ -54,24 +57,44 @@
     [alertView show];
 }
 
+/*消息处理函数*/
+- (void)handleMessage:(NSNotification *)note {
+    if(self.gameState == playing){
+        [self setLastTimeoutTime];
+        [self stopGameCountDown];
+        [self.operateGameView1 setButtonEnabled:NO];
+        [self.operateGameView2 setButtonEnabled:NO];
+        [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
+        self.gameState = timeout;
+        [self showTimeoutPromptView:timeoutMode];
+    }
+}
+
+/*消息处理函数*/
+- (void)handleTimroutOverMessage:(NSNotification *)note {
+    AudioServicesPlayAlertSound (self.soundFileObject);
+}
+
+/*消息处理函数*/
+- (void)handleAddScoreMessage:(NSNotification *)note {
+    ActionManager * actionManager = [ActionManager defaultManager];
+    
+    self.gameHostScoreLable.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamPoints];
+    self.gameGuestScoreLable.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamPoints];
+}
+
 /*初始化暂停、犯规显示数据。
  用途：当本节比赛结束时调用。*/
 - (void)initTimeoutAndFoulView {
-    _operateGameView1.timeoutLabel.text = @"0";
-    _operateGameView1.foulLabel.text = @"0";
-    _operateGameView2.timeoutLabel.text = @"0";
-    _operateGameView2.foulLabel.text = @"0";
+    [_operateGameView1 initTimeoutAndFoulView];
+    [_operateGameView2 initTimeoutAndFoulView];
 }
 
 - (void)refreshMatchData {
-    ActionManager * actionManager = [ActionManager defaultManager];
-    NSInteger length = actionManager.homeTeamPoints;
-    _operateGameView1.scoreLabel.text = [NSString stringWithFormat:@"%d",length];
-    _operateGameView1.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
-    _operateGameView1.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts];
-    _operateGameView2.scoreLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamPoints];
-    _operateGameView2.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
-    _operateGameView2.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts];}
+    [_operateGameView1 refreshMatchData];
+    [_operateGameView2 refreshMatchData];
+    [self handleAddScoreMessage:nil];
+}
 
 /*获取单节时长*/
 - (NSInteger) getQuarterLength {
@@ -91,7 +114,7 @@
     
     GameSettingViewController * gameSettingontroller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     gameSettingontroller.viewStyle = UIGameSettingViewStyleShow;
-    
+    gameSettingontroller.gameMode = _gameMode;
     if (_gameMode == kGameModeTwoHalf) {
         [gameSettingontroller setTitle:[modes objectAtIndex:0]];
     }else {
@@ -102,13 +125,15 @@
     [self.navigationController pushViewController:gameSettingontroller animated:YES];
 }
 
-/*初始化导航item*/
+/*初始化导航View*/
 - (void)initNavBarItem {
+    [self.navigationItem setHidesBackButton:YES];
+     self.navigationItem.titleView = self.gameNavView;
+    
     UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     [rightButton addTarget:self  action:@selector(showGameSettingController) forControlEvents:UIControlEventTouchUpInside]; 
     UIBarButtonItem * rightItem = [[UIBarButtonItem  alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightItem;
-
 }
 
 /*设置暂停时的时间*/
@@ -118,14 +143,10 @@
 }
 
 - (void)initGameCountDownLable {
-    [self.navigationItem setHidesBackButton:YES];
-    self.navigationItem.titleView = self.gameTimeView;
-    self.gameTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
     self.gameTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getQuarterLength],0];
 }
 
-- (void)initGamePeriodLabel {
-    self.gameTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:20.0f];
+- (void)setGamePeriodLabel {
     NSString * prtoidStr;
     switch (_curPeroid) {
         case -1:
@@ -254,7 +275,7 @@
 
 - (void) initOperateGameView {
   
-    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(7.0,10.0f, 306.0f, 168.0f)];
+    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,-1.0f, 320.0f, 185.0f)];
     self.operateGameView1.team = _hostTeam;
     self.operateGameView1.teamType = host;
     [self.operateGameView1 initTeam];
@@ -262,30 +283,12 @@
     [self.view addSubview:self.operateGameView1];
 
     
-    self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(7.0,195.0f, 306.0f, 168.0f)];
+    self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,186.0f, 320.0f, 185.0f)];
     self.operateGameView2.team = _guestTeam;
     self.operateGameView2.teamType = guest;
     [self.operateGameView2 initTeam];
     [self.operateGameView2 setButtonEnabled:NO];
     [self.view addSubview:self.operateGameView2];
-}
-
-/*消息处理函数*/
-- (void)handleMessage:(NSNotification *)note {
-    if(self.gameState == playing){
-        [self setLastTimeoutTime];
-        [self stopGameCountDown];
-        [self.operateGameView1 setButtonEnabled:NO];
-        [self.operateGameView2 setButtonEnabled:NO];
-        [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
-        self.gameState = timeout;
-        [self showTimeoutPromptView:timeoutMode];
-    }
-}
-
-/*消息处理函数*/
-- (void)handleTimroutOverMessage:(NSNotification *)note {
-     AudioServicesPlayAlertSound (self.soundFileObject);
 }
 
 /*
@@ -296,6 +299,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessage:) name:kTimeoutMessage object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimroutOverMessage:) name:kTimeoutOverMessage object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddScoreMessage:) name:kAddScoreMessage object:nil];
+}
+
+- (void)initSoundResource {
+    NSURL * tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
+                                                 withExtension: @"caf"];
+    self.soundFileURLRef = (__bridge CFURLRef)tapSound;
+    AudioServicesCreateSystemSoundID (self.soundFileURLRef,&_soundFileObject);
 }
 
 #pragma 事件函数
@@ -315,14 +327,12 @@
     [self initOperateGameView];
     [self initGameCountDownLable];
     [self registerHandleMessage];
+    [self setGamePeriodLabel];
+    [self initSoundResource];
+    
     self.gameState = prepare;
     self.curPeroid = -1;
-    [self initGamePeriodLabel];
     [AppDelegate delegate].playGameViewController = self;
-    NSURL * tapSound   = [[NSBundle mainBundle] URLForResource: @"sendmsg"
-                                                withExtension: @"caf"];
-    self.soundFileURLRef = (__bridge CFURLRef)tapSound;
-    AudioServicesCreateSystemSoundID (self.soundFileURLRef,&_soundFileObject);
     
     [self startGame:nil];
 }
@@ -358,7 +368,7 @@
        
         if(self.gameState == prepare || self.gameState == over_quarter_finish) {
             [self initGameTargetTime];
-            [self initGamePeriodLabel];
+            [self setGamePeriodLabel];
         }else {
             [self updateGameTargetTime];
         }
@@ -395,18 +405,24 @@
         ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
         actionRecordontroller.actionRecords = [[ActionManager defaultManager] actionArray];
         [self.navigationController pushViewController:actionRecordontroller animated:YES];
-
     }
 }
 
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1 || alertView.cancelButtonIndex == -1) {
+    if (buttonIndex != 0) {
         [self stopGameCountDown];
         _gameStart = NO;
-        [[MatchManager defaultManager] finishMatch:_match];
         AudioServicesDisposeSystemSoundID (self.soundFileObject);
         [AppDelegate delegate].playGameViewController = nil;
+    }
+    
+    if (buttonIndex == 1) {
+        [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+
+    }else if (alertView.cancelButtonIndex == -1){
+        [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
