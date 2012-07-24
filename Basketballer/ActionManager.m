@@ -199,9 +199,11 @@ static ActionManager * sActionManager;
     [_currentTeam addStatistic:actionType];
     
     // 如果超出单节允许犯规次数的话，就会带来一次罚球。
-    if (_currentTeam.fouls > _periodFoulsLimit) {
-        if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
-            [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:_currentTeam.teamId];
+    if (actionType == ActionTypeFoul) {
+        if (_currentTeam.fouls > _periodFoulsLimit) {
+            if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
+                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:_currentTeam.teamId];
+            }
         }
     }
     
