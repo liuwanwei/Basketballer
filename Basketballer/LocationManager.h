@@ -13,6 +13,8 @@
 
 + (LocationManager *)defaultManager;
 
+@property (nonatomic, strong) CLLocationManager * locationManager;
+
 - (void)startStandardLocationServcie;
 - (void)stopStandardLocationService;
 

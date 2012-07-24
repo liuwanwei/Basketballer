@@ -11,11 +11,11 @@
 static LocationManager * sLocationManager;
 
 @interface LocationManager() {
-    CLLocationManager * _locationManager;
 }
 @end
 
 @implementation LocationManager
+@synthesize locationManager = _locationManager;
 
 + (LocationManager *)defaultManager{
     if (nil == sLocationManager) {
@@ -27,10 +27,10 @@ static LocationManager * sLocationManager;
 
 - (id)init{
     if (self = [super init]) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        _locationManager.distanceFilter = 10;
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        self.locationManager.distanceFilter = 10;
     }
     
     return self;
@@ -38,12 +38,12 @@ static LocationManager * sLocationManager;
 
 - (void)startStandardLocationServcie{
     if ([CLLocationManager locationServicesEnabled]) {
-         [_locationManager startUpdatingLocation];
+         [self.locationManager startUpdatingLocation];
     }
 }
 
 - (void)stopStandardLocationService{
-    [_locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingLocation];
 }
 
 #pragma mark - CLLocationManagerDelegate
