@@ -243,6 +243,7 @@
     Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
     _gameDetailsViewController.match = match;
     [_gameDetailsViewController reloadActionsInMatch];
+    _gameDetailsViewController.hidesBottomBarWhenPushed = YES;    
     [self.navigationController pushViewController:_gameDetailsViewController animated:YES];
 }
 

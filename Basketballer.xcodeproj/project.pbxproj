@@ -104,6 +104,7 @@
 		E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */; };
 		E6E1D98415B01EC800CB0C0E /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D98215B01EC800CB0C0E /* Add@2x.png */; };
 		E6E1D98615B01F6900CB0C0E /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D98515B01F6900CB0C0E /* Add.png */; };
+		E6E9691315BD45230073C5B8 /* PointDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +241,8 @@
 		E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamRecordCell.xib; sourceTree = "<group>"; };
 		E6E1D98215B01EC800CB0C0E /* Add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add@2x.png"; sourceTree = "<group>"; };
 		E6E1D98515B01F6900CB0C0E /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
+		E6E9691115BD45230073C5B8 /* PointDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDetailsViewController.h; sourceTree = "<group>"; };
+		E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +428,8 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E6E9691115BD45230073C5B8 /* PointDetailsViewController.h */,
+				E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */,
 				E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */,
 				E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */,
 				3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */,
@@ -661,6 +666,7 @@
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */,
 				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
+				E6E9691315BD45230073C5B8 /* PointDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
