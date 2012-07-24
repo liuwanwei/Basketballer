@@ -13,7 +13,10 @@
 @implementation WEPopoverContentViewController
 @synthesize wePopoverController = _wePopoverController;
 @synthesize opereteGameViewController = _opereteGameViewController;
-
+@synthesize popoverCell = _popoverCell;
+@synthesize firstButton = _firstButton;
+@synthesize secondButton = _secondButton;
+@synthesize thirdButton = _thirdButton;
 
 #pragma mark -
 #pragma mark Initialization
@@ -21,7 +24,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     if ((self = [super initWithStyle:style])) {
-		self.contentSizeForViewInPopover = CGSizeMake(100, 3 * 60 - 1);
+		self.contentSizeForViewInPopover = CGSizeMake(260,50);
     }
     return self;
 }
@@ -33,9 +36,14 @@
     [super viewDidLoad];
 
 	self.tableView.rowHeight = 60.0;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.view.backgroundColor = [UIColor clearColor];
 }
 
+- (IBAction) addScore:(UIButton *)button {
+    [_opereteGameViewController addScore:button.tag];
+    [_wePopoverController dismissPopoverAnimated:YES];
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -46,7 +54,12 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
+{
+    return 50;
 }
 
 
@@ -57,12 +70,11 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [[NSBundle mainBundle] loadNibNamed:@"PopoverContentCell" owner:self options:nil];
+        cell = _popoverCell;
+        self.popoverCell = nil;
     }
     
-    // Configure the cell...
-	cell.textLabel.text = [NSString stringWithFormat:@"+   %d", [indexPath row] + 1]; 
-	cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -71,10 +83,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(_wePopoverController != nil) {
-        [_opereteGameViewController addScore:indexPath.row + 1];
-        [_wePopoverController dismissPopoverAnimated:YES];
-    }
+   
 }
 
 
