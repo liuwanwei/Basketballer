@@ -23,4 +23,5 @@ enum GameState {
 
 #define kTimeoutMessage @"kTimeout"
 #define kTimeoutOverMessage @"kTimeoutOver"
+#define kAddScoreMessage @"kAddScore"
 #endif
