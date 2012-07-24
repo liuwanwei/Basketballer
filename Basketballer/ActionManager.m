@@ -139,6 +139,29 @@ static ActionManager * sActionManager;
     return summaryArray;
 }
 
+- (NSArray *)actionsWithType:(ActionType)actionType inPeriod:(NSInteger)period inActions:(NSArray *)actions{
+    NSMutableArray * actionArray = [[NSMutableArray alloc] init];
+    for (Action * action in actions) {
+        if ([action.period integerValue] == period) {
+            NSInteger tmpType = [action.type integerValue];
+            if (actionType == tmpType){
+                if (actionType == ActionTypeFoul || 
+                    actionType == ActionTypeTimeout) {
+                    [actionArray addObject:action];
+                }
+            }else if(actionType == ActionTypePoints){
+                if (tmpType == ActionType1Point || 
+                    tmpType == ActionType2Points || 
+                    tmpType == ActionType3Points) {
+                    [actionArray addObject:action];
+                }
+            }
+        }        
+    }
+    
+    return actionArray;
+}
+
 // TODO 这个接口还是不好，用_currentTeam来做函数间的联系人，不如用参数。
 - (Action *)newActionInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
     // 暂停有总数限制，要先检查一下。

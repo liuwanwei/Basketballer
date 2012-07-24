@@ -8,16 +8,17 @@
 
 #import "GameDetailsViewController.h"
 #import "ActionRecordViewController.h"
+#import "PointDetailsViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
 
 typedef enum {
     UICellItemTitle = 1,
-    UICellFirstValue = 2,
-    UICellSecondValue = 3,
-    UICellActionFilter = 4,
-    UICellItemDelete = 5
+    UICellFirstHome = 2,
+    UICellFirstGuest = 3,
+    UICellSecondHome = 4,
+    UICellSecondGuest = 5,
 }UIMatchPartSummaryCellTag;
 
 @interface GameDetailsViewController (){
@@ -30,14 +31,18 @@ typedef enum {
     
     NSMutableArray * _actionsInMatch;
     
-    NSInteger _actionFilterValue;
-    NSMutableArray * _homeTeamActionSummaryArray;
-    NSMutableArray * _guestTeamActionSummaryArray;
+//    NSInteger _actionFilterValue;
+    NSMutableArray * _homeTeamPointsSummary;
+    NSMutableArray * _guestTeamPointsSummary;
+    NSMutableArray * _homeTeamFoulsSummary;
+    NSMutableArray * _guestTeamFoulsSummary;
     
     NSInteger _actionFilterSelectedIndex;
     
-    NSArray * _filteredActions;
-    ActionRecordViewController * _actionsViewController;
+//    NSArray * _filteredActions;
+//    ActionRecordViewController * _actionsViewController;
+    
+    PointDetailsViewController * _pointDetailsViewController;
 }
 @end
 
@@ -52,6 +57,7 @@ typedef enum {
 @synthesize match = _match;
 
 - (void)back{
+    self.hidesBottomBarWhenPushed = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -68,61 +74,43 @@ typedef enum {
 }
 
 - (void)actionFilterChanged:(id)sender{
-    _actionFilterSelectedIndex = self.actionFilter.selectedSegmentIndex;
-    switch (_actionFilterSelectedIndex) {
-        default:            
-        case 0:
-            _actionFilterValue = ActionTypePoints;
-            break;
-        case 1:
-            _actionFilterValue = ActionTypeFoul;
-            break;
-        case 2:
-            _actionFilterValue = ActionTypeTimeout;
-            break;
-    }
+//    _actionFilterSelectedIndex = self.actionFilter.selectedSegmentIndex;
+//    switch (_actionFilterSelectedIndex) {
+//        default:            
+//        case 0:
+//            _actionFilterValue = ActionTypePoints;
+//            break;
+//        case 1:
+//            _actionFilterValue = ActionTypeFoul;
+//            break;
+//        case 2:
+//            _actionFilterValue = ActionTypeTimeout;
+//            break;
+//    }
     
     
-    // 加载技术统计信息。
-    ActionManager * am = [ActionManager defaultManager];
-    _homeTeamActionSummaryArray = [am summaryForFilter:_actionFilterValue 
-                                            withTeam:[_match.homeTeam integerValue] 
-                                            inActions:_actionsInMatch];
-    _guestTeamActionSummaryArray = [am summaryForFilter:_actionFilterValue 
-                                            withTeam:[_match.guestTeam integerValue] 
-                                            inActions:_actionsInMatch];
-
-    [self.tableView reloadData];
 }
 
 - (void)reloadActionsInMatch{
     _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:[_match.id integerValue]];
-    [_actionFilter setSelectedSegmentIndex:0];
     
-    [self actionFilterChanged:_actionFilter];
-}
-
-- (NSArray *)actionsWithType:(ActionType)actionType inPeriod:(NSInteger)period{
-    NSMutableArray * actionArray = [[NSMutableArray alloc] init];
-    for (Action * action in _actionsInMatch) {
-        if ([action.period integerValue] == period) {
-            NSInteger tmpType = [action.type integerValue];
-            if (actionType == tmpType){
-                if (actionType == ActionTypeFoul || 
-                    actionType == ActionTypeTimeout) {
-                    [actionArray addObject:action];
-                }
-            }else if(actionType == ActionTypePoints){
-                if (tmpType == ActionType1Point || 
-                    tmpType == ActionType2Points || 
-                    tmpType == ActionType3Points) {
-                    [actionArray addObject:action];
-                }
-            }
-        }        
-    }
+    // 加载技术统计信息。
+    ActionManager * am = [ActionManager defaultManager];
+    _homeTeamPointsSummary = [am summaryForFilter:ActionTypePoints 
+                                         withTeam:[_match.homeTeam integerValue] 
+                                        inActions:_actionsInMatch];
+    _guestTeamPointsSummary = [am summaryForFilter:ActionTypePoints 
+                                          withTeam:[_match.guestTeam integerValue] 
+                                         inActions:_actionsInMatch];
+    _homeTeamFoulsSummary = [am summaryForFilter:ActionTypeFoul 
+                                        withTeam:[_match.homeTeam integerValue] 
+                                       inActions:_actionsInMatch];
+    _guestTeamFoulsSummary = [am summaryForFilter:ActionTypeFoul 
+                                         withTeam:[_match.guestTeam integerValue] 
+                                        inActions:_actionsInMatch];
     
-    return actionArray;
+    [self.tableView reloadData];
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -152,25 +140,30 @@ typedef enum {
     self.tableView.delegate = self;
     
 //    UIBarButtonItem * space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem * trash = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCurrentMatch)];
+//    UIBarButtonItem * trash = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteCurrentMatch)];
 //    NSArray * toolbarItems = [NSArray arrayWithObjects:space, trash, nil];
 //    [self.toolbar setItems:toolbarItems];
-    self.navigationItem.rightBarButtonItem = trash;
+//    self.navigationItem.rightBarButtonItem = trash;
     
-    [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
-    self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
+//    [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
+//    self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
     
-    CGRect frame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, self.tableHeaderView.frame.size.height);
-    self.tableHeaderView.backgroundColor = [UIColor clearColor];
-    self.tableHeaderView.frame = frame;
-    self.tableView.tableHeaderView = self.tableHeaderView;
+//    CGRect frame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, self.tableHeaderView.frame.size.height);
+//    self.tableHeaderView.backgroundColor = [UIColor clearColor];
+//    self.tableHeaderView.frame = frame;
+//    self.tableView.tableHeaderView = self.tableHeaderView;
     
 //    
 //    frame = self.actionFilter.frame;
 //    frame.size.height += 10;
 //    self.actionFilter.frame = frame;
     
-    [self setTitle:@"比赛概况"];
+    TeamManager * tm = [TeamManager defaultManager];
+    NSString * title = [NSString stringWithFormat:@"%@ vs %@",
+                        [tm teamWithId:_match.homeTeam].name,
+                        [tm teamWithId:_match.guestTeam].name];
+    
+    [self setTitle:title];
 }
 
 - (void)viewDidUnload
@@ -184,20 +177,6 @@ typedef enum {
     [super viewWillAppear:animated];
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
-    
-    
-    TeamManager * tm =  [TeamManager defaultManager];
-    NSString * home  = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.homeTeam]];
-    NSString * guest = [tm teamNameWithDeletedStatus:[tm teamWithId:self.match.guestTeam]];
-    NSString * teamNames = [NSString stringWithFormat:@"%@ vs %@", home, guest];
-    self.teams.text = teamNames;
-    
-    self.dateTime.text = [[self.match date] description];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -215,52 +194,96 @@ typedef enum {
         _periodNameArray = nil;
     }
     
-    return 1;
+    return 3;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return [_filterNames objectAtIndex:_actionFilterSelectedIndex];
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return @"得分对比";
+    }else if(section == 2){
+        return @"犯规对比";
+    }else{
+        return nil;
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
+        return 2;
+    }else if(section == 1 || section == 2){
         return [_periodNameArray count];
     }else{
-        return 1;
+        return 0;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * CellIdentifier = @"CellIdentifier";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        if (indexPath.section == 0) {
+    UITableViewCell * cell = nil;
+    if (indexPath.section == 0) {
+        static NSString * CellIdentifier = @"CellIdentifier0";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (nil == cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        }
+        
+        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yy-MM-dd hh:mm"];
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"时间";
+                cell.detailTextLabel.text = [dateFormatter stringFromDate:_match.date];        
+                break;
+            case 1:
+                cell.textLabel.text = @"位置";
+                cell.detailTextLabel.text = @"未指定";
+                break;
+            default:
+                break;
+        }
+    }else if(indexPath.section == 1){
+        // 在xib中设置UITableViewCell的reuseIdentifier。
+        static NSString * CellIdentifier = @"SummaryReuseIdentifier";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
             [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
             cell = _tvCell;
             self.tvCell = nil;
         }
-//        }else if(indexPath.section == 1){
-//            [[NSBundle mainBundle] loadNibNamed:@"MatchActionFilterCell" owner:self options:nil];
-//            cell = _actionFilterCell;
-//            self.actionFilterCell = nil;
-//            
-//            self.actionFilter = (UISegmentedControl *)[cell viewWithTag:UICellActionFilter];
-//            [self.actionFilter addTarget:self action:@selector(actionFilterChanged:) forControlEvents:UIControlEventValueChanged];
-//            self.actionFilter.selectedSegmentIndex = _actionFilterSelectedIndex;
-//            self.actionFilter.frame = CGRectMake(0, 0, cell.frame.size.width, 45);
-//        }
-    }
-    
-    if (indexPath.section == 0) {
+        
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        
         UILabel * title = (UILabel *)[cell viewWithTag:UICellItemTitle];
         title.text = [_periodNameArray objectAtIndex:indexPath.row];
         
-        UILabel * firstValue = (UILabel *)[cell viewWithTag:UICellFirstValue];
-        NSNumber * statistics = [_homeTeamActionSummaryArray objectAtIndex:indexPath.row];
+        UILabel * firstValue = (UILabel *)[cell viewWithTag:UICellFirstHome];
+        NSNumber * statistics = [_homeTeamPointsSummary objectAtIndex:indexPath.row];
         firstValue.text = [statistics stringValue]; 
         
-        UILabel * secondValue = (UILabel *)[cell viewWithTag:UICellSecondValue];
-        statistics = [_guestTeamActionSummaryArray objectAtIndex:indexPath.row];
+        UILabel * secondValue = (UILabel *)[cell viewWithTag:UICellFirstGuest];
+        statistics = [_guestTeamPointsSummary objectAtIndex:indexPath.row];
+        secondValue.text = [statistics stringValue];
+
+    }else if(indexPath.section == 2){
+        // 在xib中设置UITableViewCell的reuseIdentifier。
+        static NSString * CellIdentifier = @"SummaryReuseIdentifier";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
+            cell = _tvCell;
+            self.tvCell = nil;
+        }
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        UILabel * title = (UILabel *)[cell viewWithTag:UICellItemTitle];
+        title.text = [_periodNameArray objectAtIndex:indexPath.row];
+        
+        UILabel * firstValue = (UILabel *)[cell viewWithTag:UICellFirstHome];
+        NSNumber * statistics = [_homeTeamFoulsSummary objectAtIndex:indexPath.row];
+        firstValue.text = [statistics stringValue]; 
+        
+        UILabel * secondValue = (UILabel *)[cell viewWithTag:UICellFirstGuest];
+        statistics = [_guestTeamFoulsSummary objectAtIndex:indexPath.row];
         secondValue.text = [statistics stringValue];
     }
     
@@ -269,27 +292,18 @@ typedef enum {
 
 #pragma mark UITableViewDelegate
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 0) {
-//        if (_actionsViewController == nil) {
-//            _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];
-//        }
-//        _filteredActions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
-//        _actionsViewController.actionRecords = _filteredActions;
-//        [_actionsViewController.tableView reloadData];
-//        [self.navigationController pushViewController:_actionsViewController animated:YES];
-//    }
-//}
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        if (_actionsViewController == nil) {
-            _actionsViewController = [[ActionRecordViewController alloc] initWithStyle:UITableViewStylePlain];
+    if (indexPath.section == 1) {
+        if (_pointDetailsViewController == nil) {
+            _pointDetailsViewController = [[PointDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
         }
-        _filteredActions = [self actionsWithType:_actionFilterValue inPeriod:indexPath.row];
-        _actionsViewController.actionRecords = _filteredActions;
-        [_actionsViewController.tableView reloadData];
-        [self.navigationController pushViewController:_actionsViewController animated:YES];
+        
+        _pointDetailsViewController.match = _match;
+        _pointDetailsViewController.actions = [[ActionManager defaultManager] actionsWithType:ActionTypePoints inPeriod:indexPath.row inActions:_actionsInMatch];
+        _pointDetailsViewController.title = [_periodNameArray objectAtIndex:indexPath.row];
+        [_pointDetailsViewController.tableView reloadData];
+        [self.navigationController pushViewController:_pointDetailsViewController animated:YES];
     }
 }
  
