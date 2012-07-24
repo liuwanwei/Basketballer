@@ -12,6 +12,7 @@
 #import "define.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
+#import "GameSetting.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface OperateGameViewController() {
@@ -93,7 +94,7 @@
     
     [_popoverController presentPopoverFromRect:sender.frame 
                                             inView:self
-                          permittedArrowDirections:UIPopoverArrowDirectionLeft
+                          permittedArrowDirections:UIPopoverArrowDirectionDown
                                           animated:YES];
 
 }
@@ -120,32 +121,60 @@
         result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
     }
     if (result) {
-        if (_teamType == host) {
-            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts]; 
+        NSInteger timeoutSize;
+        NSInteger timeoutLimit;
+        if (_match.mode == kGameModeTwoHalf) {
+            timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
         }else {
-            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts]; 
+            timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
+        }
+        if (_teamType == host) {
+            timeoutSize = actionManager.homeTeamTimeouts;
+            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",timeoutSize]; 
+            
+        }else {
+            timeoutSize = actionManager.guestTeamTimeouts;
+            self.timeoutLabel.text = [NSString stringWithFormat:@"%d",timeoutSize]; 
+        }
+        
+        if (timeoutLimit == timeoutSize) {
+            self.timeoutLabel.textColor = [UIColor redColor];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
     }else {
-        [self showAlertView:@"本节暂停次数已经使用完"];
+        [self showAlertView:@"本节暂停已使用完"];
     }
 }
 
 - (IBAction)addFoul:(id)sender {
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
+    NSInteger foulSize;
+    NSInteger foulLimit;
+    if (_match.mode == kGameModeTwoHalf) {
+        foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
+    }else {
+        foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
+    }
+    
     if (_teamType == host) {
         [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
-        self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+        foulSize = actionManager.homeTeamFouls;
+        self.foulLabel.text = [NSString stringWithFormat:@"%d",foulSize];
     }else {
         [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
-        self.foulLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+        foulSize = actionManager.guestTeamFouls;
+        self.foulLabel.text = [NSString stringWithFormat:@"%d",foulSize];
+    }
+    
+    if (foulSize >= foulLimit) {
+        self.foulLabel.textColor = [UIColor redColor];
     }
 }
 
 #pragma FoulActionDelegate
 - (void)FoulsBeyondLimit:(NSNumber *)teamId {
-    [self showAlertView:@"本节犯规已达最大数，请进行罚球"];
+    [self showAlertView:@"本节犯规已超最大数，请进行罚球"];
 }
 
 @end
