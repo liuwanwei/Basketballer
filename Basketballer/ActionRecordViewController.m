@@ -23,6 +23,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -34,10 +38,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"比赛记录";
+    self.title = @"裁判记录";
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
     swip.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swip];
+    
+    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = item;
+    
+    self.tableView.editing = YES;
 }
 
 - (void)viewDidUnload
@@ -85,19 +94,19 @@
     NSString * actionStr;
     switch ([action.type intValue]) {
         case ActionType1Point:
-            actionStr = @"+1分";
+            actionStr = @"得分+1";
             break;
         case ActionType2Points:
-            actionStr = @"+2分";
+            actionStr = @"得分+2";
             break;
         case ActionType3Points:
-            actionStr = @"+3分";
+            actionStr = @"得分+3";
             break;
         case ActionTypeFoul:
-            actionStr = @"+犯规";
+            actionStr = @"犯规+1";
             break;
         case ActionTypeTimeout:
-            actionStr = @"+暂停";
+            actionStr = @"暂停+1";
             break;
 
         default:
@@ -123,15 +132,19 @@
             break;
     }
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@  %d分%d秒",actionStr,peroid,time/60,time%60];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %02d:%02d  %@", peroid,time/60,time%60, actionStr];
     return cell;
 }
 
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"发生误操作时请在这里删除";
 }
+
+// Override to support conditional editing of the table view.
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
