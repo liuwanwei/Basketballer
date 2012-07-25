@@ -16,6 +16,7 @@ static LocationManager * sLocationManager;
 
 @implementation LocationManager
 @synthesize locationManager = _locationManager;
+@synthesize delegate = _delegate;
 
 + (LocationManager *)defaultManager{
     if (nil == sLocationManager) {
@@ -51,6 +52,10 @@ static LocationManager * sLocationManager;
     NSDate * date = newLocation.timestamp;
     NSTimeInterval howRecent = [date timeIntervalSinceNow];
     if (abs(howRecent) < 5) {
+        CLLocation * changeLocation = [[CLLocation alloc] initWithLatitude:[newLocation coordinate].latitude - 0.0011 longitude:[newLocation coordinate].longitude + 0.006 ];
+        if (_delegate != nil && [_delegate respondsToSelector:@selector(receivedLocation:)]) {
+            [_delegate performSelector:@selector(receivedLocation:) withObject:changeLocation];
+        }
         [self stopStandardLocationService];
     }
 }

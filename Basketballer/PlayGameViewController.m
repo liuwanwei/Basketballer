@@ -15,7 +15,6 @@
 #import "ActionRecordViewController.h"
 #import "AppDelegate.h"
 #import "GameSettingViewController.h"
-#import "LocationManager.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
@@ -45,6 +44,7 @@
 @synthesize soundFileObject = _soundFileObject;
 @synthesize soundFileURLRef = _soundFileURLRef;
 @synthesize timeoutTargetTime = _timeoutTargetTime;
+@synthesize mapView = _mapView;
 
 #pragma 私有函数
 - (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
@@ -333,7 +333,7 @@
     self.gameState = prepare;
     self.curPeroid = -1;
     [AppDelegate delegate].playGameViewController = self;
-    
+    [LocationManager defaultManager].delegate = self;
     [self startGame:nil];
 }
 
@@ -371,6 +371,8 @@
         _operateGameView2.match = _match;
         _curPeroid = -1;
         _gameStart = YES;
+        
+        [[LocationManager defaultManager] startStandardLocationServcie];
     }
     if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout) {
        
@@ -438,6 +440,14 @@
 //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         self.hidesBottomBarWhenPushed = NO;        
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma LocationManager delete
+- (void)receivedLocation:(CLLocation *) location {
+    if (_match != nil) {
+        _match.latitude = [NSNumber numberWithDouble:[location coordinate].latitude];
+        _match.longitude = [NSNumber numberWithDouble:[location coordinate].longitude];
     }
 }
 
