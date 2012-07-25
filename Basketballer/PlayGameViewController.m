@@ -151,16 +151,16 @@
     switch (_curPeroid) {
         case -1:
         case 0:
-            prtoidStr = @"1 ST";
+            prtoidStr = @"1st";
             break;
         case 1: 
-            prtoidStr = @"2 ND";
+            prtoidStr = @"2nd";
             break;
         case 2:
-            prtoidStr = @"3 RD";
+            prtoidStr = @"3rd";
             break;
         case 3:
-            prtoidStr = @"4 TH";
+            prtoidStr = @"4th";
             break;
 
         default:
@@ -355,6 +355,14 @@
     [self refreshMatchData];
 }
 
+- (void)changeTimeColorWithSuspendedState:(BOOL)suspended{
+    if (suspended) {
+        _gameTimeLabel.textColor = [UIColor redColor];
+    }else{
+        _gameTimeLabel.textColor = [UIColor whiteColor];
+    }
+}
+
 - (IBAction)startGame:(id)sender {
     if(_gameStart == NO) {
         _match = [[MatchManager defaultManager] newMatchWithMode:self.gameMode
@@ -376,6 +384,7 @@
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
         [self.playBarItem setImage:[UIImage imageNamed:@"pause"]];
+        [self changeTimeColorWithSuspendedState:NO];
         self.gameState = playing;
     }else if(self.gameState == playing){
         [self setLastTimeoutTime];
@@ -383,6 +392,7 @@
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
         [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
+        [self changeTimeColorWithSuspendedState:YES];        
         self.gameState = timeout;
     }
 }
@@ -419,11 +429,15 @@
     
     if (buttonIndex == 1) {
         [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.hidesBottomBarWhenPushed = NO;
+        [self.navigationController popViewControllerAnimated:YES];
 
     }else if (alertView.cancelButtonIndex == -1){
         [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.hidesBottomBarWhenPushed = NO;        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
