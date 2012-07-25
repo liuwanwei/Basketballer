@@ -86,13 +86,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initNavigationItem];
-
-//    UIImage * image = [UIImage imageNamed:@"TeamEntry"];
-//    UIBarButtonItem * settingItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleBordered target:self action:@selector(initNavigationItem)];
-//    self.navigationItem.leftBarButtonItem = settingItem;
-        
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    [self initNavigationItem];
     
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];

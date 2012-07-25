@@ -13,9 +13,12 @@
 @protocol SingleChoiceViewDelegate;
 
 @interface StartGameViewController : UITableViewController <SingleChoiceViewDelegate>
+
 @property (nonatomic, weak) IBOutlet UITableViewCell * modeCell;
 @property (nonatomic, weak) UITableViewCell * teamCell;
+@property (nonatomic, weak) IBOutlet UIView * startMatchView;
 
 - (void)refreshTableData:(Team *) team;
 - (IBAction)startGame:(id)sender;
+
 @end
