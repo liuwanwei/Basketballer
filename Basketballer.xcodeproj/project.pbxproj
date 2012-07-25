@@ -67,6 +67,8 @@
 		3CCAE45A15BE25790030C302 /* GameHistoriesMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE45815BE25790030C302 /* GameHistoriesMapViewController.xib */; };
 		3CCAE46115BE3B440030C302 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCAE46015BE3B440030C302 /* MapKit.framework */; };
 		3CCAE46315BE53E40030C302 /* badgeValueRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE46215BE53E40030C302 /* badgeValueRed.png */; };
+		3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */; };
+		3CCAE4F715BFE4400030C302 /* buttonCancelBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE4F615BFE4400030C302 /* buttonCancelBackground.png */; };
 		3CEDBF6715B63F37003EF7EF /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEDBF6615B63F37003EF7EF /* button_background.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
@@ -193,6 +195,9 @@
 		3CCAE45815BE25790030C302 /* GameHistoriesMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoriesMapViewController.xib; sourceTree = "<group>"; };
 		3CCAE46015BE3B440030C302 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3CCAE46215BE53E40030C302 /* badgeValueRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badgeValueRed.png; sourceTree = "<group>"; };
+		3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
+		3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
+		3CCAE4F615BFE4400030C302 /* buttonCancelBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonCancelBackground.png; path = Resources/images/buttonCancelBackground.png; sourceTree = "<group>"; };
 		3CEDBF6615B63F37003EF7EF /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background.png; path = Resources/images/button_background.png; sourceTree = "<group>"; };
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
@@ -275,6 +280,7 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3CCAE4F615BFE4400030C302 /* buttonCancelBackground.png */,
 				3CCAE46215BE53E40030C302 /* badgeValueRed.png */,
 				3C42823A15B7B1B500903F9D /* buttonBackground.png */,
 				3CEDBF6615B63F37003EF7EF /* button_background.png */,
@@ -309,6 +315,8 @@
 				3C121F7A15A43DC30062BECD /* define.h */,
 				3CCAE41415BD3E4F0030C302 /* LocationManager.h */,
 				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
+				3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */,
+				3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */,
 			);
 			name = library;
 			sourceTree = "<group>";
@@ -641,6 +649,7 @@
 				E6BECB2215BB1F3900AABC38 /* puppy-dog.jpg in Resources */,
 				3CCAE45A15BE25790030C302 /* GameHistoriesMapViewController.xib in Resources */,
 				3CCAE46315BE53E40030C302 /* badgeValueRed.png in Resources */,
+				3CCAE4F715BFE4400030C302 /* buttonCancelBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +694,7 @@
 				E6E9691315BD45230073C5B8 /* PointDetailsViewController.m in Sources */,
 				3CCAE45915BE25790030C302 /* GameHistoriesMapViewController.m in Sources */,
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
+				3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

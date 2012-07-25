@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "LocationManager.h"
 
-@interface GameHistoriesMapViewController : UIViewController
+@interface GameHistoriesMapViewController : UIViewController<LocationManagerDelegate,MKMapViewDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView * mapView;
 
