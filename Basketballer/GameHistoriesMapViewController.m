@@ -65,8 +65,8 @@
 {
     [super viewDidLoad];
     [self setTitle:@"地图模式"];
-    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMyself)];
-    self.navigationItem.leftBarButtonItem = leftItem; 
+//    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMyself)];
+//    self.navigationItem.leftBarButtonItem = leftItem; 
     
     self.mapView.delegate = self;
 }
