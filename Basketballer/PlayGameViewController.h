@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Team.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "LocationManager.h"
+#import <MapKit/MapKit.h>
 @class  OperateGameViewController;
 
-@interface PlayGameViewController : UIViewController <UIAlertViewDelegate>
+@interface PlayGameViewController : UIViewController <UIAlertViewDelegate,LocationManagerDelegate,MKMapViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel * gameTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel * gamePeroidLabel;
@@ -32,6 +34,7 @@
 @property (nonatomic, readwrite) CFURLRef soundFileURLRef;
 @property (nonatomic, readonly) SystemSoundID soundFileObject;
 @property (nonatomic, weak) NSDate * timeoutTargetTime;
+@property (nonatomic, weak) IBOutlet MKMapView * mapView;
 
 
 - (IBAction)startGame:(id)sender;
