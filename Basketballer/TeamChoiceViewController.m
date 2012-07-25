@@ -6,19 +6,37 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "TeamChoiceViewController.h"
 #import "TeamManager.h"
+#import "TeamChoiceViewController.h"
 #import "StartGameViewController.h"
+#import "EditTeamInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface TeamChoiceViewController () {
-      
+    BOOL _teamEditState;
+    
+    UIBarButtonItem * _editItem;
+    UIBarButtonItem * _doneItem;
+    
+    EditTeamInfoViewController * _editTeamViewController;
 }
 @end
 
 @implementation TeamChoiceViewController
 @synthesize parentController = _parentController;
 @synthesize teamCell = _teamCell;
+
+- (void)editTeam{
+    if (! _teamEditState) {
+        _teamEditState = YES;
+        self.navigationItem.rightBarButtonItem = _doneItem;
+        [self.tableView reloadData];
+    }else{
+        _teamEditState = NO;        
+        self.navigationItem.rightBarButtonItem = _editItem;
+        [self.tableView reloadData];
+    }
+}
 
 #pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
@@ -33,6 +51,11 @@
 {
     [super viewDidLoad];
     [self setTitle:@"球队列表"];
+    
+    _editItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editTeam)];
+    _doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editTeam)];
+    
+    self.navigationItem.rightBarButtonItem = _editItem;
 }
 
 - (void)viewDidUnload
@@ -90,7 +113,12 @@
     Team * team = [teams objectAtIndex:indexPath.row];
     profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
     label.text = team.name;
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    if (_teamEditState) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
    
     return cell;
 }
@@ -100,9 +128,17 @@
 {
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.row];
-    
-    [self.parentController refreshTableData:team];
-    [self.navigationController popViewControllerAnimated:YES];
+
+    if (_teamEditState) {
+        if (nil == _editTeamViewController) {
+            _editTeamViewController = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
+        }
+        _editTeamViewController.team = team;
+        [self.navigationController pushViewController: _editTeamViewController animated:YES];
+    }else{        
+        [self.parentController refreshTableData:team];
+        [self.navigationController popViewControllerAnimated:YES];        
+    }
 }
 
 @end
