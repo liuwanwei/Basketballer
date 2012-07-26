@@ -424,8 +424,8 @@
 		3CC1683515A2E60200A2AB44 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */,
 				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
+				3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */,
 				3C121F6415A3E9C00062BECD /* EditTeamInfoViewController.xib */,
 				3CFE1D2E15AC876A00247B80 /* EditTeamNameViewController.xib */,
 				E6BECB1315BB07E700AABC38 /* Empty.xib */,
