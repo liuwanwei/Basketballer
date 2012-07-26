@@ -126,9 +126,9 @@
 
 - (void)setPlayBarItemTitle:(NSInteger) state {
     if (state == playing) {
-        [self.playBarItem setTitle:@"暂停比赛"];
+        [self.playBarItem setTitle:@"        停止计时        "];
     }else {
-        [self.playBarItem setTitle:@"继续比赛"];
+        [self.playBarItem setTitle:@"        继续计时        "];
     }
 }
 
