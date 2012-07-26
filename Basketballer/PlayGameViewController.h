@@ -39,5 +39,6 @@
 
 - (IBAction)startGame:(id)sender;
 - (IBAction)stopGame:(id)sender;
+- (IBAction)showGameSettingController;
 
 @end

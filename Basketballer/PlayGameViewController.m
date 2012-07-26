@@ -64,7 +64,7 @@
         [self stopGameCountDown];
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
-        [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
+        [self setPlayBarItemTitle:timeout];
         self.gameState = timeout;
         [self showTimeoutPromptView:timeoutMode];
     }
@@ -108,32 +108,10 @@
     return quarterLength;
 }
 
-/*显示比赛设置界面:非编辑状态*/
-- (void)showGameSettingController {
-    NSArray * modes = [[GameSetting defaultSetting] gameModeNames];
-    
-    GameSettingViewController * gameSettingontroller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    gameSettingontroller.viewStyle = UIGameSettingViewStyleShow;
-    gameSettingontroller.gameMode = _gameMode;
-    if (_gameMode == kGameModeTwoHalf) {
-        [gameSettingontroller setTitle:[modes objectAtIndex:0]];
-    }else {
-        [gameSettingontroller setTitle:[modes objectAtIndex:1]];
-    }
-
-
-    [self.navigationController pushViewController:gameSettingontroller animated:YES];
-}
 
 /*初始化导航View*/
 - (void)initNavBarItem {
-    [self.navigationItem setHidesBackButton:YES];
-     self.navigationItem.titleView = self.gameNavView;
-    
-    UIButton * rightButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    [rightButton addTarget:self  action:@selector(showGameSettingController) forControlEvents:UIControlEventTouchUpInside]; 
-    UIBarButtonItem * rightItem = [[UIBarButtonItem  alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    self.navigationController.navigationBarHidden = YES;
 }
 
 /*设置暂停时的时间*/
@@ -144,6 +122,14 @@
 
 - (void)initGameCountDownLable {
     self.gameTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getQuarterLength],0];
+}
+
+- (void)setPlayBarItemTitle:(NSInteger) state {
+    if (state == playing) {
+        [self.playBarItem setTitle:@"暂停比赛"];
+    }else {
+        [self.playBarItem setTitle:@"继续比赛"];
+    }
 }
 
 - (void)setGamePeriodLabel {
@@ -241,7 +227,7 @@
         [self stopGameCountDown];
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
-        [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
+        [self setPlayBarItemTitle:timeout];
         AudioServicesPlayAlertSound (self.soundFileObject);
         if (_gameMode == kGameModeTwoHalf) {
             if (_curPeroid == 0) {
@@ -275,7 +261,7 @@
 
 - (void) initOperateGameView {
   
-    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,-1.0f, 320.0f, 185.0f)];
+    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,91.0f, 320.0f, 161.0f)];
     self.operateGameView1.team = _hostTeam;
     self.operateGameView1.teamType = host;
     [self.operateGameView1 initTeam];
@@ -283,7 +269,7 @@
     [self.view addSubview:self.operateGameView1];
 
     
-    self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,186.0f, 320.0f, 185.0f)];
+    self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,254.0f, 320.0f, 161.0f)];
     self.operateGameView2.team = _guestTeam;
     self.operateGameView2.teamType = guest;
     [self.operateGameView2 initTeam];
@@ -323,7 +309,6 @@
 {
     [super viewDidLoad];
     [self setTitle:@"比赛"];
-    [self initNavBarItem];
     [self initOperateGameView];
     [self initGameCountDownLable];
     [self registerHandleMessage];
@@ -350,9 +335,18 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self initNavBarItem];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self refreshMatchData];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
 }
 
 - (void)changeTimeColorWithSuspendedState:(BOOL)suspended{
@@ -385,7 +379,7 @@
         [self startGameCountDown];
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
-        [self.playBarItem setImage:[UIImage imageNamed:@"pause"]];
+        [self setPlayBarItemTitle:playing];
         [self changeTimeColorWithSuspendedState:NO];
         self.gameState = playing;
     }else if(self.gameState == playing){
@@ -393,7 +387,7 @@
         [self stopGameCountDown];
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
-        [self.playBarItem setImage:[UIImage imageNamed:@"play"]];
+        [self setPlayBarItemTitle:timeout];
         [self changeTimeColorWithSuspendedState:YES];        
         self.gameState = timeout;
     }
@@ -420,6 +414,24 @@
     }
 }
 
+/*显示比赛设置界面:非编辑状态*/
+- (IBAction)showGameSettingController {
+    self.navigationController.navigationBarHidden = NO;
+    NSArray * modes = [[GameSetting defaultSetting] gameModeNames];
+    
+    GameSettingViewController * gameSettingontroller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    gameSettingontroller.viewStyle = UIGameSettingViewStyleShow;
+    gameSettingontroller.gameMode = _gameMode;
+    if (_gameMode == kGameModeTwoHalf) {
+        [gameSettingontroller setTitle:[modes objectAtIndex:0]];
+    }else {
+        [gameSettingontroller setTitle:[modes objectAtIndex:1]];
+    }
+    
+    
+    [self.navigationController pushViewController:gameSettingontroller animated:YES];
+}
+
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex != 0) {
@@ -433,12 +445,14 @@
         [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
 //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         self.hidesBottomBarWhenPushed = NO;
+        self.navigationController.navigationBarHidden = NO;
         [self.navigationController popViewControllerAnimated:YES];
 
     }else if (alertView.cancelButtonIndex == -1){
         [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
 //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        self.hidesBottomBarWhenPushed = NO;        
+        self.hidesBottomBarWhenPushed = NO;   
+        self.navigationController.navigationBarHidden = NO;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
