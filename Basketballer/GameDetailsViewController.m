@@ -12,6 +12,7 @@
 #import "ActionManager.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
+#import "AppDelegate.h"
 
 typedef enum {
     UICellItemTitle = 1,
@@ -37,6 +38,9 @@ typedef enum {
     NSMutableArray * _guestTeamFoulsSummary;
     
     PointDetailsViewController * _pointDetailsViewController;
+    
+    UIActionSheet * _actionSheetShare;
+    UIActionSheet * _actionSheetDelete;
 }
 @end
 
@@ -47,26 +51,52 @@ typedef enum {
 @synthesize trashItem = _trashItem;
 @synthesize match = _match;
 
+#pragma UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (actionSheet == _actionSheetShare) {
+        switch (buttonIndex) {
+            case 0:
+                // 分享到新浪微博。
+                break;
+            case 1:
+                // 分享到“周边比赛”。
+            default:
+                break;
+        }
+    }else if(actionSheet == _actionSheetDelete){
+        if (buttonIndex == actionSheet.destructiveButtonIndex) {
+            // 删除比赛。
+            [[MatchManager defaultManager] deleteMatch:_match];
+            [self back];
+        }
+    }
+}
+
 - (void)back{
     self.hidesBottomBarWhenPushed = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (1 == buttonIndex) {
-        [[MatchManager defaultManager] deleteMatch:_match];
-        [self back];
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (1 == buttonIndex) {
+//        [[MatchManager defaultManager] deleteMatch:_match];
+//        [self back];
+//    }
+//}
 
 - (void)actionSheetForMatch{
-    // TODO
-    [self deleteCurrentMatch];
+    if (_actionSheetShare == nil) {
+        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:@"分享这场比赛到：" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"在周边比赛显示",  nil, nil];
+        _actionSheetShare.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    }
+    [_actionSheetShare showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
 }
 
 - (void)deleteCurrentMatch{    
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"删除本场比赛所有相关信息？" message:@"删除后不可恢复。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
+    if (_actionSheetDelete == nil) {
+        _actionSheetDelete = [[UIActionSheet alloc] initWithTitle:@"删除本场比赛所有相关信息？"  delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
+    }
+    [_actionSheetDelete showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
 }
 
 - (void)reloadActionsInMatch{
