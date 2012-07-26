@@ -103,7 +103,7 @@
 }
 
 - (IBAction)showPopoer:(UIButton *)sender {
-    if(_popoverController == nil && _popoverContentController == nil) {
+    /*if(_popoverController == nil && _popoverContentController == nil) {
         _popoverContentController = [[WEPopoverContentViewController alloc] initWithStyle:UITableViewStylePlain];
         _popoverController = [[WEPopoverController alloc] initWithContentViewController:_popoverContentController];
         
@@ -114,8 +114,10 @@
     [_popoverController presentPopoverFromRect:sender.frame 
                                             inView:sender
                           permittedArrowDirections:UIPopoverArrowDirectionDown
-                                          animated:YES];
-
+                                          animated:YES];*/
+    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1分",@" + 2分",@" + 3分", nil];
+    menu.tag = 1;
+    [menu showInView:self];
 }
 
 - (void)addScore:(NSInteger) score {
@@ -130,66 +132,86 @@
 }
 
 - (IBAction)addTimeOver:(id)sender {
-    ActionManager * actionManager = [ActionManager defaultManager];
-    NSInteger time = [self computeTimeDifference];
-    BOOL result;
-    if(_teamType == host) {
-        result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
-    }else {
-        result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
-    }
-    if (result) {
-        NSInteger timeoutSize;
-        NSInteger timeoutLimit;
-        if (_match.mode == kGameModeTwoHalf) {
-            timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
-        }else {
-            timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
-        }
-        if (_teamType == host) {
-            timeoutSize = actionManager.homeTeamTimeouts;
-            
-        }else {
-            timeoutSize = actionManager.guestTeamTimeouts;
-        }
-        if (timeoutLimit == timeoutSize) {
-            [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
-        }
-        self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",timeoutSize];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
-    }else {
-        [self showAlertView:@"本节暂停已使用完"];
-    }
+    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1次暂停", nil];
+    menu.tag = 3;
+    [menu showInView:self];
 }
 
 - (IBAction)addFoul:(id)sender {
-    ActionManager * actionManager = [ActionManager defaultManager];
-    NSInteger time = [self computeTimeDifference];
-    NSInteger foulSize;
-    NSInteger foulLimit;
-    if (_match.mode == kGameModeTwoHalf) {
-        foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
-    }else {
-        foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
-    }
-    
-    if (_teamType == host) {
-        [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
-        foulSize = actionManager.homeTeamFouls;
-    }else {
-        [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
-        foulSize = actionManager.guestTeamFouls;
-    }
-    
-    if (foulSize >= foulLimit) {
-        [self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
-    }
-    self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",foulSize];
+    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1次犯规", nil];
+    menu.tag = 2;
+    [menu showInView:self];
 }
 
 #pragma FoulActionDelegate
 - (void)FoulsBeyondLimit:(NSNumber *)teamId {
     [self showAlertView:@"本节犯规已超最大数，请进行罚球"];
+}
+
+#pragma mark - ActionSheet view delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 1) {
+        [self addScore:buttonIndex + 1];
+    }else if (actionSheet.tag == 2){
+        if (buttonIndex == 0) {
+            ActionManager * actionManager = [ActionManager defaultManager];
+            NSInteger time = [self computeTimeDifference];
+            NSInteger foulSize;
+            NSInteger foulLimit;
+            if (_match.mode == kGameModeTwoHalf) {
+                foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
+            }else {
+                foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
+            }
+            
+            if (_teamType == host) {
+                [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
+                foulSize = actionManager.homeTeamFouls;
+            }else {
+                [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
+                foulSize = actionManager.guestTeamFouls;
+            }
+            
+            if (foulSize >= foulLimit) {
+                [self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+            }
+            self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",foulSize];
+        }
+    }else {
+        if (buttonIndex == 0) {
+            ActionManager * actionManager = [ActionManager defaultManager];
+            NSInteger time = [self computeTimeDifference];
+            BOOL result;
+            if(_teamType == host) {
+                result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
+            }else {
+                result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
+            }
+            if (result) {
+                NSInteger timeoutSize;
+                NSInteger timeoutLimit;
+                if (_match.mode == kGameModeTwoHalf) {
+                    timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
+                }else {
+                    timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
+                }
+                if (_teamType == host) {
+                    timeoutSize = actionManager.homeTeamTimeouts;
+                    
+                }else {
+                    timeoutSize = actionManager.guestTeamTimeouts;
+                }
+                if (timeoutLimit == timeoutSize) {
+                    [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+                }
+                self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",timeoutSize];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
+            }else {
+                [self showAlertView:@"本节暂停已使用完"];
+            }
+        }
+    }
 }
 
 @end

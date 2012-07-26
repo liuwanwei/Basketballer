@@ -12,7 +12,7 @@
 #import "WEPopoverController.h"
 #import "WEPopoverContentViewController.h"
 
-@interface OperateGameViewController : UIView <FoulActionDelegate>
+@interface OperateGameViewController : UIView <FoulActionDelegate,UIActionSheetDelegate>
 
 @property (nonatomic) NSInteger teamType;
 @property (nonatomic, weak) Team * team;
