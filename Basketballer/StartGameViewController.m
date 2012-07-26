@@ -29,6 +29,7 @@
 @implementation StartGameViewController
 @synthesize teamCell = _teamCell;
 @synthesize modeCell = _modeCell;
+@synthesize startMatchView = _startMatchView;
 
 #pragma 私有函数
 /*显示提示信息*/
@@ -81,18 +82,25 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem * item;
-    item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered
-                                           target:self action:@selector(dismissMyself)];
-    self.navigationItem.leftBarButtonItem = item;    
+//    UIBarButtonItem * item;
+//    item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered
+//                                           target:self action:@selector(dismissMyself)];
+//    self.navigationItem.leftBarButtonItem = item;    
     [self setTitle:@"开始比赛"];
     _sectionsTitle = [NSArray arrayWithObjects:@"参赛球队",@"竞技规则",nil];
     
-    _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super   viewWillAppear:animated];
+    _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];  
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    
+//    NSLog(@"%@", self.startMatchView);
+//    self.tableView.tableFooterView = self.startMatchView;
+//    self.tableView.tableHeaderView = self.startMatchView;
+    [[NSBundle mainBundle] loadNibNamed:@"StartMatchCell" owner:self options:nil];
+    CGRect frame = self.startMatchView.frame;
+    frame.size.width = 160;
+    self.startMatchView.frame = frame;
+    self.tableView.tableFooterView = self.startMatchView;
 }
 
 - (void)viewDidUnload
@@ -124,6 +132,7 @@
     }else {
         playGameViewController.gameMode = kGameModeFourQuarter;
     }
+    playGameViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:playGameViewController animated:YES];
 }
 
@@ -219,11 +228,11 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        [self showGameSettingController];
-    }
-}
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 1) {
+//        [self showGameSettingController];
+//    }
+//}
 
 # pragma SingleChoiceViewDelegate
 - (void)choosedParameter:(NSString *)parameter{
