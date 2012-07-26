@@ -19,6 +19,8 @@
 @synthesize timeoutTimeLabel = _timeoutTimeLabel;
 @synthesize parentController = _parentController;
 @synthesize mode = _mode;
+@synthesize resumeMathButton = _resumeMathButton;
+@synthesize stopTimeOutButton = _stopTimeOutButton;
 
 #pragma 私有函数
 - (NSInteger)getTimeoutLength {
@@ -41,7 +43,7 @@
 }
 
 - (void)initTimeoutDownLable {
-    self.timeoutTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:70.0f];
+    self.timeoutTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:100.0f];
     if (_mode == timeoutMode) {
         self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d",[self getTimeoutLength]];
     }else {
@@ -100,6 +102,8 @@
     }
    
     if(minute <= 0 && second <= 0) {
+        [self.stopTimeOutButton setHidden:YES];
+        [self.resumeMathButton setHidden:NO];
         [self stopTimeoutCountDown];
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
     }
@@ -110,7 +114,7 @@
     NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"TimeoutPromptViewController" owner:self options:nil];
     self = [nib objectAtIndex:0];
     self.frame = frame;
-    
+    [self.resumeMathButton setHidden:YES];
     return self;
 }
 
