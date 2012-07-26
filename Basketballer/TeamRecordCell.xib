@@ -60,11 +60,14 @@
 							<object class="IBUILabel" id="381963223">
 								<reference key="NSNextResponder" ref="752819284"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{60, 11}, {117, 21}}</string>
+								<string key="NSFrame">{{88, 11}, {183, 21}}</string>
 								<reference key="NSSuperview" ref="752819284"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor" id="529949197">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -74,7 +77,7 @@
 								<string key="IBUIText">五岳剑派</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
+									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor">
 									<int key="NSColorSpace">3</int>
@@ -82,6 +85,7 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">17</double>
@@ -98,10 +102,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="228556793"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="529949197"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -153,8 +154,8 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="337362628"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="381963223"/>
 							<reference ref="228556793"/>
+							<reference ref="381963223"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

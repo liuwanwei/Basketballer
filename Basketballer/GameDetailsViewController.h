@@ -10,7 +10,7 @@
 #import "GameSetting.h"
 #import "Match.h"
 
-@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 //@property (nonatomic, weak) IBOutlet UILabel * teams;
 //@property (nonatomic, weak) IBOutlet UILabel * dateTime;
