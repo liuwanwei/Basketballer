@@ -74,6 +74,10 @@
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		3CFE1D2F15AC876A00247B80 /* EditTeamNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2D15AC876900247B80 /* EditTeamNameViewController.m */; };
 		3CFE1D3015AC876A00247B80 /* EditTeamNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2E15AC876A00247B80 /* EditTeamNameViewController.xib */; };
+		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
+		E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */; };
+		E6275FC115C1256000FBE247 /* Basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = E6275FBF15C1256000FBE247 /* Basketball.png */; };
+		E6275FC215C1256000FBE247 /* Basketball@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6275FC015C1256000FBE247 /* Basketball@2x.png */; };
 		E68D111315A2FAA40074982D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111215A2FAA40074982D /* GameSettingViewController.m */; };
 		E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111D15A3DA0C0074982D /* GameSetting.m */; };
 		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
@@ -206,6 +210,11 @@
 		3CFE1D2C15AC876900247B80 /* EditTeamNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTeamNameViewController.h; sourceTree = "<group>"; };
 		3CFE1D2D15AC876900247B80 /* EditTeamNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTeamNameViewController.m; sourceTree = "<group>"; };
 		3CFE1D2E15AC876A00247B80 /* EditTeamNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTeamNameViewController.xib; sourceTree = "<group>"; };
+		E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurroundingsViewController.h; sourceTree = "<group>"; };
+		E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurroundingsViewController.m; sourceTree = "<group>"; };
+		E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurroundingsViewController.xib; sourceTree = "<group>"; };
+		E6275FBF15C1256000FBE247 /* Basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Basketball.png; sourceTree = "<group>"; };
+		E6275FC015C1256000FBE247 /* Basketball@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Basketball@2x.png"; sourceTree = "<group>"; };
 		E68D111115A2FAA30074982D /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingViewController.h; sourceTree = "<group>"; };
 		E68D111215A2FAA40074982D /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingViewController.m; sourceTree = "<group>"; };
 		E68D111C15A3DA0C0074982D /* GameSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetting.h; sourceTree = "<group>"; };
@@ -282,6 +291,8 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E6275FBF15C1256000FBE247 /* Basketball.png */,
+				E6275FC015C1256000FBE247 /* Basketball@2x.png */,
 				E6E1D98515B01F6900CB0C0E /* Add.png */,
 				E6E1D98215B01EC800CB0C0E /* Add@2x.png */,
 				E68D118915A696B60074982D /* DefaultTeamProfile@2x.png */,
@@ -452,40 +463,43 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E6E9691115BD45230073C5B8 /* PointDetailsViewController.h */,
-				E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */,
+				3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */,
+				3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */,
 				E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */,
 				E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */,
-				3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */,
-				3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */,
-				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
-				E68D117815A5F2900074982D /* GameDetailsViewController.m */,
-				3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */,
-				3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */,
-				3CC1687B15A2F70E00A2AB44 /* PlayGameViewController.h */,
-				3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */,
-				3C121F5C15A3D58A0062BECD /* OperateGameViewController.h */,
-				3C121F5D15A3D58A0062BECD /* OperateGameViewController.m */,
 				3C121F6215A3E9C00062BECD /* EditTeamInfoViewController.h */,
 				3C121F6315A3E9C00062BECD /* EditTeamInfoViewController.m */,
+				3CFE1D2C15AC876900247B80 /* EditTeamNameViewController.h */,
+				3CFE1D2D15AC876900247B80 /* EditTeamNameViewController.m */,
+				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
+				E68D117815A5F2900074982D /* GameDetailsViewController.m */,
+				3CCAE45615BE25790030C302 /* GameHistoriesMapViewController.h */,
+				3CCAE45715BE25790030C302 /* GameHistoriesMapViewController.m */,
+				3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */,
+				3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */,
 				E68D111115A2FAA30074982D /* GameSettingViewController.h */,
 				E68D111215A2FAA40074982D /* GameSettingViewController.m */,
+				3C121F5C15A3D58A0062BECD /* OperateGameViewController.h */,
+				3C121F5D15A3D58A0062BECD /* OperateGameViewController.m */,
+				3CC1687B15A2F70E00A2AB44 /* PlayGameViewController.h */,
+				3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */,
+				E6E9691115BD45230073C5B8 /* PointDetailsViewController.h */,
+				E6E9691215BD45230073C5B8 /* PointDetailsViewController.m */,
 				E6E1D94E15AAD74B00CB0C0E /* SettingViewController.h */,
 				E6E1D94F15AAD74B00CB0C0E /* SettingViewController.m */,
 				E68D116015A4245A0074982D /* SingleChoiceViewController.h */,
 				E68D116115A4245A0074982D /* SingleChoiceViewController.m */,
 				3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */,
 				3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */,
-				3CFE1D2C15AC876900247B80 /* EditTeamNameViewController.h */,
-				3CFE1D2D15AC876900247B80 /* EditTeamNameViewController.m */,
 				3CBA0BF815AE7726003505BC /* TeamChoiceViewController.h */,
 				3CBA0BF915AE7726003505BC /* TeamChoiceViewController.m */,
 				3CC9129C15B1C477003C74D4 /* TimeoutPromptViewController.h */,
 				3CC9129D15B1C477003C74D4 /* TimeoutPromptViewController.m */,
-				3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */,
-				3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */,
-				3CCAE45615BE25790030C302 /* GameHistoriesMapViewController.h */,
-				3CCAE45715BE25790030C302 /* GameHistoriesMapViewController.m */,
+				3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */,
+				3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */,
+				E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */,
+				E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */,
+				E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -654,6 +668,9 @@
 				3CCAE46315BE53E40030C302 /* badgeValueRed.png in Resources */,
 				E6E9692315BFDEEA0073C5B8 /* StartMatchCell.xib in Resources */,
 				3CCAE4F715BFE4400030C302 /* buttonCancelBackground.png in Resources */,
+				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
+				E6275FC115C1256000FBE247 /* Basketball.png in Resources */,
+				E6275FC215C1256000FBE247 /* Basketball@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +716,7 @@
 				3CCAE45915BE25790030C302 /* GameHistoriesMapViewController.m in Sources */,
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
 				3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */,
+				E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
