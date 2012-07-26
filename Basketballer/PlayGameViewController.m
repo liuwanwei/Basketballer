@@ -15,6 +15,7 @@
 #import "ActionRecordViewController.h"
 #import "AppDelegate.h"
 #import "GameSettingViewController.h"
+#import "TimeStopPromptView.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
@@ -188,6 +189,17 @@
 }
 
 /*
+ 显示计时停止VIEW
+ */
+- (void)showTimeStopPromptView {
+    TimeStopPromptView * timeStopPromptView = [[TimeStopPromptView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0)];
+    timeStopPromptView.parentController = self;
+    timeStopPromptView.backgroundColor = [UIColor blackColor];
+    timeStopPromptView.alpha = 0.85;
+    [self.view addSubview:timeStopPromptView];
+}
+
+/*
  更新某节比赛结束时间。
  1 主动单击“暂停”按钮后，再继续比赛，需要更新。
  */
@@ -351,7 +363,7 @@
 
 - (void)changeTimeColorWithSuspendedState:(BOOL)suspended{
     if (suspended) {
-        _gameTimeLabel.textColor = [UIColor redColor];
+        _gameTimeLabel.textColor = [UIColor blackColor];
     }else{
         _gameTimeLabel.textColor = [UIColor whiteColor];
     }
@@ -390,6 +402,7 @@
         [self setPlayBarItemTitle:timeout];
         [self changeTimeColorWithSuspendedState:YES];        
         self.gameState = timeout;
+        [self showTimeStopPromptView];
     }
 }
 
