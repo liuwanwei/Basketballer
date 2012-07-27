@@ -127,9 +127,9 @@
 
 - (void)setPlayBarItemTitle:(NSInteger) state {
     if (state == playing) {
-        [self.playBarItem setTitle:@"        停止计时        "];
+        [self.playBarItem setTitle:@"                停止计时                "];
     }else {
-        [self.playBarItem setTitle:@"        继续计时        "];
+        [self.playBarItem setTitle:@"                继续计时                "];
     }
 }
 
@@ -178,7 +178,7 @@
  显示暂停或比赛单节/半场休息提示VIEW
  */
 - (void)showTimeoutPromptView:(NSInteger) mode {
-    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0)];
+    TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, 91.0, 320.0, 369.0)];
     timeoutPromptViewController.parentController = self;
     timeoutPromptViewController.mode = mode;
     timeoutPromptViewController.backgroundColor = [UIColor blackColor];
@@ -192,7 +192,7 @@
  显示计时停止VIEW
  */
 - (void)showTimeStopPromptView {
-    TimeStopPromptView * timeStopPromptView = [[TimeStopPromptView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0)];
+    TimeStopPromptView * timeStopPromptView = [[TimeStopPromptView alloc] initWithFrame:CGRectMake(0.0, 91.0, 320.0, 369.0)];
     timeStopPromptView.parentController = self;
     timeStopPromptView.backgroundColor = [UIColor blackColor];
     timeStopPromptView.alpha = 0.85;
@@ -380,7 +380,7 @@
         
         [[LocationManager defaultManager] startStandardLocationServcie];
     }
-    if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout) {
+    if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout || self.gameState == stop) {
        
         if(self.gameState == prepare || self.gameState == over_quarter_finish) {
             [self initGameTargetTime];
@@ -392,7 +392,6 @@
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
         [self setPlayBarItemTitle:playing];
-        [self changeTimeColorWithSuspendedState:NO];
         self.gameState = playing;
     }else if(self.gameState == playing){
         [self setLastTimeoutTime];
@@ -400,8 +399,11 @@
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
         [self setPlayBarItemTitle:timeout];
-        [self changeTimeColorWithSuspendedState:YES];        
-        self.gameState = timeout;
+        if (sender == nil) {
+            self.gameState = timeout;
+        }else {
+            self.gameState = stop;
+        }
         [self showTimeStopPromptView];
     }
 }
