@@ -159,8 +159,10 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
+									<int key="NSColorSpace">6</int>
+									<string key="NSCatalogName">System</string>
+									<string key="NSColorName">selectedKnobColor</string>
+									<reference key="NSColor" ref="167322877"/>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="118580847">
 									<int key="NSColorSpace">3</int>
@@ -224,7 +226,7 @@
 								<reference key="NSNextKeyView" ref="501275791"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
-								<float key="IBUIAlpha">0.60000002384185791</float>
+								<float key="IBUIAlpha">0.70000004768371582</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -254,7 +256,7 @@
 								<reference key="NSNextKeyView" ref="1056984660"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
-								<float key="IBUIAlpha">0.60000002384185791</float>
+								<float key="IBUIAlpha">0.70000004768371582</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -274,7 +276,7 @@
 								<reference key="NSNextKeyView" ref="100550079"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
-								<float key="IBUIAlpha">0.60000002384185791</float>
+								<float key="IBUIAlpha">0.70000004768371582</float>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>

@@ -74,10 +74,13 @@
 }
 
 - (void)initTimeoutAndFoulView {
+    [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"nil"] forState:UIControlStateNormal];
+    self.timeoutButton.titleLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+    
     self.timeoutButton.titleLabel.text = @"0";
-    [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueBlue@2x"] forState:UIControlStateNormal];
+    [self.foulButton setBackgroundImage:[UIImage imageNamed:@"nil"] forState:UIControlStateNormal];
+    self.foulButton.titleLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
     self.foulButton.titleLabel.text = @"0";
-    [self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueBlue@2x"] forState:UIControlStateNormal];
 }
 
 - (void)refreshMatchData {
@@ -132,9 +135,29 @@
 }
 
 - (IBAction)addTimeOver:(id)sender {
-    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1次暂停", nil];
-    menu.tag = 3;
-    [menu showInView:self];
+    ActionManager * actionManager = [ActionManager defaultManager];
+    NSInteger timeoutSize;
+    NSInteger timeoutLimit;
+    if (_match.mode == kGameModeTwoHalf) {
+        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
+    }else {
+        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
+    }
+    if (_teamType == host) {
+        timeoutSize = actionManager.homeTeamTimeouts;
+        
+    }else {
+        timeoutSize = actionManager.guestTeamTimeouts;
+    }
+    
+    if (timeoutSize >= timeoutLimit) {
+        [self showAlertView:@"本节暂停已使用完"];
+
+    }else {
+        UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1次暂停", nil];
+        menu.tag = 3;
+        [menu showInView:self];    
+    }
 }
 
 - (IBAction)addFoul:(id)sender {
@@ -174,7 +197,8 @@
             }
             
             if (foulSize >= foulLimit) {
-                [self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+                //[self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+                self.foulButton.titleLabel.textColor = [UIColor redColor];
             }
             self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",foulSize];
         }
@@ -203,7 +227,8 @@
                     timeoutSize = actionManager.guestTeamTimeouts;
                 }
                 if (timeoutLimit == timeoutSize) {
-                    [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+                    //[self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+                    self.timeoutButton.titleLabel.textColor = [UIColor redColor];
                 }
                 self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",timeoutSize];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
