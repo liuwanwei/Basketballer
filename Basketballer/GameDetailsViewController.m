@@ -86,17 +86,17 @@ typedef enum {
 
 - (void)actionSheetForMatch{
     if (_actionSheetShare == nil) {
-        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:@"分享这场比赛到：" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"在周边比赛显示",  nil, nil];
+        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到比赛地图",  nil, nil];
         _actionSheetShare.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     }
-    [_actionSheetShare showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
+    [_actionSheetShare showInView:self.view];
 }
 
 - (void)deleteCurrentMatch{    
     if (_actionSheetDelete == nil) {
         _actionSheetDelete = [[UIActionSheet alloc] initWithTitle:@"删除本场比赛所有相关信息？"  delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
     }
-    [_actionSheetDelete showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
+    [_actionSheetDelete showInView:self.view];
 }
 
 - (void)reloadActionsInMatch{
