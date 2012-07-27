@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActionRecordViewController : UITableViewController
+@interface ActionRecordViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) IBOutlet UITableView * tableView;
+@property (nonatomic, weak) IBOutlet UINavigationItem * navItem;
 
 @property (nonatomic, weak) NSArray * actionRecords;
 
