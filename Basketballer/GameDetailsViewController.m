@@ -84,7 +84,7 @@ typedef enum {
 
 - (void)back{
     self.hidesBottomBarWhenPushed = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

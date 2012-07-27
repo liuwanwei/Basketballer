@@ -458,14 +458,12 @@
     
     if (buttonIndex == 1) {
         [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
-//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         self.hidesBottomBarWhenPushed = NO;
         self.navigationController.navigationBarHidden = NO;
         [self.navigationController popViewControllerAnimated:YES];
 
     }else if (alertView.cancelButtonIndex == -1){
         [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
-//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         self.hidesBottomBarWhenPushed = NO;   
         self.navigationController.navigationBarHidden = NO;
         [self.navigationController popViewControllerAnimated:YES];

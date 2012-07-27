@@ -60,7 +60,7 @@
 
 - (void)showActionSheet {
     UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"用户相册",@"拍照", nil];
-    [menu showInView:self.view];
+    [menu showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
 }
 
 - (void)showPhotoAlbum {

@@ -17,6 +17,8 @@
 @end
 
 @implementation ActionRecordViewController
+@synthesize tableView = _tableView;
+@synthesize navItem = _navItem;
 @synthesize actionRecords = _actionRecords;
 
 -(void) swip:(UISwipeGestureRecognizer *)swip {
@@ -27,41 +29,24 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"裁判记录";
+    self.navItem.title = @"裁判记录";
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
     swip.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swip];
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    self.navigationItem.leftBarButtonItem = item;
+    self.navItem.leftBarButtonItem = item;
     
+    self.tableView.delegate = self;
     self.tableView.editing = YES;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-     self.navigationController.navigationBarHidden = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -18,6 +18,7 @@
 @interface OperateGameViewController() {
     WEPopoverController * _popoverController;
     WEPopoverContentViewController * _popoverContentController;
+    NSInteger _timeoutSize;
 }
 @end
 
@@ -76,8 +77,9 @@
 - (void)initTimeoutAndFoulView {
     [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"nil"] forState:UIControlStateNormal];
     self.timeoutButton.titleLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
-    
     self.timeoutButton.titleLabel.text = @"0";
+    _timeoutSize = 0;
+    
     [self.foulButton setBackgroundImage:[UIImage imageNamed:@"nil"] forState:UIControlStateNormal];
     self.foulButton.titleLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
     self.foulButton.titleLabel.text = @"0";
@@ -135,22 +137,14 @@
 }
 
 - (IBAction)addTimeOver:(id)sender {
-    ActionManager * actionManager = [ActionManager defaultManager];
-    NSInteger timeoutSize;
     NSInteger timeoutLimit;
     if (_match.mode == kGameModeTwoHalf) {
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
     }else {
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
     }
-    if (_teamType == host) {
-        timeoutSize = actionManager.homeTeamTimeouts;
-        
-    }else {
-        timeoutSize = actionManager.guestTeamTimeouts;
-    }
     
-    if (timeoutSize >= timeoutLimit) {
+    if (_timeoutSize >= timeoutLimit) {
         [self showAlertView:@"本节暂停已使用完"];
 
     }else {
@@ -197,7 +191,6 @@
             }
             
             if (foulSize >= foulLimit) {
-                //[self.foulButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
                 self.foulButton.titleLabel.textColor = [UIColor redColor];
             }
             self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",foulSize];
@@ -213,7 +206,6 @@
                 result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
             }
             if (result) {
-                NSInteger timeoutSize;
                 NSInteger timeoutLimit;
                 if (_match.mode == kGameModeTwoHalf) {
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
@@ -221,16 +213,15 @@
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
                 }
                 if (_teamType == host) {
-                    timeoutSize = actionManager.homeTeamTimeouts;
+                    _timeoutSize = actionManager.homeTeamTimeouts;
                     
                 }else {
-                    timeoutSize = actionManager.guestTeamTimeouts;
+                    _timeoutSize = actionManager.guestTeamTimeouts;
                 }
-                if (timeoutLimit == timeoutSize) {
-                    //[self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"badgeValueRed"] forState:UIControlStateNormal];
+                if (timeoutLimit == _timeoutSize) {
                     self.timeoutButton.titleLabel.textColor = [UIColor redColor];
                 }
-                self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",timeoutSize];
+                self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",_timeoutSize];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
             }else {
                 [self showAlertView:@"本节暂停已使用完"];
