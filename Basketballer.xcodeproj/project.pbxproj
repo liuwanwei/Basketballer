@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C06B17415C2412E0009C909 /* matchPause.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C06B17315C2412E0009C909 /* matchPause.png */; };
 		3C121F5F15A3D58A0062BECD /* OperateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C121F5D15A3D58A0062BECD /* OperateGameViewController.m */; };
 		3C121F6015A3D58A0062BECD /* OperateGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C121F5E15A3D58A0062BECD /* OperateGameViewController.xib */; };
 		3C121F6515A3E9C00062BECD /* EditTeamInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C121F6315A3E9C00062BECD /* EditTeamInfoViewController.m */; };
@@ -122,6 +123,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C06B17315C2412E0009C909 /* matchPause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = matchPause.png; path = ../../../Downloads/matchPause.png; sourceTree = "<group>"; };
 		3C121F5C15A3D58A0062BECD /* OperateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperateGameViewController.h; sourceTree = "<group>"; };
 		3C121F5D15A3D58A0062BECD /* OperateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperateGameViewController.m; sourceTree = "<group>"; };
 		3C121F5E15A3D58A0062BECD /* OperateGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OperateGameViewController.xib; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3C06B17315C2412E0009C909 /* matchPause.png */,
 				3C13E49C15C1939500F4307C /* timeStop.png */,
 				E6275FBF15C1256000FBE247 /* Basketball.png */,
 				E6275FC015C1256000FBE247 /* Basketball@2x.png */,
@@ -684,6 +687,7 @@
 				E6275FC215C1256000FBE247 /* Basketball@2x.png in Resources */,
 				3C13E49B15C192DB00F4307C /* TimeStopPromptView.xib in Resources */,
 				3C13E49D15C1939500F4307C /* timeStop.png in Resources */,
+				3C06B17415C2412E0009C909 /* matchPause.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

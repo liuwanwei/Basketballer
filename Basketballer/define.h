@@ -14,8 +14,9 @@ enum GameState {
     prepare = 0,
     playing = 1,
     timeout = 2,
-    over_quarter_finish =3,
-    finish = 4
+    stop = 3,
+    over_quarter_finish = 4,
+    finish = 5
 };
 
 #define host 0

@@ -14,11 +14,12 @@ enum PromptMode {
     restMode = 1
     };
 
-@interface TimeoutPromptViewController : UIView
+@interface TimeoutPromptViewController : UIView<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSDate * timeoutTargetTime;
 @property (nonatomic, weak) NSTimer * timeoutCountDownTimer;
 @property (nonatomic, weak) IBOutlet UILabel * timeoutTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel * promptLabel;
 @property (nonatomic, weak) PlayGameViewController * parentController;
 @property (nonatomic) NSInteger mode;
 @property (nonatomic, weak) IBOutlet UIButton * resumeMathButton;

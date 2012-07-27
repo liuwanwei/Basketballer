@@ -21,8 +21,20 @@
 @synthesize mode = _mode;
 @synthesize resumeMathButton = _resumeMathButton;
 @synthesize stopTimeOutButton = _stopTimeOutButton;
+@synthesize promptLabel = _promptLabel;
 
 #pragma 私有函数
+#pragma 私有函数
+- (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
+    UIAlertView * alertView;
+    if(cancel == YES) {
+        alertView = [[UIAlertView alloc] initWithTitle:@"确认" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+    }else {
+        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
+    }
+    [alertView show];
+}
+
 - (NSInteger)getTimeoutLength {
     NSInteger timeoutLength = 0;
     if(_mode == timeoutMode) {
@@ -43,7 +55,6 @@
 }
 
 - (void)initTimeoutDownLable {
-    self.timeoutTimeLabel.font = [UIFont fontWithName:@"DB LCD Temp" size:100.0f];
     if (_mode == timeoutMode) {
         self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d",[self getTimeoutLength]];
     }else {
@@ -64,7 +75,6 @@
         [comps setSecond:comps.second + 1];
     }
   
-    
     self.timeoutTargetTime = [calendar dateFromComponents:comps];//把目标时间装载入date
 }
 
@@ -104,6 +114,7 @@
     if(minute <= 0 && second <= 0) {
         [self.stopTimeOutButton setHidden:YES];
         [self.resumeMathButton setHidden:NO];
+        [self.promptLabel setHidden:YES];
         [self stopTimeoutCountDown];
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
     }
@@ -124,10 +135,23 @@
     [self startTimeoutCountDown];
 }
 
-- (IBAction)resumeGame:(id)sender {
-    [self stopTimeoutCountDown];
-    [self.parentController startGame:nil];
-    [self removeFromSuperview];
-   }
+- (IBAction)resumeGame:(UIButton *)sender {
+    if (sender.tag == 1) {
+        [self showAlertView:@"您要继续比赛吗？" withCancel:YES];
+    }else {
+        [self stopTimeoutCountDown];
+        [self.parentController startGame:nil];
+        [self removeFromSuperview];
+    }
+}
+
+#pragma alert delete
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self stopTimeoutCountDown];
+        [self.parentController startGame:nil];
+        [self removeFromSuperview];
+    }
+}
 
 @end
