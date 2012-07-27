@@ -16,7 +16,6 @@
 #import "AppDelegate.h"
 #import "GameSettingViewController.h"
 #import "TimeStopPromptView.h"
-#import "GameDetailsViewController.h"
 
 @interface PlayGameViewController() {
     BOOL _gameStart;
@@ -448,15 +447,6 @@
     [self.navigationController pushViewController:gameSettingontroller animated:YES];
 }
 
-- (void)showGameDetailsViewController {
-    GameDetailsViewController * gameDetailsViewController = [[GameDetailsViewController alloc] 
-                                  initWithNibName:@"GameDetailsViewController" bundle:nil];
-
-    gameDetailsViewController.match = _match;
-    [gameDetailsViewController reloadActionsInMatch];
-    [self.navigationController pushViewController:gameDetailsViewController animated:YES];
-}
-
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex != 0) {
@@ -468,15 +458,17 @@
     
     if (buttonIndex == 1) {
         [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
-        //self.hidesBottomBarWhenPushed = NO;
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.hidesBottomBarWhenPushed = NO;
         self.navigationController.navigationBarHidden = NO;
-        [self showGameDetailsViewController];
+        [self.navigationController popViewControllerAnimated:YES];
 
     }else if (alertView.cancelButtonIndex == -1){
         [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
-        //self.hidesBottomBarWhenPushed = NO;   
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.hidesBottomBarWhenPushed = NO;   
         self.navigationController.navigationBarHidden = NO;
-        [self showGameDetailsViewController];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
