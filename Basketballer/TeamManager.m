@@ -198,9 +198,9 @@ static TeamManager * sDefaultManager;
 
 // 发送球队修改通知。
 - (void)sendTeamChangedNotification{
+    NSLog(@"before send %@", kTeamChanged);    
     NSNotification * notification = [NSNotification notificationWithName:kTeamChanged object:nil];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
-    NSLog(@"send notification %@", kTeamChanged);
 }
 
 - (void)saveProfileImage:(UIImage *)image toURL:(NSURL *) url{
@@ -258,13 +258,14 @@ static TeamManager * sDefaultManager;
         team.profileURL = _defaultProfileImageName;
     }
     
+    [_allTeams insertObject:team atIndex:_allTeams.count];
+    [self resetAvailableTeams];    
+    
     if (! [self synchroniseToStore]) {
         return nil;
+    }else{
+        // TODO 删除添加失败的Team对象。
     }
-    
-    [_allTeams insertObject:team atIndex:_allTeams.count];
-    
-    [self resetAvailableTeams];
     
     return team;
 }
