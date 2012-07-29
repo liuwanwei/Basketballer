@@ -8,7 +8,6 @@
 
 #import "GameDetailsViewController.h"
 #import "ActionRecordViewController.h"
-#import "PointDetailsViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
@@ -41,13 +40,6 @@ typedef enum {
     NSMutableArray * _sectionHeaders;
     
     NSMutableArray * _actionsInMatch;
-    
-    NSMutableArray * _homeTeamPointsSummary;
-    NSMutableArray * _guestTeamPointsSummary;
-    NSMutableArray * _homeTeamFoulsSummary;
-    NSMutableArray * _guestTeamFoulsSummary;
-        
-    PointDetailsViewController * _pointDetailsViewController;
     
     UIActionSheet * _actionSheetShare;
     UIActionSheet * _actionSheetDelete;
@@ -111,21 +103,6 @@ typedef enum {
 
 - (void)reloadActionsInMatch{
     _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:[_match.id integerValue]];
-    
-    // 加载技术统计信息。
-    ActionManager * am = [ActionManager defaultManager];
-    _homeTeamPointsSummary = [am summaryForFilter:ActionTypePoints 
-                                         withTeam:[_match.homeTeam integerValue] 
-                                        inActions:_actionsInMatch];
-    _guestTeamPointsSummary = [am summaryForFilter:ActionTypePoints 
-                                          withTeam:[_match.guestTeam integerValue] 
-                                         inActions:_actionsInMatch];
-    _homeTeamFoulsSummary = [am summaryForFilter:ActionTypeFoul 
-                                        withTeam:[_match.homeTeam integerValue] 
-                                       inActions:_actionsInMatch];
-    _guestTeamFoulsSummary = [am summaryForFilter:ActionTypeFoul 
-                                         withTeam:[_match.guestTeam integerValue] 
-                                        inActions:_actionsInMatch];
     
     [self.tableView reloadData];
     
@@ -258,12 +235,13 @@ typedef enum {
 }
 
 - (void)setStatisticsForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+//    UIView * bgView = [cell.subviews objectAtIndex:0];
     if (indexPath.row == 0) {
         // 技术统计section的第一行作为标题栏，不用修改内容。
-        cell.backgroundColor = [UIColor lightGrayColor];
+//        bgView.backgroundColor = [UIColor lightGrayColor];
         return;
     }else {
-        cell.backgroundColor = [UIColor clearColor];
+//        bgView.backgroundColor = [UIColor clearColor];
     }
     
     NSMutableDictionary * statistics;
@@ -349,21 +327,5 @@ typedef enum {
 
 #pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//}
-//
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        if (_pointDetailsViewController == nil) {
-            _pointDetailsViewController = [[PointDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        }
-        
-        _pointDetailsViewController.match = _match;
-        _pointDetailsViewController.actions = [[ActionManager defaultManager] actionsWithType:ActionTypePoints inPeriod:indexPath.row inActions:_actionsInMatch];
-        _pointDetailsViewController.title = [_periodNameArray objectAtIndex:indexPath.row];
-        [_pointDetailsViewController.tableView reloadData];
-        [self.navigationController pushViewController:_pointDetailsViewController animated:YES];
-    }
-}
  
 @end

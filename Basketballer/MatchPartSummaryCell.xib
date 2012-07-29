@@ -42,7 +42,7 @@
 							<object class="IBUILabel" id="971014114">
 								<reference key="NSNextResponder" ref="114108989"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{91, 30}</string>
+								<string key="NSFrame">{{9, 0}, {80, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="669858949"/>
@@ -56,7 +56,7 @@
 								<string key="IBUIText">Teams</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
+									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="136098312">
 									<int key="NSColorSpace">3</int>
@@ -64,7 +64,6 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="109504427">
 									<int key="type">1</int>
 									<double key="pointSize">17</double>
@@ -133,7 +132,7 @@
 								<string key="NSFrame">{{223, -1}, {36, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1067210064"/>
+								<reference key="NSNextKeyView" ref="1002144583"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -153,13 +152,12 @@
 								<reference key="IBUIFontDescription" ref="109504427"/>
 								<reference key="IBUIFont" ref="703927892"/>
 							</object>
-							<object class="IBUILabel" id="1067210064">
+							<object class="IBUILabel" id="1002144583">
 								<reference key="NSNextResponder" ref="114108989"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{282, -1}, {36, 30}}</string>
+								<string key="NSFrame">{{279, -1}, {36, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -207,7 +205,7 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="114108989"/>
-				<string key="IBUIReuseIdentifier">SummaryReuseIdentifier</string>
+				<string key="IBUIReuseIdentifier">MatchPartSummaryCell</string>
 				<real value="30" key="IBUIRowHeight"/>
 			</object>
 		</array>
@@ -247,7 +245,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="669858949"/>
 							<reference ref="971014114"/>
-							<reference ref="1067210064"/>
+							<reference ref="1002144583"/>
 							<reference ref="981947102"/>
 							<reference ref="679387964"/>
 						</array>
@@ -275,7 +273,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="1067210064"/>
+						<reference key="object" ref="1002144583"/>
 						<reference key="parent" ref="828995322"/>
 					</object>
 				</array>
