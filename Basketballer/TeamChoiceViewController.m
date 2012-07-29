@@ -12,30 +12,34 @@
 #import "EditTeamInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface TeamChoiceViewController () {
-    BOOL _teamEditState;
-    
-    UIBarButtonItem * _editItem;
-    UIBarButtonItem * _doneItem;
-    
-    EditTeamInfoViewController * _editTeamViewController;
+@interface TeamChoiceViewController (){
+    UIBarButtonItem * _rightBarButtonItem;
 }
 @end
 
 @implementation TeamChoiceViewController
 @synthesize parentController = _parentController;
 @synthesize teamCell = _teamCell;
+@synthesize viewControllerMode = _viewControllerMode;
 
-- (void)editTeam{
-    if (! _teamEditState) {
-        _teamEditState = YES;
-        self.navigationItem.rightBarButtonItem = _doneItem;
-        [self.tableView reloadData];
+- (void)addTeam{
+    [self editTeam:nil];
+}
+
+- (void)editTeam:(Team *)team{
+    EditTeamInfoViewController * editTeam = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
+    if (nil == team) {
+        editTeam.operateMode = Insert;
     }else{
-        _teamEditState = NO;        
-        self.navigationItem.rightBarButtonItem = _editItem;
-        [self.tableView reloadData];
+        editTeam.operateMode = Update;
+        editTeam.team = team;
     }
+    [self.navigationController pushViewController:editTeam animated:YES];
+}
+
+- (void)teamChangedHandler:(NSNotification *)notification{
+    NSLog(@"TeamChoiceViewController before handle %@", notification.name);
+    [self.tableView reloadData];
 }
 
 #pragma 事件函数
@@ -50,12 +54,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"球队列表"];
     
-    _editItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editTeam)];
-    _doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(editTeam)];
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(teamChangedHandler:) name:kTeamChanged object:nil];    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
-    self.navigationItem.rightBarButtonItem = _editItem;
+    if (_viewControllerMode == UITeamChoiceViewControllerModeChoose) {
+        self.navigationItem.rightBarButtonItem = nil;
+        [self setTitle:@"球队列表"];
+    }else{
+        if (nil == _rightBarButtonItem) {
+            _rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTeam)];
+        }
+        self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
+    }
 }
 
 - (void)viewDidUnload
@@ -79,7 +94,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[TeamManager defaultManager].teams count];
+    NSArray * teams = [TeamManager defaultManager].teams;
+    return teams.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
@@ -114,7 +130,10 @@
     profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
     label.text = team.name;
     
-    if (_teamEditState) {
+    label = (UILabel *)[cell viewWithTag:3];
+    label.hidden = YES;
+    
+    if (_viewControllerMode == UITeamChoiceViewControllerModeSet) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else{
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -129,12 +148,8 @@
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.row];
 
-    if (_teamEditState) {
-        if (nil == _editTeamViewController) {
-            _editTeamViewController = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
-        }
-        _editTeamViewController.team = team;
-        [self.navigationController pushViewController: _editTeamViewController animated:YES];
+    if (_viewControllerMode == UITeamChoiceViewControllerModeSet) {
+        [self editTeam:team];   
     }else{        
         [self.parentController refreshTableData:team];
         [self.navigationController popViewControllerAnimated:YES];        
