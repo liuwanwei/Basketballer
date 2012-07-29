@@ -8,7 +8,6 @@
 
 #import "GameHistoriesViewController.h"
 #import "PlayGameViewController.h"
-#import "SettingViewController.h"
 #import "GameDetailsViewController.h"
 #import "AppDelegate.h"
 #import "MatchManager.h"
@@ -48,16 +47,6 @@
     _startGameViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
     [self.navigationController presentViewController:_startGameViewController animated:YES completion:nil];
-}
-
-- (void)showSettingView{
-    if (nil == _settingsViewController) {
-        SettingViewController * rootViewController = [[SettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        _settingsViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    }
-    
-    AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate presentModelViewController:_settingsViewController];
 }
 
 - (void)showGameHistoriesMapView {
