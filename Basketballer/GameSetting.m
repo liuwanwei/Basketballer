@@ -255,6 +255,5 @@ static GameSetting * gameSettings;
 - (NSNumber *)foulsOverWinningPointsLimit{
     return [self parameterForKey:kGameFoulsOverWinningPointLimit];
 }
-}
 
 @end
