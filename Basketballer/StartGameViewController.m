@@ -12,6 +12,7 @@
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
+#import "Feature.h"
 #import "GameSettingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -102,7 +103,7 @@
     _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];  
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [[AppDelegate delegate] weChatTableBgColor];
+    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
     
     [[NSBundle mainBundle] loadNibNamed:@"StartMatchCell" owner:self options:nil];
     CGRect frame = self.startMatchView.frame;

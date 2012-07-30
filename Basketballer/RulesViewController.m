@@ -9,7 +9,7 @@
 #import "RulesViewController.h"
 #import "GameSettingViewController.h"
 #import "GameSetting.h"
-#import "AppDelegate.h"
+#import "Feature.h"
 
 @interface RulesViewController ()
 
@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [[AppDelegate delegate] weChatTableBgColor];
+    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
     self.tableView.rowHeight = 48.0f;
 }
 
