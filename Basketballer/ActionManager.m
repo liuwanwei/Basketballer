@@ -297,10 +297,12 @@ static ActionManager * sActionManager;
             _periodLength = [_gameSettings.quarterLength integerValue];
             _periodFoulsLimit = [_gameSettings.foulsOverQuarterLimit integerValue];
             _periodTimeoutsLimit = [_gameSettings.timeoutsOverQuarterLimit integerValue];
-        }else{
+        }else if([match.mode isEqualToString:kGameModeTwoHalf]){
             _periodLength = [_gameSettings.halfLength integerValue];
             _periodFoulsLimit = [_gameSettings.foulsOverHalfLimit integerValue];
             _periodTimeoutsLimit = [_gameSettings.timeoutsOverHalfLimit integerValue];
+        }else if([match.mode isEqualToString:kGameModePoints]){
+            _periodFoulsLimit = [_gameSettings.foulsOverWinningPointsLimit integerValue];
         }
     }
 }
