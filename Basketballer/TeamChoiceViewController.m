@@ -103,6 +103,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+//    self.tableView.sectionHeaderHeight = 0.0f;
+    self.tableView.sectionFooterHeight = 0.0f;
     NSArray * teams = [TeamManager defaultManager].teams;
     return teams.count;    
 }
