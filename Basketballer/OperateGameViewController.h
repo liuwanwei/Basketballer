@@ -21,18 +21,27 @@
 @property (nonatomic) NSInteger period;
 @property (nonatomic, weak) IBOutlet UIImageView * teamImageView;
 @property (nonatomic, weak) IBOutlet UILabel * teamNameLabel;
+@property (nonatomic, weak) IBOutlet UIButton * pointButton;
 @property (nonatomic, weak) IBOutlet UIButton * foulButton;
 @property (nonatomic, weak) IBOutlet UIButton * timeoutButton;
-@property (nonatomic, weak) IBOutlet UIView * buttonRegionView;
+@property (nonatomic, weak) IBOutlet UILabel * pointsLabel;
+@property (nonatomic, weak) IBOutlet UILabel * pointsPromptLabel;
+@property (nonatomic, weak) IBOutlet UILabel * foulsLabel;
+@property (nonatomic, weak) IBOutlet UILabel * foulsPromptLabel;
+@property (nonatomic ,weak) IBOutlet UILabel * timeoutLabel;
+@property (nonatomic, weak) IBOutlet UILabel * timeoutPromptLabel;
 
 - (void)addScore:(NSInteger) score;
 - (void)initTeam;
 - (void)initTimeoutAndFoulView;
 - (void)refreshMatchData;
+- (void)initButtonsLayout;
 
-- (IBAction)showPopoer:(id)sender;
-- (IBAction)addTimeOver:(id)sender;
-- (IBAction)addFoul:(id)sender;
+- (IBAction)showPopoer:(UIButton *)sender;
+- (IBAction)addTimeOver:(UIButton *)sender;
+- (IBAction)addFoul:(UIButton *)sender;
+- (IBAction)buttonDown:(UIButton *)sender;
+- (IBAction)buttonTouchOutside:(UIButton *)sender;
 
 - (void)setButtonEnabled:(BOOL) enabled;
 
