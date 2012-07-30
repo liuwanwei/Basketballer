@@ -12,13 +12,6 @@
 #import "AppDelegate.h"
 
 @interface GameSettingViewController (){
-    NSArray * _twoHalfSettings;
-    NSArray * _twoHalfSettingsKey;
-    NSArray * _fourQuarterSettings;
-    NSArray * _fourQuarterSettingsKey;
-    NSArray * _pointMatchSettings;
-    NSArray * _pointMatchSettingsKey;
-    
     NSArray * __weak _settingsArray;
     NSArray * __weak _settingsKeyArray;
     NSString * _header;
@@ -36,17 +29,18 @@
 @synthesize viewStyle = _viewStyle;
 
 - (void)initSettingsArray{
+    GameSetting * gameSetting = [GameSetting defaultSetting];
     if([_gameMode isEqualToString:kGameModeFourQuarter]){
-        _settingsArray = _fourQuarterSettings;
-        _settingsKeyArray = _fourQuarterSettingsKey;
+        _settingsArray = gameSetting.fourQuarterSettings;
+        _settingsKeyArray = gameSetting.fourQuarterSettingsKey;
         _header = @"当选择四节模式开始比赛后，这些规则将会被自动使用：";
     }else if([_gameMode isEqualToString:kGameModeTwoHalf]){
-        _settingsArray = _twoHalfSettings;
-        _settingsKeyArray = _twoHalfSettingsKey;
+        _settingsArray = gameSetting.twoHalfSettings;
+        _settingsKeyArray = gameSetting.twoHalfSettingsKey;
         _header = @"当选择上下半场模式开始比赛后，这些规则将会被自动使用：";
     }else{
-        _settingsArray = _pointMatchSettings;
-        _settingsKeyArray = _pointMatchSettingsKey;
+        _settingsArray = gameSetting.pointMatchSettings;
+        _settingsKeyArray = gameSetting.pointMatchSettingsKey;
         _header = @"当选择抢分模式开始比赛后，这些规则将会被自动使用：";
     }
 }
@@ -65,37 +59,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        
-        // Two half mode settings and the keywords used to store the settings.
-        _twoHalfSettings = [NSArray arrayWithObjects:@"半场比赛时间", 
-                                                     @"中场休息时间", 
-                                                     @"球队最大犯规次数", 
-                                                     @"半场允许暂停次数", 
-                                                     @"暂停时间", nil];
-        _twoHalfSettingsKey = [NSArray arrayWithObjects:kGameHalfLength, 
-                                                        kGameHalfTimeLength, 
-                                                        kGameFoulsOverHalfLimit, 
-                                                        kGameTimeoutsOverHalfLimit, 
-                                                        kGameTimeoutLength, nil];
-        
-        _fourQuarterSettings = [NSArray arrayWithObjects:@"单节比赛时间", 
-                                                         @"节间休息时间", 
-                                                         @"中场休息时间", 
-                                                         @"球队最大犯规次数", 
-                                                         @"单节允许暂停次数", 
-                                                         @"暂停时间", nil];
-        _fourQuarterSettingsKey = [NSArray arrayWithObjects:kGameQuarterLength, 
-                                                            kGameQuarterTimeLength, 
-                                                            kGameHalfTimeLength, 
-                                                            kGameFoulsOverQuarterLimit, 
-                                                            kGameTimeoutsOverQuarterLimit, 
-                                                            kGameTimeoutLength, nil];
-        
-        _pointMatchSettings = [NSArray arrayWithObjects:@"获取胜利分数",
-                               @"犯规罚球次数",nil];
-        _pointMatchSettingsKey = [NSArray arrayWithObjects:kGameWinningPoint,
-                                  kGameFoulsOverWinningPointLimit, nil];
-        
     }
     return self;
 }
@@ -120,6 +83,11 @@
     
     // TODO 这个开销放这里是否必要？
     [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

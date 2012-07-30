@@ -9,13 +9,17 @@
 #import "EditTeamInfoViewController.h"
 #import "define.h"
 #import "TeamManager.h"
+#import "MatchManager.h"
 #import "EditTeamNameViewController.h"
 #import "AppDelegate.h"
+#import "Feature.h"
+#import "GameHistoriesViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface EditTeamInfoViewController() {
-    UIImage * _image;
+    NSArray * _matchesOfTeam;
     
+    UIImage * _image;
     BOOL _dirty;
 }
 @end
@@ -110,11 +114,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"设置球队";
+    
+    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
+    
     [self initNavigationItem];
     [self initRowsTitle];
     
     _dirty = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if (_operateMode == Insert) {
+        [self setTitle:@"组建球队"];
+    }else{
+        [self setTitle:@"球队信息"];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -139,7 +155,12 @@
         }
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_operateMode == Insert) {
+        [[AppDelegate delegate] dismissModelViewController];
+    }else{
+        self.hidesBottomBarWhenPushed = NO;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Table view data source
@@ -156,16 +177,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 1 && _operateMode == Update) {
+        return 2;
+    }
+    
     return 1;
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPat.section == 0) {
-         return 44;
+    if (indexPath.section == 0) {
+         return 72.0f;
     }else {
-         return 72;
+         return 44.0f;
     }
    
 }
@@ -174,13 +199,7 @@
 {
     UITableViewCell *cell = nil;
     
-    if (indexPath.section == 0) {
-        static NSString *CellIdentifier = @"Cell";        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"名字";
-        cell.detailTextLabel.text = self.team.name;
-    }else if (indexPath.section == 1) {
+   if (indexPath.section == 0) {
         UIImageView * profileImageView;
 
         [[NSBundle mainBundle] loadNibNamed:@"TeamImageEditCell" owner:self options:nil];
@@ -188,15 +207,32 @@
         self.teamCell = nil;
         
         // 图片圆角化。
-
-        TeamManager * teamManager = [TeamManager defaultManager]; 
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         profileImageView.layer.masksToBounds = YES;
         profileImageView.layer.cornerRadius = 5.0f;
-//        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);        
-        
+
+        TeamManager * teamManager = [TeamManager defaultManager]; 
         profileImageView.image = [teamManager imageForTeam:self.team];  
-    }
+   }else{
+       static NSString *CellIdentifier = @"Cell";  
+       cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+       if (nil == cell) {
+           cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+           cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+       }
+       
+       if (indexPath.row == 0) {
+           cell.textLabel.text = @"名字";
+           cell.detailTextLabel.text = self.team.name;
+       }else if(indexPath.row == 1){
+           cell.textLabel.text = @"比赛记录";
+           
+           // 获取球队所有比赛记录数目和详情。数目用在这里，详情用于显示比赛列表。
+           _matchesOfTeam = [[MatchManager defaultManager] matchesWithTeamId:[_team.id integerValue]];
+           NSString * countString = [NSString stringWithFormat:@"%d", _matchesOfTeam.count];
+           cell.detailTextLabel.text = countString;
+       }
+   } 
     
     return cell;
 }
@@ -205,15 +241,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 1) {
+    if(indexPath.section == 0) {
         [self showActionSheet];
         [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    }else {
-        EditTeamNameViewController * editTeamNameViewController = [[EditTeamNameViewController alloc] initWithNibName:@"EditTeamNameViewController" bundle:nil];
-        editTeamNameViewController.teamName = self.team.name;
-        editTeamNameViewController.parentController = self;
-        [self.navigationController pushViewController:editTeamNameViewController animated:YES];
-        _dirty = YES;
+    }else if(indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            EditTeamNameViewController * editTeamNameViewController = [[EditTeamNameViewController alloc] initWithNibName:@"EditTeamNameViewController" bundle:nil];
+            editTeamNameViewController.teamName = self.team.name;
+            editTeamNameViewController.parentController = self;
+            [self.navigationController pushViewController:editTeamNameViewController animated:YES];
+            _dirty = YES;
+
+        }else if(indexPath.row == 1){
+            GameHistoriesViewController * history = [[GameHistoriesViewController alloc] initWithNibName:@"GameHistoriesViewController" bundle:nil];
+            history.matches = _matchesOfTeam;
+            [self.navigationController pushViewController:history animated:YES];
+        }
     }
 }
 

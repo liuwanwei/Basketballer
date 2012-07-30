@@ -12,6 +12,7 @@
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
+#import "Feature.h"
 #import "GameSettingViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -97,15 +98,13 @@
 {
     [super viewDidLoad];
     
-    _sectionsTitle = [NSArray arrayWithObjects:@"参赛球队",@"竞技规则",nil];
+    _sectionsTitle = [NSArray arrayWithObjects:@"主队", @"客队" ,@"竞技规则",nil];
     
     _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];  
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
     
-//    NSLog(@"%@", self.startMatchView);
-//    self.tableView.tableFooterView = self.startMatchView;
-//    self.tableView.tableHeaderView = self.startMatchView;
     [[NSBundle mainBundle] loadNibNamed:@"StartMatchCell" owner:self options:nil];
     CGRect frame = self.startMatchView.frame;
     frame.size.width = 160;
@@ -157,10 +156,18 @@
     return 3;
 }
 
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
 //   return [_sectionsTitle objectAtIndex:section];
-//}
+    if(section == 1){
+        return @"VS";
+    }else if(section == 2){
+//        return @"规则";
+        return nil;
+    }else{
+        return nil;
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -168,6 +175,14 @@
         return 1;
     }else{
         return 1;   
+    }
+}
+
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0.0f;
+    }else{
+        return 23.0f;
     }
 }
 
@@ -183,18 +198,16 @@
 {
     UITableViewCell * cell = nil;
     if (indexPath.section == 0 || indexPath.section == 1) {
-        UIImageView * profileImageView;
-        if(cell == nil) {
-            [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
-            cell = _teamCell;
-            self.teamCell = nil;
-            
-            // 图片圆角化。
-            profileImageView = (UIImageView *)[cell viewWithTag:1];
-            profileImageView.layer.masksToBounds = YES;
-            profileImageView.layer.cornerRadius = 5.0f;
-        }
+        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+        cell = _teamCell;
+        self.teamCell = nil;   
+    
+        // 图片圆角化。
+        UIImageView * profileImageView;        
         profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
+
         UILabel * label = (UILabel *)[cell viewWithTag:2]; 
         Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.section];
         if (indexPath.section == 0) {
@@ -205,24 +218,14 @@
         
         profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
         label.text = team.name;
-        
-        label = (UILabel *)[cell viewWithTag:3];
-        label.text = indexPath.section == 0 ? @"球队一" : @"球队二";
-    }else if (indexPath.section == 2){
-        static NSString *CellIdentifier = @"Cell";        
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        }
-        
-        static NSArray * rulesString = nil;
-        if (nil == rulesString) {
-            rulesString = [NSArray arrayWithObjects:@"比赛模式", @"比赛规则", nil];
-        }    
+    }else if (indexPath.section == 2){   
+        [[NSBundle mainBundle] loadNibNamed:@"MatchModeCell" owner:self options:nil];
+        cell = _modeCell;
+        self.modeCell = nil;
     
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.detailTextLabel.text = _gameMode;
-        cell.textLabel.text = [rulesString objectAtIndex:indexPath.row];
+        UILabel * label;
+        label = (UILabel *)[cell viewWithTag:2];
+        label.text = _gameMode;
     }
         
     return cell;
@@ -231,11 +234,15 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 || indexPath.section == 1) {
+    NSInteger section = indexPath.section;
+    if (section == 0 || section == 1) {
         _curClickRowIndex = indexPath.section;
         TeamChoiceViewController *teamChoiceViewController = [[TeamChoiceViewController alloc] initWithNibName:@"TeamChoiceViewController" bundle:nil];
+
+        teamChoiceViewController.choosedTeamId = (section == 0 ? _hostTeam.id : _guestTeam.id);
         teamChoiceViewController.parentController = self;
         teamChoiceViewController.viewControllerMode = UITeamChoiceViewControllerModeChoose;
+        teamChoiceViewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:teamChoiceViewController animated:YES];
     }else if(indexPath.section == 2){
         if (indexPath.row == 0) {
@@ -246,23 +253,13 @@
             }
             
             _chooseGameModeView.currentChoice = _gameMode;
+            _chooseGameModeView.hidesBottomBarWhenPushed = YES;
             [_chooseGameModeView setTitle:_gameMode];
             [self.navigationController pushViewController:_chooseGameModeView animated:YES];
-        }else {
-            GameSettingViewController * gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            
-            gameSettingViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
-            [gameSettingViewController setTitle:_gameMode];
-            [self.navigationController pushViewController:gameSettingViewController animated:YES];
         }
     }
 }
 
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 1) {
-//        [self showGameSettingController];
-//    }
-//}
 
 # pragma SingleChoiceViewDelegate
 - (void)choosedParameter:(NSString *)parameter{

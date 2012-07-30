@@ -138,6 +138,7 @@
         [_delegate performSelector:@selector(choosedParameter:) withObject:_currentChoice];
     }
     
+    self.hidesBottomBarWhenPushed = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

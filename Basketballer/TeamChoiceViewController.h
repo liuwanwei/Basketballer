@@ -21,4 +21,6 @@ typedef enum{
 @property (nonatomic, weak) UITableViewCell * teamCell;
 @property (nonatomic) UITeamChoiceViewControllerMode viewControllerMode;
 
+@property (nonatomic, weak)  NSNumber * choosedTeamId;
+
 @end
