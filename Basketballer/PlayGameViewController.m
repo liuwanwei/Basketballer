@@ -367,7 +367,11 @@
     startMatchView.parentController = self;
     startMatchView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:startMatchView];
-    startMatchView.alpha = 0.85;
+    startMatchView.alpha = 0.9;
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma 事件函数
@@ -397,6 +401,10 @@
         self.curPeroid = -1;
         [AppDelegate delegate].playGameViewController = self;
     }
+    
+    UIBarButtonItem * leftItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     //[LocationManager defaultManager].delegate = self;
     //[self startGame:nil];
@@ -495,7 +503,9 @@
     
     CGFloat xOffSet = touchPoint.x - _touchBeganPoint.x;
     if (xOffSet < -10) {
-        [self showActionRecordontroller];
+        if (_gameStart == YES) {
+            [self showActionRecordontroller];
+        }
     }
 }
 #pragma alert delete
