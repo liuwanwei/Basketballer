@@ -23,10 +23,11 @@ static Feature * sDefaultFeatures;
 
 + (Feature *)defaultFeature{
     if (nil == sDefaultFeatures) {
-        sDefaultFeatures = [Feature alloc] init];
+        sDefaultFeatures = [[Feature alloc] init];
     }
     
-    return sDefaultFeatures
+    return sDefaultFeatures;
 }
+
 
 @end
