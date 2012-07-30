@@ -10,6 +10,7 @@
 #import "TeamChoiceViewController.h"
 #import "StartGameViewController.h"
 #import "EditTeamInfoViewController.h"
+#import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface TeamChoiceViewController (){
@@ -19,6 +20,7 @@
 
 @implementation TeamChoiceViewController
 @synthesize parentController = _parentController;
+@synthesize choosedTeamId = _choosedTeamId;
 @synthesize teamCell = _teamCell;
 @synthesize viewControllerMode = _viewControllerMode;
 
@@ -30,11 +32,14 @@
     EditTeamInfoViewController * editTeam = [[EditTeamInfoViewController alloc] initWithNibName:@"EditTeamInfoViewController" bundle:nil];
     if (nil == team) {
         editTeam.operateMode = Insert;
+        UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:editTeam];
+        [[AppDelegate delegate] presentModelViewController:nav];
     }else{
         editTeam.operateMode = Update;
         editTeam.team = team;
+        editTeam.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:editTeam animated:YES];        
     }
-    [self.navigationController pushViewController:editTeam animated:YES];
 }
 
 - (void)teamChangedHandler:(NSNotification *)notification{
@@ -55,13 +60,17 @@
 {
     [super viewDidLoad];
     
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = [[AppDelegate delegate] weChatTableBgColor];
+    self.tableView.rowHeight = 72.0f; 
+    
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(teamChangedHandler:) name:kTeamChanged object:nil];    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+       
     if (_viewControllerMode == UITeamChoiceViewControllerModeChoose) {
         self.navigationItem.rightBarButtonItem = nil;
         [self setTitle:@"球队列表"];
@@ -71,6 +80,11 @@
         }
         self.navigationItem.rightBarButtonItem = _rightBarButtonItem;
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)viewDidUnload
@@ -98,11 +112,6 @@
     return teams.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPat
-{
-    return 70;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -118,7 +127,7 @@
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         profileImageView.layer.masksToBounds = YES;
         profileImageView.layer.cornerRadius = 5.0f;
-        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);
+//        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);
         
         label = (UILabel *)[cell viewWithTag:2]; 
         label.frame = CGRectMake(80.0, 25.0, 200.0, 21.0);
@@ -136,7 +145,13 @@
     if (_viewControllerMode == UITeamChoiceViewControllerModeSet) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        if (nil != _choosedTeamId && 
+           [team.id integerValue] == [_choosedTeamId integerValue]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }else{
+            cell.accessoryType = UITableViewCellAccessoryNone;            
+        }
+
     }
    
     return cell;

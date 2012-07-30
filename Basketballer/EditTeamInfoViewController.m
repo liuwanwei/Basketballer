@@ -139,7 +139,12 @@
         }
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_operateMode == Insert) {
+        [[AppDelegate delegate] dismissModelViewController];
+    }else{
+        self.hidesBottomBarWhenPushed = NO;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Table view data source
