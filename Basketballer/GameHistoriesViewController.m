@@ -18,18 +18,16 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface GameHistoriesViewController (){
-    UINavigationController * _settingsViewController;
     GameDetailsViewController * _gameDetailsViewController;
-    UINavigationController * _startGameViewController;
     UINavigationController * _gameHistoriesMapViewController;
     
     NSDateFormatter * _dateFormatter;
-//    NSDateFormatter * _timeFormatter;
 }
 @end
 
 @implementation GameHistoriesViewController
 @synthesize tvCell = _tvCell;
+@synthesize matches = _matches;
 
 #pragma 私有函数
 - (void)initNavigationItem {
@@ -42,12 +40,6 @@
 }
 
 #pragma 事件函数
-- (void)startGame {
-    StartGameViewController * rootViewController = [[StartGameViewController alloc] initWithNibName:@"StartGameViewController" bundle:nil];
-    _startGameViewController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-    
-    [self.navigationController presentViewController:_startGameViewController animated:YES completion:nil];
-}
 
 - (void)showGameHistoriesMapView {
     if (nil == _gameHistoriesMapViewController) {
@@ -105,7 +97,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[MatchManager defaultManager] matchesArray] count];
+    if (_matches == nil) {
+        return 0;
+    }else{
+        return _matches.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +114,7 @@
         self.tvCell = nil;
     }
     
-    Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+    Match * match = [_matches objectAtIndex:indexPath.row];
     
 //    UIImage * defaultTeamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
     UIImage * image;
@@ -216,20 +212,7 @@
 */
 
 #pragma mark - Table view delegate
-//
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return YES;
-//}
-//
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        MatchManager * mm = [MatchManager defaultManager];
-//        Match * match = [[mm matchesArray] objectAtIndex:indexPath.row];
-//        [mm deleteMatch:match];
-//        
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    }
-//}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -238,7 +221,7 @@
                                       initWithNibName:@"GameDetailsViewController" bundle:nil];
     }
     
-    Match * match = [[[MatchManager defaultManager] matchesArray] objectAtIndex:indexPath.row];
+    Match * match = [_matches objectAtIndex:indexPath.row];
     _gameDetailsViewController.match = match;
     [_gameDetailsViewController reloadActionsInMatch];
     _gameDetailsViewController.hidesBottomBarWhenPushed = YES;    

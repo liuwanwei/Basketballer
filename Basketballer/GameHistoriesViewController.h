@@ -24,4 +24,6 @@ typedef enum {
 
 @property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 
+@property (nonatomic, weak) NSArray * matches;
+
 @end
