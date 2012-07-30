@@ -33,7 +33,13 @@
 @synthesize teamNameLabel = _teamNameLabel;
 @synthesize foulButton = _foulButton;
 @synthesize timeoutButton = _timeoutButton;
-@synthesize buttonRegionView = _buttonRegionView;
+@synthesize pointButton = _pointButton;
+@synthesize pointsLabel = _pointsLabel;
+@synthesize timeoutLabel = _timeoutLabel;
+@synthesize foulsLabel = _foulsLabel;
+@synthesize pointsPromptLabel = _pointsPromptLabel;
+@synthesize foulsPromptLabel = _foulsPromptLabel;
+@synthesize timeoutPromptLabel = _timeoutPromptLabel;
 
 #pragma 私有函数
 /*计算时间差*/
@@ -56,10 +62,10 @@
  注：设置球队按钮除外
  */
 - (void)setButtonEnabled:(BOOL) enabled {
-    NSInteger size = self.buttonRegionView.subviews.count;
+    NSInteger size = self.subviews.count;
     for (NSInteger index = 0; index < size; index++) {
-        if([[self.buttonRegionView.subviews objectAtIndex:index] isKindOfClass:[UIButton class]]) {
-            [[self.buttonRegionView.subviews objectAtIndex:index] setEnabled:enabled];
+        if([[self.subviews objectAtIndex:index] isKindOfClass:[UIButton class]]) {
+            [[self.subviews objectAtIndex:index] setEnabled:enabled];
         }
     }
 }
@@ -76,25 +82,44 @@
 
 - (void)initTimeoutAndFoulView {
     [self.timeoutButton setBackgroundImage:[UIImage imageNamed:@"nil"] forState:UIControlStateNormal];
-    self.timeoutButton.titleLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
-    self.timeoutButton.titleLabel.text = @"0";
+    self.timeoutLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+    self.timeoutLabel.text = @"0";
     _timeoutSize = 0;
     
     [self.foulButton setBackgroundImage:[UIImage imageNamed:@"nil"] forState:UIControlStateNormal];
-    self.foulButton.titleLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
-    self.foulButton.titleLabel.text = @"0";
+    self.foulsLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+    self.foulsLabel.text = @"0";
 }
 
 - (void)refreshMatchData {
     ActionManager * actionManager = [ActionManager defaultManager];
     if(_teamType == host) {
-        self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts];
-        self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+        self.pointsLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamPoints];
+        self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts];
+        self.foulsLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
     }else {
-        self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts];
-        self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+        self.pointsLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamPoints];
+        self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts];
+        self.foulsLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
     }
     
+}
+
+#pragma 类成员函数
+- (void)initButtonsLayout {
+    if (_match.mode == kGameModePoints) {
+        self.timeoutButton.hidden = YES;
+        self.timeoutPromptLabel.hidden = YES;
+        self.timeoutLabel.hidden = YES;
+        
+        self.pointButton.layer.frame = CGRectMake(self.pointButton.layer.frame.origin.x, self.pointButton.layer.frame.origin.y, 150.0, self.pointButton.layer.frame.size.height);
+        self.pointsPromptLabel.layer.frame = CGRectMake(self.pointsPromptLabel.layer.frame.origin.x + 30.0, self.pointsPromptLabel.layer.frame.origin.y, self.pointsPromptLabel.layer.frame.size.width, self.pointsPromptLabel.layer.frame.size.height);
+        self.pointsLabel.layer.frame = CGRectMake(self.pointsLabel.layer.frame.origin.x + 30.0, self.pointsLabel.layer.frame.origin.y, self.pointsLabel.layer.frame.size.width, self.pointsLabel.layer.frame.size.height);
+        
+        self.foulButton.layer.frame = CGRectMake(self.foulButton.layer.frame.origin.x + 51.0, self.foulButton.layer.frame.origin.y, 150.0, self.foulButton.layer.frame.size.height);
+        self.foulsPromptLabel.layer.frame = CGRectMake(self.foulsPromptLabel.layer.frame.origin.x + 80.0, self.foulsPromptLabel.layer.frame.origin.y, self.foulsPromptLabel.layer.frame.size.width, self.foulsPromptLabel.layer.frame.size.height);
+        self.foulsLabel.layer.frame = CGRectMake(self.foulsLabel.layer.frame.origin.x + 80.0, self.foulsLabel.layer.frame.origin.y, self.foulsLabel.layer.frame.size.width, self.foulsLabel.layer.frame.size.height);
+    }
 }
 
 #pragma 事件函数
@@ -104,10 +129,12 @@
     self.frame = frame;
     ActionManager * actionManager = [ActionManager defaultManager];
     actionManager.delegate = self;
+    
     return self;
 }
 
 - (IBAction)showPopoer:(UIButton *)sender {
+    sender.backgroundColor = [UIColor whiteColor];
     /*if(_popoverController == nil && _popoverContentController == nil) {
         _popoverContentController = [[WEPopoverContentViewController alloc] initWithStyle:UITableViewStylePlain];
         _popoverController = [[WEPopoverController alloc] initWithContentViewController:_popoverContentController];
@@ -128,15 +155,20 @@
 - (void)addScore:(NSInteger) score {
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
+    NSInteger points;
     if(_teamType == host) {
         [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        points = [actionManager homeTeamPoints];
     }else {
         [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        points = [actionManager guestTeamPoints];
     }
+    self.pointsLabel.text = [NSString stringWithFormat:@"%d",points];
     [[NSNotificationCenter defaultCenter] postNotificationName:kAddScoreMessage object:nil];
 }
 
-- (IBAction)addTimeOver:(id)sender {
+- (IBAction)addTimeOver:(UIButton *)sender {
+    sender.backgroundColor = [UIColor whiteColor];
     NSInteger timeoutLimit;
     if (_match.mode == kGameModeTwoHalf) {
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
@@ -155,9 +187,18 @@
 }
 
 - (IBAction)addFoul:(id)sender {
+    self.foulButton.backgroundColor = [UIColor whiteColor];
     UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1次犯规", nil];
     menu.tag = 2;
     [menu showInView:self];
+}
+
+- (IBAction)buttonDown:(UIButton *)sender {
+    sender.backgroundColor = [UIColor colorWithRed:0.215686274509803 green:0.392156862745098 blue:0.839215686274509 alpha:1];
+}
+
+- (IBAction)buttonTouchOutside:(UIButton *)sender {
+     sender.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma FoulActionDelegate
@@ -178,8 +219,10 @@
             NSInteger foulLimit;
             if (_match.mode == kGameModeTwoHalf) {
                 foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
-            }else {
+            }else if (_match.mode == kGameModeFourQuarter){
                 foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
+            }else {
+                foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
             }
             
             if (_teamType == host) {
@@ -191,9 +234,9 @@
             }
             
             if (foulSize >= foulLimit) {
-                self.foulButton.titleLabel.textColor = [UIColor redColor];
+                self.foulsLabel.textColor = [UIColor redColor];
             }
-            self.foulButton.titleLabel.text = [NSString stringWithFormat:@"%d",foulSize];
+            self.foulsLabel.text = [NSString stringWithFormat:@"%d",foulSize];
         }
     }else {
         if (buttonIndex == 0) {
@@ -219,9 +262,9 @@
                     _timeoutSize = actionManager.guestTeamTimeouts;
                 }
                 if (timeoutLimit == _timeoutSize) {
-                    self.timeoutButton.titleLabel.textColor = [UIColor redColor];
+                    self.timeoutLabel.textColor = [UIColor redColor];
                 }
-                self.timeoutButton.titleLabel.text = [NSString stringWithFormat:@"%d",_timeoutSize];
+                self.timeoutLabel.text = [NSString stringWithFormat:@"%d",_timeoutSize];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutMessage object:nil];
             }else {
                 [self showAlertView:@"本节暂停已使用完"];

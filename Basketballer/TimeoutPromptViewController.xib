@@ -46,7 +46,7 @@
 								<string key="NSFrame">{{0, 336}, {320, 21}}</string>
 								<reference key="NSSuperview" ref="317766682"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="476781862"/>
+								<reference key="NSNextKeyView" ref="341497086"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -81,7 +81,7 @@
 								<string key="NSFrame">{{0, 70}, {320, 150}}</string>
 								<reference key="NSSuperview" ref="317766682"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="341497086"/>
+								<reference key="NSNextKeyView" ref="275709248"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -110,7 +110,7 @@
 							<object class="IBUIButton" id="341497086">
 								<reference key="NSNextResponder" ref="317766682"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{63, 323}, {200, 37}}</string>
+								<string key="NSFrame">{{63, 279}, {200, 37}}</string>
 								<reference key="NSSuperview" ref="317766682"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1847548"/>
@@ -144,9 +144,10 @@
 							<object class="IBUIButton" id="1847548">
 								<reference key="NSNextResponder" ref="317766682"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{284, 335}, {25, 25}}</string>
+								<string key="NSFrame">{{284, 291}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="317766682"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">1</int>
@@ -171,10 +172,10 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 369}</string>
+						<string key="NSFrameSize">{320, 325}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="275709248"/>
+						<reference key="NSNextKeyView" ref="476781862"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>

@@ -140,8 +140,10 @@
     playGameViewController.guestTeam = _guestTeam;
     if ([_gameMode isEqualToString:@"上下半场"]) {
         playGameViewController.gameMode = kGameModeTwoHalf;
-    }else {
+    }else if ([_gameMode isEqualToString:@"四节模式"]){
         playGameViewController.gameMode = kGameModeFourQuarter;
+    }else {
+        playGameViewController.gameMode = kGameModePoints;
     }
     playGameViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:playGameViewController animated:YES];
