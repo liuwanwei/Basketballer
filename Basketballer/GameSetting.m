@@ -248,5 +248,13 @@ static GameSetting * gameSettings;
     return [self parameterForKey:kGameTimeoutsOverHalfLimit];
 }
 
+- (NSNumber *)winningPoints{
+    return [self parameterForKey:kGameWinningPoint];
+}
+
+- (NSNumber *)foulsOverWinningPointsLimit{
+    return [self parameterForKey:kGameFoulsOverWinningPointLimit];
+}
+}
 
 @end
