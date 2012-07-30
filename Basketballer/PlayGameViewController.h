@@ -34,6 +34,5 @@
 @property (nonatomic, weak) NSDate * timeoutTargetTime;
 
 - (IBAction)startGame:(id)sender;
-- (IBAction)stopGame:(id)sender;
 
 @end

@@ -18,7 +18,6 @@
 
 @implementation ActionRecordViewController
 @synthesize tableView = _tableView;
-@synthesize navItem = _navItem;
 @synthesize actionRecords = _actionRecords;
 
 -(void) swip:(UISwipeGestureRecognizer *)swip {
@@ -32,13 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navItem.title = @"裁判记录";
+    self.title = @"裁判记录";
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
     swip.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swip];
-    
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    self.navItem.leftBarButtonItem = item;
     
     self.tableView.delegate = self;
     self.tableView.editing = YES;
