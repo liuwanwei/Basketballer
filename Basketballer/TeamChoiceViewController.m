@@ -74,7 +74,6 @@
        
     if (_viewControllerMode == UITeamChoiceViewControllerModeChoose) {
         self.navigationItem.rightBarButtonItem = nil;
-        [self setTitle:@"球队列表"];
     }else{
         if (nil == _rightBarButtonItem) {
             _rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTeam)];
@@ -104,39 +103,37 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    NSArray * teams = [TeamManager defaultManager].teams;
+    return teams.count;    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray * teams = [TeamManager defaultManager].teams;
-    return teams.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UIImageView * profileImageView;
-    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
     if (cell == nil) {
         [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
         cell = _teamCell;
         self.teamCell = nil;
         
         // 图片圆角化。
-        profileImageView = (UIImageView *)[cell viewWithTag:1];
-        profileImageView.layer.masksToBounds = YES;
-        profileImageView.layer.cornerRadius = 5.0f;
-//        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);
-        
-        label = (UILabel *)[cell viewWithTag:2]; 
-        label.frame = CGRectMake(80.0, 25.0, 200.0, 21.0);
+//        profileImageView = (UIImageView *)[cell viewWithTag:1];
+//        profileImageView.layer.masksToBounds = YES;
+//        profileImageView.layer.cornerRadius = 5.0f;
     }
+    
+    UILabel * label;
+    UIImageView * profileImageView;    
+    
     profileImageView = (UIImageView *)[cell viewWithTag:1];
     label = (UILabel *)[cell viewWithTag:2]; 
     NSArray * teams = [[TeamManager defaultManager] teams];
-    Team * team = [teams objectAtIndex:indexPath.row];
+    Team * team = [teams objectAtIndex:indexPath.section];
     profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
     label.text = team.name;
     
@@ -162,7 +159,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray * teams = [[TeamManager defaultManager] teams];
-    Team * team = [teams objectAtIndex:indexPath.row];
+    Team * team = [teams objectAtIndex:indexPath.section];
 
     if (_viewControllerMode == UITeamChoiceViewControllerModeSet) {
         [self editTeam:team];   
