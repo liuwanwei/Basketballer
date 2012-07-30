@@ -24,6 +24,7 @@
 		3C13E49D15C1939500F4307C /* timeStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C13E49C15C1939500F4307C /* timeStop.png */; };
 		3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3215C68F3400BAB6BE /* StartMatchView.m */; };
 		3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */; };
+		3C2B1B3A15C699C700BAB6BE /* buttonPlayBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3915C699C700BAB6BE /* buttonPlayBlue.png */; };
 		3C42823B15B7B1B500903F9D /* buttonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C42823A15B7B1B500903F9D /* buttonBackground.png */; };
 		3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
 		3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824215B8E00C00903F9D /* PopoverContentCell.xib */; };
@@ -148,6 +149,7 @@
 		3C2B1B3115C68F3400BAB6BE /* StartMatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMatchView.h; sourceTree = "<group>"; };
 		3C2B1B3215C68F3400BAB6BE /* StartMatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartMatchView.m; sourceTree = "<group>"; };
 		3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartMatchView.xib; sourceTree = "<group>"; };
+		3C2B1B3915C699C700BAB6BE /* buttonPlayBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonPlayBlue.png; path = Resources/images/buttonPlayBlue.png; sourceTree = "<group>"; };
 		3C42823A15B7B1B500903F9D /* buttonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonBackground.png; path = Resources/images/buttonBackground.png; sourceTree = "<group>"; };
 		3C42824015B7C32200903F9D /* MatchModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchModeCell.xib; sourceTree = "<group>"; };
 		3C42824215B8E00C00903F9D /* PopoverContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverContentCell.xib; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3C2B1B3915C699C700BAB6BE /* buttonPlayBlue.png */,
 				3C06B17715C24EF50009C909 /* matchPause.png */,
 				3C13E49C15C1939500F4307C /* timeStop.png */,
 				E6275FBF15C1256000FBE247 /* Basketball.png */,
@@ -701,6 +704,7 @@
 				3C06B17815C24EF50009C909 /* matchPause.png in Resources */,
 				E65FF05315C455F300E96D6A /* TeamImageEditCell.xib in Resources */,
 				3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */,
+				3C2B1B3A15C699C700BAB6BE /* buttonPlayBlue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
