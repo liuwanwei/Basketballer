@@ -48,7 +48,7 @@
 - (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
     UIAlertView * alertView;
     if(cancel == YES) {
-        alertView = [[UIAlertView alloc] initWithTitle:@"确认" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定" , nil];
+        alertView = [[UIAlertView alloc] initWithTitle:@"确认" message:message delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"保存" , nil];
     }else {
         alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
     }
@@ -85,7 +85,9 @@
         if (hostPoints >= winningPoints || guestPoints >= winningPoints) {
             AudioServicesPlayAlertSound (self.soundFileObject);
             self.gameState = finish;
-            [self showAlertView:@"比赛结束" withCancel:NO];
+            
+            [self stopGame:finish];
+            [self showAlertView:@"比赛结束,您要保存比赛数据吗?" withCancel:YES];
         }
     }
 }
@@ -117,7 +119,7 @@
 
 /*显示菜单项*/
 - (void)showMenu {
-    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"查看记录",@"查看规则",@"结束比赛", nil];
+    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:@"查看比赛操作记录",@"查看当前比赛规则", nil];
     [menu showInView:self.view];
 
 }
@@ -126,7 +128,7 @@
 - (void)initNavBarItem {
     self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithTitle:@"..." style:(UIBarButtonItemStyleBordered) target:self action:@selector(showMenu)];
+    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithTitle:@". . ." style:(UIBarButtonItemStyleBordered) target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
@@ -263,7 +265,8 @@
                 self.gameState = over_quarter_finish;
             }else {
                 self.gameState = finish;
-                [self showAlertView:@"比赛结束" withCancel:NO];
+                [self stopGame:finish];
+                [self showAlertView:@"比赛结束,您要保存比赛数据吗?" withCancel:YES];
             }
         }else {
             if (_curPeroid != 3) {
@@ -272,7 +275,8 @@
                 self.gameState = over_quarter_finish;
             }else {
                 self.gameState = finish;
-                [self showAlertView:@"比赛结束" withCancel:NO];
+                [self stopGame:finish];
+                [self showAlertView:@"比赛结束,您要保存比赛数据吗?" withCancel:YES];
             }
         }
     }
@@ -284,6 +288,21 @@
 
 - (void)stopGameCountDown {
     [self.countDownTimer invalidate];
+}
+
+- (void)stopGame:(NSInteger) mode {
+    [self stopGameCountDown];
+    _gameStart = NO;
+    AudioServicesDisposeSystemSoundID (self.soundFileObject);
+    [AppDelegate delegate].playGameViewController = nil;
+    
+    if (mode == stop) {
+        [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
+    }else if (mode == finish){
+        [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
+    }
+    
+    [self showAlertView:@"您要保存比赛数据吗？" withCancel:YES];
 }
 
 - (void) initOperateGameView {
@@ -457,10 +476,6 @@
     }
 }
 
-- (IBAction)stopGame:(id)sender {
-    [self showAlertView:@"您要强制结束比赛吗？" withCancel:YES];
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     UITouch *touch=[touches anyObject];
     _touchBeganPoint = [touch locationInView:[[UIApplication sharedApplication] keyWindow]];
@@ -477,25 +492,12 @@
 }
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != 0) {
-        [self stopGameCountDown];
-        _gameStart = NO;
-        AudioServicesDisposeSystemSoundID (self.soundFileObject);
-        [AppDelegate delegate].playGameViewController = nil;
+    if (buttonIndex == 0) {
+        [[MatchManager defaultManager] deleteMatch:_match];
     }
-    
-    if (buttonIndex == 1) {
-        [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
-        self.hidesBottomBarWhenPushed = NO;
-        self.navigationController.navigationBarHidden = NO;
-        [self.navigationController popViewControllerAnimated:YES];
-
-    }else if (alertView.cancelButtonIndex == -1){
-        [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
-        self.hidesBottomBarWhenPushed = NO;   
-        self.navigationController.navigationBarHidden = NO;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    self.hidesBottomBarWhenPushed = NO;   
+    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma LocationManager delete
@@ -510,11 +512,11 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [self showActionRecordontroller];
+        [self stopGame:stop];
     }else if (buttonIndex == 1){
-        [self showGameSettingController];
+        [self showActionRecordontroller];
     }else if (buttonIndex == 2){
-        [self stopGame:nil];
+        [self showGameSettingController];
     }
 }
 
