@@ -84,6 +84,7 @@
 		E6275FC215C1256000FBE247 /* Basketball@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6275FC015C1256000FBE247 /* Basketball@2x.png */; };
 		E65FF05315C455F300E96D6A /* TeamImageEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65FF05215C455F200E96D6A /* TeamImageEditCell.xib */; };
 		E65FF05A15C5057600E96D6A /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05915C5057600E96D6A /* RulesViewController.m */; };
+		E65FF05D15C6261F00E96D6A /* Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05C15C6261F00E96D6A /* Feature.m */; };
 		E68D111315A2FAA40074982D /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111215A2FAA40074982D /* GameSettingViewController.m */; };
 		E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111D15A3DA0C0074982D /* GameSetting.m */; };
 		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
@@ -227,6 +228,8 @@
 		E65FF05215C455F200E96D6A /* TeamImageEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamImageEditCell.xib; sourceTree = "<group>"; };
 		E65FF05815C5057500E96D6A /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
 		E65FF05915C5057600E96D6A /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
+		E65FF05B15C6261F00E96D6A /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
+		E65FF05C15C6261F00E96D6A /* Feature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feature.m; sourceTree = "<group>"; };
 		E68D111115A2FAA30074982D /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingViewController.h; sourceTree = "<group>"; };
 		E68D111215A2FAA40074982D /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingViewController.m; sourceTree = "<group>"; };
 		E68D111C15A3DA0C0074982D /* GameSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetting.h; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
 				3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */,
 				3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */,
+				E65FF05B15C6261F00E96D6A /* Feature.h */,
+				E65FF05C15C6261F00E96D6A /* Feature.m */,
 			);
 			name = library;
 			sourceTree = "<group>";
@@ -733,6 +738,7 @@
 				E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */,
 				3C13E49815C192A900F4307C /* TimeStopPromptView.m in Sources */,
 				E65FF05A15C5057600E96D6A /* RulesViewController.m in Sources */,
+				E65FF05D15C6261F00E96D6A /* Feature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
