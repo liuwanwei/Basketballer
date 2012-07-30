@@ -16,6 +16,8 @@
     NSArray * _twoHalfSettingsKey;
     NSArray * _fourQuarterSettings;
     NSArray * _fourQuarterSettingsKey;
+    NSArray * _pointMatchSettings;
+    NSArray * _pointMatchSettingsKey;
     
     NSArray * __weak _settingsArray;
     NSArray * __weak _settingsKeyArray;
@@ -37,12 +39,16 @@
     if([_gameMode isEqualToString:kGameModeFourQuarter]){
         _settingsArray = _fourQuarterSettings;
         _settingsKeyArray = _fourQuarterSettingsKey;
-        _header = @"当选择“打满四节”模式开始比赛后，这些规则将会被自动使用：";
-    }else{
+        _header = @"当选择四节模式开始比赛后，这些规则将会被自动使用：";
+    }else if([_gameMode isEqualToString:kGameModeTwoHalf]){
         _settingsArray = _twoHalfSettings;
         _settingsKeyArray = _twoHalfSettingsKey;
-        _header = @"当选择“上下半场”模式开始比赛后，这些规则将会被自动使用：";
-    }    
+        _header = @"当选择上下半场模式开始比赛后，这些规则将会被自动使用：";
+    }else{
+        _settingsArray = _pointMatchSettings;
+        _settingsKeyArray = _pointMatchSettingsKey;
+        _header = @"当选择抢分模式开始比赛后，这些规则将会被自动使用：";
+    }
 }
 
 
@@ -84,6 +90,11 @@
                                                             kGameFoulsOverQuarterLimit, 
                                                             kGameTimeoutsOverQuarterLimit, 
                                                             kGameTimeoutLength, nil];
+        
+        _pointMatchSettings = [NSArray arrayWithObjects:@"获取胜利分数",
+                               @"犯规罚球次数",nil];
+        _pointMatchSettingsKey = [NSArray arrayWithObjects:kGameWinningPoint,
+                                  kGameFoulsOverWinningPointLimit, nil];
         
     }
     return self;

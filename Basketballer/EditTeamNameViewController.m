@@ -36,6 +36,11 @@
 {
     [super viewDidLoad];
     self.title = @"球队名称";
+    CGRect frame = self.teamNameText.frame;
+    frame.size.height += 10;
+    self.teamNameText.frame = frame;
+    self.teamNameText.font = [UIFont systemFontOfSize:17.0f];
+    
     [self initTeamNameText];
     [self.teamNameText becomeFirstResponder];
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];

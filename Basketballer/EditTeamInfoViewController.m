@@ -15,6 +15,8 @@
 
 @interface EditTeamInfoViewController() {
     UIImage * _image;
+    
+    BOOL _dirty;
 }
 @end
 
@@ -89,10 +91,10 @@
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if(teamName == nil || teamName.length == 0) {
         [self setRightBarButtonItemEnable:NO];
-        cell.textLabel.text = @"";
+        cell.detailTextLabel.text = @"";
     }else {
         [self setRightBarButtonItemEnable:YES];
-        cell.textLabel.text = teamName;
+        cell.detailTextLabel.text = teamName;
     }
 }
 
@@ -111,6 +113,8 @@
     self.title = @"设置球队";
     [self initNavigationItem];
     [self initRowsTitle];
+    
+    _dirty = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -121,14 +125,17 @@
 - (void)save:(id) send {
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];;
-    NSString * teamName = cell.textLabel.text;
+    NSString * teamName = cell.detailTextLabel.text;
     if (teamName.length != 0) {
         TeamManager * teamManager = [TeamManager defaultManager];
         if(self.operateMode == Insert) {
             [teamManager newTeam:teamName withImage:_image];
         }else {
-            [teamManager modifyTeam:self.team withNewName:teamName];
-            [teamManager modifyTeam:self.team withNewImage:_image];
+            if (_dirty) {
+                [teamManager modifyTeam:self.team withNewName:teamName];
+                [teamManager modifyTeam:self.team withNewImage:_image];
+                _dirty = NO;
+            }
         }
     }
     
@@ -142,10 +149,10 @@
     return 2;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [self.rowsTitle objectAtIndex:section];
-}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return [self.rowsTitle objectAtIndex:section];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -158,39 +165,37 @@
     if (indexPat.section == 0) {
          return 44;
     }else {
-         return 70;
+         return 72;
     }
    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UIImageView * profileImageView;
-    UILabel * label;
-    if (nil == cell) {
-        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+    UITableViewCell *cell = nil;
+    
+    if (indexPath.section == 0) {
+        static NSString *CellIdentifier = @"Cell";        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"名字";
+        cell.detailTextLabel.text = self.team.name;
+    }else if (indexPath.section == 1) {
+        UIImageView * profileImageView;
+
+        [[NSBundle mainBundle] loadNibNamed:@"TeamImageEditCell" owner:self options:nil];
         cell = _teamCell;
         self.teamCell = nil;
         
         // 图片圆角化。
+
+        TeamManager * teamManager = [TeamManager defaultManager]; 
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         profileImageView.layer.masksToBounds = YES;
         profileImageView.layer.cornerRadius = 5.0f;
-        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);
-    }
-    TeamManager * teamManager = [TeamManager defaultManager]; 
-    profileImageView = (UIImageView *)[cell viewWithTag:1];
-    label = (UILabel *)[cell viewWithTag:2]; 
-    if(indexPath.section == 1) {
+//        profileImageView.frame = CGRectMake(5.0, 5.0, 60.0, 60.0);        
+        
         profileImageView.image = [teamManager imageForTeam:self.team];  
-        _image = [teamManager imageForTeam:self.team]; 
-        label.text = @"";
-    }else {
-        profileImageView.image = nil;
-        label.text = @"";
-        cell.textLabel.text = self.team.name;
     }
     
     return cell;
@@ -208,6 +213,7 @@
         editTeamNameViewController.teamName = self.team.name;
         editTeamNameViewController.parentController = self;
         [self.navigationController pushViewController:editTeamNameViewController animated:YES];
+        _dirty = YES;
     }
 }
 
@@ -232,6 +238,8 @@
 
     profileImageView.image = _image;
     [self dismissModalViewControllerAnimated:YES];
+    
+    _dirty = YES;
 }
 
 #pragma alert delete

@@ -8,36 +8,38 @@
 
 #import "GameDetailsViewController.h"
 #import "ActionRecordViewController.h"
-#import "PointDetailsViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
 #import "AppDelegate.h"
 
+#define kName       @"name"
+#define kPTS        @"PTS"
+#define kPF         @"PF"
+#define k3PM        @"3PM"
+#define kFT         @"FT"
+
 typedef enum {
-    UICellItemTitle = 1,
-    UICellFirstHome = 2,
-    UICellFirstGuest = 3,
-    UICellSecondHome = 4,
-    UICellSecondGuest = 5,
+    UICellTeamName      = 1,
+    UICellPoints        = 2,
+    UICellFouls         = 3,
+    UICellThreePoints   = 4,
+    UICellFreeThrows    = 5
 }UIMatchPartSummaryCellTag;
 
 @interface GameDetailsViewController (){
+    
+    NSString * _homeTeamName;
+    NSString * _guestTeamName;
     
     // 比赛若是上下半场，指向_twohalfDescriptions；若是四节，指向_fourQuarterDescriptions.
     NSArray * __weak _periodNameArray;      
     NSArray * _fourQuarterDescriptions;
     NSArray * _twoHalfDescriptions;    
-    NSArray * _filterNames;
+    
+    NSMutableArray * _sectionHeaders;
     
     NSMutableArray * _actionsInMatch;
-    
-    NSMutableArray * _homeTeamPointsSummary;
-    NSMutableArray * _guestTeamPointsSummary;
-    NSMutableArray * _homeTeamFoulsSummary;
-    NSMutableArray * _guestTeamFoulsSummary;
-    
-    PointDetailsViewController * _pointDetailsViewController;
     
     UIActionSheet * _actionSheetShare;
     UIActionSheet * _actionSheetDelete;
@@ -86,36 +88,21 @@ typedef enum {
 
 - (void)actionSheetForMatch{
     if (_actionSheetShare == nil) {
-        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:@"分享这场比赛到：" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"在周边比赛显示",  nil, nil];
+        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到比赛地图",  nil, nil];
         _actionSheetShare.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     }
-    [_actionSheetShare showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
+    [_actionSheetShare showInView:self.view];
 }
 
 - (void)deleteCurrentMatch{    
     if (_actionSheetDelete == nil) {
         _actionSheetDelete = [[UIActionSheet alloc] initWithTitle:@"删除本场比赛所有相关信息？"  delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
     }
-    [_actionSheetDelete showFromTabBar:[[AppDelegate delegate] tabBarController].tabBar];
+    [_actionSheetDelete showInView:self.view];
 }
 
 - (void)reloadActionsInMatch{
     _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:[_match.id integerValue]];
-    
-    // 加载技术统计信息。
-    ActionManager * am = [ActionManager defaultManager];
-    _homeTeamPointsSummary = [am summaryForFilter:ActionTypePoints 
-                                         withTeam:[_match.homeTeam integerValue] 
-                                        inActions:_actionsInMatch];
-    _guestTeamPointsSummary = [am summaryForFilter:ActionTypePoints 
-                                          withTeam:[_match.guestTeam integerValue] 
-                                         inActions:_actionsInMatch];
-    _homeTeamFoulsSummary = [am summaryForFilter:ActionTypeFoul 
-                                        withTeam:[_match.homeTeam integerValue] 
-                                       inActions:_actionsInMatch];
-    _guestTeamFoulsSummary = [am summaryForFilter:ActionTypeFoul 
-                                         withTeam:[_match.guestTeam integerValue] 
-                                        inActions:_actionsInMatch];
     
     [self.tableView reloadData];
     
@@ -129,8 +116,6 @@ typedef enum {
         _fourQuarterDescriptions = [NSArray arrayWithObjects:@"第一节", @"第二节", @"第三节", @"第四节", nil];
         _twoHalfDescriptions = [NSArray arrayWithObjects:@"上半场", @"下半场", nil];
         _periodNameArray = _fourQuarterDescriptions;
-        
-        _filterNames = [NSArray arrayWithObjects:@"得分", @"犯规", @"暂停", nil];
     }
     return self;
 }
@@ -147,9 +132,10 @@ typedef enum {
     
     // 设置title：主队 vs 客队。
     TeamManager * tm = [TeamManager defaultManager];
-    NSString * title = [NSString stringWithFormat:@"%@ vs %@",
-                        [tm teamWithId:_match.homeTeam].name,
-                        [tm teamWithId:_match.guestTeam].name];
+    _homeTeamName = [tm teamWithId:_match.homeTeam].name;
+    _guestTeamName = [tm teamWithId:_match.guestTeam].name;
+    
+    NSString * title = [NSString stringWithFormat:@"%@ vs %@", _homeTeamName,_guestTeamName];
     
     [self setTitle:title];
 }
@@ -174,35 +160,130 @@ typedef enum {
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    _sectionHeaders = [NSMutableArray arrayWithObjects:@"基本信息", @"全场技术统计", nil];
     if ([self.match.mode isEqualToString:kGameModeFourQuarter]) {
-        _periodNameArray = _fourQuarterDescriptions;
+        [_sectionHeaders addObjectsFromArray:_fourQuarterDescriptions];
+//        _periodNameArray = _fourQuarterDescriptions;
     }else if([self.match.mode isEqualToString:kGameModeTwoHalf]){
-        _periodNameArray = _twoHalfDescriptions;
-    }else{
-        _periodNameArray = nil;
+        [_sectionHeaders addObjectsFromArray:_twoHalfDescriptions];
+//        _periodNameArray = _twoHalfDescriptions;
     }
     
-    return 3;
+    return _sectionHeaders.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        return @"得分对比";
-    }else if(section == 2){
-        return @"犯规对比";
+    return [_sectionHeaders objectAtIndex:section];
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 44;
     }else{
-        return nil;
+        if (indexPath.row == 0) {
+            return 30;
+        }else{
+            return 44;
+        }
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
         return 2;
-    }else if(section == 1 || section == 2){
-        return [_periodNameArray count];
     }else{
-        return 0;
+        return 3;
     }
+}
+
+- (NSMutableDictionary *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period{
+    NSInteger teamId = [team integerValue];
+    NSInteger pts = 0, pf = 0, threePM = 0, ft = 0;
+    for (Action * action in _actionsInMatch) {
+        NSInteger tempPeriod = [action.period integerValue];
+        NSInteger tempTeamId = [action.team integerValue];
+        if (tempTeamId == teamId && (-1 == period || tempPeriod == period)) {
+            NSInteger actionType = [action.type integerValue];
+            switch (actionType) {
+                case ActionType1Point:
+                    pts ++;
+                    ft ++;
+                    break;
+                case ActionType2Points:
+                    pts += 2;
+                    break;
+                case ActionType3Points:
+                    pts += 3;
+                    threePM += 3;
+                    break;
+                case ActionTypeFoul:
+                    pf += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", pts] forKey:kPTS];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", pf] forKey:kPF];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", threePM] forKey:k3PM];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", ft] forKey:kFT];
+    
+    return dictionary;
+}
+
+- (void)setStatisticsForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+//    UIView * bgView = [cell.subviews objectAtIndex:0];
+    if (indexPath.row == 0) {
+        // 技术统计section的第一行作为标题栏，不用修改内容。
+//        bgView.backgroundColor = [UIColor lightGrayColor];
+        return;
+    }else {
+//        bgView.backgroundColor = [UIColor clearColor];
+    }
+    
+    NSMutableDictionary * statistics;
+    if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
+            // 主队全场技术统计。
+            statistics = [self statisticsForTeam:_match.homeTeam inPeriod:-1];
+            [statistics setObject:_homeTeamName forKey:kName];
+        }else{
+            // 客队全场技术统计。
+            statistics = [self statisticsForTeam:_match.guestTeam inPeriod:-1];
+            [statistics setObject:_guestTeamName forKey:kName];
+        }
+    }else{
+        NSInteger period = indexPath.section - 2;
+        if (indexPath.row == 1) {
+            // 主队第period节技术统计。
+            statistics = [self statisticsForTeam:_match.homeTeam inPeriod:period];
+            [statistics setObject:_homeTeamName forKey:kName];
+        }else{
+            // 客队第period节技术统计。
+            statistics = [self statisticsForTeam:_match.guestTeam inPeriod:period];
+            [statistics setObject:_guestTeamName forKey:kName];
+        }
+    }
+
+    UILabel * label;
+    
+    label = (UILabel *)[cell viewWithTag:UICellTeamName];
+    label.text = [statistics objectForKey:kName];
+    
+    label = (UILabel *)[cell viewWithTag:UICellPoints];
+    label.text = [statistics objectForKey:kPTS];
+    
+    label = (UILabel *)[cell viewWithTag:UICellFouls];
+    label.text = [statistics objectForKey:kPF];
+    
+    label = (UILabel *)[cell viewWithTag:UICellThreePoints];
+    label.text = [statistics objectForKey:k3PM];
+    
+    label = (UILabel *)[cell viewWithTag:UICellFreeThrows];
+    label.text = [statistics objectForKey:kFT];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -228,9 +309,9 @@ typedef enum {
             default:
                 break;
         }
-    }else if(indexPath.section == 1){
+    }else{
         // 在xib中设置UITableViewCell的reuseIdentifier。
-        static NSString * CellIdentifier = @"SummaryReuseIdentifier";
+        static NSString * CellIdentifier = @"MatchPartSummaryCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
@@ -238,41 +319,7 @@ typedef enum {
             self.tvCell = nil;
         }
         
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-        UILabel * title = (UILabel *)[cell viewWithTag:UICellItemTitle];
-        title.text = [_periodNameArray objectAtIndex:indexPath.row];
-        
-        UILabel * firstValue = (UILabel *)[cell viewWithTag:UICellFirstHome];
-        NSNumber * statistics = [_homeTeamPointsSummary objectAtIndex:indexPath.row];
-        firstValue.text = [statistics stringValue]; 
-        
-        UILabel * secondValue = (UILabel *)[cell viewWithTag:UICellFirstGuest];
-        statistics = [_guestTeamPointsSummary objectAtIndex:indexPath.row];
-        secondValue.text = [statistics stringValue];
-
-    }else if(indexPath.section == 2){
-        // 在xib中设置UITableViewCell的reuseIdentifier。
-        static NSString * CellIdentifier = @"SummaryReuseIdentifier";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
-            cell = _tvCell;
-            self.tvCell = nil;
-        }
-        
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        UILabel * title = (UILabel *)[cell viewWithTag:UICellItemTitle];
-        title.text = [_periodNameArray objectAtIndex:indexPath.row];
-        
-        UILabel * firstValue = (UILabel *)[cell viewWithTag:UICellFirstHome];
-        NSNumber * statistics = [_homeTeamFoulsSummary objectAtIndex:indexPath.row];
-        firstValue.text = [statistics stringValue]; 
-        
-        UILabel * secondValue = (UILabel *)[cell viewWithTag:UICellFirstGuest];
-        statistics = [_guestTeamFoulsSummary objectAtIndex:indexPath.row];
-        secondValue.text = [statistics stringValue];
+        [self setStatisticsForCell:cell atIndexPath:indexPath];
     }
     
     return cell;
@@ -280,21 +327,5 @@ typedef enum {
 
 #pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//}
-//
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        if (_pointDetailsViewController == nil) {
-            _pointDetailsViewController = [[PointDetailsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        }
-        
-        _pointDetailsViewController.match = _match;
-        _pointDetailsViewController.actions = [[ActionManager defaultManager] actionsWithType:ActionTypePoints inPeriod:indexPath.row inActions:_actionsInMatch];
-        _pointDetailsViewController.title = [_periodNameArray objectAtIndex:indexPath.row];
-        [_pointDetailsViewController.tableView reloadData];
-        [self.navigationController pushViewController:_pointDetailsViewController animated:YES];
-    }
-}
  
 @end

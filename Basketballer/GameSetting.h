@@ -11,6 +11,7 @@
 #define kGameMode                       @"GameMode"
 #define kGameModeFourQuarter            @"FourQuarter"
 #define kGameModeTwoHalf                @"TwoHalf"
+#define kGameModePoints                 @"Points"
 
 #define kGameHalfLength                 @"HalfLength"
 #define kGameHalfTimeLength             @"HalfTimeLength"
@@ -22,6 +23,9 @@
 #define kGameQuarterTimeLength          @"QuarterTimeLength"
 #define kGameFoulsOverQuarterLimit      @"FoulsOverQuarterLimit"
 #define kGameTimeoutsOverQuarterLimit   @"TimeoutsOverQuarterLimit"
+
+#define kGameWinningPoint               @"WinningPoints"
+#define kGameFoulsOverWinningPointLimit @"FoulsOverWinningPoints"
 
 @interface GameSetting : NSObject
 
@@ -50,6 +54,9 @@
 // 公有。
 @property (nonatomic, strong) NSNumber * halfTimeLength;                // 中场休息时长。单位：分钟。
 @property (nonatomic, strong) NSNumber * timeoutLength;                 // 暂停时长，单位：秒。
+
+@property (nonatomic, strong) NSNumber * winningPoints;                 // 获得胜利的分数。
+@property (nonatomic, strong) NSNumber * foulsOverWinningPointsLimit;    // 犯规罚球次数。
 
 + (GameSetting *) defaultSetting;
 + (NSString *)unitStringForKey:(NSString *)key;

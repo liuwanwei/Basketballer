@@ -31,6 +31,8 @@ static GameSetting * gameSettings;
 @synthesize halfLength = _halfLength;
 @synthesize foulsOverHalfLimit = _foulsOverHalfLimit;
 @synthesize timeoutsOverHalfLimit = _timeoutsOverHalfLimit;
+@synthesize winningPoints = _winningPoints;
+@synthesize foulsOverWinningPointsLimit = _foulsOverWinningPointsLimit;
 
 + (GameSetting *)defaultSetting{
     if (gameSettings == nil) {
@@ -70,17 +72,22 @@ static GameSetting * gameSettings;
         NSArray * _foulsOverHalfLimitChoices = [NSArray arrayWithObjects:@"5", @"6", @"7", @"8", nil];
         NSArray * _timeoutsOverHalfLimitChoices = [NSArray arrayWithObjects:@"2", @"3", @"4", @"5", nil];
         
+        NSArray * _winningPointsChoices = [NSArray arrayWithObjects:@"10", @"15", @"20", @"25", nil];
+        NSArray * _foulsOverWinningPointsChoices = [NSArray arrayWithObjects:@"2", @"3", @"4", @"5", nil];
+        
         _choicesDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              _quarterLengthChoices, kGameQuarterLength, 
-                              _quarterTimeLengthChoices, kGameQuarterTimeLength, 
-                              _halfTimeLengthChoices, kGameHalfTimeLength,
-                              _foulsOverQuarterLimitChoices, kGameFoulsOverQuarterLimit,
-                              _timeoutsOverQuarterLimitChoices, kGameTimeoutsOverQuarterLimit,
-                              _timeoutLengthChoices, kGameTimeoutLength,
-                              _halfLengthChoices, kGameHalfLength,
-                              _foulsOverHalfLimitChoices, kGameFoulsOverHalfLimit,
-                              _timeoutsOverHalfLimitChoices, kGameTimeoutsOverHalfLimit,
-                              nil];
+                _quarterLengthChoices, kGameQuarterLength, 
+                _quarterTimeLengthChoices, kGameQuarterTimeLength, 
+                _halfTimeLengthChoices, kGameHalfTimeLength,
+                _foulsOverQuarterLimitChoices, kGameFoulsOverQuarterLimit,
+                _timeoutsOverQuarterLimitChoices, kGameTimeoutsOverQuarterLimit,
+                _timeoutLengthChoices, kGameTimeoutLength,
+                _halfLengthChoices, kGameHalfLength,
+                _foulsOverHalfLimitChoices, kGameFoulsOverHalfLimit,
+                _timeoutsOverHalfLimitChoices, kGameTimeoutsOverHalfLimit,
+                _winningPointsChoices, kGameWinningPoint,
+                _foulsOverWinningPointsChoices, kGameFoulsOverWinningPointLimit,
+                nil];
     }
     
     return self;
@@ -88,7 +95,7 @@ static GameSetting * gameSettings;
 
 - (NSArray *)gameModes{
     if (_gameModes == nil) {
-        _gameModes = [NSArray arrayWithObjects:kGameModeTwoHalf, kGameModeFourQuarter, nil];
+        _gameModes = [NSArray arrayWithObjects:kGameModeTwoHalf, kGameModeFourQuarter, kGameModePoints, nil];
     }
     
     return _gameModes;
@@ -97,7 +104,7 @@ static GameSetting * gameSettings;
 - (NSArray *)gameModeNames{
     if (_gameModeNames == nil) {
         // TODO loading from multi language file.
-        _gameModeNames = [NSArray arrayWithObjects:@"上下半场", @"打满四节", nil];
+        _gameModeNames = [NSArray arrayWithObjects:@"上下半场", @"四节模式", @"抢分模式", nil];
     }
     
     return _gameModeNames;
@@ -120,8 +127,11 @@ static GameSetting * gameSettings;
     if ([key isEqualToString:kGameFoulsOverHalfLimit] ||
         [key isEqualToString:kGameFoulsOverQuarterLimit] ||
         [key isEqualToString:kGameTimeoutsOverHalfLimit] ||
-        [key isEqualToString:kGameTimeoutsOverQuarterLimit]) {
+        [key isEqualToString:kGameTimeoutsOverQuarterLimit] ||
+        [key isEqualToString:kGameFoulsOverWinningPointLimit]) {
         return @" 次";
+    }else if([key isEqualToString:kGameWinningPoint]){
+        return @"分";
     }else if ([key isEqualToString:kGameTimeoutLength]){
         return @" 秒";
     }else {

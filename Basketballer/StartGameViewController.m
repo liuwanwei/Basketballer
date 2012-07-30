@@ -53,7 +53,7 @@
         _guestTeam = team;
     }
     
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:_curClickRowIndex inSection:0];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:_curClickRowIndex];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
     UILabel * label = (UILabel *)[cell viewWithTag:2]; 
@@ -61,12 +61,27 @@
     label.text = team.name;
 }
 
-- (void)showGameSettingController {
-    GameSettingViewController * gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+- (void)createGradientNavigationBar{
+//    CGGradientRef gradientRef;
+//    CGColorSpaceRef colorSpaceRef;
+//    size_t numLocations = 2;
+//    CGFloat locations[2] = {0.0, 1.0};
+//    CGFloat components[8] = {1.0, 0.5, 0.4, 1.0,
+//                          0.8, 0.8, 0.3, 1.0};
+//    
+//    colorSpaceRef = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+//    gradientRef = CGGradientCreateWithColorComponents(colorSpaceRef, components, locations, numLocations);
+//    
+//    CGPoint startPoint, endPoint;
+//    startPoint.x = 0.0;
+//    startPoint.y = 0.0;
+//    endPoint.x = 1.0;
+//    endPoint.y = 1.0;
+//    
+//    self.navigationController.view.
+//    CGContextDrawLinearGradient(<#CGContextRef context#>, gradientRef, startPoint, endPoint
+//                                , 0);
     
-    gameSettingViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
-    [gameSettingViewController setTitle:_gameMode];
-    [self.navigationController pushViewController:gameSettingViewController animated:YES];
 }
 
 #pragma 事件函数
@@ -96,6 +111,8 @@
     frame.size.width = 160;
     self.startMatchView.frame = frame;
     self.tableView.tableFooterView = self.startMatchView;
+    
+    [self createGradientNavigationBar];
 }
 
 - (void)viewDidUnload
@@ -135,27 +152,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-   return [_sectionsTitle objectAtIndex:section];
-}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//   return [_sectionsTitle objectAtIndex:section];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 2;
+    if (section == 2) {
+        return 1;
+    }else{
+        return 1;   
     }
-    
-    return 2;
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2) {
+        return 44.0f;
+    }else{
+        return 72.0f;   
+    }    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = nil;
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 || indexPath.section == 1) {
         UIImageView * profileImageView;
         if(cell == nil) {
             [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
@@ -169,8 +194,8 @@
         }
         profileImageView = (UIImageView *)[cell viewWithTag:1];
         UILabel * label = (UILabel *)[cell viewWithTag:2]; 
-        Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.row];
-        if (indexPath.row == 0) {
+        Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.section];
+        if (indexPath.section == 0) {
             _hostTeam = team;
         }else {
             _guestTeam = team;
@@ -178,7 +203,10 @@
         
         profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
         label.text = team.name;
-    }else if (indexPath.section == 1){
+        
+        label = (UILabel *)[cell viewWithTag:3];
+        label.text = indexPath.section == 0 ? @"球队一" : @"球队二";
+    }else if (indexPath.section == 2){
         static NSString *CellIdentifier = @"Cell";        
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (nil == cell) {
@@ -187,7 +215,7 @@
         
         static NSArray * rulesString = nil;
         if (nil == rulesString) {
-            rulesString = [NSArray arrayWithObjects:@"比赛模式:", @"比赛规则:", nil];
+            rulesString = [NSArray arrayWithObjects:@"比赛模式", @"比赛规则", nil];
         }    
     
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -201,12 +229,13 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        _curClickRowIndex = indexPath.row;
+    if (indexPath.section == 0 || indexPath.section == 1) {
+        _curClickRowIndex = indexPath.section;
         TeamChoiceViewController *teamChoiceViewController = [[TeamChoiceViewController alloc] initWithNibName:@"TeamChoiceViewController" bundle:nil];
         teamChoiceViewController.parentController = self;
+        teamChoiceViewController.viewControllerMode = UITeamChoiceViewControllerModeChoose;
         [self.navigationController pushViewController:teamChoiceViewController animated:YES];
-    }else if(indexPath.section == 1){
+    }else if(indexPath.section == 2){
         if (indexPath.row == 0) {
             if (_chooseGameModeView == nil) {
                 _chooseGameModeView = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -218,7 +247,11 @@
             [_chooseGameModeView setTitle:_gameMode];
             [self.navigationController pushViewController:_chooseGameModeView animated:YES];
         }else {
-            [self showGameSettingController];
+            GameSettingViewController * gameSettingViewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            
+            gameSettingViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
+            [gameSettingViewController setTitle:_gameMode];
+            [self.navigationController pushViewController:gameSettingViewController animated:YES];
         }
     }
 }

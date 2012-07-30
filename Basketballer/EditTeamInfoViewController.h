@@ -19,7 +19,7 @@ typedef enum {
 @property (nonatomic, strong) NSArray * rowsTitle;
 @property (nonatomic) NSInteger operateMode;
 @property (nonatomic, weak) Team * team;
-@property (nonatomic, weak) UITableViewCell * teamCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell * teamCell;
 
 - (void) refreshViewWithTeamName:(NSString *) teamName;
 @end
