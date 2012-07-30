@@ -160,7 +160,8 @@
     if(section == 1){
         return @"VS";
     }else if(section == 2){
-        return @"比赛规则";
+//        return @"规则";
+        return nil;
     }else{
         return nil;
     }
@@ -195,18 +196,16 @@
 {
     UITableViewCell * cell = nil;
     if (indexPath.section == 0 || indexPath.section == 1) {
-        UIImageView * profileImageView;
-        if(cell == nil) {
-            [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
-            cell = _teamCell;
-            self.teamCell = nil;
-            
-            // 图片圆角化。
-            profileImageView = (UIImageView *)[cell viewWithTag:1];
-            profileImageView.layer.masksToBounds = YES;
-            profileImageView.layer.cornerRadius = 5.0f;
-        }
+        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
+        cell = _teamCell;
+        self.teamCell = nil;   
+    
+        // 图片圆角化。
+        UIImageView * profileImageView;        
         profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
+
         UILabel * label = (UILabel *)[cell viewWithTag:2]; 
         Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.section];
         if (indexPath.section == 0) {
@@ -217,24 +216,14 @@
         
         profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
         label.text = team.name;
-        
-        label = (UILabel *)[cell viewWithTag:3];
-        label.text = indexPath.section == 0 ? @"球队一" : @"球队二";
-    }else if (indexPath.section == 2){
-        static NSString *CellIdentifier = @"Cell";        
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        }
-        
-//        static NSArray * rulesString = nil;
-//        if (nil == rulesString) {
-//            rulesString = [NSArray arrayWithObjects:@"比赛模式", @"比赛规则", nil];
-//        }    
+    }else if (indexPath.section == 2){   
+        [[NSBundle mainBundle] loadNibNamed:@"MatchModeCell" owner:self options:nil];
+        cell = _modeCell;
+        self.modeCell = nil;
     
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = _gameMode;
-//        cell.textLabel.text = [rulesString objectAtIndex:indexPath.row];
+        UILabel * label;
+        label = (UILabel *)[cell viewWithTag:2];
+        label.text = _gameMode;
     }
         
     return cell;
@@ -269,11 +258,6 @@
     }
 }
 
-//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 1) {
-//        [self showGameSettingController];
-//    }
-//}
 
 # pragma SingleChoiceViewDelegate
 - (void)choosedParameter:(NSString *)parameter{
