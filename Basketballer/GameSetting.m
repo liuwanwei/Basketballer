@@ -34,6 +34,13 @@ static GameSetting * gameSettings;
 @synthesize winningPoints = _winningPoints;
 @synthesize foulsOverWinningPointsLimit = _foulsOverWinningPointsLimit;
 
+@synthesize twoHalfSettings = _twoHalfSettings;
+@synthesize twoHalfSettingsKey = _twoHalfSettingsKey;
+@synthesize fourQuarterSettings = _fourQuarterSettings;
+@synthesize fourQuarterSettingsKey = _fourQuarterSettingsKey;
+@synthesize pointMatchSettings = _pointMatchSettings;
+@synthesize pointMatchSettingsKey = _pointMatchSettingsKey;
+
 + (GameSetting *)defaultSetting{
     if (gameSettings == nil) {
         gameSettings = [[GameSetting alloc] init];
@@ -54,6 +61,38 @@ static GameSetting * gameSettings;
     return _documentURL;
 }
 
+- (void) initRulesGroup{
+    // Two half mode settings and the keywords used to store the settings.
+    _twoHalfSettings = [NSArray arrayWithObjects:@"半场比赛时间", 
+                        @"中场休息时间", 
+                        @"球队最大犯规次数", 
+                        @"半场允许暂停次数", 
+                        @"暂停时间", nil];
+    _twoHalfSettingsKey = [NSArray arrayWithObjects:kGameHalfLength, 
+                           kGameHalfTimeLength, 
+                           kGameFoulsOverHalfLimit, 
+                           kGameTimeoutsOverHalfLimit, 
+                           kGameTimeoutLength, nil];
+    
+    _fourQuarterSettings = [NSArray arrayWithObjects:@"单节比赛时间", 
+                            @"节间休息时间", 
+                            @"中场休息时间", 
+                            @"球队最大犯规次数", 
+                            @"单节允许暂停次数", 
+                            @"暂停时间", nil];
+    _fourQuarterSettingsKey = [NSArray arrayWithObjects:kGameQuarterLength, 
+                               kGameQuarterTimeLength, 
+                               kGameHalfTimeLength, 
+                               kGameFoulsOverQuarterLimit, 
+                               kGameTimeoutsOverQuarterLimit, 
+                               kGameTimeoutLength, nil];
+    
+    _pointMatchSettings = [NSArray arrayWithObjects:@"获取胜利分数",
+                           @"犯规罚球次数",nil];
+    _pointMatchSettingsKey = [NSArray arrayWithObjects:kGameWinningPoint,
+                              kGameFoulsOverWinningPointLimit, nil];
+}
+
 - (id) init{
     if (self = [super init]) {
         NSURL * url = [self documentURL];
@@ -61,7 +100,9 @@ static GameSetting * gameSettings;
         if (nil == _dictionaryStore) {
             _dictionaryStore = [[NSMutableDictionary alloc] init];
         }
-                
+        
+        [self initRulesGroup];
+        
         NSArray * _quarterLengthChoices = [NSArray arrayWithObjects:@"10", @"12", nil];
         NSArray * _quarterTimeLengthChoices = [NSArray arrayWithObjects:@"2", @"3", @"4", @"5", nil];
         NSArray * _halfTimeLengthChoices = [NSArray arrayWithObjects:@"5", @"10", @"15", nil];

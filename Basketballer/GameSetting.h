@@ -36,7 +36,13 @@
 // 目前有 “上下半场” 和 “打满四节” 两种模式字符串用于界面显示，数据库内保存kGameModeTwoHalf、kGameModeFourQuarter。
 @property (nonatomic, readonly) NSArray * gameModes;
 @property (nonatomic, readonly) NSArray * gameModeNames;                  
-                                                                    
+  
+@property (nonatomic, strong, readonly) NSArray * twoHalfSettings;
+@property (nonatomic, strong, readonly) NSArray * twoHalfSettingsKey;
+@property (nonatomic, strong, readonly) NSArray * fourQuarterSettings;
+@property (nonatomic, strong, readonly) NSArray * fourQuarterSettingsKey;
+@property (nonatomic, strong, readonly) NSArray * pointMatchSettings;
+@property (nonatomic, strong, readonly) NSArray * pointMatchSettingsKey;
 
 // 下面是用户通过“设置”界面配置好的比赛参数，分为“四节制参数”，“上下半场制参数”，“公有参数”三个部分。
 
