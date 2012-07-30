@@ -31,35 +31,34 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIView" id="562380935">
+			<object class="IBUIView" id="800240862">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIButton" id="793208398">
-						<reference key="NSNextResponder" ref="562380935"/>
+					<object class="IBUIButton" id="279356852">
+						<reference key="NSNextResponder" ref="800240862"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{110, 20}, {100, 50}}</string>
-						<reference key="NSSuperview" ref="562380935"/>
+						<string key="NSFrame">{{88, 20}, {150, 50}}</string>
+						<reference key="NSSuperview" ref="800240862"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">开 始 </string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="329334228">
+						<string key="IBUINormalTitle">     开始计时</string>
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="1028943903">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<reference key="IBUINormalTitleColor" ref="329334228"/>
+						<reference key="IBUINormalTitleColor" ref="1028943903"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">play.png</string>
+							<string key="NSResourceName">buttonPlayBlue.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -75,7 +74,7 @@
 				<string key="NSFrameSize">{320, 90}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="793208398"/>
+				<reference key="NSNextKeyView" ref="279356852"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -92,8 +91,8 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">startGame:</string>
-						<reference key="source" ref="793208398"/>
-						<reference key="destination" ref="562380935"/>
+						<reference key="source" ref="279356852"/>
+						<reference key="destination" ref="800240862"/>
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">4</int>
@@ -120,16 +119,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
-						<reference key="object" ref="562380935"/>
+						<reference key="object" ref="800240862"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="793208398"/>
+							<reference ref="279356852"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="793208398"/>
-						<reference key="parent" ref="562380935"/>
+						<reference key="object" ref="279356852"/>
+						<reference key="parent" ref="800240862"/>
 					</object>
 				</array>
 			</object>
@@ -179,8 +178,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">play.png</string>
-			<string key="NS.object.0">{20, 20}</string>
+			<string key="NS.key.0">buttonPlayBlue.png</string>
+			<string key="NS.object.0">{48, 48}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
