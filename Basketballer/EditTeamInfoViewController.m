@@ -91,7 +91,7 @@
 
 #pragma 类成员函数
 - (void) refreshViewWithTeamName:(NSString *) teamName {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if(teamName == nil || teamName.length == 0) {
         [self setRightBarButtonItemEnable:NO];
@@ -139,7 +139,7 @@
 }
 
 - (void)save:(id) send {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];;
     NSString * teamName = cell.detailTextLabel.text;
     if (teamName.length != 0) {
@@ -273,7 +273,7 @@
 #pragma mark - ImagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     _image = [info valueForKey:UIImagePickerControllerEditedImage];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIImageView * profileImageView;
