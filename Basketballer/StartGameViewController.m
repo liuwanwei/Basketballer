@@ -160,7 +160,7 @@
 {
 //   return [_sectionsTitle objectAtIndex:section];
     if(section == 1){
-        return @"VS";
+        return @"                           vs.";
     }else if(section == 2){
 //        return @"规则";
         return nil;
@@ -178,17 +178,25 @@
     }
 }
 
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 0) {
-        return 0.0f;
+        return  0.1f;
     }else{
+        return 0.0f;
+    }
+}
+
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
         return 23.0f;
+    }else{
+        return 0.0f;
     }
 }
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
-        return 44.0f;
+        return 45.0f;
     }else{
         return 72.0f;   
     }    
@@ -219,13 +227,18 @@
         profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
         label.text = team.name;
     }else if (indexPath.section == 2){   
-        [[NSBundle mainBundle] loadNibNamed:@"MatchModeCell" owner:self options:nil];
-        cell = _modeCell;
-        self.modeCell = nil;
+//        [[NSBundle mainBundle] loadNibNamed:@"MatchModeCell" owner:self options:nil];
+//        cell = _modeCell;
+//        self.modeCell = nil;
     
-        UILabel * label;
-        label = (UILabel *)[cell viewWithTag:2];
-        label.text = _gameMode;
+//        UILabel * label;
+//        label = (UILabel *)[cell viewWithTag:2];
+//        label.text = _gameMode;
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"比赛规则";
+        cell.detailTextLabel.text = _gameMode;
     }
         
     return cell;
@@ -254,7 +267,7 @@
             
             _chooseGameModeView.currentChoice = _gameMode;
             _chooseGameModeView.hidesBottomBarWhenPushed = YES;
-            [_chooseGameModeView setTitle:_gameMode];
+            [_chooseGameModeView setTitle:@"比赛模式"];
             [self.navigationController pushViewController:_chooseGameModeView animated:YES];
         }
     }
