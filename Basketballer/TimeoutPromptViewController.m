@@ -24,7 +24,6 @@
 @synthesize promptLabel = _promptLabel;
 
 #pragma 私有函数
-#pragma 私有函数
 - (void)showAlertView:(NSString *)message withCancel:(BOOL)cancel{
     UIAlertView * alertView;
     if(cancel == YES) {
@@ -33,6 +32,14 @@
         alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
     }
     [alertView show];
+}
+
+- (void)initPromptLabel {
+    if (_mode == timeoutMode) {
+        self.promptLabel.text = @"暂停";
+    }else {
+        self.promptLabel.text = @"节间休息";
+    }
 }
 
 - (NSInteger)getTimeoutLength {
@@ -114,7 +121,8 @@
     if(minute <= 0 && second <= 0) {
         [self.stopTimeOutButton setHidden:YES];
         [self.resumeMathButton setHidden:NO];
-        [self.promptLabel setHidden:YES];
+        [self.timeoutTimeLabel setHidden:YES];
+        self.promptLabel.text = @"开始计时";
         [self stopTimeoutCountDown];
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
     }
@@ -132,6 +140,7 @@
 - (void)startTimeout {
     [self initTimeoutTargetTime];
     [self initTimeoutDownLable];
+    [self initPromptLabel];
     [self startTimeoutCountDown];
 }
 

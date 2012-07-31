@@ -76,6 +76,12 @@
 		3CCAE46315BE53E40030C302 /* badgeValueRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE46215BE53E40030C302 /* badgeValueRed.png */; };
 		3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */; };
 		3CCAE4F715BFE4400030C302 /* buttonCancelBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE4F615BFE4400030C302 /* buttonCancelBackground.png */; };
+		3CE1875915C6DA9900A17E4F /* resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875715C6DA9900A17E4F /* resume.png */; };
+		3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875815C6DA9900A17E4F /* resume@2x.png */; };
+		3CE1876015C6DA9900A17E4F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875C15C6DA9900A17E4F /* close.png */; };
+		3CE1876115C6DA9900A17E4F /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875D15C6DA9900A17E4F /* close@2x.png */; };
+		3CE1876215C6DA9900A17E4F /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875E15C6DA9900A17E4F /* menu.png */; };
+		3CE1876315C6DA9900A17E4F /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875F15C6DA9900A17E4F /* menu@2x.png */; };
 		3CEDBF6715B63F37003EF7EF /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEDBF6615B63F37003EF7EF /* button_background.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
@@ -222,6 +228,12 @@
 		3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
 		3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
 		3CCAE4F615BFE4400030C302 /* buttonCancelBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonCancelBackground.png; path = Resources/images/buttonCancelBackground.png; sourceTree = "<group>"; };
+		3CE1875715C6DA9900A17E4F /* resume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = resume.png; path = Resources/images/resume.png; sourceTree = "<group>"; };
+		3CE1875815C6DA9900A17E4F /* resume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "resume@2x.png"; path = "Resources/images/resume@2x.png"; sourceTree = "<group>"; };
+		3CE1875C15C6DA9900A17E4F /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = Resources/images/close.png; sourceTree = "<group>"; };
+		3CE1875D15C6DA9900A17E4F /* close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close@2x.png"; path = "Resources/images/close@2x.png"; sourceTree = "<group>"; };
+		3CE1875E15C6DA9900A17E4F /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Resources/images/menu.png; sourceTree = "<group>"; };
+		3CE1875F15C6DA9900A17E4F /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu@2x.png"; path = "Resources/images/menu@2x.png"; sourceTree = "<group>"; };
 		3CEDBF6615B63F37003EF7EF /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_background.png; path = Resources/images/button_background.png; sourceTree = "<group>"; };
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
@@ -313,6 +325,12 @@
 		3C121F6715A437530062BECD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3CE1875C15C6DA9900A17E4F /* close.png */,
+				3CE1875D15C6DA9900A17E4F /* close@2x.png */,
+				3CE1875E15C6DA9900A17E4F /* menu.png */,
+				3CE1875F15C6DA9900A17E4F /* menu@2x.png */,
+				3CE1875715C6DA9900A17E4F /* resume.png */,
+				3CE1875815C6DA9900A17E4F /* resume@2x.png */,
 				3C2B1B3915C699C700BAB6BE /* buttonPlayBlue.png */,
 				3C06B17715C24EF50009C909 /* matchPause.png */,
 				3C13E49C15C1939500F4307C /* timeStop.png */,
@@ -711,6 +729,12 @@
 				E65FF05315C455F300E96D6A /* TeamImageEditCell.xib in Resources */,
 				3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */,
 				3C2B1B3A15C699C700BAB6BE /* buttonPlayBlue.png in Resources */,
+				3CE1875915C6DA9900A17E4F /* resume.png in Resources */,
+				3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */,
+				3CE1876015C6DA9900A17E4F /* close.png in Resources */,
+				3CE1876115C6DA9900A17E4F /* close@2x.png in Resources */,
+				3CE1876215C6DA9900A17E4F /* menu.png in Resources */,
+				3CE1876315C6DA9900A17E4F /* menu@2x.png in Resources */,
 				E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */,
 				E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */,
 			);

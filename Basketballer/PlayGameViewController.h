@@ -13,7 +13,7 @@
 #import <MapKit/MapKit.h>
 @class  OperateGameViewController;
 
-@interface PlayGameViewController : UIViewController <UIAlertViewDelegate,LocationManagerDelegate,MKMapViewDelegate,UIActionSheetDelegate>
+@interface PlayGameViewController : UIViewController <UIAlertViewDelegate,LocationManagerDelegate,UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel * gameTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel * gamePeroidLabel;

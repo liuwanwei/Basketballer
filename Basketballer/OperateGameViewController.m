@@ -93,14 +93,40 @@
 
 - (void)refreshMatchData {
     ActionManager * actionManager = [ActionManager defaultManager];
+    NSInteger foulLimit;
+    NSInteger timeoutLimit;
+    if (_match.mode == kGameModeTwoHalf) {
+        foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
+        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
+    }else if (_match.mode == kGameModeFourQuarter){
+        foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
+        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
+    }else {
+        foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
+    }
+   
     if(_teamType == host) {
+        if (actionManager.homeTeamFouls < foulLimit) {
+            self.foulsLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+        }
+        if (actionManager.homeTeamTimeouts < timeoutLimit) {
+            self.timeoutLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+        }
+        self.foulsLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
         self.pointsLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamPoints];
         self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamTimeouts];
-        self.foulsLabel.text = [NSString stringWithFormat:@"%d",actionManager.homeTeamFouls];
+        _timeoutSize = actionManager.homeTeamTimeouts;
     }else {
+        if (actionManager.guestTeamFouls < foulLimit) {
+            self.foulsLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+        }
+        if (actionManager.guestTeamTimeouts < timeoutLimit) {
+            self.timeoutLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
+        }
         self.pointsLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamPoints];
         self.timeoutLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamTimeouts];
         self.foulsLabel.text = [NSString stringWithFormat:@"%d",actionManager.guestTeamFouls];
+        _timeoutSize = actionManager.guestTeamTimeouts;
     }
     
 }
