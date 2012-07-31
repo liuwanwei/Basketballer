@@ -229,8 +229,14 @@
            
            // 获取球队所有比赛记录数目和详情。数目用在这里，详情用于显示比赛列表。
            _matchesOfTeam = [[MatchManager defaultManager] matchesWithTeamId:[_team.id integerValue]];
-           NSString * countString = [NSString stringWithFormat:@"%d场比赛", _matchesOfTeam.count];
-           cell.detailTextLabel.text = countString;
+           NSString * number;
+           if (_matchesOfTeam.count > 0) {
+               number = [NSString stringWithFormat:@"%d场比赛", _matchesOfTeam.count];
+           }else{
+               number = @"没有比赛";
+           }
+
+           cell.detailTextLabel.text = number;
        }
    } 
     

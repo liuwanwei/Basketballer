@@ -29,5 +29,9 @@ static Feature * sDefaultFeatures;
     return sDefaultFeatures;
 }
 
+- (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar{
+    UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
+    [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+}
 
 @end

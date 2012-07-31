@@ -12,6 +12,7 @@
 #import "PlayGameViewController.h"
 #import "define.h"
 #import "GameSetting.h"
+#import "Feature.h"
 
 @implementation AppDelegate
 
@@ -36,11 +37,10 @@
     [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)initaaa{
-    UIImage * image = [UIImage imageNamed:@"cNavigationBar"];
+- (void)initNavigationBarBgColor{
     NSArray * navControllers = self.tabBarController.viewControllers;
     for (UINavigationController * nav in navControllers) {
-        [nav.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
     }
 }
 
@@ -49,7 +49,7 @@
     [[MatchManager defaultManager] loadMatches];
     [[TeamManager defaultManager] loadTeams];
     
-    [self initaaa];
+    [self initNavigationBarBgColor];
     
     [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];

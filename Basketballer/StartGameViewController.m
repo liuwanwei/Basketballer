@@ -90,11 +90,11 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
     
-    [[NSBundle mainBundle] loadNibNamed:@"StartMatchCell" owner:self options:nil];
-    CGRect frame = self.startMatchView.frame;
-    frame.size.width = 160;
-    self.startMatchView.frame = frame;
-    self.tableView.tableFooterView = self.startMatchView;
+//    [[NSBundle mainBundle] loadNibNamed:@"StartMatchCell" owner:self options:nil];
+//    CGRect frame = self.startMatchView.frame;
+//    frame.size.width = 160;
+//    self.startMatchView.frame = frame;
+//    self.tableView.tableFooterView = self.startMatchView;
 }
 
 - (void)viewDidUnload
@@ -145,8 +145,9 @@
     if(section == 1){
         return @"                           vs.";
     }else if(section == 2){
-//        return @"规则";
         return nil;
+//        return @"规则";
+//        return @"比赛模式";
     }else{
         return nil;
     }
@@ -155,7 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 2) {
-        return 1;
+        return [[[GameSetting defaultSetting] gameModes] count];
     }else{
         return 1;   
     }
@@ -179,7 +180,7 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
-        return 45.0f;
+        return 44.0f;
     }else{
         return 72.0f;   
     }    
@@ -219,9 +220,10 @@
 //        label.text = _gameMode;
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"比赛规则";
-        cell.detailTextLabel.text = _gameMode;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = @"enter"; 
+        cell.imageView.image = [UIImage imageNamed:@"Add"];
     }
         
     return cell;
@@ -241,18 +243,20 @@
         teamChoiceViewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:teamChoiceViewController animated:YES];
     }else if(indexPath.section == 2){
-        if (indexPath.row == 0) {
-            if (_chooseGameModeView == nil) {
-                _chooseGameModeView = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                _chooseGameModeView.choices = [[GameSetting defaultSetting] gameModeNames];  
-                _chooseGameModeView.delegate = self;
-            }
-            
-            _chooseGameModeView.currentChoice = _gameMode;
-            _chooseGameModeView.hidesBottomBarWhenPushed = YES;
-            [_chooseGameModeView setTitle:@"比赛模式"];
-            [self.navigationController pushViewController:_chooseGameModeView animated:YES];
-        }
+        _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
+        [self startGame:nil];
+//        if (indexPath.row == 0) {
+//            if (_chooseGameModeView == nil) {
+//                _chooseGameModeView = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//                _chooseGameModeView.choices = [[GameSetting defaultSetting] gameModeNames];  
+//                _chooseGameModeView.delegate = self;
+//            }
+//            
+//            _chooseGameModeView.currentChoice = _gameMode;
+//            _chooseGameModeView.hidesBottomBarWhenPushed = YES;
+//            [_chooseGameModeView setTitle:@"比赛模式"];
+//            [self.navigationController pushViewController:_chooseGameModeView animated:YES];
+//        }
     }
 }
 
