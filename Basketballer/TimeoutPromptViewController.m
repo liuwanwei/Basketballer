@@ -134,6 +134,7 @@
     self = [nib objectAtIndex:0];
     self.frame = frame;
     [self.resumeMathButton setHidden:YES];
+    [self.stopTimeOutButton setHidden:YES];
     return self;
 }
 
