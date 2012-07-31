@@ -36,8 +36,8 @@
     [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)initaaa{
-    UIImage * image = [UIImage imageNamed:@"cNavigationBar"];
+- (void)initNavigationBarBgColor{
+    UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
     NSArray * navControllers = self.tabBarController.viewControllers;
     for (UINavigationController * nav in navControllers) {
         [nav.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
@@ -49,7 +49,7 @@
     [[MatchManager defaultManager] loadMatches];
     [[TeamManager defaultManager] loadTeams];
     
-    [self initaaa];
+    [self initNavigationBarBgColor];
     
     [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];
