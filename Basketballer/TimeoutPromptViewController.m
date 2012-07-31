@@ -36,9 +36,9 @@
 
 - (void)initPromptLabel {
     if (_mode == timeoutMode) {
-        self.promptLabel.text = @"暂停";
+        //self.promptLabel.text = @"暂停";
     }else {
-        self.promptLabel.text = @"节间休息";
+        //self.promptLabel.text = @"节间休息";
     }
 }
 
@@ -122,7 +122,7 @@
         [self.stopTimeOutButton setHidden:YES];
         [self.resumeMathButton setHidden:NO];
         [self.timeoutTimeLabel setHidden:YES];
-        self.promptLabel.text = @"开始计时";
+        //self.promptLabel.text = @"开始计时";
         [self stopTimeoutCountDown];
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
     }
