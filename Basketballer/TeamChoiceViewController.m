@@ -34,6 +34,7 @@
     if (nil == team) {
         editTeam.operateMode = Insert;
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:editTeam];
+        [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
         [[AppDelegate delegate] presentModelViewController:nav];
     }else{
         editTeam.operateMode = Update;

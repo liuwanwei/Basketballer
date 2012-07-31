@@ -14,4 +14,6 @@
 
 + (Feature *)defaultFeature;
 
+- (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar;
+
 @end

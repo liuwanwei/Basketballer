@@ -12,6 +12,7 @@
 #import "PlayGameViewController.h"
 #import "define.h"
 #import "GameSetting.h"
+#import "Feature.h"
 
 @implementation AppDelegate
 
@@ -37,10 +38,9 @@
 }
 
 - (void)initNavigationBarBgColor{
-    UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
     NSArray * navControllers = self.tabBarController.viewControllers;
     for (UINavigationController * nav in navControllers) {
-        [nav.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
     }
 }
 
