@@ -119,7 +119,7 @@
 
 /*显示菜单项*/
 - (void)showMenu {
-    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:@"查看比赛操作记录",@"查看当前比赛规则", nil];
+    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"终止比赛" otherButtonTitles:@"查看比赛操作记录",@"查看当前比赛规则", nil];
     [menu showInView:self.view];
 
 }
