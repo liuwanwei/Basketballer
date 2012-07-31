@@ -240,6 +240,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="185858558"/>
+				<string key="IBUIReuseIdentifier">MatchRecordCell</string>
 				<real value="48" key="IBUIRowHeight"/>
 			</object>
 		</array>

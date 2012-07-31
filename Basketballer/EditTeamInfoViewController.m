@@ -91,7 +91,7 @@
 
 #pragma 类成员函数
 - (void) refreshViewWithTeamName:(NSString *) teamName {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if(teamName == nil || teamName.length == 0) {
         [self setRightBarButtonItemEnable:NO];
@@ -139,7 +139,7 @@
 }
 
 - (void)save:(id) send {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];;
     NSString * teamName = cell.detailTextLabel.text;
     if (teamName.length != 0) {
@@ -229,7 +229,7 @@
            
            // 获取球队所有比赛记录数目和详情。数目用在这里，详情用于显示比赛列表。
            _matchesOfTeam = [[MatchManager defaultManager] matchesWithTeamId:[_team.id integerValue]];
-           NSString * countString = [NSString stringWithFormat:@"%d", _matchesOfTeam.count];
+           NSString * countString = [NSString stringWithFormat:@"%d场比赛", _matchesOfTeam.count];
            cell.detailTextLabel.text = countString;
        }
    } 
@@ -273,7 +273,7 @@
 #pragma mark - ImagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     _image = [info valueForKey:UIImagePickerControllerEditedImage];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     UIImageView * profileImageView;

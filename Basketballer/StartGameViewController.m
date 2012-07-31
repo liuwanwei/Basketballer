@@ -62,27 +62,9 @@
     label.text = team.name;
 }
 
-- (void)createGradientNavigationBar{
-//    CGGradientRef gradientRef;
-//    CGColorSpaceRef colorSpaceRef;
-//    size_t numLocations = 2;
-//    CGFloat locations[2] = {0.0, 1.0};
-//    CGFloat components[8] = {1.0, 0.5, 0.4, 1.0,
-//                          0.8, 0.8, 0.3, 1.0};
-//    
-//    colorSpaceRef = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
-//    gradientRef = CGGradientCreateWithColorComponents(colorSpaceRef, components, locations, numLocations);
-//    
-//    CGPoint startPoint, endPoint;
-//    startPoint.x = 0.0;
-//    startPoint.y = 0.0;
-//    endPoint.x = 1.0;
-//    endPoint.y = 1.0;
-//    
-//    self.navigationController.view.
-//    CGContextDrawLinearGradient(<#CGContextRef context#>, gradientRef, startPoint, endPoint
-//                                , 0);
-    
+- (void)handleNotification:(NSNotification *)notification{
+    NSLog(@"StartGameViewController got notification");
+    [self.tableView reloadData];
 }
 
 #pragma 事件函数
@@ -102,6 +84,9 @@
     
     _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];  
     
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(handleNotification:) name:kTeamChanged object:nil];
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
     
@@ -110,8 +95,6 @@
     frame.size.width = 160;
     self.startMatchView.frame = frame;
     self.tableView.tableFooterView = self.startMatchView;
-    
-    [self createGradientNavigationBar];
 }
 
 - (void)viewDidUnload
