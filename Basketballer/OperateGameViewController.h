@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSDate * gameStartTime;
 @property (nonatomic, weak) Match * match;
 @property (nonatomic) NSInteger period;
+@property (nonatomic, weak) NSString * matchMode;
 @property (nonatomic, weak) IBOutlet UIImageView * teamImageView;
 @property (nonatomic, weak) IBOutlet UILabel * teamNameLabel;
 @property (nonatomic, weak) IBOutlet UIButton * pointButton;

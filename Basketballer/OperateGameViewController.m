@@ -40,6 +40,7 @@
 @synthesize pointsPromptLabel = _pointsPromptLabel;
 @synthesize foulsPromptLabel = _foulsPromptLabel;
 @synthesize timeoutPromptLabel = _timeoutPromptLabel;
+@synthesize matchMode = _matchMode;
 
 #pragma 私有函数
 /*计算时间差*/
@@ -133,7 +134,7 @@
 
 #pragma 类成员函数
 - (void)initButtonsLayout {
-    if (_match.mode == kGameModePoints) {
+    if (_matchMode == kGameModePoints) {
         self.timeoutButton.hidden = YES;
         self.timeoutPromptLabel.hidden = YES;
         self.timeoutLabel.hidden = YES;

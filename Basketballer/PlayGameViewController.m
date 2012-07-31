@@ -119,7 +119,7 @@
 
 /*显示菜单项*/
 - (void)showMenu {
-    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:@"查看比赛操作记录",@"查看当前比赛规则", nil];
+    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"终止比赛" otherButtonTitles:@"查看比赛操作记录",@"查看当前比赛规则", nil];
     [menu showInView:self.view];
 
 }
@@ -320,15 +320,18 @@
     self.operateGameView1.team = _hostTeam;
     self.operateGameView1.teamType = host;
     [self.operateGameView1 initTeam];
+    self.operateGameView1.matchMode = _gameMode;
     [self.operateGameView1 setButtonEnabled:NO];
+    [self.operateGameView1 initButtonsLayout];
     [self.view addSubview:self.operateGameView1];
-
     
     self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,255.0f, 320.0f, 163.0f)];
     self.operateGameView2.team = _guestTeam;
     self.operateGameView2.teamType = guest;
+    self.operateGameView2.matchMode = _gameMode;
     [self.operateGameView2 initTeam];
     [self.operateGameView2 setButtonEnabled:NO];
+    [self.operateGameView2 initButtonsLayout];
     [self.view addSubview:self.operateGameView2];
 }
 
@@ -470,8 +473,6 @@
             _operateGameView1.period = 0;
             _operateGameView2.period = 0;
              _curPeroid = 0;
-            [self.operateGameView1 initButtonsLayout];
-            [self.operateGameView2 initButtonsLayout];
         }
         //[[LocationManager defaultManager] startStandardLocationServcie];
     }
