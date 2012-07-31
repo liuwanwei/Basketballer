@@ -61,16 +61,16 @@
     if(self.gameState == playing){
         [self setLastTimeoutTime];
         [self stopGameCountDown];
-        //[self.operateGameView1 setButtonEnabled:NO];
-        //[self.operateGameView2 setButtonEnabled:NO];
         self.gameState = timeout;
         [self showTimeoutPromptView:timeoutMode];
+        [self setTitle:@"暂停中"];
     }
 }
 
 /*消息处理函数*/
 - (void)handleTimroutOverMessage:(NSNotification *)note {
     AudioServicesPlayAlertSound (self.soundFileObject);
+    [self setTitle:@"开始计时"];
 }
 
 /*消息处理函数*/
@@ -86,7 +86,7 @@
         if (hostPoints >= winningPoints || guestPoints >= winningPoints) {
             AudioServicesPlayAlertSound (self.soundFileObject);
             self.gameState = finish;
-            
+            [self setTitle:@"比赛结束"];
             [self stopGame:finish];
         }
     }
@@ -272,10 +272,12 @@
         AudioServicesPlayAlertSound (self.soundFileObject);
         if (_gameMode == kGameModeTwoHalf) {
             if (_curPeroid == 0) {
+                [self setTitle:@"中场休息"];
                 [self showTimeoutPromptView:restMode];
                 [self initTimeoutAndFoulView];
                 self.gameState = over_quarter_finish;
             }else {
+                [self setTitle:@"比赛结束"];
                 self.gameState = finish;
                 [self stopGame:finish];
             }
@@ -284,7 +286,13 @@
                 [self showTimeoutPromptView:restMode];
                 [self initTimeoutAndFoulView];
                 self.gameState = over_quarter_finish;
+                if (_curPeroid == 1) {
+                    [self setTitle:@"中场休息"];         
+                }else {
+                    [self setTitle:@"节间休息"];
+                }
             }else {
+                [self setTitle:@"比赛结束"];
                 self.gameState = finish;
                 [self stopGame:finish];
             }
@@ -403,7 +411,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"助理裁判"];
+    [self setTitle:@"开始计时"];
     [self showStartMatchView];
     [self initOperateGameView];
     [self initGameCountDownLable];
@@ -489,6 +497,7 @@
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
         self.gameState = playing;
+        [self setTitle:@"比赛中"];
     }else if(self.gameState == playing){
         if (_gameMode != kGameModePoints) {
             [self setLastTimeoutTime];
@@ -502,6 +511,7 @@
         }else {
             self.gameState = stop;
         }
+        [self setTitle:@"暂停中"];
     }
 }
 
