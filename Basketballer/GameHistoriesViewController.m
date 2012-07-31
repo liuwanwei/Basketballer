@@ -50,10 +50,10 @@
     [[AppDelegate delegate] presentModelViewController:_gameHistoriesMapViewController];
 }
 
-- (void)historyChangedHandler:(NSNotification *)notification{
-    NSLog(@"got notification: %@", notification.name);
-    [self.tableView reloadData];
-}
+//- (void)historyChangedHandler:(NSNotification *)notification{
+//    NSLog(@"got notification: %@", notification.name);
+//    [self.tableView reloadData];
+//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -69,11 +69,12 @@
     [super viewDidLoad];
 //    [self initNavigationItem];
     
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
-    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];  
+//    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+//    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
+//    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];  
     
     self.tableView.rowHeight = 48.0f;
+    [self setTitle:@"比赛记录"]; // TODO 这个字符串应该跟EditTeamInfoViewController的row保持一致。
 }
 
 - (void)viewDidUnload
@@ -106,12 +107,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MatchRecordCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (nil == cell) {
         [[NSBundle mainBundle] loadNibNamed:@"MatchRecordCell" owner:self options:nil];
         cell = _tvCell;
         self.tvCell = nil;
+    }else{
+        NSLog(@"GameHistoriesViewController got reusable cell");
     }
     
     Match * match = [_matches objectAtIndex:indexPath.row];
