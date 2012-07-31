@@ -75,7 +75,7 @@ typedef enum {
 }
 
 - (void)back{
-    self.hidesBottomBarWhenPushed = NO;
+//    self.hidesBottomBarWhenPushed = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
