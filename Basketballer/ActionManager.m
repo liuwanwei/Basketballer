@@ -363,12 +363,5 @@ static ActionManager * sActionManager;
     return _documentURL;
 }
 
-- (void)storeUnfinishedMatch:(NSInteger)matchId{
-    
-}
-
-- (NSInteger)restoreUnfinishedMatch{
-    return -1;
-}
 
 @end
