@@ -64,7 +64,7 @@
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
-    self.tableView.rowHeight = 72.0f; 
+    self.tableView.rowHeight = 56.0f; 
     
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(teamChangedHandler:) name:kTeamChanged object:nil];    
@@ -117,6 +117,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIImageView * profileImageView;    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -125,13 +126,12 @@
         self.teamCell = nil;
         
         // 图片圆角化。
-//        profileImageView = (UIImageView *)[cell viewWithTag:1];
-//        profileImageView.layer.masksToBounds = YES;
-//        profileImageView.layer.cornerRadius = 5.0f;
+        profileImageView = (UIImageView *)[cell viewWithTag:1];
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.cornerRadius = 5.0f;
     }
     
     UILabel * label;
-    UIImageView * profileImageView;    
     
     profileImageView = (UIImageView *)[cell viewWithTag:1];
     label = (UILabel *)[cell viewWithTag:2]; 
