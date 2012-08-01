@@ -58,10 +58,10 @@
 
 /*消息处理函数*/
 - (void)handleMessage:(NSNotification *)note {
-    if(self.gameState == playing){
+    if(self.gameState == InPlay){
         [self setLastTimeoutTime];
         [self stopGameCountDown];
-        self.gameState = timeout;
+        self.gameState = PlayIsSuspended;
         [self showTimeoutPromptView:timeoutMode];
         [self setTitle:@"暂停中"];
     }
@@ -85,9 +85,9 @@
         NSInteger winningPoints = [[GameSetting defaultSetting].winningPoints intValue];
         if (hostPoints >= winningPoints || guestPoints >= winningPoints) {
             AudioServicesPlayAlertSound (self.soundFileObject);
-            self.gameState = finish;
+            self.gameState = EndOfGame;
             [self setTitle:@"比赛结束"];
-            [self stopGame:finish];
+            [self stopGame:EndOfGame];
         }
     }
 }
@@ -275,17 +275,17 @@
                 [self setTitle:@"中场休息"];
                 [self showTimeoutPromptView:restMode];
                 [self initTimeoutAndFoulView];
-                self.gameState = over_quarter_finish;
+                self.gameState = QuarterTime;
             }else {
                 [self setTitle:@"比赛结束"];
-                self.gameState = finish;
-                [self stopGame:finish];
+                self.gameState = EndOfGame;
+                [self stopGame:EndOfGame];
             }
         }else {
             if (_curPeroid != 3) {
                 [self showTimeoutPromptView:restMode];
                 [self initTimeoutAndFoulView];
-                self.gameState = over_quarter_finish;
+                self.gameState = QuarterTime;
                 if (_curPeroid == 1) {
                     [self setTitle:@"中场休息"];         
                 }else {
@@ -293,8 +293,8 @@
                 }
             }else {
                 [self setTitle:@"比赛结束"];
-                self.gameState = finish;
-                [self stopGame:finish];
+                self.gameState = EndOfGame;
+                [self stopGame:EndOfGame];
             }
         }
     }
@@ -314,9 +314,9 @@
     AudioServicesDisposeSystemSoundID (self.soundFileObject);
     [AppDelegate delegate].playGameViewController = nil;
     
-    if (mode == stop) {
+    if (mode == StoppedPlay) {
         [[MatchManager defaultManager] stopMatch:_match withState:MatchStopped];
-    }else if (mode == finish){
+    }else if (mode == EndOfGame){
         [[MatchManager defaultManager] stopMatch:_match withState:MatchFinished];
     }
     
@@ -326,7 +326,7 @@
 - (void) initOperateGameView {
     self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,91.0f, 320.0f, 163.0f)];
     self.operateGameView1.team = _hostTeam;
-    self.operateGameView1.teamType = host;
+    self.operateGameView1.teamType = HostTeam;
     [self.operateGameView1 initTeam];
     self.operateGameView1.matchMode = _gameMode;
     [self.operateGameView1 setButtonEnabled:NO];
@@ -335,7 +335,7 @@
     
     self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,255.0f, 320.0f, 163.0f)];
     self.operateGameView2.team = _guestTeam;
-    self.operateGameView2.teamType = guest;
+    self.operateGameView2.teamType = GuestTeam;
     self.operateGameView2.matchMode = _gameMode;
     [self.operateGameView2 initTeam];
     [self.operateGameView2 setButtonEnabled:NO];
@@ -418,7 +418,7 @@
     [self registerHandleMessage];
     [self setGamePeriodLabel];
     [self initSoundResource];
-    self.gameState = prepare;
+    self.gameState = ReadyToPlay;
     if (_gameMode == kGameModePoints) {
         self.curPeroid = 0;
         [AppDelegate delegate].playGameViewController = nil;
@@ -484,9 +484,9 @@
         }
         //[[LocationManager defaultManager] startStandardLocationServcie];
     }
-    if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout || self.gameState == stop) {
+    if(self.gameState == ReadyToPlay || self.gameState == QuarterTime || self.gameState == PlayIsSuspended) {
         if (_gameMode != kGameModePoints) {
-            if(self.gameState == prepare || self.gameState == over_quarter_finish) {
+            if(self.gameState == ReadyToPlay || self.gameState == QuarterTime) {
                 [self initGameTargetTime];
                 [self setGamePeriodLabel];
             }else {
@@ -496,9 +496,9 @@
         }
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
-        self.gameState = playing;
+        self.gameState = InPlay;
         [self setTitle:@"比赛中"];
-    }else if(self.gameState == playing){
+    }else if(self.gameState == InPlay){
         if (_gameMode != kGameModePoints) {
             [self setLastTimeoutTime];
             [self stopGameCountDown];
@@ -507,9 +507,7 @@
         [self.operateGameView1 setButtonEnabled:NO];
         [self.operateGameView2 setButtonEnabled:NO];
         if (sender == nil) {
-            self.gameState = timeout;
-        }else {
-            self.gameState = stop;
+            self.gameState = PlayIsSuspended;
         }
         [self setTitle:@"暂停中"];
     }
@@ -553,7 +551,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [self stopGame:stop];
+        [self stopGame:StoppedPlay];
     }else if (buttonIndex == 1){
         [self showActionRecordontroller];
     }else if (buttonIndex == 2){

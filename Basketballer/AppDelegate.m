@@ -67,7 +67,7 @@
     if (self.playGameViewController != nil) {
         UILocalNotification *newNotification = [[UILocalNotification alloc] init];
         NSString * body;
-        if (self.playGameViewController.gameState == playing) {
+        if (self.playGameViewController.gameState == InPlay) {
             if (newNotification) {
                 newNotification.fireDate = self.playGameViewController.targetTime;
                 if (self.playGameViewController.curPeroid == 0) {
@@ -91,7 +91,7 @@
                 newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
                 [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
             }
-        }else if(self.playGameViewController.gameState == timeout || self.playGameViewController.gameState == over_quarter_finish){
+        }else if(self.playGameViewController.gameState == PlayIsSuspended || self.playGameViewController.gameState == QuarterTime){
             body = @"暂停时间到";
             newNotification.fireDate = self.playGameViewController.timeoutTargetTime;
             newNotification.alertBody = body;

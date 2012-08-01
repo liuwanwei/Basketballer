@@ -106,7 +106,7 @@
         foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
     }
    
-    if(_teamType == host) {
+    if(_teamType == HostTeam) {
         if (actionManager.homeTeamFouls < foulLimit) {
             self.foulsLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
         }
@@ -183,7 +183,7 @@
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
     NSInteger points;
-    if(_teamType == host) {
+    if(_teamType == HostTeam) {
         [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
         points = [actionManager homeTeamPoints];
     }else {
@@ -252,7 +252,7 @@
                 foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
             }
             
-            if (_teamType == host) {
+            if (_teamType == HostTeam) {
                 [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
                 foulSize = actionManager.homeTeamFouls;
             }else {
@@ -270,7 +270,7 @@
             ActionManager * actionManager = [ActionManager defaultManager];
             NSInteger time = [self computeTimeDifference];
             BOOL result;
-            if(_teamType == host) {
+            if(_teamType == HostTeam) {
                 result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
             }else {
                 result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
@@ -282,7 +282,7 @@
                 }else {
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
                 }
-                if (_teamType == host) {
+                if (_teamType == HostTeam) {
                     _timeoutSize = actionManager.homeTeamTimeouts;
                     
                 }else {
