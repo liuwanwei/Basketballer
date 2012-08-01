@@ -29,7 +29,7 @@
 @synthesize gameStartTime = _gameStartTime;
 @synthesize teamImageView = _teamImageView;
 @synthesize match = _match;
-@synthesize period = _period;
+//@synthesize period = _period;
 @synthesize teamNameLabel = _teamNameLabel;
 @synthesize foulButton = _foulButton;
 @synthesize timeoutButton = _timeoutButton;
@@ -184,10 +184,10 @@
     NSInteger time = [self computeTimeDifference];
     NSInteger points;
     if(_teamType == host) {
-        [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time];
         points = [actionManager homeTeamPoints];
     }else {
-        [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time inPeriod:_period];
+        [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time];
         points = [actionManager guestTeamPoints];
     }
     self.pointsLabel.text = [NSString stringWithFormat:@"%d",points];
@@ -253,10 +253,10 @@
             }
             
             if (_teamType == host) {
-                [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
+                [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time];
                 foulSize = actionManager.homeTeamFouls;
             }else {
-                [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time inPeriod:_period];
+                [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time];
                 foulSize = actionManager.guestTeamFouls;
             }
             
@@ -271,9 +271,9 @@
             NSInteger time = [self computeTimeDifference];
             BOOL result;
             if(_teamType == host) {
-                result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
+                result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time];
             }else {
-                result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time inPeriod:_period];
+                result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time];
             }
             if (result) {
                 NSInteger timeoutLimit;

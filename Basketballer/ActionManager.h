@@ -22,6 +22,15 @@
 #define kGuest              @"guest"
 
 typedef enum {
+    MatchStatePrepare = 0,          // 比赛未开始。
+    MatchStatePlaying,              // 比赛计时进行中。
+    MatchStateTimeout,              // 比赛暂停中。
+    MatchStatePeriodFinished,       // 比赛节间休息中。
+    MatchStateStopped,              // 比赛非正常结束。
+    MatchStateFinished,             // 比赛正常结束。
+}MatchState;
+
+typedef enum {
     ActionTypePoints    = 0,        // 用于搜索所有得分类型事件，并非用于添加、删除事件。
     ActionType1Point    = 1,        // 罚球得分。
     ActionType2Points   = 2,        // 两分球。
@@ -49,9 +58,20 @@ typedef enum {
 @property (nonatomic) NSInteger periodTimeoutsLimit;
 @property (nonatomic) NSInteger periodFoulsLimit;
 
+// 当前所处节数。请调用者废弃自己定义的变量
+@property (nonatomic) NSInteger period; 
+
+// 当前比赛状态。
+@property (nonatomic) MatchState state;
+
+// 当前比赛状态的结束日期。
+@property (nonatomic, strong) NSDate * matchStateFinishingDate;
+
 @property (nonatomic, strong) NSMutableArray * actionArray; // 当前正进行比赛的action组。
 
 @property (nonatomic, weak) id<FoulActionDelegate> delegate;
+
+- (NSString *)nameForPeriod;
 
 + (ActionManager *)defaultManager;
 
@@ -64,9 +84,9 @@ typedef enum {
 // 返回每节比赛某个球队、某项技术统计的累计值数组。
 - (NSMutableArray *)summaryForFilter:(NSInteger)filter withTeam:(NSInteger)team inActions:(NSArray *)actions;
 
-- (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period;
+- (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time;
 
-- (BOOL)actionForGuestTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period;
+- (BOOL)actionForGuestTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time;
 
 - (BOOL)deleteAction:(Action *)action;
 - (BOOL)deleteActionAtIndex:(NSInteger)index;
@@ -75,5 +95,8 @@ typedef enum {
 - (void)resetRealtimeActions:(Match *)match;
 
 - (void)finishMatch:(Match *)match;
+
+- (void)storeUnfinishedMatch:(NSInteger)matchId;
+- (NSInteger)restoreUnfinishedMatch;// -1代表没有进行中比赛。加载后清空缓存。
 
 @end

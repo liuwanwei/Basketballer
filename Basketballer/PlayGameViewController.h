@@ -24,11 +24,11 @@
 @property (nonatomic, weak) NSTimer * countDownTimer;
 @property (nonatomic, strong) NSDate * targetTime;
 @property (nonatomic, strong) NSDate * lastTimeoutTime;
-@property (nonatomic) NSInteger gameState; 
+//@property (nonatomic) NSInteger gameState; 
 @property (nonatomic, weak) Team * hostTeam;
 @property (nonatomic, weak) Team * guestTeam;
 @property (nonatomic, weak) NSString * gameMode;
-@property (nonatomic) NSInteger curPeroid;
+//@property (nonatomic) NSInteger curPeroid;
 @property (nonatomic, readwrite) CFURLRef soundFileURLRef;
 @property (nonatomic, readonly) SystemSoundID soundFileObject;
 @property (nonatomic, weak) NSDate * timeoutTargetTime;
