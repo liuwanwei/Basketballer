@@ -16,7 +16,7 @@
 #define kAddScoreMessage @"kAddScore"
 
 typedef enum{
-    TeamTypeHome = 0,
+    TeamTypeHost = 0,
     TeamTypeGuest = 1
 }TeamType;
 
@@ -41,17 +41,17 @@ typedef enum{
 @property (nonatomic, weak) IBOutlet UILabel * timeoutPromptLabel;
 
 - (void)addScore:(NSInteger) score;
-- (void)initTeam;
+- (void)initContentWithTeam:(Team *)team 
+               withTeamType:(TeamType)teamType 
+              withMatchMode:(NSString *)matchMode;
 - (void)initTimeoutAndFoulView;
 - (void)refreshMatchData;
-- (void)initButtonsLayout;
+- (void)setButtonEnabled:(BOOL) enabled;
 
 - (IBAction)showPopoer:(UIButton *)sender;
 - (IBAction)addTimeOver:(UIButton *)sender;
 - (IBAction)addFoul:(UIButton *)sender;
 - (IBAction)buttonDown:(UIButton *)sender;
 - (IBAction)buttonTouchOutside:(UIButton *)sender;
-
-- (void)setButtonEnabled:(BOOL) enabled;
 
 @end

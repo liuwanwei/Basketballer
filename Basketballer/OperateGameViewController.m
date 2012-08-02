@@ -70,6 +70,17 @@
     }
 }
 
+- (void)initContentWithTeam:(Team *)team 
+               withTeamType:(TeamType)teamType 
+              withMatchMode:(NSString *)matchMode {
+    _team = team;
+    _teamType = teamType;
+    _matchMode = matchMode;
+    [self initTeam];
+    [self setButtonEnabled:NO];
+    [self initButtonsLayout];
+}
+
 /*初始化球队信息*/
 - (void)initTeam {
     if(_team != nil) {
@@ -105,7 +116,7 @@
         foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
     }
    
-    if(_teamType == TeamTypeHome) {
+    if(_teamType == TeamTypeHost) {
         if (actionManager.homeTeamFouls < foulLimit) {
             self.foulsLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
         }
@@ -131,7 +142,6 @@
     
 }
 
-#pragma 类成员函数
 - (void)initButtonsLayout {
     if (_matchMode == kGameModePoints) {
         self.timeoutButton.hidden = YES;
@@ -183,7 +193,7 @@
     NSInteger time = [self computeTimeDifference];
     NSInteger points;
     
-    if(_teamType == TeamTypeHome) {
+    if(_teamType == TeamTypeHost) {
         [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time];        
         points = [actionManager homeTeamPoints];
     }else {
@@ -252,7 +262,7 @@
                 foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
             }
             
-            if (_teamType == TeamTypeHome) {
+            if (_teamType == TeamTypeHost) {
                 [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time];                
                 foulSize = actionManager.homeTeamFouls;
             }else {
@@ -271,7 +281,7 @@
             NSInteger time = [self computeTimeDifference];
             BOOL result;
             
-            if(_teamType == TeamTypeHome) {
+            if(_teamType == TeamTypeHost) {
                 result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time];            
             }else {
                 result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time];
@@ -283,7 +293,7 @@
                 }else {
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
                 }
-                if (_teamType == TeamTypeHome) {
+                if (_teamType == TeamTypeHost) {
                     _timeoutSize = actionManager.homeTeamTimeouts;
                     
                 }else {
