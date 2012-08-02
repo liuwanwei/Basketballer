@@ -10,7 +10,6 @@
 #import "MatchManager.h"
 #import "TeamManager.h"
 #import "PlayGameViewController.h"
-#import "define.h"
 #import "GameSetting.h"
 #import "Feature.h"
 

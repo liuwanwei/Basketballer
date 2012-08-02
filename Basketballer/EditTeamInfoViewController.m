@@ -7,7 +7,6 @@
 //
 
 #import "EditTeamInfoViewController.h"
-#import "define.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
 #import "EditTeamNameViewController.h"

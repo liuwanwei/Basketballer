@@ -2,13 +2,12 @@
 //  TimeoutPromptViewController.m
 //  Basketballer
 //
-//  Created by lixiaoyu on 12-7-14.
+//  Created by maoyu on 12-7-14.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
 #import "TimeoutPromptViewController.h"
 #import "GameSetting.h"
-#import "define.h"
 #import "ActionManager.h"
 
 @interface TimeoutPromptViewController ()

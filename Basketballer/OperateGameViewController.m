@@ -9,7 +9,6 @@
 #import "OperateGameViewController.h"
 #import "EditTeamInfoViewController.h"
 #import "AppDelegate.h"
-#import "define.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
 #import "GameSetting.h"
