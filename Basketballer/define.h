@@ -9,18 +9,15 @@
 #ifndef Basketballer_define_h
 #define Basketballer_define_h
 
-enum TeamType{host = 0, guest = 1};
+enum TeamType{HostTeam = 0, GuestTeam = 1};
 enum GameState {
-    prepare = 0,
-    playing = 1,
-    timeout = 2,
-    stop = 3,
-    over_quarter_finish = 4,
-    finish = 5
+    ReadyToPlay = 0,
+    InPlay = 1,
+    PlayIsSuspended = 2,
+    QuarterTime = 3,
+    EndOfGame = 4,
+    StoppedPlay = 5
 };
-
-#define host 0
-#define guest 1
 
 #define kTimeoutMessage @"kTimeout"
 #define kTimeoutOverMessage @"kTimeoutOver"

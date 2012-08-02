@@ -106,7 +106,7 @@
         foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
     }
    
-    if(_teamType == host) {
+    if(_teamType == HostTeam) {
         if (actionManager.homeTeamFouls < foulLimit) {
             self.foulsLabel.textColor = [UIColor colorWithRed:0.325490196078431 green:0.313725490196078 blue:0.545098039215686 alpha:1.0];
         }
@@ -183,8 +183,9 @@
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger time = [self computeTimeDifference];
     NSInteger points;
-    if(_teamType == host) {
-        [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time];
+    
+    if(_teamType == HostTeam) {
+        [actionManager actionForHomeTeamInMatch:_match withType:score atTime:time];        
         points = [actionManager homeTeamPoints];
     }else {
         [actionManager actionForGuestTeamInMatch:_match withType:score atTime:time];
@@ -252,8 +253,8 @@
                 foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
             }
             
-            if (_teamType == host) {
-                [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time];
+            if (_teamType == HostTeam) {
+                [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time];                
                 foulSize = actionManager.homeTeamFouls;
             }else {
                 [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeFoul atTime:time];
@@ -270,8 +271,9 @@
             ActionManager * actionManager = [ActionManager defaultManager];
             NSInteger time = [self computeTimeDifference];
             BOOL result;
-            if(_teamType == host) {
-                result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time];
+            
+            if(_teamType == HostTeam) {
+                result = [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeTimeout atTime:time];            
             }else {
                 result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time];
             }
@@ -282,7 +284,7 @@
                 }else {
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
                 }
-                if (_teamType == host) {
+                if (_teamType == HostTeam) {
                     _timeoutSize = actionManager.homeTeamTimeouts;
                     
                 }else {
