@@ -8,7 +8,6 @@
 
 #import "PlayGameViewController.h"
 #import "OperateGameViewController.h"
-#import "define.h"
 #import "GameSetting.h"
 #import "MatchManager.h"
 #import "TimeoutPromptViewController.h"
@@ -58,23 +57,25 @@
     [alertView show];
 }
 
+- (void)updateTitle:(NSString *) title {
+    [self setTitle:title];
+}
+
 /*消息处理函数*/
 - (void)handleMessage:(NSNotification *)note {
-//    if(self.gameState == playing){
     if(_actionManager.state == MatchStatePlaying){
         [self setLastTimeoutTime];
         [self stopGameCountDown];
         _actionManager.state = MatchStateTimeout;
-//        self.gameState = timeout;
         [self showTimeoutPromptView:PromptModeTimeout];
-        [self setTitle:@"暂停中"];
+        [self updateTitle:@"暂停中"];
     }
 }
 
 /*消息处理函数*/
 - (void)handleTimroutOverMessage:(NSNotification *)note {
     AudioServicesPlayAlertSound (self.soundFileObject);
-    [self setTitle:@"开始计时"];
+    [self updateTitle:@"开始计时"];
 }
 
 /*消息处理函数*/
@@ -90,9 +91,8 @@
         if (hostPoints >= winningPoints || guestPoints >= winningPoints) {
             AudioServicesPlayAlertSound (self.soundFileObject);
             _actionManager.state = MatchStateFinished;
-//            self.gameState = finish;
-            [self setTitle:@"比赛结束"];
-            [self stopGame:EndOfGame];
+            [self updateTitle:@"比赛结束"];
+            [self stopGame:MatchStateFinished];
         }
     }
 }
@@ -188,8 +188,6 @@
     _operateGameView1.gameStartTime = date;
     _operateGameView2.gameStartTime = date;
     _actionManager.period ++;
-//    _operateGameView1.period = _actionManager.period;
-//    _operateGameView2.period = _actionManager.period;
 }
 
 /*
@@ -260,15 +258,13 @@
         NSInteger currentPeriod = _actionManager.period;
         if (_gameMode == kGameModeTwoHalf) {
             if (currentPeriod == 0) {
-                [self setTitle:@"中场休息"];
+                [self updateTitle:@"中场休息"];
                 [self showTimeoutPromptView:PromptModeRest];
                 [self initTimeoutAndFoulView];
                 _actionManager.state = MatchStatePeriodFinished;
-//                self.gameState = over_quarter_finish;
             }else {
-                [self setTitle:@"比赛结束"];
+                [self updateTitle:@"比赛结束"];
                 _actionManager.state = MatchStateFinished;
-//                self.gameState = finish;
                 [self stopGame:MatchStateFinished];
             }
         }else {
@@ -276,16 +272,14 @@
                 [self showTimeoutPromptView:PromptModeRest];
                 [self initTimeoutAndFoulView];
                 _actionManager.state = MatchStatePeriodFinished;
-//                self.gameState = over_quarter_finish;
                 if (currentPeriod == 1) {
-                    [self setTitle:@"中场休息"];         
+                    [self updateTitle:@"中场休息"];         
                 }else {
-                    [self setTitle:@"节间休息"];
+                    [self updateTitle:@"节间休息"];
                 }
             }else {
                 [self setTitle:@"比赛结束"];
                 _actionManager.state = MatchStateFinished;
-//                self.gameState = finish;
                 [self stopGame:MatchStateFinished];
             }
         }
@@ -403,26 +397,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"开始计时"];
+    [self updateTitle:@"开始计时"];
     [self showStartMatchView];
     [self initOperateGameView];
     [self initGameCountDownLable];
     [self registerHandleMessage];
     [self setGamePeriodLabel];
     [self initSoundResource];
-//    self.gameState = prepare;
     if (_gameMode == kGameModePoints) {
-//        self.curPeroid = 0;
         [AppDelegate delegate].playGameViewController = nil;
     }else {
-//        self.curPeroid = -1;
         [AppDelegate delegate].playGameViewController = self;
     }
-    
     [self showNavBarLeftItem:YES withRightItem:NO];
-    
-    //[LocationManager defaultManager].delegate = self;
-    //[self startGame:nil];
 }
 
 - (void)viewDidUnload
@@ -468,19 +455,13 @@
                                                     withHomeTeam:_hostTeam  withGuestTeam:_guestTeam];
         _operateGameView1.match = _match;
         _operateGameView2.match = _match;
-//        _curPeroid = -1;
         _gameStart = YES;
         [self showNavBarLeftItem:NO withRightItem:YES];
         
         if (_gameMode == kGameModePoints) {
-//            _operateGameView1.period = 0;
-//            _operateGameView2.period = 0;
-//             _curPeroid = 0;
             _actionManager.period = 0;
         }
-        //[[LocationManager defaultManager] startStandardLocationServcie];
     }
-//    if(self.gameState == prepare || self.gameState == over_quarter_finish || self.gameState == timeout || self.gameState == stop) {
     if(_actionManager.state == MatchStatePrepare || 
        _actionManager.state == MatchStatePeriodFinished || 
        _actionManager.state == MatchStateTimeout || 
@@ -498,7 +479,7 @@
         [self.operateGameView1 setButtonEnabled:YES];
         [self.operateGameView2 setButtonEnabled:YES];
         _actionManager.state = MatchStatePlaying;
-        [self setTitle:@"比赛中"];
+        [self updateTitle:@"比赛中"];
     }else if(_actionManager.state == MatchStatePlaying){
         if (_gameMode != kGameModePoints) {
             [self setLastTimeoutTime];
@@ -510,7 +491,7 @@
         if (sender == nil) {
             _actionManager.state = MatchStateTimeout;
         }
-        [self setTitle:@"暂停中"];
+        [self updateTitle:@"暂停中"];
     }
 }
 
@@ -552,7 +533,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [self stopGame:StoppedPlay];
+        [self stopGame:MatchStateStopped];
     }else if (buttonIndex == 1){
         [self showActionRecordontroller];
     }else if (buttonIndex == 2){
