@@ -106,10 +106,10 @@
     ActionManager * actionManager = [ActionManager defaultManager];
     NSInteger foulLimit;
     NSInteger timeoutLimit;
-    if (_match.mode == kGameModeTwoHalf) {
+    if ([_matchMode isEqualToString:kGameModeTwoHalf]) {
         foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
-    }else if (_match.mode == kGameModeFourQuarter){
+    }else if ([_matchMode isEqualToString:kGameModeFourQuarter]){
         foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
     }else {
@@ -143,7 +143,7 @@
 }
 
 - (void)initButtonsLayout {
-    if (_matchMode == kGameModePoints) {
+    if ([_matchMode isEqualToString:kGameModePoints]) {
         self.timeoutButton.hidden = YES;
         self.timeoutPromptLabel.hidden = YES;
         self.timeoutLabel.hidden = YES;
@@ -171,18 +171,6 @@
 
 - (IBAction)showPopoer:(UIButton *)sender {
     sender.backgroundColor = [UIColor whiteColor];
-    /*if(_popoverController == nil && _popoverContentController == nil) {
-        _popoverContentController = [[WEPopoverContentViewController alloc] initWithStyle:UITableViewStylePlain];
-        _popoverController = [[WEPopoverController alloc] initWithContentViewController:_popoverContentController];
-        
-        _popoverContentController.wePopoverController = _popoverController;
-        _popoverContentController.opereteGameViewController = self;
-    }
-    
-    [_popoverController presentPopoverFromRect:sender.frame 
-                                            inView:sender
-                          permittedArrowDirections:UIPopoverArrowDirectionDown
-                                          animated:YES];*/
     UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:_team.name delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@" + 1分",@" + 2分",@" + 3分", nil];
     menu.tag = 1;
     [menu showInView:self];
@@ -207,7 +195,7 @@
 - (IBAction)addTimeOver:(UIButton *)sender {
     sender.backgroundColor = [UIColor whiteColor];
     NSInteger timeoutLimit;
-    if (_match.mode == kGameModeTwoHalf) {
+    if ([_matchMode isEqualToString:kGameModeTwoHalf]) {
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
     }else {
         timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
@@ -254,9 +242,9 @@
             NSInteger time = [self computeTimeDifference];
             NSInteger foulSize;
             NSInteger foulLimit;
-            if (_match.mode == kGameModeTwoHalf) {
+            if ([_match.mode isEqualToString:kGameModeTwoHalf]) {
                 foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
-            }else if (_match.mode == kGameModeFourQuarter){
+            }else if ([_matchMode isEqualToString:kGameModeFourQuarter]){
                 foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
             }else {
                 foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
@@ -288,7 +276,7 @@
             }
             if (result) {
                 NSInteger timeoutLimit;
-                if (_match.mode == kGameModeTwoHalf) {
+                if ([_matchMode isEqualToString:kGameModeTwoHalf]) {
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
                 }else {
                     timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
