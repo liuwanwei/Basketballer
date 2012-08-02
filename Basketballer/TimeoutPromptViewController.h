@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PlayGameViewController.h"
 
-enum PromptMode {
-    timeoutMode = 0,
-    restMode = 1
-    };
+#define kTimeoutOverMessage @"kTimeoutOver"
+
+typedef enum{
+    PromptModeTimeout = 0,
+    PromptModeRest = 1
+}PromptMode;
 
 @interface TimeoutPromptViewController : UIView<UIAlertViewDelegate>
 

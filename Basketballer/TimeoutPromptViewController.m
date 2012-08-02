@@ -36,17 +36,9 @@
     [alertView show];
 }
 
-- (void)initPromptLabel {
-    if (_mode == timeoutMode) {
-        //self.promptLabel.text = @"暂停";
-    }else {
-        //self.promptLabel.text = @"节间休息";
-    }
-}
-
 - (NSInteger)getTimeoutLength {
     NSInteger timeoutLength = 0;
-    if(_mode == timeoutMode) {
+    if(_mode == PromptModeTimeout) {
         timeoutLength = [[GameSetting defaultSetting].timeoutLength intValue];
     }else {
         if (self.parentController.gameMode == kGameModeTwoHalf) {
@@ -65,7 +57,7 @@
 }
 
 - (void)initTimeoutDownLable {
-    if (_mode == timeoutMode) {
+    if (_mode == PromptModeTimeout) {
         self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d",[self getTimeoutLength]];
     }else {
         self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",[self getTimeoutLength],0];
@@ -78,7 +70,7 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps;
     comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
-    if (_mode == timeoutMode) {
+    if (_mode == PromptModeTimeout) {
         [comps setSecond:comps.second + [self getTimeoutLength] + 1];
     }else {
         [comps setMinute:comps.minute + [self getTimeoutLength]];
@@ -110,7 +102,7 @@
     if(second < 0) {
         second = 0;
     }
-    if (_mode == timeoutMode) {
+    if (_mode == PromptModeTimeout) {
         if(minute > 0) {
             self.timeoutTimeLabel.text = [NSString stringWithFormat:@"%.2d : %.2d",minute,second];
         }else {
@@ -144,7 +136,6 @@
 - (void)startTimeout {
     [self initTimeoutTargetTime];
     [self initTimeoutDownLable];
-    [self initPromptLabel];
     [self startTimeoutCountDown];
 }
 
