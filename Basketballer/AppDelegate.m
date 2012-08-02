@@ -63,7 +63,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    if (self.playGameViewController != nil) {
+    if (self.playGameViewController != nil 
+        && ![self.playGameViewController.gameMode isEqualToString:kGameModePoints]) {
         UILocalNotification *newNotification = [[UILocalNotification alloc] init];
         NSString * body;
         ActionManager * am = [ActionManager defaultManager];
