@@ -310,22 +310,17 @@
 }
 
 - (void) initOperateGameView {
-    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,91.0f, 320.0f, 163.0f)];
-    self.operateGameView1.team = _hostTeam;
-    self.operateGameView1.teamType = TeamTypeHome;
-    [self.operateGameView1 initTeam];
-    self.operateGameView1.matchMode = _gameMode;
-    [self.operateGameView1 setButtonEnabled:NO];
-    [self.operateGameView1 initButtonsLayout];
+    self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,
+        91.0f, 320.0f, 163.0f)];
+    [self.operateGameView1 initContentWithTeam:_hostTeam
+                                  withTeamType:TeamTypeHost
+                                 withMatchMode:_gameMode];
     [self.view addSubview:self.operateGameView1];
     
     self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,255.0f, 320.0f, 163.0f)];
-    self.operateGameView2.team = _guestTeam;
-    self.operateGameView2.teamType = TeamTypeGuest;
-    self.operateGameView2.matchMode = _gameMode;
-    [self.operateGameView2 initTeam];
-    [self.operateGameView2 setButtonEnabled:NO];
-    [self.operateGameView2 initButtonsLayout];
+    [self.operateGameView2 initContentWithTeam:_guestTeam
+                                  withTeamType:TeamTypeGuest
+                                 withMatchMode:_gameMode];
     [self.view addSubview:self.operateGameView2];
 }
 
