@@ -18,7 +18,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (strong, nonatomic) PlayGameViewController *playGameViewController;
+@property (weak, nonatomic) PlayGameViewController *playGameViewController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
