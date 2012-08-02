@@ -86,7 +86,7 @@
     self.gameHostScoreLable.text = [NSString stringWithFormat:@"%d",hostPoints];
     self.gameGuestScoreLable.text = [NSString stringWithFormat:@"%d",guestPoints];
     
-    if (_gameMode == kGameModePoints && note != nil) {
+    if ([_gameMode isEqualToString:kGameModePoints] && note != nil) {
         NSInteger winningPoints = [[GameSetting defaultSetting].winningPoints intValue];
         if (hostPoints >= winningPoints || guestPoints >= winningPoints) {
             AudioServicesPlayAlertSound (self.soundFileObject);
@@ -113,9 +113,9 @@
 /*获取单节时长*/
 - (NSInteger) getQuarterLength {
     NSInteger quarterLength = 0;
-    if(_gameMode == kGameModeTwoHalf) {
+    if([_gameMode isEqualToString:kGameModeTwoHalf]) {
         quarterLength = [[GameSetting defaultSetting].halfLength intValue];
-    }else if(_gameMode == kGameModeFourQuarter){
+    }else if([_gameMode isEqualToString:kGameModeFourQuarter]){
         quarterLength = [[GameSetting defaultSetting].quarterLength intValue];
     }
     
@@ -167,7 +167,7 @@
 }
 
 - (void)setGamePeriodLabel {
-    if (_gameMode == kGameModePoints) {
+    if ([_gameMode isEqualToString:kGameModePoints]) {
         self.gamePeroidLabel.hidden = YES;
     }else {
         self.gamePeroidLabel.text = [_actionManager nameForPeriod];
@@ -256,7 +256,7 @@
         AudioServicesPlayAlertSound (self.soundFileObject);
         
         NSInteger currentPeriod = _actionManager.period;
-        if (_gameMode == kGameModeTwoHalf) {
+        if ([_gameMode isEqualToString:kGameModeTwoHalf]) {
             if (currentPeriod == 0) {
                 [self updateTitle:@"中场休息"];
                 [self showTimeoutPromptView:PromptModeRest];
@@ -357,7 +357,7 @@
     GameSettingViewController * gameSettingontroller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     gameSettingontroller.viewStyle = UIGameSettingViewStyleShow;
     gameSettingontroller.gameMode = _gameMode;
-    if (_gameMode == kGameModeTwoHalf) {
+    if ([_gameMode isEqualToString:kGameModeTwoHalf]) {
         [gameSettingontroller setTitle:[modes objectAtIndex:0]];
     }else {
         [gameSettingontroller setTitle:[modes objectAtIndex:1]];
@@ -399,7 +399,7 @@
     [self registerHandleMessage];
     [self setGamePeriodLabel];
     [self initSoundResource];
-    if (_gameMode == kGameModePoints) {
+    if ([_gameMode isEqualToString:kGameModePoints]) {
         [AppDelegate delegate].playGameViewController = nil;
     }else {
         [AppDelegate delegate].playGameViewController = self;
@@ -453,7 +453,7 @@
         _gameStart = YES;
         [self showNavBarLeftItem:NO withRightItem:YES];
         
-        if (_gameMode == kGameModePoints) {
+        if ([_gameMode isEqualToString:kGameModePoints]) {
             _actionManager.period = 0;
         }
     }
@@ -461,7 +461,7 @@
        _actionManager.state == MatchStatePeriodFinished || 
        _actionManager.state == MatchStateTimeout || 
        _actionManager.state == MatchStateStopped){
-        if (_gameMode != kGameModePoints) {
+        if (![_gameMode isEqualToString:kGameModePoints]) {
             if(_actionManager.state == MatchStatePrepare ||
                _actionManager.state == MatchStatePeriodFinished){
                 [self initGameTargetTime];
@@ -476,7 +476,7 @@
         _actionManager.state = MatchStatePlaying;
         [self updateTitle:@"比赛中"];
     }else if(_actionManager.state == MatchStatePlaying){
-        if (_gameMode != kGameModePoints) {
+        if (![_gameMode isEqualToString:kGameModePoints]) {
             [self setLastTimeoutTime];
             [self stopGameCountDown];
             [self showTimeStopPromptView];
