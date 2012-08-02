@@ -121,13 +121,7 @@
     PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName: @"PlayGameViewController" bundle:nil];
     playGameViewController.hostTeam = _hostTeam;
     playGameViewController.guestTeam = _guestTeam;
-    if ([_gameMode isEqualToString:@"上下半场"]) {
-        playGameViewController.gameMode = kGameModeTwoHalf;
-    }else if ([_gameMode isEqualToString:@"四节模式"]){
-        playGameViewController.gameMode = kGameModeFourQuarter;
-    }else {
-        playGameViewController.gameMode = kGameModePoints;
-    }
+    playGameViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
     playGameViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:playGameViewController animated:YES];
 }
