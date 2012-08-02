@@ -66,7 +66,7 @@
         [self stopGameCountDown];
         _actionManager.state = MatchStateTimeout;
 //        self.gameState = timeout;
-        [self showTimeoutPromptView:timeoutMode];
+        [self showTimeoutPromptView:PromptModeTimeout];
         [self setTitle:@"暂停中"];
     }
 }
@@ -261,7 +261,7 @@
         if (_gameMode == kGameModeTwoHalf) {
             if (currentPeriod == 0) {
                 [self setTitle:@"中场休息"];
-                [self showTimeoutPromptView:restMode];
+                [self showTimeoutPromptView:PromptModeRest];
                 [self initTimeoutAndFoulView];
                 _actionManager.state = MatchStatePeriodFinished;
 //                self.gameState = over_quarter_finish;
@@ -273,7 +273,7 @@
             }
         }else {
             if (currentPeriod != 3) {
-                [self showTimeoutPromptView:restMode];
+                [self showTimeoutPromptView:PromptModeRest];
                 [self initTimeoutAndFoulView];
                 _actionManager.state = MatchStatePeriodFinished;
 //                self.gameState = over_quarter_finish;
@@ -318,7 +318,7 @@
 - (void) initOperateGameView {
     self.operateGameView1 = [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,91.0f, 320.0f, 163.0f)];
     self.operateGameView1.team = _hostTeam;
-    self.operateGameView1.teamType = HostTeam;
+    self.operateGameView1.teamType = TeamTypeHome;
     [self.operateGameView1 initTeam];
     self.operateGameView1.matchMode = _gameMode;
     [self.operateGameView1 setButtonEnabled:NO];
@@ -327,7 +327,7 @@
     
     self.operateGameView2 =  [[OperateGameViewController alloc] initWithFrame:CGRectMake(0.0,255.0f, 320.0f, 163.0f)];
     self.operateGameView2.team = _guestTeam;
-    self.operateGameView2.teamType = GuestTeam;
+    self.operateGameView2.teamType = TeamTypeGuest;
     self.operateGameView2.matchMode = _gameMode;
     [self.operateGameView2 initTeam];
     [self.operateGameView2 setButtonEnabled:NO];
