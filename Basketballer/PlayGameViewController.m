@@ -195,7 +195,6 @@
  */
 - (void)showTimeoutPromptView:(NSInteger) mode {
     TimeoutPromptViewController * timeoutPromptViewController = [[TimeoutPromptViewController alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 90.0)];
-    timeoutPromptViewController.parentController = self;
     timeoutPromptViewController.mode = mode;
     timeoutPromptViewController.backgroundColor = [UIColor blackColor];
     [timeoutPromptViewController startTimeout];
@@ -370,7 +369,6 @@
  比赛开始前显示一次。*/
 - (void)showStartMatchView {
     StartMatchView * startMatchView = [[StartMatchView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 90.0)];
-    startMatchView.parentController = self;
     startMatchView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:startMatchView];
     startMatchView.alpha = 0.9;
@@ -399,11 +397,7 @@
     [self registerHandleMessage];
     [self setGamePeriodLabel];
     [self initSoundResource];
-    if ([_gameMode isEqualToString:kGameModePoints]) {
-        [AppDelegate delegate].playGameViewController = nil;
-    }else {
-        [AppDelegate delegate].playGameViewController = self;
-    }
+    [AppDelegate delegate].playGameViewController = self;
     [self showNavBarLeftItem:YES withRightItem:NO];
 }
 
@@ -527,11 +521,11 @@
 #pragma mark - ActionSheet view delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
         [self stopGame:MatchStateStopped];
-    }else if (buttonIndex == 1){
+    }else if (buttonIndex == actionSheet.firstOtherButtonIndex){
         [self showActionRecordontroller];
-    }else if (buttonIndex == 2){
+    }else if (buttonIndex == actionSheet.firstOtherButtonIndex + 1){
         [self showGameSettingController];
     }
 }
