@@ -143,7 +143,6 @@
 		3C121F6215A3E9C00062BECD /* EditTeamInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTeamInfoViewController.h; sourceTree = "<group>"; };
 		3C121F6315A3E9C00062BECD /* EditTeamInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTeamInfoViewController.m; sourceTree = "<group>"; };
 		3C121F6415A3E9C00062BECD /* EditTeamInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTeamInfoViewController.xib; sourceTree = "<group>"; };
-		3C121F7A15A43DC30062BECD /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		3C121FE015A6708A0062BECD /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Resources/images/pause.png; sourceTree = "<group>"; };
 		3C121FE115A6708A0062BECD /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause@2x.png"; path = "Resources/images/pause@2x.png"; sourceTree = "<group>"; };
 		3C121FE215A6708A0062BECD /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Resources/images/play.png; sourceTree = "<group>"; };
@@ -375,7 +374,6 @@
 		3C121F7615A43D290062BECD /* library */ = {
 			isa = PBXGroup;
 			children = (
-				3C121F7A15A43DC30062BECD /* define.h */,
 				3CCAE41415BD3E4F0030C302 /* LocationManager.h */,
 				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
 				3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */,

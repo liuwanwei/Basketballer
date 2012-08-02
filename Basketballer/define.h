@@ -9,7 +9,6 @@
 #ifndef Basketballer_define_h
 #define Basketballer_define_h
 
-enum TeamType{HostTeam = 0, GuestTeam = 1};
 enum GameState {
     ReadyToPlay = 0,
     InPlay = 1,
@@ -19,7 +18,5 @@ enum GameState {
     StoppedPlay = 5
 };
 
-#define kTimeoutMessage @"kTimeout"
-#define kTimeoutOverMessage @"kTimeoutOver"
-#define kAddScoreMessage @"kAddScore"
+
 #endif
