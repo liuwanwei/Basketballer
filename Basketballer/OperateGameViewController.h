@@ -12,6 +12,14 @@
 #import "WEPopoverController.h"
 #import "WEPopoverContentViewController.h"
 
+#define kTimeoutMessage @"kTimeout"
+#define kAddScoreMessage @"kAddScore"
+
+typedef enum{
+    TeamTypeHome = 0,
+    TeamTypeGuest = 1
+}TeamType;
+
 @interface OperateGameViewController : UIView <FoulActionDelegate,UIActionSheetDelegate>
 
 @property (nonatomic) NSInteger teamType;
