@@ -15,13 +15,14 @@
 static ActionManager * sActionManager;
 
 @interface ActionManager(){
-    GameSetting * _gameSettings;
-    NSInteger _period;    
+    GameSetting * _gameSettings;  
     
     // 正在进行比赛的两队的技术统计。
     TeamStatistics * _home;
     TeamStatistics * _guest;
     TeamStatistics * __weak _currentTeam;
+    
+    NSURL * _documentURL;
 }
 @end
 
@@ -34,15 +35,19 @@ static ActionManager * sActionManager;
 @synthesize guestTeamPoints = _guestTeamPoints;
 @synthesize guestTeamTimeouts = _guestTeamTimeouts;
 @synthesize guestTeamFouls = _guestTeamFouls;
+@synthesize period = _period;
 @synthesize periodFoulsLimit = _periodFoulsLimit;
 @synthesize periodLength = _periodLength;
 @synthesize periodTimeoutsLimit = _periodTimeoutsLimit;
 @synthesize actionArray = _actionArray;
 @synthesize delegate = _delegate;
+@synthesize state = _state;
+@synthesize matchStateFinishingDate = _matchStateFinishingDate;
 
 + (ActionManager *)defaultManager{
     if (nil == sActionManager) {
         sActionManager = [[ActionManager alloc] init];
+        sActionManager.state = MatchStatePrepare;
     }
     
     return sActionManager;
@@ -73,6 +78,41 @@ static ActionManager * sActionManager;
 }
 - (NSInteger)guestTeamTimeouts{
     return _guest.timeouts;
+}
+
+- (void)setPeriod:(NSInteger)period{    
+    // 进入下一节时，清零犯规和暂停计数。
+    if (period != _period) {
+        _home.fouls = 0;
+        _home.timeouts = 0;
+        _guest.fouls = 0;
+        _guest.timeouts = 0;
+    }    
+    
+    _period = period;    
+}
+
+- (NSString *)nameForPeriod{
+    NSString * periodString = nil;
+    switch (_period) {
+        case -1:
+        case 0:
+            periodString = @"1st";
+            break;
+        case 1: 
+            periodString = @"2nd";
+            break;
+        case 2:
+            periodString = @"3rd";
+            break;
+        case 3:
+            periodString = @"4th";
+            break;
+        default:
+            break;
+    }  
+    
+    return periodString;
 }
 
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId{
@@ -163,9 +203,9 @@ static ActionManager * sActionManager;
 }
 
 // TODO 这个接口还是不好，用_currentTeam来做函数间的联系人，不如用参数。
-- (Action *)newActionInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
+- (Action *)newActionInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time{
     // 暂停有总数限制，要先检查一下。
-    if ((actionType == ActionTypeTimeout) && (period == _period)) {
+    if (actionType == ActionTypeTimeout) {
         // period发生改变时，意味着进入下一节，靠后续处理来清零犯规、暂停数据。        
         if (_currentTeam.timeouts  >= _periodTimeoutsLimit) {
             return nil;
@@ -176,7 +216,7 @@ static ActionManager * sActionManager;
                                                     inManagedObjectContext:self.managedObjectContext];
     action.type = [NSNumber numberWithInteger:actionType];
     action.match = match.id;
-    action.period = [NSNumber numberWithInteger:period];
+    action.period = [NSNumber numberWithInteger:_period];
     action.time = [NSNumber numberWithInteger:time];
     action.team = _currentTeam.teamId;   
     
@@ -188,13 +228,6 @@ static ActionManager * sActionManager;
     [_actionArray insertObject:action atIndex:0];
     
     // 更新本场比赛实时数据。
-    
-    // 进入下一节时，清零犯规和暂停计数。
-    if (period != _period) {
-        _currentTeam.fouls = 0;
-        _currentTeam.timeouts = 0;
-        _period = period;
-    }
     
     [_currentTeam addStatistic:actionType];
     
@@ -210,10 +243,10 @@ static ActionManager * sActionManager;
     return action;
 }
 
-- (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
+- (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time{
     if (match) {
         _currentTeam = _home;
-        if([self newActionInMatch:match withType:actionType atTime:time inPeriod:period] != nil){
+        if([self newActionInMatch:match withType:actionType atTime:time] != nil){
             return YES;
         } 
     }
@@ -221,10 +254,10 @@ static ActionManager * sActionManager;
     return NO;
 }
 
-- (BOOL)actionForGuestTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(NSInteger)period{
+- (BOOL)actionForGuestTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time{
     if (match) {
         _currentTeam = _guest;
-        if ([self newActionInMatch:match withType:actionType atTime:time inPeriod:period] != nil) {
+        if ([self newActionInMatch:match withType:actionType atTime:time] != nil) {
             return YES;
         }
     }
@@ -315,6 +348,20 @@ static ActionManager * sActionManager;
     
     _home = nil;
     _guest = nil;
+    _state = MatchStatePrepare;
 }
+
+- (NSURL *)documentURL{
+    if (nil == _documentURL) {
+        NSFileManager * fm = [NSFileManager defaultManager];
+        NSArray * paths = [fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+        
+        NSURL * path = [paths objectAtIndex:0];
+        _documentURL = [path URLByAppendingPathComponent:@"SuspendedMatch.dat" isDirectory:NO];
+    }    
+    
+    return _documentURL;
+}
+
 
 @end

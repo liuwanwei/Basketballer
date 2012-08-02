@@ -9,6 +9,8 @@
 #import "TimeoutPromptViewController.h"
 #import "GameSetting.h"
 #import "define.h"
+#import "ActionManager.h"
+
 @interface TimeoutPromptViewController ()
 
 @end
@@ -50,7 +52,8 @@
         if (self.parentController.gameMode == kGameModeTwoHalf) {
             timeoutLength = [[GameSetting defaultSetting].halfTimeLength intValue];
         }else {
-            if (self.parentController.curPeroid == 0 || self.parentController.curPeroid == 2) {
+            NSInteger currentPeriod = [[ActionManager defaultManager] period];
+            if (currentPeriod == 0 || currentPeriod == 2) {
                 timeoutLength = [[GameSetting defaultSetting].quarterTimeLength intValue];
             }else {
                 timeoutLength = [[GameSetting defaultSetting].halfTimeLength intValue];

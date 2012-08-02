@@ -173,6 +173,8 @@
 - (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
         return 23.0f;
+    }else if(section == 2){
+        return 50.0f;
     }else{
         return 0.0f;
     }
@@ -182,7 +184,7 @@
     if (indexPath.section == 2) {
         return 44.0f;
     }else{
-        return 72.0f;   
+        return 56.0f;   
     }    
 }
 
@@ -222,7 +224,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];        
 //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = @"enter"; 
+        cell.detailTextLabel.text = @"go!"; 
         cell.imageView.image = [UIImage imageNamed:@"Add"];
     }
         

@@ -166,4 +166,50 @@ static MatchManager * sDefaultManager;
     return teamMatches;
 }
 
+// 判断两个日期的年月日是否相等。将日期转换成字符串，再比较字符串是否相等。
+- (BOOL)date:(NSDate *)date equalToDate:(NSDate *)otherDate{
+    static NSDateFormatter * dateFormatter = nil;
+    if (nil == dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
+    
+    NSString * dateString = [dateFormatter stringFromDate:date];
+    NSString * otherString = [dateFormatter stringFromDate:otherDate];
+    return [dateString isEqualToString:otherString];    
+}
+
+// TODO 最好使用category方式，将这个函数加到Match类的扩展中去。
+- (NSInteger)winnerForMatch:(Match *)match{
+    NSNumber * winner;
+    NSComparisonResult result = [match.homePoints compare:match.guestPoints];
+    winner = (result == NSOrderedDescending ? match.homeTeam : match.guestTeam);
+    return [winner integerValue];
+}
+
+// date == nil : 获取球队历史总战绩。
+// date == 某天 : 获取某天球队的总战绩。
+- (NSDictionary *)statisticsForTeam:(NSInteger)teamId onDate:(NSDate *)date{    
+    NSInteger winnings = 0, losings = 0;
+    NSArray * matches = [self matchesWithTeamId:teamId];
+    for (Match * match in matches) {
+        if (date == nil || [self date:match.date equalToDate:date]) {
+            if ([self winnerForMatch:match] == teamId) {
+                winnings ++;
+            }else{
+                losings ++;
+            }
+        }
+    }
+    
+    NSNumber * winningCount = [NSNumber numberWithInteger:winnings];
+    NSNumber * losingCount = [NSNumber numberWithInteger:losings];
+    
+    NSDictionary * result = [NSDictionary dictionaryWithObjectsAndKeys:winningCount, kWinning, losingCount, kLosing, nil];
+
+    return result;
+}
+
+
 @end

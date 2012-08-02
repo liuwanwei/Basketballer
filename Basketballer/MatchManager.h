@@ -17,10 +17,8 @@
 #define kActionEntity           @"Action"
 #define kMatchChanged           @"MatchChangedNotification"
 
-typedef enum {
-    MatchStopped = 1,
-    MatchFinished = 2
-}MatchState;
+#define kWinning                @"Winning"
+#define kLosing                 @"Losing"
 
 @protocol FoulActionDelegate;
 
@@ -36,6 +34,8 @@ typedef enum {
 - (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam;
 
 - (NSArray *)matchesWithTeamId:(NSInteger) teamId;
+
+- (NSDictionary *)statisticsForTeam:(NSInteger) teamId onDate:(NSDate *)date;
 
 // 声明比赛开始。调用该接口后，记录比赛的真实开始时间。（暂时不支持）
 - (void)startMatch:(Match *)match;

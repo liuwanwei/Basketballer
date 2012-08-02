@@ -67,20 +67,22 @@
     if (self.playGameViewController != nil) {
         UILocalNotification *newNotification = [[UILocalNotification alloc] init];
         NSString * body;
-        if (self.playGameViewController.gameState == InPlay) {
+        ActionManager * am = [ActionManager defaultManager];
+        if (am.state == MatchStatePlaying) {
             if (newNotification) {
                 newNotification.fireDate = self.playGameViewController.targetTime;
-                if (self.playGameViewController.curPeroid == 0) {
+                NSInteger curPeriod = [[ActionManager defaultManager] period];
+                if (curPeriod == 0) {
                     body = @"第一节比赛结束";
-                }else if (self.playGameViewController.curPeroid == 1){
+                }else if (curPeriod == 1){
                     if (self.playGameViewController.gameMode == kGameModeTwoHalf) {
                         body = @"整场比赛结束";
                     }else {
                         body = @"第二节比赛结束";
                     }
-                }else if(self.playGameViewController.curPeroid == 2){
+                }else if(curPeriod == 2){
                     body = @"第三节比赛结束";
-                }else if(self.playGameViewController.curPeroid ==3) {
+                }else if(curPeriod == 3) {
                     body = @"整场比赛结束";
                 }else {
                     body = @"本节比赛结束";
@@ -91,7 +93,7 @@
                 newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
                 [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
             }
-        }else if(self.playGameViewController.gameState == PlayIsSuspended || self.playGameViewController.gameState == QuarterTime){
+        }else if(am.state == MatchStateTimeout || am.state == MatchStatePeriodFinished){
             body = @"暂停时间到";
             newNotification.fireDate = self.playGameViewController.timeoutTargetTime;
             newNotification.alertBody = body;
