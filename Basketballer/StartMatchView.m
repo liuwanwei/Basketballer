@@ -7,9 +7,9 @@
 //
 
 #import "StartMatchView.h"
+#import "AppDelegate.h"
 
 @implementation StartMatchView
-@synthesize parentController = _parentController;
 
 - (id)initWithFrame:(CGRect)frame {
     NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"StartMatchView" owner:self options:nil];
@@ -19,7 +19,7 @@
 }
 
 - (IBAction)startGame:(UIButton *)sender {
-    [self.parentController startGame:nil];
+    [[[AppDelegate delegate] playGameViewController] startGame:nil];
     [self removeFromSuperview];
 }
 

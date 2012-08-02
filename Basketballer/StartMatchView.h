@@ -11,8 +11,6 @@
 
 @interface StartMatchView : UIView
 
-@property (nonatomic, weak) PlayGameViewController * parentController;
-
 - (IBAction)startGame:(UIButton *)sender;
 
 @end

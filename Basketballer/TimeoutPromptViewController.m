@@ -9,6 +9,7 @@
 #import "TimeoutPromptViewController.h"
 #import "GameSetting.h"
 #import "ActionManager.h"
+#import "AppDelegate.h"
 
 @interface TimeoutPromptViewController ()
 
@@ -18,7 +19,6 @@
 @synthesize timeoutTargetTime = _timeoutTargetTime;
 @synthesize timeoutCountDownTimer = _timeoutCountDownTimer;
 @synthesize timeoutTimeLabel = _timeoutTimeLabel;
-@synthesize parentController = _parentController;
 @synthesize mode = _mode;
 @synthesize resumeMathButton = _resumeMathButton;
 @synthesize stopTimeOutButton = _stopTimeOutButton;
@@ -40,7 +40,7 @@
     if(_mode == PromptModeTimeout) {
         timeoutLength = [[GameSetting defaultSetting].timeoutLength intValue];
     }else {
-        if (self.parentController.gameMode == kGameModeTwoHalf) {
+        if ([[AppDelegate delegate].playGameViewController.gameMode isEqualToString: kGameModeTwoHalf]) {
             timeoutLength = [[GameSetting defaultSetting].halfTimeLength intValue];
         }else {
             NSInteger currentPeriod = [[ActionManager defaultManager] period];
@@ -116,7 +116,6 @@
         [self.stopTimeOutButton setHidden:YES];
         [self.resumeMathButton setHidden:NO];
         [self.timeoutTimeLabel setHidden:YES];
-        //self.promptLabel.text = @"开始计时";
         [self stopTimeoutCountDown];
         [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
     }
@@ -143,18 +142,18 @@
         [self showAlertView:@"您要继续比赛吗？" withCancel:YES];
     }else {
         [self stopTimeoutCountDown];
-        [self.parentController startGame:nil];
+        //[self.parentController startGame:nil];
         [self removeFromSuperview];
     }
 }
 
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
+/*    if (buttonIndex == 1) {
         [self stopTimeoutCountDown];
         [self.parentController startGame:nil];
         [self removeFromSuperview];
-    }
+    }*/
 }
 
 @end
