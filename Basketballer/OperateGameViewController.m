@@ -12,6 +12,7 @@
 #import "TeamManager.h"
 #import "MatchManager.h"
 #import "GameSetting.h"
+#import "ActionManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface OperateGameViewController() {
@@ -28,7 +29,6 @@
 @synthesize gameStartTime = _gameStartTime;
 @synthesize teamImageView = _teamImageView;
 @synthesize match = _match;
-//@synthesize period = _period;
 @synthesize teamNameLabel = _teamNameLabel;
 @synthesize foulButton = _foulButton;
 @synthesize timeoutButton = _timeoutButton;
@@ -104,17 +104,8 @@
 
 - (void)refreshMatchData {
     ActionManager * actionManager = [ActionManager defaultManager];
-    NSInteger foulLimit;
-    NSInteger timeoutLimit;
-    if ([_matchMode isEqualToString:kGameModeTwoHalf]) {
-        foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
-        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
-    }else if ([_matchMode isEqualToString:kGameModeFourQuarter]){
-        foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
-        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
-    }else {
-        foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
-    }
+    NSInteger foulLimit = actionManager.periodFoulsLimit;
+    NSInteger timeoutLimit = actionManager.periodFoulsLimit;
    
     if(_teamType == TeamTypeHost) {
         if (actionManager.homeTeamFouls < foulLimit) {
@@ -194,12 +185,7 @@
 
 - (IBAction)addTimeOver:(UIButton *)sender {
     sender.backgroundColor = [UIColor whiteColor];
-    NSInteger timeoutLimit;
-    if ([_matchMode isEqualToString:kGameModeTwoHalf]) {
-        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
-    }else {
-        timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
-    }
+    NSInteger timeoutLimit = [ActionManager defaultManager].periodTimeoutsLimit;
     
     if (_timeoutSize >= timeoutLimit) {
         [self showAlertView:@"本节暂停已使用完"];
@@ -241,15 +227,8 @@
             ActionManager * actionManager = [ActionManager defaultManager];
             NSInteger time = [self computeTimeDifference];
             NSInteger foulSize;
-            NSInteger foulLimit;
-            if ([_match.mode isEqualToString:kGameModeTwoHalf]) {
-                foulLimit = [[GameSetting defaultSetting].foulsOverHalfLimit intValue];
-            }else if ([_matchMode isEqualToString:kGameModeFourQuarter]){
-                foulLimit = [[GameSetting defaultSetting].foulsOverQuarterLimit intValue];
-            }else {
-                foulLimit = [[GameSetting defaultSetting].foulsOverWinningPointsLimit intValue];
-            }
-            
+            NSInteger foulLimit = actionManager.periodFoulsLimit;
+       
             if (_teamType == TeamTypeHost) {
                 [actionManager actionForHomeTeamInMatch:_match withType:ActionTypeFoul atTime:time];                
                 foulSize = actionManager.homeTeamFouls;
@@ -258,7 +237,7 @@
                 foulSize = actionManager.guestTeamFouls;
             }
             
-            if (foulSize >= foulLimit) {
+            if (foulSize > foulLimit) {
                 self.foulsLabel.textColor = [UIColor redColor];
             }
             self.foulsLabel.text = [NSString stringWithFormat:@"%d",foulSize];
@@ -275,12 +254,7 @@
                 result = [actionManager actionForGuestTeamInMatch:_match withType:ActionTypeTimeout atTime:time];
             }
             if (result) {
-                NSInteger timeoutLimit;
-                if ([_matchMode isEqualToString:kGameModeTwoHalf]) {
-                    timeoutLimit = [[GameSetting defaultSetting].timeoutsOverHalfLimit intValue];
-                }else {
-                    timeoutLimit = [[GameSetting defaultSetting].timeoutsOverQuarterLimit intValue];
-                }
+                NSInteger timeoutLimit = actionManager.periodTimeoutsLimit;
                 if (_teamType == TeamTypeHost) {
                     _timeoutSize = actionManager.homeTeamTimeouts;
                     
