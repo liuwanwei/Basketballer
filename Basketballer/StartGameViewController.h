@@ -19,6 +19,6 @@
 @property (nonatomic, weak) IBOutlet UIView * startMatchView;
 
 - (void)refreshTableData:(Team *) team;
-- (IBAction)startGame:(id)sender;
+- (IBAction)startGame:(id)sender; 
 
 @end
