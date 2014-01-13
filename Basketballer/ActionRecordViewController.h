@@ -10,8 +10,9 @@
 
 @interface ActionRecordViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, weak) IBOutlet UISegmentedControl * teamSelector;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
-@property (nonatomic, weak) NSArray * actionRecords;
+@property (nonatomic, strong) NSMutableArray * actionRecords;
 
 @end

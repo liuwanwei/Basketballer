@@ -1,0 +1,179 @@
+/* 
+  Localizable.strings
+  Basketballer
+
+  Created by Liu Wanwei on 12-9-3.
+  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+*/
+
+
+"Yes" = "是";
+"No" = "否";
+
+"Start" = "新的比赛";
+"Histories" = "比赛历史";
+"Teams"  = "球队管理";
+"Others"  = "更多";
+
+"Cancel" = "取消";
+
+"Fiba5PlayerMode" = "FIBA标准五人计时模式";
+"Fiba3PlayerMode" = "FIBA标准三人计时模式";
+"SimpleAccountPlayerMode" = "简单计分模式";
+
+"Name" = "名字";
+"Number" = "号码";
+"Profile" = "头像";
+"TeamName" = "球队名字";
+"FromLibrary" = "用户相册";
+"Snapshot" = "拍照";
+"DefaultTeam1" = "芝加哥公牛";
+"DefaultTeam2" = "犹他爵士";
+
+"CreateTeam" = "新球队";
+"TeamInfo" = "球队信息";
+"Record" = "比赛记录";
+"Roster" = "队员名单";
+"NoMatch" = "没有比赛";
+"NoPlayer" = "没有队员";
+"MatchesFormatter" = "%d 场比赛";
+"PlayersFormatter" = "%d 名队员";
+
+"PlayerInfo" = "队员信息";
+"NewPlayer" = "新的队员";
+"PlayerInfoFormatter" = "%.2d 号";
+
+"SelectTeam" = "选择球队";
+"SelectTeamGuide" = "请选择两支比赛球队";
+"Finish" = "结束";
+"Done" = "完成";
+
+"Match" = "比赛";
+"Foul" = "犯规";
+"Timeout" = "暂停";
+"StartMatch" = "开始比赛";
+"SoundEffect" = "现场音效";
+"Setting" = "设置";
+"Pause" = "暂停计时";
+"Pausing" = "暂停中";
+"Playing" = "比赛中";
+"Countdown" = "倒计时";
+"StartCountdown" = "开始倒计时？";
+
+"3Points" = "三分";
+"2Points" = "两分";
+"FreeThrow" = "一分";
+"3PTS" = "3 分";
+"2PTS" = "2 分";
+"1PTS" = "1 分";
+"PF" = "犯规";
+"TO" = "暂停";
+"Select" = "请选择";
+"ResumeTimer" = "继续计时";
+"NewStatistic" = "添加技术统计";
+"Alert" = "警告";
+"Ok" = "确定";
+"AlreadyTimeouted" = "正在暂停状态！";
+"AlreadyPaused" = "正在停止计时状态！";
+"NoTimeout" = "暂停已用完！";
+
+"PlayerStatisticsViewHeader" = "号码           得分    犯规    三分    罚球";
+//"PlayerStatisticsViewHeader" = "Number     PTS  PF       3PT   FT";
+
+"PlayerFoulViewHeader" = "号码                  姓名              犯规数";
+//"PlayerFoulViewHeader" = "Number         Name           Fouls";
+
+"MatchDetailViewHeader" = "技术统计    得分   犯规    三分   罚球";
+//"MatchDetailViewHeader" = "STATS        PTS      PF    3PT    FT";
+
+"SelectPlayer" = "选择队员";
+"Others..." = "其他队员...";
+
+"OperationForbidden" = "不允许此项操作!";
+
+"PlayerStatistic" = "队员技术统计";
+"PlayerStatisticDetail" = "添加技术统计时进入队员选择界面。";
+"SoundEffectSwitch" = "自动提示音";
+"SoundEffectDetail" = "每一节的开始和结束时自动播放哨声。";
+
+"MatchDetail" = "比赛详情";
+"MatchLocation" = "比赛地点";
+"MatchDate" = "比赛日期";
+
+"BasicInfo" = "基本信息";
+"PlayerStatisticHeader" = "队员技术统计";
+
+"WriteAReview" = "给我评分";
+"Feedback" = "给我反馈";
+"Version" = "当前版本";
+
+"Period" = "节";
+"Period1" = "第一节";
+"Period2" = "第二节";
+"Period3" = "第三节";
+"Period4" = "第四节";
+"Overtime"= "加时赛";
+"Period1End" = "第一节结束";
+"Period2End" = "第二节结束";
+"Period3End" = "第三节结束";
+"Period4End" = "第四节结束";
+"OvertimeEnd"= "加时赛结束";
+"TimeoutTimeUp" = "暂停时间到！";
+"RestTimeUp" = "休息时间到!";
+"CheckApp" = "查看应用";
+
+"InvalidNumber" = "号码错误";
+"InputValidNumber" = "请使用0到99之间的号码";
+"RepeatNumber" = "号码重复";
+"RepeatNumberMessage" = "请使用其他未被使用的号码";
+
+"Time" = "时间";
+"PeriodNumber" = "常规赛节数";
+"PeriodLength" = "每节比赛时间";
+"PeriodIntervalLength" = "节间休息时间";
+"HalfTimeIntervalLength" = "半场休息时间";
+"ExtraPeriodLength" = "加时赛时间";
+"ExtraPeriodIntervalLength" = "加时赛间休息时间";
+
+"PersonalFoulLimit" = "个人犯规限制次数";
+"TeamFoulLimitWithinPeriod" = "球队单节犯规限制次数";
+
+"TimeoutLimit" = "允许暂停次数";
+"Forbidden" = "不允许";
+
+"FibaTimeoutLimit" = "上半场2次，下半场3次";
+"TimeoutLength" = "暂停时间";
+
+"Special" = "特殊规则";
+"Get33PointsWinFormatter" = "先获取 %d 分球队获胜";
+
+"None" = "无";
+"Seconds" = " 秒";
+"Minutes" = " 分";
+
+"AbandonGame" = "放弃比赛";
+"Save" = "保存";
+"SaveMatchPrompt" = "保存比赛数据吗?";
+//
+"TeamFoulExceedPrompt" = "本节犯规已超限制次数，请判给对方两次罚球";
+"PlayerFoulExceedPrompt" = "%.2d号 %@ 犯规达最大限制次数，请将其罚下!";
+"BeginMatchPrompt" = "马上进入比赛?";
+"MatchUnbeginPrompt" = "比赛尚未开始";
+
+"SNSShareMatchResult" = "我使用#篮球助手#（https://itunes.apple.com/cn/app/lan-qiu-zhu-shou/id559738184?mt=8L）记录了一场比赛。多运动，多出汗，才能多吃饭:)：";
+
+"ActionRecords" = "裁判记录";
+"ActionDelete" = "发生误操作时请在这里删除";
+
+"Result" = "比赛结果";
+
+"SnsShareToSina" = "分享到新浪微博";
+
+"CountdownToTheEnd" = "倒计时时间到";
+"TimeoutState" = "暂停中";
+
+"AboutUs" = "关于我们";
+"FinishMatch" = "结束比赛";
+"PlayGameViewTitle" = "篮球助手";
+"MoreButtonTitle" = ".  .  .";
+"Abandon" = "不保存";

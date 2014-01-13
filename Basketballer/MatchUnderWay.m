@@ -8,83 +8,233 @@
 
 #import "MatchUnderWay.h"
 #import "ActionManager.h"
+#import "MatchManager.h"
+#import "TeamStatistics.h"
+#import "AppDelegate.h"
+
+
+//#define kMatchId                @"MatchId"
+//#define kHomeTeamPoints         @"HomeTeamPoints"
+//#define kHomeTeamFouls          @"HomeTeamFouls"
+//#define kHomeTeamTimeouts       @"HomeTeamTimeouts"
+//#define kGuestTeamPoints        @"GuestTeamPoints"
+//#define KGuestTeamFouls         @"GuestTeamFouls"
+//#define kGuestTeamTimeouts      @"GuestTeamTimeouts"
+//#define kMatchPeriod            @"MatchPeriod"
+//#define kMatchState             @"MatchState"
+//#define kMatchStateFinishingDate @"MatchStateFinishingDate"
+
+static MatchUnderWay * sDefaultMatch = nil;
 
 @implementation MatchUnderWay
 
-#define kMatchId                @"MatchId"
-#define kHomeTeamPoints         @"HomeTeamPoints"
-#define kHomeTeamFouls          @"HomeTeamFouls"
-#define kHomeTeamTimeouts       @"HomeTeamTimeouts"
-#define kGuestTeamPoints        @"GuestTeamPoints"
-#define KGuestTeamFouls         @"GuestTeamFouls"
-#define kGuestTeamTimeouts      @"GuestTeamTimeouts"
-#define kMatchPeriod            @"MatchPeriod"
-#define kMatchState             @"MatchState"
-#define kMatchStateFinishingDate @"MatchStateFinishingDate"
+@synthesize delegate = _delegate;
+@synthesize home = _home;
+@synthesize guest = _guest;
+@synthesize rule = _rule;
+@synthesize countdownSeconds = _countdownSeconds;
+@synthesize timeoutCountdownSeconds = _timeoutCountdownSeconds;
 
-+ (NSURL *)documentURL{
-    NSURL * _documentURL;
-    NSFileManager * fm = [NSFileManager defaultManager];
-    NSArray * paths = [fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+@synthesize match = _match;
+@synthesize matchMode = _matchMode;
+@synthesize state = _state;
+@synthesize period = _period;
+@synthesize matchStateFinishingDate = _matchStateFinishingDate;
+@synthesize matchStateStartDate = _matchStateStartDate;
+
++ (MatchUnderWay *)defaultMatch{
+    if (sDefaultMatch == nil) {
+        sDefaultMatch = [[MatchUnderWay alloc] init];
+        sDefaultMatch.state = MatchStatePrepare;        
+    }
     
-    NSURL * path = [paths objectAtIndex:0];
-    _documentURL = [path URLByAppendingPathComponent:@"MatchUnderWay.dat" isDirectory:NO];
-    
-    return _documentURL;
+    return sDefaultMatch;
 }
 
-+ (void)storeUnfinishedMatch:(NSInteger)matchId withStateFinishingDate:(NSDate *)date{
-    ActionManager * am = [ActionManager defaultManager];
-    
-    NSNumber * match = [NSNumber numberWithInteger:matchId];
-    
-    NSNumber * homeTeamPoints = [NSNumber numberWithInteger:am.homeTeamPoints];
-    NSNumber * homeTeamFouls = [NSNumber numberWithInteger:am.homeTeamFouls];
-    NSNumber * homeTeamTimeouts = [NSNumber numberWithInteger:am.homeTeamTimeouts];
-    
-    NSNumber * guestTeamPoints = [NSNumber numberWithInteger:am.guestTeamPoints];
-    NSNumber * guestTeamFouls = [NSNumber numberWithInteger:am.guestTeamFouls];
-    NSNumber * guestTeamTimeouts = [NSNumber numberWithInteger:am.guestTeamTimeouts];
-    
-    NSNumber * period = [NSNumber numberWithInteger:am.period];
-    NSNumber * state = [NSNumber numberWithInteger:am.state];
-    
-    NSDictionary * dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 match, kMatchId,
-                                 
-                                 homeTeamPoints, kHomeTeamPoints,
-                                 homeTeamFouls, kHomeTeamFouls,
-                                 homeTeamTimeouts, kHomeTeamTimeouts,
-                                 
-                                 guestTeamPoints, kGuestTeamPoints,
-                                 guestTeamFouls, KGuestTeamFouls,
-                                 guestTeamTimeouts, kGuestTeamTimeouts,
-                                 
-                                 period, kMatchPeriod,
-                                 state, kMatchPeriod,
-                                 date, kMatchStateFinishingDate, nil];
-    [dictionary writeToURL:[self documentURL] atomically:YES];
+- (NSInteger)computeTimeDifference {
+    NSDate * nowDate = [NSDate date];
+    NSTimeInterval timeDifference = [nowDate timeIntervalSinceDate:_matchStateStartDate]; 
+    return timeDifference;
 }
 
-+ (NSInteger)restoreUnfinishedMatch{
+- (TeamStatistics *)statisticsForTeam:(NSNumber *)teamId{
+    if ([teamId isEqualToNumber:_home.teamId]) {
+        return _home;
+    }else if([teamId isEqualToNumber:_guest.teamId]){
+        return _guest;
+    }else{
+        return nil;
+    }
+}
+
+- (BOOL)addActionForTeam:(NSNumber *)teamId forPlayer:(NSNumber *)player withAction:(ActionType)action{
+    TeamStatistics * statistics = [self statisticsForTeam:teamId];
+    
+    // 先尝试添加技术统计，因为暂停有次数限制，此处要先判断一下允不允许添加。
+    if(! [statistics addStatistic:action inPeriod:_period atTime:_countdownSeconds]){
+        return NO;
+    }    
+    
     ActionManager * am = [ActionManager defaultManager];
-    NSDictionary * dictionary = [NSDictionary dictionaryWithContentsOfURL:[self documentURL]];
+    [am newActionForTeam:teamId forPlayer:player withType:action atTime:_countdownSeconds inPeriod:_period];
     
-    am.homeTeamPoints = [[dictionary objectForKey:kHomeTeamPoints] integerValue];
-    am.homeTeamFouls = [[dictionary objectForKey:kHomeTeamFouls] integerValue];
-    am.homeTeamTimeouts = [[dictionary objectForKey:kHomeTeamTimeouts] integerValue];
+    NSNotification * notification = nil;
+    if ([ActionManager isPointAction:action]){
+        notification = [NSNotification notificationWithName:kAddScoreMessage object:teamId];
+        
+        NSInteger winningPoints = self.rule.winningPoints;
+        if (winningPoints != 0) {
+            // 遇到先得够一定分就能获胜的比赛，要自动做出裁决。
+            if ([statistics.points integerValue] >= winningPoints) {
+                if (_delegate != nil){      
+                    if([_delegate respondsToSelector:@selector(attainWinningPointsForTeam:)]) {
+                        [_delegate performSelector:@selector(attainWinningPointsForTeam:) withObject:statistics.teamId];
+                    }    
+                }
+            }
+        }
+    }else if([ActionManager isFoulAction:action]){
+        // 超过个人最大犯规次数后，需要罚下该球员。
+        NSMutableDictionary * playerStatistics = [am statisticsForPlayer:player inActions:am.actionArray];
+        NSInteger personalFouls = [[playerStatistics objectForKey:kPersonalFouls] integerValue];
+        if(personalFouls > self.rule.foulLimitForPlayer){
+            if (_delegate != nil){   
+                if([_delegate respondsToSelector:@selector(FoulsBeyondLimitForPlayer:)]) {
+                    [_delegate performSelector:@selector(FoulsBeyondLimitForPlayer:) withObject:player];
+                }   
+            }
+        }
+        
+        // 超过球队最大犯规次数后需要执行罚球。
+        if ([statistics.fouls integerValue] > statistics.rule.foulLimitForTeam) {
+            if (_delegate != nil){
+                if([_delegate respondsToSelector:@selector(FoulsBeyondLimitForTeam:)]) {
+                    [_delegate performSelector:@selector(FoulsBeyondLimitForTeam:) withObject:statistics.teamId];
+                }   
+            }
+        }
+        
+        notification = [NSNotification notificationWithName:kAddFoulMessage object:teamId];
+    }else if([ActionManager isTimeoutAction:action]){
+        notification = [NSNotification notificationWithName:kAddTimeoutMessage object:teamId];
+    }
     
-    am.guestTeamPoints = [[dictionary objectForKey:kGuestTeamPoints] integerValue];
-    am.guestTeamFouls = [[dictionary objectForKey:KGuestTeamFouls] integerValue];
-    am.guestTeamTimeouts = [[dictionary objectForKey:kGuestTeamTimeouts] integerValue];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
     
-    am.period = [[dictionary objectForKey:kMatchPeriod] integerValue];
-    am.state = [[dictionary objectForKey:kMatchState] integerValue];
+    return YES;
+}
+
+- (BOOL)deleteWrongAction:(Action *)action{
+    // 更新实时技术统计缓存TeamStatistics中的信息。
+    TeamStatistics * statistics = [self statisticsForTeam:action.team];
+    if([statistics subtractStatistic:[action.type integerValue]]){
+        ActionManager * am = [ActionManager defaultManager];
+        return [am deleteAction:action];
+    }else{
+        return NO;
+    }
+}
+
+- (void)setPeriod:(NSInteger)period{        
+    // 进入下一节时，清零犯规和暂停计数。
+    if (period != _period || MatchPeriodUnplayed == period) {        
+        if ([self.rule isTimeoutExpiredBeforePeriod:period]) {
+            _home.timeouts = [NSNumber numberWithInt:0];
+            _guest.timeouts = [NSNumber numberWithInt:0];
+        }
+        
+        // 球队犯规在一个周期结束后总是清零。
+        _home.fouls = [NSNumber numberWithInteger:0];
+        _guest.fouls = [NSNumber numberWithInteger:0];
+    }    
     
-    // TODO check -- copy to make dictionary releaseable.
-    am.matchStateFinishingDate = [[dictionary objectForKey:kMatchStateFinishingDate] copy];
+    _period = period;    
+}
+
+- (NSString *)nameForPeriod:(MatchPeriod)period{
+    NSArray * _matchPeriodNameFor4Quarter = [NSArray arrayWithObjects:LocalString(@"Period1"), LocalString(@"Period2"), LocalString(@"Period3"), LocalString(@"Period4"), nil];
+    if (period >= MatchPeriodOvertime) {
+        return LocalString(@"Overtime");// TODO
+    }
+    NSInteger temp = (period <= MatchPeriodUnplayed ? MatchPeriodFirst : period);
+    return [_matchPeriodNameFor4Quarter objectAtIndex:temp];
+}
+
+- (NSString *)nameForCurrentPeriod{
+    return [self nameForPeriod:_period];
+}
+
+// 开始比赛前，初始化比赛实时数据。
+- (void)initMatchDataWithHomeTeam:(NSNumber *)homeTeamId andGuestTeam:(NSNumber *)guestTeamId{
+    if (homeTeamId && guestTeamId) {
+        ActionManager * am = [ActionManager defaultManager];
+        am.actionArray = [[NSMutableArray alloc] init];
+        
+        self.rule = [BaseRule ruleWithMode:self.matchMode];
+        _home = [TeamStatistics newStatisticsForTeam:homeTeamId withMode:_matchMode withRule:self.rule];
+        _guest = [TeamStatistics newStatisticsForTeam:guestTeamId withMode:_matchMode withRule:self.rule];
+        
+        self.state = MatchStatePrepare;        
+        self.period = MatchPeriodUnplayed;
+    }
+}
+
+- (BOOL)startNewMatch{
+    _match = [[MatchManager defaultManager] newMatchWithMode:_matchMode
+                                                 andHomeTeam:_home.teamId andGuestTeam:_guest.teamId];
+    return _match == nil ? NO : YES;
+
+}
+
+- (void)stopMatchWithState:(NSInteger)state{
+    [self finishMatch];
     
-    return [[dictionary objectForKey:kMatchId] integerValue];
+    _match.state = [NSNumber numberWithInteger:state];
+    
+    [[MatchManager defaultManager] stopMatch:_match];
+}
+
+- (void)finishMatch{
+    if (_match) {
+        _match.homePoints = [_home.points copy];
+        _match.guestPoints = [_guest.points copy];
+    }
+    
+    _home = nil;
+    _guest = nil;
+    
+    self.state = MatchStatePrepare;
+}
+
+- (void)deleteMatch{
+    [[MatchManager defaultManager] deleteMatch:_match];
+    self.match = nil;
+}
+
+- (NSDate *)periodFinishingDate {
+    NSDate * date = [NSDate dateWithTimeIntervalSinceNow:_countdownSeconds];
+    return date;
+}
+
+- (NSDate *)timeoutFinishingDate {
+    NSDate * date = [NSDate dateWithTimeIntervalSinceNow:_timeoutCountdownSeconds];
+    return date;
+}
+
+- (void)setCountdownSeconds:(NSInteger)countdownSeconds {
+    if (countdownSeconds < 0) {
+        _countdownSeconds = 0;
+    }else {
+        _countdownSeconds = countdownSeconds;
+    }
+}
+
+- (void)setTimeoutCountdownSeconds:(NSInteger)timeoutCountdownSeconds {
+    if (timeoutCountdownSeconds < 0) {
+        _timeoutCountdownSeconds = 0;
+    }else {
+        _timeoutCountdownSeconds = timeoutCountdownSeconds;
+    }
 }
 
 @end

@@ -9,15 +9,15 @@
 #import "GameSettingViewController.h"
 #import "SingleChoiceViewController.h"
 #import "GameSetting.h"
-#import "AppDelegate.h"
+#import "Feature.h"
+
+typedef enum {
+    GameModeTwoHalf = 0,
+    GameModeFourQuarter = 1,
+    GameModePoints = 2
+}GameMode;
 
 @interface GameSettingViewController (){
-    NSArray * __weak _settingsArray;
-    NSArray * __weak _settingsKeyArray;
-    NSString * _header;
-    
-    NSArray * _groupHeaders;
-    
     SingleChoiceViewController * _singleChoiceController;
 }
 
@@ -27,31 +27,37 @@
 
 @synthesize gameMode = _gameMode;
 @synthesize viewStyle = _viewStyle;
+@synthesize settingsArray = _settingsArray;
+@synthesize settingsKeyArray = _settingsKeyArray;
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)initTitle {
+    NSArray * modes = [[GameSetting defaultSetting] gameModeNames];
+
+    if ([_gameMode isEqualToString:kGameModeTwoHalf]) {
+        [self setTitle:[modes objectAtIndex:GameModeTwoHalf]];
+    }else if ([_gameMode isEqualToString:kGameModeFourQuarter]) {
+        [self setTitle:[modes objectAtIndex:GameModeFourQuarter]];
+    }else {
+        [self setTitle:[modes objectAtIndex:GameModePoints]];
+    }
+}
 
 - (void)initSettingsArray{
     GameSetting * gameSetting = [GameSetting defaultSetting];
     if([_gameMode isEqualToString:kGameModeFourQuarter]){
         _settingsArray = gameSetting.fourQuarterSettings;
         _settingsKeyArray = gameSetting.fourQuarterSettingsKey;
-        _header = @"当选择四节模式开始比赛后，这些规则将会被自动使用：";
     }else if([_gameMode isEqualToString:kGameModeTwoHalf]){
         _settingsArray = gameSetting.twoHalfSettings;
         _settingsKeyArray = gameSetting.twoHalfSettingsKey;
-        _header = @"当选择上下半场模式开始比赛后，这些规则将会被自动使用：";
     }else{
         _settingsArray = gameSetting.pointMatchSettings;
         _settingsKeyArray = gameSetting.pointMatchSettingsKey;
-        _header = @"当选择抢分模式开始比赛后，这些规则将会被自动使用：";
     }
-}
-
-
-- (SingleChoiceViewController *)singleChoiceController{
-    if (_singleChoiceController == nil) {
-        _singleChoiceController = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    }
-    
-    return _singleChoiceController;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -80,14 +86,14 @@
     [super viewWillAppear:animated];
     
     [self initSettingsArray];
-    
+    [self initTitle];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
     // TODO 这个开销放这里是否必要？
     [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -99,19 +105,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 0;
+    }
     return  _settingsArray.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (1 == section) {
+        if(self.viewStyle != GameSettingViewStyleShow) {
+            return @"规则：";
+        }else if(self.viewStyle == GameSettingViewStyleShow){
+            return @"规则：（比赛开始后不能修改规则）";
+        }
+    }
+    return nil;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell * cell;
     static NSString *CellIdentifier = @"Cell";
     const NSInteger ParamLabelTag = 1000;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
@@ -124,8 +146,8 @@
         
         [cell addSubview:label];
         [cell.superview bringSubviewToFront:label];
-
-        if (_viewStyle == UIGameSettingViewStyleEdit) {
+        
+        if (_viewStyle == GameSettingViewStyleEdit) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;            
         }else{
@@ -189,20 +211,15 @@
 */
 
 #pragma mark - Table view delegate
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return _header;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   
-    if(indexPath.section == 0 && _viewStyle == UIGameSettingViewStyleEdit){        
+    if(indexPath.section == 1 && _viewStyle == GameSettingViewStyleEdit){        
         NSString * parameterKey = [_settingsKeyArray objectAtIndex:indexPath.row];
         NSNumber * parameterValue = [[GameSetting defaultSetting] parameterForKey:parameterKey];
         NSString * unitString = [GameSetting unitStringForKey:parameterKey];
         NSArray * choices = [[GameSetting defaultSetting] choicesForKey:parameterKey];
         
-        SingleChoiceViewController * controller = [self singleChoiceController];
+        SingleChoiceViewController * controller = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
         controller.parameterKey = parameterKey;
         controller.unitString = unitString;
         controller.currentChoice = [parameterValue stringValue];
@@ -212,6 +229,5 @@
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
-
 
 @end

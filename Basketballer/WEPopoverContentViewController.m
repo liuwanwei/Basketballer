@@ -7,12 +7,12 @@
 //
 
 #import "WEPopoverContentViewController.h"
-#import "OperateGameViewController.h"
+#import "OperateGameView.h"
 
 
 @implementation WEPopoverContentViewController
 @synthesize wePopoverController = _wePopoverController;
-@synthesize opereteGameViewController = _opereteGameViewController;
+@synthesize opereteGameView = _opereteGameView;
 @synthesize popoverCell = _popoverCell;
 @synthesize firstButton = _firstButton;
 @synthesize secondButton = _secondButton;
@@ -41,7 +41,7 @@
 }
 
 - (IBAction) addScore:(UIButton *)button {
-    [_opereteGameViewController addScore:button.tag];
+    //[_opereteGameView addScore:button.tag];
     [_wePopoverController dismissPopoverAnimated:YES];
 }
 

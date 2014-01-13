@@ -9,16 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Team.h"
 #import "SingleChoiceViewController.h"
+#import "FXLabel.h"
 
-@protocol SingleChoiceViewDelegate;
+//@protocol SingleChoiceViewDelegate;
 
-@interface StartGameViewController : UITableViewController <SingleChoiceViewDelegate>
+@interface StartGameViewController : UITableViewController
 
-@property (nonatomic, weak) IBOutlet UITableViewCell * modeCell;
-@property (nonatomic, weak) UITableViewCell * teamCell;
-@property (nonatomic, weak) IBOutlet UIView * startMatchView;
-
-- (void)refreshTableData:(Team *) team;
-- (IBAction)startGame:(id)sender; 
+@property (nonatomic, weak) IBOutlet UIView * inspirationView;
+@property (nonatomic ,weak) IBOutlet FXLabel * label1;
+@property (nonatomic ,weak) IBOutlet FXLabel * label2;
+//@property (nonatomic, weak) IBOutlet UITableViewCell * matchModeCell;
 
 @end

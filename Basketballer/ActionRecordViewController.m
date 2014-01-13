@@ -9,40 +9,111 @@
 #import "ActionRecordViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
+#import "MatchUnderWay.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Feature.h"
+#import "AppDelegate.h"
 
 @interface ActionRecordViewController () {
     CGPoint _touchBeganPoint;
+    Team * _homeTeam;
+    Team * _guestTeam;
 }
 @end
 
 @implementation ActionRecordViewController
+@synthesize teamSelector = _teamSelector;
 @synthesize tableView = _tableView;
 @synthesize actionRecords = _actionRecords;
 
+#pragma 私有函数
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma 事件函数
 -(void) swip:(UISwipeGestureRecognizer *)swip {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)initView{
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    
+    if (_homeTeam == nil || _guestTeam == nil) {       
+        TeamManager * teamManager = [TeamManager defaultManager];         
+        _homeTeam = [teamManager teamWithId:match.home.teamId];
+        _guestTeam = [teamManager teamWithId:match.guest.teamId];
+    }
+    
+    [self.teamSelector setTitle:_homeTeam.name forSegmentAtIndex:0];
+    [self.teamSelector setTitle:_guestTeam.name forSegmentAtIndex:1];
+    
+    self.teamSelector.selectedSegmentIndex = 0;    
+}
+
+- (NSMutableArray *)actionsForTeam:(NSNumber *)teamId inActions:(NSArray *)allActions{
+    if (! allActions) {
+        return nil;
+    }
+    
+    NSMutableArray * resultArray = nil;
+    for(Action * action in allActions){
+        if ([action.team isEqualToNumber:teamId]) {
+            if (! resultArray) {
+                resultArray = [[NSMutableArray alloc] initWithObjects:action, nil];
+            }else{
+                [resultArray addObject:action];
+            }
+        }
+    }
+    
+    return resultArray;
+}
+
+- (void)teamChanged{
+    NSInteger value = self.teamSelector.selectedSegmentIndex;
+    NSNumber * teamId = nil;
+    if (value == 0) {
+        teamId = _homeTeam.id;
+    }else{
+        teamId = _guestTeam.id;
+    }
+
+    ActionManager * am = [ActionManager defaultManager];
+    self.actionRecords = [self actionsForTeam:teamId inActions:am.actionArray];
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"裁判记录";
+    self.title = LocalString(@"ActionRecords");
+    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
     swip.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swip];
     
     self.tableView.delegate = self;
     self.tableView.editing = YES;
+    
+    [self.teamSelector addTarget:self action:@selector(teamChanged) forControlEvents:UIControlEventValueChanged];
+    
+    [self initView];    
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self teamChanged];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -51,9 +122,9 @@
 }
 
 #pragma mark - Table view data source
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44.0;
-}
+//- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 44.0;
+//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -76,28 +147,28 @@
     
     Action * action = [self.actionRecords objectAtIndex:indexPath.row];
     
-    Team * team;
-    TeamManager * tm = [TeamManager defaultManager];
-    team = [tm teamWithId:action.team];
-    // 球队名字。    
-    cell.textLabel.text = team.name;
-    // 操作记录
+//    Team * team;
+//    TeamManager * tm = [TeamManager defaultManager];
+//    team = [tm teamWithId:action.team];
+//    // 球队名字。    
+//    cell.textLabel.text = team.name;
+    // 操作记录 TODO 应该跟NewActionViewController中的字符串使用同一套。
     NSString * actionStr;
     switch ([action.type intValue]) {
         case ActionType1Point:
-            actionStr = @"得分+1";
+            actionStr = LocalString(@"1PTS");
             break;
         case ActionType2Points:
-            actionStr = @"得分+2";
+            actionStr = LocalString(@"2PTS");
             break;
         case ActionType3Points:
-            actionStr = @"得分+3";
+            actionStr = LocalString(@"3PTS");
             break;
         case ActionTypeFoul:
-            actionStr = @"犯规+1";
+            actionStr = LocalString(@"PF");
             break;
-        case ActionTypeTimeout:
-            actionStr = @"暂停+1";
+        case ActionTypeTimeoutRegular:
+            actionStr = LocalString(@"TO");
             break;
 
         default:
@@ -105,36 +176,13 @@
     }
     //时间
     NSInteger time = [action.time intValue];
-    NSString * peroid;
-    switch ([action.period intValue]) {
-        case 0:
-            peroid = @"第一节";
-            break;
-        case 1:
-            peroid = @"第二节";
-            break;
-        case 2:
-            peroid = @"第三节";
-            break;
-        case 3:
-            peroid = @"第四节";
-            break;
-        default:
-            break;
-    }
-    
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %02d:%02d  %@", peroid,time/60,time%60, actionStr];
+    NSString * peroid = [[MatchUnderWay defaultMatch] nameForPeriod:[action.period integerValue]];    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %02d:%02d  %@", peroid,time/60,time%60, actionStr];
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"发生误操作时请在这里删除";
-}
-
-// Override to support conditional editing of the table view.
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return YES;
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return LocalString(@"ActionDelete");
 //}
 
 // Override to support editing the table view.
@@ -142,15 +190,14 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Action * action = [self.actionRecords objectAtIndex:indexPath.row];
-        [[ActionManager defaultManager] deleteAction:action];
+        [[MatchUnderWay defaultMatch] deleteWrongAction:action];
 
+        [self.actionRecords removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        // 测试中发现，极少发生一次多个误操作，每次都只用删除一个action，
+        // 所以删除后自动返回上级，减少一次操作。
+        [self.navigationController popViewControllerAnimated:YES];
     }   
 }
-
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-}
-
 @end

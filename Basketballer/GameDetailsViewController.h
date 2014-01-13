@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GameSetting.h"
 #import "Match.h"
+#import "UMSNSService.h"
 
-@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate,UMSNSDataSendDelegate,UMSNSViewDisplayDelegate>
 
 //@property (nonatomic, weak) IBOutlet UILabel * teams;
 //@property (nonatomic, weak) IBOutlet UILabel * dateTime;
@@ -28,7 +29,9 @@
 
 - (void)reloadActionsInMatch;
 
-- (IBAction)actionSheetForMatch;
-- (IBAction)deleteCurrentMatch;
+- (IBAction)showActionMenu;
+- (IBAction)deleteMatch;
+
++ (void)setDataForCell:(UITableViewCell *)cell withStatistics:(NSDictionary *)dictionary;
 
 @end

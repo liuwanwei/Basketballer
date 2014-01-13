@@ -16,6 +16,7 @@ static LocationManager * sLocationManager;
 
 @implementation LocationManager
 @synthesize locationManager = _locationManager;
+@synthesize reverseGeocoder = _reverseGeocoder;
 @synthesize delegate = _delegate;
 
 + (LocationManager *)defaultManager{
@@ -32,6 +33,8 @@ static LocationManager * sLocationManager;
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         self.locationManager.distanceFilter = 10;
+        
+        self.reverseGeocoder = [[CLGeocoder alloc] init];
     }
     
     return self;
@@ -47,23 +50,41 @@ static LocationManager * sLocationManager;
     [self.locationManager stopUpdatingLocation];
 }
 
+- (void)getAdressWithCoordinate:(CLLocationCoordinate2D) coordinate{
+    
+}
+
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSDate * date = newLocation.timestamp;
     NSTimeInterval howRecent = [date timeIntervalSinceNow];
     if (abs(howRecent) < 5) {
+        NSMutableDictionary * locations = [[NSMutableDictionary alloc] initWithCapacity:0];
         CLLocation * changeLocation = [[CLLocation alloc] initWithLatitude:[newLocation coordinate].latitude - 0.0011 longitude:[newLocation coordinate].longitude + 0.006 ];
-        if (_delegate != nil && [_delegate respondsToSelector:@selector(receivedLocation:)]) {
-            [_delegate performSelector:@selector(receivedLocation:) withObject:changeLocation];
-        }
+        //获取位置信息
+        [_reverseGeocoder reverseGeocodeLocation:changeLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+            NSLog(@"reverseGeocodeLocation:completionHandler: Completion Handler called!");
+            if (error){
+                NSLog(@"Geocode failed with error: %@", error);
+                return;
+            }
+            NSLog(@"Received placemarks: %@", placemarks);
+            [locations setValue:changeLocation forKey:@"location"];
+            [locations setValue:placemarks forKey:@"placemarks"];
+            if (_delegate != nil && [_delegate respondsToSelector:@selector(receivedLocation:)]) {
+                [_delegate performSelector:@selector(receivedLocation:) withObject:locations];
+            }
+
+        }];
         [self stopStandardLocationService];
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSString * message = [error description];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"定位" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"locationManager error: %@", message);
+    /*UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"定位" message:message delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];*/
     
     [self stopStandardLocationService];
 }

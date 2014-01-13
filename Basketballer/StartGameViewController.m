@@ -7,14 +7,19 @@
 //
 
 #import "StartGameViewController.h"
-#import "TeamChoiceViewController.h"
+#import "TeamListViewController.h"
 #import "TeamManager.h"
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
 #import "Feature.h"
-#import "GameSettingViewController.h"
+#import "TeamsInGameViewController.h"
+#import "RuleDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ActionManager.h"
+#import "MatchUnderWay.h"
+#import "WellKnownSaying.h"
+#import "AccountRuleDetailViewController.h"
 
 @interface StartGameViewController () {
     NSArray * _sectionsTitle;
@@ -24,48 +29,84 @@
     
     NSString * __weak _gameMode;
     SingleChoiceViewController * _chooseGameModeView;
+    
+    NSArray * _modeDetailArray;
 }
 @end
 
 @implementation StartGameViewController
-@synthesize teamCell = _teamCell;
-@synthesize modeCell = _modeCell;
-@synthesize startMatchView = _startMatchView;
+@synthesize inspirationView = _teamsView;
+@synthesize label1 = _label1;
+@synthesize label2 = _label2;
+//@synthesize matchModeCell = _matchModeCell;
 
 #pragma 私有函数
-/*显示提示信息*/
-- (void)showAlertView:(NSString *) message{
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定" , nil];
-    [alertView show];
+
+- (UIColor *)blueColor {
+    UIColor * color;
+    color = [UIColor colorWithRed:0.333333 green:0.608888 blue:0.9511111 alpha:1.0];
+    return color;
 }
 
-- (void)dismissMyself{
-    [[AppDelegate delegate] dismissModelViewController];
+- (UIColor *)greenColor {
+    UIColor * color;
+    color = [UIColor colorWithRed:0.142222 green:0.795555 blue:0.000000 alpha:1.0];
+    return color;
 }
+
+- (UIColor *)skyBlue{
+    return [UIColor colorWithRed:0.000000 green:0.388235 blue:1.000000 alpha:1.0];
+}
+
+- (UIColor *)cellDetailTextColor{
+    // RGB(81, 86, 132)
+    return [UIColor colorWithRed:0.317647 green:0.337254 blue:0.517647 alpha:1.0];
+}
+
+- (void)initLabel {
+    _label1.shadowColor = [UIColor lightGrayColor];
+    _label1.shadowOffset = CGSizeMake(1.0f, 2.0f);
+    _label1.shadowBlur = 1.0f;
+    _label1.innerShadowColor = [UIColor grayColor];
+    _label1.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+    _label1.textColor = [self blueColor];
+    
+    _label2.shadowColor = [UIColor lightGrayColor];
+    _label2.shadowOffset = CGSizeMake(1.0f, 2.0f);
+    _label2.shadowBlur = 1.0f;
+    //_label2.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+    _label2.innerShadowColor = [UIColor grayColor];
+    _label2.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+    _label2.textColor = [self blueColor];
+
+}
+
+- (void)updateSaying:(NSDictionary *)saying{
+    if (saying) {
+        UILabel * wordsLabel = (UILabel *)[self.inspirationView viewWithTag:1];
+        UILabel * whomLabel = (UILabel *)[self.inspirationView viewWithTag:2];
+        UILabel * slash = (UILabel *)[self.inspirationView viewWithTag:3];
+        
+        NSString * words = [saying objectForKey:kWords];
+        wordsLabel.text = words;
+        
+        NSString * whom = [saying objectForKey:kWhom];
+        whomLabel.text = whom;
+        
+        wordsLabel.hidden = NO;
+        whomLabel.hidden = NO;
+        slash.hidden = NO;
+    }
+}
+
+//- (void)newSayingComing:(NSNotification *)notification{
+//    NSDictionary * saying = [[WellKnownSaying defaultSaying] lastSaying];
+//    if (nil != saying) {
+//        [self updateSayingWithWords:saying];
+//    }
+//}
 
 #pragma 类成员函数
-- (void)refreshTableData:(Team *) team{
-    if(team == nil) {
-        return;
-    }
-    if(_curClickRowIndex == 0) {
-        _hostTeam = team;
-    }else if(_curClickRowIndex == 1){
-        _guestTeam = team;
-    }
-    
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:_curClickRowIndex];
-    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    UIImageView * profileImageView = (UIImageView *)[cell viewWithTag:1];
-    UILabel * label = (UILabel *)[cell viewWithTag:2]; 
-    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
-    label.text = team.name;
-}
-
-- (void)handleNotification:(NSNotification *)notification{
-    NSLog(@"StartGameViewController got notification");
-    [self.tableView reloadData];
-}
 
 #pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
@@ -79,22 +120,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     _sectionsTitle = [NSArray arrayWithObjects:@"主队", @"客队" ,@"竞技规则",nil];
-    
     _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];  
     
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(handleNotification:) name:kTeamChanged object:nil];
-    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
-//    [[NSBundle mainBundle] loadNibNamed:@"StartMatchCell" owner:self options:nil];
-//    CGRect frame = self.startMatchView.frame;
-//    frame.size.width = 160;
-//    self.startMatchView.frame = frame;
-//    self.tableView.tableFooterView = self.startMatchView;
+    /*[[NSBundle mainBundle] loadNibNamed:@"Inspiration" owner:self options:nil];
+    CGRect frame = self.inspirationView.frame;
+    frame.size.height = 160;
+    self.inspirationView.frame = frame;
+    self.tableView.tableFooterView = self.inspirationView;
+    
+    _modeDetailArray = [NSArray arrayWithObjects:
+                      @"We Are Basketball！", 
+                      @"无兄弟，不篮球！", nil];*/
+    self.tableView.rowHeight = 60;
+    
+    self.title = NSLocalizedString(@"Start", nil);
+//    [[NSNotificationCenter defaultCenter] addObserver:self 
+//              selector:@selector(newSayingComing:) name:kNewSayingMessage object:nil];
 }
 
 - (void)viewDidUnload
@@ -107,120 +152,51 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)startGame:(id)sender {
-    if (_hostTeam == nil || _guestTeam == nil) {
-        [self showAlertView:@"请选择球队信息"];
-        return;
-    }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
-    if(_hostTeam == _guestTeam) {
-        [self showAlertView:@"不能选择相同球队进行比赛"];
-        return;
-    }
-    
-    PlayGameViewController * playGameViewController = [[PlayGameViewController alloc] initWithNibName: @"PlayGameViewController" bundle:nil];
-    playGameViewController.hostTeam = _hostTeam;
-    playGameViewController.guestTeam = _guestTeam;
-    playGameViewController.gameMode = [[GameSetting defaultSetting] gameModeForName:_gameMode];
-    playGameViewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:playGameViewController animated:YES];
+    //NSDictionary * saying = [[WellKnownSaying defaultSaying] oneSaying];
+    //[self updateSaying:saying];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-//   return [_sectionsTitle objectAtIndex:section];
-    if(section == 1){
-        return @"                           vs.";
-    }else if(section == 2){
-        return nil;
-//        return @"规则";
-//        return @"比赛模式";
-    }else{
-        return nil;
-    }
+    return [[[GameSetting defaultSetting] gameModes] count];    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return [[[GameSetting defaultSetting] gameModes] count];
-    }else{
-        return 1;   
-    }
+    return 1;   
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return  0.1f;
-    }else{
-        return 0.0f;
-    }
-}
-
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        return 23.0f;
-    }else if(section == 2){
-        return 50.0f;
-    }else{
-        return 0.0f;
-    }
-}
-
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 2) {
-        return 44.0f;
-    }else{
-        return 56.0f;   
-    }    
+// 图片圆角化。
+- (void)makeRoundedImage:(UIImageView *)image{
+    image.layer.masksToBounds = YES;
+    image.layer.cornerRadius = 5.0f;    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = nil;
-    if (indexPath.section == 0 || indexPath.section == 1) {
-        [[NSBundle mainBundle] loadNibNamed:@"TeamRecordCell" owner:self options:nil];
-        cell = _teamCell;
-        self.teamCell = nil;   
+  
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];        
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
-        // 图片圆角化。
-        UIImageView * profileImageView;        
-        profileImageView = (UIImageView *)[cell viewWithTag:1];
-        profileImageView.layer.masksToBounds = YES;
-        profileImageView.layer.cornerRadius = 5.0f;
-
-        UILabel * label = (UILabel *)[cell viewWithTag:2]; 
-        Team * team = [[TeamManager defaultManager].teams objectAtIndex:indexPath.section];
-        if (indexPath.section == 0) {
-            _hostTeam = team;
-        }else {
-            _guestTeam = team;
-        }
-        
-        profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
-        label.text = team.name;
-    }else if (indexPath.section == 2){   
-//        [[NSBundle mainBundle] loadNibNamed:@"MatchModeCell" owner:self options:nil];
-//        cell = _modeCell;
-//        self.modeCell = nil;
-    
-//        UILabel * label;
-//        label = (UILabel *)[cell viewWithTag:2];
-//        label.text = _gameMode;
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];        
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = @"go!"; 
-        cell.imageView.image = [UIImage imageNamed:@"Add"];
+    NSInteger index = indexPath.section;
+    cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
+    cell.textLabel.textColor = [self cellDetailTextColor];
+//    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0]; 
+//    cell.detailTextLabel.text = [_modeDetailArray objectAtIndex:index]; 
+    if (indexPath.section == 0) {
+        cell.imageView.image = [UIImage imageNamed:@"BasketballBlueWhite"];
+    }else{
+        cell.imageView.image = [UIImage imageNamed:@"BasketballBlueRed"];        
     }
+    
+
         
     return cell;
 }
@@ -228,40 +204,32 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger section = indexPath.section;
-    if (section == 0 || section == 1) {
-        _curClickRowIndex = indexPath.section;
-        TeamChoiceViewController *teamChoiceViewController = [[TeamChoiceViewController alloc] initWithNibName:@"TeamChoiceViewController" bundle:nil];
-
-        teamChoiceViewController.choosedTeamId = (section == 0 ? _hostTeam.id : _guestTeam.id);
-        teamChoiceViewController.parentController = self;
-        teamChoiceViewController.viewControllerMode = UITeamChoiceViewControllerModeChoose;
-        teamChoiceViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:teamChoiceViewController animated:YES];
-    }else if(indexPath.section == 2){
-        _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.row];
-        [self startGame:nil];
-//        if (indexPath.row == 0) {
-//            if (_chooseGameModeView == nil) {
-//                _chooseGameModeView = [[SingleChoiceViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//                _chooseGameModeView.choices = [[GameSetting defaultSetting] gameModeNames];  
-//                _chooseGameModeView.delegate = self;
-//            }
-//            
-//            _chooseGameModeView.currentChoice = _gameMode;
-//            _chooseGameModeView.hidesBottomBarWhenPushed = YES;
-//            [_chooseGameModeView setTitle:@"比赛模式"];
-//            [self.navigationController pushViewController:_chooseGameModeView animated:YES];
-//        }
-    }
+    GameSetting * gs = [GameSetting defaultSetting];
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    match.matchMode = [gs.gameModes objectAtIndex:indexPath.section];
+    
+    TeamsInGameViewController * viewController;
+    viewController = [[TeamsInGameViewController alloc] initWithNibName:@"TeamsInGameViewController" bundle:nil];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[AppDelegate delegate] presentModelViewController:nav];
 }
 
-
-# pragma SingleChoiceViewDelegate
-- (void)choosedParameter:(NSString *)parameter{
-    _gameMode = parameter;
-    // TODO 只刷新group2就够了。
-    [self.tableView reloadData];
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    NSString * title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.section];
+    NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:indexPath.section];
+    UITableViewController * details;
+    
+    if ([mode isEqualToString:kMatchModeAccount]) {
+        details = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    }else {
+        details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        ((RuleDetailViewController *)details).rule = [BaseRule ruleWithMode:mode];
+    }
+    details.hidesBottomBarWhenPushed = YES;
+    details.title = title;
+    [self.navigationController pushViewController:details animated:YES];    
+    
 }
 
 @end
