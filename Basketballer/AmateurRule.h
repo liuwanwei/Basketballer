@@ -11,8 +11,9 @@
 
 @interface AmateurRule : BaseRule
 
-// 半场长度，单位：秒。
+// 单个比赛单元长度，单位：秒。
 @property (nonatomic, assign) NSInteger periodLength;
+
 
 - (id)initWithMode:(NSString *)mode;
 

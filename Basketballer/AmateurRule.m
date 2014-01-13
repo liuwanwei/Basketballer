@@ -9,56 +9,54 @@
 #import "AmateurRule.h"
 #import "GameSetting.h"
 
-// 半场长度定义，单位：秒。
-typedef enum {
-    AmateurPeriodLength25 = (25 * 60),
-    AmateurPeriodLength20 = (20 * 60),
-    AmateurPeriodLength15 = (15 * 60)
-}AmateurPeriodLength;
-
 @implementation AmateurRule
-
-- (NSInteger)periodLengthForMode:(NSString *)mode{
-    if ([mode isEqualToString:kMatchModeAmateur25]) {
-        return (25 * 60);
-    }else if([mode isEqualToString:kMatchModeAmateur20]){
-        return (20 * 60);
-    }else if([mode isEqualToString:kMatchModeAmateur15]){
-        return (15 * 60);
-    }else if([mode isEqualToString:kMatchModeAmateurSimple15]){
-        return (15 * 60);
-    }else{
-        return 0;
-    }
-}
 
 - (id)initWithMode:(NSString *)mode{
     if (self = [super init]) {
-        self.periodLength = [self periodLengthForMode:mode];
+        self.foulLimitForTeam = 4;
+        self.foulLimitForPlayer = 4;
+        self.offenceTimeLimit = 24;
+        
+        // 半场长度定义，单位：秒。
+        if ([mode isEqualToString:kMatchModeAmateur25]) {
+            self.periodLength = (25 * 60);
+            self.regularPeriodNumber = 2;
+        }else if([mode isEqualToString:kMatchModeAmateur20]){
+            self.periodLength = (20 * 60);
+            self.regularPeriodNumber = 2;
+        }else if([mode isEqualToString:kMatchModeAmateur15]){
+            self.periodLength = (15 * 60);
+            self.regularPeriodNumber = 2;
+        }else if([mode isEqualToString:kMatchModeAmateurSimple15]){
+            self.periodLength = (15 * 60);
+            self.regularPeriodNumber = 1;
+        }
     }
     
     return self;
 }
 
-- (NSInteger)regularPeriodNumber{
-    return 2;
-}
+// 移动到initWithMode中赋值该变量。
+//- (NSInteger)regularPeriodNumber{
+//    return 2;
+//}
 
-- (NSInteger)timeoutLength{
-    return 60;
-}
+// 这个变量移动到TeamStatistics中去了。
+//- (NSInteger)timeoutLength{
+//    return 60;
+//}
 
-- (NSInteger)foulLimitForTeam{
-    return 4;
-}
+//- (NSInteger)foulLimitForTeam{
+//    return 4;
+//}
+//
+//- (NSInteger)foulLimitForPlayer{
+//    return 4;
+//}
 
-- (NSInteger)foulLimitForPlayer{
-    return 4;
-}
-
-- (NSInteger)offenceTimeLimit{
-    return 24;
-}
+//- (NSInteger)offenceTimeLimit{
+//    return 24;
+//}
 
 // 每个周期有多长时间，单位（秒）。
 - (NSInteger)timeLengthForPeriod:(MatchPeriod)period{
@@ -73,13 +71,12 @@ typedef enum {
 
 // 每个周期结束后休息多久。
 - (NSInteger)restTimeLengthAfterPeriod:(MatchPeriod)period{
-    if (period == MatchPeriodFirst ||
-        period == MatchPeriodThird ||
-        period == MatchPeriodFourth || /* 如果有加时赛的话才休息，否则比赛结束。*/
-        period >= MatchPeriodOvertime) {
-        return 2 * 60;
-    }else if(period == MatchPeriodSecond){
+    if(period == MatchPeriodFirst){
+        // 中场休息时间。
         return 15 * 60;
+    }else if (period == MatchPeriodSecond || period >= MatchPeriodOvertime) {
+        /* 如果有加时赛的话才休息，否则比赛结束。*/
+        return 2 * 60;
     }else{
         return 0;
     }
