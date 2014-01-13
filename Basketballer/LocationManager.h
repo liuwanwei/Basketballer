@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 @protocol LocationManagerDelegate <NSObject>
 
-- (void)receivedLocation:(CLLocation *) location;
+- (void)receivedLocation:(NSDictionary *) location;
 
 @end
 
@@ -20,6 +21,7 @@
 + (LocationManager *)defaultManager;
 
 @property (nonatomic, strong) CLLocationManager * locationManager;
+@property (nonatomic, strong) CLGeocoder *reverseGeocoder;
 @property (nonatomic, strong) id<LocationManagerDelegate> delegate;
 
 - (void)startStandardLocationServcie;

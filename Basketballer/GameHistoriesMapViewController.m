@@ -105,13 +105,13 @@
 
 #pragma LocationManager delete
 - (void)receivedLocation:(CLLocation *) location {
-    MKCoordinateSpan theSpan;
+    /*MKCoordinateSpan theSpan;
     theSpan.latitudeDelta = 0.02;
     theSpan.longitudeDelta = 0.02;
     MKCoordinateRegion theRegion;
     theRegion.center = [location coordinate];
     theRegion.span = theSpan;
-    [self.mapView setRegion:theRegion];
+    [self.mapView setRegion:theRegion];*/
 }
 
 #pragma Map delete

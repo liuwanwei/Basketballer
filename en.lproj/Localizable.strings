@@ -1,0 +1,184 @@
+/* 
+  Localizable.strings
+  Basketballer
+
+  Created by Liu Wanwei on 12-9-3.
+  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+*/
+
+"Yes" = "Yes";
+"No" = "No";
+
+"Start" = "New Match";
+"Histories" = "Histories";
+"Teams"  = "Teams";
+"Others"  = "More";
+
+"Cancel" = "Cancel";
+
+"Fiba5PlayerMode" = "FIBA 5-Player Match";
+"Fiba3PlayerMode" = "FIBA 3-Player Match";
+
+"Name" = "Name";
+"Number" = "Number";
+"Profile" = "Profile";
+"TeamName" = "Team Name";
+"FromLibrary" = "Photo Library";
+"Snapshot" = "Take a Photo";
+"DefaultTeam1" = "Chicago Bulls";
+"DefaultTeam2" = "Utah Jazz";
+
+"CreateTeam" = "New Team";
+"TeamInfo" = "Team Info";
+"Record" = "Matches";
+"Roster" = "Roster";
+"NoMatch" = "No Matches";
+"NoPlayer" = "No Players";
+"MatchesFormatter" = "%d";
+"PlayersFormatter" = "%d";
+
+"PlayerInfo" = "Player Info";
+"NewPlayer" = "New Player";
+"PlayerInfoFormatter" = "%.2d";
+
+"SelectTeam" = "Teams";
+"SelectTeamGuide" = "Select two teams";
+"Finish" = "Finish";
+"Done" = "Done";
+
+"Match" = "Match";
+"Foul" = "Foul";
+"Timeout" = "Timeout";
+"StartMatch" = "Start";
+"SoundEffect" = "Sound";
+"Setting" = "Setting";
+"Pause" = "Pause";
+"Pausing" = "Pausing";
+"Playing" = "Playing";
+"Countdown" = "Break";
+"StartCountdown" = "Start the Countdown?";
+
+"3Points" = "Three Points";
+"2Points" = "Two Points";
+"FreeThrow" = "One Point";
+"3PTS" = "3 Points";
+"2PTS" = "2 Points";
+"1PTS" = "1 Points";
+"PF" = "Foul";
+"TO" = "Timeout";
+"Select" = "Select";
+"ResumeTimer" = "Resume";
+"NewStatistic" = "New Statistics";
+"Alert" = "Alert";
+"Ok" = "OK";
+"AlreadyTimeouted" = "We are already in timeout state!";
+"AlreadyPaused" = "We are already in Pausing state!";
+"NoTimeout" = "No available timeouts left!";
+
+//"PlayerStatisticsViewHeader" = "号码           得分    犯规    三分    罚球";
+"PlayerStatisticsViewHeader" = "Number     PTS  PF       3PT   FT";
+
+//"PlayerFoulViewHeader" = "号码                  姓名              犯规数";
+"PlayerFoulViewHeader" = "Number         Name           Fouls";
+
+//"MatchDetailViewHeader" = "技术统计    得分   犯规    三分   罚球";
+"MatchDetailViewHeader" = "STATS        PTS      PF    3PT    FT";
+
+"SelectPlayer" = "Player";
+"Others..." = "Others...";
+
+"OperationForbidden" = "This Operation is forbidden!";
+
+"PlayerStatistic" = "Player statistic";
+"PlayerStatisticDetail" = "You can select specific player when adding statistic.";
+"SoundEffectSwitch" = "Sound effect";
+"SoundEffectDetail" = "Signal sounds for the beginning and the end of each period.";
+
+"MatchDetail" = "Details";
+"MatchLocation" = "Location";
+"MatchDate" = "Date";
+
+"BasicInfo" = "Basic Information";
+"PlayerStatisticHeader" = "Player Statistics";
+
+"WriteAReview" = "Rate in App Store";
+"Feedback" = "Report an issue";
+"Version" = "App version";
+
+"Period" = "";
+"Period1" = "1ST";
+"Period2" = "2ND";
+"Period3" = "3RD";
+"Period4" = "4TH";
+"Overtime"= "Overtime";
+"Period1End" = "End of the first period!";
+"Period2End" = "End of the second period!";
+"Period3End" = "End of the third period!";
+"Period4End" = "End of the final period!";
+"OvertimeEnd" = "End of overtime!";
+
+"TimeoutTimeUp" = "End of the timeout!";
+"RestTimeUp" = "End of the break!";
+"CheckApp" = "Check the app";
+
+"InvalidNumber" = "Invalid Number";
+"InputValidNumber" = "Valid number: 0 throuth 99";
+"RepeatNumber" = "Repeated Number";
+"RepeatNumberMessage" = "Please input other unused number";
+
+//@"常规赛节数", @"每节比赛时间", @"节间休息时间", @"半场休息时间", @"加时赛时间", @"加时赛间休息时间", 
+"Time" = "Time";
+"PeriodNumber" = "Period Number";
+"PeriodLength" = "Period Length";
+"PeriodIntervalLength" = "Period interval length";
+"HalfTimeIntervalLength" = "Half time interval length";
+"ExtraPeriodLength" = "Extra period length";
+"ExtraPeriodIntervalLength" = "Extra period interval length";
+
+//@"个人犯规限制次数", @"球队单节犯规限制次数", 
+"PersonalFoulLimit" = "Personal foul limits";
+"TeamFoulLimitWithinPeriod" = "Team foul limits in a period";
+
+//@"暂停次数", @"暂停时间", 
+"TimeoutLimit" = "Timeout limits";
+"Forbidden" = "Forbidden";
+// "上半场2次，下半场3次"
+"FibaTimeoutLimit" = "2 in 1st half, 3 in 2nd";
+"TimeoutLength" = "Timeout length";
+
+"Special" = "Special";
+"Get33PointsWinFormatter" = "Team first get %d points WIN the game";
+
+"None" = "None";
+"Seconds" = " S";
+"Minutes" = " M";
+
+"AbandonGame" = "Abandon the match";
+"Save" = "Save";
+"SaveMatchPrompt" = "Do you want to save the match?";
+//"本节犯规已超最大数，请进行罚球"
+"TeamFoulExceedPrompt" = "Team foul exceeds limits. Award two penalty Free throws to another team!";
+//@"%.2d号 %@ 犯规达最大值，请求罚下!"
+"PlayerFoulExceedPrompt" = "Player NO. %.2d exceeds foul limits. Send him off!";
+//@"   开始比赛吗？"
+"BeginMatchPrompt" = "Start the countdown now?";
+//@"比赛未开始"
+"MatchUnbeginPrompt" = "Match has not started yet";
+
+"SNSShareMatchResult" = "我使用篮球助手（https://itunes.apple.com/cn/app/lan-qiu-zhu-shou/id559738184?mt=8L）记录了一场比赛。多运动，多出汗，才能多吃饭:)：";
+
+"ActionRecords" = "Actions";
+"ActionDelete" = "Delete incorrect operation";
+
+"Result" = "Result";
+
+"SnsShareToSina" = "Sina";
+
+"CountdownToTheEnd" = "The break is over";
+"TimeoutState" = "Timeout";
+
+"AboutUs" = "About Us";
+"FinishMatch" = "End the match";
+"PlayGameViewTitle" = "篮球助手";
+"MoreButtonTitle" = ".  .  .";
+"Abandon" = "Abandon";

@@ -12,6 +12,7 @@
 #import "Action.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
+#import "MatchUnderWay.h"
 
 static MatchManager * sDefaultManager;
 
@@ -43,31 +44,18 @@ static MatchManager * sDefaultManager;
     self.matchesArray = mutableFetchResults;
 }
 
-// 生成一个不会重复的比赛id     
-- (NSNumber *)idGenerator{
-    NSMutableIndexSet * idSet = [[NSMutableIndexSet alloc] init];
-    for (Match * match in _matchesArray) {
-        [idSet addIndex:[[match id] integerValue]];
-    }
-    
-    NSInteger id = 0;
-    while ([idSet containsIndex:id]) {
-        id ++;
-    }
-    
-    return [NSNumber numberWithInteger:id];
-}
-
-- (Match *)newMatchWithMode:(NSString *)mode{
+- (Match *)newMatchWithMode:(NSString *)mode andHomeTeam:(NSNumber *)homeTeamId andGuestTeam:(NSNumber *)guestTeamId{
     Match * newOne = (Match *)[NSEntityDescription insertNewObjectForEntityForName:kMatchEntity 
-                                    inManagedObjectContext:self.managedObjectContext];
+                                                            inManagedObjectContext:self.managedObjectContext];
     
-    newOne.id = [self idGenerator];
+    newOne.id = [BaseManager generateIdForKey:kMatchEntity];
     
     // 默认填充当前时间作为比赛时间。
     newOne.date = [NSDate date];
     
     newOne.mode = mode;
+    newOne.homeTeam = [homeTeamId copy];
+    newOne.guestTeam = [guestTeamId copy];
     
     if(! [self synchroniseToStore]){
         return nil;
@@ -78,55 +66,30 @@ static MatchManager * sDefaultManager;
     return newOne;
 }
 
-- (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam{
-    Match * newOne = [self newMatchWithMode:mode];
-    if (newOne != nil) {
-        newOne.homeTeam = home.id;
-        newOne.guestTeam = guestTeam.id;
-        
-        [self synchroniseToStore];
-        
-        [[ActionManager defaultManager] resetRealtimeActions:newOne];        
+- (BOOL)synchroniseToStore{
+    if(! [super synchroniseToStore]){
+        return NO;
     }
     
-    return newOne;
+    [self postMatchChangedNotification:0];
+    return YES;
 }
 
-- (void)startMatch:(Match *)match{
-    
-}
-
-// TODO 放到重载的synchronizedToStore中去。
-- (void)postNotification{
+- (void)postMatchChangedNotification:(NSInteger)matchId{
     // 发送比赛结束消息。
-    NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:nil];
+    NSNumber * idObject = [NSNumber numberWithInt:matchId];
+    NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:idObject];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
-- (void)finishMatch:(Match *)match{
-    // 计算并更新比赛信息中的得分记录字段。
-    [[ActionManager defaultManager] finishMatch:match];
+- (void)stopMatch:(Match *)match{    
     [self synchroniseToStore];
-    
-    [self postNotification];
-}
-
-- (void)stopMatch:(Match *)match withState:(MatchState)state{
-    [[ActionManager defaultManager] finishMatch:match];
-    match.state = [NSNumber numberWithInteger:state];
-    [self synchroniseToStore];
-    
-    [self postNotification];
 }
 
 - (BOOL)deleteMatch:(Match *)match{
     NSInteger homeTeamId = [match.homeTeam integerValue];
     NSInteger guestTeamId = [match.guestTeam integerValue];
     NSInteger matchId = [match.id integerValue];
-    
-    if (! [self deleteFromStore:match synchronized:YES]) {
-        return NO;
-    }
     
     [self.matchesArray removeObject:match];
     
@@ -144,7 +107,9 @@ static MatchManager * sDefaultManager;
         [tm deleteTeam:team];
     }
 
-    [self postNotification];
+    if (! [self deleteFromStore:match synchronized:YES]) {
+        return NO;
+    }    
     
     return YES;
 }
@@ -180,7 +145,6 @@ static MatchManager * sDefaultManager;
     return [dateString isEqualToString:otherString];    
 }
 
-// TODO 最好使用category方式，将这个函数加到Match类的扩展中去。
 - (NSInteger)winnerForMatch:(Match *)match{
     NSNumber * winner;
     NSComparisonResult result = [match.homePoints compare:match.guestPoints];

@@ -11,46 +11,48 @@
 #import "Action.h"
 #import "GameSetting.h"
 #import "TeamStatistics.h"
+#import "BaseRule.h"
+#import "MatchUnderWay.h"
 
 static ActionManager * sActionManager;
 
 @interface ActionManager(){
-    GameSetting * _gameSettings;  
-    
-    // 正在进行比赛的两队的技术统计。
-    TeamStatistics * _home;
-    TeamStatistics * _guest;
-    TeamStatistics * __weak _currentTeam;
+//    GameSetting * _gameSettings;  
     
     NSURL * _documentURL;
+    
+    NSArray * _matchPeriodNameFor4Quarter;
+    NSArray * _matchPeriodNameFor2Half;
 }
 @end
 
 
 @implementation ActionManager
 
-@synthesize homeTeamPoints = _homeTeamPoints;
-@synthesize homeTeamTimeouts = _homeTeamTimeouts;
-@synthesize homeTeamFouls = _homeTeamFouls;
-@synthesize guestTeamPoints = _guestTeamPoints;
-@synthesize guestTeamTimeouts = _guestTeamTimeouts;
-@synthesize guestTeamFouls = _guestTeamFouls;
-@synthesize period = _period;
-@synthesize periodFoulsLimit = _periodFoulsLimit;
-@synthesize periodLength = _periodLength;
-@synthesize periodTimeoutsLimit = _periodTimeoutsLimit;
 @synthesize actionArray = _actionArray;
-@synthesize delegate = _delegate;
-@synthesize state = _state;
-@synthesize matchStateFinishingDate = _matchStateFinishingDate;
 
 + (ActionManager *)defaultManager{
     if (nil == sActionManager) {
         sActionManager = [[ActionManager alloc] init];
-        sActionManager.state = MatchStatePrepare;
     }
     
     return sActionManager;
+}
+
++ (BOOL)isTimeoutAction:(ActionType)actionType{
+    return (actionType == ActionTypeTimeoutShort || 
+            actionType == ActionTypeTimeoutRegular || 
+            actionType == ActionTypeTimeoutOfficial);
+}
+
++ (BOOL)isPointAction:(ActionType)actionType{
+    return (actionType == ActionType1Point ||
+            actionType == ActionType2Points ||
+            actionType == ActionType3Points);
+}
+
++ (BOOL)isFoulAction:(ActionType)actionType{
+    return (actionType == ActionTypeFoul);
 }
 
 - (id)init{
@@ -58,61 +60,6 @@ static ActionManager * sActionManager;
     }
     
     return self;
-}
-
-- (NSInteger)homeTeamPoints{
-    return _home.points;
-}
-- (NSInteger)homeTeamFouls{
-    return _home.fouls;
-}
-- (NSInteger)homeTeamTimeouts{
-    return _home.timeouts;
-}
-
-- (NSInteger)guestTeamPoints{
-    return _guest.points;
-}
-- (NSInteger)guestTeamFouls{
-    return _guest.fouls;
-}
-- (NSInteger)guestTeamTimeouts{
-    return _guest.timeouts;
-}
-
-- (void)setPeriod:(NSInteger)period{    
-    // 进入下一节时，清零犯规和暂停计数。
-    if (period != _period) {
-        _home.fouls = 0;
-        _home.timeouts = 0;
-        _guest.fouls = 0;
-        _guest.timeouts = 0;
-    }    
-    
-    _period = period;    
-}
-
-- (NSString *)nameForPeriod{
-    NSString * periodString = nil;
-    switch (_period) {
-        case -1:
-        case 0:
-            periodString = @"1st";
-            break;
-        case 1: 
-            periodString = @"2nd";
-            break;
-        case 2:
-            periodString = @"3rd";
-            break;
-        case 3:
-            periodString = @"4th";
-            break;
-        default:
-            break;
-    }  
-    
-    return periodString;
 }
 
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId{
@@ -186,7 +133,7 @@ static ActionManager * sActionManager;
             NSInteger tmpType = [action.type integerValue];
             if (actionType == tmpType){
                 if (actionType == ActionTypeFoul || 
-                    actionType == ActionTypeTimeout) {
+                    actionType == ActionTypeTimeoutRegular) {
                     [actionArray addObject:action];
                 }
             }else if(actionType == ActionTypePoints){
@@ -202,23 +149,16 @@ static ActionManager * sActionManager;
     return actionArray;
 }
 
-// TODO 这个接口还是不好，用_currentTeam来做函数间的联系人，不如用参数。
-- (Action *)newActionInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time{
-    // 暂停有总数限制，要先检查一下。
-    if (actionType == ActionTypeTimeout) {
-        // period发生改变时，意味着进入下一节，靠后续处理来清零犯规、暂停数据。        
-        if (_currentTeam.timeouts  >= _periodTimeoutsLimit) {
-            return nil;
-        }
-    }
+- (Action *)newActionForTeam:(NSNumber *)teamId forPlayer:(NSNumber *)playerId withType:(NSInteger)actionType atTime:(NSInteger)time inPeriod:(MatchPeriod)period{
     
     Action * action = (Action *)[NSEntityDescription insertNewObjectForEntityForName:kActionEntity 
                                                     inManagedObjectContext:self.managedObjectContext];
     action.type = [NSNumber numberWithInteger:actionType];
-    action.match = match.id;
-    action.period = [NSNumber numberWithInteger:_period];
+    action.match = [MatchUnderWay defaultMatch].match.id;
+    action.player = playerId;
+    action.period = [NSNumber numberWithInteger:period];
     action.time = [NSNumber numberWithInteger:time];
-    action.team = _currentTeam.teamId;   
+    action.team = teamId;   
     
     if( ![self synchroniseToStore]){
         // TODO should delete action object.
@@ -227,49 +167,15 @@ static ActionManager * sActionManager;
     
     [_actionArray insertObject:action atIndex:0];
     
-    // 更新本场比赛实时数据。
-    
-    [_currentTeam addStatistic:actionType];
-    
-    // 如果超出单节允许犯规次数的话，就会带来一次罚球。
-    if (actionType == ActionTypeFoul) {
-        if (_currentTeam.fouls > _periodFoulsLimit) {
-            if (( _delegate != nil ) && [_delegate respondsToSelector:@selector(FoulsBeyondLimit:)]) {
-                [_delegate performSelector:@selector(FoulsBeyondLimit:) withObject:_currentTeam.teamId];
-            }
-        }
-    }
-    
     return action;
 }
 
-- (BOOL)actionForHomeTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time{
-    if (match) {
-        _currentTeam = _home;
-        if([self newActionInMatch:match withType:actionType atTime:time] != nil){
-            return YES;
-        } 
-    }
-
-    return NO;
-}
-
-- (BOOL)actionForGuestTeamInMatch:(Match *)match withType:(NSInteger)actionType atTime:(NSInteger)time{
-    if (match) {
-        _currentTeam = _guest;
-        if ([self newActionInMatch:match withType:actionType atTime:time] != nil) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
 
 // 删除实时比赛中的活动。
 - (BOOL)deleteAction:(Action *)action{
     if (action) {
-        NSInteger actionType = [action.type integerValue];
-        NSInteger teamId = [action.team integerValue];
+        // 从当前比赛action表中删除记录。
+        [_actionArray removeObject:action];        
         
         // 从数据库删除该条记录。
         [self.managedObjectContext deleteObject:action];
@@ -277,33 +183,15 @@ static ActionManager * sActionManager;
             return NO;
         }
         
-        // 更新实时技术统计缓存TeamStatistics中的信息。
-        TeamStatistics * __weak statistics = nil;
-        if (teamId == [_home.teamId integerValue]) {
-            statistics = _home;
-        }else if(teamId == [_guest.teamId integerValue]){
-            statistics = _guest;
-        }
-        
-        [statistics subtractStatistic:actionType];
-        
-        // 从当前比赛action表中删除记录。
-        [_actionArray removeObject:action];
+        // 发送消息
+        NSNotification * notification = nil;
+        notification = [NSNotification notificationWithName:kDeleteActionMessage object:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
         
         return YES;
     }else{
         return NO;
     }
-}
-
-// 删除实时比赛中的活动。
-- (BOOL)deleteActionAtIndex:(NSInteger)index{
-    if (index >= _actionArray.count) {
-        NSLog(@"index beyond actionArray count");
-        return NO;
-    }
-    
-    return [self deleteAction:[_actionArray objectAtIndex:index]];
 }
 
 - (void)deleteActionsInMatch:(NSInteger)matchId{
@@ -313,42 +201,6 @@ static ActionManager * sActionManager;
     }
     
     [self synchroniseToStore];
-}
-
-- (void)resetRealtimeActions:(Match *)match{
-    if (match) {
-        _gameSettings = [GameSetting defaultSetting];
-        
-        _home = [[TeamStatistics alloc] initWithTeamId:match.homeTeam];
-        _guest = [[TeamStatistics alloc] initWithTeamId:match.guestTeam];
-        
-        self.actionArray = [[NSMutableArray alloc] init];
-        
-        _period = -1;
-        
-        if ([match.mode isEqualToString:kGameModeFourQuarter]) {
-            _periodLength = [_gameSettings.quarterLength integerValue];
-            _periodFoulsLimit = [_gameSettings.foulsOverQuarterLimit integerValue];
-            _periodTimeoutsLimit = [_gameSettings.timeoutsOverQuarterLimit integerValue];
-        }else if([match.mode isEqualToString:kGameModeTwoHalf]){
-            _periodLength = [_gameSettings.halfLength integerValue];
-            _periodFoulsLimit = [_gameSettings.foulsOverHalfLimit integerValue];
-            _periodTimeoutsLimit = [_gameSettings.timeoutsOverHalfLimit integerValue];
-        }else if([match.mode isEqualToString:kGameModePoints]){
-            _periodFoulsLimit = [_gameSettings.foulsOverWinningPointsLimit integerValue];
-        }
-    }
-}
-
-- (void)finishMatch:(Match *)match{
-    if (nil != match) {
-        match.homePoints = [NSNumber numberWithInteger: _home.points];
-        match.guestPoints = [NSNumber numberWithInteger: _guest.points];
-    }
-    
-    _home = nil;
-    _guest = nil;
-    _state = MatchStatePrepare;
 }
 
 - (NSURL *)documentURL{
@@ -363,5 +215,76 @@ static ActionManager * sActionManager;
     return _documentURL;
 }
 
+- (NSMutableDictionary *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions{
+    NSInteger teamId = [team integerValue];
+    NSInteger pts = 0, pf = 0, threePM = 0, ft = 0;
+    for (Action * action in actions) {
+        NSInteger tempPeriod = [action.period integerValue];
+        NSInteger tempTeamId = [action.team integerValue];
+        if (tempTeamId == teamId && (MatchPeriodAll == period || tempPeriod == period)) {
+            NSInteger actionType = [action.type integerValue];
+            switch (actionType) {
+                case ActionType1Point:
+                    pts ++;
+                    ft ++;
+                    break;
+                case ActionType2Points:
+                    pts += 2;
+                    break;
+                case ActionType3Points:
+                    pts += 3;
+                    threePM += 3;
+                    break;
+                case ActionTypeFoul:
+                    pf += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", pts] forKey:kPoints];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", pf] forKey:kPersonalFouls];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", threePM] forKey:k3PointMade];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", ft] forKey:kFreeThrow];
+    
+    return dictionary;
+}
+
+// 目前只计算全场技术统计，但暂时保留period参数，因为我还不确定个人单节技术统计是否真的没有必要。
+- (NSMutableDictionary *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions{
+    NSInteger pts = 0, pf = 0, threePM = 0, ft = 0;
+    for(Action * action in actions){
+        if (playerId != nil && [action.player isEqualToNumber:playerId]) {
+            switch([action.type integerValue]){
+                case ActionType1Point:
+                    pts ++;
+                    ft ++;
+                    break;
+                case ActionType2Points:
+                    pts += 2;
+                    break;
+                case ActionType3Points:
+                    pts += 3;
+                    threePM += 3;
+                    break;
+                case ActionTypeFoul:
+                    pf += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", pts] forKey:kPoints];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", pf] forKey:kPersonalFouls];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", threePM] forKey:k3PointMade];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", ft] forKey:kFreeThrow];
+    return dictionary;
+}
 
 @end

@@ -43,7 +43,7 @@
 							<object class="IBUIImageView" id="228556793">
 								<reference key="NSNextResponder" ref="752819284"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{4, 4}, {48, 48}}</string>
+								<string key="NSFrame">{{8, 4}, {48, 48}}</string>
 								<reference key="NSSuperview" ref="752819284"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="381963223"/>
@@ -54,7 +54,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">DefaultTeamProfile@2x.png</string>
+									<string key="NSResourceName">Timeout.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="381963223">
@@ -118,6 +118,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="752819284"/>
+				<string key="IBUIReuseIdentifier">TeamRecordCell</string>
 				<real value="56" key="IBUIRowHeight"/>
 			</object>
 		</array>
@@ -197,8 +198,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">DefaultTeamProfile@2x.png</string>
-			<string key="NS.object.0">{128, 128}</string>
+			<string key="NS.key.0">Timeout.png</string>
+			<string key="NS.object.0">{27, 27}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

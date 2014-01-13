@@ -7,9 +7,10 @@
 //
 
 #import "RulesViewController.h"
-#import "GameSettingViewController.h"
 #import "GameSetting.h"
 #import "Feature.h"
+#import "RuleDetailViewController.h"
+#import "BaseRule.h"
 
 @interface RulesViewController ()
 
@@ -31,7 +32,7 @@
     [super viewDidLoad];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.rowHeight = 48.0f;
 }
 
@@ -64,7 +65,7 @@
             combinedString = [NSString stringWithString:ruleName];
         }else{
             combinedString = [combinedString stringByAppendingString:@"、"];
-            combinedString = [combinedString stringByAppendingFormat:ruleName];
+            combinedString = [combinedString stringByAppendingString:ruleName];
         }
     }
     
@@ -78,22 +79,22 @@
     
     // Configure the cell...
     if (nil == cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     GameSetting * gameSetting = [GameSetting defaultSetting];
     cell.textLabel.text = [gameSetting.gameModeNames objectAtIndex:indexPath.section];
     
-    NSArray * rulesArray = nil;
-    if (indexPath.section == 0) {
-        rulesArray = gameSetting.twoHalfSettings;
-    }else if(indexPath.section == 1){
-        rulesArray = gameSetting.fourQuarterSettings;
-    }else if(indexPath.section == 2){
-        rulesArray = gameSetting.pointMatchSettings;
-    }
-    cell.detailTextLabel.text = [self makeSubTitle:rulesArray];
+//    NSArray * rulesArray = nil;
+//    if (indexPath.section == 0) {
+//        rulesArray = gameSetting.twoHalfSettings;
+//    }else if(indexPath.section == 1){
+//        rulesArray = gameSetting.fourQuarterSettings;
+//    }else if(indexPath.section == 2){
+//        rulesArray = gameSetting.pointMatchSettings;
+//    }
     
     return cell;
 }
@@ -139,12 +140,20 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    GameSettingViewController * viewController = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    viewController.gameMode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:indexPath.section];
-    viewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:viewController animated:YES];
+- (void)showRuleDetailsWithIndexPath:(NSIndexPath *)indexPath{
+    RuleDetailViewController * details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    details.hidesBottomBarWhenPushed = YES;
+    NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:indexPath.section];
+    details.rule = [BaseRule ruleWithMode:mode];
+    details.title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.section];
+    [self.navigationController pushViewController:details animated:YES];    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self showRuleDetailsWithIndexPath:indexPath];
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self showRuleDetailsWithIndexPath:indexPath];
 }
 
 @end

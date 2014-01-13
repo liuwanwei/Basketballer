@@ -41,8 +41,8 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUILabel" id="971014114">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 0}, {80, 30}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{9, 0}, {95, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="669858949"/>
@@ -53,7 +53,7 @@
 								<int key="IBUITag">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Teams</string>
+								<string key="IBUIText">球队</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -64,20 +64,20 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="109504427">
-									<int key="type">1</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">2</int>
 									<double key="pointSize">17</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="703927892">
-									<string key="NSName">Helvetica</string>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
 							<object class="IBUILabel" id="669858949">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{113, -1}, {35, 30}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{107, -1}, {35, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="679387964"/>
@@ -88,7 +88,7 @@
 								<int key="IBUITag">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">PTS</string>
+								<string key="IBUIText">得分</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
@@ -97,13 +97,20 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
-								<reference key="IBUIFontDescription" ref="109504427"/>
-								<reference key="IBUIFont" ref="703927892"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="109504427">
+									<int key="type">1</int>
+									<double key="pointSize">17</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="717964397">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">17</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUILabel" id="679387964">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{173, -1}, {35, 30}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{162, -1}, {35, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="981947102"/>
@@ -114,7 +121,7 @@
 								<int key="IBUITag">3</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">PF</string>
+								<string key="IBUIText">犯规</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
@@ -124,12 +131,12 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="109504427"/>
-								<reference key="IBUIFont" ref="703927892"/>
+								<reference key="IBUIFont" ref="717964397"/>
 							</object>
 							<object class="IBUILabel" id="981947102">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{223, -1}, {36, 30}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{215, -1}, {36, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1002144583"/>
@@ -140,7 +147,7 @@
 								<int key="IBUITag">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">3PM</string>
+								<string key="IBUIText">三分</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
@@ -150,12 +157,12 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="109504427"/>
-								<reference key="IBUIFont" ref="703927892"/>
+								<reference key="IBUIFont" ref="717964397"/>
 							</object>
 							<object class="IBUILabel" id="1002144583">
 								<reference key="NSNextResponder" ref="114108989"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{279, -1}, {36, 30}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{267, -1}, {36, 30}}</string>
 								<reference key="NSSuperview" ref="114108989"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -165,7 +172,7 @@
 								<int key="IBUITag">5</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">FT</string>
+								<string key="IBUIText">罚球</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yMTk2MDc4NDMxIDAuMzI5NDExNzY0NyAwLjUyOTQxMTc2NDcAA</bytes>
@@ -175,7 +182,7 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="109504427"/>
-								<reference key="IBUIFont" ref="703927892"/>
+								<reference key="IBUIFont" ref="717964397"/>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 29}</string>
@@ -204,8 +211,9 @@
 					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="114108989"/>
-				<string key="IBUIReuseIdentifier">MatchPartSummaryCell</string>
+				<string key="IBUIReuseIdentifier">StatisticsCell</string>
 				<real value="30" key="IBUIRowHeight"/>
 			</object>
 		</array>
@@ -302,16 +310,16 @@
 					<string key="className">GameDetailsViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="actionSheetForMatch">id</string>
-						<string key="deleteCurrentMatch">id</string>
+						<string key="deleteMatch">id</string>
+						<string key="showActionMenu">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="actionSheetForMatch">
-							<string key="name">actionSheetForMatch</string>
+						<object class="IBActionInfo" key="deleteMatch">
+							<string key="name">deleteMatch</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="deleteCurrentMatch">
-							<string key="name">deleteCurrentMatch</string>
+						<object class="IBActionInfo" key="showActionMenu">
+							<string key="name">showActionMenu</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Changes Log</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="ming">
+	<!-- Date: 2011-12-16 -->
+</head>
+<style type="text/css" media="screen">
+pre{
+	font-size: 16px;
+}
+</style>
+
+<body>
+<pre>
+	1.2 feature
+	 更好的支持iOS4.
+	
+	1.1 feature
+
+	1.html5做展现，定制容易，html，css，javascript自由修改
+	2.多语言支持，需要复制umFeedback.bundle里的chat_zh-Hans.html为chat_xx.html(xx为语言标记,en,ja等)
+    sdk自动选择适合语言的html页面，顺序为 本机语言 > 英语(en) > 简体中文(zh-Hans),
+    这样可以制作完全不同风格的多国语言界面，而不限于文字上的i18n.
+	3.双向,实时,反馈
+	4.数据本地缓存，未联网状态仍可以查看，发送失败下次自动发送
+	5.支持自定义数据项，详细参见main.js里的submitForm方法
+
+	使用事项：
+
+    1.把libUMFeedback.a，umFeedback.bundle，UMFeedback.h加入工程
+    2.调用[UMFeedback showFeedback:(UIViewController *)viewController withAppkey:(NSString *)appKey]
+      appKey和友盟统计分析appkey相同
+    3.不再提供armv6架构，系统只支持iOS4以上
+	4.如果修改umFeedback.bundle里的html,css,js文件，请把模拟器或真机里的app删掉，工程clean下再测试，静态文件xcode不会重新覆盖
+
+	遇到问题，请及时邮件联系我们iOS@umeng.com，我们会帮助您解决问题 ＝D
+
+</pre>
+<br/>
+<pre>在线文档请点击 <a target="_blank" href="http://www.umeng.com/doc/home.html#feedback_ios">http://www.umeng.com/doc/home.html#feedback_ios</a></pre>
+
+
+</body>
+</html>

@@ -9,27 +9,34 @@
 #import "GameHistoriesViewController.h"
 #import "PlayGameViewController.h"
 #import "GameDetailsViewController.h"
-#import "AppDelegate.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
 #import "GameSetting.h"
 #import "StartGameViewController.h"
 #import "GameHistoriesMapViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AppDelegate.h"
+#import "Feature.h"
 
 @interface GameHistoriesViewController (){
     GameDetailsViewController * _gameDetailsViewController;
     UINavigationController * _gameHistoriesMapViewController;
     
     NSDateFormatter * _dateFormatter;
+    NSInteger _selectedRow;
 }
 @end
 
 @implementation GameHistoriesViewController
 @synthesize tvCell = _tvCell;
 @synthesize matches = _matches;
+@synthesize historyType = _historyType;
 
 #pragma 私有函数
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)initNavigationItem {
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -50,16 +57,26 @@
     [[AppDelegate delegate] presentModelViewController:_gameHistoriesMapViewController];
 }
 
-//- (void)historyChangedHandler:(NSNotification *)notification{
-//    NSLog(@"got notification: %@", notification.name);
-//    [self.tableView reloadData];
-//}
+- (void)historyChangedHandler:(NSNotification *)notification{
+    NSLog(@"got notification: %@", notification.name);
+    
+    if (notification.object != nil && [notification.object isKindOfClass:[NSNumber class]]) {
+        [self.tableView reloadData];
+        /*NSMutableArray * tempMatches = [NSMutableArray arrayWithArray:_matches];
+        [tempMatches removeObjectAtIndex:_selectedRow];
+        self.matches = tempMatches;*/
+        
+        //NSIndexPath * indexPath = [NSIndexPath indexPathForRow:_selectedRow inSection:0];
+        //[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
+    }
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        _historyType = HistoryTypeTeams;
     }
     return self;
 }
@@ -68,20 +85,26 @@
 {
     [super viewDidLoad];
 //    [self initNavigationItem];
-    
-//    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-//    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
-//    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];  
-    
+    if (_historyType == HistoryTypeTeam) {
+         [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+        self.title = LocalString(@"Record");
+    }else {
+        self.matches = [[MatchManager defaultManager] matchesArray];
+        self.title = LocalString(@"Histories");
+        
+    }
+   
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    // 添加、删除比赛刷新表
+    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];
     self.tableView.rowHeight = 48.0f;
-    [self setTitle:@"比赛记录"]; // TODO 这个字符串应该跟EditTeamInfoViewController的row保持一致。
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -113,8 +136,6 @@
         [[NSBundle mainBundle] loadNibNamed:@"MatchRecordCell" owner:self options:nil];
         cell = _tvCell;
         self.tvCell = nil;
-    }else{
-        NSLog(@"GameHistoriesViewController got reusable cell");
     }
     
     Match * match = [_matches objectAtIndex:indexPath.row];
@@ -129,8 +150,8 @@
     image = [tm imageForTeam:team];
     UIImageView * homeImageProfile = (UIImageView *)[cell viewWithTag:UIHomeTeamProfileTag];
     homeImageProfile.image = image;
-    homeImageProfile.layer.masksToBounds = YES;
-    homeImageProfile.layer.cornerRadius = 5.0f;    
+//    homeImageProfile.layer.masksToBounds = YES;
+//    homeImageProfile.layer.cornerRadius = 5.0f;    
     
     // 主队名字。    
     UILabel * homeTeamNameLabel = (UILabel *)[cell viewWithTag:UIHomeTeamNameTag];
@@ -161,8 +182,8 @@
     image = [tm imageForTeam:team];
     UIImageView * guestTeamProfile = (UIImageView *)[cell viewWithTag:UIGuestTeamProfileTag];
     guestTeamProfile.image = image;
-    guestTeamProfile.layer.masksToBounds = YES;
-    guestTeamProfile.layer.cornerRadius = 5.0f;
+//    guestTeamProfile.layer.masksToBounds = YES;
+//    guestTeamProfile.layer.cornerRadius = 5.0f;
     
     // 客队名字。
     UILabel * guestTeamNameLabel = (UILabel *)[cell viewWithTag:UIGuestTeamNameTag];
@@ -184,19 +205,19 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [[MatchManager defaultManager] deleteMatch:[_matches objectAtIndex:indexPath.row]];
+        //[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -225,10 +246,14 @@
     }
     
     Match * match = [_matches objectAtIndex:indexPath.row];
+    
     _gameDetailsViewController.match = match;
     [_gameDetailsViewController reloadActionsInMatch];
     _gameDetailsViewController.hidesBottomBarWhenPushed = YES;    
     [self.navigationController pushViewController:_gameDetailsViewController animated:YES];
+    
+    // 用于删除比赛后，收到删除消息，刷新当前界面。
+    _selectedRow = indexPath.row;
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SingleChoiceViewController.h"
 #import "GameSetting.h"
+#import "Feature.h"
 
 @interface SingleChoiceViewController ()
 
@@ -20,6 +21,10 @@
 @synthesize choices = _choices;
 @synthesize currentChoice = _currentChoice;
 @synthesize delegate = _delegate;
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,7 +49,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
     [self.tableView reloadData];
 }
 
@@ -130,9 +135,9 @@
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     self.currentChoice = cell.textLabel.text;
     
-    if (_parameterKey != nil) {
-        [[GameSetting defaultSetting] setParameter:self.currentChoice forKey:self.parameterKey];
-    }
+//    if (_parameterKey != nil) {
+//        [[GameSetting defaultSetting] setParameter:self.currentChoice forKey:self.parameterKey];
+//    }
     
     if (_delegate != nil && [_delegate respondsToSelector:@selector(choosedParameter:)]) {
         [_delegate performSelector:@selector(choosedParameter:) withObject:_currentChoice];

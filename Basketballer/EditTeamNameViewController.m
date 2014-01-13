@@ -8,6 +8,7 @@
 
 #import "EditTeamNameViewController.h"
 #import "EditTeamInfoViewController.h"
+#import "Feature.h"
 
 @interface EditTeamNameViewController ()
 
@@ -22,6 +23,10 @@
 #pragma 私有函数
 - (void)initTeamNameText {
     self.teamNameText.text = self.teamName;
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,9 +46,11 @@
     self.teamNameText.frame = frame;
     self.teamNameText.font = [UIFont systemFontOfSize:17.0f];
     
+    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    
     [self initTeamNameText];
     [self.teamNameText becomeFirstResponder];
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
 }
 
 - (void)viewDidUnload

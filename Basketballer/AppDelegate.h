@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class PlayGameViewController;
 
+#define LocalString(key)  NSLocalizedString(key, nil)
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
