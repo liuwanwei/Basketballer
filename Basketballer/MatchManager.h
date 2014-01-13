@@ -20,6 +20,20 @@
 #define kWinning                @"Winning"
 #define kLosing                 @"Losing"
 
+
+typedef enum {
+    MatchStatePrepare = 0,          // 比赛未开始。
+    MatchStatePlaying,              // 比赛计时进行中。
+    MatchStateTimeout,              // 比赛暂停中。
+    MatchStateTimeoutFinished,      // 比赛暂停结束。
+    MatchStateTimeoutTemp,          // 比赛临时暂停。
+    MatchStatePeriodFinished,       // 比赛单节结束。
+    MatchStateQuarterTime,          // 比赛节间休息中。
+    MatchStateQuarterTimeFinished,  // 比赛节间休息结束。
+    MatchStateStopped,              // 比赛非正常结束。
+    MatchStateFinished,             // 比赛正常结束。
+}MatchState;
+
 @protocol FoulActionDelegate;
 
 @interface MatchManager : BaseManager
@@ -31,18 +45,14 @@
 - (void)loadMatches;
 
 // 注意：返回的Match对象指针不能copy给其他变量，往后的删除、添加动作等接口必须使用这个返回的Match对象指针。
-- (Match *)newMatchWithMode:(NSString *)mode withHomeTeam:(Team *)home withGuestTeam:(Team *)guestTeam;
+- (Match *)newMatchWithMode:(NSString *)mode andHomeTeam:(NSNumber *)homeTeamId andGuestTeam:(NSNumber *)guestTeamId;
 
 - (NSArray *)matchesWithTeamId:(NSInteger) teamId;
 
 - (NSDictionary *)statisticsForTeam:(NSInteger) teamId onDate:(NSDate *)date;
 
-// 声明比赛开始。调用该接口后，记录比赛的真实开始时间。（暂时不支持）
-- (void)startMatch:(Match *)match;
-
 // 声明比赛结束。
-- (void)finishMatch:(Match *)match; // Deprecated
-- (void)stopMatch:(Match *)match withState:(MatchState) state;
+- (void)stopMatch:(Match *)match;
 
 // 删除比赛。
 - (BOOL)deleteMatch:(Match *)match;

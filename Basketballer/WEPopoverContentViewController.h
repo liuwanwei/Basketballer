@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "WEPopoverController.h"
 
-@class OperateGameViewController;
+@class OperateGameView;
 
 
 @interface WEPopoverContentViewController : UITableViewController
 @property (nonatomic, weak) WEPopoverController * wePopoverController;
-@property (nonatomic, weak) OperateGameViewController * opereteGameViewController;
+@property (nonatomic, weak) OperateGameView * opereteGameView;
 
 @property (nonatomic, weak) IBOutlet UITableViewCell * popoverCell;
 @property (nonatomic, weak) IBOutlet UIButton * firstButton;

@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 
 typedef enum{
-    UIGameSettingViewStyleEdit = 0,
-    UIGameSettingViewStyleShow = 1
-}UIGameSettingViewStyle;
+    GameSettingViewStyleEdit = 0,
+    GameSettingViewStyleShow = 1
+}GameSettingViewStyle;
 
 @interface GameSettingViewController : UITableViewController
 
 @property (nonatomic, strong) NSString * gameMode;
 @property (nonatomic) NSInteger viewStyle;
+
+@property (nonatomic, weak) NSArray * settingsArray;
+@property (nonatomic, weak) NSArray * settingsKeyArray;
 
 @end

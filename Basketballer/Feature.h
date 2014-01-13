@@ -11,9 +11,13 @@
 @interface Feature : NSObject
 
 @property (strong, nonatomic, readonly) UIColor * weChatTableBgColor;
+@property (strong, nonatomic, readonly) UIColor * navigationItemTintColor;
 
 + (Feature *)defaultFeature;
 
 - (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar;
+- (void)initNavleftBarItemWithController:(UIViewController *)controller withAction:(SEL)action;
 
+- (UIColor *)cellTextColor;
+- (UIColor *)cellDetailTextColor;
 @end

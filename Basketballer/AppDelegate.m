@@ -12,17 +12,118 @@
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "Feature.h"
+#import "MatchUnderWay.h"
+#import "WellKnownSaying.h"
+#import <UIKit/UIKit.h>
+
+typedef enum {
+    NotificationBodyForCommonTimeout = 0,
+    NotificationBodyForCommonQuarterTime = 1,
+    NotificationBodyForCommonShowApp = 2
+}NotificationBodyForCommon;
+
+#define kOTIndexOfBodyArray 4
+
+@interface AppDelegate () {
+    NSArray * _notificationBodyFor4Quarter;
+    NSArray * __weak _notificationBody;
+    NSArray * _notificationBodyForCommon;
+    NSDate * _enterBackgroundDate;
+}
+
+@end
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-//@synthesize navigationController = _navigationController;
 @synthesize tabBarController = _tabBarController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize playGameViewController = _playGameViewController;
 
+#pragma 私有函数
+
+- (void)initNotificationBodyArray {
+    _notificationBodyFor4Quarter = [NSArray arrayWithObjects:
+                                    LocalString(@"Period1End"),
+                                    LocalString(@"Period2End"),
+                                    LocalString(@"Period3End"),
+                                    LocalString(@"Period4End"),
+                                    LocalString(@"OvertimeEnd"), 
+                                    nil];
+    _notificationBody = _notificationBodyFor4Quarter;
+    _notificationBodyForCommon = [NSArray arrayWithObjects:
+                                  LocalString(@"TimeoutTimeUp"),
+                                  LocalString(@"RestTimeUp"),
+                                  LocalString(@"CheckApp"), 
+                                  nil];
+}
+
+- (void)updateCountdownTime {
+    if (_enterBackgroundDate) {
+        NSDate * date = [NSDate date];
+        NSInteger elapsedTime = [date timeIntervalSinceDate:_enterBackgroundDate];
+        MatchUnderWay * match = [MatchUnderWay defaultMatch];
+        match.timeoutCountdownSeconds > 0 ? 
+        (match.timeoutCountdownSeconds = match.timeoutCountdownSeconds - elapsedTime) :
+        (match.countdownSeconds = match.countdownSeconds - elapsedTime);
+    }
+    
+    _enterBackgroundDate = nil;
+}
+
+/*
+ 后台提示比赛消息。
+ 当比赛进行中或暂停中进入后台时，向UILocalNotification注册事件。
+ 注：比赛模式为抢球模式除外。
+ */
+- (void)addLocalNotification {
+    if (self.playGameViewController != nil) {
+        _enterBackgroundDate = nil;
+        UILocalNotification * newNotification = nil;
+        NSString * body;
+        MatchUnderWay * match = [MatchUnderWay defaultMatch];
+        if ([match.matchMode isEqualToString:kMatchModeAccount]) {
+            return;
+        }
+        if (match.state == MatchStatePlaying) {
+            newNotification = [[UILocalNotification alloc] init];
+            newNotification.fireDate = [match periodFinishingDate];
+            NSInteger index = match.period < MatchPeriodOvertime ? match.period : kOTIndexOfBodyArray;
+            body = [_notificationBody objectAtIndex:index];
+        }else if (match.state == MatchStateTimeout) {
+            newNotification = [[UILocalNotification alloc] init];
+            body = [_notificationBodyForCommon objectAtIndex:NotificationBodyForCommonTimeout];
+            newNotification.fireDate = [match timeoutFinishingDate];
+        }else if (match.state == MatchStateQuarterTime) {
+            newNotification = [[UILocalNotification alloc] init];
+            body = [_notificationBodyForCommon objectAtIndex:NotificationBodyForCommonQuarterTime];
+            newNotification.fireDate = [match timeoutFinishingDate];
+        }
+        
+        if (newNotification != nil) {
+            _enterBackgroundDate = [NSDate date];
+            newNotification.alertBody = body;
+            newNotification.soundName = UILocalNotificationDefaultSoundName;
+            newNotification.alertAction = [_notificationBodyForCommon objectAtIndex:NotificationBodyForCommonShowApp];
+            newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
+            [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
+        }
+    }
+}
+
+#pragma 类成员函数
+- (void)initNotificationBody {
+//    ActionManager * actionManager = [ActionManager defaultManager];
+//    if ([actionManager.matchMode isEqualToString:kGameModeFourQuarter]) {
+        _notificationBody = _notificationBodyFor4Quarter;
+//    }else if ([actionManager.matchMode isEqualToString:kGameModeTwoHalf]) {
+//        _notificationBody = _notificationBodyFor2Half;
+//    }
+}
+
+#pragma 事件函数
 + (AppDelegate *)delegate{
 	AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	return delegate;
@@ -43,12 +144,33 @@
     }
 }
 
+- (void)initTabBar {
+    NSArray * titles = [NSArray arrayWithObjects:
+                        NSLocalizedString(@"Start", nil),
+                        NSLocalizedString(@"Histories", nil),
+                        NSLocalizedString(@"Teams", nil), 
+                        NSLocalizedString(@"Others", nil), 
+                        nil];
+    
+    [self.tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBackground"]];
+    NSInteger size = self.tabBarController.tabBar.items.count;
+    for (NSInteger index = 0; index < size; index++) {
+        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:index];
+        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:11.0],UITextAttributeFont,nil] forState:UIControlStateNormal];
+        item.title = [titles objectAtIndex:index];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[MatchManager defaultManager] loadMatches];
     [[TeamManager defaultManager] loadTeams];
     
     [self initNavigationBarBgColor];
+    [self initTabBar];
+    [self initNotificationBodyArray];
+    
+    //[[WellKnownSaying defaultSaying] requestSaying];
     
     [self.window addSubview:self.tabBarController.view];
     [self.window makeKeyAndVisible];
@@ -63,52 +185,15 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    if (self.playGameViewController != nil 
-        && ![self.playGameViewController.gameMode isEqualToString:kGameModePoints]) {
-        UILocalNotification *newNotification = [[UILocalNotification alloc] init];
-        NSString * body;
-        ActionManager * am = [ActionManager defaultManager];
-        if (am.state == MatchStatePlaying) {
-            if (newNotification) {
-                newNotification.fireDate = self.playGameViewController.targetTime;
-                NSInteger curPeriod = [[ActionManager defaultManager] period];
-                if (curPeriod == 0) {
-                    body = @"第一节比赛结束";
-                }else if (curPeriod == 1){
-                    if (self.playGameViewController.gameMode == kGameModeTwoHalf) {
-                        body = @"整场比赛结束";
-                    }else {
-                        body = @"第二节比赛结束";
-                    }
-                }else if(curPeriod == 2){
-                    body = @"第三节比赛结束";
-                }else if(curPeriod == 3) {
-                    body = @"整场比赛结束";
-                }else {
-                    body = @"本节比赛结束";
-                }
-                newNotification.alertBody = body;
-                newNotification.soundName = UILocalNotificationDefaultSoundName;
-                newNotification.alertAction = @"查看应用";
-                newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
-                [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
-            }
-        }else if(am.state == MatchStateTimeout || am.state == MatchStatePeriodFinished){
-            body = @"暂停时间到";
-            newNotification.fireDate = self.playGameViewController.timeoutTargetTime;
-            newNotification.alertBody = body;
-            newNotification.soundName = UILocalNotificationDefaultSoundName;
-            newNotification.alertAction = @"查看应用";
-            newNotification.timeZone=[NSTimeZone defaultTimeZone]; 
-            [[UIApplication sharedApplication] scheduleLocalNotification:newNotification];
-        }
-    }
+    [self addLocalNotification];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self updateCountdownTime];
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

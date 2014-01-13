@@ -20,10 +20,17 @@ typedef enum {
         
 } TagsInMatchRecordCell;
 
+typedef enum {
+    HistoryTypeTeams = 0,
+    HistoryTypeTeam = 1,
+}HistoryType;
+
 @interface GameHistoriesViewController : UITableViewController
 
 @property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 
-@property (nonatomic, weak) NSArray * matches;
+@property (nonatomic, strong) NSArray * matches;
+
+@property (nonatomic) HistoryType historyType;
 
 @end

@@ -7,42 +7,32 @@
 //
 
 #import "GameDetailsViewController.h"
-#import "ActionRecordViewController.h"
+//#import "ActionRecordViewController.h"
+#import "PlayerStatisticsViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
 #import "MatchManager.h"
 #import "AppDelegate.h"
+#import "Feature.h"
+#import <QuartzCore/QuartzCore.h>
 
-#define kName       @"name"
-#define kPTS        @"PTS"
-#define kPF         @"PF"
-#define k3PM        @"3PM"
-#define kFT         @"FT"
-
-typedef enum {
-    UICellTeamName      = 1,
-    UICellPoints        = 2,
-    UICellFouls         = 3,
-    UICellThreePoints   = 4,
-    UICellFreeThrows    = 5
-}UIMatchPartSummaryCellTag;
+#define useAppkey @"503f331d527015516a000055"
 
 @interface GameDetailsViewController (){
     
     NSString * _homeTeamName;
     NSString * _guestTeamName;
+    NSString * _homePoints;
+    NSString * _guestPoints;
     
     // 比赛若是上下半场，指向_twohalfDescriptions；若是四节，指向_fourQuarterDescriptions.
-    NSArray * __weak _periodNameArray;      
-    NSArray * _fourQuarterDescriptions;
-    NSArray * _twoHalfDescriptions;    
+    NSArray * _periodNameArray;       
     
     NSMutableArray * _sectionHeaders;
     
     NSMutableArray * _actionsInMatch;
     
     UIActionSheet * _actionSheetShare;
-    UIActionSheet * _actionSheetDelete;
 }
 @end
 
@@ -53,52 +43,109 @@ typedef enum {
 @synthesize trashItem = _trashItem;
 @synthesize match = _match;
 
++ (void)setDataForCell:(UITableViewCell *)cell withStatistics:(NSDictionary *)statistics{
+    UILabel * label;
+    
+    label = (UILabel *)[cell viewWithTag:UICellName];
+    label.text = [statistics objectForKey:kName];
+    
+    label = (UILabel *)[cell viewWithTag:UICellPoints];
+    label.text = [statistics objectForKey:kPoints];
+    
+    label = (UILabel *)[cell viewWithTag:UICellFouls];
+    label.text = [statistics objectForKey:kPersonalFouls];
+    
+    label = (UILabel *)[cell viewWithTag:UICellThreePoints];
+    label.text = [statistics objectForKey:k3PointMade];
+    
+    label = (UILabel *)[cell viewWithTag:UICellFreeThrows];
+    label.text = [statistics objectForKey:kFreeThrow];
+}
+
+- (NSString *)thoroughfareWithAdress:(NSString *)address {
+    NSString * thoroughfare = nil;
+    NSArray * addressArray = [address componentsSeparatedByString:@" "];
+    NSInteger addressSize = addressArray.count;
+    if (addressSize != 0) {
+        thoroughfare = [addressArray objectAtIndex:addressSize - 1];
+    }
+    return thoroughfare;
+}
+
+- (NSString *)snsString {
+    NSString * result = nil;
+    ActionManager * am = [ActionManager defaultManager];
+    NSMutableDictionary * homeStatistics;
+    NSMutableDictionary * guestStatistics;
+    homeStatistics = [am statisticsForTeam:_match.homeTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+    guestStatistics = [am statisticsForTeam:_match.guestTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+    
+    result = LocalString(@"SNSShareMatchResult");
+    result = [result stringByAppendingString:@" "];
+    result = [result stringByAppendingString:_homeTeamName];
+    result = [result stringByAppendingString:@" vs "];
+    result = [result stringByAppendingString:_guestTeamName];
+    result = [result stringByAppendingString:@" "];
+    
+    result = [result stringByAppendingString:[homeStatistics objectForKey:kPoints]];
+    result = [result stringByAppendingString:@" : "];
+    result = [result stringByAppendingString:[guestStatistics objectForKey:kPoints]];
+    return result;
+}
+
+- (void)showUMSnsController {
+    [UMSNSService setViewDisplayDelegate:self];
+    [UMSNSService setDataSendDelegate:self];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(320.0, 300.0));
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [UMSNSService presentSNSInController:self 
+                                  appkey:useAppkey
+                                  status:[self snsString]
+                                   image:viewImage
+                               platform:UMShareToTypeSina];
+}
+
 #pragma UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (actionSheet == _actionSheetShare) {
-        switch (buttonIndex) {
-            case 0:
-                // 分享到新浪微博。
-                break;
-            case 1:
-                // 分享到“周边比赛”。
-            default:
-                break;
-        }
-    }else if(actionSheet == _actionSheetDelete){
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
-            // 删除比赛。
-            [[MatchManager defaultManager] deleteMatch:_match];
-            [self back];
+            [self deleteMatch];
+        }else if(buttonIndex == actionSheet.firstOtherButtonIndex){
+            // 分享到新浪微博。
+            [self showUMSnsController];
+        }else if(buttonIndex == actionSheet.firstOtherButtonIndex + 1){
+            // 分享到“周边比赛”。
         }
+    }
+}
+
+#pragma UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        [[MatchManager defaultManager] deleteMatch:_match];
+        [self back];
     }
 }
 
 - (void)back{
-//    self.hidesBottomBarWhenPushed = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (1 == buttonIndex) {
-//        [[MatchManager defaultManager] deleteMatch:_match];
-//        [self back];
-//    }
-//}
-
-- (void)actionSheetForMatch{
+- (void)showActionMenu{
     if (_actionSheetShare == nil) {
-        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享到新浪微博",@"分享到比赛地图",  nil, nil];
-        _actionSheetShare.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+        _actionSheetShare = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:LocalString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:LocalString(@"SnsShareToSina"), nil];
+        _actionSheetShare.actionSheetStyle = UIActionSheetStyleDefault;
     }
     [_actionSheetShare showInView:self.view];
 }
 
-- (void)deleteCurrentMatch{    
-    if (_actionSheetDelete == nil) {
-        _actionSheetDelete = [[UIActionSheet alloc] initWithTitle:@"删除本场比赛所有相关信息？"  delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
-    }
-    [_actionSheetDelete showInView:self.view];
+- (void)deleteMatch{    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"删除比赛？" message:@"删除后信息不能恢复" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
 }
 
 - (void)reloadActionsInMatch{
@@ -113,9 +160,7 @@ typedef enum {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _fourQuarterDescriptions = [NSArray arrayWithObjects:@"第一节", @"第二节", @"第三节", @"第四节", nil];
-        _twoHalfDescriptions = [NSArray arrayWithObjects:@"上半场", @"下半场", nil];
-        _periodNameArray = _fourQuarterDescriptions;
+        _periodNameArray = [NSArray arrayWithObjects:@"第一节", @"第二节", @"第三节", @"第四节", nil];
     }
     return self;
 }
@@ -123,10 +168,11 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
     
-    UIBarButtonItem * back = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
-    self.navigationItem.leftBarButtonItem = back;
+    //UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStyleBordered target:self action:@selector(showActionMenu)];
+    UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showActionMenu)];
+    self.navigationItem.rightBarButtonItem = item;
     
     self.tableView.delegate = self;
     
@@ -135,9 +181,9 @@ typedef enum {
     _homeTeamName = [tm teamWithId:_match.homeTeam].name;
     _guestTeamName = [tm teamWithId:_match.guestTeam].name;
     
-    NSString * title = [NSString stringWithFormat:@"%@ vs %@", _homeTeamName,_guestTeamName];
+//    NSString * title = [NSString stringWithFormat:@"%@ vs %@", _homeTeamName,_guestTeamName];
     
-    [self setTitle:title];
+    [self setTitle:LocalString(@"MatchDetail")];
 }
 
 - (void)viewDidUnload
@@ -160,14 +206,10 @@ typedef enum {
 
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    _sectionHeaders = [NSMutableArray arrayWithObjects:@"基本信息", @"全场技术统计", nil];
-    if ([self.match.mode isEqualToString:kGameModeFourQuarter]) {
-        [_sectionHeaders addObjectsFromArray:_fourQuarterDescriptions];
-//        _periodNameArray = _fourQuarterDescriptions;
-    }else if([self.match.mode isEqualToString:kGameModeTwoHalf]){
-        [_sectionHeaders addObjectsFromArray:_twoHalfDescriptions];
-//        _periodNameArray = _twoHalfDescriptions;
-    }
+    _sectionHeaders = [NSMutableArray arrayWithObjects:
+                       LocalString(@"BasicInfo"),
+                       LocalString(@"MatchDetailViewHeader"),
+                       LocalString(@"PlayerStatisticHeader"), nil];
     
     return _sectionHeaders.count;
 }
@@ -176,142 +218,57 @@ typedef enum {
     return [_sectionHeaders objectAtIndex:section];
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 44;
-    }else{
-        if (indexPath.row == 0) {
-            return 30;
-        }else{
-            return 44;
-        }
-    }
-}
+//- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.row == 0 && indexPath.section == 1) {
+//        return 30;
+//    }else{
+//        return 44;
+//    }
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 2;
-    }else{
-        return 3;
+        return 1;
     }
+    
+    return 2;
 }
 
-- (NSMutableDictionary *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period{
-    NSInteger teamId = [team integerValue];
-    NSInteger pts = 0, pf = 0, threePM = 0, ft = 0;
-    for (Action * action in _actionsInMatch) {
-        NSInteger tempPeriod = [action.period integerValue];
-        NSInteger tempTeamId = [action.team integerValue];
-        if (tempTeamId == teamId && (-1 == period || tempPeriod == period)) {
-            NSInteger actionType = [action.type integerValue];
-            switch (actionType) {
-                case ActionType1Point:
-                    pts ++;
-                    ft ++;
-                    break;
-                case ActionType2Points:
-                    pts += 2;
-                    break;
-                case ActionType3Points:
-                    pts += 3;
-                    threePM += 3;
-                    break;
-                case ActionTypeFoul:
-                    pf += 1;
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", pts] forKey:kPTS];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", pf] forKey:kPF];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", threePM] forKey:k3PM];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", ft] forKey:kFT];
-    
-    return dictionary;
-}
-
-- (void)setStatisticsForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{
-//    UIView * bgView = [cell.subviews objectAtIndex:0];
-    if (indexPath.row == 0) {
-        // 技术统计section的第一行作为标题栏，不用修改内容。
-//        bgView.backgroundColor = [UIColor lightGrayColor];
-        return;
-    }else {
-//        bgView.backgroundColor = [UIColor clearColor];
-    }
-    
+- (void)setStatisticsForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{    
+    ActionManager * am = [ActionManager defaultManager];
     NSMutableDictionary * statistics;
     if (indexPath.section == 1) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 0) {
             // 主队全场技术统计。
-            statistics = [self statisticsForTeam:_match.homeTeam inPeriod:-1];
+            statistics = [am statisticsForTeam:_match.homeTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
             [statistics setObject:_homeTeamName forKey:kName];
         }else{
             // 客队全场技术统计。
-            statistics = [self statisticsForTeam:_match.guestTeam inPeriod:-1];
+            statistics = [am statisticsForTeam:_match.guestTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
             [statistics setObject:_guestTeamName forKey:kName];
         }
     }else{
         NSInteger period = indexPath.section - 2;
         if (indexPath.row == 1) {
             // 主队第period节技术统计。
-            statistics = [self statisticsForTeam:_match.homeTeam inPeriod:period];
+            statistics = [am statisticsForTeam:_match.homeTeam inPeriod:period inActions:_actionsInMatch];
             [statistics setObject:_homeTeamName forKey:kName];
         }else{
             // 客队第period节技术统计。
-            statistics = [self statisticsForTeam:_match.guestTeam inPeriod:period];
+            statistics = [am statisticsForTeam:_match.guestTeam inPeriod:period inActions:_actionsInMatch];
             [statistics setObject:_guestTeamName forKey:kName];
         }
     }
 
-    UILabel * label;
-    
-    label = (UILabel *)[cell viewWithTag:UICellTeamName];
-    label.text = [statistics objectForKey:kName];
-    
-    label = (UILabel *)[cell viewWithTag:UICellPoints];
-    label.text = [statistics objectForKey:kPTS];
-    
-    label = (UILabel *)[cell viewWithTag:UICellFouls];
-    label.text = [statistics objectForKey:kPF];
-    
-    label = (UILabel *)[cell viewWithTag:UICellThreePoints];
-    label.text = [statistics objectForKey:k3PM];
-    
-    label = (UILabel *)[cell viewWithTag:UICellFreeThrows];
-    label.text = [statistics objectForKey:kFT];
+    [GameDetailsViewController setDataForCell:cell withStatistics:statistics];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = nil;
-    if (indexPath.section == 0) {
-        static NSString * CellIdentifier = @"CellIdentifier0";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        }
-        
-        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yy-MM-dd hh:mm"];
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"时间";
-                cell.detailTextLabel.text = [dateFormatter stringFromDate:_match.date];        
-                break;
-            case 1:
-                cell.textLabel.text = @"位置";
-                cell.detailTextLabel.text = @"未指定";
-                break;
-            default:
-                break;
-        }
-    }else{
+    if(indexPath.section == 1){
+        // 球队技术统计。
         // 在xib中设置UITableViewCell的reuseIdentifier。
-        static NSString * CellIdentifier = @"MatchPartSummaryCell";
+        static NSString * CellIdentifier = @"StatisticsCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             [[NSBundle mainBundle] loadNibNamed:@"MatchPartSummaryCell" owner:self options:nil];
@@ -320,12 +277,58 @@ typedef enum {
         }
         
         [self setStatisticsForCell:cell atIndexPath:indexPath];
+    }else{
+        static NSString * CellIdentifier = @"CellIdentifier0";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (nil == cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        }
+        
+        if (indexPath.section == 0) {
+            // 基本信息。
+            NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yy-MM-dd hh:mm"];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = LocalString(@"MatchDate");
+                    cell.detailTextLabel.text = [dateFormatter stringFromDate:_match.date];  
+                    break;
+                case 1:
+                    cell.detailTextLabel.text = [self thoroughfareWithAdress:_match.court];
+                    cell.textLabel.text = LocalString(@"MatchLocation");
+                    break;
+                default:
+                    break;
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }else if(indexPath.section == 3){
+            cell.textLabel.text = [_periodNameArray objectAtIndex:indexPath.row];
+            cell.detailTextLabel.text = nil;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        }else if(indexPath.section == 2){
+            // 队员技术统计。
+            cell.textLabel.text = indexPath.row == 0 ? _homeTeamName : _guestTeamName;
+            cell.detailTextLabel.text = nil;            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;            
+        }
     }
     
     return cell;
 }
 
 #pragma mark UITableViewDelegate
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2) {
+        NSNumber * team = indexPath.row == 0 ? _match.homeTeam : _match.guestTeam;
+        PlayerStatisticsViewController * viewController = [[PlayerStatisticsViewController alloc] initWithStyle:UITableViewStylePlain];
+        [viewController initWithTeamId:team];
+        viewController.actionsInMatch = _actionsInMatch;
+        viewController.title = [[TeamManager defaultManager] teamWithId:team].name;
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+}
  
 @end

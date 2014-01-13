@@ -15,4 +15,6 @@
 - (BOOL)synchroniseToStore;
 - (BOOL)deleteFromStore:(id)record synchronized:(BOOL)synchronized;
 
++ (NSNumber *)generateIdForKey:(NSString *)key;
+
 @end
