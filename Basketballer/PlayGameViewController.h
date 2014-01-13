@@ -23,8 +23,8 @@
 @property (nonatomic, weak) IBOutlet UILabel * gameHostScoreLable;
 @property (nonatomic, weak) IBOutlet UILabel * gameGuestScoreLable;
 @property (nonatomic, weak) IBOutlet UIButton * gamePeroidButton;
-@property (nonatomic, weak) OperateGameView * operateGameView1;
-@property (nonatomic, weak) OperateGameView * operateGameView2;
+@property (nonatomic, strong) OperateGameView * operateGameView1;
+@property (nonatomic, strong) OperateGameView * operateGameView2;
 @property (nonatomic, weak) NSTimer * timeCountDownTimer;
 @property (nonatomic, weak) Team * hostTeam;
 @property (nonatomic, weak) Team * guestTeam;
