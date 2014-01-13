@@ -31,7 +31,7 @@
         return NO;
     }
     
-    // 缓存暂停时间（线程不安全，切记不能在多线程环境中访问这个数据）。
+    // TODO: 缓存暂停时间（线程不安全，切记不能在多线程环境中访问这个数据）。
     self.timeoutLength = TimeoutLengthRegular;
     return YES;   
 }
