@@ -7,8 +7,10 @@
 //
 
 #import "Feature.h"
+#import <objc/runtime.h>
 
 static Feature * sDefaultFeatures;
+static char UITopViewControllerKey;
 
 @implementation Feature
 
@@ -29,6 +31,15 @@ static Feature * sDefaultFeatures;
     return _navigationItemTintColor;
 }
 
+
+- (void)back:(id)sender {
+    UIViewController * topVC = (UIViewController *)objc_getAssociatedObject(sender, &UITopViewControllerKey);
+    if (nil != topVC) {
+        topVC.hidesBottomBarWhenPushed = NO;
+        [topVC.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 + (Feature *)defaultFeature{
     if (nil == sDefaultFeatures) {
         sDefaultFeatures = [[Feature alloc] init];
@@ -43,21 +54,20 @@ static Feature * sDefaultFeatures;
     navigationBar.tintColor = self.navigationItemTintColor;
 }
 
-- (void)initNavleftBarItemWithController:(UIViewController *)controller withAction:(SEL)action{
-    if (action != nil) {
+- (void)initNavleftBarItemWithController:(UIViewController *)controller {
         controller.navigationItem.hidesBackButton = YES;
         UIButton *leftButton;
         UIBarButtonItem * item;
         
         leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         [leftButton setImage:[UIImage imageNamed:@"backNavigationBar"] forState:UIControlStateNormal];
-        [leftButton addTarget:controller action:action forControlEvents:UIControlEventTouchUpInside];
+        [leftButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+        
+        objc_setAssociatedObject(leftButton, &UITopViewControllerKey, controller, OBJC_ASSOCIATION_ASSIGN);
+        
         item = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
         
         controller.navigationItem.leftBarButtonItem = item;
-    }else {
-        controller.navigationItem.leftBarButtonItem = nil;
-    }
 }
 
 - (UIColor *)cellTextColor {

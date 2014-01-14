@@ -43,7 +43,7 @@
     [super viewDidLoad];
     self.title= LocalString(@"Result");
     [self initUIButton];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:nil];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (void)viewDidUnload

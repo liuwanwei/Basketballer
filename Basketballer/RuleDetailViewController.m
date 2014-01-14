@@ -11,6 +11,7 @@
 #import "FibaRule.h"
 #import "Fiba3pbRule.h"
 #import "AppDelegate.h"
+#import "Feature.h"
 
 @interface RuleDetailViewController (){
     NSArray * _ruleTypeHeader;
@@ -65,6 +66,8 @@
                      nil];
     _winningRules = [NSArray arrayWithObject:LocalString(@"Special")];
     _rowsInSection = [NSArray arrayWithObjects:_timeRules, _foulRules, _timeoutRules, _winningRules, nil];
+    
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (void)viewDidUnload

@@ -127,12 +127,8 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == alertView.firstOtherButtonIndex) {
         [[MatchManager defaultManager] deleteMatch:_match];
-        [self back];
+        [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showActionMenu{
@@ -168,7 +164,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     
     //UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStyleBordered target:self action:@selector(showActionMenu)];
     UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showActionMenu)];
