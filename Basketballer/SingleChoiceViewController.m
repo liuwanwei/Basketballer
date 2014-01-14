@@ -22,10 +22,6 @@
 @synthesize currentChoice = _currentChoice;
 @synthesize delegate = _delegate;
 
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -49,7 +45,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     [self.tableView reloadData];
 }
 

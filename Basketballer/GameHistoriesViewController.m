@@ -33,9 +33,6 @@
 @synthesize historyType = _historyType;
 
 #pragma 私有函数
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 //- (void)initNavigationItem {
 //    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
@@ -86,7 +83,7 @@
     [super viewDidLoad];
 //    [self initNavigationItem];
     if (_historyType == HistoryTypeTeam) {
-         [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+         [[Feature defaultFeature] initNavleftBarItemWithController:self];
         self.title = LocalString(@"Record");
     }else {
         self.matches = [[MatchManager defaultManager] matchesArray];

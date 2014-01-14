@@ -167,6 +167,7 @@
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		3CFE1D2F15AC876A00247B80 /* TeamNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */; };
 		3CFE1D3015AC876A00247B80 /* TeamNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2E15AC876A00247B80 /* TeamNameViewController.xib */; };
+		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
 		E62222A915ECA692003FCDD3 /* DefaultGuestTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */; };
 		E62222AA15ECA692003FCDD3 /* DefaultHomeTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */; };
 		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
@@ -742,13 +743,13 @@
 		3CC1681715A2E52B00A2AB44 /* Basketballer */ = {
 			isa = PBXGroup;
 			children = (
-				3CBA0C0215AECD06003505BC /* Popover */,
-				3C121F7615A43D290062BECD /* library */,
-				E68D110315A2F7020074982D /* DataStore */,
-				3CC1683815A2E6EE00A2AB44 /* Classes */,
-				3CC1683315A2E5E400A2AB44 /* Resources */,
 				3CC1682115A2E52B00A2AB44 /* AppDelegate.m */,
 				3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */,
+				3CC1683815A2E6EE00A2AB44 /* Classes */,
+				E68D110315A2F7020074982D /* DataStore */,
+				3C121F7615A43D290062BECD /* library */,
+				3CBA0C0215AECD06003505BC /* Popover */,
+				3CC1683315A2E5E400A2AB44 /* Resources */,
 				3CC1681815A2E52B00A2AB44 /* Supporting Files */,
 			);
 			path = Basketballer;
@@ -808,22 +809,26 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E62D383815E6748D004AA543 /* MatchSettingViewController.h */,
-				E62D383915E6748D004AA543 /* MatchSettingViewController.m */,
+				3C07F40F1635194A00A2D645 /* AboutUsViewController.h */,
+				3C07F4101635194A00A2D645 /* AboutUsViewController.m */,
+				3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */,
+				3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */,
 				3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */,
 				3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */,
 				E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */,
 				E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */,
-				3C121F6215A3E9C00062BECD /* TeamInfoViewController.h */,
-				3C121F6315A3E9C00062BECD /* TeamInfoViewController.m */,
-				3CFE1D2C15AC876900247B80 /* TeamNameViewController.h */,
-				3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */,
 				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
 				E68D117815A5F2900074982D /* GameDetailsViewController.m */,
 				3CCAE45615BE25790030C302 /* GameHistoriesMapViewController.h */,
 				3CCAE45715BE25790030C302 /* GameHistoriesMapViewController.m */,
 				3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */,
 				3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */,
+				3CC5633215F09BCB0026A7E8 /* MatchFinishedDetailsViewController.h */,
+				3CC5633315F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m */,
+				E62D383815E6748D004AA543 /* MatchSettingViewController.h */,
+				E62D383915E6748D004AA543 /* MatchSettingViewController.m */,
+				3C35FA4815EE5970006B2470 /* MoreViewController.h */,
+				3C35FA4915EE5970006B2470 /* MoreViewController.m */,
 				E6E032BC15CF73E800AF91CB /* NewActionViewController.h */,
 				E6E032BD15CF73E900AF91CB /* NewActionViewController.m */,
 				E6E032CB15CFC0C800AF91CB /* NewPlayerViewController.h */,
@@ -831,20 +836,26 @@
 				E6E032CD15CFC0CA00AF91CB /* NewPlayerViewController.xib */,
 				3C121F5C15A3D58A0062BECD /* OperateGameView.h */,
 				3C121F5D15A3D58A0062BECD /* OperateGameView.m */,
-				E6E032C815CFC00000AF91CB /* PlayerListViewController.h */,
-				E6E032C915CFC00100AF91CB /* PlayerListViewController.m */,
-				E6914F6615D4E640002CAEE0 /* PlayerEditViewController.h */,
-				E6914F6715D4E641002CAEE0 /* PlayerEditViewController.m */,
 				E6914F6015D4E5AC002CAEE0 /* PlayerActionViewController.h */,
 				E6914F6115D4E5AC002CAEE0 /* PlayerActionViewController.m */,
+				E6914F6615D4E640002CAEE0 /* PlayerEditViewController.h */,
+				E6914F6715D4E641002CAEE0 /* PlayerEditViewController.m */,
+				3CDE39F215E75FCF003A7FD3 /* PlayerFoulStatisticViewController.h */,
+				3CDE39F315E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m */,
+				E6E032C815CFC00000AF91CB /* PlayerListViewController.h */,
+				E6E032C915CFC00100AF91CB /* PlayerListViewController.m */,
 				E6914F6315D4E5DA002CAEE0 /* PlayerStatisticsViewController.h */,
 				E6914F6415D4E5DA002CAEE0 /* PlayerStatisticsViewController.m */,
 				3CC1687B15A2F70E00A2AB44 /* PlayGameViewController.h */,
 				3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */,
-				E65FF05815C5057500E96D6A /* RulesViewController.h */,
-				E65FF05915C5057600E96D6A /* RulesViewController.m */,
+				3C5207D415EB53090079D5DB /* PlaySoundView.h */,
+				3C5207D515EB53090079D5DB /* PlaySoundView.m */,
+				3C06651C15F5AF2700B1DCB8 /* PlaySoundViewController.h */,
+				3C06651D15F5AF2700B1DCB8 /* PlaySoundViewController.m */,
 				E62D384315EB5DBB004AA543 /* RuleDetailViewController.h */,
 				E62D384415EB5DBC004AA543 /* RuleDetailViewController.m */,
+				E65FF05815C5057500E96D6A /* RulesViewController.h */,
+				E65FF05915C5057600E96D6A /* RulesViewController.m */,
 				E68D116015A4245A0074982D /* SingleChoiceViewController.h */,
 				E68D116115A4245A0074982D /* SingleChoiceViewController.m */,
 				3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */,
@@ -854,8 +865,12 @@
 				E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */,
 				E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */,
 				E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */,
+				3C121F6215A3E9C00062BECD /* TeamInfoViewController.h */,
+				3C121F6315A3E9C00062BECD /* TeamInfoViewController.m */,
 				3CBA0BF815AE7726003505BC /* TeamListViewController.h */,
 				3CBA0BF915AE7726003505BC /* TeamListViewController.m */,
+				3CFE1D2C15AC876900247B80 /* TeamNameViewController.h */,
+				3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */,
 				E6914F8615DA22E6002CAEE0 /* TeamsInGameViewController.h */,
 				E6914F8715DA22EA002CAEE0 /* TeamsInGameViewController.m */,
 				3CC9129C15B1C477003C74D4 /* TimeoutPromptView.h */,
@@ -864,20 +879,6 @@
 				3C13E49715C192A900F4307C /* TimeStopPromptView.m */,
 				3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */,
 				3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */,
-				3CDE39F215E75FCF003A7FD3 /* PlayerFoulStatisticViewController.h */,
-				3CDE39F315E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m */,
-				3C5207D415EB53090079D5DB /* PlaySoundView.h */,
-				3C5207D515EB53090079D5DB /* PlaySoundView.m */,
-				3C35FA4815EE5970006B2470 /* MoreViewController.h */,
-				3C35FA4915EE5970006B2470 /* MoreViewController.m */,
-				3CC5633215F09BCB0026A7E8 /* MatchFinishedDetailsViewController.h */,
-				3CC5633315F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m */,
-				3C06651C15F5AF2700B1DCB8 /* PlaySoundViewController.h */,
-				3C06651D15F5AF2700B1DCB8 /* PlaySoundViewController.m */,
-				3C07F40F1635194A00A2D645 /* AboutUsViewController.h */,
-				3C07F4101635194A00A2D645 /* AboutUsViewController.m */,
-				3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */,
-				3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1129,6 +1130,7 @@
 				3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */,
 				3C121F6015A3D58A0062BECD /* OperateGameView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
+				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */,
 				E68D116F15A591AA0074982D /* MatchRecordCell.xib in Resources */,
 				E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */,
@@ -1465,6 +1467,7 @@
 		3CC1682915A2E52B00A2AB44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
@@ -1476,7 +1479,7 @@
 					"\"$(SRCROOT)/Basketballer/umeng/SNS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F07D83FA-894B-4A1F-853A-B63300B9776B";
+				PROVISIONING_PROFILE = "21044B71-7FEA-430D-A730-11B1C6542741";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1486,6 +1489,7 @@
 		3CC1682A15A2E52B00A2AB44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
@@ -1497,7 +1501,7 @@
 					"\"$(SRCROOT)/Basketballer/umeng/SNS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F07D83FA-894B-4A1F-853A-B63300B9776B";
+				PROVISIONING_PROFILE = "21044B71-7FEA-430D-A730-11B1C6542741";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

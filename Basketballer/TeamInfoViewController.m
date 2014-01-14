@@ -55,9 +55,6 @@
 - (void)back {
     if (_operateMode == Insert) {
         [[AppDelegate delegate] dismissModelViewController];
-    }else{
-        self.hidesBottomBarWhenPushed = NO;
-        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -157,7 +154,7 @@
         self.navigationItem.leftBarButtonItem = _cancelItem;
     }else{
         self.title = LocalString(@"TeamInfo");
-        [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];        
+        [[Feature defaultFeature] initNavleftBarItemWithController:self];
     }
 }
 
