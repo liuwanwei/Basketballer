@@ -39,10 +39,6 @@ ActionType _actionTypeArray[][3] = {{ActionType3Points, ActionType2Points, Actio
 @synthesize team = _team;
 @synthesize statistics = _statistics;
 
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)showAlertView:(NSString *)message {
     UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:LocalString(@"Alert") 
                                                message:message delegate:self 
@@ -123,7 +119,7 @@ ActionType _actionTypeArray[][3] = {{ActionType3Points, ActionType2Points, Actio
     [super viewWillAppear:animated];
     [self setTitle:LocalString(@"NewStatistic")];
     [self.tableView reloadData];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

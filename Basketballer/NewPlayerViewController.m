@@ -128,7 +128,7 @@
         self.name.text = self.player.name;
         
         self.title = LocalString(@"PlayerInfo");
-        [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(dismiss)];        
+        [[Feature defaultFeature] initNavleftBarItemWithController:self];        
     }else{
         self.title = LocalString(@"NewPlayer");
         self.navigationItem.leftBarButtonItem = _cancelItem;

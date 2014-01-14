@@ -26,11 +26,6 @@
 @synthesize tableView = _tableView;
 @synthesize actionRecords = _actionRecords;
 
-#pragma 私有函数
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma 事件函数
 -(void) swip:(UISwipeGestureRecognizer *)swip {
     [self.navigationController popViewControllerAnimated:YES];
@@ -89,7 +84,7 @@
 {
     [super viewDidLoad];
     self.title = LocalString(@"ActionRecords");
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
     swip.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swip];

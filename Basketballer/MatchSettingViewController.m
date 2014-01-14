@@ -85,10 +85,6 @@ typedef enum{
     [[GameSetting defaultSetting] setEnableAutoPromptSound:sender.on];
 }
 
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -101,7 +97,7 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     self.title = LocalString(@"Setting");
     [self initUIButton];
 }

@@ -20,10 +20,6 @@
 @synthesize teamId = _teamId;
 @synthesize players = _players;
 
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)initWithTeamId:(NSNumber *)teamId{
     _teamId = teamId;
     _players = [[PlayerManager defaultManager] playersForTeam:_teamId];
@@ -31,7 +27,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style

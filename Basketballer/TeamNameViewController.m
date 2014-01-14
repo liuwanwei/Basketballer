@@ -26,10 +26,6 @@
     self.teamNameText.text = self.teamName;
 }
 
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -47,7 +43,7 @@
     self.teamNameText.frame = frame;
     self.teamNameText.font = [UIFont systemFontOfSize:17.0f];
     
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     
     [self initTeamNameText];
     [self.teamNameText becomeFirstResponder];

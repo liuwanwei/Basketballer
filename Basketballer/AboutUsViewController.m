@@ -24,10 +24,6 @@
     _arrayNumber = [[NSArray alloc] initWithObjects:@"iharbor",@"1733875695",nil];
 }
 
-- (void)back {
-   [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -52,7 +48,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self withAction:@selector(back)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 #pragma mark - Table view data source
