@@ -13,6 +13,7 @@
 #import "TeamStatistics.h"
 #import "MatchUnderWay.h"
 #import "AccountRule.h"
+#import "AmateurRule.h"
 
 @implementation BaseRule
 
@@ -29,6 +30,10 @@
          return [[Fiba3pbRule alloc] init];
      }else if([mode isEqualToString:kMatchModeAccount]) {
         return [[AccountRule alloc] init];
+     }else if([mode isEqualToString:kMatchModeAmateur20] ||
+              [mode isEqualToString:kMatchModeAmateur15] ||
+              [mode isEqualToString:kMatchModeAmateur25]){
+         return [[AmateurRule alloc] initWithMode:mode];
      }else {
          return [[BaseRule alloc] init];
      }
@@ -36,11 +41,15 @@
 
 // 每个周期有多长时间，单位（秒）。
 - (NSInteger)timeLengthForPeriod:(MatchPeriod)period{
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return 0;
 }
 
 // 每个周期结束后休息多久。
 - (NSInteger)restTimeLengthAfterPeriod:(MatchPeriod)period{
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
     return 0;
 }
 

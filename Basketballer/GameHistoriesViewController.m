@@ -34,14 +34,14 @@
 
 #pragma 私有函数
 
-- (void)initNavigationItem {
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    UIBarButtonItem * leftItem =  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showGameHistoriesMapView)];
-    self.navigationItem.leftBarButtonItem = leftItem;
-
-}
+//- (void)initNavigationItem {
+//    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+//    
+//    UIBarButtonItem * leftItem =  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showGameHistoriesMapView)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
+//
+//}
 
 #pragma 事件函数
 
