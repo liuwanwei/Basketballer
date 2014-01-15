@@ -51,7 +51,11 @@ static char UITopViewControllerKey;
 - (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar{
     UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
     [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    navigationBar.tintColor = self.navigationItemTintColor;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        navigationBar.tintColor = [UIColor whiteColor];
+    }else {
+        navigationBar.tintColor = self.navigationItemTintColor;
+    }
 }
 
 - (void)initNavleftBarItemWithController:(UIViewController *)controller {
