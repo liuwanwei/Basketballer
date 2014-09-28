@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define IOS_7 ([[UIDevice currentDevice].systemVersion doubleValue] > 6.2)
+
 @interface Feature : NSObject
 
 @property (strong, nonatomic, readonly) UIColor * weChatTableBgColor;
@@ -15,9 +17,11 @@
 
 + (Feature *)defaultFeature;
 
-- (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar;
+- (void)customNavigationBar:(UINavigationBar *)navigationBar;
 - (void)initNavleftBarItemWithController:(UIViewController *)controller;
 
 - (UIColor *)cellTextColor;
 - (UIColor *)cellDetailTextColor;
+
+- (void)hideExtraCellLineForTableView:(UITableView *)tableView;
 @end

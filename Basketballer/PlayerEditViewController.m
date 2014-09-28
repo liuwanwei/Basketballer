@@ -23,7 +23,7 @@
     newPlayer.parentWhoPresentedMe = self;
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:newPlayer];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
 
     [self presentModalViewController:nav animated:YES];
 }

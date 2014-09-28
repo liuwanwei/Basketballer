@@ -61,6 +61,10 @@
     [self initTableView];
     
     self.title = NSLocalizedString(@"Others", nil);
+    
+    if (IOS_7) {
+        self.tableView.separatorInset =  UIEdgeInsetsZero;
+    }
 }
 
 - (void)viewDidUnload
@@ -94,6 +98,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (IOS_7) {
+            self.tableView.separatorInset =  UIEdgeInsetsZero;
+        }
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
@@ -112,7 +120,7 @@
     }
     
     cell.textLabel.text = [[_rowsInSection objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [[Feature defaultFeature] cellTextColor]; 
+    cell.textLabel.textColor = [[Feature defaultFeature] cellTextColor];
     
     return cell;
 }

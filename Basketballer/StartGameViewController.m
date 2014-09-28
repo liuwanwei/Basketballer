@@ -1,7 +1,7 @@
 //
 //  StartGameViewController.m
 //  Basketballer
-//
+//  新游戏界面（第一个Tab）
 //  Created by maoyu on 12-7-10.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
@@ -13,21 +13,22 @@
 #import "GameSetting.h"
 #import "AppDelegate.h"
 #import "Feature.h"
-#import "TeamsInGameViewController.h"
+#import "ChooseTeamViewController.h"
 #import "RuleDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ActionManager.h"
 #import "MatchUnderWay.h"
 #import "WellKnownSaying.h"
 #import "AccountRuleDetailViewController.h"
+#import "NewPlayerViewController.h"
 
 @interface StartGameViewController () {
-    NSArray * _sectionsTitle;
+//    NSArray * _sectionsTitle;
     Team * _hostTeam;
     Team * _guestTeam;
     NSInteger _curClickRowIndex;
     
-    NSString * __weak _gameMode;
+//    NSString * __weak _gameMode;
     SingleChoiceViewController * _chooseGameModeView;
     
     NSArray * _modeDetailArray;
@@ -42,45 +43,12 @@
 
 #pragma 私有函数
 
-- (UIColor *)blueColor {
-    UIColor * color;
-    color = [UIColor colorWithRed:0.333333 green:0.608888 blue:0.9511111 alpha:1.0];
-    return color;
-}
-
-- (UIColor *)greenColor {
-    UIColor * color;
-    color = [UIColor colorWithRed:0.142222 green:0.795555 blue:0.000000 alpha:1.0];
-    return color;
-}
-
-- (UIColor *)skyBlue{
-    return [UIColor colorWithRed:0.000000 green:0.388235 blue:1.000000 alpha:1.0];
-}
-
 - (UIColor *)cellDetailTextColor{
     // RGB(81, 86, 132)
     return [UIColor colorWithRed:0.317647 green:0.337254 blue:0.517647 alpha:1.0];
 }
 
-- (void)initLabel {
-    _label1.shadowColor = [UIColor lightGrayColor];
-    _label1.shadowOffset = CGSizeMake(1.0f, 2.0f);
-    _label1.shadowBlur = 1.0f;
-    _label1.innerShadowColor = [UIColor grayColor];
-    _label1.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    _label1.textColor = [self blueColor];
-    
-    _label2.shadowColor = [UIColor lightGrayColor];
-    _label2.shadowOffset = CGSizeMake(1.0f, 2.0f);
-    _label2.shadowBlur = 1.0f;
-    //_label2.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-    _label2.innerShadowColor = [UIColor grayColor];
-    _label2.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    _label2.textColor = [self blueColor];
-
-}
-
+// 展示“名言警句”，暂时关闭。
 - (void)updateSaying:(NSDictionary *)saying{
     if (saying) {
         UILabel * wordsLabel = (UILabel *)[self.inspirationView viewWithTag:1];
@@ -120,8 +88,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _sectionsTitle = [NSArray arrayWithObjects:@"主队", @"客队" ,@"竞技规则",nil];
-    _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];  
+//    _sectionsTitle = [NSArray arrayWithObjects:@"主队", @"客队" ,@"竞技规则",nil];
+//    _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -138,8 +106,6 @@
     self.tableView.rowHeight = 60;
     
     self.title = NSLocalizedString(@"Start", nil);
-//    [[NSNotificationCenter defaultCenter] addObserver:self 
-//              selector:@selector(newSayingComing:) name:kNewSayingMessage object:nil];
 }
 
 - (void)viewDidUnload
@@ -181,15 +147,13 @@
 {
     UITableViewCell * cell = nil;
   
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];        
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     NSInteger index = indexPath.section;
     cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
     cell.textLabel.textColor = [self cellDetailTextColor];
-//    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0]; 
-//    cell.detailTextLabel.text = [_modeDetailArray objectAtIndex:index]; 
+    
     if (indexPath.section == 0) {
         cell.imageView.image = [UIImage imageNamed:@"BasketballBlueWhite"];
     }else{
@@ -204,14 +168,19 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO: Test.
+    NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
+    
     GameSetting * gs = [GameSetting defaultSetting];
     MatchUnderWay * match = [MatchUnderWay defaultMatch];
     match.matchMode = [gs.gameModes objectAtIndex:indexPath.section];
     
-    TeamsInGameViewController * viewController;
-    viewController = [[TeamsInGameViewController alloc] initWithNibName:@"TeamsInGameViewController" bundle:nil];
+    ChooseTeamViewController * viewController;
+    viewController = [[ChooseTeamViewController alloc] initWithNibName:@"ChooseTeamViewController" bundle:nil];
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:viewController];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     [[AppDelegate delegate] presentModelViewController:nav];
 }
 

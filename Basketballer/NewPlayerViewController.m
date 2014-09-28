@@ -1,7 +1,7 @@
 //
 //  NewPlayerViewController.m
 //  Basketballer
-//
+//  新球员
 //  Created by Liu Wanwei on 12-8-6.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
@@ -10,10 +10,12 @@
 #import "PlayerManager.h"
 #import "AppDelegate.h"
 #import "Feature.h"
+#import "ImageCell.h"
+#import "TextEditorViewController.h"
 
 @interface NewPlayerViewController (){
-    UIBarButtonItem * _cancelItem;
     UIBarButtonItem * _saveItem;
+    BOOL _dirty;
 }
 
 @end
@@ -37,11 +39,9 @@
 }
 
 - (void)showInvalidNumberAlert{
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:LocalString(@"InvalidNumber") 
-                                                message:LocalString(@"InputValidNumber") 
-                                                delegate:self 
-                                                cancelButtonTitle:LocalString(@"Ok") 
-                                                otherButtonTitles:nil, nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:LocalString(@"InvalidNumber") message:LocalString(@"InputValidNumber")
+        delegate:self
+        cancelButtonTitle:LocalString(@"Ok") otherButtonTitles:nil, nil];
     [alert show];
 }
 
@@ -81,11 +81,6 @@
     }
 }
 
-- (void)deletePlayer{
-    [[PlayerManager defaultManager] deletePlayer:_player];
-    [self dismiss];
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -98,26 +93,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithTitle:LocalString(@"Cancel") 
-            style:UIBarButtonItemStyleBordered target:self action:@selector(dismiss)];
-    self.navigationItem.leftBarButtonItem = item;
+    _dirty = false;
     
     _saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = _saveItem;
     
-    _cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)];
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];        
     
-    self.numberLabel.text = LocalString(@"Number");
-    self.nameLabel.text = LocalString(@"Name");
+    // 显示模式兼容iOS7的ExtendedLayout模式
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    // 注册文本编辑完成事件处理函数
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationMessage:) name:kTextSavedMsg object:nil];
+    
+    [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    // 解除消息监听函数
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -128,18 +128,143 @@
         self.name.text = self.player.name;
         
         self.title = LocalString(@"PlayerInfo");
-        [[Feature defaultFeature] initNavleftBarItemWithController:self];        
     }else{
         self.title = LocalString(@"NewPlayer");
-        self.navigationItem.leftBarButtonItem = _cancelItem;
     }
-    
-    [self.number becomeFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = nil;
+    
+    if (indexPath.row == 0) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = LocalString(@"name");
+        cell.detailTextLabel.text = self.player.name;
+    }else if(indexPath.row == 1){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = LocalString(@"number");
+        cell.detailTextLabel.text = [self.player.number stringValue];
+    }else if(indexPath.row == 2){
+        NSArray * nibs = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:self options:nil];
+        cell = [nibs objectAtIndex:0];
+        self.imageCell = (ImageCell *) cell;
+        self.imageCell.title.text = LocalString(@"Profile");
+    }
+    
+    return cell;
+}
+
+static int sLastSelectedRow = -1;
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0 || indexPath.row == 1) {
+            TextEditorViewController * vc = [[TextEditorViewController alloc] initWithNibName:@"TextEditorViewController" bundle:nil];
+            
+            // 设置文本界面标题
+            if (indexPath.row == 0) {
+                vc.title = LocalString(@"PlayerName");
+            }else{
+                vc.title = LocalString(@"PlayerNumber");
+            }
+            
+            sLastSelectedRow = indexPath.row;
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if (indexPath.row == 2){
+            [self showActionSheet];
+        }
+    }
+}
+
+- (void)notificationMessage:(NSNotification *)notification{
+    if ([notification.name isEqualToString:kTextSavedMsg]) {
+        NSDictionary * userInfo = notification.userInfo;
+        NSString * text = [userInfo objectForKey:kTextSavedMsg];
+        if (text != nil) {
+            UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sLastSelectedRow inSection:0]];
+            if (sLastSelectedRow == 0) {
+                NSLog(@"球员名字 %@", text);
+            }else{
+                NSLog(@"球衣号码 %@", text);
+            }
+            
+            cell.detailTextLabel.text = text;
+        }
+    }
+}
+
+// 展示拍照或选照片菜单
+- (void)showActionSheet {
+    UIActionSheet * menu = [[UIActionSheet alloc]
+                            initWithTitle:nil delegate:self
+                            cancelButtonTitle:LocalString(@"Cancel")
+                            destructiveButtonTitle:nil
+                            otherButtonTitles:LocalString(@"FromLibrary"), LocalString(@"Snapshot"), nil];
+    
+    [menu showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+#pragma mark - ActionSheet view delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0) {
+        [self showPhotoAlbum];
+    }else if(buttonIndex == 1){
+        [self showCamera];
+    }
+}
+
+- (void)showPhotoAlbum {
+    UIImagePickerController * imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePickerController.allowsEditing = YES;
+        [self presentModalViewController:imagePickerController animated:YES];
+    }
+}
+
+- (void)showCamera {
+    UIImagePickerController * imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePickerController.allowsEditing = YES;
+        [self presentModalViewController:imagePickerController animated:YES];
+    }
+}
+
+
+#pragma mark UIImagePickerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage * image = [info valueForKey:UIImagePickerControllerEditedImage];
+    
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+    ImageCell  *cell = (ImageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    cell.profileImage.image = image;
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

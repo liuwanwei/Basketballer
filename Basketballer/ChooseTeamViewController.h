@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TeamsInGameViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ChooseTeamViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell * teamCell;

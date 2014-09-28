@@ -32,7 +32,7 @@
     if (nil == team) {
         editTeam.operateMode = Insert;
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:editTeam];
-        [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+        [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
         [[AppDelegate delegate] presentModelViewController:nav];
     }else{
         editTeam.operateMode = Update;
@@ -67,6 +67,8 @@
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTeam)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
     
     self.title = NSLocalizedString(@"Teams", nil);
 }

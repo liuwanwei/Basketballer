@@ -178,7 +178,7 @@
 		E658146C15DF4F8E007B4F7E /* BaseRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E658146B15DF4F8E007B4F7E /* BaseRule.m */; };
 		E658147015DF5AC0007B4F7E /* FibaRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E658146F15DF5AC0007B4F7E /* FibaRule.m */; };
 		E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E65C9D0915F488FA00DCE645 /* Localizable.strings */; };
-		E65FF05315C455F300E96D6A /* TeamImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65FF05215C455F200E96D6A /* TeamImageCell.xib */; };
+		E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65FF05215C455F200E96D6A /* ImageCell.xib */; };
 		E65FF05A15C5057600E96D6A /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05915C5057600E96D6A /* RulesViewController.m */; };
 		E65FF05D15C6261F00E96D6A /* Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05C15C6261F00E96D6A /* Feature.m */; };
 		E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */; };
@@ -197,8 +197,8 @@
 		E6914F7C15D72B6F002CAEE0 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F7B15D72B6F002CAEE0 /* SwitchCell.xib */; };
 		E6914F7E15D8C986002CAEE0 /* TeamSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F7D15D8C986002CAEE0 /* TeamSelectionCell.xib */; };
 		E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */; };
-		E6914F8915DA22ED002CAEE0 /* TeamsInGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F8715DA22EA002CAEE0 /* TeamsInGameViewController.m */; };
-		E6914F8A15DA22ED002CAEE0 /* TeamsInGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F8815DA22EC002CAEE0 /* TeamsInGameViewController.xib */; };
+		E6914F8915DA22ED002CAEE0 /* ChooseTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F8715DA22EA002CAEE0 /* ChooseTeamViewController.m */; };
+		E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F8815DA22EC002CAEE0 /* ChooseTeamViewController.xib */; };
 		E6914F8F15DB2E8B002CAEE0 /* CellBlueSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = E6914F8B15DB2E77002CAEE0 /* CellBlueSelected.png */; };
 		E6914F9015DB2E8B002CAEE0 /* CellBlueSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6914F8C15DB2E7A002CAEE0 /* CellBlueSelected@2x.png */; };
 		E6914F9115DB2E8B002CAEE0 /* CellNotSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = E6914F8D15DB2E7D002CAEE0 /* CellNotSelected.png */; };
@@ -258,6 +258,16 @@
 		FB1BA9371884E44300978359 /* Basketballer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9361884E44300978359 /* Basketballer_Tests.m */; };
 		FB1BA9411884E58300978359 /* AmateurRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9401884E58300978359 /* AmateurRuleTest.m */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
+		FB928FC519D6A2D300F76DC6 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FC319D6A2D300F76DC6 /* RosterViewController.m */; };
+		FB928FC619D6A2D300F76DC6 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB928FC419D6A2D300F76DC6 /* RosterViewController.xib */; };
+		FB928FCA19D6A70800F76DC6 /* RosterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FC819D6A70700F76DC6 /* RosterCollectionViewCell.m */; };
+		FB928FCB19D6A70800F76DC6 /* RosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB928FC919D6A70700F76DC6 /* RosterCollectionViewCell.xib */; };
+		FB928FCE19D6B6E800F76DC6 /* roster_add.png in Resources */ = {isa = PBXBuildFile; fileRef = FB928FCC19D6B6E800F76DC6 /* roster_add.png */; };
+		FB928FCF19D6B6E800F76DC6 /* roster_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FB928FCD19D6B6E800F76DC6 /* roster_delete.png */; };
+		FB928FD119D6BA8A00F76DC6 /* player_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = FB928FD019D6BA8A00F76DC6 /* player_profile.png */; };
+		FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD319D7245100F76DC6 /* ImageCell.m */; };
+		FB928FD819D816AA00F76DC6 /* TextEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD619D816AA00F76DC6 /* TextEditorViewController.m */; };
+		FB928FD919D816AA00F76DC6 /* TextEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB928FD719D816AA00F76DC6 /* TextEditorViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,7 +495,7 @@
 		E65C9D0815F488FA00DCE645 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E65C9D0A15F4891700DCE645 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E65C9D1115F5D65600DCE645 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E65FF05215C455F200E96D6A /* TeamImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamImageCell.xib; sourceTree = "<group>"; };
+		E65FF05215C455F200E96D6A /* ImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		E65FF05815C5057500E96D6A /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
 		E65FF05915C5057600E96D6A /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
 		E65FF05B15C6261F00E96D6A /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
@@ -514,9 +524,9 @@
 		E6914F7B15D72B6F002CAEE0 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		E6914F7D15D8C986002CAEE0 /* TeamSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamSelectionCell.xib; sourceTree = "<group>"; };
 		E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Inspiration.xib; sourceTree = "<group>"; };
-		E6914F8615DA22E6002CAEE0 /* TeamsInGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamsInGameViewController.h; sourceTree = "<group>"; };
-		E6914F8715DA22EA002CAEE0 /* TeamsInGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamsInGameViewController.m; sourceTree = "<group>"; };
-		E6914F8815DA22EC002CAEE0 /* TeamsInGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsInGameViewController.xib; sourceTree = "<group>"; };
+		E6914F8615DA22E6002CAEE0 /* ChooseTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTeamViewController.h; sourceTree = "<group>"; };
+		E6914F8715DA22EA002CAEE0 /* ChooseTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTeamViewController.m; sourceTree = "<group>"; };
+		E6914F8815DA22EC002CAEE0 /* ChooseTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTeamViewController.xib; sourceTree = "<group>"; };
 		E6914F8B15DB2E77002CAEE0 /* CellBlueSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBlueSelected.png; sourceTree = "<group>"; };
 		E6914F8C15DB2E7A002CAEE0 /* CellBlueSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellBlueSelected@2x.png"; sourceTree = "<group>"; };
 		E6914F8D15DB2E7D002CAEE0 /* CellNotSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellNotSelected.png; sourceTree = "<group>"; };
@@ -594,6 +604,20 @@
 		FB1BA9401884E58300978359 /* AmateurRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRuleTest.m; sourceTree = "<group>"; };
 		FB76CB951883D31300F07B53 /* AmateurRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmateurRule.h; sourceTree = "<group>"; };
 		FB76CB961883D31300F07B53 /* AmateurRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRule.m; sourceTree = "<group>"; };
+		FB928FC219D6A2D300F76DC6 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
+		FB928FC319D6A2D300F76DC6 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
+		FB928FC419D6A2D300F76DC6 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterViewController.xib; sourceTree = "<group>"; };
+		FB928FC719D6A70700F76DC6 /* RosterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterCollectionViewCell.h; sourceTree = "<group>"; };
+		FB928FC819D6A70700F76DC6 /* RosterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterCollectionViewCell.m; sourceTree = "<group>"; };
+		FB928FC919D6A70700F76DC6 /* RosterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterCollectionViewCell.xib; sourceTree = "<group>"; };
+		FB928FCC19D6B6E800F76DC6 /* roster_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_add.png; sourceTree = "<group>"; };
+		FB928FCD19D6B6E800F76DC6 /* roster_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_delete.png; sourceTree = "<group>"; };
+		FB928FD019D6BA8A00F76DC6 /* player_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_profile.png; sourceTree = "<group>"; };
+		FB928FD219D7245100F76DC6 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		FB928FD319D7245100F76DC6 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		FB928FD519D816AA00F76DC6 /* TextEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditorViewController.h; sourceTree = "<group>"; };
+		FB928FD619D816AA00F76DC6 /* TextEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditorViewController.m; sourceTree = "<group>"; };
+		FB928FD719D816AA00F76DC6 /* TextEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditorViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,6 +655,7 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				FB928FD019D6BA8A00F76DC6 /* player_profile.png */,
 				3C0DC315165DB37300355619 /* DefaultTeamProfile.png */,
 				3C40A83D1637F7CC00619526 /* TabBarMatch.png */,
 				3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */,
@@ -650,8 +675,6 @@
 				3C765CD515EC6C0700235664 /* music.png */,
 				3C0FC8DF15E78015002620F8 /* timeout.png */,
 				3C0FC8E015E78015002620F8 /* timeout@2x.png */,
-				3CF94EE915DE3B320093EAA7 /* tabbarBackground.png */,
-				3CF94EEA15DE3B320093EAA7 /* tabbarBackground@2x.png */,
 				3C890FA115DCA1550048B21C /* btnBlue.png */,
 				3C890FA215DCA1550048B21C /* btnBlue@2x.png */,
 				E6914F8B15DB2E77002CAEE0 /* CellBlueSelected.png */,
@@ -741,6 +764,17 @@
 		3CC1680015A2E52A00A2AB44 = {
 			isa = PBXGroup;
 			children = (
+				FB928FD519D816AA00F76DC6 /* TextEditorViewController.h */,
+				FB928FD619D816AA00F76DC6 /* TextEditorViewController.m */,
+				FB928FD719D816AA00F76DC6 /* TextEditorViewController.xib */,
+				FB928FCC19D6B6E800F76DC6 /* roster_add.png */,
+				FB928FCD19D6B6E800F76DC6 /* roster_delete.png */,
+				FB928FC719D6A70700F76DC6 /* RosterCollectionViewCell.h */,
+				FB928FC819D6A70700F76DC6 /* RosterCollectionViewCell.m */,
+				FB928FC919D6A70700F76DC6 /* RosterCollectionViewCell.xib */,
+				FB928FC219D6A2D300F76DC6 /* RosterViewController.h */,
+				FB928FC319D6A2D300F76DC6 /* RosterViewController.m */,
+				FB928FC419D6A2D300F76DC6 /* RosterViewController.xib */,
 				3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */,
 				E65C9D0915F488FA00DCE645 /* Localizable.strings */,
 				3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */,
@@ -821,7 +855,7 @@
 				3C07F41B163545FA00A2D645 /* GameHistoriesViewController.xib */,
 				3C07F4111635194A00A2D645 /* AboutUsViewController.xib */,
 				E68D117915A5F2900074982D /* GameDetailsViewController.xib */,
-				E6914F8815DA22EC002CAEE0 /* TeamsInGameViewController.xib */,
+				E6914F8815DA22EC002CAEE0 /* ChooseTeamViewController.xib */,
 				E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */,
 				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
 				3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */,
@@ -907,8 +941,8 @@
 				3CBA0BF915AE7726003505BC /* TeamListViewController.m */,
 				3CFE1D2C15AC876900247B80 /* TeamNameViewController.h */,
 				3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */,
-				E6914F8615DA22E6002CAEE0 /* TeamsInGameViewController.h */,
-				E6914F8715DA22EA002CAEE0 /* TeamsInGameViewController.m */,
+				E6914F8615DA22E6002CAEE0 /* ChooseTeamViewController.h */,
+				E6914F8715DA22EA002CAEE0 /* ChooseTeamViewController.m */,
 				3CC9129C15B1C477003C74D4 /* TimeoutPromptView.h */,
 				3CC9129D15B1C477003C74D4 /* TimeoutPromptView.m */,
 				3C13E49615C192A900F4307C /* TimeStopPromptView.h */,
@@ -1048,7 +1082,9 @@
 				E68D118415A684B30074982D /* MatchPartSummaryCell.xib */,
 				E6914F7B15D72B6F002CAEE0 /* SwitchCell.xib */,
 				3C42824215B8E00C00903F9D /* PopoverContentCell.xib */,
-				E65FF05215C455F200E96D6A /* TeamImageCell.xib */,
+				E65FF05215C455F200E96D6A /* ImageCell.xib */,
+				FB928FD219D7245100F76DC6 /* ImageCell.h */,
+				FB928FD319D7245100F76DC6 /* ImageCell.m */,
 				E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */,
 				E6914F7D15D8C986002CAEE0 /* TeamSelectionCell.xib */,
 				3CB8C77115EDF27C00091D52 /* PlayerActionCell.xib */,
@@ -1220,6 +1256,7 @@
 				3CC912A015B1C477003C74D4 /* TimeoutPromptView.xib in Resources */,
 				3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */,
 				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
+				FB928FCB19D6A70800F76DC6 /* RosterCollectionViewCell.xib in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
 				3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */,
 				E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */,
@@ -1237,13 +1274,15 @@
 				3CCAE45A15BE25790030C302 /* GameHistoriesMapViewController.xib in Resources */,
 				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
 				3C13E49B15C192DB00F4307C /* TimeStopPromptView.xib in Resources */,
-				E65FF05315C455F300E96D6A /* TeamImageCell.xib in Resources */,
+				E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */,
 				3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */,
 				3CE1875915C6DA9900A17E4F /* resume.png in Resources */,
 				3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */,
 				E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */,
 				E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */,
 				E6E032B715CBDA5600AF91CB /* Icon.png in Resources */,
+				FB928FC619D6A2D300F76DC6 /* RosterViewController.xib in Resources */,
+				FB928FD119D6BA8A00F76DC6 /* player_profile.png in Resources */,
 				E6E032B815CBDA5600AF91CB /* Icon@2x.png in Resources */,
 				E6E032CF15CFC0CA00AF91CB /* NewPlayerViewController.xib in Resources */,
 				3CD9BFC415D49999000DA8E8 /* ZhiHuArrowRight.png in Resources */,
@@ -1251,9 +1290,10 @@
 				E6914F7C15D72B6F002CAEE0 /* SwitchCell.xib in Resources */,
 				E6914F7E15D8C986002CAEE0 /* TeamSelectionCell.xib in Resources */,
 				E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */,
-				E6914F8A15DA22ED002CAEE0 /* TeamsInGameViewController.xib in Resources */,
+				E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */,
 				E6914F8F15DB2E8B002CAEE0 /* CellBlueSelected.png in Resources */,
 				E6914F9015DB2E8B002CAEE0 /* CellBlueSelected@2x.png in Resources */,
+				FB928FD919D816AA00F76DC6 /* TextEditorViewController.xib in Resources */,
 				E6914F9115DB2E8B002CAEE0 /* CellNotSelected.png in Resources */,
 				E6914F9215DB2E8B002CAEE0 /* CellNotSelected@2x.png in Resources */,
 				E6914F9515DB2ECC002CAEE0 /* TeamsPanelDotRect.png in Resources */,
@@ -1267,6 +1307,7 @@
 				3CF94EEB15DE3B320093EAA7 /* tabbarBackground.png in Resources */,
 				3CF94EEC15DE3B320093EAA7 /* tabbarBackground@2x.png in Resources */,
 				3C0FC8E115E78015002620F8 /* timeout.png in Resources */,
+				FB928FCE19D6B6E800F76DC6 /* roster_add.png in Resources */,
 				3C0FC8E215E78015002620F8 /* timeout@2x.png in Resources */,
 				3C5207CB15EB50360079D5DB /* buzzer.wav in Resources */,
 				3C5207CC15EB50360079D5DB /* horn.wav in Resources */,
@@ -1361,6 +1402,7 @@
 				3C06654215F64C9D00B1DCB8 /* Rock You.wav in Resources */,
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C06655D15F7494000B1DCB8 /* music@2x.png in Resources */,
+				FB928FCF19D6B6E800F76DC6 /* roster_delete.png in Resources */,
 				3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */,
 				3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
@@ -1391,6 +1433,7 @@
 			files = (
 				3CC1681E15A2E52B00A2AB44 /* main.m in Sources */,
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
+				FB928FC519D6A2D300F76DC6 /* RosterViewController.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */,
 				3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */,
@@ -1400,6 +1443,7 @@
 				E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */,
 				E68D116815A53CE50074982D /* MatchManager.m in Sources */,
 				E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */,
+				FB928FD819D816AA00F76DC6 /* TextEditorViewController.m in Sources */,
 				E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */,
 				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
 				E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */,
@@ -1416,6 +1460,7 @@
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */,
+				FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */,
 				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
 				3CCAE45915BE25790030C302 /* GameHistoriesMapViewController.m in Sources */,
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
@@ -1427,6 +1472,7 @@
 				3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */,
 				E6E032A615C98CB600AF91CB /* MatchUnderWay.m in Sources */,
 				E6E032BE15CF73EA00AF91CB /* NewActionViewController.m in Sources */,
+				FB928FCA19D6A70800F76DC6 /* RosterCollectionViewCell.m in Sources */,
 				E6E032C415CFB44100AF91CB /* PlayerManager.m in Sources */,
 				E6E032C715CFBC2500AF91CB /* Player.m in Sources */,
 				E6E032CA15CFC00200AF91CB /* PlayerListViewController.m in Sources */,
@@ -1436,7 +1482,7 @@
 				E6914F6215D4E5AD002CAEE0 /* PlayerActionViewController.m in Sources */,
 				E6914F6515D4E5DB002CAEE0 /* PlayerStatisticsViewController.m in Sources */,
 				E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */,
-				E6914F8915DA22ED002CAEE0 /* TeamsInGameViewController.m in Sources */,
+				E6914F8915DA22ED002CAEE0 /* ChooseTeamViewController.m in Sources */,
 				3C163CA715DB893100552546 /* FXLabel.m in Sources */,
 				E658146C15DF4F8E007B4F7E /* BaseRule.m in Sources */,
 				E658147015DF5AC0007B4F7E /* FibaRule.m in Sources */,
@@ -1536,7 +1582,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "7616A1AC-E4E6-4346-81B8-A469AD643952";
 				SDKROOT = iphoneos;
@@ -1566,7 +1612,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "7616A1AC-E4E6-4346-81B8-A469AD643952";
 				SDKROOT = iphoneos;
@@ -1704,6 +1750,7 @@
 				FB1BA93C1884E44300978359 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

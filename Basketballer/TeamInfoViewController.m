@@ -17,6 +17,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Feature.h"
 #import "AppDelegate.h"
+#import "RosterViewController.h"
+#import "ImageCell.h"
 
 @interface TeamInfoViewController() {
     NSArray * _matchesOfTeam;
@@ -149,12 +151,19 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if (_operateMode == Insert) {
-        self.title = LocalString(@"CreateTeam");
+    if (self.navigationController != nil &&
+        [self.navigationController.viewControllers count] == 1) {
+        // 自身是UINavagationController中的RootViewController时，展示左侧“取消”按钮
         self.navigationItem.leftBarButtonItem = _cancelItem;
     }else{
-        self.title = LocalString(@"TeamInfo");
+        // 否则展示统一的“返回”按钮
         [[Feature defaultFeature] initNavleftBarItemWithController:self];
+    }
+    
+    if (self.operateMode == Insert) {
+        self.title = LocalString(@"CreateTeam");
+    }else{
+        self.title = LocalString(@"TeamInfo");
     }
 }
 
@@ -211,65 +220,66 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
+    if (indexPath.section == 0 && indexPath.row == 1) {
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:self options:nil];
+        ImageCell * cell = [nib objectAtIndex:0];
+        self.teamCell = cell;
+        
+        cell.title.text = LocalString(@"Profile");
+        
+        // 图片圆角化。
+        cell.profileImage.layer.masksToBounds = YES;
+        cell.profileImage.layer.cornerRadius = 5.0f;
+        
+        TeamManager * teamManager = [TeamManager defaultManager];
+        cell.profileImage.image = [teamManager imageForTeam:self.team];
+        
+        return cell;
+    }else if((indexPath.section == 0 && indexPath.row == 0) ||
+             indexPath.section == 1 ||
+             indexPath.section == 2){
+        UITableViewCell *cell = nil;
+        static NSString *CellIdentifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (nil == cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        if (indexPath.section == 0) {
+            cell.textLabel.text = LocalString(@"Name");
+            cell.detailTextLabel.text = self.team.name;
+        }else if(indexPath.section == 1){
+            cell.textLabel.text = LocalString(@"Record");
+            
+            // 获取球队所有比赛记录数目和详情。数目用在这里，详情用于显示比赛列表。
+            _matchesOfTeam = [[MatchManager defaultManager] matchesWithTeamId:[_team.id integerValue]];
+            NSString * number;
+            if (_matchesOfTeam.count > 0) {
+                number = [NSString stringWithFormat:LocalString(@"MatchesFormatter"), _matchesOfTeam.count];
+            }else{
+                number = LocalString(@"NoMatch");
+            }
+            
+            cell.detailTextLabel.text = number;
+        }else if(indexPath.section == 2){
+            cell.textLabel.text = LocalString(@"Roster");
+            
+            NSString * description;
+            _playersOfTeam = [[PlayerManager defaultManager] playersForTeam:_team.id];
+            if (_playersOfTeam == nil || _playersOfTeam.count == 0) {
+                description = LocalString(@"NoPlayer");
+            }else{
+                description = [NSString stringWithFormat:LocalString(@"PlayersFormatter"), _playersOfTeam.count];
+            }
+            
+            cell.detailTextLabel.text = description;
+        }
+        
+        return cell;
+    }
     
-   if (indexPath.section == 0 && indexPath.row == 1) {
-       UIImageView * profileImageView;
-       
-       [[NSBundle mainBundle] loadNibNamed:@"TeamImageCell" owner:self options:nil];
-       cell = _teamCell;
-       self.teamCell = nil;
-       
-       // 图片圆角化。
-       profileImageView = (UIImageView *)[cell viewWithTag:1];
-       profileImageView.layer.masksToBounds = YES;
-       profileImageView.layer.cornerRadius = 5.0f;
-       
-       TeamManager * teamManager = [TeamManager defaultManager]; 
-       profileImageView.image = [teamManager imageForTeam:self.team];  
-       
-       UILabel * name = (UILabel *)[cell.contentView viewWithTag:2];
-       name.text = LocalString(@"Profile");
-   }else if((indexPath.section == 0 && indexPath.row == 0) || indexPath.section == 1 || indexPath.section == 2){
-       static NSString *CellIdentifier = @"Cell";  
-       cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-       if (nil == cell) {
-           cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-           cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-       }
-       
-       if (indexPath.section == 0) {
-           cell.textLabel.text = LocalString(@"Name");
-           cell.detailTextLabel.text = self.team.name;
-       }else if(indexPath.section == 1){
-           cell.textLabel.text = LocalString(@"Record");
-           
-           // 获取球队所有比赛记录数目和详情。数目用在这里，详情用于显示比赛列表。
-           _matchesOfTeam = [[MatchManager defaultManager] matchesWithTeamId:[_team.id integerValue]];
-           NSString * number;
-           if (_matchesOfTeam.count > 0) {
-               number = [NSString stringWithFormat:LocalString(@"MatchesFormatter"), _matchesOfTeam.count];
-           }else{
-               number = LocalString(@"NoMatch");
-           }
-
-           cell.detailTextLabel.text = number;
-       }else if(indexPath.section == 2){
-           cell.textLabel.text = LocalString(@"Roster");
-           
-           NSString * description;
-           _playersOfTeam = [[PlayerManager defaultManager] playersForTeam:_team.id];
-           if (_playersOfTeam == nil || _playersOfTeam.count == 0) {
-               description = LocalString(@"NoPlayer");
-           }else{
-               description = [NSString stringWithFormat:LocalString(@"PlayersFormatter"), _playersOfTeam.count];
-           }
-           
-           cell.detailTextLabel.text = description;
-       }
-   } 
-    
-    return cell;
+    return nil;
 }
 
 #pragma mark - Table view delegate
@@ -278,7 +288,7 @@
 {
     if(indexPath.section == 0 && indexPath.row == 1) {
         [self showActionSheet];
-        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+//        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     }else if(indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         TeamNameViewController * editTeamNameViewController = [[TeamNameViewController alloc] initWithNibName:@"TeamNameViewController" bundle:nil];
@@ -293,10 +303,13 @@
         history.historyType = HistoryTypeTeam;
         [self.navigationController pushViewController:history animated:YES];
     }else if(indexPath.section == 2 && indexPath.row == 0){
-        PlayerEditViewController * playerList = [[PlayerEditViewController alloc] initWithStyle:UITableViewStylePlain];
+//        PlayerEditViewController * playerList = [[PlayerEditViewController alloc] initWithStyle:UITableViewStylePlain];
+        RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
+
         playerList.teamId = _team.id;
         playerList.players = _playersOfTeam;
         playerList.title = @"队员名单";
+        
         [self.navigationController pushViewController:playerList animated:YES];
     }
 }
@@ -325,15 +338,5 @@
     
     _dirty = YES;
 }
-
-//#pragma alert delete
-//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-//    if (buttonIndex == 1) {
-//        if (_team != nil) {
-//            [[TeamManager defaultManager] deleteTeam:_team];
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//    }
-//}
 
 @end

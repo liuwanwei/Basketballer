@@ -39,6 +39,8 @@
 
 "PlayerInfo" = "Player Info";
 "NewPlayer" = "New Player";
+"PlayerName" = "Name";
+"PlayerNumber" = "Number";
 "PlayerInfoFormatter" = "%.2d";
 
 "SelectTeam" = "Teams";

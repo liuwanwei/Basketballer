@@ -14,24 +14,19 @@ static char UITopViewControllerKey;
 
 @implementation Feature
 
-@synthesize weChatTableBgColor = _weChatTableBgColor;
-@synthesize navigationItemTintColor = _navigationItemTintColor;
-
-- (UIColor *)weChatTableBgColor{
-    if (nil == _weChatTableBgColor) {
-        _weChatTableBgColor = [UIColor colorWithRed:0.882 green:0.874 blue:0.867 alpha:1.0];
-    }
-    return _weChatTableBgColor;
-}
-
-- (UIColor *)navigationItemTintColor{
-    if (nil == _navigationItemTintColor) {
-        _navigationItemTintColor = [UIColor colorWithRed:0.137 green:0.557 blue:0.867 alpha:1.0];
-    }
-    return _navigationItemTintColor;
++ (Feature *)defaultFeature{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (nil == sDefaultFeatures) {
+            sDefaultFeatures = [[Feature alloc] init];
+        }
+    });
+    
+    return sDefaultFeatures;
 }
 
 
+// 导航栏左侧按钮消息通用处理函数
 - (void)back:(id)sender {
     UIViewController * topVC = (UIViewController *)objc_getAssociatedObject(sender, &UITopViewControllerKey);
     if (nil != topVC) {
@@ -40,20 +35,14 @@ static char UITopViewControllerKey;
     }
 }
 
-+ (Feature *)defaultFeature{
-    if (nil == sDefaultFeatures) {
-        sDefaultFeatures = [[Feature alloc] init];
-    }
-    
-    return sDefaultFeatures;
-}
-
-- (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar{
+// 设置导航栏背景和文字颜色（知乎App2012年版的亮蓝色背景）
+- (void)customNavigationBar:(UINavigationBar *)navigationBar{
     UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
     [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    navigationBar.tintColor = self.navigationItemTintColor;
+    navigationBar.tintColor = [UIColor colorWithRed:0.137 green:0.557 blue:0.867 alpha:1.0];;
 }
 
+// 自定义导航栏返回按钮
 - (void)initNavleftBarItemWithController:(UIViewController *)controller {
         controller.navigationItem.hidesBackButton = YES;
         UIButton *leftButton;
@@ -76,6 +65,13 @@ static char UITopViewControllerKey;
 
 - (UIColor *)cellDetailTextColor; {
     return [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0];
+}
+
+// 隐藏空白的cell分割线
+- (void)hideExtraCellLineForTableView:(UITableView *)tableView{
+    UIView * view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
 }
 
 @end

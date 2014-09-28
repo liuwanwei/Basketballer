@@ -16,7 +16,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.textField.text = self.text;
+    
+    // 显示模式兼容iOS7的ExtendedLayout模式
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    self.text = self.textField.text;
+    
+    NSLog(@"发送文本保存事件");
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTextSavedMsg object:self userInfo:[NSDictionary dictionaryWithObject:self.text forKey:kTextSavedMsg]];
 }
 
 - (void)didReceiveMemoryWarning {

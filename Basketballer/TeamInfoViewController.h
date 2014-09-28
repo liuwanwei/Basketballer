@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+
+@class ImageCell;
 @class Team;
 
 typedef enum {
@@ -18,7 +20,7 @@ typedef enum {
 
 @property (nonatomic) NSInteger operateMode;
 @property (nonatomic, weak) Team * team;
-@property (nonatomic, weak) IBOutlet UITableViewCell * teamCell;
+@property (nonatomic, weak) ImageCell * teamCell;
 
 - (void) refreshViewWithTeamName:(NSString *) teamName;
 @end

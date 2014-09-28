@@ -409,7 +409,7 @@ typedef enum {
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     [self presentModalViewController:nav animated:YES];
 }
 
@@ -459,7 +459,7 @@ typedef enum {
     [controller reloadActionsInMatch];
     
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     
     [self presentModalViewController:nav animated:YES];
 }

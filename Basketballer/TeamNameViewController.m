@@ -48,6 +48,11 @@
     [self initTeamNameText];
     [self.teamNameText becomeFirstResponder];
     self.view.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
+    
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
 
 - (void)viewDidUnload

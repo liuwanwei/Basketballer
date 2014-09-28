@@ -81,11 +81,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self initNavigationItem];
     if (_historyType == HistoryTypeTeam) {
          [[Feature defaultFeature] initNavleftBarItemWithController:self];
         self.title = LocalString(@"Record");
     }else {
+        [[Feature defaultFeature] customNavigationBar:self.navigationController.navigationBar];
         self.matches = [[MatchManager defaultManager] matchesArray];
         self.title = LocalString(@"Histories");
         
@@ -95,6 +95,8 @@
     // 添加、删除比赛刷新表
     [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];
     self.tableView.rowHeight = 48.0f;
+    
+    [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
 }
 
 - (void)viewDidUnload

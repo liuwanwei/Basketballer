@@ -6,8 +6,15 @@
 //
 //
 
+// 文本已经保存消息，向调用界面发出，通过Notification方式。
+#define kTextSavedMsg          @"TextSavedMsg"
+
 #import <UIKit/UIKit.h>
 
 @interface TextEditorViewController : UIViewController
+
+@property (nonatomic, copy) NSString * text;
+
+@property (nonatomic, weak) IBOutlet UITextField * textField;
 
 @end

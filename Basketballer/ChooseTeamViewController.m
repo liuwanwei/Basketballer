@@ -6,13 +6,15 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "TeamsInGameViewController.h"
+#import "ChooseTeamViewController.h"
 #import "TeamManager.h"
 #import "GameSetting.h"
 #import "ActionManager.h"
 #import "AppDelegate.h"
 #import "PlayGameViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TeamInfoViewController.h"
+#import "Feature.h"
 
 typedef enum{
     TeamCellStyleNotSelected = 0,    
@@ -24,7 +26,7 @@ typedef enum{
     
 }TeamCell;
 
-@interface TeamsInGameViewController (){
+@interface ChooseTeamViewController (){
     Team * _homeTeam;
     Team * _guestTeam;
     
@@ -34,7 +36,7 @@ typedef enum{
 
 @end
 
-@implementation TeamsInGameViewController
+@implementation ChooseTeamViewController
 
 @synthesize tableView = _tableView;
 @synthesize teamCell = _teamCell;
@@ -137,13 +139,16 @@ typedef enum{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSArray * teams = [TeamManager defaultManager].teams;
-    return teams.count;    
-    
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    if (section == 0) {
+        return 1;
+    }else{
+        NSArray * teams = [TeamManager defaultManager].teams;
+        return teams.count;
+    }
 }
 
 - (UIImageView *)profileImageViewInCell:(UITableViewCell *)cell{
@@ -151,7 +156,7 @@ typedef enum{
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (0 == section) {
+    if (1 == section) {
         return LocalString(@"SelectTeamGuide");
     }else{
         return nil;
@@ -159,40 +164,56 @@ typedef enum{
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIImageView * profileImageView;    
+    
+    UITableViewCell * cell;
     // 这个ID必须跟xib中设置的保持一致。
-    static NSString *CellIdentifier = @"TeamSelectionCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"TeamSelectionCell" owner:self options:nil];
-        cell = _teamCell;
-        self.teamCell = nil;
+    if (indexPath.section == 0) {
+        static NSString * Identifier = @"NewTeamCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Identifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
         
-        cell.tag = TeamCellStyleNotSelected;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"添加新球队";
         
-        // 图片圆角化。
-        profileImageView = [self profileImageViewInCell:cell];
-        [self makeRoundedView:profileImageView withRadius:5.0];
+        return cell;
+    }else{
+        UIImageView * profileImageView;
+        static NSString *CellIdentifier = @"TeamSelectionCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            [[NSBundle mainBundle] loadNibNamed:@"TeamSelectionCell" owner:self options:nil];
+            cell = _teamCell;
+            self.teamCell = nil;
+            
+            cell.tag = TeamCellStyleNotSelected;
+            
+            // 图片圆角化。
+            profileImageView = [self profileImageViewInCell:cell];
+            [self makeRoundedView:profileImageView withRadius:5.0];
+        }
+        
+        NSArray * teams = [[TeamManager defaultManager] teams];
+        Team * team = [teams objectAtIndex:indexPath.row];
+        
+        // 选中标志。
+        BOOL selected = (team == _homeTeam || team == _guestTeam);
+        [self updateSelectedMark:selected forCell:cell];
+        
+        // 球队图片。
+        if (profileImageView == nil) {
+            profileImageView = [self profileImageViewInCell:cell];
+        }
+        profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+        
+        // 球队名称。
+        UILabel * label = (UILabel *)[cell viewWithTag:TeamCellTagName];
+        label.text = team.name;
+        
+        return cell;
     }
-    
-    NSArray * teams = [[TeamManager defaultManager] teams];
-    Team * team = [teams objectAtIndex:indexPath.section];
-    
-    // 选中标志。
-    BOOL selected = (team == _homeTeam || team == _guestTeam);
-    [self updateSelectedMark:selected forCell:cell];
-    
-    // 球队图片。
-    if (profileImageView == nil) {
-        profileImageView = [self profileImageViewInCell:cell];
-    }
-    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
-    
-    // 球队名称。        
-    UILabel * label = (UILabel *)[cell viewWithTag:TeamCellTagName];     
-    label.text = team.name;
-    
-    return cell;
 }
 
 - (BOOL)isCellSelected:(UITableViewCell *)cell{
@@ -257,6 +278,12 @@ typedef enum{
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        TeamInfoViewController * editTeam = [[TeamInfoViewController alloc] initWithNibName:@"TeamInfoViewController" bundle:nil];
+            editTeam.operateMode = Insert;
+        [self.navigationController pushViewController:editTeam animated:YES];
+
+    }else{
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     Team * team = [[[TeamManager defaultManager] teams] objectAtIndex:indexPath.section];
     BOOL toBeSelected = [self isCellSelected:cell] ? NO : YES;
@@ -272,7 +299,8 @@ typedef enum{
     [self updateSelectedMark:toBeSelected forCell:cell];
     
     // 更新最下方面板中的图片。
-    [self updateTeamsPanel];    
+    [self updateTeamsPanel];
+    }
 }
 
 
