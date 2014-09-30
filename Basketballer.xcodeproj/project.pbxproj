@@ -265,6 +265,8 @@
 		FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */; };
 		FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */; };
 		FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */; };
+		FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1519DAB640007FC3DA /* CustomRuleManager.m */; };
+		FB957D1919DAB876007FC3DA /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1819DAB876007FC3DA /* Rule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -609,6 +611,10 @@
 		FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaCustomRule.m; sourceTree = "<group>"; };
 		FB957D1019DA914E007FC3DA /* CustomRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRuleViewController.h; sourceTree = "<group>"; };
 		FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRuleViewController.m; sourceTree = "<group>"; };
+		FB957D1419DAB640007FC3DA /* CustomRuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRuleManager.h; sourceTree = "<group>"; };
+		FB957D1519DAB640007FC3DA /* CustomRuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRuleManager.m; sourceTree = "<group>"; };
+		FB957D1719DAB876007FC3DA /* Rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rule.h; sourceTree = "<group>"; };
+		FB957D1819DAB876007FC3DA /* Rule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1007,6 +1013,8 @@
 		E68D110315A2F7020074982D /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				FB957D1719DAB876007FC3DA /* Rule.h */,
+				FB957D1819DAB876007FC3DA /* Rule.m */,
 				3C40A8281637753100619526 /* AccountRule.h */,
 				3C40A8291637753100619526 /* AccountRule.m */,
 				E68C515215D25AFD00F52002 /* Action.h */,
@@ -1019,6 +1027,8 @@
 				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
 				E658146A15DF4F8E007B4F7E /* BaseRule.h */,
 				E658146B15DF4F8E007B4F7E /* BaseRule.m */,
+				FB957D1419DAB640007FC3DA /* CustomRuleManager.h */,
+				FB957D1519DAB640007FC3DA /* CustomRuleManager.m */,
 				E62D383215E633E2004AA543 /* Fiba3pbRule.h */,
 				E62D383315E633E3004AA543 /* Fiba3pbRule.m */,
 				FB957D0D19DA882B007FC3DA /* FibaCustomRule.h */,
@@ -1470,8 +1480,10 @@
 				E6BFB4DC15E2111A008E9BC6 /* NbaRule.m in Sources */,
 				E6F7682D15E36F3C006E5D4E /* FibaTeamStatistics.m in Sources */,
 				3C0BD4C815E36AD800EEAB0B /* SoundManager.m in Sources */,
+				FB957D1919DAB876007FC3DA /* Rule.m in Sources */,
 				FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */,
 				E62D383415E633E4004AA543 /* Fiba3pbRule.m in Sources */,
+				FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */,
 				E62D383A15E6748E004AA543 /* MatchSettingViewController.m in Sources */,
 				3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */,
 				3C5207D615EB53090079D5DB /* PlaySoundView.m in Sources */,

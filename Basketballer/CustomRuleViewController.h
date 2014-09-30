@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kRuleChangedNotification        @"RuleChangedNotification"
+
 @class FibaCustomRule;
 
 @interface CustomRuleViewController : UITableViewController

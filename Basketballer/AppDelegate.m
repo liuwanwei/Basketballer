@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
+#import "CustomRuleManager.h"
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "Feature.h"
@@ -131,10 +132,10 @@ typedef enum {
 // 初始化所有子Tab中导航栏的效果（顶部）
 - (void)initNavigationBarBgColor{
     return; //TODO
-    NSArray * navControllers = self.tabBarController.viewControllers;
-    for (UINavigationController * nav in navControllers) {
-        [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
-    }
+//    NSArray * navControllers = self.tabBarController.viewControllers;
+//    for (UINavigationController * nav in navControllers) {
+//        [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
+//    }
 }
 
 // 初始化TabBar的效果（屏幕底部的TabBar）
@@ -161,6 +162,7 @@ typedef enum {
 {
     [[MatchManager defaultManager] loadMatches];
     [[TeamManager defaultManager] loadTeams];
+    [[CustomRuleManager defaultInstance] loadRules];
     
     [self initNavigationBarBgColor];
     [self initTabBar];

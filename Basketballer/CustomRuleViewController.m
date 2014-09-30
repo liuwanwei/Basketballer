@@ -8,8 +8,11 @@
 
 #import "CustomRuleViewController.h"
 #import "FibaCustomRule.h"
+#import "CustomRuleManager.h"
 #import "AppDelegate.h"
 #import "TextEditorViewController.h"
+
+#define checkSetValue(property)   ((property != nil) && ([property integerValue] != 0))
 
 @interface CustomRuleViewController (){
     NSIndexPath * _lastChoosedIndexPath;
@@ -18,6 +21,28 @@
 @end
 
 @implementation CustomRuleViewController
+
+- (BOOL)allParameterSupplied{
+    if (self.rule != nil &&
+        self.rule.name != nil &&
+        checkSetValue(self.rule.periodTimeLength) &&
+        checkSetValue(self.rule.periodRestTimeLength) &&
+        checkSetValue(self.rule.halfTimeRestTimeLength) &&
+        checkSetValue(self.rule.overTimeLength)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+- (void)save{
+    
+    // 保存比赛规则
+    [[CustomRuleManager defaultInstance] customRuleWithFibaRule:self.rule];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRuleChangedNotification object:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,6 +78,14 @@
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return @"单位：分钟";
+    }else{
+        return nil;
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * sIdentifier = @"CustomRuleCell";
@@ -65,27 +98,34 @@
     }
     
     if (indexPath.section == 0) {
-        cell.textLabel.text = LocalString(@"NewName");
+        cell.textLabel.text = LocalString(@"RuleName");
+        cell.detailTextLabel.text = self.rule.name;
     }else if(indexPath.section == 1){
         NSString * labelText = nil;
+        NSString * detailText = nil;
         switch (indexPath.row) {
             case 0:
                 labelText = LocalString(@"PeriodLength");
+                detailText = [self.rule.periodTimeLength stringValue];
                 break;
             case 1:
                 labelText = LocalString(@"PeriodIntervalLength");
+                detailText = [self.rule.periodRestTimeLength stringValue];
                 break;
             case 2:
                 labelText = LocalString(@"HalfTimeIntervalLength");
+                detailText = [self.rule.halfTimeRestTimeLength stringValue];
                 break;
             case 3:
                 labelText = LocalString(@"ExtraPeriodLength");
+                detailText = [self.rule.overTimeLength stringValue];
                 break;
             default:
                 break;
         }
         
         cell.textLabel.text = labelText;
+        cell.detailTextLabel.text = detailText;
     }
     
     return cell;
@@ -121,6 +161,15 @@
                     default:
                         break;
                 }
+            }
+            
+            UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastChoosedIndexPath];
+            cell.detailTextLabel.text = text;
+            
+            if ([self allParameterSupplied]) {
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+            }else{
+                self.navigationItem.rightBarButtonItem = nil;
             }
         }
     }

@@ -7,8 +7,22 @@
 //
 
 #import "FibaCustomRule.h"
+#import "Rule.h"
 
 @implementation FibaCustomRule
+
+- (id)initWithRuleModel:(Rule *)model{
+    if (self = [super init]) {
+        self.name = model.name;
+        self.periodTimeLength = model.periodTimeLength;
+        self.periodRestTimeLength = model.periodRestTimeLength;
+        self.halfTimeRestTimeLength = model.halfTimeRestLength;
+        self.overTimeLength = model.overTimeLength;
+        self.model = model;
+    }
+    
+    return self;
+}
 
 + (FibaCustomRule *)objectFromDictionary:(NSDictionary *)dictionary{
     return nil;

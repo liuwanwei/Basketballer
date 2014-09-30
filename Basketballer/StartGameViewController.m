@@ -9,6 +9,9 @@
 #import "StartGameViewController.h"
 #import "TeamListViewController.h"
 #import "TeamManager.h"
+#import "CustomRuleManager.h"
+#import "Rule.h"
+#import "FibaCustomRule.h"
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
@@ -107,17 +110,16 @@
                       @"We Are Basketball！", 
                       @"无兄弟，不篮球！", nil];*/
     self.tableView.rowHeight = 60;
-    
     self.title = NSLocalizedString(@"Start", nil);
     
-    FibaRule * fiba = [[FibaRule alloc] init];
-    NSDictionary * fibaDict = [NSDictionary dictionaryWithPropertiesOfObject:fiba];
-    NSLog(@"%d", fibaDict.count);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ruleChangedNotification:) name:kRuleChangedNotification object:nil];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -130,6 +132,10 @@
     
     //NSDictionary * saying = [[WellKnownSaying defaultSaying] oneSaying];
     //[self updateSaying:saying];
+}
+
+- (void)ruleChangedNotification:(NSNotification *)notification{
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table view data source
@@ -149,7 +155,8 @@
     }else if(section == 1){
         return 1;
     }else if(section == 2){
-        return 1;
+        // 所有自定义规则入口，再加上“添加新规则入口”
+        return ([[CustomRuleManager defaultInstance].rules count] + 1);
     }else{
         return 0;
     }
@@ -190,7 +197,13 @@
             cell.imageView.image = [UIImage imageNamed:@"BasketballBlueRed"];
         }
     }else{
-        cell.textLabel.text = @"自定义模式";
+        NSArray * rules = [[CustomRuleManager defaultInstance] rules];
+        if (indexPath.row < rules.count) {
+            Rule * rule = [rules objectAtIndex:indexPath.row];
+            cell.textLabel.text = rule.name;
+        }else{
+            cell.textLabel.text = @"自定义模式";
+        }
     }
 
         
@@ -215,27 +228,42 @@
         [[AppDelegate delegate] presentModelViewController:nav];
     }else{
         CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        
+        NSArray * rules = [[CustomRuleManager defaultInstance] rules];
+        if (indexPath.row < rules.count) {
+            vc.rule = [[FibaCustomRule alloc] initWithRuleModel:[rules objectAtIndex:indexPath.row]];
+        }
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     
-    NSInteger index = [self gameModeIndexForIndexPath:indexPath];
-    
-    NSString * title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
-    NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:index];
-    UITableViewController * details;
-    
-    if ([mode isEqualToString:kMatchModeAccount]) {
-        details = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    }else {
-        details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        ((RuleDetailViewController *)details).rule = [BaseRule ruleWithMode:mode];
+    if (indexPath.section == 0 || indexPath.section == 1) {
+        NSInteger index = [self gameModeIndexForIndexPath:indexPath];
+        
+        NSString * title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
+        NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:index];
+        UITableViewController * details;
+        
+        if ([mode isEqualToString:kMatchModeAccount]) {
+            details = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        }else {
+            details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            ((RuleDetailViewController *)details).rule = [BaseRule ruleWithMode:mode];
+        }
+        details.hidesBottomBarWhenPushed = YES;
+        details.title = title;
+        [self.navigationController pushViewController:details animated:YES];
+    }else{
+        NSArray * rules = [[CustomRuleManager defaultInstance] rules];
+        FibaCustomRule * rule = [[FibaCustomRule alloc] initWithRuleModel:[rules objectAtIndex:indexPath.row]];
+        RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        vc.rule = rule;
+        vc.title = rule.name;
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    details.hidesBottomBarWhenPushed = YES;
-    details.title = title;
-    [self.navigationController pushViewController:details animated:YES];    
     
 }
 
