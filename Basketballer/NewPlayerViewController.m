@@ -46,7 +46,7 @@
 }
 
 - (void)save{
-    NSString * numberText = self.number.text;
+    NSString * numberText = self.playerNumber;
     if (nil == numberText || numberText.length == 0) {
         [self showInvalidNumberAlert];
         return;
@@ -64,7 +64,7 @@
     if (self.player == nil) {
         player = [pm addPlayerForTeam:_team withNumber:number withName:self.name.text];
     }else{
-        player = [pm updatePlayer:_player withNumber:number andName:self.name.text];
+        player = [pm updatePlayer:self.player withNumber:number andName:self.name.text];
     }
 
     if(nil == player){
@@ -97,7 +97,7 @@
     _dirty = false;
     
     _saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    self.navigationItem.rightBarButtonItem = _saveItem;
+    self.navigationItem.rightBarButtonItem = _saveItem;    
     
     [[Feature defaultFeature] initNavleftBarItemWithController:self];        
     
@@ -109,6 +109,7 @@
     // 注册文本编辑完成事件处理函数
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationMessage:) name:kTextSavedMsg object:nil];
     
+    // 隐藏多余的Cell分割线
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
 }
 
@@ -183,8 +184,10 @@ static int sLastSelectedRow = -1;
             // 设置文本界面标题
             if (indexPath.row == 0) {
                 vc.title = LocalString(@"PlayerName");
+                vc.keyboardType = UIKeyboardTypeNamePhonePad;
             }else{
                 vc.title = LocalString(@"PlayerNumber");
+                vc.keyboardType = UIKeyboardTypeNumberPad;
             }
             
             sLastSelectedRow = indexPath.row;
@@ -204,8 +207,10 @@ static int sLastSelectedRow = -1;
             UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sLastSelectedRow inSection:0]];
             if (sLastSelectedRow == 0) {
                 NSLog(@"球员名字 %@", text);
+                self.playerName = text;
             }else{
                 NSLog(@"球衣号码 %@", text);
+                self.playerNumber = text;
             }
             
             cell.detailTextLabel.text = text;
@@ -263,6 +268,7 @@ static int sLastSelectedRow = -1;
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
     ImageCell  *cell = (ImageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     cell.profileImage.image = image;
+    self.playerImage = image;
     
     [self dismissModalViewControllerAnimated:YES];
 }

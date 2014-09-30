@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "RosterViewController.h"
 #import "ImageCell.h"
+#import "TextEditorViewController.h"
 
 @interface TeamInfoViewController() {
     NSArray * _matchesOfTeam;
@@ -104,20 +105,6 @@
     }
 }
 
-#pragma 类成员函数
-- (void) refreshViewWithTeamName:(NSString *) teamName {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if(teamName == nil || 
-       teamName.length == 0) {
-        [self setRightBarButtonItemEnable:NO];
-        cell.detailTextLabel.text = @"";
-    }else {
-        [self setRightBarButtonItemEnable:YES];
-        cell.detailTextLabel.text = teamName;
-    }
-}
-
 #pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -131,16 +118,40 @@
 {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
-    
+    // 注册消息处理函数
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    
+    // 修改队员信息
     [nc addObserver:self selector:@selector(playerChanged) name:kPlayerChangedNotification object:nil];
+    // 修改比赛信息
     [nc addObserver:self selector:@selector(matchChanged) name:kMatchChanged object:nil];
+    // 修改队名
+    [nc addObserver:self selector:@selector(teamNameChangedNotification:) name:kTextSavedMsg object:nil];
     
     [self initNavigationItem];
     
     _dirty = NO;
 }
+
+#pragma 类成员函数
+- (void) teamNameChangedNotification:(NSNotification *) notification {
+    if ([notification.name isEqualToString:kTextSavedMsg]) {
+        if (notification.userInfo != nil) {
+            NSString * teamName = [notification.userInfo objectForKey:kTextSavedMsg];
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            if(teamName == nil ||
+               teamName.length == 0) {
+                [self setRightBarButtonItemEnable:NO];
+                cell.detailTextLabel.text = @"";
+            }else {
+                [self setRightBarButtonItemEnable:YES];
+                cell.detailTextLabel.text = teamName;
+            }
+        }
+    }
+}
+
 
 - (void)viewDidUnload{
     [super viewDidUnload];
@@ -277,9 +288,9 @@
         }
         
         return cell;
+    }else{
+        return nil;
     }
-    
-    return nil;
 }
 
 #pragma mark - Table view delegate
@@ -288,7 +299,6 @@
 {
     if(indexPath.section == 0 && indexPath.row == 1) {
         [self showActionSheet];
-//        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     }else if(indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         TeamNameViewController * editTeamNameViewController = [[TeamNameViewController alloc] initWithNibName:@"TeamNameViewController" bundle:nil];
@@ -303,7 +313,6 @@
         history.historyType = HistoryTypeTeam;
         [self.navigationController pushViewController:history animated:YES];
     }else if(indexPath.section == 2 && indexPath.row == 0){
-//        PlayerEditViewController * playerList = [[PlayerEditViewController alloc] initWithStyle:UITableViewStylePlain];
         RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
 
         playerList.teamId = _team.id;

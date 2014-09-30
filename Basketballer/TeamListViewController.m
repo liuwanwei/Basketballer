@@ -38,7 +38,7 @@
         editTeam.operateMode = Update;
         editTeam.team = team;
         editTeam.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:editTeam animated:YES];        
+        [self.navigationController pushViewController:editTeam animated:YES];
     }
 }
 
@@ -71,15 +71,6 @@
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
     
     self.title = NSLocalizedString(@"Teams", nil);
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)viewDidUnload

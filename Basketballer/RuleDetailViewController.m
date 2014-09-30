@@ -1,6 +1,6 @@
 //
 //  RuleDetailViewController.m
-//  Basketballer
+//  Basketballer    规则详情界面
 //
 //  Created by Liu Wanwei on 12-8-27.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
@@ -60,10 +60,14 @@
                   LocalString(@"PersonalFoulLimit"),
                   LocalString(@"TeamFoulLimitWithinPeriod"),
                   nil];
+    
     _timeoutRules = [NSArray arrayWithObjects:
-                     LocalString(@"TimeoutLimit"),
+                     LocalString(@"1stHalfTimeoutLimit"),
+                     LocalString(@"2ndHalfTimeoutLimit"),
+                     LocalString(@"OvertimeTimeoutLimit"),
                      LocalString(@"TimeoutLength"),
                      nil];
+    
     _winningRules = [NSArray arrayWithObject:LocalString(@"Special")];
     _rowsInSection = [NSArray arrayWithObjects:_timeRules, _foulRules, _timeoutRules, _winningRules, nil];
     
@@ -109,7 +113,7 @@
     if (indexPath.section == 3) {
         cell.textLabel.text = [self winningCondition];
     }else{
-        NSArray * rows = [_rowsInSection objectAtIndex:indexPath.section];        
+        NSArray * rows = [_rowsInSection objectAtIndex:indexPath.section];
         cell.textLabel.text = [rows objectAtIndex:indexPath.row];        
     }
     
@@ -158,9 +162,15 @@
     }else if(indexPath.section == 2){
         switch (indexPath.row) {
             case 0:
-                detail = [self timeoutLimit];
+                detail = [self timeoutLimitForPeriod:MatchPeriodSecond];
                 break;
             case 1:
+                detail = [self timeoutLimitForPeriod:MatchPeriodFourth];
+                break;
+            case 2:
+                detail = [self timeoutLimitForPeriod:MatchPeriodOvertime];
+                break;
+            case 3:
                 detail = [self timeoutLength];
                 break;
             default:
@@ -217,9 +227,10 @@
     return [NSString stringWithFormat:@"%d", [self.rule foulLimitForTeam]];
 }
     
-- (NSString *)timeoutLimit{
+- (NSString *)timeoutLimitForPeriod:(MatchPeriod)period{
     if ([self.rule isKindOfClass:[FibaRule class]]) {
-        return LocalString(@"FibaTimeoutLimit");
+        NSString * limit = [NSString stringWithFormat:@"%d%@", [self.rule timeoutLimitBeforeEndOfPeriod:period], LocalString(@"Seconds")];
+        return limit;
     }else if([self.rule isKindOfClass:[Fiba3pbRule class]]){
         return LocalString(@"Forbidden");
     }else{

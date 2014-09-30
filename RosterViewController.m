@@ -96,12 +96,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger playerCount = self.players.count;
     if (indexPath.row < playerCount) {
-        NSString * title = [NSString stringWithFormat:@"%d", indexPath.section];
-        NSString * message = [NSString stringWithFormat:@"%d", indexPath.row];
-        [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:nil, nil] show];
+        NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
+        vc.team = self.teamId;
+        vc.player = [self.players objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == playerCount){
         // 添加队员
         NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
+        vc.team = self.teamId;
         [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == (playerCount + 1)){
         // 删除队员

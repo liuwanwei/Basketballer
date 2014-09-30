@@ -87,6 +87,7 @@ typedef enum {
         if ([match.matchMode isEqualToString:kMatchModeAccount]) {
             return;
         }
+        
         if (match.state == MatchStatePlaying) {
             newNotification = [[UILocalNotification alloc] init];
             newNotification.fireDate = [match periodFinishingDate];
@@ -129,6 +130,7 @@ typedef enum {
 
 // 初始化所有子Tab中导航栏的效果（顶部）
 - (void)initNavigationBarBgColor{
+    return; //TODO
     NSArray * navControllers = self.tabBarController.viewControllers;
     for (UINavigationController * nav in navControllers) {
         [[Feature defaultFeature] customNavigationBar:nav.navigationBar];

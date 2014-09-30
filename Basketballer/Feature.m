@@ -37,6 +37,7 @@ static char UITopViewControllerKey;
 
 // 设置导航栏背景和文字颜色（知乎App2012年版的亮蓝色背景）
 - (void)customNavigationBar:(UINavigationBar *)navigationBar{
+    return;//TODO
     UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
     [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     navigationBar.tintColor = [UIColor colorWithRed:0.137 green:0.557 blue:0.867 alpha:1.0];;
@@ -44,6 +45,7 @@ static char UITopViewControllerKey;
 
 // 自定义导航栏返回按钮
 - (void)initNavleftBarItemWithController:(UIViewController *)controller {
+    return;//TODO
         controller.navigationItem.hidesBackButton = YES;
         UIButton *leftButton;
         UIBarButtonItem * item;

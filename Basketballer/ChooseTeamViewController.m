@@ -114,13 +114,26 @@ typedef enum{
 
     self.tableView.rowHeight = 56.0f;
 
-    self.title = LocalString(@"SelectTeam");
+    self.title = LocalString(@"ChooseTeam");
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)];
+//    item.imageInsets = UIEdgeInsetsMake(0, -13, 0, 0);
     self.navigationItem.leftBarButtonItem = item;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     [self.startMatchButton setTitle:LocalString(@"Done") forState:UIControlStateNormal];
     [self checkStartMatchButtonEnabled];
+    
+    [[Feature defaultFeature] customNavigationBar:self.navigationController.navigationBar];
+    
+    // 修改导航栏title文字颜色：TODO：提取成公共接口
+//    NSDictionary * attrs = self.navigationController.navigationBar.titleTextAttributes;
+//    NSMutableDictionary * newAttrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
+//    [newAttrs setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+//    self.navigationController.navigationBar.titleTextAttributes = newAttrs;
+//    
+//    // 修改导航栏item文字颜色
+//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     [self makeRoundedView:_homeImageView withRadius:3.0];
     [self makeRoundedView:_guestImageView withRadius:3.0];
@@ -176,7 +189,7 @@ typedef enum{
         }
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"添加新球队";
+        cell.textLabel.text = LocalString(@"AddTeam");
         
         return cell;
     }else{
@@ -284,22 +297,22 @@ typedef enum{
         [self.navigationController pushViewController:editTeam animated:YES];
 
     }else{
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    Team * team = [[[TeamManager defaultManager] teams] objectAtIndex:indexPath.section];
-    BOOL toBeSelected = [self isCellSelected:cell] ? NO : YES;
-
-    if (toBeSelected && _homeTeam && _guestTeam) {
-        // 两支参赛队都已选择，不能继续添加。
-        return;
-    }
-    
-    [self selectTeam:team withFlag:toBeSelected atIndexPath:indexPath];
-    
-    // 更新Cell的选中状态。
-    [self updateSelectedMark:toBeSelected forCell:cell];
-    
-    // 更新最下方面板中的图片。
-    [self updateTeamsPanel];
+        UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        Team * team = [[[TeamManager defaultManager] teams] objectAtIndex:indexPath.row];
+        BOOL toBeSelected = [self isCellSelected:cell] ? NO : YES;
+        
+        if (toBeSelected && _homeTeam && _guestTeam) {
+            // 两支参赛队都已选择，不能继续添加。
+            return;
+        }
+        
+        [self selectTeam:team withFlag:toBeSelected atIndexPath:indexPath];
+        
+        // 更新Cell的选中状态。
+        [self updateSelectedMark:toBeSelected forCell:cell];
+        
+        // 更新最下方面板中的图片。
+        [self updateTeamsPanel];
     }
 }
 

@@ -24,6 +24,10 @@
 @property (nonatomic, weak) Player * player;
 @property (nonatomic, weak) NSNumber * team;
 
+@property (nonatomic, copy) NSString * playerNumber;
+@property (nonatomic, copy) NSString * playerName;
+@property (nonatomic, strong) UIImage * playerImage;
+
 @property (nonatomic, weak) UIViewController * parentWhoPresentedMe;
 
 @end

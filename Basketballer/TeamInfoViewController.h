@@ -22,5 +22,4 @@ typedef enum {
 @property (nonatomic, weak) Team * team;
 @property (nonatomic, weak) ImageCell * teamCell;
 
-- (void) refreshViewWithTeamName:(NSString *) teamName;
 @end

@@ -50,7 +50,6 @@
 		3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83D1637F7CC00619526 /* TabBarMatch.png */; };
 		3C40A8401637F7CC00619526 /* TabBarMatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */; };
 		3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
-		3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824215B8E00C00903F9D /* PopoverContentCell.xib */; };
 		3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE815F9950B00EB97EF /* ArrowRight.png */; };
 		3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */; };
 		3C5207CB15EB50360079D5DB /* buzzer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C5207C915EB50360079D5DB /* buzzer.wav */; };
@@ -70,11 +69,6 @@
 		3CB8C77215EDF27D00091D52 /* PlayerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB8C77115EDF27C00091D52 /* PlayerActionCell.xib */; };
 		3CBA0BFB15AE7726003505BC /* TeamListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0BF915AE7726003505BC /* TeamListViewController.m */; };
 		3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0BFA15AE7726003505BC /* TeamListViewController.xib */; };
-		3CBA0C0C15AECD2E003505BC /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0C0415AECD2E003505BC /* UIBarButtonItem+WEPopover.m */; };
-		3CBA0C0D15AECD2E003505BC /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0C0615AECD2E003505BC /* WEPopoverContainerView.m */; };
-		3CBA0C0E15AECD2E003505BC /* WEPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0C0815AECD2E003505BC /* WEPopoverController.m */; };
-		3CBA0C0F15AECD2E003505BC /* WETouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0C0B15AECD2E003505BC /* WETouchableView.m */; };
-		3CBA0C1215AECD4B003505BC /* WEPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */; };
 		3CC1681015A2E52A00A2AB44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
 		3CC1681215A2E52A00A2AB44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		3CC1681415A2E52A00A2AB44 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */; };
@@ -268,6 +262,9 @@
 		FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD319D7245100F76DC6 /* ImageCell.m */; };
 		FB928FD819D816AA00F76DC6 /* TextEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD619D816AA00F76DC6 /* TextEditorViewController.m */; };
 		FB928FD919D816AA00F76DC6 /* TextEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB928FD719D816AA00F76DC6 /* TextEditorViewController.xib */; };
+		FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */; };
+		FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */; };
+		FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,7 +334,6 @@
 		3C40A83D1637F7CC00619526 /* TabBarMatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarMatch.png; sourceTree = "<group>"; };
 		3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarMatch@2x.png"; sourceTree = "<group>"; };
 		3C42824015B7C32200903F9D /* MatchModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchModeCell.xib; sourceTree = "<group>"; };
-		3C42824215B8E00C00903F9D /* PopoverContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverContentCell.xib; sourceTree = "<group>"; };
 		3C446BE815F9950B00EB97EF /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowRight.png; path = Resources/images/ArrowRight.png; sourceTree = "<group>"; };
 		3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ArrowRight@2x.png"; path = "Resources/images/ArrowRight@2x.png"; sourceTree = "<group>"; };
 		3C5207C915EB50360079D5DB /* buzzer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer.wav; path = Resources/music/buzzer.wav; sourceTree = "<group>"; };
@@ -360,17 +356,6 @@
 		3CBA0BF815AE7726003505BC /* TeamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamListViewController.h; sourceTree = "<group>"; };
 		3CBA0BF915AE7726003505BC /* TeamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamListViewController.m; sourceTree = "<group>"; };
 		3CBA0BFA15AE7726003505BC /* TeamListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamListViewController.xib; sourceTree = "<group>"; };
-		3CBA0C0315AECD2E003505BC /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+WEPopover.h"; path = "Popover/UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
-		3CBA0C0415AECD2E003505BC /* UIBarButtonItem+WEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+WEPopover.m"; path = "Popover/UIBarButtonItem+WEPopover.m"; sourceTree = "<group>"; };
-		3CBA0C0515AECD2E003505BC /* WEPopoverContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WEPopoverContainerView.h; path = Popover/WEPopoverContainerView.h; sourceTree = "<group>"; };
-		3CBA0C0615AECD2E003505BC /* WEPopoverContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WEPopoverContainerView.m; path = Popover/WEPopoverContainerView.m; sourceTree = "<group>"; };
-		3CBA0C0715AECD2E003505BC /* WEPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WEPopoverController.h; path = Popover/WEPopoverController.h; sourceTree = "<group>"; };
-		3CBA0C0815AECD2E003505BC /* WEPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WEPopoverController.m; path = Popover/WEPopoverController.m; sourceTree = "<group>"; };
-		3CBA0C0915AECD2E003505BC /* WEPopoverParentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WEPopoverParentView.h; path = Popover/WEPopoverParentView.h; sourceTree = "<group>"; };
-		3CBA0C0A15AECD2E003505BC /* WETouchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WETouchableView.h; path = Popover/WETouchableView.h; sourceTree = "<group>"; };
-		3CBA0C0B15AECD2E003505BC /* WETouchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WETouchableView.m; path = Popover/WETouchableView.m; sourceTree = "<group>"; };
-		3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WEPopoverContentViewController.h; sourceTree = "<group>"; };
-		3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WEPopoverContentViewController.m; sourceTree = "<group>"; };
 		3CC1680B15A2E52A00A2AB44 /* Basketballer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Basketballer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC1680F15A2E52A00A2AB44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3CC1681115A2E52A00A2AB44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -618,6 +603,12 @@
 		FB928FD519D816AA00F76DC6 /* TextEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditorViewController.h; sourceTree = "<group>"; };
 		FB928FD619D816AA00F76DC6 /* TextEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditorViewController.m; sourceTree = "<group>"; };
 		FB928FD719D816AA00F76DC6 /* TextEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditorViewController.xib; sourceTree = "<group>"; };
+		FB957D0A19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithObject.h"; sourceTree = "<group>"; };
+		FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+dictionaryWithObject.m"; sourceTree = "<group>"; };
+		FB957D0D19DA882B007FC3DA /* FibaCustomRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibaCustomRule.h; sourceTree = "<group>"; };
+		FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaCustomRule.m; sourceTree = "<group>"; };
+		FB957D1019DA914E007FC3DA /* CustomRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRuleViewController.h; sourceTree = "<group>"; };
+		FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRuleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -698,6 +689,7 @@
 		3C121F7615A43D290062BECD /* library */ = {
 			isa = PBXGroup;
 			children = (
+				FB957D0919DA8657007FC3DA /* category */,
 				3C301E8315EF6D2C00A5CFF4 /* umeng */,
 				E6F1E36315EF41F200FED24B /* WellKnownSaying.h */,
 				E6F1E36415EF41F200FED24B /* WellKnownSaying.m */,
@@ -743,22 +735,6 @@
 				3C301E8815EF71CD00A5CFF4 /* UMFeedback.h */,
 			);
 			name = umeng;
-			sourceTree = "<group>";
-		};
-		3CBA0C0215AECD06003505BC /* Popover */ = {
-			isa = PBXGroup;
-			children = (
-				3CBA0C0315AECD2E003505BC /* UIBarButtonItem+WEPopover.h */,
-				3CBA0C0415AECD2E003505BC /* UIBarButtonItem+WEPopover.m */,
-				3CBA0C0515AECD2E003505BC /* WEPopoverContainerView.h */,
-				3CBA0C0615AECD2E003505BC /* WEPopoverContainerView.m */,
-				3CBA0C0715AECD2E003505BC /* WEPopoverController.h */,
-				3CBA0C0815AECD2E003505BC /* WEPopoverController.m */,
-				3CBA0C0915AECD2E003505BC /* WEPopoverParentView.h */,
-				3CBA0C0A15AECD2E003505BC /* WETouchableView.h */,
-				3CBA0C0B15AECD2E003505BC /* WETouchableView.m */,
-			);
-			name = Popover;
 			sourceTree = "<group>";
 		};
 		3CC1680015A2E52A00A2AB44 = {
@@ -818,7 +794,6 @@
 				3CC1683815A2E6EE00A2AB44 /* Classes */,
 				E68D110315A2F7020074982D /* DataStore */,
 				3C121F7615A43D290062BECD /* library */,
-				3CBA0C0215AECD06003505BC /* Popover */,
 				3CC1683315A2E5E400A2AB44 /* Resources */,
 				3CC1681815A2E52B00A2AB44 /* Supporting Files */,
 			);
@@ -947,8 +922,8 @@
 				3CC9129D15B1C477003C74D4 /* TimeoutPromptView.m */,
 				3C13E49615C192A900F4307C /* TimeStopPromptView.h */,
 				3C13E49715C192A900F4307C /* TimeStopPromptView.m */,
-				3CBA0C1015AECD4A003505BC /* WEPopoverContentViewController.h */,
-				3CBA0C1115AECD4B003505BC /* WEPopoverContentViewController.m */,
+				FB957D1019DA914E007FC3DA /* CustomRuleViewController.h */,
+				FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1032,44 +1007,46 @@
 		E68D110315A2F7020074982D /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				3C40A8281637753100619526 /* AccountRule.h */,
+				3C40A8291637753100619526 /* AccountRule.m */,
 				E68C515215D25AFD00F52002 /* Action.h */,
 				E68C515315D25AFF00F52002 /* Action.m */,
 				E6E1D94B15AA87F800CB0C0E /* ActionManager.h */,
 				E6E1D94C15AA87F800CB0C0E /* ActionManager.m */,
-				E6E032C515CFBC2400AF91CB /* Player.h */,
-				E6E032C615CFBC2500AF91CB /* Player.m */,
+				FB76CB951883D31300F07B53 /* AmateurRule.h */,
+				FB76CB961883D31300F07B53 /* AmateurRule.m */,
 				E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */,
 				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
-				E6E032C215CFB44000AF91CB /* PlayerManager.h */,
-				E6E032C315CFB44100AF91CB /* PlayerManager.m */,
+				E658146A15DF4F8E007B4F7E /* BaseRule.h */,
+				E658146B15DF4F8E007B4F7E /* BaseRule.m */,
+				E62D383215E633E2004AA543 /* Fiba3pbRule.h */,
+				E62D383315E633E3004AA543 /* Fiba3pbRule.m */,
+				FB957D0D19DA882B007FC3DA /* FibaCustomRule.h */,
+				FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */,
+				E658146E15DF5AC0007B4F7E /* FibaRule.h */,
+				E658146F15DF5AC0007B4F7E /* FibaRule.m */,
+				E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */,
+				E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */,
+				E68D111C15A3DA0C0074982D /* GameSetting.h */,
+				E68D111D15A3DA0C0074982D /* GameSetting.m */,
 				E6E9691915BE40050073C5B8 /* Match.h */,
 				E6E9691A15BE40050073C5B8 /* Match.m */,
 				E68D116615A53CE40074982D /* MatchManager.h */,
 				E68D116715A53CE50074982D /* MatchManager.m */,
 				E6E032A415C98CB400AF91CB /* MatchUnderWay.h */,
 				E6E032A515C98CB600AF91CB /* MatchUnderWay.m */,
+				E6BFB4DA15E2111A008E9BC6 /* NbaRule.h */,
+				E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */,
+				E6E032C515CFBC2400AF91CB /* Player.h */,
+				E6E032C615CFBC2500AF91CB /* Player.m */,
+				E6E032C215CFB44000AF91CB /* PlayerManager.h */,
+				E6E032C315CFB44100AF91CB /* PlayerManager.m */,
 				E69255FC15B551EA00CBF606 /* Team.h */,
 				E69255FD15B551EA00CBF606 /* Team.m */,
 				E6E1D95415AB183500CB0C0E /* TeamManager.h */,
 				E6E1D95515AB183500CB0C0E /* TeamManager.m */,
-				E68D111C15A3DA0C0074982D /* GameSetting.h */,
-				E68D111D15A3DA0C0074982D /* GameSetting.m */,
 				E69255F015B3EA7500CBF606 /* TeamStatistics.h */,
 				E69255F115B3EA7500CBF606 /* TeamStatistics.m */,
-				E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */,
-				E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */,
-				E658146A15DF4F8E007B4F7E /* BaseRule.h */,
-				E658146B15DF4F8E007B4F7E /* BaseRule.m */,
-				E658146E15DF5AC0007B4F7E /* FibaRule.h */,
-				E658146F15DF5AC0007B4F7E /* FibaRule.m */,
-				FB76CB951883D31300F07B53 /* AmateurRule.h */,
-				FB76CB961883D31300F07B53 /* AmateurRule.m */,
-				E6BFB4DA15E2111A008E9BC6 /* NbaRule.h */,
-				E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */,
-				E62D383215E633E2004AA543 /* Fiba3pbRule.h */,
-				E62D383315E633E3004AA543 /* Fiba3pbRule.m */,
-				3C40A8281637753100619526 /* AccountRule.h */,
-				3C40A8291637753100619526 /* AccountRule.m */,
 			);
 			name = DataStore;
 			sourceTree = "<group>";
@@ -1081,7 +1058,6 @@
 				3C42824015B7C32200903F9D /* MatchModeCell.xib */,
 				E68D118415A684B30074982D /* MatchPartSummaryCell.xib */,
 				E6914F7B15D72B6F002CAEE0 /* SwitchCell.xib */,
-				3C42824215B8E00C00903F9D /* PopoverContentCell.xib */,
 				E65FF05215C455F200E96D6A /* ImageCell.xib */,
 				FB928FD219D7245100F76DC6 /* ImageCell.h */,
 				FB928FD319D7245100F76DC6 /* ImageCell.m */,
@@ -1161,6 +1137,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FB957D0919DA8657007FC3DA /* category */ = {
+			isa = PBXGroup;
+			children = (
+				FB957D0A19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.h */,
+				FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */,
+			);
+			name = category;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1205,7 +1190,7 @@
 		3CC1680215A2E52A00A2AB44 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					3CC1680A15A2E52A00A2AB44 = {
 						DevelopmentTeam = L3232NJXLT;
@@ -1258,7 +1243,6 @@
 				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
 				FB928FCB19D6A70800F76DC6 /* RosterCollectionViewCell.xib in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
-				3C42824315B8E00C00903F9D /* PopoverContentCell.xib in Resources */,
 				E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */,
 				E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */,
 				E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */,
@@ -1433,6 +1417,7 @@
 			files = (
 				3CC1681E15A2E52B00A2AB44 /* main.m in Sources */,
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
+				FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */,
 				FB928FC519D6A2D300F76DC6 /* RosterViewController.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */,
@@ -1450,11 +1435,6 @@
 				3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */,
 				3CFE1D2F15AC876A00247B80 /* TeamNameViewController.m in Sources */,
 				3CBA0BFB15AE7726003505BC /* TeamListViewController.m in Sources */,
-				3CBA0C0C15AECD2E003505BC /* UIBarButtonItem+WEPopover.m in Sources */,
-				3CBA0C0D15AECD2E003505BC /* WEPopoverContainerView.m in Sources */,
-				3CBA0C0E15AECD2E003505BC /* WEPopoverController.m in Sources */,
-				3CBA0C0F15AECD2E003505BC /* WETouchableView.m in Sources */,
-				3CBA0C1215AECD4B003505BC /* WEPopoverContentViewController.m in Sources */,
 				E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */,
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptView.m in Sources */,
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
@@ -1479,6 +1459,7 @@
 				FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */,
 				E6E032CE15CFC0CA00AF91CB /* NewPlayerViewController.m in Sources */,
 				E68C515415D25B0100F52002 /* Action.m in Sources */,
+				FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */,
 				E6914F6215D4E5AD002CAEE0 /* PlayerActionViewController.m in Sources */,
 				E6914F6515D4E5DB002CAEE0 /* PlayerStatisticsViewController.m in Sources */,
 				E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */,
@@ -1489,6 +1470,7 @@
 				E6BFB4DC15E2111A008E9BC6 /* NbaRule.m in Sources */,
 				E6F7682D15E36F3C006E5D4E /* FibaTeamStatistics.m in Sources */,
 				3C0BD4C815E36AD800EEAB0B /* SoundManager.m in Sources */,
+				FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */,
 				E62D383415E633E4004AA543 /* Fiba3pbRule.m in Sources */,
 				E62D383A15E6748E004AA543 /* MatchSettingViewController.m in Sources */,
 				3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */,
@@ -1563,10 +1545,12 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: WANWEI LIU (5Y6RV2MD2B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1600,10 +1584,12 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: WANWEI LIU (5Y6RV2MD2B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1624,7 +1610,6 @@
 		3CC1682915A2E52B00A2AB44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
@@ -1646,7 +1631,6 @@
 		3CC1682A15A2E52B00A2AB44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
@@ -1668,7 +1652,6 @@
 		FB1BA93B1884E44300978359 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Basketballer.app/Basketballer";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1698,7 +1681,6 @@
 		FB1BA93C1884E44300978359 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Basketballer.app/Basketballer";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

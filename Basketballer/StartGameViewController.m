@@ -1,7 +1,7 @@
 //
 //  StartGameViewController.m
 //  Basketballer
-//  新游戏界面（第一个Tab）
+//  新比赛界面（第一个Tab）
 //  Created by maoyu on 12-7-10.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
@@ -20,7 +20,10 @@
 #import "MatchUnderWay.h"
 #import "WellKnownSaying.h"
 #import "AccountRuleDetailViewController.h"
-#import "NewPlayerViewController.h"
+
+#import "FibaRule.h"
+#import "CustomRuleViewController.h"
+#import "NSDictionary+dictionaryWithObject.h"
 
 @interface StartGameViewController () {
 //    NSArray * _sectionsTitle;
@@ -106,6 +109,10 @@
     self.tableView.rowHeight = 60;
     
     self.title = NSLocalizedString(@"Start", nil);
+    
+    FibaRule * fiba = [[FibaRule alloc] init];
+    NSDictionary * fibaDict = [NSDictionary dictionaryWithPropertiesOfObject:fiba];
+    NSLog(@"%d", fibaDict.count);
 }
 
 - (void)viewDidUnload
@@ -129,12 +136,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[[GameSetting defaultSetting] gameModes] count];    
+    // 1 : Fiba
+    // 2 : 简单记分
+    // 3 : 自定义
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;   
+    if (section == 0) {
+        return 2;
+    }else if(section == 1){
+        return 1;
+    }else if(section == 2){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 // 图片圆角化。
@@ -143,23 +161,37 @@
     image.layer.cornerRadius = 5.0f;    
 }
 
+- (NSInteger)gameModeIndexForIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return indexPath.row;
+    }else if(indexPath.section == 1){
+        return (2 + indexPath.row);      // 跳过第一个section的两行
+    }else{
+        return -1;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = nil;
   
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    
-    NSInteger index = indexPath.section;
-    cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
     cell.textLabel.textColor = [self cellDetailTextColor];
     
-    if (indexPath.section == 0) {
-        cell.imageView.image = [UIImage imageNamed:@"BasketballBlueWhite"];
+    if (indexPath.section == 0 || indexPath.section == 1) {
+        NSInteger index = [self gameModeIndexForIndexPath:indexPath];
+        
+        cell.textLabel.text = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
+        
+        if (indexPath.section == 0) {
+            cell.imageView.image = [UIImage imageNamed:@"BasketballBlueWhite"];
+        }else if(indexPath.section == 1){
+            cell.imageView.image = [UIImage imageNamed:@"BasketballBlueRed"];
+        }
     }else{
-        cell.imageView.image = [UIImage imageNamed:@"BasketballBlueRed"];        
+        cell.textLabel.text = @"自定义模式";
     }
-    
 
         
     return cell;
@@ -168,25 +200,31 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: Test.
-    NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-    return;
-    
     GameSetting * gs = [GameSetting defaultSetting];
     MatchUnderWay * match = [MatchUnderWay defaultMatch];
-    match.matchMode = [gs.gameModes objectAtIndex:indexPath.section];
     
-    ChooseTeamViewController * viewController;
-    viewController = [[ChooseTeamViewController alloc] initWithNibName:@"ChooseTeamViewController" bundle:nil];
-    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:viewController];
-    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
-    [[AppDelegate delegate] presentModelViewController:nav];
+    if (indexPath.section == 0 || indexPath.section == 1) {
+        NSInteger index = [self gameModeIndexForIndexPath:indexPath];
+        
+        match.matchMode = [gs.gameModes objectAtIndex:index];
+        
+        ChooseTeamViewController * viewController;
+        viewController = [[ChooseTeamViewController alloc] initWithNibName:@"ChooseTeamViewController" bundle:nil];
+        UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+        
+        [[AppDelegate delegate] presentModelViewController:nav];
+    }else{
+        CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    NSString * title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:indexPath.section];
-    NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:indexPath.section];
+    
+    NSInteger index = [self gameModeIndexForIndexPath:indexPath];
+    
+    NSString * title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
+    NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:index];
     UITableViewController * details;
     
     if ([mode isEqualToString:kMatchModeAccount]) {

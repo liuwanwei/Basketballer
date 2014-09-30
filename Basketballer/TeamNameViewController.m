@@ -47,7 +47,6 @@
     
     [self initTeamNameText];
     [self.teamNameText becomeFirstResponder];
-    self.view.backgroundColor = [[Feature defaultFeature] weChatTableBgColor];
     
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {
@@ -60,15 +59,15 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    NSString * teamName = self.teamNameText.text;
-    teamName = [teamName stringByTrimmingCharactersInSet: 
-                         [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (self.parentController) {
-        [self.parentController refreshViewWithTeamName:teamName]; 
-    }
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    NSString * teamName = self.teamNameText.text;
+//    teamName = [teamName stringByTrimmingCharactersInSet: 
+//                         [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    if (self.parentController) {
+//        [self.parentController refreshViewWithTeamName:teamName]; 
+//    }
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

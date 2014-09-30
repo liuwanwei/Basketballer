@@ -15,6 +15,8 @@
 "Teams"  = "球队管理";
 "Others"  = "更多";
 
+"Custom" = "自定义";
+
 "Cancel" = "取消";
 
 "Fiba5PlayerMode" = "FIBA标准五人计时模式";
@@ -30,6 +32,7 @@
 "DefaultTeam1" = "芝加哥公牛";
 "DefaultTeam2" = "犹他爵士";
 
+"AddTeam" = "添加新球队";
 "CreateTeam" = "新球队";
 "TeamInfo" = "球队信息";
 "Record" = "比赛记录";
@@ -45,7 +48,7 @@
 "PlayerNumber" = "球衣号码";
 "PlayerInfoFormatter" = "%.2d 号";
 
-"SelectTeam" = "选择球队";
+"ChooseTeam" = "选择球队";
 "SelectTeamGuide" = "请选择两支比赛球队";
 "Finish" = "结束";
 "Done" = "完成";
@@ -144,7 +147,11 @@
 "Forbidden" = "不允许";
 
 "FibaTimeoutLimit" = "上半场2次，下半场3次";
-"TimeoutLength" = "暂停时间";
+"TimeoutLength" = "每次暂停时间";
+
+"1stHalfTimeoutLimit" = "上半场暂停次数";
+"2ndHalfTimeoutLimit" = "下半场暂停次数";
+"OvertimeTimeoutLimit" = "加时赛暂停次数";
 
 "Special" = "特殊规则";
 "Get33PointsWinFormatter" = "先获取 %d 分球队获胜";

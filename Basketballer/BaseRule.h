@@ -17,7 +17,9 @@ typedef enum{
     MatchPeriodSecond,
     MatchPeriodThird,
     MatchPeriodFourth,
-    MatchPeriodOvertime = 50             // 加时赛1。加时赛2用“MatchPeriodOvertime+1”标示，以此类推。
+    
+    // 加时赛1。加时赛2用“MatchPeriodOvertime+1”标示，以此类推。
+    MatchPeriodOvertime = 50
 }MatchPeriod;
 
 #define UnlimitNumber       9999
@@ -38,6 +40,9 @@ typedef enum{
 
 // 夺取胜利需要达到的分数。（三人篮球模式有效）
 @property (nonatomic) NSInteger winningPoints;
+
+
+/****************** methods ******************/
 
 // 每个周期有多长时间，单位（秒）。
 - (NSInteger)timeLengthForPeriod:(MatchPeriod)period;

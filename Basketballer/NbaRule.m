@@ -20,11 +20,6 @@
     return 4;
 }
 
-// 这个变量移动到TeamStatistics中去了。
-//- (NSInteger)timeoutLength{
-//    return 60;
-//}
-
 - (NSInteger)foulLimitForTeam{
     return 4;
 }
