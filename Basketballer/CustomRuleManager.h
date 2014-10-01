@@ -20,4 +20,6 @@
 
 - (Rule *)customRuleWithFibaRule:(FibaCustomRule *)rule;
 
+- (BOOL)deleteRule:(Rule *)rule;
+
 @end

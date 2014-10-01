@@ -75,4 +75,14 @@
     return rule;
 }
 
+- (BOOL)deleteRule:(Rule *)rule{
+    if (! [self deleteFromStore:rule synchronized:YES]) {
+        return NO;
+    }
+    
+    [self.rules removeObject:rule];
+    
+    return YES;
+}
+
 @end

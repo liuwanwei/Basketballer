@@ -17,6 +17,8 @@
 "Custom" = "Custom";
 "RuleName" = "Rule name";
 "Rule" = "Rule";
+"DeleteRule" = "Delete";
+"ModifyRule" = "Modify";
 
 "FibaMode" = "Fiba official rule";
 "FreeMode" = "Points Only";
@@ -24,6 +26,7 @@
 "Add" = "Add new rule ...";
 
 "Cancel" = "Cancel";
+"Confirm" = "Confirm";
 
 "Fiba5PlayerMode" = "5-Player Mode";
 "Fiba3PlayerMode" = "3-Player Mode";

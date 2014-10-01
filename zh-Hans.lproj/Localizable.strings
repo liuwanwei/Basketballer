@@ -19,12 +19,16 @@
 "RuleName" = "规则名称";
 "Rule" = "比赛规则";
 
+"DeleteRule" = "删除规则";
+"ModifyRule" = "修改规则";
+
 "FibaMode" = "FIBA正式比赛规则";
 "FreeMode" = "只在乎比分";
 "CustomMode" = "自定义规则";
 "Add" = "新建 ...";
 
 "Cancel" = "取消";
+"Confirm" = "确定";
 
 "Fiba5PlayerMode" = "五人制计时模式";
 "Fiba3PlayerMode" = "三人制计时模式";

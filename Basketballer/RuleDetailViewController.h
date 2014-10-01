@@ -10,7 +10,7 @@
 
 @class  BaseRule;
 
-@interface RuleDetailViewController : UITableViewController
+@interface RuleDetailViewController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) BaseRule * rule;
 

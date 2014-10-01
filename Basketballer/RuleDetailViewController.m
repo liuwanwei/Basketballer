@@ -11,6 +11,7 @@
 #import "FibaRule.h"
 #import "Fiba3pbRule.h"
 #import "FibaCustomRule.h"
+#import "CustomRuleManager.h"
 #import "CustomRuleViewController.h"
 #import "AppDelegate.h"
 #import "Feature.h"
@@ -71,10 +72,55 @@
     _rowsInSection = [NSArray arrayWithObjects:_timeRules, _foulRules, _timeoutRules, _winningRules, nil];
 }
 
-- (void)editCustomRule{
+// 修改自定义规则
+- (void)modifyCustomRule{
     CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.rule = (FibaCustomRule *)self.rule;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 删除自定义规则
+- (void)deleteCustomRule{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:LocalString(@"DeleteRule") message:LocalString(@"a-u-sure?") delegate:self cancelButtonTitle:LocalString(@"Cancel") otherButtonTitles:LocalString(@"Confirm"), nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        // 取消
+    }else if(buttonIndex == 1){
+        // 确定要删除规则
+        FibaCustomRule * customRule = (FibaCustomRule *)self.rule;
+        [[CustomRuleManager defaultInstance] deleteRule:customRule.model];
+        
+        // 通知上层界面刷新规则列表
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRuleChangedNotification object:nil];
+        
+        // 返回上级界面
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+// 弹出编辑菜单
+- (void)editMenu{
+    UIActionSheet * menu = [[UIActionSheet alloc]
+                            initWithTitle:nil delegate:self
+                            cancelButtonTitle:LocalString(@"Cancel")
+                            destructiveButtonTitle:LocalString(@"DeleteRule")
+                            otherButtonTitles:LocalString(@"ModifyRule"), nil];
+    
+    [menu showInView:[UIApplication sharedApplication].keyWindow];
+
+}
+
+#pragma mark - ActionSheet view delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == actionSheet.destructiveButtonIndex) {
+        [self deleteCustomRule];
+    }else if(buttonIndex == actionSheet.firstOtherButtonIndex){
+        [self modifyCustomRule];
+    }
 }
 
 - (void)viewDidLoad
@@ -86,7 +132,7 @@
     self.title = LocalString(@"Rule");
     
     if ([self.rule isKindOfClass:[FibaCustomRule class]]) {
-        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editCustomRule)];
+        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editMenu)];
         self.navigationItem.rightBarButtonItem = item;
     }
     
