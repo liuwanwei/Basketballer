@@ -117,9 +117,7 @@ typedef enum{
     self.title = LocalString(@"ChooseTeam");
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)];
-//    item.imageInsets = UIEdgeInsetsMake(0, -13, 0, 0);
     self.navigationItem.leftBarButtonItem = item;
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     [self.startMatchButton setTitle:LocalString(@"Done") forState:UIControlStateNormal];
     [self checkStartMatchButtonEnabled];

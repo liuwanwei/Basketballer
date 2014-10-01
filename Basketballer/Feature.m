@@ -37,6 +37,7 @@ static char UITopViewControllerKey;
 
 // 设置导航栏背景和文字颜色（知乎App2012年版的亮蓝色背景）
 - (void)customNavigationBar:(UINavigationBar *)navigationBar{
+    navigationBar.barStyle = UIBarStyleBlack;
     return;//TODO
     UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
     [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];

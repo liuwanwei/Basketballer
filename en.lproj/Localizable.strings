@@ -16,11 +16,17 @@
 
 "Custom" = "Custom";
 "RuleName" = "Rule name";
+"Rule" = "Rule";
+
+"FibaMode" = "Fiba official rule";
+"FreeMode" = "Points Only";
+"CustomMode" = "Custom rule";
+"Add" = "Add new rule ...";
 
 "Cancel" = "Cancel";
 
-"Fiba5PlayerMode" = "FIBA 5-Player Match";
-"Fiba3PlayerMode" = "FIBA 3-Player Match";
+"Fiba5PlayerMode" = "5-Player Mode";
+"Fiba3PlayerMode" = "3-Player Mode";
 
 "Name" = "Name";
 "Number" = "Number";

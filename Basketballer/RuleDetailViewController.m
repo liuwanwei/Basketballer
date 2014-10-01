@@ -10,6 +10,8 @@
 #import "BaseRule.h"
 #import "FibaRule.h"
 #import "Fiba3pbRule.h"
+#import "FibaCustomRule.h"
+#import "CustomRuleViewController.h"
 #import "AppDelegate.h"
 #import "Feature.h"
 
@@ -31,10 +33,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+- (void)makeRuleDetailString{
     NSArray * _timeRules;
     NSArray * _foulRules;
     NSArray * _timeoutRules;
@@ -70,6 +69,26 @@
     
     _winningRules = [NSArray arrayWithObject:LocalString(@"Special")];
     _rowsInSection = [NSArray arrayWithObjects:_timeRules, _foulRules, _timeoutRules, _winningRules, nil];
+}
+
+- (void)editCustomRule{
+    CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    vc.rule = (FibaCustomRule *)self.rule;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self makeRuleDetailString];
+    
+    self.title = LocalString(@"Rule");
+    
+    if ([self.rule isKindOfClass:[FibaCustomRule class]]) {
+        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editCustomRule)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
     
     [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }

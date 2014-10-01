@@ -17,11 +17,17 @@
 
 "Custom" = "自定义";
 "RuleName" = "规则名称";
+"Rule" = "比赛规则";
+
+"FibaMode" = "FIBA正式比赛规则";
+"FreeMode" = "只在乎比分";
+"CustomMode" = "自定义规则";
+"Add" = "新建 ...";
 
 "Cancel" = "取消";
 
-"Fiba5PlayerMode" = "FIBA标准五人计时模式";
-"Fiba3PlayerMode" = "FIBA标准三人计时模式";
+"Fiba5PlayerMode" = "五人制计时模式";
+"Fiba3PlayerMode" = "三人制计时模式";
 "SimpleAccountPlayerMode" = "简单计分模式";
 
 "Name" = "名字";
