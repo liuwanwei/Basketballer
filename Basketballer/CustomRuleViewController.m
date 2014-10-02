@@ -163,9 +163,13 @@
                 }
             }
             
-            UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastChoosedIndexPath];
-            cell.detailTextLabel.text = text;
+            // 刷新修改过的Cell详情
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastChoosedIndexPath];
+                cell.detailTextLabel.text = text;
+            });
             
+            // 输入完毕后导航栏右侧“保存”按钮
             if ([self allParameterSupplied]) {
                 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
             }else{
@@ -181,9 +185,9 @@
     TextEditorViewController * vc = [[TextEditorViewController alloc] initWithNibName:@"TextEditorViewController" bundle:nil];
     
     if (indexPath.section == 0) {
-        vc.keyboardType = UIKeyboardTypeNumberPad;
-    }else{
         vc.keyboardType = UIKeyboardTypeNamePhonePad;
+    }else{
+        vc.keyboardType = UIKeyboardTypeNumberPad;
     }
     
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];

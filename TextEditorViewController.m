@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.keyboardType = UIKeyboardTypeDefault;
     self.textField.text = self.text;
     
     // 显示模式兼容iOS7的ExtendedLayout模式
@@ -26,11 +25,17 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.textField.keyboardType = self.keyboardType;
+    [self.textField becomeFirstResponder];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
     self.text = self.textField.text;
-    self.textField.keyboardType = self.keyboardType;
     
     NSLog(@"发送文本保存事件");
     [[NSNotificationCenter defaultCenter] postNotificationName:kTextSavedMsg object:self userInfo:[NSDictionary dictionaryWithObject:self.text forKey:kTextSavedMsg]];

@@ -134,8 +134,11 @@
     //[self updateSaying:saying];
 }
 
+// 处理自定义规则消息
 - (void)ruleChangedNotification:(NSNotification *)notification{
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    });
 }
 
 #pragma mark - Table view data source
@@ -214,6 +217,7 @@
             Rule * rule = [rules objectAtIndex:indexPath.row];
             cell.textLabel.text = rule.name;
         }else{
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = LocalString(@"Add");
         }
     }

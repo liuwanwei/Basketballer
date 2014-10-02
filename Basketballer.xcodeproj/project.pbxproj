@@ -1203,7 +1203,7 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					3CC1680A15A2E52A00A2AB44 = {
-						DevelopmentTeam = L3232NJXLT;
+						DevelopmentTeam = 2X7R3T7XZ5;
 					};
 					FB1BA92A1884E44200978359 = {
 						TestTargetID = 3CC1680A15A2E52A00A2AB44;
@@ -1580,7 +1580,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7616A1AC-E4E6-4346-81B8-A469AD643952";
+				PROVISIONING_PROFILE = "5FBA1FB7-5112-412D-9E7A-31FBA758C944";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 			};
@@ -1612,7 +1612,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "7616A1AC-E4E6-4346-81B8-A469AD643952";
+				PROVISIONING_PROFILE = "5FBA1FB7-5112-412D-9E7A-31FBA758C944";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
@@ -1623,6 +1623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
@@ -1633,7 +1634,7 @@
 					"\"$(SRCROOT)/Basketballer/umeng/SNS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21044B71-7FEA-430D-A730-11B1C6542741";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1644,6 +1645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
@@ -1654,7 +1656,7 @@
 					"\"$(SRCROOT)/Basketballer/umeng/SNS\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "21044B71-7FEA-430D-A730-11B1C6542741";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
