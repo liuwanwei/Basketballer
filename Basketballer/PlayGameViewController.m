@@ -502,13 +502,16 @@ typedef enum {
         [_gamePeroidLabel setHidden:YES];
         [self startGame:nil];
     }
+    
     [self registerHandleMessage];
     [self updateTitle:LocalString(@"Match")];
-    //[self initActionSheetButtonTitles];
     [self initOperateGameView];
     [self addSwipeGesture];
     [self showNavBarLeftItem:YES withRightItem:NO];
-    //[self initPlaySoundView];
+    
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
         
     [LocationManager defaultManager].delegate = self;
     [AppDelegate delegate].playGameViewController = self;

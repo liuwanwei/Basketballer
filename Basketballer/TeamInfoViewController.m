@@ -237,6 +237,7 @@
         self.teamCell = cell;
         
         cell.title.text = LocalString(@"Profile");
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         // 图片圆角化。
         cell.profileImage.layer.masksToBounds = YES;
@@ -286,6 +287,8 @@
             
             cell.detailTextLabel.text = description;
         }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
     }else{

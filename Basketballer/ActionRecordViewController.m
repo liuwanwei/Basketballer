@@ -94,7 +94,11 @@
     
     [self.teamSelector addTarget:self action:@selector(teamChanged) forControlEvents:UIControlEventValueChanged];
     
-    [self initView];    
+    [self initView];
+    
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
 }
 
 - (void)viewDidUnload
