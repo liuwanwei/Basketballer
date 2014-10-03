@@ -155,18 +155,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = LocalString(@"name");
+        cell.textLabel.text = LocalString(@"Name");
         cell.detailTextLabel.text = self.player.name;
     }else if(indexPath.row == 1){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = LocalString(@"number");
+        cell.textLabel.text = LocalString(@"Number");
         cell.detailTextLabel.text = [self.player.number stringValue];
     }else if(indexPath.row == 2){
         NSArray * nibs = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:self options:nil];
         cell = [nibs objectAtIndex:0];
         self.imageCell = (ImageCell *) cell;
+        self.imageCell.profileImage.image = [UIImage imageNamed:@"player_profile"];
         self.imageCell.title.text = LocalString(@"Profile");
     }
     

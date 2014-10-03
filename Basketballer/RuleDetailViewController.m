@@ -123,6 +123,13 @@
     }
 }
 
+// 修改自定义规则消息通知处理
+- (void)ruleChangedNotification:(NSNotification *)notification{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
+    });
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -136,14 +143,16 @@
         self.navigationItem.rightBarButtonItem = item;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ruleChangedNotification:) name:kRuleChangedNotification object:nil];
+    
     [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

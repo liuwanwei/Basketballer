@@ -167,6 +167,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastChoosedIndexPath];
                 cell.detailTextLabel.text = text;
+                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:_lastChoosedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
             
             // 输入完毕后导航栏右侧“保存”按钮
@@ -192,6 +193,7 @@
     
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     vc.text = cell.detailTextLabel.text;
+    vc.title = cell.textLabel.text;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
