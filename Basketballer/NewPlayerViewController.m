@@ -15,6 +15,7 @@
 
 @interface NewPlayerViewController (){
     UIBarButtonItem * _saveItem;
+    NSIndexPath * _lastSelectedIndexPath;
     BOOL _dirty;
 }
 
@@ -26,7 +27,7 @@
 @synthesize nameLabel = _nameLabel;
 @synthesize number = _number;
 @synthesize name = _name;
-@synthesize player = _player;
+@synthesize model = _model;
 @synthesize team = _team;
 @synthesize parentWhoPresentedMe = _parentWhoPresentedMe;
 
@@ -61,10 +62,10 @@
     PlayerManager * pm = [PlayerManager defaultManager];                
     NSNumber * number = [NSNumber numberWithInteger:numberInteger];    
     Player * player = nil;
-    if (self.player == nil) {
+    if (self.model == nil) {
         player = [pm addPlayerForTeam:_team withNumber:number withName:self.name.text];
     }else{
-        player = [pm updatePlayer:self.player withNumber:number andName:self.name.text];
+        player = [pm updatePlayer:self.model withNumber:number andName:self.name.text];
     }
 
     if(nil == player){
@@ -121,18 +122,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    if (self.player != nil) {
-        self.number.text = [self.player.number stringValue];
-        self.name.text = self.player.name;
-        
-        self.title = LocalString(@"PlayerInfo");
-    }else{
-        self.title = LocalString(@"NewPlayer");
-    }
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    
+//    if (self.player != nil) {
+//        self.number.text = [self.player.number stringValue];
+//        self.name.text = self.player.name;
+//        
+//        self.title = LocalString(@"PlayerInfo");
+//    }else{
+//        self.title = LocalString(@"NewPlayer");
+//    }
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -156,27 +157,33 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = LocalString(@"Name");
-        cell.detailTextLabel.text = self.player.name;
+        cell.detailTextLabel.text = self.playerName;
     }else if(indexPath.row == 1){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = LocalString(@"Number");
-        cell.detailTextLabel.text = [self.player.number stringValue];
+        cell.detailTextLabel.text = [self.playerNumber stringValue];
     }else if(indexPath.row == 2){
         NSArray * nibs = [[NSBundle mainBundle] loadNibNamed:@"ImageCell" owner:self options:nil];
         cell = [nibs objectAtIndex:0];
         self.imageCell = (ImageCell *) cell;
-        self.imageCell.profileImage.image = [UIImage imageNamed:@"player_profile"];
         self.imageCell.title.text = LocalString(@"Profile");
+        if (self.playerImage == nil) {
+            self.imageCell.profileImage.image = [UIImage imageNamed:@"player_profile"];
+        }else{
+            self.imageCell.profileImage.image = self.playerImage;
+        }
     }
     
     return cell;
 }
 
-static int sLastSelectedRow = -1;
-
 #pragma mark - UITableViewDelegate
+
+#define kEditPlayerName     @"EditPlayerName"
+#define kEditPlayerNumber   @"EditPlayerNumber"
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0 || indexPath.row == 1) {
@@ -186,12 +193,14 @@ static int sLastSelectedRow = -1;
             if (indexPath.row == 0) {
                 vc.title = LocalString(@"PlayerName");
                 vc.keyboardType = UIKeyboardTypeNamePhonePad;
+                vc.textkey = kEditPlayerName;
             }else{
                 vc.title = LocalString(@"PlayerNumber");
                 vc.keyboardType = UIKeyboardTypeNumberPad;
+                vc.textkey = kEditPlayerNumber;
             }
             
-            sLastSelectedRow = indexPath.row;
+            _lastSelectedIndexPath = indexPath;
             
             [self.navigationController pushViewController:vc animated:YES];
         }else if (indexPath.row == 2){
@@ -204,18 +213,19 @@ static int sLastSelectedRow = -1;
     if ([notification.name isEqualToString:kTextSavedMsg]) {
         NSDictionary * userInfo = notification.userInfo;
         NSString * text = [userInfo objectForKey:kTextSavedMsg];
-        if (text != nil) {
-            UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sLastSelectedRow inSection:0]];
-            if (sLastSelectedRow == 0) {
-                NSLog(@"球员名字 %@", text);
-                self.playerName = text;
-            }else{
-                NSLog(@"球衣号码 %@", text);
-                self.playerNumber = text;
-            }
-            
-            cell.detailTextLabel.text = text;
+        if ((text = [userInfo objectForKey:kEditPlayerName]) != nil) {
+            NSLog(@"球员名字 %@", text);
+            self.playerName = text;
+        }else if((text = [userInfo objectForKey:kEditPlayerNumber]) != nil){
+            NSLog(@"球衣号码 %@", text);
+            self.playerNumber = [NSNumber numberWithInteger:[text integerValue]];
         }
+    
+        UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastSelectedIndexPath];
+        cell.detailTextLabel.text = text;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:_lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        });
     }
 }
 

@@ -10,6 +10,7 @@
 #import "PlayerManager.h"
 #import "RosterCollectionViewCell.h"
 #import "NewPlayerViewController.h"
+#import "AppDelegate.h"
 
 #define kRosterCell         @"RosterCell"
 
@@ -98,12 +99,14 @@
     if (indexPath.row < playerCount) {
         NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
         vc.team = self.teamId;
-        vc.player = [self.players objectAtIndex:indexPath.row];
+        vc.model = [self.players objectAtIndex:indexPath.row];
+        vc.title = LocalString(@"EditPlayer");
         [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == playerCount){
         // 添加队员
         NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
         vc.team = self.teamId;
+        vc.title = LocalString(@"NewPlayer");
         [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == (playerCount + 1)){
         // 删除队员

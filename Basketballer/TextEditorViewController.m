@@ -38,7 +38,8 @@
     self.text = self.textField.text;
     
     NSLog(@"发送文本保存事件");
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTextSavedMsg object:self userInfo:[NSDictionary dictionaryWithObject:self.text forKey:kTextSavedMsg]];
+    NSString * key = (self.textkey == nil ? kTextSavedMsg : self.textkey);
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTextSavedMsg object:self userInfo:[NSDictionary dictionaryWithObject:self.text forKey:key]];
 }
 
 - (void)didReceiveMemoryWarning {

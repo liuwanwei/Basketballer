@@ -134,24 +134,6 @@
 }
 
 #pragma 类成员函数
-- (void) teamNameChangedNotification:(NSNotification *) notification {
-    if ([notification.name isEqualToString:kTextSavedMsg]) {
-        if (notification.userInfo != nil) {
-            NSString * teamName = [notification.userInfo objectForKey:kTextSavedMsg];
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            if(teamName == nil ||
-               teamName.length == 0) {
-                [self setRightBarButtonItemEnable:NO];
-                cell.detailTextLabel.text = @"";
-            }else {
-                [self setRightBarButtonItemEnable:YES];
-                cell.detailTextLabel.text = teamName;
-            }
-        }
-    }
-}
-
 
 - (void)viewDidUnload{
     [super viewDidUnload];
@@ -298,16 +280,20 @@
 
 #pragma mark - Table view delegate
 
+#define kEditTeamName       @"EditTeamName"
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0 && indexPath.row == 1) {
         [self showActionSheet];
     }else if(indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        TeamNameViewController * editTeamNameViewController = [[TeamNameViewController alloc] initWithNibName:@"TeamNameViewController" bundle:nil];
-        editTeamNameViewController.teamName = cell.detailTextLabel.text;
-        editTeamNameViewController.parentController = self;
-        [self.navigationController pushViewController:editTeamNameViewController animated:YES];
+        TextEditorViewController * vc = [[TextEditorViewController alloc] initWithNibName:@"TextEditorViewController" bundle:nil];
+        vc.keyboardType = UIKeyboardTypeNamePhonePad;
+        vc.text = cell.detailTextLabel.text;
+        vc.title = LocalString(@"TeamName");
+        vc.textkey = kEditTeamName;
+        [self.navigationController pushViewController:vc animated:YES];
+        
         _dirty = YES;
         
     }else if(indexPath.section == 1 && indexPath.row == 0){
@@ -323,6 +309,25 @@
         playerList.title = @"队员名单";
         
         [self.navigationController pushViewController:playerList animated:YES];
+    }
+}
+
+// 球队名字修改消息处理
+- (void) teamNameChangedNotification:(NSNotification *) notification {
+    if ([notification.name isEqualToString:kTextSavedMsg]) {
+        if (notification.userInfo != nil) {
+            NSString * teamName = [notification.userInfo objectForKey:kEditTeamName];
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            if(teamName == nil ||
+               teamName.length == 0) {
+                [self setRightBarButtonItemEnable:NO];
+                cell.detailTextLabel.text = @"";
+            }else {
+                [self setRightBarButtonItemEnable:YES];
+                cell.detailTextLabel.text = teamName;
+            }
+        }
     }
 }
 

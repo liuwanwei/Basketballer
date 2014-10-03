@@ -21,10 +21,10 @@
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) ImageCell * imageCell;
 
-@property (nonatomic, weak) Player * player;
-@property (nonatomic, weak) NSNumber * team;
+@property (nonatomic, weak) Player * model;
 
-@property (nonatomic, copy) NSString * playerNumber;
+@property (nonatomic, weak) NSNumber * team;
+@property (nonatomic, copy) NSNumber * playerNumber;
 @property (nonatomic, copy) NSString * playerName;
 @property (nonatomic, strong) UIImage * playerImage;
 

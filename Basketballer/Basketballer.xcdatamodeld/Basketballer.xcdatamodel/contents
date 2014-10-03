@@ -43,10 +43,10 @@
         <attribute name="profileURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Action" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Match" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="Player" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Team" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Rule" positionX="162" positionY="279" width="128" height="133"/>
+        <element name="Action" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Match" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Player" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Rule" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Team" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

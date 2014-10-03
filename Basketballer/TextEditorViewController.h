@@ -14,6 +14,7 @@
 @interface TextEditorViewController : UIViewController
 
 @property (nonatomic) NSInteger keyboardType;       // [in]
+@property (nonatomic, copy) NSString * textkey;     // [in]
 
 @property (nonatomic, copy) NSString * text;        // [in/out]
 
