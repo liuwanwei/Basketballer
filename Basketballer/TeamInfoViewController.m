@@ -8,6 +8,7 @@
 
 #import "TeamInfoViewController.h"
 #import "TeamManager.h"
+#import "ImageManager.h"
 #import "MatchManager.h"
 #import "PlayerManager.h"
 #import "PlayerEditViewController.h"
@@ -224,8 +225,7 @@
         cell.profileImage.layer.masksToBounds = YES;
         cell.profileImage.layer.cornerRadius = 5.0f;
         
-        TeamManager * teamManager = [TeamManager defaultManager];
-        cell.profileImage.image = [teamManager imageForTeam:self.team];
+        cell.profileImage.image = [[ImageManager defaultInstance] imageForPath:self.team.profileURL];
         
         return cell;
     }else if((indexPath.section == 0 && indexPath.row == 0) ||

@@ -11,6 +11,7 @@
 #import "StartGameViewController.h"
 #import "TeamInfoViewController.h"
 #import "AppDelegate.h"
+#import "ImageManager.h"
 #import "Feature.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -132,7 +133,7 @@
     label = (UILabel *)[cell viewWithTag:2]; 
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.section];
-    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+    profileImageView.image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
     label.text = team.name;
     
     label = (UILabel *)[cell viewWithTag:3];

@@ -9,6 +9,7 @@
 #import "ChooseTeamViewController.h"
 #import "TeamManager.h"
 #import "GameSetting.h"
+#import "ImageManager.h"
 #import "ActionManager.h"
 #import "AppDelegate.h"
 #import "PlayGameViewController.h"
@@ -217,7 +218,7 @@ typedef enum{
         if (profileImageView == nil) {
             profileImageView = [self profileImageViewInCell:cell];
         }
-        profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+        profileImageView.image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
         
         // 球队名称。
         UILabel * label = (UILabel *)[cell viewWithTag:TeamCellTagName];
@@ -241,13 +242,13 @@ typedef enum{
 
 - (void)updateTeamsPanel{
     if (_homeTeam) {
-        _homeImageView.image = [[TeamManager defaultManager] imageForTeam:_homeTeam];
+        _homeImageView.image = [[ImageManager defaultInstance] imageForPath:_homeTeam.profileURL];
     }else{
         _homeImageView.image = [self teamPanelBackgroundImage];
     }
     
     if (_guestTeam) {
-        _guestImageView.image = [[TeamManager defaultManager] imageForTeam:_guestTeam];
+        _guestImageView.image = [[ImageManager defaultInstance] imageForPath:_guestTeam.profileURL];
     }else{
         _guestImageView.image = [self teamPanelBackgroundImage];
     }

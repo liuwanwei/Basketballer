@@ -159,8 +159,6 @@
 		3CF94EEC15DE3B320093EAA7 /* tabbarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF94EEA15DE3B320093EAA7 /* tabbarBackground@2x.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
-		3CFE1D2F15AC876A00247B80 /* TeamNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */; };
-		3CFE1D3015AC876A00247B80 /* TeamNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D2E15AC876A00247B80 /* TeamNameViewController.xib */; };
 		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
 		E62222A915ECA692003FCDD3 /* DefaultGuestTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */; };
 		E62222AA15ECA692003FCDD3 /* DefaultHomeTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */; };
@@ -267,6 +265,7 @@
 		FB957D2919DEF679007FC3DA /* TextEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2719DEF679007FC3DA /* TextEditorViewController.xib */; };
 		FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2A19DEF6BB007FC3DA /* roster_add.png */; };
 		FB957D2D19DEF6BB007FC3DA /* roster_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2B19DEF6BB007FC3DA /* roster_delete.png */; };
+		FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3119DFA4DF007FC3DA /* ImageManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -461,9 +460,6 @@
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartGameViewController.xib; sourceTree = "<group>"; };
-		3CFE1D2C15AC876900247B80 /* TeamNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamNameViewController.h; sourceTree = "<group>"; };
-		3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamNameViewController.m; sourceTree = "<group>"; };
-		3CFE1D2E15AC876A00247B80 /* TeamNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamNameViewController.xib; sourceTree = "<group>"; };
 		E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultGuestTeam.png; sourceTree = "<group>"; };
 		E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultHomeTeam.png; sourceTree = "<group>"; };
 		E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurroundingsViewController.h; sourceTree = "<group>"; };
@@ -616,6 +612,8 @@
 		FB957D2719DEF679007FC3DA /* TextEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditorViewController.xib; sourceTree = "<group>"; };
 		FB957D2A19DEF6BB007FC3DA /* roster_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_add.png; sourceTree = "<group>"; };
 		FB957D2B19DEF6BB007FC3DA /* roster_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_delete.png; sourceTree = "<group>"; };
+		FB957D3019DFA4DF007FC3DA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		FB957D3119DFA4DF007FC3DA /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -831,7 +829,6 @@
 				E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */,
 				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
 				3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */,
-				3CFE1D2E15AC876A00247B80 /* TeamNameViewController.xib */,
 				3CCAE45815BE25790030C302 /* GameHistoriesMapViewController.xib */,
 				3CC1683615A2E61A00A2AB44 /* MainWindow.xib */,
 				E68D116E15A591AA0074982D /* MatchRecordCell.xib */,
@@ -923,8 +920,6 @@
 				3C121F6315A3E9C00062BECD /* TeamInfoViewController.m */,
 				3CBA0BF815AE7726003505BC /* TeamListViewController.h */,
 				3CBA0BF915AE7726003505BC /* TeamListViewController.m */,
-				3CFE1D2C15AC876900247B80 /* TeamNameViewController.h */,
-				3CFE1D2D15AC876900247B80 /* TeamNameViewController.m */,
 				FB957D2519DEF679007FC3DA /* TextEditorViewController.h */,
 				FB957D2619DEF679007FC3DA /* TextEditorViewController.m */,
 				FB957D2719DEF679007FC3DA /* TextEditorViewController.xib */,
@@ -1015,46 +1010,26 @@
 		E68D110315A2F7020074982D /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				FB957D1719DAB876007FC3DA /* Rule.h */,
-				FB957D1819DAB876007FC3DA /* Rule.m */,
-				3C40A8281637753100619526 /* AccountRule.h */,
-				3C40A8291637753100619526 /* AccountRule.m */,
-				E68C515215D25AFD00F52002 /* Action.h */,
-				E68C515315D25AFF00F52002 /* Action.m */,
 				E6E1D94B15AA87F800CB0C0E /* ActionManager.h */,
 				E6E1D94C15AA87F800CB0C0E /* ActionManager.m */,
-				FB76CB951883D31300F07B53 /* AmateurRule.h */,
-				FB76CB961883D31300F07B53 /* AmateurRule.m */,
 				E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */,
 				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
-				E658146A15DF4F8E007B4F7E /* BaseRule.h */,
-				E658146B15DF4F8E007B4F7E /* BaseRule.m */,
 				FB957D1419DAB640007FC3DA /* CustomRuleManager.h */,
 				FB957D1519DAB640007FC3DA /* CustomRuleManager.m */,
-				E62D383215E633E2004AA543 /* Fiba3pbRule.h */,
-				E62D383315E633E3004AA543 /* Fiba3pbRule.m */,
-				FB957D0D19DA882B007FC3DA /* FibaCustomRule.h */,
-				FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */,
-				E658146E15DF5AC0007B4F7E /* FibaRule.h */,
-				E658146F15DF5AC0007B4F7E /* FibaRule.m */,
+				FB957D2F19DFA2C2007FC3DA /* Entity */,
 				E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */,
 				E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */,
 				E68D111C15A3DA0C0074982D /* GameSetting.h */,
 				E68D111D15A3DA0C0074982D /* GameSetting.m */,
-				E6E9691915BE40050073C5B8 /* Match.h */,
-				E6E9691A15BE40050073C5B8 /* Match.m */,
+				FB957D3019DFA4DF007FC3DA /* ImageManager.h */,
+				FB957D3119DFA4DF007FC3DA /* ImageManager.m */,
 				E68D116615A53CE40074982D /* MatchManager.h */,
 				E68D116715A53CE50074982D /* MatchManager.m */,
 				E6E032A415C98CB400AF91CB /* MatchUnderWay.h */,
 				E6E032A515C98CB600AF91CB /* MatchUnderWay.m */,
-				E6BFB4DA15E2111A008E9BC6 /* NbaRule.h */,
-				E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */,
-				E6E032C515CFBC2400AF91CB /* Player.h */,
-				E6E032C615CFBC2500AF91CB /* Player.m */,
 				E6E032C215CFB44000AF91CB /* PlayerManager.h */,
 				E6E032C315CFB44100AF91CB /* PlayerManager.m */,
-				E69255FC15B551EA00CBF606 /* Team.h */,
-				E69255FD15B551EA00CBF606 /* Team.m */,
+				FB957D2E19DFA23E007FC3DA /* Rule */,
 				E6E1D95415AB183500CB0C0E /* TeamManager.h */,
 				E6E1D95515AB183500CB0C0E /* TeamManager.m */,
 				E69255F015B3EA7500CBF606 /* TeamStatistics.h */,
@@ -1158,6 +1133,44 @@
 			name = category;
 			sourceTree = "<group>";
 		};
+		FB957D2E19DFA23E007FC3DA /* Rule */ = {
+			isa = PBXGroup;
+			children = (
+				E6BFB4DA15E2111A008E9BC6 /* NbaRule.h */,
+				E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */,
+				3C40A8281637753100619526 /* AccountRule.h */,
+				3C40A8291637753100619526 /* AccountRule.m */,
+				FB76CB951883D31300F07B53 /* AmateurRule.h */,
+				FB76CB961883D31300F07B53 /* AmateurRule.m */,
+				E658146A15DF4F8E007B4F7E /* BaseRule.h */,
+				E658146B15DF4F8E007B4F7E /* BaseRule.m */,
+				E62D383215E633E2004AA543 /* Fiba3pbRule.h */,
+				E62D383315E633E3004AA543 /* Fiba3pbRule.m */,
+				FB957D0D19DA882B007FC3DA /* FibaCustomRule.h */,
+				FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */,
+				E658146E15DF5AC0007B4F7E /* FibaRule.h */,
+				E658146F15DF5AC0007B4F7E /* FibaRule.m */,
+				FB957D1719DAB876007FC3DA /* Rule.h */,
+				FB957D1819DAB876007FC3DA /* Rule.m */,
+			);
+			name = Rule;
+			sourceTree = "<group>";
+		};
+		FB957D2F19DFA2C2007FC3DA /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E68C515215D25AFD00F52002 /* Action.h */,
+				E68C515315D25AFF00F52002 /* Action.m */,
+				E6E9691915BE40050073C5B8 /* Match.h */,
+				E6E9691A15BE40050073C5B8 /* Match.m */,
+				E6E032C515CFBC2400AF91CB /* Player.h */,
+				E6E032C615CFBC2500AF91CB /* Player.m */,
+				E69255FC15B551EA00CBF606 /* Team.h */,
+				E69255FD15B551EA00CBF606 /* Team.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1248,7 +1261,6 @@
 				E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */,
 				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
-				3CFE1D3015AC876A00247B80 /* TeamNameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
 				3CC912A015B1C477003C74D4 /* TimeoutPromptView.xib in Resources */,
@@ -1444,7 +1456,6 @@
 				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
 				E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */,
 				3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */,
-				3CFE1D2F15AC876A00247B80 /* TeamNameViewController.m in Sources */,
 				3CBA0BFB15AE7726003505BC /* TeamListViewController.m in Sources */,
 				E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */,
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptView.m in Sources */,
@@ -1485,6 +1496,7 @@
 				FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */,
 				E62D383415E633E4004AA543 /* Fiba3pbRule.m in Sources */,
 				FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */,
+				FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */,
 				E62D383A15E6748E004AA543 /* MatchSettingViewController.m in Sources */,
 				3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */,
 				3C5207D615EB53090079D5DB /* PlaySoundView.m in Sources */,

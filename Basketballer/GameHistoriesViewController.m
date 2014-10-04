@@ -11,6 +11,7 @@
 #import "GameDetailsViewController.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
+#import "ImageManager.h"
 #import "GameSetting.h"
 #import "StartGameViewController.h"
 #import "GameHistoriesMapViewController.h"
@@ -146,7 +147,7 @@
     
     // 主队图像。
     team = [tm teamWithId:match.homeTeam];
-    image = [tm imageForTeam:team];
+    image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
     UIImageView * homeImageProfile = (UIImageView *)[cell viewWithTag:UIHomeTeamProfileTag];
     homeImageProfile.image = image;
 //    homeImageProfile.layer.masksToBounds = YES;
@@ -178,7 +179,7 @@
     
     // 客队图像。
     team = [tm teamWithId:match.guestTeam];
-    image = [tm imageForTeam:team];
+    image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
     UIImageView * guestTeamProfile = (UIImageView *)[cell viewWithTag:UIGuestTeamProfileTag];
     guestTeamProfile.image = image;
 //    guestTeamProfile.layer.masksToBounds = YES;

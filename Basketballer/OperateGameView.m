@@ -9,6 +9,7 @@
 #import "OperateGameView.h"
 #import "PlayGameViewController.h"
 #import "TeamManager.h"
+#import "ImageManager.h"
 #import "MatchManager.h"
 #import "GameSetting.h"
 #import "ActionManager.h"
@@ -121,7 +122,7 @@
     if(_team != nil) {
         self.teamImageView.layer.masksToBounds = YES;
         self.teamImageView.layer.cornerRadius = 5.0f;
-        self.teamImageView.image = [[TeamManager defaultManager] imageForTeam:_team];
+        self.teamImageView.image = [[ImageManager defaultInstance] imageForPath:_team.profileURL];
         self.teamNameLabel.text = _team.name;
     }
 }
