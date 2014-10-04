@@ -8,34 +8,47 @@
 
 #import "RosterViewController.h"
 #import "PlayerManager.h"
+#import "ImageManager.h"
 #import "RosterCollectionViewCell.h"
 #import "NewPlayerViewController.h"
 #import "AppDelegate.h"
 
 #define kRosterCell         @"RosterCell"
 
-@interface RosterViewController ()
+@interface RosterViewController (){
+    NSArray * _players;
+}
 
 @end
 
 @implementation RosterViewController
 
-//- (id)initWithTeamId:(NSNumber *)teamId{
-//    if (self = [super init]) {
-//        self.teamId = teamId;
-//        self.players = [[PlayerManager defaultManager] playersForTeam:self.teamId];
-//    }
-//    
-//    return self;
-//}
+- (void)playerChangedNotification:(NSNotification *)notification{
+    if ([notification.name isEqualToString:kPlayerChangedNotification]) {
+        NSLog(@"收到队员更新消息");
+        _players = [[PlayerManager defaultManager] playersForTeam:self.teamId];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.cv reloadData];
+        });
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    _players = [[PlayerManager defaultManager] playersForTeam:self.teamId];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerChangedNotification:) name:kPlayerChangedNotification object:nil];
     
     // 调用dequeueReusableCellWithReuseIdentifier之前注册自定义Cell Nib。
     // 由于是通过nib创建测cell，所以必须用这个接口注册，而不是registerClass:接口。
     [self.cv registerNib:[UINib nibWithNibName:@"RosterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kRosterCell];
+}
+
+- (void)viewDidUnload{
+    [super viewDidUnload];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +60,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     // 除过所有队员外，还有“+”和“-”两个按钮。
-    return (self.players.count + 2);
+    return (_players.count + 2);
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -57,15 +70,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     RosterCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:kRosterCell forIndexPath:indexPath];
     
-    NSInteger playerCount = self.players.count;
+    NSInteger playerCount = _players.count;
     if (indexPath.row < playerCount) {
-        Player * player = [self.players objectAtIndex:indexPath.row];
+        Player * player = [_players objectAtIndex:indexPath.row];
         cell.name.text = player.name;
         cell.number.text = [player.number stringValue];
         
         UIImage * image = nil;
         if (player.profileURL != nil) {
-            // TODO 加载球员头像
+            // 加载球员头像
+            image = [[ImageManager defaultInstance] imageForPath:player.profileURL];
         }else{
             image = [UIImage imageNamed:@"player_profile"];
         }
@@ -95,11 +109,11 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger playerCount = self.players.count;
+    NSInteger playerCount = _players.count;
     if (indexPath.row < playerCount) {
         NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
         vc.team = self.teamId;
-        vc.model = [self.players objectAtIndex:indexPath.row];
+        vc.model = [_players objectAtIndex:indexPath.row];
         vc.title = LocalString(@"EditPlayer");
         [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == playerCount){
@@ -109,7 +123,7 @@
         vc.title = LocalString(@"NewPlayer");
         [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == (playerCount + 1)){
-        // 删除队员
+        // TODO 删除队员
     }
 }
 

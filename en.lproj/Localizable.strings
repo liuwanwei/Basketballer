@@ -52,6 +52,7 @@
 
 "PlayerInfo" = "Player Info";
 "NewPlayer" = "New Player";
+"EditPlayer" = "Edit";
 "PlayerName" = "Name";
 "PlayerNumber" = "Number";
 "PlayerInfoFormatter" = "%.2d";

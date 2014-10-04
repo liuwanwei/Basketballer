@@ -304,7 +304,6 @@
         RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
 
         playerList.teamId = _team.id;
-        playerList.players = _playersOfTeam;
         playerList.title = @"队员名单";
         
         [self.navigationController pushViewController:playerList animated:YES];

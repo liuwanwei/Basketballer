@@ -14,10 +14,6 @@
 
 @interface NewPlayerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet UILabel * numberLabel;
-@property (nonatomic, weak) IBOutlet UILabel * nameLabel;
-@property (nonatomic, weak) IBOutlet UITextField * number;
-@property (nonatomic, weak) IBOutlet UITextField * name;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) ImageCell * imageCell;
 
@@ -28,6 +24,6 @@
 @property (nonatomic, copy) NSString * playerName;
 @property (nonatomic, strong) UIImage * playerImage;
 
-@property (nonatomic, weak) UIViewController * parentWhoPresentedMe;
+//@property (nonatomic, weak) UIViewController * parentWhoPresentedMe;
 
 @end

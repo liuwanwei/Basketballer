@@ -8,6 +8,7 @@
 
 #import "NewPlayerViewController.h"
 #import "PlayerManager.h"
+#import "ImageManager.h"
 #import "AppDelegate.h"
 #import "Feature.h"
 #import "ImageCell.h"
@@ -23,21 +24,8 @@
 
 @implementation NewPlayerViewController
 
-@synthesize numberLabel = _numberLabel;
-@synthesize nameLabel = _nameLabel;
-@synthesize number = _number;
-@synthesize name = _name;
 @synthesize model = _model;
 @synthesize team = _team;
-@synthesize parentWhoPresentedMe = _parentWhoPresentedMe;
-
-- (void)dismiss{
-    if (_parentWhoPresentedMe) {
-        [_parentWhoPresentedMe dismissModalViewControllerAnimated:YES];
-    }else if(self.navigationController != nil){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 - (void)showInvalidNumberAlert{
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:LocalString(@"InvalidNumber") message:LocalString(@"InputValidNumber")
@@ -46,10 +34,9 @@
     [alert show];
 }
 
-- (void)save{
-    NSString * numberText = self.playerNumber;
+- (void)savePlayer{
+    NSString * numberText = [self.playerNumber stringValue];
     if (nil == numberText || numberText.length == 0) {
-        [self showInvalidNumberAlert];
         return;
     }
     
@@ -59,27 +46,26 @@
         return;
     }
     
-    PlayerManager * pm = [PlayerManager defaultManager];                
-    NSNumber * number = [NSNumber numberWithInteger:numberInteger];    
+    if (nil == self.playerName || self.playerName.length == 0) {
+        return;
+    }
+    
+    PlayerManager * pm = [PlayerManager defaultManager];
     Player * player = nil;
     if (self.model == nil) {
-        player = [pm addPlayerForTeam:_team withNumber:number withName:self.name.text];
+        player = [pm prepareForNewPlayer];
     }else{
-        player = [pm updatePlayer:self.model withNumber:number andName:self.name.text];
+        player = self.model;
     }
+    
+    player.team = _team;
+    player.name = self.playerName;
+    player.number = self.playerNumber;
+    [pm commitPlayer:player];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPlayerChangedNotification object:nil];
 
-    if(nil == player){
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:
-                               LocalString(@"RepeatNumber")
-                               message:LocalString(@"RepeatNumberMessage") 
-                               delegate:self 
-                               cancelButtonTitle:LocalString(@"Ok") 
-                               otherButtonTitles:nil, nil];
-        [alert show];
-        [self.number becomeFirstResponder];
-    }else{
-        [self dismiss];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -97,10 +83,20 @@
     
     _dirty = false;
     
-    _saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-    self.navigationItem.rightBarButtonItem = _saveItem;    
+    _saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePlayer)];
+    self.navigationItem.rightBarButtonItem = _saveItem;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];        
+    if (self.model != nil) {
+        self.playerName = self.model.name;
+        self.playerNumber = self.model.number;
+        self.playerImage = [[ImageManager defaultInstance] imageForPath:self.model.profileURL];
+    }
+    
+    [[Feature defaultFeature] initNavleftBarItemWithController:self];
+    
+    // 隐藏多余的Cell分割线
+    [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
     
     // 显示模式兼容iOS7的ExtendedLayout模式
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]){
@@ -109,9 +105,6 @@
     
     // 注册文本编辑完成事件处理函数
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationMessage:) name:kTextSavedMsg object:nil];
-    
-    // 隐藏多余的Cell分割线
-    [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
 }
 
 - (void)viewDidUnload
@@ -121,19 +114,6 @@
     // 解除消息监听函数
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    
-//    if (self.player != nil) {
-//        self.number.text = [self.player.number stringValue];
-//        self.name.text = self.player.name;
-//        
-//        self.title = LocalString(@"PlayerInfo");
-//    }else{
-//        self.title = LocalString(@"NewPlayer");
-//    }
-//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -170,10 +150,10 @@
         self.imageCell = (ImageCell *) cell;
         self.imageCell.title.text = LocalString(@"Profile");
         if (self.playerImage == nil) {
-            self.imageCell.profileImage.image = [UIImage imageNamed:@"player_profile"];
-        }else{
-            self.imageCell.profileImage.image = self.playerImage;
+            self.playerImage = [UIImage imageNamed:@"player_profile"];
         }
+        
+        self.imageCell.profileImage.image = self.playerImage;
     }
     
     return cell;
@@ -193,10 +173,12 @@
             if (indexPath.row == 0) {
                 vc.title = LocalString(@"PlayerName");
                 vc.keyboardType = UIKeyboardTypeNamePhonePad;
+                vc.text = self.playerName;
                 vc.textkey = kEditPlayerName;
             }else{
                 vc.title = LocalString(@"PlayerNumber");
                 vc.keyboardType = UIKeyboardTypeNumberPad;
+                vc.text = [self.playerNumber stringValue];
                 vc.textkey = kEditPlayerNumber;
             }
             
@@ -206,6 +188,16 @@
         }else if (indexPath.row == 2){
             [self showActionSheet];
         }
+    }
+}
+
+- (BOOL)allParametersSupplied{
+    if ((self.playerName != nil && self.playerName.length != 0) &&
+        self.playerNumber != nil &&
+        self.playerImage != nil) {
+        return YES;
+    }else{
+        return NO;
     }
 }
 
@@ -223,9 +215,8 @@
     
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastSelectedIndexPath];
         cell.detailTextLabel.text = text;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:_lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        });
+        
+        self.navigationItem.rightBarButtonItem.enabled = [self allParametersSupplied];
     }
 }
 

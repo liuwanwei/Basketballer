@@ -20,7 +20,7 @@
 - (void)addPlayer{
     NewPlayerViewController * newPlayer = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
     newPlayer.team = self.teamId;
-    newPlayer.parentWhoPresentedMe = self;
+//    newPlayer.parentWhoPresentedMe = self;
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:newPlayer];
     [[Feature defaultFeature] customNavigationBar:nav.navigationBar];

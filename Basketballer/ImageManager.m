@@ -27,30 +27,37 @@ static  NSMutableDictionary * sImageCache = nil;
 }
 
 
-// 根据URL提取图片
-- (UIImage *)imageForUrl:(NSURL *)url{
+// 根据URL提取图片，只在get时做缓存
+- (UIImage *)imageWithName:(NSString *)name{
     UIImage * image = nil;
-    if (nil == url) {
+    if (nil == name) {
         return nil;
     }
     
-    image = [sImageCache objectForKey:url];
+    image = [sImageCache objectForKey:name];
     if (image) {
         return image;
     }else{
+        NSURL * url = [NSURL URLWithString:[self localPathForImageName:name]];
         NSData * data = [NSData dataWithContentsOfURL:url];
         image = [UIImage imageWithData:data];
+        if (image == nil) {
+            NSLog(@"加载图片失败: %@", url);
+            return nil;
+        }
         
-        // TODO：做线程安全处理
-        [sImageCache setObject:image forKey:url];
+        // 更新缓存(做线程安全处理)
+        dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+           [sImageCache setObject:image forKey:name];
+        });
     }
     
     return image;
 }
 
+// 对外封装接口，参数path实际上是存储的文件名。
 - (UIImage *)imageForPath:(NSString *)path{
-    NSURL * url = [NSURL URLWithString:path];
-    return [self imageForUrl:url];
+    return [self imageWithName:path];
 }
 
 
@@ -74,10 +81,9 @@ static  NSMutableDictionary * sImageCache = nil;
 - (void)saveProfileImage:(UIImage *)image toURL:(NSURL *) url{
     // TODO 暂时制作本地存储，调通后再往iCloud里加。
     NSData * data = UIImagePNGRepresentation(image);
-    [data writeToURL:url atomically:YES];
-    
-    // 更新图片缓存。
-    [sImageCache setObject:image forKey:url];
+    if([data writeToURL:url atomically:NO]){
+        NSLog(@"保存图片到：%@", url);
+    }
 }
 
 // 根据类型和对象id保存对象图片：返回图片保存路径
@@ -88,8 +94,28 @@ static  NSMutableDictionary * sImageCache = nil;
     // 保存图片到文件系统。
     [self saveProfileImage:image toURL:imageURL];
     
-    return [imageURL absoluteString];
+    return [self imageNameForLocalPath:[imageURL absoluteString]];
 }
 
+-(NSURL*)localDocumentsDirectoryURL {
+    static NSURL *localDocumentsDirectoryURL = nil;
+    if (localDocumentsDirectoryURL == nil) {
+        NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
+                                                                                NSUserDomainMask, YES ) objectAtIndex:0];
+        localDocumentsDirectoryURL = [NSURL fileURLWithPath:documentsDirectoryPath];
+    }
+    return localDocumentsDirectoryURL;
+}
+
+// 从文件路径中提取文件名
+- (NSString *)imageNameForLocalPath:(NSString *)path{
+    return [path lastPathComponent];
+}
+
+// 根据文件名生成文件在沙盒根目录下的路径
+- (NSString *)localPathForImageName:(NSString *)name{
+    NSURL * url = [self localDocumentsDirectoryURL];
+    return [[url URLByAppendingPathComponent:name isDirectory:NO] absoluteString];
+}
 
 @end

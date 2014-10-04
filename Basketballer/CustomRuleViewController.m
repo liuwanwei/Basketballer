@@ -22,7 +22,7 @@
 
 @implementation CustomRuleViewController
 
-- (BOOL)allParameterSupplied{
+- (BOOL)allParametersSupplied{
     if (self.rule != nil &&
         self.rule.name != nil &&
         checkSetValue(self.rule.periodTimeLength) &&
@@ -171,7 +171,7 @@
             });
             
             // 输入完毕后导航栏右侧“保存”按钮
-            if ([self allParameterSupplied]) {
+            if ([self allParametersSupplied]) {
                 self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
             }else{
                 self.navigationItem.rightBarButtonItem = nil;

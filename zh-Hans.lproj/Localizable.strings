@@ -55,6 +55,7 @@
 
 "PlayerInfo" = "队员信息";
 "NewPlayer" = "新的队员";
+"EditPlayer" = "修改队员";
 "PlayerName" = "队员名字";
 "PlayerNumber" = "球衣号码";
 "PlayerInfoFormatter" = "%.2d 号";
