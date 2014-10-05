@@ -122,7 +122,7 @@
     if(_team != nil) {
         self.teamImageView.layer.masksToBounds = YES;
         self.teamImageView.layer.cornerRadius = 5.0f;
-        self.teamImageView.image = [[ImageManager defaultInstance] imageForPath:_team.profileURL];
+        self.teamImageView.image = [[ImageManager defaultInstance] imageForName:_team.profileURL];
         self.teamNameLabel.text = _team.name;
     }
 }

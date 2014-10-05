@@ -22,4 +22,7 @@ typedef enum {
 @property (nonatomic, weak) Team * team;
 @property (nonatomic, weak) ImageCell * teamCell;
 
+@property (nonatomic, copy) NSString * teamName;
+@property (nonatomic, strong) UIImage * teamImage;
+
 @end

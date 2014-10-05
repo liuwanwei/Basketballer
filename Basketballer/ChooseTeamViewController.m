@@ -218,7 +218,7 @@ typedef enum{
         if (profileImageView == nil) {
             profileImageView = [self profileImageViewInCell:cell];
         }
-        profileImageView.image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
+        profileImageView.image = [[ImageManager defaultInstance] imageForName:team.profileURL];
         
         // 球队名称。
         UILabel * label = (UILabel *)[cell viewWithTag:TeamCellTagName];
@@ -242,13 +242,13 @@ typedef enum{
 
 - (void)updateTeamsPanel{
     if (_homeTeam) {
-        _homeImageView.image = [[ImageManager defaultInstance] imageForPath:_homeTeam.profileURL];
+        _homeImageView.image = [[ImageManager defaultInstance] imageForName:_homeTeam.profileURL];
     }else{
         _homeImageView.image = [self teamPanelBackgroundImage];
     }
     
     if (_guestTeam) {
-        _guestImageView.image = [[ImageManager defaultInstance] imageForPath:_guestTeam.profileURL];
+        _guestImageView.image = [[ImageManager defaultInstance] imageForName:_guestTeam.profileURL];
     }else{
         _guestImageView.image = [self teamPanelBackgroundImage];
     }

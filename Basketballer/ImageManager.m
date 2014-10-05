@@ -27,8 +27,8 @@ static  NSMutableDictionary * sImageCache = nil;
 }
 
 
-// 根据URL提取图片，只在get时做缓存
-- (UIImage *)imageWithName:(NSString *)name{
+// 根据URL提取图片，只在get时做缓存。对外封装接口，参数path实际上是存储的文件名。
+- (UIImage *)imageForName:(NSString *)name{
     UIImage * image = nil;
     if (nil == name) {
         return nil;
@@ -46,18 +46,13 @@ static  NSMutableDictionary * sImageCache = nil;
             return nil;
         }
         
-        // 更新缓存(做线程安全处理)
-        dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+        // 更新缓存(TODO: 做线程安全处理)
+//        dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
            [sImageCache setObject:image forKey:name];
-        });
+//        });
     }
     
     return image;
-}
-
-// 对外封装接口，参数path实际上是存储的文件名。
-- (UIImage *)imageForPath:(NSString *)path{
-    return [self imageWithName:path];
 }
 
 

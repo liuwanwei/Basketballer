@@ -168,9 +168,13 @@ typedef enum {
     [self initTabBar];
     [self initNotificationBodyArray];
     
+    application.statusBarStyle = UIStatusBarStyleDefault;
+    
     //[[WellKnownSaying defaultSaying] requestSaying];
     
-    [self.window addSubview:self.tabBarController.view];
+//    [self.window addSubview:self.tabBarController.view];
+    [self.window setRootViewController:self.tabBarController];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

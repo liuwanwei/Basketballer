@@ -79,7 +79,7 @@
         UIImage * image = nil;
         if (player.profileURL != nil) {
             // 加载球员头像
-            image = [[ImageManager defaultInstance] imageForPath:player.profileURL];
+            image = [[ImageManager defaultInstance] imageForName:player.profileURL];
         }else{
             image = [UIImage imageNamed:@"player_profile"];
         }

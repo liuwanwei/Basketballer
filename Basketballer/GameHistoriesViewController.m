@@ -33,17 +33,6 @@
 @synthesize matches = _matches;
 @synthesize historyType = _historyType;
 
-#pragma 私有函数
-
-//- (void)initNavigationItem {
-//    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(startGame)];
-//    self.navigationItem.rightBarButtonItem = rightItem;
-//    
-//    UIBarButtonItem * leftItem =  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showGameHistoriesMapView)];
-//    self.navigationItem.leftBarButtonItem = leftItem;
-//
-//}
-
 #pragma 事件函数
 
 - (void)showGameHistoriesMapView {
@@ -60,12 +49,6 @@
     
     if (notification.object != nil && [notification.object isKindOfClass:[NSNumber class]]) {
         [self.tableView reloadData];
-        /*NSMutableArray * tempMatches = [NSMutableArray arrayWithArray:_matches];
-        [tempMatches removeObjectAtIndex:_selectedRow];
-        self.matches = tempMatches;*/
-        
-        //NSIndexPath * indexPath = [NSIndexPath indexPathForRow:_selectedRow inSection:0];
-        //[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
     }
 }
 
@@ -82,6 +65,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     if (_historyType == HistoryTypeTeam) {
          [[Feature defaultFeature] initNavleftBarItemWithController:self];
         self.title = LocalString(@"Record");
@@ -89,13 +73,12 @@
         [[Feature defaultFeature] customNavigationBar:self.navigationController.navigationBar];
         self.matches = [[MatchManager defaultManager] matchesArray];
         self.title = LocalString(@"Histories");
-        
     }
-   
-    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
-    // 添加、删除比赛刷新表
-    [nc addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];
+    
     self.tableView.rowHeight = 48.0f;
+   
+    // 添加、删除比赛刷新表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];
     
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
 }
@@ -140,18 +123,15 @@
     
     Match * match = [_matches objectAtIndex:indexPath.row];
     
-//    UIImage * defaultTeamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
     UIImage * image;
     Team * team;
     TeamManager * tm = [TeamManager defaultManager];
     
     // 主队图像。
     team = [tm teamWithId:match.homeTeam];
-    image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
+    image = [[ImageManager defaultInstance] imageForName:team.profileURL];
     UIImageView * homeImageProfile = (UIImageView *)[cell viewWithTag:UIHomeTeamProfileTag];
     homeImageProfile.image = image;
-//    homeImageProfile.layer.masksToBounds = YES;
-//    homeImageProfile.layer.cornerRadius = 5.0f;    
     
     // 主队名字。    
     UILabel * homeTeamNameLabel = (UILabel *)[cell viewWithTag:UIHomeTeamNameTag];
@@ -169,21 +149,11 @@
     UILabel * dateLabel = (UILabel *)[cell viewWithTag:UIMatchDateTag];
     dateLabel.text = [_dateFormatter stringFromDate:[match date]];
     
-    // 比赛时间。
-//    if (_timeFormatter == nil) {
-//        _timeFormatter = [[NSDateFormatter alloc] init];
-//        [_timeFormatter setDateFormat:@"hh:mm"];
-//    }
-//    UILabel * timeLabel = (UILabel *)[cell viewWithTag:UIMatchTimeTag];
-//    timeLabel.text = [_timeFormatter stringFromDate:[match date]];
-    
     // 客队图像。
     team = [tm teamWithId:match.guestTeam];
-    image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
+    image = [[ImageManager defaultInstance] imageForName:team.profileURL];
     UIImageView * guestTeamProfile = (UIImageView *)[cell viewWithTag:UIGuestTeamProfileTag];
     guestTeamProfile.image = image;
-//    guestTeamProfile.layer.masksToBounds = YES;
-//    guestTeamProfile.layer.cornerRadius = 5.0f;
     
     // 客队名字。
     UILabel * guestTeamNameLabel = (UILabel *)[cell viewWithTag:UIGuestTeamNameTag];

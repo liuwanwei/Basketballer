@@ -61,6 +61,8 @@
     player.team = _team;
     player.name = self.playerName;
     player.number = self.playerNumber;
+    player.profileURL = [[ImageManager defaultInstance] saveImage:self.playerImage withProfileType:kProfileTypePlayer withObjectId:player.id];
+    
     [pm commitPlayer:player];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kPlayerChangedNotification object:nil];
@@ -90,7 +92,7 @@
     if (self.model != nil) {
         self.playerName = self.model.name;
         self.playerNumber = self.model.number;
-        self.playerImage = [[ImageManager defaultInstance] imageForPath:self.model.profileURL];
+        self.playerImage = [[ImageManager defaultInstance] imageForName:self.model.profileURL];
     }
     
     [[Feature defaultFeature] initNavleftBarItemWithController:self];
@@ -191,13 +193,13 @@
     }
 }
 
-- (BOOL)allParametersSupplied{
+- (void)refreshRighBarButtonItem{
     if ((self.playerName != nil && self.playerName.length != 0) &&
         self.playerNumber != nil &&
         self.playerImage != nil) {
-        return YES;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }else{
-        return NO;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 
@@ -216,7 +218,9 @@
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastSelectedIndexPath];
         cell.detailTextLabel.text = text;
         
-        self.navigationItem.rightBarButtonItem.enabled = [self allParametersSupplied];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:_lastSelectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self refreshRighBarButtonItem];
     }
 }
 
@@ -272,7 +276,7 @@
     cell.profileImage.image = image;
     self.playerImage = image;
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self refreshRighBarButtonItem];
 }
 
 @end

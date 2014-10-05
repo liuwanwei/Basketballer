@@ -38,7 +38,7 @@
     }else{
         editTeam.operateMode = Update;
         editTeam.team = team;
-        editTeam.hidesBottomBarWhenPushed = YES;
+//        editTeam.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:editTeam animated:YES];
     }
 }
@@ -133,7 +133,7 @@
     label = (UILabel *)[cell viewWithTag:2]; 
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.section];
-    profileImageView.image = [[ImageManager defaultInstance] imageForPath:team.profileURL];
+    profileImageView.image = [[ImageManager defaultInstance] imageForName:team.profileURL];
     label.text = team.name;
     
     label = (UILabel *)[cell viewWithTag:3];

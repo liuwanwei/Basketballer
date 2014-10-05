@@ -11,7 +11,7 @@
 #import "ImageManager.h"
 #import "MatchManager.h"
 #import "PlayerManager.h"
-#import "PlayerEditViewController.h"
+//#import "PlayerEditViewController.h"
 #import "Feature.h"
 #import "GameHistoriesViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -24,9 +24,6 @@
 @interface TeamInfoViewController() {
     NSArray * _matchesOfTeam;
     NSArray * _playersOfTeam;
-    
-    UIImage * _image;
-    BOOL _dirty;
     
     UIBarButtonItem * _cancelItem;
 }
@@ -50,6 +47,15 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
 }
 
+- (void)refreshRightBarButtonItem{
+    if ((self.teamName != nil && self.teamName.length != 0) &&
+        self.teamImage != nil) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }else{
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
 /*设置右导航按钮的enabled*/
 - (void)setRightBarButtonItemEnable:(BOOL) enabled {
     self.navigationItem.rightBarButtonItem.enabled = enabled;
@@ -61,18 +67,34 @@
     }
 }
 
+// 球队名字修改消息处理
+#define kEditTeamName       @"EditTeamName"
+- (void) teamNameChangedNotification:(NSNotification *) notification {
+    if ([notification.name isEqualToString:kTextSavedMsg]) {
+        if (notification.userInfo != nil) {
+            NSString * teamName = [notification.userInfo objectForKey:kEditTeamName];
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            self.teamName = teamName;
+            
+            cell.detailTextLabel.text = teamName;
+            
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            [self refreshRightBarButtonItem];
+        }
+    }
+}
+
 /*初始化导航按钮*/
 - (void)initNavigationItem {
     UIBarButtonItem * rightItem;
     
     rightItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     _cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back)];
-    
-    if (_operateMode == Insert) {
-        [self setRightBarButtonItemEnable:NO];
-    }
 }
 
 - (void)showActionSheet {
@@ -121,6 +143,11 @@
     // 注册消息处理函数
     NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
     
+    if (self.team != nil) {
+        self.teamName = self.team.name;
+        self.teamImage = [[ImageManager defaultInstance] imageForName:self.team.profileURL];
+    }
+    
     // 修改队员信息
     [nc addObserver:self selector:@selector(playerChanged) name:kPlayerChangedNotification object:nil];
     // 修改比赛信息
@@ -129,8 +156,6 @@
     [nc addObserver:self selector:@selector(teamNameChangedNotification:) name:kTextSavedMsg object:nil];
     
     [self initNavigationItem];
-    
-    _dirty = NO;
 }
 
 #pragma 类成员函数
@@ -167,20 +192,12 @@
 
 - (void)save{
     
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];;
-    NSString * teamName = cell.detailTextLabel.text;
-    if (teamName.length != 0) {
-        TeamManager * teamManager = [TeamManager defaultManager];
-        if(self.operateMode == Insert) {
-            [teamManager newTeam:teamName withImage:_image];
-        }else {
-            if (_dirty) {
-                [teamManager modifyTeam:self.team withNewName:teamName];
-                [teamManager modifyTeam:self.team withNewImage:_image];
-                _dirty = NO;
-            }
-        }
+    TeamManager * teamManager = [TeamManager defaultManager];
+    if(self.operateMode == Insert) {
+        [teamManager newTeam:self.teamName withImage:self.teamImage];
+    }else {
+        [teamManager modifyTeam:self.team withNewName:self.teamName];
+        [teamManager modifyTeam:self.team withNewImage:self.teamImage];
     }
     
     if (_operateMode == Insert) {
@@ -225,7 +242,7 @@
         cell.profileImage.layer.masksToBounds = YES;
         cell.profileImage.layer.cornerRadius = 5.0f;
         
-        cell.profileImage.image = [[ImageManager defaultInstance] imageForPath:self.team.profileURL];
+        cell.profileImage.image = self.teamImage;
         
         return cell;
     }else if((indexPath.section == 0 && indexPath.row == 0) ||
@@ -241,7 +258,7 @@
         
         if (indexPath.section == 0) {
             cell.textLabel.text = LocalString(@"Name");
-            cell.detailTextLabel.text = self.team.name;
+            cell.detailTextLabel.text = self.teamName;
         }else if(indexPath.section == 1){
             cell.textLabel.text = LocalString(@"Record");
             
@@ -279,7 +296,6 @@
 
 #pragma mark - Table view delegate
 
-#define kEditTeamName       @"EditTeamName"
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0 && indexPath.row == 1) {
@@ -292,8 +308,6 @@
         vc.title = LocalString(@"TeamName");
         vc.textkey = kEditTeamName;
         [self.navigationController pushViewController:vc animated:YES];
-        
-        _dirty = YES;
         
     }else if(indexPath.section == 1 && indexPath.row == 0){
         GameHistoriesViewController * history = [[GameHistoriesViewController alloc] initWithNibName:@"GameHistoriesViewController" bundle:nil];
@@ -310,25 +324,6 @@
     }
 }
 
-// 球队名字修改消息处理
-- (void) teamNameChangedNotification:(NSNotification *) notification {
-    if ([notification.name isEqualToString:kTextSavedMsg]) {
-        if (notification.userInfo != nil) {
-            NSString * teamName = [notification.userInfo objectForKey:kEditTeamName];
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            if(teamName == nil ||
-               teamName.length == 0) {
-                [self setRightBarButtonItemEnable:NO];
-                cell.detailTextLabel.text = @"";
-            }else {
-                [self setRightBarButtonItemEnable:YES];
-                cell.detailTextLabel.text = teamName;
-            }
-        }
-    }
-}
-
 #pragma mark - ActionSheet view delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -342,16 +337,21 @@
 #pragma mark - ImagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    UIImage * image = [info valueForKey:UIImagePickerControllerEditedImage];
+    
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-    _image = [info valueForKey:UIImagePickerControllerEditedImage];
     UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
     UIImageView * profileImageView;
     profileImageView = (UIImageView *)[cell viewWithTag:1];
 
-    profileImageView.image = _image;
-    [self dismissModalViewControllerAnimated:YES];
+    profileImageView.image = image;
     
-    _dirty = YES;
+    self.teamImage = image;
+    
+    [self refreshRightBarButtonItem];
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
