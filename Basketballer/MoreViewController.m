@@ -141,7 +141,7 @@
         }else {
             //[UMFeedback showFeedback:(UIViewController *)self withAppkey:kAppKeyOfUMeng];
             AboutUsViewController * controller = [[AboutUsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            controller.hidesBottomBarWhenPushed = YES;
+//            controller.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:controller animated:YES];
         }
     }

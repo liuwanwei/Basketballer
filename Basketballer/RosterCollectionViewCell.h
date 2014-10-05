@@ -13,5 +13,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView * profile;
 @property (nonatomic, weak) IBOutlet UILabel * name;
 @property (nonatomic, weak) IBOutlet UILabel * number;
+@property (nonatomic, weak) IBOutlet UIView * shadowView;
+@property (nonatomic, weak) IBOutlet UIImageView * removeView;
 
 @end

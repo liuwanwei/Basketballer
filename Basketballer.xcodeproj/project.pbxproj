@@ -266,6 +266,9 @@
 		FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2A19DEF6BB007FC3DA /* roster_add.png */; };
 		FB957D2D19DEF6BB007FC3DA /* roster_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2B19DEF6BB007FC3DA /* roster_delete.png */; };
 		FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3119DFA4DF007FC3DA /* ImageManager.m */; };
+		FB957D3419E1660F007FC3DA /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3319E1660F007FC3DA /* remove.png */; };
+		FB957D3619E166A0007FC3DA /* remove_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3519E166A0007FC3DA /* remove_circle.png */; };
+		FB957D3819E167EE007FC3DA /* remove_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3719E167EE007FC3DA /* remove_dark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -614,6 +617,9 @@
 		FB957D2B19DEF6BB007FC3DA /* roster_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_delete.png; sourceTree = "<group>"; };
 		FB957D3019DFA4DF007FC3DA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
 		FB957D3119DFA4DF007FC3DA /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
+		FB957D3319E1660F007FC3DA /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
+		FB957D3519E166A0007FC3DA /* remove_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_circle.png; sourceTree = "<group>"; };
+		FB957D3719E167EE007FC3DA /* remove_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_dark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -651,6 +657,9 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				FB957D3719E167EE007FC3DA /* remove_dark.png */,
+				FB957D3519E166A0007FC3DA /* remove_circle.png */,
+				FB957D3319E1660F007FC3DA /* remove.png */,
 				FB957D2A19DEF6BB007FC3DA /* roster_add.png */,
 				FB957D2B19DEF6BB007FC3DA /* roster_delete.png */,
 				FB928FD019D6BA8A00F76DC6 /* player_profile.png */,
@@ -1330,6 +1339,7 @@
 				E6F1E34E15ECEB5900FED24B /* Foul@2x.png in Resources */,
 				E6F1E34F15ECEB5900FED24B /* ThreePoints@2x.png in Resources */,
 				E6F1E35015ECEB5900FED24B /* TimeoutAction@2x.png in Resources */,
+				FB957D3819E167EE007FC3DA /* remove_dark.png in Resources */,
 				E6F1E35115ECEB5900FED24B /* TwoPoints@2x.png in Resources */,
 				3C765CD715EC6C0700235664 /* music.png in Resources */,
 				3CB8C77215EDF27D00091D52 /* PlayerActionCell.xib in Resources */,
@@ -1366,6 +1376,7 @@
 				3CC5630F15F098B90026A7E8 /* umeng_share_face_11.png in Resources */,
 				3CC5631015F098B90026A7E8 /* umeng_share_face_12.png in Resources */,
 				3CC5631115F098B90026A7E8 /* umeng_share_invitation_box.png in Resources */,
+				FB957D3619E166A0007FC3DA /* remove_circle.png in Resources */,
 				3CC5631215F098B90026A7E8 /* umeng_share_invitation_receiver_add.png in Resources */,
 				3CC5631315F098B90026A7E8 /* umeng_share_invitation_receiver.png in Resources */,
 				3CC5631415F098B90026A7E8 /* umeng_share_invite.png in Resources */,
@@ -1388,6 +1399,7 @@
 				3CC5632415F098B90026A7E8 /* umeng_share_sectionheader.png in Resources */,
 				3CC5632515F098B90026A7E8 /* umeng_share_send@2x.png in Resources */,
 				3CC5632615F098B90026A7E8 /* umeng_share_sendSel@2x.png in Resources */,
+				FB957D3419E1660F007FC3DA /* remove.png in Resources */,
 				3CC5632715F098B90026A7E8 /* umeng_share_set.png in Resources */,
 				3CC5632815F098B90026A7E8 /* umeng_share_setSel.png in Resources */,
 				3CC5632915F098B90026A7E8 /* umeng_share_share.png in Resources */,

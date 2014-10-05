@@ -17,6 +17,7 @@
 
 @interface RosterViewController (){
     NSArray * _players;
+    BOOL _removeMode;
 }
 
 @end
@@ -84,14 +85,20 @@
             image = [UIImage imageNamed:@"player_profile"];
         }
         cell.profile.image = image;
+        cell.shadowView.hidden = NO;
+        cell.removeView.hidden = ! _removeMode;
     }else if(indexPath.row == playerCount){
         cell.name.text = nil;
         cell.number.text = nil;
         cell.profile.image = [UIImage imageNamed:@"roster_add"];
+        cell.shadowView.hidden = YES;
+        cell.removeView.hidden = YES;
     }else if(indexPath.row == playerCount + 1){
         cell.name.text = nil;
         cell.number.text = nil;
         cell.profile.image = [UIImage imageNamed:@"roster_delete"];
+        cell.shadowView.hidden = YES;
+        cell.removeView.hidden = YES;
     }
     
     return cell;
@@ -111,11 +118,15 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger playerCount = _players.count;
     if (indexPath.row < playerCount) {
-        NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
-        vc.team = self.teamId;
-        vc.model = [_players objectAtIndex:indexPath.row];
-        vc.title = LocalString(@"EditPlayer");
-        [self.navigationController pushViewController:vc animated:YES];
+        if (! _removeMode) {
+            NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
+            vc.team = self.teamId;
+            vc.model = [_players objectAtIndex:indexPath.row];
+            vc.title = LocalString(@"EditPlayer");
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            [self removePlayer:[_players objectAtIndex:indexPath.row]];
+        }
     }else if(indexPath.row == playerCount){
         // 添加队员
         NewPlayerViewController * vc = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
@@ -123,9 +134,28 @@
         vc.title = LocalString(@"NewPlayer");
         [self.navigationController pushViewController:vc animated:YES];
     }else if(indexPath.row == (playerCount + 1)){
-        // TODO 删除队员
+        // 删除队员状态切换
+        _removeMode = ! _removeMode;
+        [self.cv reloadData];
     }
 }
+
+static Player * sPlayerToRemove = nil;
+- (void)removePlayer:(Player *)player{
+    sPlayerToRemove = player;
+    NSString * messsage = [NSString stringWithFormat:@"remove player %@", player.name];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"RemovePlayer" message:messsage delegate:self cancelButtonTitle:LocalString(@"Cancel") otherButtonTitles:LocalString(@"Confirm"), nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        // 最终删除队员
+        [[PlayerManager defaultManager] deletePlayer:sPlayerToRemove];
+        [self.cv reloadData];
+    }
+}
+
 
 /*
 #pragma mark - Navigation
