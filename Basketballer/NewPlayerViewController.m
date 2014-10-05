@@ -277,6 +277,8 @@
     self.playerImage = image;
     
     [self refreshRighBarButtonItem];
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -152,7 +152,6 @@ static Player * sPlayerToRemove = nil;
     if (buttonIndex == 1) {
         // 最终删除队员
         [[PlayerManager defaultManager] deletePlayer:sPlayerToRemove];
-        [self.cv reloadData];
     }
 }
 
