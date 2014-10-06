@@ -25,11 +25,12 @@ typedef enum {
     HistoryTypeTeam = 1,
 }HistoryType;
 
-@interface GameHistoriesViewController : UITableViewController
+@interface GameHistoryViewController : UITableViewController
 
-@property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
+//@property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
 
 @property (nonatomic, strong) NSArray * matches;
+@property (nonatomic, strong) NSDictionary * history;
 
 @property (nonatomic) HistoryType historyType;
 

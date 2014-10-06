@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "LocationManager.h"
 
-@interface GameHistoriesMapViewController : UIViewController<LocationManagerDelegate,MKMapViewDelegate>
+@interface GameHistoryMapViewController : UIViewController<LocationManagerDelegate,MKMapViewDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView * mapView;
 

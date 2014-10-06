@@ -7,14 +7,14 @@
 //
 
 #import "SurroundingsViewController.h"
-#import "GameHistoriesMapViewController.h"
+#import "GameHistoryMapViewController.h"
 #import "AppDelegate.h"
 
 @interface SurroundingsViewController (){
     NSArray * _sectionHeaders;
     NSArray * _entryNames;
     
-    GameHistoriesMapViewController * _matchMapViewController;
+    GameHistoryMapViewController * _matchMapViewController;
 }
 
 @end
@@ -139,7 +139,7 @@
 {
     if (indexPath.section == 0) {
         if (nil == _matchMapViewController) {
-            _matchMapViewController = [[GameHistoriesMapViewController alloc] initWithNibName:@"GameHistoriesMapViewController" bundle:nil];
+            _matchMapViewController = [[GameHistoryMapViewController alloc] initWithNibName:@"GameHistoryMapViewController" bundle:nil];
         }
         
         _matchMapViewController.hidesBottomBarWhenPushed = YES;

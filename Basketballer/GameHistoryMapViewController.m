@@ -6,18 +6,18 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "GameHistoriesMapViewController.h"
+#import "GameHistoryMapViewController.h"
 #import "LocationManager.h"
 #import "AppDelegate.h"
 #import "MatchManager.h"
 #import "MapAnnotation.h"
 #import "TeamManager.h"
 
-@interface GameHistoriesMapViewController ()
+@interface GameHistoryMapViewController ()
 
 @end
 
-@implementation GameHistoriesMapViewController
+@implementation GameHistoryMapViewController
 @synthesize mapView = _mapView;
 
 #pragma  私有函数

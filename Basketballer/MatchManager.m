@@ -44,6 +44,34 @@ static MatchManager * sDefaultManager;
     self.matchesArray = mutableFetchResults;
 }
 
+- (NSDictionary *)dateGroupForMatches:(NSArray *)matches{
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yy-MM-dd"];
+
+    NSMutableDictionary * history = nil;
+    const NSInteger count = matches.count;
+    for (NSInteger index = 0; index < count; index ++) {
+        Match * match = [matches objectAtIndex:index];
+        NSString * date = [dateFormatter stringFromDate:match.date];
+        
+        NSMutableArray * matchAtDate;
+        if (history == nil) {
+            matchAtDate = [NSMutableArray arrayWithObject:match];
+            history = [NSMutableDictionary dictionaryWithObject:matchAtDate forKey:date];
+        }else{
+            matchAtDate = [history objectForKey:date];
+            if (matchAtDate == nil) {
+                matchAtDate = [NSMutableArray arrayWithObject:match];
+                [history setObject:matchAtDate forKey:date];
+            }else{
+                [matchAtDate addObject:match];
+            }
+        }
+    }
+    
+    return history;
+}
+
 - (Match *)newMatchWithMode:(NSString *)mode andHomeTeam:(NSNumber *)homeTeamId andGuestTeam:(NSNumber *)guestTeamId{
     Match * newOne = (Match *)[NSEntityDescription insertNewObjectForEntityForName:kMatchEntity 
                                                             inManagedObjectContext:self.managedObjectContext];

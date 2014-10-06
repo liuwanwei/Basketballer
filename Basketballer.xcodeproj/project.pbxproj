@@ -21,7 +21,7 @@
 		3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C07F4101635194A00A2D645 /* AboutUsViewController.m */; };
 		3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F4111635194A00A2D645 /* AboutUsViewController.xib */; };
 		3C07F41516351F5100A2D645 /* weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41416351F5100A2D645 /* weibo@2x.png */; };
-		3C07F41C163545FB00A2D645 /* GameHistoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41B163545FA00A2D645 /* GameHistoriesViewController.xib */; };
+		3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */; };
 		3C08CC7415F1AC4B00AE699F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */; };
 		3C0BD4C815E36AD800EEAB0B /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BD4C715E36AD800EEAB0B /* SoundManager.m */; };
 		3C0DC316165DB37300355619 /* DefaultTeamProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0DC315165DB37300355619 /* DefaultTeamProfile.png */; };
@@ -78,7 +78,7 @@
 		3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1682115A2E52B00A2AB44 /* AppDelegate.m */; };
 		3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */; };
 		3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1683615A2E61A00A2AB44 /* MainWindow.xib */; };
-		3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */; };
+		3CC1683C15A2E71400A2AB44 /* GameHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1683A15A2E71400A2AB44 /* GameHistoryViewController.m */; };
 		3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */; };
 		3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */; };
 		3CC562BA15F098100026A7E8 /* UMSNSLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC562B815F098100026A7E8 /* UMSNSLibrary.a */; };
@@ -146,8 +146,8 @@
 		3CC912A015B1C477003C74D4 /* TimeoutPromptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC9129E15B1C477003C74D4 /* TimeoutPromptView.xib */; };
 		3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE41515BD3E4F0030C302 /* LocationManager.m */; };
 		3CCAE41815BD4C900030C302 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCAE41715BD4C900030C302 /* CoreLocation.framework */; };
-		3CCAE45915BE25790030C302 /* GameHistoriesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE45715BE25790030C302 /* GameHistoriesMapViewController.m */; };
-		3CCAE45A15BE25790030C302 /* GameHistoriesMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE45815BE25790030C302 /* GameHistoriesMapViewController.xib */; };
+		3CCAE45915BE25790030C302 /* GameHistoryMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE45715BE25790030C302 /* GameHistoryMapViewController.m */; };
+		3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE45815BE25790030C302 /* GameHistoryMapViewController.xib */; };
 		3CCAE46115BE3B440030C302 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCAE46015BE3B440030C302 /* MapKit.framework */; };
 		3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */; };
 		3CD9BFC415D49999000DA8E8 /* ZhiHuArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9BFC215D49999000DA8E8 /* ZhiHuArrowRight.png */; };
@@ -179,7 +179,7 @@
 		E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111D15A3DA0C0074982D /* GameSetting.m */; };
 		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
 		E68D116815A53CE50074982D /* MatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116715A53CE50074982D /* MatchManager.m */; };
-		E68D116F15A591AA0074982D /* MatchRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D116E15A591AA0074982D /* MatchRecordCell.xib */; };
+		E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D116E15A591AA0074982D /* GameHistoryCell.xib */; };
 		E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D117815A5F2900074982D /* GameDetailsViewController.m */; };
 		E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D117915A5F2900074982D /* GameDetailsViewController.xib */; };
 		E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118415A684B30074982D /* MatchPartSummaryCell.xib */; };
@@ -269,6 +269,7 @@
 		FB957D3419E1660F007FC3DA /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3319E1660F007FC3DA /* remove.png */; };
 		FB957D3619E166A0007FC3DA /* remove_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3519E166A0007FC3DA /* remove_circle.png */; };
 		FB957D3819E167EE007FC3DA /* remove_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3719E167EE007FC3DA /* remove_dark.png */; };
+		FB957D3B19E24719007FC3DA /* GameHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3A19E24719007FC3DA /* GameHistoryCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,7 +299,7 @@
 		3C07F4101635194A00A2D645 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		3C07F4111635194A00A2D645 /* AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsViewController.xib; sourceTree = "<group>"; };
 		3C07F41416351F5100A2D645 /* weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo@2x.png"; sourceTree = "<group>"; };
-		3C07F41B163545FA00A2D645 /* GameHistoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoriesViewController.xib; sourceTree = "<group>"; };
+		3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoryViewController.xib; sourceTree = "<group>"; };
 		3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3C0BD4C615E36AD800EEAB0B /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		3C0BD4C715E36AD800EEAB0B /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
@@ -372,8 +373,8 @@
 		3CC1682115A2E52B00A2AB44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3CC1682415A2E52B00A2AB44 /* Basketballer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer.xcdatamodel; sourceTree = "<group>"; };
 		3CC1683615A2E61A00A2AB44 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoriesViewController.h; sourceTree = "<group>"; };
-		3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoriesViewController.m; sourceTree = "<group>"; };
+		3CC1683915A2E71400A2AB44 /* GameHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryViewController.h; sourceTree = "<group>"; };
+		3CC1683A15A2E71400A2AB44 /* GameHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryViewController.m; sourceTree = "<group>"; };
 		3CC1687B15A2F70E00A2AB44 /* PlayGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameViewController.h; sourceTree = "<group>"; };
 		3CC1687C15A2F70E00A2AB44 /* PlayGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameViewController.m; sourceTree = "<group>"; };
 		3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayGameViewController.xib; sourceTree = "<group>"; };
@@ -446,9 +447,9 @@
 		3CCAE41415BD3E4F0030C302 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		3CCAE41515BD3E4F0030C302 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		3CCAE41715BD4C900030C302 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		3CCAE45615BE25790030C302 /* GameHistoriesMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoriesMapViewController.h; sourceTree = "<group>"; };
-		3CCAE45715BE25790030C302 /* GameHistoriesMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoriesMapViewController.m; sourceTree = "<group>"; };
-		3CCAE45815BE25790030C302 /* GameHistoriesMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoriesMapViewController.xib; sourceTree = "<group>"; };
+		3CCAE45615BE25790030C302 /* GameHistoryMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryMapViewController.h; sourceTree = "<group>"; };
+		3CCAE45715BE25790030C302 /* GameHistoryMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryMapViewController.m; sourceTree = "<group>"; };
+		3CCAE45815BE25790030C302 /* GameHistoryMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoryMapViewController.xib; sourceTree = "<group>"; };
 		3CCAE46015BE3B440030C302 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
 		3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
@@ -496,7 +497,7 @@
 		E68D116115A4245A0074982D /* SingleChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleChoiceViewController.m; sourceTree = "<group>"; };
 		E68D116615A53CE40074982D /* MatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchManager.h; sourceTree = "<group>"; };
 		E68D116715A53CE50074982D /* MatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchManager.m; sourceTree = "<group>"; };
-		E68D116E15A591AA0074982D /* MatchRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchRecordCell.xib; sourceTree = "<group>"; };
+		E68D116E15A591AA0074982D /* GameHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoryCell.xib; sourceTree = "<group>"; };
 		E68D117715A5F28F0074982D /* GameDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailsViewController.h; sourceTree = "<group>"; };
 		E68D117815A5F2900074982D /* GameDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailsViewController.m; sourceTree = "<group>"; };
 		E68D117915A5F2900074982D /* GameDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameDetailsViewController.xib; sourceTree = "<group>"; };
@@ -620,6 +621,8 @@
 		FB957D3319E1660F007FC3DA /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
 		FB957D3519E166A0007FC3DA /* remove_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_circle.png; sourceTree = "<group>"; };
 		FB957D3719E167EE007FC3DA /* remove_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_dark.png; sourceTree = "<group>"; };
+		FB957D3919E24719007FC3DA /* GameHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryCell.h; sourceTree = "<group>"; };
+		FB957D3A19E24719007FC3DA /* GameHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -831,16 +834,16 @@
 		3CC1683515A2E60200A2AB44 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				3C07F41B163545FA00A2D645 /* GameHistoriesViewController.xib */,
+				3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */,
 				3C07F4111635194A00A2D645 /* AboutUsViewController.xib */,
 				E68D117915A5F2900074982D /* GameDetailsViewController.xib */,
 				E6914F8815DA22EC002CAEE0 /* ChooseTeamViewController.xib */,
 				E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */,
 				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
 				3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */,
-				3CCAE45815BE25790030C302 /* GameHistoriesMapViewController.xib */,
+				3CCAE45815BE25790030C302 /* GameHistoryMapViewController.xib */,
 				3CC1683615A2E61A00A2AB44 /* MainWindow.xib */,
-				E68D116E15A591AA0074982D /* MatchRecordCell.xib */,
+				E68D116E15A591AA0074982D /* GameHistoryCell.xib */,
 				3C121F5E15A3D58A0062BECD /* OperateGameView.xib */,
 				3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */,
 				3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */,
@@ -857,6 +860,8 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB957D3919E24719007FC3DA /* GameHistoryCell.h */,
+				FB957D3A19E24719007FC3DA /* GameHistoryCell.m */,
 				3C07F40F1635194A00A2D645 /* AboutUsViewController.h */,
 				3C07F4101635194A00A2D645 /* AboutUsViewController.m */,
 				3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */,
@@ -873,10 +878,10 @@
 				FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */,
 				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
 				E68D117815A5F2900074982D /* GameDetailsViewController.m */,
-				3CCAE45615BE25790030C302 /* GameHistoriesMapViewController.h */,
-				3CCAE45715BE25790030C302 /* GameHistoriesMapViewController.m */,
-				3CC1683915A2E71400A2AB44 /* GameHistoriesViewController.h */,
-				3CC1683A15A2E71400A2AB44 /* GameHistoriesViewController.m */,
+				3CCAE45615BE25790030C302 /* GameHistoryMapViewController.h */,
+				3CCAE45715BE25790030C302 /* GameHistoryMapViewController.m */,
+				3CC1683915A2E71400A2AB44 /* GameHistoryViewController.h */,
+				3CC1683A15A2E71400A2AB44 /* GameHistoryViewController.m */,
 				3CC5633215F09BCB0026A7E8 /* MatchFinishedDetailsViewController.h */,
 				3CC5633315F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m */,
 				E62D383815E6748D004AA543 /* MatchSettingViewController.h */,
@@ -1265,7 +1270,7 @@
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
 				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */,
-				E68D116F15A591AA0074982D /* MatchRecordCell.xib in Resources */,
+				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */,
 				E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */,
 				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
@@ -1288,7 +1293,7 @@
 				E6BECB1E15BB133D00AABC38 /* blue_button.png in Resources */,
 				E6BECB2015BB18BA00AABC38 /* badgeValueBlue@2x.png in Resources */,
 				E6BECB2215BB1F3900AABC38 /* puppy-dog.jpg in Resources */,
-				3CCAE45A15BE25790030C302 /* GameHistoriesMapViewController.xib in Resources */,
+				3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */,
 				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
 				3C13E49B15C192DB00F4307C /* TimeStopPromptView.xib in Resources */,
 				E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */,
@@ -1427,7 +1432,7 @@
 				3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
 				3C07F41516351F5100A2D645 /* weibo@2x.png in Resources */,
-				3C07F41C163545FB00A2D645 /* GameHistoriesViewController.xib in Resources */,
+				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
 				3C40A813163641E500619526 /* buttonDelete.png in Resources */,
 				3C40A8361637ECD700619526 /* periodButtonBackground.png in Resources */,
 				3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */,
@@ -1455,7 +1460,7 @@
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
 				FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
-				3CC1683C15A2E71400A2AB44 /* GameHistoriesViewController.m in Sources */,
+				3CC1683C15A2E71400A2AB44 /* GameHistoryViewController.m in Sources */,
 				3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */,
 				3C121F5F15A3D58A0062BECD /* OperateGameView.m in Sources */,
 				3C121F6515A3E9C00062BECD /* TeamInfoViewController.m in Sources */,
@@ -1476,7 +1481,7 @@
 				E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */,
 				FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */,
 				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
-				3CCAE45915BE25790030C302 /* GameHistoriesMapViewController.m in Sources */,
+				3CCAE45915BE25790030C302 /* GameHistoryMapViewController.m in Sources */,
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
 				3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */,
 				E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */,
@@ -1509,6 +1514,7 @@
 				E62D383415E633E4004AA543 /* Fiba3pbRule.m in Sources */,
 				FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */,
 				FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */,
+				FB957D3B19E24719007FC3DA /* GameHistoryCell.m in Sources */,
 				E62D383A15E6748E004AA543 /* MatchSettingViewController.m in Sources */,
 				3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */,
 				3C5207D615EB53090079D5DB /* PlaySoundView.m in Sources */,

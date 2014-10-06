@@ -13,7 +13,7 @@
 #import "PlayerManager.h"
 //#import "PlayerEditViewController.h"
 #import "Feature.h"
-#import "GameHistoriesViewController.h"
+#import "GameHistoryViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Feature.h"
 #import "AppDelegate.h"
@@ -310,7 +310,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if(indexPath.section == 1 && indexPath.row == 0){
-        GameHistoriesViewController * history = [[GameHistoriesViewController alloc] initWithNibName:@"GameHistoriesViewController" bundle:nil];
+        GameHistoryViewController * history = [[GameHistoryViewController alloc] initWithNibName:@"GameHistoryViewController" bundle:nil];
         history.matches = _matchesOfTeam;
         history.historyType = HistoryTypeTeam;
         [self.navigationController pushViewController:history animated:YES];
