@@ -48,8 +48,10 @@
 - (void)historyChangedHandler:(NSNotification *)notification{
     NSLog(@"GameHistory got notification: %@", notification.name);
     
-    if ([notification.name isEqualToString:kMatchChanged] ||
-        [notification.name isEqualToString:kTeamChanged]) {
+    if ([notification.name isEqualToString:kTeamChanged]) {
+        [self.tableView reloadData];
+    }else if([notification.name isEqualToString:kMatchChanged]){
+        [self loadMatchHistory];
         [self.tableView reloadData];
     }
 }
@@ -64,12 +66,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+- (void)loadMatchHistory{
     if (_historyType == HistoryTypeTeam) {
-         [[Feature defaultFeature] initNavleftBarItemWithController:self];
+        [[Feature defaultFeature] initNavleftBarItemWithController:self];
         self.history = [[MatchManager defaultManager] dateGroupForMatches:self.matches];
         self.title = LocalString(@"Record");
     }else {
@@ -78,6 +77,13 @@
         self.history = [[MatchManager defaultManager] dateGroupForMatches:self.matches];
         self.title = LocalString(@"Histories");
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self loadMatchHistory];
     
     self.tableView.rowHeight = 62.0f;
    
