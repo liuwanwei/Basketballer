@@ -77,6 +77,23 @@
         self.history = [[MatchManager defaultManager] dateGroupForMatches:self.matches];
         self.title = LocalString(@"Histories");
     }
+    
+    // 生成按日期从大到小排序的数组
+    NSArray * keys = [self.history allKeys];
+    NSArray * sortedKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSComparisonResult result = [(NSString *)obj1 compare:(NSString *)obj2];
+        
+        // 需要降序排列的日期，所以将结果逆转一下
+        if (result == NSOrderedAscending) {
+            return NSOrderedDescending;
+        }else if(result == NSOrderedAscending){
+            return NSOrderedDescending;
+        }else{
+            return NSOrderedSame;
+        }
+    }];
+    
+    self.historyGroupKeys = sortedKeys;
 }
 
 - (void)viewDidLoad
@@ -109,23 +126,24 @@
 #pragma mark - Table view data source
 
 - (Match *)matchForIndexPath:(NSIndexPath *)indexPath{
-    NSArray * matches = [[self.history allValues] objectAtIndex:indexPath.section];
+    NSArray * matches = [self.history objectForKey:[self.historyGroupKeys objectAtIndex:indexPath.section]];
     Match * match = [matches objectAtIndex:indexPath.row];
     return match;
 }
 
+// 日期展示在分组头部
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [[self.history allKeys] objectAtIndex:section];
+    return [self.historyGroupKeys objectAtIndex:section];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.history allKeys].count;
+    return self.historyGroupKeys.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray * matches = [[self.history allValues] objectAtIndex:section];
+    NSArray * matches = [self.history objectForKey:[self.historyGroupKeys objectAtIndex:section]];
     return matches.count;
 }
 
@@ -140,7 +158,6 @@
     }
     
     Match * match = [self matchForIndexPath:indexPath];
-//    Match * match = [_matches objectAtIndex:indexPath.row];
     
     Team * team;
     UIImage * image;

@@ -31,6 +31,7 @@ typedef enum {
 
 @property (nonatomic, strong) NSArray * matches;
 @property (nonatomic, strong) NSDictionary * history;
+@property (nonatomic, strong) NSArray * historyGroupKeys;
 
 @property (nonatomic) HistoryType historyType;
 

@@ -12,6 +12,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+    
+    // 图片圆角化。
+//    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.cornerRadius = 5.0f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -12,6 +12,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+    
+    float radius = 10.0f;
+    self.hostImageView.clipsToBounds = YES;
+    self.hostImageView.layer.cornerRadius = radius;
+    self.guestImageView.clipsToBounds = YES;
+    self.guestImageView.layer.cornerRadius = radius;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

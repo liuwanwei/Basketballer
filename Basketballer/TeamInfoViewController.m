@@ -238,11 +238,7 @@
         
         cell.title.text = LocalString(@"Profile");
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        // 图片圆角化。
-        cell.profileImage.layer.masksToBounds = YES;
-        cell.profileImage.layer.cornerRadius = 5.0f;
-        
+                
         cell.profileImage.image = self.teamImage;
         
         return cell;
