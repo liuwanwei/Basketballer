@@ -14,7 +14,7 @@
     // Initialization code
     [super awakeFromNib];
     
-    float radius = 10.0f;
+    float radius = 17.0f;
     self.hostImageView.clipsToBounds = YES;
     self.hostImageView.layer.cornerRadius = radius;
     self.guestImageView.clipsToBounds = YES;

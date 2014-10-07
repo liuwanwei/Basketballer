@@ -102,7 +102,7 @@
     
     [self loadMatchHistory];
     
-    self.tableView.rowHeight = 62.0f;
+    self.tableView.rowHeight = 100.0f;
    
     // 添加、删除比赛刷新表
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];
