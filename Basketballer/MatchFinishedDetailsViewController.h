@@ -6,8 +6,8 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "GameDetailsViewController.h"
+#import "GameStatisticViewController.h"
 
-@interface MatchFinishedDetailsViewController : GameDetailsViewController
+@interface MatchFinishedDetailsViewController : GameStatisticViewController
 
 @end

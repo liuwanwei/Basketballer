@@ -180,9 +180,9 @@
 		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
 		E68D116815A53CE50074982D /* MatchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116715A53CE50074982D /* MatchManager.m */; };
 		E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D116E15A591AA0074982D /* GameHistoryCell.xib */; };
-		E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D117815A5F2900074982D /* GameDetailsViewController.m */; };
-		E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D117915A5F2900074982D /* GameDetailsViewController.xib */; };
-		E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118415A684B30074982D /* MatchPartSummaryCell.xib */; };
+		E68D117A15A5F2910074982D /* GameStatisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D117815A5F2900074982D /* GameStatisticViewController.m */; };
+		E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D117915A5F2900074982D /* GameStatisticViewController.xib */; };
+		E68D118515A684B30074982D /* MatchPartStatisticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118415A684B30074982D /* MatchPartStatisticCell.xib */; };
 		E6914F6215D4E5AD002CAEE0 /* PlayerActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F6115D4E5AC002CAEE0 /* PlayerActionViewController.m */; };
 		E6914F6515D4E5DB002CAEE0 /* PlayerStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F6415D4E5DA002CAEE0 /* PlayerStatisticsViewController.m */; };
 		E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F6715D4E641002CAEE0 /* PlayerEditViewController.m */; };
@@ -250,6 +250,10 @@
 		FB1BA9371884E44300978359 /* Basketballer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9361884E44300978359 /* Basketballer_Tests.m */; };
 		FB1BA9411884E58300978359 /* AmateurRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9401884E58300978359 /* AmateurRuleTest.m */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
+		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
+		FB8A220719E3FE7100213057 /* StatisticCompareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220619E3FE7100213057 /* StatisticCompareCell.m */; };
+		FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */; };
+		FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */; };
 		FB928FD119D6BA8A00F76DC6 /* player_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = FB928FD019D6BA8A00F76DC6 /* player_profile.png */; };
 		FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD319D7245100F76DC6 /* ImageCell.m */; };
 		FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */; };
@@ -498,10 +502,10 @@
 		E68D116615A53CE40074982D /* MatchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchManager.h; sourceTree = "<group>"; };
 		E68D116715A53CE50074982D /* MatchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchManager.m; sourceTree = "<group>"; };
 		E68D116E15A591AA0074982D /* GameHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoryCell.xib; sourceTree = "<group>"; };
-		E68D117715A5F28F0074982D /* GameDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailsViewController.h; sourceTree = "<group>"; };
-		E68D117815A5F2900074982D /* GameDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailsViewController.m; sourceTree = "<group>"; };
-		E68D117915A5F2900074982D /* GameDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameDetailsViewController.xib; sourceTree = "<group>"; };
-		E68D118415A684B30074982D /* MatchPartSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchPartSummaryCell.xib; sourceTree = "<group>"; };
+		E68D117715A5F28F0074982D /* GameStatisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStatisticViewController.h; sourceTree = "<group>"; };
+		E68D117815A5F2900074982D /* GameStatisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStatisticViewController.m; sourceTree = "<group>"; };
+		E68D117915A5F2900074982D /* GameStatisticViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameStatisticViewController.xib; sourceTree = "<group>"; };
+		E68D118415A684B30074982D /* MatchPartStatisticCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchPartStatisticCell.xib; sourceTree = "<group>"; };
 		E6914F6015D4E5AC002CAEE0 /* PlayerActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionViewController.h; sourceTree = "<group>"; };
 		E6914F6115D4E5AC002CAEE0 /* PlayerActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionViewController.m; sourceTree = "<group>"; };
 		E6914F6315D4E5DA002CAEE0 /* PlayerStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerStatisticsViewController.h; sourceTree = "<group>"; };
@@ -591,6 +595,12 @@
 		FB1BA9401884E58300978359 /* AmateurRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRuleTest.m; sourceTree = "<group>"; };
 		FB76CB951883D31300F07B53 /* AmateurRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmateurRule.h; sourceTree = "<group>"; };
 		FB76CB961883D31300F07B53 /* AmateurRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRule.m; sourceTree = "<group>"; };
+		FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticCompareCell.xib; sourceTree = "<group>"; };
+		FB8A220519E3FE7100213057 /* StatisticCompareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticCompareCell.h; sourceTree = "<group>"; };
+		FB8A220619E3FE7100213057 /* StatisticCompareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticCompareCell.m; sourceTree = "<group>"; };
+		FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticSectionHeaderView.xib; sourceTree = "<group>"; };
+		FB8A220A19E43ADF00213057 /* StatisticSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticSectionHeaderView.h; sourceTree = "<group>"; };
+		FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticSectionHeaderView.m; sourceTree = "<group>"; };
 		FB928FD019D6BA8A00F76DC6 /* player_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_profile.png; sourceTree = "<group>"; };
 		FB928FD219D7245100F76DC6 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
 		FB928FD319D7245100F76DC6 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
@@ -836,7 +846,8 @@
 			children = (
 				3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */,
 				3C07F4111635194A00A2D645 /* AboutUsViewController.xib */,
-				E68D117915A5F2900074982D /* GameDetailsViewController.xib */,
+				E68D117915A5F2900074982D /* GameStatisticViewController.xib */,
+				FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */,
 				E6914F8815DA22EC002CAEE0 /* ChooseTeamViewController.xib */,
 				E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */,
 				3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */,
@@ -853,6 +864,7 @@
 				3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */,
 				3C5207D715EB532F0079D5DB /* PlaySoundView.xib */,
 				3C06653315F6022300B1DCB8 /* PlaySoundViewController.xib */,
+				FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -860,6 +872,10 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB8A220A19E43ADF00213057 /* StatisticSectionHeaderView.h */,
+				FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */,
+				FB8A220519E3FE7100213057 /* StatisticCompareCell.h */,
+				FB8A220619E3FE7100213057 /* StatisticCompareCell.m */,
 				FB957D3919E24719007FC3DA /* GameHistoryCell.h */,
 				FB957D3A19E24719007FC3DA /* GameHistoryCell.m */,
 				3C07F40F1635194A00A2D645 /* AboutUsViewController.h */,
@@ -876,8 +892,8 @@
 				E6CEFCC015B90A6400324713 /* ConfiguratorViewController.m */,
 				FB957D1019DA914E007FC3DA /* CustomRuleViewController.h */,
 				FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */,
-				E68D117715A5F28F0074982D /* GameDetailsViewController.h */,
-				E68D117815A5F2900074982D /* GameDetailsViewController.m */,
+				E68D117715A5F28F0074982D /* GameStatisticViewController.h */,
+				E68D117815A5F2900074982D /* GameStatisticViewController.m */,
 				3CCAE45615BE25790030C302 /* GameHistoryMapViewController.h */,
 				3CCAE45715BE25790030C302 /* GameHistoryMapViewController.m */,
 				3CC1683915A2E71400A2AB44 /* GameHistoryViewController.h */,
@@ -1057,7 +1073,7 @@
 			children = (
 				3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */,
 				3C42824015B7C32200903F9D /* MatchModeCell.xib */,
-				E68D118415A684B30074982D /* MatchPartSummaryCell.xib */,
+				E68D118415A684B30074982D /* MatchPartStatisticCell.xib */,
 				E6914F7B15D72B6F002CAEE0 /* SwitchCell.xib */,
 				E65FF05215C455F200E96D6A /* ImageCell.xib */,
 				FB928FD219D7245100F76DC6 /* ImageCell.h */,
@@ -1266,14 +1282,15 @@
 				3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */,
 				3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */,
 				3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */,
+				FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */,
 				3C121F6015A3D58A0062BECD /* OperateGameView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
 				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */,
 				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */,
-				E68D117B15A5F2910074982D /* GameDetailsViewController.xib in Resources */,
-				E68D118515A684B30074982D /* MatchPartSummaryCell.xib in Resources */,
+				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
+				E68D118515A684B30074982D /* MatchPartStatisticCell.xib in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
@@ -1415,6 +1432,7 @@
 				3CC5632E15F098B90026A7E8 /* umeng_share_submitSel@2x.png in Resources */,
 				3CC5632F15F098B90026A7E8 /* umeng_share_toolbarBg.png in Resources */,
 				3CC5633015F098B90026A7E8 /* umeng_share_topic.png in Resources */,
+				FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */,
 				3CC5633115F098B90026A7E8 /* umeng_share_topicSel.png in Resources */,
 				FB957D2D19DEF6BB007FC3DA /* roster_delete.png in Resources */,
 				3C06653115F5FBE600B1DCB8 /* defence.wav in Resources */,
@@ -1467,7 +1485,7 @@
 				E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */,
 				E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */,
 				E68D116815A53CE50074982D /* MatchManager.m in Sources */,
-				E68D117A15A5F2910074982D /* GameDetailsViewController.m in Sources */,
+				E68D117A15A5F2910074982D /* GameStatisticViewController.m in Sources */,
 				FB957D2819DEF679007FC3DA /* TextEditorViewController.m in Sources */,
 				E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */,
 				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
@@ -1488,6 +1506,7 @@
 				3C13E49815C192A900F4307C /* TimeStopPromptView.m in Sources */,
 				E65FF05A15C5057600E96D6A /* RulesViewController.m in Sources */,
 				E65FF05D15C6261F00E96D6A /* Feature.m in Sources */,
+				FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */,
 				3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */,
 				E6E032A615C98CB600AF91CB /* MatchUnderWay.m in Sources */,
 				E6E032BE15CF73EA00AF91CB /* NewActionViewController.m in Sources */,
@@ -1520,6 +1539,7 @@
 				3C5207D615EB53090079D5DB /* PlaySoundView.m in Sources */,
 				FB957D2319DEF65E007FC3DA /* RosterViewController.m in Sources */,
 				E62D384515EB5DBC004AA543 /* RuleDetailViewController.m in Sources */,
+				FB8A220719E3FE7100213057 /* StatisticCompareCell.m in Sources */,
 				3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */,
 				E6F1E36515EF41F300FED24B /* WellKnownSaying.m in Sources */,
 				3CC5633415F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "GameHistoryViewController.h"
 #import "PlayGameViewController.h"
-#import "GameDetailsViewController.h"
+#import "GameStatisticViewController.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
 #import "ImageManager.h"
@@ -22,7 +22,7 @@
 #import "TeamInfoViewController.h"
 
 @interface GameHistoryViewController (){
-    GameDetailsViewController * _gameDetailsViewController;
+    GameStatisticViewController * _gameDetailsViewController;
     UINavigationController * _gameHistoriesMapViewController;
     
     NSDateFormatter * _dateFormatter;
@@ -215,8 +215,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_gameDetailsViewController == nil) {
-        _gameDetailsViewController = [[GameDetailsViewController alloc] 
-                                      initWithNibName:@"GameDetailsViewController" bundle:nil];
+        _gameDetailsViewController = [[GameStatisticViewController alloc] 
+                                      initWithNibName:@"GameStatisticViewController" bundle:nil];
     }
     
     Match * match = [self matchForIndexPath:indexPath];

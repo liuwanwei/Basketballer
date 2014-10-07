@@ -453,7 +453,7 @@ typedef enum {
 
 // 显示比赛结束详情界面
 - (void)showMatchFinishedDetailsController {
-    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameDetailsViewController" bundle:nil];
+    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];
     
     controller.match = _match.match;
     [controller reloadActionsInMatch];

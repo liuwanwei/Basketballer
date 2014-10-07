@@ -11,16 +11,16 @@
 #import "Match.h"
 #import "UMSNSService.h"
 
-@interface GameDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate,UMSNSDataSendDelegate,UMSNSViewDisplayDelegate>
+@interface GameStatisticViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate,UMSNSDataSendDelegate,UMSNSViewDisplayDelegate>
 
-//@property (nonatomic, weak) IBOutlet UILabel * teams;
-//@property (nonatomic, weak) IBOutlet UILabel * dateTime;
-//@property (nonatomic, weak) IBOutlet UISegmentedControl * actionFilter;
+@property (nonatomic, weak) IBOutlet UIImageView * homeImageView;
+@property (nonatomic, weak) IBOutlet UIImageView * guestImageView;
+@property (nonatomic, weak) IBOutlet UILabel * homeLabel;
+@property (nonatomic, weak) IBOutlet UILabel * guestLabel;
+@property (nonatomic, weak) IBOutlet UILabel * dateLabel;
 
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
-//@property (nonatomic, weak) IBOutlet UITableViewCell * actionFilterCell;
-//@property (nonatomic, weak) IBOutlet UIView * tableHeaderView;
 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem * actionItem;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem * trashItem;
