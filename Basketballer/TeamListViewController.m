@@ -44,7 +44,9 @@
 }
 
 - (void)teamChangedHandler:(NSNotification *)notification{
-    NSLog(@"TeamChoiceViewController before handle %@", notification.name);
+    NSLog(@"TeamList got notification %@", notification.name);
+    
+    // TODO: 为效率考虑，可只更新刚才修改的那个球队section
     [self.tableView reloadData];
 }
 
@@ -71,7 +73,7 @@
     
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
     
-    self.title = NSLocalizedString(@"Teams", nil);
+    self.title = LocalString(@"Teams");
 }
 
 - (void)viewDidUnload
@@ -98,15 +100,6 @@
 {
     return 1;
 }
-
-/*- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger row = indexPath.section;
-    if ((row % 2) == 0) {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.974 green:0.974 blue:0.974 alpha:1.0]];
-    }else {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.936 green:0.936 blue:0.936 alpha:1.0]];
-    }
-}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

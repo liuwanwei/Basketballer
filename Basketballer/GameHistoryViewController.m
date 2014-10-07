@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "Feature.h"
 #import "GameHistoryCell.h"
+#import "TeamInfoViewController.h"
 
 @interface GameHistoryViewController (){
     GameDetailsViewController * _gameDetailsViewController;
@@ -45,9 +46,10 @@
 }
 
 - (void)historyChangedHandler:(NSNotification *)notification{
-    NSLog(@"got notification: %@", notification.name);
+    NSLog(@"GameHistory got notification: %@", notification.name);
     
-    if (notification.object != nil && [notification.object isKindOfClass:[NSNumber class]]) {
+    if ([notification.name isEqualToString:kMatchChanged] ||
+        [notification.name isEqualToString:kTeamChanged]) {
         [self.tableView reloadData];
     }
 }
@@ -77,10 +79,11 @@
         self.title = LocalString(@"Histories");
     }
     
-    self.tableView.rowHeight = 48.0f;
+    self.tableView.rowHeight = 62.0f;
    
     // 添加、删除比赛刷新表
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(historyChangedHandler:) name:kMatchChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(historyChangedHandler:) name:kTeamChanged object:nil];
     
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
 }

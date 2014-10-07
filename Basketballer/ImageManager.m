@@ -89,7 +89,12 @@ static  NSMutableDictionary * sImageCache = nil;
     // 保存图片到文件系统。
     [self saveProfileImage:image toURL:imageURL];
     
-    return [self imageNameForLocalPath:[imageURL absoluteString]];
+    NSString * path =[self imageNameForLocalPath:[imageURL absoluteString]];
+    
+    // 修改照片时主动更新缓存，否则未修改照片名字时，读取的还是缓存图像
+    [sImageCache setObject:image forKey:path];
+    
+    return path;
 }
 
 -(NSURL*)localDocumentsDirectoryURL {

@@ -68,7 +68,6 @@
 }
 
 // 球队名字修改消息处理
-#define kEditTeamName       @"EditTeamName"
 - (void) teamNameChangedNotification:(NSNotification *) notification {
     if ([notification.name isEqualToString:kTextSavedMsg]) {
         if (notification.userInfo != nil) {
@@ -196,14 +195,16 @@
     if(self.operateMode == Insert) {
         [teamManager newTeam:self.teamName withImage:self.teamImage];
     }else {
-        [teamManager modifyTeam:self.team withNewName:self.teamName];
-        [teamManager modifyTeam:self.team withNewImage:self.teamImage];
+        // 不改变图片路径，直接保存图片数据（覆盖到原路径中）。
+        self.team.profileURL = [[ImageManager defaultInstance] saveImage:self.teamImage withProfileType:kProfileTypeTeam withObjectId:self.team.id];
+        self.team.name = self.teamName;
+        [teamManager synchroniseToStore];
     }
     
     if (_operateMode == Insert) {
         [[AppDelegate delegate] dismissModelViewController];
     }else{
-        self.hidesBottomBarWhenPushed = NO;
+//        self.hidesBottomBarWhenPushed = NO;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

@@ -16,6 +16,10 @@ typedef enum {
     Update = 2
 } OperateMode;
 
+
+// 编辑球队名字消息通知
+#define kEditTeamName       @"EditTeamName"
+
 @interface TeamInfoViewController : UITableViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>
 
 @property (nonatomic) NSInteger operateMode;
