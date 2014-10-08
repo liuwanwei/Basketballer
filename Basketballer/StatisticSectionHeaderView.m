@@ -22,7 +22,7 @@
     self.pointsLabel.hidden = YES;
     self.threePointsLabel.hidden = YES;
     self.freeThrowLabel.hidden = YES;
-    self.faultLabel.hidden = YES;
+    self.foulLabel.hidden = YES;
 }
 
 @end

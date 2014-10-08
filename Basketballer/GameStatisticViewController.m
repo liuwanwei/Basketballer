@@ -17,6 +17,7 @@
 #import "ImageManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "StatisticSectionHeaderView.h"
+#import "MatchPartStatisticCell.h"
 
 #define useAppkey @"503f331d527015516a000055"
 
@@ -26,6 +27,9 @@
     
     Team * _homeTeam;
     Team * _guestTeam;
+    
+    NSArray * _homeTeamPlayers;
+    NSArray * _guestTeamPlayers;
     
     // 比赛若是上下半场，指向_twohalfDescriptions；若是四节，指向_fourQuarterDescriptions.
     NSArray * _periodNameArray;       
@@ -44,25 +48,6 @@
 @synthesize actionItem = _actionItem;
 @synthesize trashItem = _trashItem;
 @synthesize match = _match;
-
-+ (void)setDataForCell:(UITableViewCell *)cell withStatistics:(NSDictionary *)statistics{
-    UILabel * label;
-    
-    label = (UILabel *)[cell viewWithTag:UICellName];
-    label.text = [statistics objectForKey:kName];
-    
-    label = (UILabel *)[cell viewWithTag:UICellPoints];
-    label.text = [statistics objectForKey:kPoints];
-    
-    label = (UILabel *)[cell viewWithTag:UICellFouls];
-    label.text = [statistics objectForKey:kPersonalFouls];
-    
-    label = (UILabel *)[cell viewWithTag:UICellThreePoints];
-    label.text = [statistics objectForKey:k3PointMade];
-    
-    label = (UILabel *)[cell viewWithTag:UICellFreeThrows];
-    label.text = [statistics objectForKey:kFreeThrow];
-}
 
 - (NSString *)thoroughfareWithAdress:(NSString *)address {
     NSString * thoroughfare = nil;
@@ -179,14 +164,15 @@
     
     self.tableView.delegate = self;
     
-    // 设置title：主队 vs 客队。
     TeamManager * tm = [TeamManager defaultManager];
     _homeTeam = [tm teamWithId:_match.homeTeam];
     _guestTeam = [tm teamWithId:_match.guestTeam];
     
-    NSString * title = [NSString stringWithFormat:@"%@ vs %@", _homeTeam.name, _guestTeam.name];
-    
-    self.title = title;
+    _homeTeamPlayers = [[PlayerManager defaultManager] playersForTeam:_homeTeam.id];
+    _guestTeamPlayers = [[PlayerManager defaultManager] playersForTeam:_guestTeam.id];
+
+    // 设置title：主队 vs 客队。
+    self.title = [NSString stringWithFormat:@"%@ vs %@", _homeTeam.name, _guestTeam.name];
     
     self.homeImageView.image = [[ImageManager defaultInstance] imageForName:_homeTeam.profileURL];
     float radius = 19.0f;
@@ -226,9 +212,9 @@
 #pragma mark UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     _sectionHeaders = [NSMutableArray arrayWithObjects:
-//                       LocalString(@"BasicInfo"),
                        LocalString(@"MatchDetailViewHeader"),
-                       LocalString(@"PlayerStatisticHeader"), nil];
+                       LocalString(@"HomeStatisticHeader"),
+                       LocalString(@"GuestStatisticHeader"), nil];
     
     return _sectionHeaders.count;
 }
@@ -240,9 +226,17 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     StatisticSectionHeaderView * header = [[[NSBundle mainBundle] loadNibNamed:@"StatisticSectionHeaderView" owner:self options:nil] lastObject];
     if ([header isKindOfClass:[StatisticSectionHeaderView class]]) {
-        if (section == 1) {
-            header.nameLabel.text = @"队员技术统计";
-            [header hideStatisticLabel];
+        switch (section) {
+            case 0:
+                break;
+            case 1:
+                header.nameLabel.text = _homeTeam.name;
+                break;
+            case 2:
+                header.nameLabel.text = _guestTeam.name;
+                break;
+            default:
+                break;
         }
         
         return header;
@@ -252,66 +246,68 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    NSInteger rows = 0;
+    switch (section) {
+        case 0:
+            rows = 2;
+            break;
+        case 1:
+            rows = _homeTeamPlayers.count;
+            break;
+        case 2:
+            rows = _guestTeamPlayers.count;
+            break;
+        default:
+            break;
+    }
+    
+    return rows;
 }
 
-- (void)setStatisticsForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath{    
+- (void)setStatisticsForCell:(MatchPartStatisticCell *)cell atIndexPath:(NSIndexPath *)indexPath{
     ActionManager * am = [ActionManager defaultManager];
     NSMutableDictionary * statistics;
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            // 主队全场技术统计。
-            statistics = [am statisticsForTeam:_match.homeTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
-            [statistics setObject:_homeTeam.name forKey:kName];
-        }else{
-            // 客队全场技术统计。
-            statistics = [am statisticsForTeam:_match.guestTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+            NSNumber * team = (indexPath.row == 0 ? _homeTeam.id : _guestTeam.id);
+            statistics = [am statisticsForTeam:team inPeriod:MatchPeriodAll inActions:_actionsInMatch];
             [statistics setObject:_guestTeam.name forKey:kName];
-        }
-    }else{
-        NSInteger period = indexPath.section - 2;
-        if (indexPath.row == 1) {
-            // 主队第period节技术统计。
-            statistics = [am statisticsForTeam:_match.homeTeam inPeriod:period inActions:_actionsInMatch];
-            [statistics setObject:_homeTeam.name forKey:kName];
-        }else{
-            // 客队第period节技术统计。
-            statistics = [am statisticsForTeam:_match.guestTeam inPeriod:period inActions:_actionsInMatch];
-            [statistics setObject:_guestTeam.name forKey:kName];
-        }
     }
-
-    [GameStatisticViewController setDataForCell:cell withStatistics:statistics];
+//    else{
+//        NSInteger period = indexPath.section - 2;
+//        if (indexPath.row == 1) {
+//            // 主队第period节技术统计。
+//            statistics = [am statisticsForTeam:_match.homeTeam inPeriod:period inActions:_actionsInMatch];
+//            [statistics setObject:_homeTeam.name forKey:kName];
+//        }else{
+//            // 客队第period节技术统计。
+//            statistics = [am statisticsForTeam:_match.guestTeam inPeriod:period inActions:_actionsInMatch];
+//            [statistics setObject:_guestTeam.name forKey:kName];
+//        }
+//    }
+    
+    [cell setStatistic:statistics];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell = nil;
+    
+    MatchPartStatisticCell * cell = nil;
+    static NSString * CellIdentifier = @"StatisticCell";
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MatchPartStatisticCell" owner:self options:nil] lastObject];
+    }
+
     if(indexPath.section == 0){
         // 球队技术统计。
         // 在xib中设置UITableViewCell的reuseIdentifier。
-        static NSString * CellIdentifier = @"StatisticsCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            [[NSBundle mainBundle] loadNibNamed:@"MatchPartStatisticCell" owner:self options:nil];
-            cell = _tvCell;
-            self.tvCell = nil;
-        }
-        
         [self setStatisticsForCell:cell atIndexPath:indexPath];
     }else{
-        static NSString * CellIdentifier = @"CellIdentifier0";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (nil == cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        }
-        
-        if(indexPath.section == 1){
-            // 队员技术统计。
-            cell.textLabel.text = indexPath.row == 0 ? _homeTeam.name : _guestTeam.name;
-            cell.detailTextLabel.text = nil;            
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;            
-        }
+        ActionManager * am = [ActionManager defaultManager];
+        NSArray * players = (indexPath.section == 1 ? _homeTeamPlayers : _guestTeamPlayers);
+        Player * player = [players objectAtIndex:indexPath.row];
+        NSMutableDictionary * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
+        [data setObject:player.name forKey:kName];
+        [cell setStatistic:data];
     }
     
     return cell;

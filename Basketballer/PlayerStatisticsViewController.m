@@ -49,7 +49,7 @@
     NSMutableDictionary * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
 //    NSString * stringNumber = [NSString stringWithFormat:@"%02d", [player.number integerValue]];
     [data setObject:player.name forKey:kName];
-    [GameStatisticViewController setDataForCell:cell withStatistics:data];
+//    [GameStatisticViewController setDataForCell:cell withStatistics:data];
     
     return cell;
 }

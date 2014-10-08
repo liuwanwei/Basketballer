@@ -32,6 +32,4 @@
 - (IBAction)showActionMenu;
 - (IBAction)deleteMatch;
 
-+ (void)setDataForCell:(UITableViewCell *)cell withStatistics:(NSDictionary *)dictionary;
-
 @end

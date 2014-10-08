@@ -1,14 +1,14 @@
 //
-//  StatisticHeaderView.h
+//  MatchPartStatisticCell.h
 //  Basketballer
 //
-//  Created by sungeo on 14-10-7.
+//  Created by sungeo on 14-10-8.
 //
 //
 
 #import <UIKit/UIKit.h>
 
-@interface StatisticSectionHeaderView : UIView
+@interface MatchPartStatisticCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * pointsLabel;
@@ -16,6 +16,6 @@
 @property (nonatomic, weak) IBOutlet UILabel * freeThrowLabel;
 @property (nonatomic, weak) IBOutlet UILabel * foulLabel;
 
-- (void)hideStatisticLabel;
-
+- (void)setStatistic:(NSDictionary *)statistics;
+    
 @end

@@ -211,20 +211,17 @@
 
 #pragma mark - Table view delegate
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_gameDetailsViewController == nil) {
-        _gameDetailsViewController = [[GameStatisticViewController alloc] 
-                                      initWithNibName:@"GameStatisticViewController" bundle:nil];
-    }
+    GameStatisticViewController * vc = [[GameStatisticViewController alloc]
+                                  initWithNibName:@"GameStatisticViewController" bundle:nil];
+
     
     Match * match = [self matchForIndexPath:indexPath];
     
-    _gameDetailsViewController.match = match;
-    [_gameDetailsViewController reloadActionsInMatch];
-//    _gameDetailsViewController.hidesBottomBarWhenPushed = YES;    
-    [self.navigationController pushViewController:_gameDetailsViewController animated:YES];
+    vc.match = match;
+    [vc reloadActionsInMatch];
+    [self.navigationController pushViewController:vc animated:YES];
     
     // 用于删除比赛后，收到删除消息，刷新当前界面。
     _selectedRow = indexPath.row;

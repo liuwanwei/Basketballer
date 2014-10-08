@@ -254,6 +254,7 @@
 		FB8A220719E3FE7100213057 /* StatisticCompareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220619E3FE7100213057 /* StatisticCompareCell.m */; };
 		FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */; };
 		FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */; };
+		FB8A220F19E5102700213057 /* MatchPartStatisticCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220E19E5102700213057 /* MatchPartStatisticCell.m */; };
 		FB928FD119D6BA8A00F76DC6 /* player_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = FB928FD019D6BA8A00F76DC6 /* player_profile.png */; };
 		FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD319D7245100F76DC6 /* ImageCell.m */; };
 		FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */; };
@@ -601,6 +602,8 @@
 		FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatisticSectionHeaderView.xib; sourceTree = "<group>"; };
 		FB8A220A19E43ADF00213057 /* StatisticSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticSectionHeaderView.h; sourceTree = "<group>"; };
 		FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticSectionHeaderView.m; sourceTree = "<group>"; };
+		FB8A220D19E5102700213057 /* MatchPartStatisticCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchPartStatisticCell.h; sourceTree = "<group>"; };
+		FB8A220E19E5102700213057 /* MatchPartStatisticCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchPartStatisticCell.m; sourceTree = "<group>"; };
 		FB928FD019D6BA8A00F76DC6 /* player_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_profile.png; sourceTree = "<group>"; };
 		FB928FD219D7245100F76DC6 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
 		FB928FD319D7245100F76DC6 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
@@ -872,6 +875,8 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB8A220D19E5102700213057 /* MatchPartStatisticCell.h */,
+				FB8A220E19E5102700213057 /* MatchPartStatisticCell.m */,
 				FB8A220A19E43ADF00213057 /* StatisticSectionHeaderView.h */,
 				FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */,
 				FB8A220519E3FE7100213057 /* StatisticCompareCell.h */,
@@ -1495,6 +1500,7 @@
 				E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */,
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptView.m in Sources */,
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
+				FB8A220F19E5102700213057 /* MatchPartStatisticCell.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				E6CEFCC115B90A6500324713 /* ConfiguratorViewController.m in Sources */,
 				FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */,
