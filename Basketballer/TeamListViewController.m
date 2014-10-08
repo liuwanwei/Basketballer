@@ -11,6 +11,7 @@
 #import "StartGameViewController.h"
 #import "TeamInfoViewController.h"
 #import "AppDelegate.h"
+#import "ImageManager.h"
 #import "Feature.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -32,18 +33,20 @@
     if (nil == team) {
         editTeam.operateMode = Insert;
         UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:editTeam];
-        [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+        [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
         [[AppDelegate delegate] presentModelViewController:nav];
     }else{
         editTeam.operateMode = Update;
         editTeam.team = team;
-        editTeam.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:editTeam animated:YES];        
+//        editTeam.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:editTeam animated:YES];
     }
 }
 
 - (void)teamChangedHandler:(NSNotification *)notification{
-    NSLog(@"TeamChoiceViewController before handle %@", notification.name);
+    NSLog(@"TeamList got notification %@", notification.name);
+    
+    // TODO: 为效率考虑，可只更新刚才修改的那个球队section
     [self.tableView reloadData];
 }
 
@@ -68,16 +71,9 @@
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTeam)];
     self.navigationItem.rightBarButtonItem = item;
     
-    self.title = NSLocalizedString(@"Teams", nil);
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.hidesBottomBarWhenPushed = NO;
+    [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
+    
+    self.title = LocalString(@"Teams");
 }
 
 - (void)viewDidUnload
@@ -105,15 +101,6 @@
     return 1;
 }
 
-/*- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger row = indexPath.section;
-    if ((row % 2) == 0) {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.974 green:0.974 blue:0.974 alpha:1.0]];
-    }else {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.936 green:0.936 blue:0.936 alpha:1.0]];
-    }
-}*/
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIImageView * profileImageView;    
@@ -139,7 +126,7 @@
     label = (UILabel *)[cell viewWithTag:2]; 
     NSArray * teams = [[TeamManager defaultManager] teams];
     Team * team = [teams objectAtIndex:indexPath.section];
-    profileImageView.image = [[TeamManager defaultManager] imageForTeam:team];
+    profileImageView.image = [[ImageManager defaultInstance] imageForName:team.profileURL];
     label.text = team.name;
     
     label = (UILabel *)[cell viewWithTag:3];

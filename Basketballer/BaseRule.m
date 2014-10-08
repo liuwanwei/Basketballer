@@ -9,6 +9,9 @@
 #import "BaseRule.h"
 #import "FibaRule.h"
 #import "Fiba3pbRule.h"
+#import "FibaCustomRule.h"
+#import "CustomRuleManager.h"
+#import "Rule.h"
 #import "GameSetting.h"
 #import "TeamStatistics.h"
 #import "MatchUnderWay.h"
@@ -23,6 +26,8 @@
 @synthesize offenceTimeLimit = _offenceTimeLimit;
 @synthesize winningPoints = _winningPoints;
 
+
+// 工厂接口，通过规则名字生成规则
 + (BaseRule *)ruleWithMode:(NSString *)mode{
      if ([mode isEqualToString:kMatchModeFiba]){
          return [[FibaRule alloc] init];
@@ -35,6 +40,14 @@
               [mode isEqualToString:kMatchModeAmateur25]){
          return [[AmateurRule alloc] initWithMode:mode];
      }else {
+         NSArray * rules  = [[CustomRuleManager defaultInstance] rules];
+         for (Rule * rule in rules) {
+             if ([rule.name isEqualToString:mode]) {
+                 return [[FibaCustomRule alloc] initWithRuleModel:rule];
+             }
+         }
+         
+         NSLog(@"找不到自定义比赛规则: %@", mode);
          return [[BaseRule alloc] init];
      }
 }

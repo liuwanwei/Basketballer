@@ -1,6 +1,6 @@
 //
 //  RuleDetailViewController.m
-//  Basketballer
+//  Basketballer    规则详情界面
 //
 //  Created by Liu Wanwei on 12-8-27.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
@@ -10,6 +10,9 @@
 #import "BaseRule.h"
 #import "FibaRule.h"
 #import "Fiba3pbRule.h"
+#import "FibaCustomRule.h"
+#import "CustomRuleManager.h"
+#import "CustomRuleViewController.h"
 #import "AppDelegate.h"
 #import "Feature.h"
 
@@ -31,10 +34,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+- (void)makeRuleDetailString{
     NSArray * _timeRules;
     NSArray * _foulRules;
     NSArray * _timeoutRules;
@@ -60,12 +60,90 @@
                   LocalString(@"PersonalFoulLimit"),
                   LocalString(@"TeamFoulLimitWithinPeriod"),
                   nil];
+    
     _timeoutRules = [NSArray arrayWithObjects:
-                     LocalString(@"TimeoutLimit"),
+                     LocalString(@"1stHalfTimeoutLimit"),
+                     LocalString(@"2ndHalfTimeoutLimit"),
+                     LocalString(@"OvertimeTimeoutLimit"),
                      LocalString(@"TimeoutLength"),
                      nil];
+    
     _winningRules = [NSArray arrayWithObject:LocalString(@"Special")];
     _rowsInSection = [NSArray arrayWithObjects:_timeRules, _foulRules, _timeoutRules, _winningRules, nil];
+}
+
+// 修改自定义规则
+- (void)modifyCustomRule{
+    CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    vc.rule = (FibaCustomRule *)self.rule;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 删除自定义规则
+- (void)deleteCustomRule{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:LocalString(@"DeleteRule") message:LocalString(@"a-u-sure?") delegate:self cancelButtonTitle:LocalString(@"Cancel") otherButtonTitles:LocalString(@"Confirm"), nil];
+    [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        // 取消
+    }else if(buttonIndex == 1){
+        // 确定要删除规则
+        FibaCustomRule * customRule = (FibaCustomRule *)self.rule;
+        [[CustomRuleManager defaultInstance] deleteRule:customRule.model];
+        
+        // 通知上层界面刷新规则列表
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRuleChangedNotification object:nil];
+        
+        // 返回上级界面
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+// 弹出编辑菜单
+- (void)editMenu{
+    UIActionSheet * menu = [[UIActionSheet alloc]
+                            initWithTitle:nil delegate:self
+                            cancelButtonTitle:LocalString(@"Cancel")
+                            destructiveButtonTitle:LocalString(@"DeleteRule")
+                            otherButtonTitles:LocalString(@"ModifyRule"), nil];
+    
+    [menu showInView:[UIApplication sharedApplication].keyWindow];
+
+}
+
+#pragma mark - ActionSheet view delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == actionSheet.destructiveButtonIndex) {
+        [self deleteCustomRule];
+    }else if(buttonIndex == actionSheet.firstOtherButtonIndex){
+        [self modifyCustomRule];
+    }
+}
+
+// 修改自定义规则消息通知处理
+- (void)ruleChangedNotification:(NSNotification *)notification{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationAutomatic];
+    });
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self makeRuleDetailString];
+    
+    self.title = LocalString(@"Rule");
+    
+    if ([self.rule isKindOfClass:[FibaCustomRule class]]) {
+        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editMenu)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ruleChangedNotification:) name:kRuleChangedNotification object:nil];
     
     [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
@@ -73,8 +151,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,7 +187,7 @@
     if (indexPath.section == 3) {
         cell.textLabel.text = [self winningCondition];
     }else{
-        NSArray * rows = [_rowsInSection objectAtIndex:indexPath.section];        
+        NSArray * rows = [_rowsInSection objectAtIndex:indexPath.section];
         cell.textLabel.text = [rows objectAtIndex:indexPath.row];        
     }
     
@@ -158,9 +236,15 @@
     }else if(indexPath.section == 2){
         switch (indexPath.row) {
             case 0:
-                detail = [self timeoutLimit];
+                detail = [self timeoutLimitForPeriod:MatchPeriodSecond];
                 break;
             case 1:
+                detail = [self timeoutLimitForPeriod:MatchPeriodFourth];
+                break;
+            case 2:
+                detail = [self timeoutLimitForPeriod:MatchPeriodOvertime];
+                break;
+            case 3:
                 detail = [self timeoutLength];
                 break;
             default:
@@ -217,9 +301,10 @@
     return [NSString stringWithFormat:@"%d", [self.rule foulLimitForTeam]];
 }
     
-- (NSString *)timeoutLimit{
+- (NSString *)timeoutLimitForPeriod:(MatchPeriod)period{
     if ([self.rule isKindOfClass:[FibaRule class]]) {
-        return LocalString(@"FibaTimeoutLimit");
+        NSString * limit = [NSString stringWithFormat:@"%d%@", [self.rule timeoutLimitBeforeEndOfPeriod:period], LocalString(@"Seconds")];
+        return limit;
     }else if([self.rule isKindOfClass:[Fiba3pbRule class]]){
         return LocalString(@"Forbidden");
     }else{

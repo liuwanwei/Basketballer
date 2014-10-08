@@ -44,6 +44,9 @@ typedef enum {
 
 - (void)loadMatches;
 
+// 将比赛数组转换成为根据日期分组的数据对象
+- (NSDictionary *)dateGroupForMatches:(NSArray *)matches;
+
 // 注意：返回的Match对象指针不能copy给其他变量，往后的删除、添加动作等接口必须使用这个返回的Match对象指针。
 - (Match *)newMatchWithMode:(NSString *)mode andHomeTeam:(NSNumber *)homeTeamId andGuestTeam:(NSNumber *)guestTeamId;
 

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
+#import "CustomRuleManager.h"
 #import "PlayGameViewController.h"
 #import "GameSetting.h"
 #import "Feature.h"
@@ -87,6 +88,7 @@ typedef enum {
         if ([match.matchMode isEqualToString:kMatchModeAccount]) {
             return;
         }
+        
         if (match.state == MatchStatePlaying) {
             newNotification = [[UILocalNotification alloc] init];
             newNotification.fireDate = [match periodFinishingDate];
@@ -113,16 +115,6 @@ typedef enum {
     }
 }
 
-#pragma 类成员函数
-- (void)initNotificationBody {
-//    ActionManager * actionManager = [ActionManager defaultManager];
-//    if ([actionManager.matchMode isEqualToString:kGameModeFourQuarter]) {
-        _notificationBody = _notificationBodyFor4Quarter;
-//    }else if ([actionManager.matchMode isEqualToString:kGameModeTwoHalf]) {
-//        _notificationBody = _notificationBodyFor2Half;
-//    }
-}
-
 #pragma 事件函数
 + (AppDelegate *)delegate{
 	AppDelegate * delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -137,22 +129,27 @@ typedef enum {
     [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
+// 初始化所有子Tab中导航栏的效果（顶部）
 - (void)initNavigationBarBgColor{
-    NSArray * navControllers = self.tabBarController.viewControllers;
-    for (UINavigationController * nav in navControllers) {
-        [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
-    }
+    return; //TODO
+//    NSArray * navControllers = self.tabBarController.viewControllers;
+//    for (UINavigationController * nav in navControllers) {
+//        [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
+//    }
 }
 
+// 初始化TabBar的效果（屏幕底部的TabBar）
 - (void)initTabBar {
     NSArray * titles = [NSArray arrayWithObjects:
                         NSLocalizedString(@"Start", nil),
+                        NSLocalizedString(@"Teams", nil),
                         NSLocalizedString(@"Histories", nil),
-                        NSLocalizedString(@"Teams", nil), 
                         NSLocalizedString(@"Others", nil), 
                         nil];
     
     [self.tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarBackground"]];
+    
+    // 修改Tab的文字效果，显示国际化的文字内容
     NSInteger size = self.tabBarController.tabBar.items.count;
     for (NSInteger index = 0; index < size; index++) {
         UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:index];
@@ -165,14 +162,19 @@ typedef enum {
 {
     [[MatchManager defaultManager] loadMatches];
     [[TeamManager defaultManager] loadTeams];
+    [[CustomRuleManager defaultInstance] loadRules];
     
     [self initNavigationBarBgColor];
     [self initTabBar];
     [self initNotificationBodyArray];
     
+    application.statusBarStyle = UIStatusBarStyleDefault;
+    
     //[[WellKnownSaying defaultSaying] requestSaying];
     
-    [self.window addSubview:self.tabBarController.view];
+//    [self.window addSubview:self.tabBarController.view];
+    [self.window setRootViewController:self.tabBarController];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

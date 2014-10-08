@@ -11,8 +11,6 @@
 #import "SingleChoiceViewController.h"
 #import "FXLabel.h"
 
-//@protocol SingleChoiceViewDelegate;
-
 @interface StartGameViewController : UITableViewController
 
 @property (nonatomic, weak) IBOutlet UIView * inspirationView;

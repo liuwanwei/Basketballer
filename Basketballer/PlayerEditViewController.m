@@ -20,10 +20,10 @@
 - (void)addPlayer{
     NewPlayerViewController * newPlayer = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
     newPlayer.team = self.teamId;
-    newPlayer.parentWhoPresentedMe = self;
+//    newPlayer.parentWhoPresentedMe = self;
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:newPlayer];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
 
     [self presentModalViewController:nav animated:YES];
 }
@@ -62,7 +62,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // “球员编辑列表”模式下的消息处理。
     NewPlayerViewController * newPlayer = [[NewPlayerViewController alloc] initWithNibName:@"NewPlayerViewController" bundle:nil];
-    newPlayer.player = [self.players objectAtIndex:indexPath.row];
+    newPlayer.model = [self.players objectAtIndex:indexPath.row];
     newPlayer.team = self.teamId;
     [self.navigationController pushViewController:newPlayer animated:YES];
 }

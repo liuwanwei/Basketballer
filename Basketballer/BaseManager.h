@@ -12,6 +12,8 @@
 
 @property (nonatomic, weak) NSManagedObjectContext * managedObjectContext;
 
+- (NSArray *)loadWithEntity:(NSString *)entity;
+
 - (BOOL)synchroniseToStore;
 - (BOOL)deleteFromStore:(id)record synchronized:(BOOL)synchronized;
 

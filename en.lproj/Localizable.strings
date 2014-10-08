@@ -14,10 +14,22 @@
 "Teams"  = "Teams";
 "Others"  = "More";
 
-"Cancel" = "Cancel";
+"Custom" = "Custom";
+"RuleName" = "Rule name";
+"Rule" = "Rule";
+"DeleteRule" = "Delete";
+"ModifyRule" = "Modify";
 
-"Fiba5PlayerMode" = "FIBA 5-Player Match";
-"Fiba3PlayerMode" = "FIBA 3-Player Match";
+"FibaMode" = "Fiba official rule";
+"FreeMode" = "Points Only";
+"CustomMode" = "Custom rule";
+"Add" = "Add new rule ...";
+
+"Cancel" = "Cancel";
+"Confirm" = "Confirm";
+
+"Fiba5PlayerMode" = "5-Player Mode";
+"Fiba3PlayerMode" = "3-Player Mode";
 
 "Name" = "Name";
 "Number" = "Number";
@@ -28,6 +40,7 @@
 "DefaultTeam1" = "Chicago Bulls";
 "DefaultTeam2" = "Utah Jazz";
 
+"AddTeam" = "Add new team";
 "CreateTeam" = "New Team";
 "TeamInfo" = "Team Info";
 "Record" = "Matches";
@@ -39,9 +52,12 @@
 
 "PlayerInfo" = "Player Info";
 "NewPlayer" = "New Player";
+"EditPlayer" = "Edit";
+"PlayerName" = "Name";
+"PlayerNumber" = "Number";
 "PlayerInfoFormatter" = "%.2d";
 
-"SelectTeam" = "Teams";
+"ChooseTeam" = "Choose";
 "SelectTeamGuide" = "Select two teams";
 "Finish" = "Finish";
 "Done" = "Done";
@@ -146,6 +162,11 @@
 "FibaTimeoutLimit" = "2 in 1st half, 3 in 2nd";
 "TimeoutLength" = "Timeout length";
 
+// 暂停次数
+"1stHalfTimeoutLimit" = "1st Half timeouts";
+"2ndHalfTimeoutLimit" = "2nd Half timeouts";
+"OvertimeTimeoutLimit" = "Overtime timeouts";
+
 "Special" = "Special";
 "Get33PointsWinFormatter" = "Team first get %d points WIN the game";
 
@@ -179,6 +200,6 @@
 
 "AboutUs" = "About Us";
 "FinishMatch" = "End the match";
-"PlayGameViewTitle" = "篮球助手";
+"PlayGameViewTitle" = "Playing";
 "MoreButtonTitle" = ".  .  .";
 "Abandon" = "Abandon";

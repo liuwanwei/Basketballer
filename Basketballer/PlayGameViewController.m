@@ -409,7 +409,7 @@ typedef enum {
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     [self presentModalViewController:nav animated:YES];
 }
 
@@ -453,13 +453,13 @@ typedef enum {
 
 // 显示比赛结束详情界面
 - (void)showMatchFinishedDetailsController {
-    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameDetailsViewController" bundle:nil];
+    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];
     
     controller.match = _match.match;
     [controller reloadActionsInMatch];
     
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
-    [[Feature defaultFeature] setNavigationBarBackgroundImage:nav.navigationBar];
+    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     
     [self presentModalViewController:nav animated:YES];
 }
@@ -502,13 +502,16 @@ typedef enum {
         [_gamePeroidLabel setHidden:YES];
         [self startGame:nil];
     }
+    
     [self registerHandleMessage];
     [self updateTitle:LocalString(@"Match")];
-    //[self initActionSheetButtonTitles];
     [self initOperateGameView];
     [self addSwipeGesture];
     [self showNavBarLeftItem:YES withRightItem:NO];
-    //[self initPlaySoundView];
+    
+    if (IOS_7) {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
         
     [LocationManager defaultManager].delegate = self;
     [AppDelegate delegate].playGameViewController = self;

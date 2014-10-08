@@ -10,6 +10,7 @@
 #import "MatchManager.h"
 #import "AppDelegate.h"
 #import "PlayerManager.h"
+#import "ImageManager.h"
 
 static TeamManager * sDefaultManager;
 
@@ -19,8 +20,6 @@ static TeamManager * sDefaultManager;
     
     NSString * _teamProfilePrefix;
     NSString * _teamProfileExtension;
-    
-    NSMutableDictionary * _imageCache;
 }
 
 @end
@@ -39,10 +38,10 @@ static TeamManager * sDefaultManager;
 
 - (id)init{
     if (self = [super init]) {
-        _teamProfilePrefix = @"TeamProfile_";
-        _teamProfileExtension = @".png";
+//        _teamProfilePrefix = @"TeamProfile_";
+//        _teamProfileExtension = @".png";
         
-        _imageCache = [[NSMutableDictionary alloc] init];
+//        _imageCache = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -148,51 +147,11 @@ static TeamManager * sDefaultManager;
     }
 }
 
-// 根据球队id，生成形如“file://xxx//xxx//id.png”形式的球队Logo保存路径。
-- (NSURL *)profileImageURLGenerator:(NSString *)name{
-    NSFileManager * fm = [NSFileManager defaultManager];
-    
-    NSArray * paths = [fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    
-    NSURL * documentDirectory = [paths objectAtIndex:0];
-    
-    NSString * filename = [NSString stringWithFormat:@"%@%@%@", _teamProfilePrefix, name, _teamProfileExtension];
-    
-    NSURL * profilePath = [documentDirectory URLByAppendingPathComponent:filename isDirectory:NO];
-    
-//    profilePath = [profilePath URLByAppendingPathComponent:filename isDirectory:NO];
-    
-    return profilePath;
-}
-
 // 发送球队修改通知。
 - (void)sendTeamChangedNotification{
     NSLog(@"before send %@", kTeamChanged);    
     NSNotification * notification = [NSNotification notificationWithName:kTeamChanged object:nil];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
-}
-
-- (void)saveProfileImage:(UIImage *)image toURL:(NSURL *) url{
-   // TODO 暂时制作本地存储，调通后再往iCloud里加。 
-    NSData * data = UIImagePNGRepresentation(image);
-    [data writeToURL:url atomically:YES];
-}
-
-- (void)setProfileImage:(UIImage *)image forTeam:(Team *)team{
-    // 根据Team.id生成图片保存路径。    
-    NSURL * imageURL = [self profileImageURLGenerator:[team.id stringValue]];
-    
-    // 保存图片路径到球队信息记录.
-    NSString * profileURL = [imageURL absoluteString];
-    NSRange range = [profileURL rangeOfString:@"/" options:NSBackwardsSearch];
-    NSString * imageName = [profileURL substringFromIndex:range.location + 1];
-    team.profileURL = imageName;
-    
-    // 保存图片到文件系统。
-    [self saveProfileImage:image toURL:imageURL];
-    
-    // 更新图片缓存。
-    [_imageCache setObject:image forKey:team.profileURL];
 }
 
 - (BOOL)synchroniseToStore{
@@ -227,7 +186,10 @@ static TeamManager * sDefaultManager;
         teamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
     }
 
-    [self setProfileImage:teamProfile forTeam:team];
+
+    NSString * path = [[ImageManager defaultInstance] saveImage:teamProfile withProfileType:kProfileTypeTeam withObjectId:team.id];
+    team.profileURL = path;
+
     
     [_allTeams insertObject:team atIndex:_allTeams.count];
     [self resetAvailableTeams];    
@@ -275,40 +237,10 @@ static TeamManager * sDefaultManager;
     }
     
     // 不改变图片路径，直接保存图片数据（覆盖到原路径中）。
-    [self saveProfileImage:image toURL:[NSURL URLWithString:team.profileURL]];
-    [_imageCache setObject:image forKey:team.profileURL];
+    [[ImageManager defaultInstance] saveProfileImage:image toURL:[NSURL URLWithString:team.profileURL]];
     
     return [self synchroniseToStore];
 }
 
-- (UIImage *)imageForTeam:(Team *)team{
-    UIImage * image = nil;
-    if (nil == team || nil == team.profileURL) {
-        return nil;
-    }
-    
-    image = [_imageCache objectForKey:team.profileURL];
-    if (image) {
-        return image;
-    }else{
-        NSFileManager * fm = [NSFileManager defaultManager];
-        NSArray * paths = [fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-        NSURL * documentDirectory = [paths objectAtIndex:0];
-        
-        NSURL * url;
-        NSString * imageName = team.profileURL;
-        if ([team.profileURL hasPrefix:@"file://"]) {
-            NSRange range = [team.profileURL rangeOfString:@"/" options:NSBackwardsSearch];
-            imageName = [team.profileURL substringFromIndex:range.location + 1];
-        }
-        
-        url = [documentDirectory URLByAppendingPathComponent:imageName];
-        NSData * data = [NSData dataWithContentsOfURL:url];
-        image = [UIImage imageWithData:data]; 
-        [_imageCache setObject:image forKey:team.profileURL];
-    }
-    
-    return image;
-}
 
 @end

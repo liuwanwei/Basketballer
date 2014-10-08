@@ -14,8 +14,6 @@
 
 @interface PlayerManager : BaseManager
 
-//@property (nonatomic, strong) NSMutableArray * players;
-
 + (PlayerManager *)defaultManager;
 - (NSArray *)playersForTeam:(NSNumber *)teamId;
 
@@ -23,6 +21,9 @@
 - (BOOL)deletePlayer:(Player *)player;
 - (Player *)updatePlayer:(Player *)player withNumber:(NSNumber *)number andName:(NSString *)name;
 - (Player *)playerWithId:(NSNumber *)id;
-//- (BOOL)deletePlayerWithNumber:(NSInteger)number;
+
+// 新设计
+- (Player *)prepareForNewPlayer;
+- (void)commitPlayer:(Player *)player;
 
 @end

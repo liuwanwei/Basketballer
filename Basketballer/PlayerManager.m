@@ -12,8 +12,6 @@ static PlayerManager * sDefaultManager = nil;
 
 @implementation PlayerManager
 
-//@synthesize players = _players;
-
 + (PlayerManager *)defaultManager{
     if (sDefaultManager == nil) {
         sDefaultManager = [[PlayerManager alloc] init];
@@ -84,6 +82,23 @@ static PlayerManager * sDefaultManager = nil;
     
     return newOne;
 }
+
+
+// 添加新队员时，新建队员对象。属性赋值工作由调用者自己解决
+- (Player *)prepareForNewPlayer{
+    Player * newOne = (Player *)[NSEntityDescription insertNewObjectForEntityForName:kPlayerEntity
+                                                              inManagedObjectContext:self.managedObjectContext];
+    
+    newOne.id = [BaseManager generateIdForKey:kPlayerEntity];
+    
+    return newOne;
+}
+
+// 提交新队员信息到Core Data
+- (void)commitPlayer:(Player *)player{
+    [self synchroniseToStore];
+}
+
 
 - (BOOL)synchroniseToStore{
     if(! [super synchroniseToStore]){

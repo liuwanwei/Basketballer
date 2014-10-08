@@ -11,8 +11,8 @@
 #import "MatchManager.h"
 #import "MatchUnderWay.h"
 #import "TeamStatistics.h"
-#import "WEPopoverController.h"
-#import "WEPopoverContentViewController.h"
+//#import "WEPopoverController.h"
+//#import "WEPopoverContentViewController.h"
 
 @interface OperateGameView : UIView <UIActionSheetDelegate,UIAlertViewDelegate>
 

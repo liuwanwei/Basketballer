@@ -9,6 +9,8 @@
 #import "BaseManager.h"
 #import "AppDelegate.h"
 
+#define kIdField        @"id"
+
 static NSString * sFilePath = nil;
 static NSMutableDictionary * sIdDictionary = nil;
 
@@ -23,6 +25,22 @@ static NSMutableDictionary * sIdDictionary = nil;
     }
     
     return _managedObjectContext;
+}
+
+// 根据Entity查询，默认按照“id”升序排序
+- (NSArray *)loadWithEntity:(NSString *)entity{
+    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    
+    NSSortDescriptor * sortDescripter = [[NSSortDescriptor alloc] initWithKey:kIdField ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescripter];
+    
+    NSError * error = nil;
+    NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (nil == result) {
+        NSLog(@"BaseManager executeFetchRequest error");
+    }
+    
+    return result;
 }
 
 // id generator: We assume that id will never beyond maxium value represented by 'NSInteger'.

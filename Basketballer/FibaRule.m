@@ -14,11 +14,6 @@
     return 4;
 }
 
-// 这个变量移动到TeamStatistics中去了。
-//- (NSInteger)timeoutLength{
-//    return 60;
-//}
-
 - (NSInteger)foulLimitForTeam{
     return 4;
 }
@@ -31,7 +26,7 @@
     return 30;
 }
 
-// 每个周期有多长时间，单位（秒）。
+// 每个周期有多长时间，单位（秒），包括加时赛时间。
 - (NSInteger)timeLengthForPeriod:(MatchPeriod)period{
     if (period >= MatchPeriodFirst && period <= MatchPeriodFourth) {
         return 10 * 60;
@@ -42,7 +37,7 @@
     }
 }
 
-// 每个周期结束后休息多久。
+// 每个周期结束后休息多久，包括加时赛休息时间。
 - (NSInteger)restTimeLengthAfterPeriod:(MatchPeriod)period{
     if (period == MatchPeriodFirst || 
         period == MatchPeriodThird || 
