@@ -587,6 +587,7 @@
 		E6F1E36C15EF542800FED24B /* BasketballBlueRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BasketballBlueRed@2x.png"; sourceTree = "<group>"; };
 		E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibaTeamStatistics.h; sourceTree = "<group>"; };
 		E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaTeamStatistics.m; sourceTree = "<group>"; };
+		FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer2.xcdatamodel; sourceTree = "<group>"; };
 		FB1BA92B1884E44300978359 /* Basketballer Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Basketballer Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FB1BA9321884E44300978359 /* Basketballer Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Basketballer Tests-Info.plist"; sourceTree = "<group>"; };
@@ -1609,6 +1610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1648,6 +1650,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1812,6 +1815,7 @@
 		3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */,
 				3CC1682415A2E52B00A2AB44 /* Basketballer.xcdatamodel */,
 			);
 			currentVersion = 3CC1682415A2E52B00A2AB44 /* Basketballer.xcdatamodel */;
