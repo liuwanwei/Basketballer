@@ -23,7 +23,9 @@
 
 + (TeamStatistics *)newStatisticsForTeam:(NSNumber *)teamId withMode:(NSString *)mode withRule:(BaseRule *)rule{
     TeamStatistics * statistics = nil;
-    if ([mode isEqualToString:kMatchModeFiba]){
+    if ([mode isEqualToString:kMatchModeFiba] ||
+        (![mode isEqualToString:kMatchModeTpb]
+         && ![mode isEqualToString:kMatchModeAccount])){
         statistics = [[FibaTeamStatistics alloc] initWithTeamId:teamId];
         statistics.rule = rule;
     }else{
