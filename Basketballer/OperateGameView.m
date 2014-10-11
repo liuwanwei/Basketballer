@@ -245,7 +245,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [[[AppDelegate delegate] playGameViewController] startGame:nil];
+        [[[AppDelegate delegate] playGameViewController] startGame];
     }
 }
 

@@ -84,7 +84,6 @@
 
 #pragma 类成员函数
 - (void)updateLayout {
-    self.backgroundColor = [UIColor blackColor];
     UIImage * playImage = [UIImage imageNamed:@"resume"];
     UIImage * timeoutImage = nil;
     [self.resumeMathButton setBackgroundImage:playImage forState:UIControlStateNormal];
@@ -102,7 +101,6 @@
             break;
         case MatchStatePlaying:
             self.backgroundColor = [UIColor clearColor];
-            self.alpha = 1.0;
             timeoutImage = [UIImage imageNamed:@"timeout"];
             [self.resumeMathButton setBackgroundImage:timeoutImage forState:UIControlStateNormal];
             [self.resumeMathButton setEnabled:YES];
@@ -119,7 +117,6 @@
             break;
         case MatchStateQuarterTime:
         case MatchStateTimeout:
-            self.alpha = 0.8;
             [self.timeoutTimeLabel setHidden:NO];
             [self.resumeMathButton setHidden:YES];
             [self.statePromptLabel setHidden:YES];
@@ -177,7 +174,7 @@
             [[[AppDelegate delegate] playGameViewController] pauseCountdownTime];
             break;
         default:
-            [[[AppDelegate delegate] playGameViewController] startGame:nil];
+            [[[AppDelegate delegate] playGameViewController] startGame];
             break;
     }
 }
@@ -188,7 +185,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [[[AppDelegate delegate] playGameViewController] startGame:nil];
+        [[[AppDelegate delegate] playGameViewController] startGame];
     }
 }
 

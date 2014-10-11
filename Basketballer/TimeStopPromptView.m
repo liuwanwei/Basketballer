@@ -19,7 +19,7 @@
 }
 
 - (IBAction)resumeGame:(id)sender {
-    [self.parentController startGame:nil];
+    [self.parentController startGame];
     [self removeFromSuperview];
 }
 
