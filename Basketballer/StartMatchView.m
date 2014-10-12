@@ -19,7 +19,7 @@
 }
 
 - (IBAction)startGame:(UIButton *)sender {
-    [[[AppDelegate delegate] playGameViewController] startGame:nil];
+    [[[AppDelegate delegate] playGameViewController] startGame];
     [self removeFromSuperview];
 }
 

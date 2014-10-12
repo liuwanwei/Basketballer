@@ -159,7 +159,19 @@
 		3CF94EEC15DE3B320093EAA7 /* tabbarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF94EEA15DE3B320093EAA7 /* tabbarBackground@2x.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
+		7914D01519E67B31008499A3 /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914D01419E67B31008499A3 /* UIImageView+Additional.m */; };
+		7914D01D19E7D1DC008499A3 /* game_music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01619E7D1DB008499A3 /* game_music@2x.png */; };
+		7914D01E19E7D1DC008499A3 /* game_page_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01719E7D1DB008499A3 /* game_page_off@2x.png */; };
+		7914D01F19E7D1DC008499A3 /* game_page_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01819E7D1DB008499A3 /* game_page_on@2x.png */; };
+		7914D02019E7D1DC008499A3 /* game_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01919E7D1DB008499A3 /* game_pause@2x.png */; };
+		7914D02119E7D1DC008499A3 /* game_playing_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01A19E7D1DB008499A3 /* game_playing_background@2x.png */; };
+		7914D02219E7D1DC008499A3 /* game_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01B19E7D1DB008499A3 /* game_setting@2x.png */; };
+		7914D02319E7D1DC008499A3 /* game_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01C19E7D1DC008499A3 /* game_start@2x.png */; };
 		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
+		79E33AE919E8CB9500AC46DE /* game_menu_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */; };
+		79E33AEA19E8CB9500AC46DE /* game_menu_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */; };
+		79E33AEC19E8D3D800AC46DE /* game_easy_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */; };
+		79E33AEE19E8D5EA00AC46DE /* game_pauseing_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */; };
 		E62222A915ECA692003FCDD3 /* DefaultGuestTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */; };
 		E62222AA15ECA692003FCDD3 /* DefaultHomeTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */; };
 		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
@@ -469,6 +481,19 @@
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartGameViewController.xib; sourceTree = "<group>"; };
+		7914D01319E67B31008499A3 /* UIImageView+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additional.h"; sourceTree = "<group>"; };
+		7914D01419E67B31008499A3 /* UIImageView+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additional.m"; sourceTree = "<group>"; };
+		7914D01619E7D1DB008499A3 /* game_music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_music@2x.png"; path = "Resources/images/game_music@2x.png"; sourceTree = "<group>"; };
+		7914D01719E7D1DB008499A3 /* game_page_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_page_off@2x.png"; path = "Resources/images/game_page_off@2x.png"; sourceTree = "<group>"; };
+		7914D01819E7D1DB008499A3 /* game_page_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_page_on@2x.png"; path = "Resources/images/game_page_on@2x.png"; sourceTree = "<group>"; };
+		7914D01919E7D1DB008499A3 /* game_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_pause@2x.png"; path = "Resources/images/game_pause@2x.png"; sourceTree = "<group>"; };
+		7914D01A19E7D1DB008499A3 /* game_playing_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_playing_background@2x.png"; path = "Resources/images/game_playing_background@2x.png"; sourceTree = "<group>"; };
+		7914D01B19E7D1DB008499A3 /* game_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_setting@2x.png"; path = "Resources/images/game_setting@2x.png"; sourceTree = "<group>"; };
+		7914D01C19E7D1DC008499A3 /* game_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_start@2x.png"; path = "Resources/images/game_start@2x.png"; sourceTree = "<group>"; };
+		79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_off@2x.png"; path = "Resources/images/game_menu_off@2x.png"; sourceTree = "<group>"; };
+		79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_on@2x.png"; path = "Resources/images/game_menu_on@2x.png"; sourceTree = "<group>"; };
+		79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_easy_background@2x.png"; path = "Resources/images/game_easy_background@2x.png"; sourceTree = "<group>"; };
+		79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_pauseing_background@2x.png"; path = "Resources/images/game_pauseing_background@2x.png"; sourceTree = "<group>"; };
 		E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultGuestTeam.png; sourceTree = "<group>"; };
 		E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultHomeTeam.png; sourceTree = "<group>"; };
 		E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurroundingsViewController.h; sourceTree = "<group>"; };
@@ -674,6 +699,17 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */,
+				79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */,
+				79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */,
+				79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */,
+				7914D01619E7D1DB008499A3 /* game_music@2x.png */,
+				7914D01719E7D1DB008499A3 /* game_page_off@2x.png */,
+				7914D01819E7D1DB008499A3 /* game_page_on@2x.png */,
+				7914D01919E7D1DB008499A3 /* game_pause@2x.png */,
+				7914D01A19E7D1DB008499A3 /* game_playing_background@2x.png */,
+				7914D01B19E7D1DB008499A3 /* game_setting@2x.png */,
+				7914D01C19E7D1DC008499A3 /* game_start@2x.png */,
 				FB957D3719E167EE007FC3DA /* remove_dark.png */,
 				FB957D3519E166A0007FC3DA /* remove_circle.png */,
 				FB957D3319E1660F007FC3DA /* remove.png */,
@@ -1165,6 +1201,8 @@
 			children = (
 				FB957D0A19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.h */,
 				FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */,
+				7914D01319E67B31008499A3 /* UIImageView+Additional.h */,
+				7914D01419E67B31008499A3 /* UIImageView+Additional.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -1291,11 +1329,13 @@
 				FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */,
 				3C121F6015A3D58A0062BECD /* OperateGameView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
+				7914D01F19E7D1DC008499A3 /* game_page_on@2x.png in Resources */,
 				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */,
 				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */,
 				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
+				79E33AEE19E8D5EA00AC46DE /* game_pauseing_background@2x.png in Resources */,
 				E68D118515A684B30074982D /* MatchPartStatisticCell.xib in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
@@ -1305,6 +1345,7 @@
 				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
 				E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */,
+				7914D02119E7D1DC008499A3 /* game_playing_background@2x.png in Resources */,
 				E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */,
 				E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */,
 				E6CEFCF015B9597900324713 /* TabBarSetting@2x.png in Resources */,
@@ -1312,6 +1353,7 @@
 				E6CEFCF215B9597900324713 /* TabBarTeam@2x.png in Resources */,
 				E6BECB1815BB102700AABC38 /* BadgeCount.png in Resources */,
 				E6BECB1A15BB11D300AABC38 /* red_button.png in Resources */,
+				79E33AE919E8CB9500AC46DE /* game_menu_off@2x.png in Resources */,
 				E6BECB1C15BB128D00AABC38 /* green_button.png in Resources */,
 				E6BECB1E15BB133D00AABC38 /* blue_button.png in Resources */,
 				E6BECB2015BB18BA00AABC38 /* badgeValueBlue@2x.png in Resources */,
@@ -1337,6 +1379,7 @@
 				E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */,
 				E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */,
 				E6914F8F15DB2E8B002CAEE0 /* CellBlueSelected.png in Resources */,
+				7914D02019E7D1DC008499A3 /* game_pause@2x.png in Resources */,
 				E6914F9015DB2E8B002CAEE0 /* CellBlueSelected@2x.png in Resources */,
 				E6914F9115DB2E8B002CAEE0 /* CellNotSelected.png in Resources */,
 				E6914F9215DB2E8B002CAEE0 /* CellNotSelected@2x.png in Resources */,
@@ -1349,6 +1392,7 @@
 				3C890F9215DC76870048B21C /* TabBarBg.png in Resources */,
 				3C890FA315DCA1550048B21C /* btnBlue.png in Resources */,
 				3C890FA415DCA1550048B21C /* btnBlue@2x.png in Resources */,
+				7914D02219E7D1DC008499A3 /* game_setting@2x.png in Resources */,
 				3CF94EEB15DE3B320093EAA7 /* tabbarBackground.png in Resources */,
 				3CF94EEC15DE3B320093EAA7 /* tabbarBackground@2x.png in Resources */,
 				3C0FC8E115E78015002620F8 /* timeout.png in Resources */,
@@ -1379,14 +1423,17 @@
 				3C301E8B15EF71CD00A5CFF4 /* umFeedback.bundle in Resources */,
 				3CC562F715F098B90026A7E8 /* umeng_share_at.png in Resources */,
 				3CC562F815F098B90026A7E8 /* umeng_share_atSel.png in Resources */,
+				7914D01E19E7D1DC008499A3 /* game_page_off@2x.png in Resources */,
 				3CC562F915F098B90026A7E8 /* umeng_share_back.png in Resources */,
 				3CC562FA15F098B90026A7E8 /* umeng_share_back@2x.png in Resources */,
+				7914D02319E7D1DC008499A3 /* game_start@2x.png in Resources */,
 				3CC562FB15F098B90026A7E8 /* umeng_share_backSel.png in Resources */,
 				3CC562FC15F098B90026A7E8 /* umeng_share_backSel@2x.png in Resources */,
 				3CC562FD15F098B90026A7E8 /* umeng_share_cancel@2x.png in Resources */,
 				3CC562FE15F098B90026A7E8 /* umeng_share_cancelSel@2x.png in Resources */,
 				3CC562FF15F098B90026A7E8 /* umeng_share_cellbg.png in Resources */,
 				3CC5630015F098B90026A7E8 /* umeng_share_cellbgSel.png in Resources */,
+				7914D01D19E7D1DC008499A3 /* game_music@2x.png in Resources */,
 				3CC5630115F098B90026A7E8 /* umeng_share_done.png in Resources */,
 				3CC5630215F098B90026A7E8 /* umeng_share_doneSel.png in Resources */,
 				3CC5630315F098B90026A7E8 /* umeng_share_emotion.png in Resources */,
@@ -1425,6 +1472,7 @@
 				3CC5632215F098B90026A7E8 /* umeng_share_section_topic_recent.png in Resources */,
 				3CC5632315F098B90026A7E8 /* umeng_share_section_topic.png in Resources */,
 				3CC5632415F098B90026A7E8 /* umeng_share_sectionheader.png in Resources */,
+				79E33AEA19E8CB9500AC46DE /* game_menu_on@2x.png in Resources */,
 				3CC5632515F098B90026A7E8 /* umeng_share_send@2x.png in Resources */,
 				3CC5632615F098B90026A7E8 /* umeng_share_sendSel@2x.png in Resources */,
 				FB957D3419E1660F007FC3DA /* remove.png in Resources */,
@@ -1455,6 +1503,7 @@
 				3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */,
 				3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
+				79E33AEC19E8D3D800AC46DE /* game_easy_background@2x.png in Resources */,
 				3C07F41516351F5100A2D645 /* weibo@2x.png in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
 				3C40A813163641E500619526 /* buttonDelete.png in Resources */,
@@ -1516,6 +1565,7 @@
 				FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */,
 				3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */,
 				E6E032A615C98CB600AF91CB /* MatchUnderWay.m in Sources */,
+				7914D01519E67B31008499A3 /* UIImageView+Additional.m in Sources */,
 				E6E032BE15CF73EA00AF91CB /* NewActionViewController.m in Sources */,
 				E6E032C415CFB44100AF91CB /* PlayerManager.m in Sources */,
 				E6E032C715CFBC2500AF91CB /* Player.m in Sources */,
@@ -1619,7 +1669,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WANWEI LIU (5Y6RV2MD2B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1640,7 +1690,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "5FBA1FB7-5112-412D-9E7A-31FBA758C944";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 			};
@@ -1659,7 +1709,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WANWEI LIU (5Y6RV2MD2B)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1673,7 +1723,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "5FBA1FB7-5112-412D-9E7A-31FBA758C944";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;
@@ -1683,6 +1733,10 @@
 		3CC1682915A2E52B00A2AB44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1697,7 +1751,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1705,6 +1759,10 @@
 		3CC1682A15A2E52B00A2AB44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1719,7 +1777,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
