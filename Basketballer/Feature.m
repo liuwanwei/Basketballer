@@ -35,6 +35,16 @@ static char UITopViewControllerKey;
     }
 }
 
+- (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar{
+    UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
+    [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        navigationBar.tintColor = [UIColor whiteColor];
+    }else {
+        navigationBar.tintColor = self.navigationItemTintColor;
+    }
+}
+
 // 设置导航栏背景和文字颜色（知乎App2012年版的亮蓝色背景）
 - (void)customNavigationBar:(UINavigationBar *)navigationBar{
     return;//TODO

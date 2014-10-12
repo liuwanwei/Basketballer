@@ -198,3 +198,10 @@
 "PlayGameViewTitle" = "篮球助手";
 "MoreButtonTitle" = ".  .  .";
 "Abandon" = "不保存";
+
+"Amateur25PlayerMode" = "上下半场25分钟模式";
+"Amateur20PlayerMode" = "上下半场20分钟模式";
+"Amateur15PlayerMode" = "上下半场15分钟模式";
+"AmateurSimple15PlayerMode" = "单节15分钟模式";
+
+"AmateurTimeoutLimit" = "上下半场各2次";
