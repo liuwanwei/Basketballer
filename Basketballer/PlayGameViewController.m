@@ -308,7 +308,7 @@ typedef enum {
     [_timeoutPromptView updateLayout];
     [self.view addSubview:_timeoutPromptView];
     [self.view bringSubviewToFront:self.controlButton];
-    if (mode == PromptModeTimeout) {
+    if (mode == PromptModeTimeout || mode == PromptModeRest) {
         [_timeoutPromptView startTimeoutCountdown];
         [[SoundManager defaultManager] playSound];
     }
@@ -355,11 +355,6 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddPlayerActionMessage:) name:kActionDetermined object:nil];
 }
 
-- (void)showActionRecordontroller {
-    ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
-    [self.navigationController pushViewController:actionRecordontroller animated:YES];
-}
-
 /*显示比赛设置界面:非编辑状态*/
 - (void)showGameSettingController {
     self.navigationController.navigationBarHidden = NO;
@@ -369,8 +364,8 @@ typedef enum {
 }
 
 - (void)swip:(UISwipeGestureRecognizer *)swip {
-    self.navigationController.navigationBarHidden = NO;
-    [self showActionRecordontroller];
+    ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
+    [self.navigationController pushViewController:actionRecordontroller animated:YES];
 }
 
 - (void)addSwipeGesture {
@@ -587,7 +582,7 @@ typedef enum {
     switch (_match.state) {
         case MatchStatePeriodFinished:
             _match.state = MatchStateQuarterTime;
-            [self showTimeoutPromptView:PromptModeTimeout];
+            [self showTimeoutPromptView:PromptModeRest];
             break;
         case MatchStatePlaying:
             [self pauseCountdownTime];
@@ -611,10 +606,23 @@ typedef enum {
     }else if (alertView.tag == AlertViewTagMatchTimeout){
         if (buttonIndex == alertView.firstOtherButtonIndex) {
             _match.state = MatchStateQuarterTime;
-            [self showTimeoutPromptView:PromptModeTimeout];
+            [self showTimeoutPromptView:PromptModeRest];
         }
     }else if (alertView.tag == AlertViewTagMatchBegin) {
         if (buttonIndex == alertView.firstOtherButtonIndex) {
+            if (_match.state == MatchStateQuarterTime){
+                _match.state = MatchStateQuarterTimeFinished;
+                if (_match.period == _match.rule.regularPeriodNumber - 1) {
+                    _match.period = MatchPeriodOvertime;
+                }else {
+                    _match.period ++;
+                }
+                [self resetCountdownTime:_match.period];
+                [self updateTimeCountDownLable];
+                [self initTimeoutAndFoulView];
+                [self updatePeriodLabel];
+            }
+
             [self hideTimeoutPromptView];
             [self startGame];
         }

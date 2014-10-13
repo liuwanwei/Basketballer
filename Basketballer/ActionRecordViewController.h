@@ -10,9 +10,10 @@
 
 @interface ActionRecordViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UISegmentedControl * teamSelector;
+@property (nonatomic, weak) IBOutlet UIImageView * hostImageView;
+@property (nonatomic, weak) IBOutlet UIImageView * guestImageView;
+@property (nonatomic, weak) IBOutlet UILabel * hostLabel;
+@property (nonatomic, weak) IBOutlet UILabel * guestLabel;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
-
-@property (nonatomic, strong) NSMutableArray * actionRecords;
 
 @end
