@@ -172,6 +172,8 @@
 		79E33AEA19E8CB9500AC46DE /* game_menu_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */; };
 		79E33AEC19E8D3D800AC46DE /* game_easy_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */; };
 		79E33AEE19E8D5EA00AC46DE /* game_pauseing_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */; };
+		79E33AF019EA0E2B00AC46DE /* game_recording_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */; };
+		79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E33AF219EA12F000AC46DE /* ActionRecordCell.m */; };
 		E62222A915ECA692003FCDD3 /* DefaultGuestTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */; };
 		E62222AA15ECA692003FCDD3 /* DefaultHomeTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */; };
 		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
@@ -493,6 +495,9 @@
 		79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_on@2x.png"; path = "Resources/images/game_menu_on@2x.png"; sourceTree = "<group>"; };
 		79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_easy_background@2x.png"; path = "Resources/images/game_easy_background@2x.png"; sourceTree = "<group>"; };
 		79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_pauseing_background@2x.png"; path = "Resources/images/game_pauseing_background@2x.png"; sourceTree = "<group>"; };
+		79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_recording_background@2x.png"; path = "Resources/images/game_recording_background@2x.png"; sourceTree = "<group>"; };
+		79E33AF119EA12F000AC46DE /* ActionRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordCell.h; sourceTree = "<group>"; };
+		79E33AF219EA12F000AC46DE /* ActionRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRecordCell.m; sourceTree = "<group>"; };
 		E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultGuestTeam.png; sourceTree = "<group>"; };
 		E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultHomeTeam.png; sourceTree = "<group>"; };
 		E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurroundingsViewController.h; sourceTree = "<group>"; };
@@ -695,6 +700,7 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */,
 				79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */,
 				79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */,
 				79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */,
@@ -993,6 +999,8 @@
 				3CC9129D15B1C477003C74D4 /* TimeoutPromptView.m */,
 				3C13E49615C192A900F4307C /* TimeStopPromptView.h */,
 				3C13E49715C192A900F4307C /* TimeStopPromptView.m */,
+				79E33AF119EA12F000AC46DE /* ActionRecordCell.h */,
+				79E33AF219EA12F000AC46DE /* ActionRecordCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1361,6 +1369,7 @@
 				3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */,
 				E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */,
 				E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */,
+				79E33AF019EA0E2B00AC46DE /* game_recording_background@2x.png in Resources */,
 				E6E032B715CBDA5600AF91CB /* Icon.png in Resources */,
 				FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */,
 				FB928FD119D6BA8A00F76DC6 /* player_profile.png in Resources */,
@@ -1568,6 +1577,7 @@
 				E6E032CE15CFC0CA00AF91CB /* NewPlayerViewController.m in Sources */,
 				E68C515415D25B0100F52002 /* Action.m in Sources */,
 				FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */,
+				79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */,
 				E6914F6215D4E5AD002CAEE0 /* PlayerActionViewController.m in Sources */,
 				E6914F6515D4E5DB002CAEE0 /* PlayerStatisticsViewController.m in Sources */,
 				E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */,

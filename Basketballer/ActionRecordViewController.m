@@ -13,88 +13,119 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Feature.h"
 #import "AppDelegate.h"
+#import "UIImageView+Additional.h"
+#import "ImageManager.h"
+#import "ActionRecordCell.h"
 
 @interface ActionRecordViewController () {
     CGPoint _touchBeganPoint;
     Team * _homeTeam;
     Team * _guestTeam;
+    
+    NSMutableArray * _actionRecords;
 }
 @end
 
 @implementation ActionRecordViewController
-@synthesize teamSelector = _teamSelector;
 @synthesize tableView = _tableView;
-@synthesize actionRecords = _actionRecords;
+
+#pragma 私有函数
+- (void)initView{
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    
+    if (_homeTeam == nil || _guestTeam == nil) {
+        TeamManager * teamManager = [TeamManager defaultManager];
+        _homeTeam = [teamManager teamWithId:match.home.teamId];
+        _guestTeam = [teamManager teamWithId:match.guest.teamId];
+    }
+    [self.hostImageView makeCircle];
+    self.hostImageView.layer.borderWidth = 2;
+    self.hostImageView.layer.borderColor = [[UIColor colorWithRed:221 green:221 blue:221 alpha:1.0] CGColor];
+    self.hostImageView.image = [[ImageManager defaultInstance] imageForName:_homeTeam.profileURL];
+    self.hostLabel.text = _homeTeam.name;
+    
+    [self.guestImageView makeCircle];
+    self.guestImageView.layer.borderWidth = 2;
+    self.guestImageView.layer.borderColor = [[UIColor colorWithRed:221 green:221 blue:221 alpha:1.0] CGColor];
+    self.guestImageView.image = [[ImageManager defaultInstance] imageForName:_guestTeam.profileURL];
+    self.guestLabel.text = _guestTeam.name;
+}
+
+- (void)initData {
+    ActionManager * am = [ActionManager defaultManager];
+    if (nil != am.actionArray && [am.actionArray count] > 0) {
+        _actionRecords = [[NSMutableArray alloc] init];
+        NSMutableDictionary * dic;
+        NSNumber * key;
+        NSMutableArray * tempActionRecords;
+        Action * lastAction;
+        for (Action * action in am.actionArray) {
+            if (lastAction.period != action.period) {
+                key = action.period;
+                tempActionRecords = [[NSMutableArray alloc] init];
+                dic = [[NSMutableDictionary alloc] init];
+                [dic setObject:tempActionRecords forKey:key];
+                [_actionRecords addObject:dic];
+            }
+            
+            [tempActionRecords addObject:action];
+            lastAction = action;
+        }
+    }
+}
 
 #pragma 事件函数
 -(void) swip:(UISwipeGestureRecognizer *)swip {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)initView{
-    MatchUnderWay * match = [MatchUnderWay defaultMatch];
-    
-    if (_homeTeam == nil || _guestTeam == nil) {       
-        TeamManager * teamManager = [TeamManager defaultManager];         
-        _homeTeam = [teamManager teamWithId:match.home.teamId];
-        _guestTeam = [teamManager teamWithId:match.guest.teamId];
-    }
-    
-    [self.teamSelector setTitle:_homeTeam.name forSegmentAtIndex:0];
-    [self.teamSelector setTitle:_guestTeam.name forSegmentAtIndex:1];
-    
-    self.teamSelector.selectedSegmentIndex = 0;    
-}
-
-- (NSMutableArray *)actionsForTeam:(NSNumber *)teamId inActions:(NSArray *)allActions{
-    if (! allActions) {
-        return nil;
-    }
-    
-    NSMutableArray * resultArray = nil;
-    for(Action * action in allActions){
-        if ([action.team isEqualToNumber:teamId]) {
-            if (! resultArray) {
-                resultArray = [[NSMutableArray alloc] initWithObjects:action, nil];
-            }else{
-                [resultArray addObject:action];
-            }
-        }
-    }
-    
-    return resultArray;
-}
-
-- (void)teamChanged{
-    NSInteger value = self.teamSelector.selectedSegmentIndex;
-    NSNumber * teamId = nil;
-    if (value == 0) {
-        teamId = _homeTeam.id;
-    }else{
-        teamId = _guestTeam.id;
-    }
-
-    ActionManager * am = [ActionManager defaultManager];
-    self.actionRecords = [self actionsForTeam:teamId inActions:am.actionArray];
-    
-    [self.tableView reloadData];
-}
+//- (NSMutableArray *)actionsForTeam:(NSNumber *)teamId inActions:(NSArray *)allActions{
+//    if (! allActions) {
+//        return nil;
+//    }
+//    
+//    NSMutableArray * resultArray = nil;
+//    for(Action * action in allActions){
+//        if ([action.team isEqualToNumber:teamId]) {
+//            if (! resultArray) {
+//                resultArray = [[NSMutableArray alloc] initWithObjects:action, nil];
+//            }else{
+//                [resultArray addObject:action];
+//            }
+//        }
+//    }
+//    
+//    return resultArray;
+//}
+//
+//- (void)teamChanged{
+//    NSInteger value = self.teamSelector.selectedSegmentIndex;
+//    NSNumber * teamId = nil;
+//    if (value == 0) {
+//        teamId = _homeTeam.id;
+//    }else{
+//        teamId = _guestTeam.id;
+//    }
+//
+//    ActionManager * am = [ActionManager defaultManager];
+//    self.actionRecords = [self actionsForTeam:teamId inActions:am.actionArray];
+//    
+//    [self.tableView reloadData];
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = LocalString(@"ActionRecords");
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
+  
     UISwipeGestureRecognizer *swip = [[UISwipeGestureRecognizer  alloc] initWithTarget:self action:@selector(swip:)];
     swip.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swip];
     
     self.tableView.delegate = self;
-    self.tableView.editing = YES;
-    
-    [self.teamSelector addTarget:self action:@selector(teamChanged) forControlEvents:UIControlEventValueChanged];
+    self.tableView.rowHeight = 60.0;
     
     [self initView];
+    [self initData];
     
     if (IOS_7) {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
@@ -108,7 +139,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self teamChanged];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -121,82 +151,99 @@
 }
 
 #pragma mark - Table view data source
-//- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 44.0;
-//}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (nil == _actionRecords) {
+        return 0;
+    }
+    
+    return [_actionRecords count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.actionRecords count];
+    NSMutableDictionary * dic = [_actionRecords objectAtIndex:section];
+    NSArray * tempActionRecords = [dic objectForKey:[[dic allKeys] objectAtIndex:0]];
+    return [tempActionRecords count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"ActionRecordCell";
+    ActionRecordCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell = [[ActionRecordCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    Action * action = [self.actionRecords objectAtIndex:indexPath.row];
+    NSMutableDictionary * dic = [_actionRecords objectAtIndex:indexPath.section];
+    NSArray * tempActionRecords = [dic objectForKey:[[dic allKeys] objectAtIndex:0]];
+    Action * action = [tempActionRecords objectAtIndex:indexPath.row];
+    cell.hostId = _homeTeam.id;
+    cell.guestId = _guestTeam.id;
+    cell.action = action;
     
-//    Team * team;
-//    TeamManager * tm = [TeamManager defaultManager];
-//    team = [tm teamWithId:action.team];
-//    // 球队名字。    
-//    cell.textLabel.text = team.name;
-    // 操作记录 TODO 应该跟NewActionViewController中的字符串使用同一套。
-    NSString * actionStr;
-    switch ([action.type intValue]) {
-        case ActionType1Point:
-            actionStr = LocalString(@"1PTS");
-            break;
-        case ActionType2Points:
-            actionStr = LocalString(@"2PTS");
-            break;
-        case ActionType3Points:
-            actionStr = LocalString(@"3PTS");
-            break;
-        case ActionTypeFoul:
-            actionStr = LocalString(@"PF");
-            break;
-        case ActionTypeTimeoutRegular:
-            actionStr = LocalString(@"TO");
-            break;
-
-        default:
-            break;
-    }
-    //时间
-    NSInteger time = [action.time intValue];
-    NSString * peroid = [[MatchUnderWay defaultMatch] nameForPeriod:[action.period integerValue]];    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %02d:%02d  %@", peroid,time/60,time%60, actionStr];
     return cell;
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return LocalString(@"ActionDelete");
+//    NSMutableDictionary * dic = [_actionRecords objectAtIndex:section];
+//    NSString * peroid = [[MatchUnderWay defaultMatch] nameForPeriod:[[[dic allKeys] objectAtIndex:0] integerValue]];
+//    return peroid;
 //}
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Action * action = [self.actionRecords objectAtIndex:indexPath.row];
+//        Action * action = [[ActionManager defaultManager].actionArray objectAtIndex:indexPath.row];
+        NSMutableDictionary * dic = [_actionRecords objectAtIndex:indexPath.section];
+        NSMutableArray * tempActionRecords = [dic objectForKey:[[dic allKeys] objectAtIndex:0]];
+        Action * action = [tempActionRecords objectAtIndex:indexPath.row];
+        
         [[MatchUnderWay defaultMatch] deleteWrongAction:action];
-
-        [self.actionRecords removeObjectAtIndex:indexPath.row];
+        [tempActionRecords removeObject:action];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // 测试中发现，极少发生一次多个误操作，每次都只用删除一个action，
         // 所以删除后自动返回上级，减少一次操作。
         [self.navigationController popViewControllerAnimated:YES];
     }   
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString * headerIdentifier = @"header";
+    UITableViewHeaderFooterView * header = nil;
+    header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
+
+    if (header == nil) {
+        header = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:headerIdentifier];
+        [header setFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 25)];
+
+        UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 25)];
+        backgroundView.backgroundColor = [UIColor clearColor];
+        header.backgroundView = backgroundView;
+        
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 25)];
+        label.font = [UIFont systemFontOfSize:17];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.tag = 1;
+        [header addSubview:label];
+        
+        UIView * sepraterView = [[UIView alloc] initWithFrame:CGRectMake(0, 24, self.tableView.bounds.size.width, 1)];
+        sepraterView.backgroundColor = [[UIColor alloc] initWithRed:231/255.0 green:230/255.0 blue:231/255.0 alpha:1];
+        [header addSubview:sepraterView];
+    }
+    
+    NSMutableDictionary * dic = [_actionRecords objectAtIndex:section];
+    NSString * peroid = [[MatchUnderWay defaultMatch] nameForPeriod:[[[dic allKeys] objectAtIndex:0] integerValue]];
+    UILabel * label = (UILabel *)[header viewWithTag:1];
+    label.text = peroid;
+    
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 25.0;
 }
 @end
