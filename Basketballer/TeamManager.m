@@ -87,6 +87,7 @@ static TeamManager * sDefaultManager;
     
     if (result.count == 0) {
         _allTeams = [[NSMutableArray alloc] init];
+        // 由于从不删除球队（只是修改enable标志）所以此处只会被执行一次
         [self createDefaultTeams];
     }else {
         _allTeams = result;        
