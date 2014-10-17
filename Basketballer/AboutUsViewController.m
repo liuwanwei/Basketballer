@@ -68,11 +68,16 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     cell.textLabel.text = [_array objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:@"weibo"];
+    
+    NSString * url = @"http://weibo.com/";
+    url = [url stringByAppendingString:[_arrayNumber objectAtIndex:indexPath.row]];
+    cell.detailTextLabel.text = url;
     
     return cell;
 }
@@ -80,9 +85,7 @@
 #pragma TableView的处理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * url = @"http://www.weibo.com/";
-    url = [url stringByAppendingString:[_arrayNumber objectAtIndex:indexPath.row]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 @end

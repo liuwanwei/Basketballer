@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GameSetting.h"
 #import "Match.h"
-#import "UMSNSService.h"
+//#import "UMSNSService.h"
 
-@interface GameStatisticViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate,UMSNSDataSendDelegate,UMSNSViewDisplayDelegate>
+@interface GameStatisticViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView * homeImageView;
 @property (nonatomic, weak) IBOutlet UIImageView * guestImageView;

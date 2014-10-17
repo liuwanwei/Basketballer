@@ -18,6 +18,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StatisticSectionHeaderView.h"
 #import "MatchPartStatisticCell.h"
+#import "UMSocial.h"
+#import "UMSocialScreenShoter.h"
 
 #define useAppkey @"503f331d527015516a000055"
 
@@ -80,20 +82,16 @@
     return result;
 }
 
-- (void)showUMSnsController {
-    [UMSNSService setViewDisplayDelegate:self];
-    [UMSNSService setDataSendDelegate:self];
+- (void)showUMSnsController {    
+    UIImage * viewImage = [[UMSocialScreenShoterDefault screenShoter] getScreenShot];
     
-    UIGraphicsBeginImageContext(CGSizeMake(320.0, 300.0));
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    [UMSNSService presentSNSInController:self 
-                                  appkey:useAppkey
-                                  status:[self snsString]
-                                   image:viewImage
-                               platform:UMShareToTypeSina];
+    // TODO: 等待微信开发平台账号审核通过后，集成分享到朋友圈和讨论组功能
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:useAppkey
+                                      shareText:[self snsString]
+                                     shareImage:viewImage
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession, UMShareToWechatTimeline,nil]
+                                       delegate:nil];
 }
 
 #pragma UIActionSheetDelegate
@@ -158,8 +156,8 @@
     [super viewDidLoad];
     
     [[Feature defaultFeature] initNavleftBarItemWithController:self];
-    
-    UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showActionMenu)];
+
+    UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showUMSnsController)];
     self.navigationItem.rightBarButtonItem = item;
     
     self.tableView.delegate = self;
