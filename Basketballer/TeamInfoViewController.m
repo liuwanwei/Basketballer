@@ -62,7 +62,9 @@
 }
 
 - (void)back {
-    if (_operateMode == Insert) {
+    if (self.popViewControllerWhenFinished) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
         [[AppDelegate delegate] dismissModelViewController];
     }
 }
@@ -201,12 +203,7 @@
         [teamManager synchroniseToStore];
     }
     
-    if (_operateMode == Insert) {
-        [[AppDelegate delegate] dismissModelViewController];
-    }else{
-//        self.hidesBottomBarWhenPushed = NO;
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self back];
 }
 
 #pragma mark - Table view data source

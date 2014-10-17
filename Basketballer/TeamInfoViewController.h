@@ -23,6 +23,8 @@ typedef enum {
 @interface TeamInfoViewController : UITableViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>
 
 @property (nonatomic) NSInteger operateMode;
+@property (nonatomic) BOOL popViewControllerWhenFinished;
+
 @property (nonatomic, weak) Team * team;
 @property (nonatomic, weak) ImageCell * teamCell;
 

@@ -100,6 +100,10 @@ typedef enum{
     [[AppDelegate delegate] dismissModelViewController];
 }
 
+- (void)reloadTeams{
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -125,24 +129,18 @@ typedef enum{
     
     [[Feature defaultFeature] customNavigationBar:self.navigationController.navigationBar];
     
-    // 修改导航栏title文字颜色：TODO：提取成公共接口
-//    NSDictionary * attrs = self.navigationController.navigationBar.titleTextAttributes;
-//    NSMutableDictionary * newAttrs = [NSMutableDictionary dictionaryWithDictionary:attrs];
-//    [newAttrs setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-//    self.navigationController.navigationBar.titleTextAttributes = newAttrs;
-//    
-//    // 修改导航栏item文字颜色
-//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
     [self makeRoundedView:_homeImageView withRadius:3.0];
     [self makeRoundedView:_guestImageView withRadius:3.0];
+    
+    // 添加新球队后，刷新球队数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTeams) name:kTeamChanged object:nil];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -291,8 +289,10 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        // 添加新球队
         TeamInfoViewController * editTeam = [[TeamInfoViewController alloc] initWithNibName:@"TeamInfoViewController" bundle:nil];
-            editTeam.operateMode = Insert;
+        editTeam.operateMode = Insert;
+        editTeam.popViewControllerWhenFinished = YES;
         [self.navigationController pushViewController:editTeam animated:YES];
 
     }else{

@@ -43,7 +43,7 @@
 "DefaultTeam1" = "芝加哥公牛";
 "DefaultTeam2" = "犹他爵士";
 
-"AddTeam" = "添加新球队";
+"AddTeam" = "快速添加球队";
 "CreateTeam" = "新球队";
 "TeamInfo" = "球队信息";
 "Record" = "比赛记录";

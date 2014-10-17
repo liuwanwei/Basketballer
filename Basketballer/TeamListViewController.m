@@ -38,7 +38,7 @@
     }else{
         editTeam.operateMode = Update;
         editTeam.team = team;
-//        editTeam.hidesBottomBarWhenPushed = YES;
+        editTeam.popViewControllerWhenFinished = YES;
         [self.navigationController pushViewController:editTeam animated:YES];
     }
 }
