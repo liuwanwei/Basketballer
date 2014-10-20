@@ -17,7 +17,7 @@
 #import "ImageManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "StatisticSectionHeaderView.h"
-#import "MatchPartStatisticCell.h"
+#import "StatisticCell.h"
 #import "UMSocial.h"
 #import "UMSocialScreenShoter.h"
 
@@ -265,13 +265,13 @@
     return rows;
 }
 
-- (void)setStatisticsForCell:(MatchPartStatisticCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+- (void)setStatisticsForCell:(StatisticCell *)cell atIndexPath:(NSIndexPath *)indexPath{
     ActionManager * am = [ActionManager defaultManager];
     NSMutableDictionary * statistics;
     if (indexPath.section == 0) {
-            NSNumber * team = (indexPath.row == 0 ? _homeTeam.id : _guestTeam.id);
-            statistics = [am statisticsForTeam:team inPeriod:MatchPeriodAll inActions:_actionsInMatch];
-            [statistics setObject:_guestTeam.name forKey:kName];
+        Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
+        statistics = [am statisticsForTeam:teamInfo.id inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+        [statistics setObject:teamInfo.name forKey:kName];
     }
 //    else{
 //        NSInteger period = indexPath.section - 2;
@@ -291,11 +291,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    MatchPartStatisticCell * cell = nil;
+    StatisticCell * cell = nil;
     static NSString * CellIdentifier = @"StatisticCell";
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"MatchPartStatisticCell" owner:self options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil] lastObject];
     }
 
     if(indexPath.section == 0){
@@ -315,15 +315,15 @@
 }
 
 #pragma mark UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 1) {
-        NSNumber * team = indexPath.row == 0 ? _match.homeTeam : _match.guestTeam;
-        PlayerStatisticsViewController * viewController = [[PlayerStatisticsViewController alloc] initWithStyle:UITableViewStylePlain];
-        [viewController initWithTeamId:team];
-        viewController.actionsInMatch = _actionsInMatch;
-        viewController.title = [[TeamManager defaultManager] teamWithId:team].name;
-        [self.navigationController pushViewController:viewController animated:YES];
-    }
-}
- 
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section == 1) {
+//        NSNumber * team = indexPath.row == 0 ? _match.homeTeam : _match.guestTeam;
+//        PlayerStatisticsViewController * viewController = [[PlayerStatisticsViewController alloc] initWithStyle:UITableViewStylePlain];
+//        [viewController initWithTeamId:team];
+//        viewController.actionsInMatch = _actionsInMatch;
+//        viewController.title = [[TeamManager defaultManager] teamWithId:team].name;
+//        [self.navigationController pushViewController:viewController animated:YES];
+//    }
+//}
+
 @end

@@ -6,10 +6,10 @@
 //
 //
 
-#import "MatchPartStatisticCell.h"
+#import "StatisticCell.h"
 #import "ActionManager.h"
 
-@implementation MatchPartStatisticCell
+@implementation StatisticCell
 
 - (void)awakeFromNib {
     // Initialization code

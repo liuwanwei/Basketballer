@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MatchPartStatisticCell : UITableViewCell
+@interface StatisticCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * pointsLabel;

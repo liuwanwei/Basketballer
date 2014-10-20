@@ -57,15 +57,15 @@ static TeamManager * sDefaultManager;
 
     image = [UIImage imageNamed:@"DefaultHomeTeam"];
     team = [self newTeam:defaultHomeTeamName withImage:image];
-    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:23] withName:@"Michael Jordan"];
-    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:33] withName:@"Scottie Pippen"];
-    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:91] withName:@"Dennis Rodman"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:23] withName:@"乔丹"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:33] withName:@"皮蓬"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:91] withName:@"罗德曼"];
     
     image = [UIImage imageNamed:@"DefaultGuestTeam"];
     team = [self newTeam:defaultGuestTeamName withImage:image];
-    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:12] withName:@"John Stockton"];    
-    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:14] withName:@"Jeff Hornacek"];
-    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:32] withName:@"Karl Malone"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:12] withName:@"斯托克顿"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:14] withName:@"霍纳塞克"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:32] withName:@"马龙"];
 }
 
 - (void)loadTeams{

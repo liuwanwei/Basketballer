@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">13E28</string>
+		<string key="IBDocument.SystemVersion">13F34</string>
 		<string key="IBDocument.InterfaceBuilderVersion">6245</string>
 		<string key="IBDocument.AppKitVersion">1265.21</string>
 		<string key="IBDocument.HIToolboxVersion">698.00</string>
@@ -74,7 +74,7 @@
 							<object class="IBUILabel" id="136131079">
 								<reference key="NSNextResponder" ref="87322111"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{68, 30}, {27, 21}}</string>
+								<string key="NSFrame">{{54, 30}, {46, 21}}</string>
 								<reference key="NSSuperview" ref="87322111"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="632593048"/>
@@ -106,7 +106,7 @@
 							<object class="IBUILabel" id="79605572">
 								<reference key="NSNextResponder" ref="87322111"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{206, 30}, {44, 21}}</string>
+								<string key="NSFrame">{{221, 30}, {44, 21}}</string>
 								<reference key="NSSuperview" ref="87322111"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="953379060"/>
@@ -171,7 +171,6 @@
 						<string key="NSFrame">{{0, 81}, {320, 379}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>

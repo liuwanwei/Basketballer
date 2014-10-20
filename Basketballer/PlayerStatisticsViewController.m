@@ -36,10 +36,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell;
-    static NSString * StatisticsCellIdentifier = @"StatisticsCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:StatisticsCellIdentifier];
+    static NSString * sCellIdentifier = @"StatisticCell";
+    cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
     if (nil == cell) {
-        [[NSBundle mainBundle] loadNibNamed:@"MatchPartStatisticCell" owner:self options:nil];
+        [[NSBundle mainBundle] loadNibNamed:sCellIdentifier owner:self options:nil];
         cell = _tvCell;
         self.tvCell = nil;
     }
