@@ -159,8 +159,8 @@ typedef enum {
     self.gameHostScoreLable.text = [_match.home.points stringValue];
     self.gameGuestScoreLable.text = [_match.guest.points stringValue];
     self.hostFoulLabel.text = [_match.home.fouls stringValue];
-    self.guestFoulLabel.text = [_match.guest.timeouts stringValue];
-    self.hostTimeoutLabel.text = [_match.home.fouls stringValue];
+    self.guestFoulLabel.text = [_match.guest.fouls stringValue];
+    self.hostTimeoutLabel.text = [_match.home.timeouts stringValue];
     self.guestTimeoutLabel.text = [_match.guest.timeouts stringValue];
 }
 
