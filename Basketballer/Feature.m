@@ -45,32 +45,6 @@ static char UITopViewControllerKey;
     }
 }
 
-// 设置导航栏背景和文字颜色（知乎App2012年版的亮蓝色背景）
-- (void)customNavigationBar:(UINavigationBar *)navigationBar{
-    return;//TODO
-//    UIImage * image = [UIImage imageNamed:@"ZhiHuNavigationBar"];
-//    [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-//    navigationBar.tintColor = [UIColor colorWithRed:0.137 green:0.557 blue:0.867 alpha:1.0];;
-}
-
-// 自定义导航栏返回按钮
-- (void)initNavleftBarItemWithController:(UIViewController *)controller {
-    return;//TODO
-//        controller.navigationItem.hidesBackButton = YES;
-//        UIButton *leftButton;
-//        UIBarButtonItem * item;
-//        
-//        leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-//        [leftButton setImage:[UIImage imageNamed:@"backNavigationBar"] forState:UIControlStateNormal];
-//        [leftButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        objc_setAssociatedObject(leftButton, &UITopViewControllerKey, controller, OBJC_ASSOCIATION_ASSIGN);
-//        
-//        item = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-//        
-//        controller.navigationItem.leftBarButtonItem = item;
-}
-
 - (UIColor *)cellTextColor {
     return [UIColor colorWithRed:0.219 green:0.329 blue:0.529 alpha:1.0];
 }

@@ -119,7 +119,6 @@ ActionType _actionTypeArray[][3] = {{ActionType3Points, ActionType2Points, Actio
     [super viewWillAppear:animated];
     [self setTitle:LocalString(@"NewStatistic")];
     [self.tableView reloadData];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

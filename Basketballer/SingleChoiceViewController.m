@@ -45,7 +45,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     [self.tableView reloadData];
 }
 

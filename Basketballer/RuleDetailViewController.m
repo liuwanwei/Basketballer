@@ -28,9 +28,10 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
+    if(self = [super initWithStyle:style]){
+        self.editable = YES;
     }
+    
     return self;
 }
 
@@ -130,6 +131,7 @@
     });
 }
 
+#pragma mark - 界面初始化
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -138,20 +140,19 @@
     
     self.title = LocalString(@"Rule");
     
-    if ([self.rule isKindOfClass:[FibaCustomRule class]]) {
+    if ([self.rule isKindOfClass:[FibaCustomRule class]] && self.editable) {
+        // 只允许“自定义规则”详情出现“编辑”按钮（比赛时例外，通过editable属性控制）
         UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editMenu)];
         self.navigationItem.rightBarButtonItem = item;
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ruleChangedNotification:) name:kRuleChangedNotification object:nil];
-    
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

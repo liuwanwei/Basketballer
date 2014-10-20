@@ -95,8 +95,6 @@
         self.playerImage = [[ImageManager defaultInstance] imageForName:self.model.profileURL];
     }
     
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
-    
     // 隐藏多余的Cell分割线
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
     

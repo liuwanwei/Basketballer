@@ -6,13 +6,17 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "MatchSettingViewController.h"
+#import "GameSettingViewController.h"
 #import "GameSetting.h"
 #import "AppDelegate.h"
 #import "PlayGameViewController.h"
+#import "RuleDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchUnderWay.h"
 #import "Feature.h"
+#import "Rule.h"
+#import "GameSetting.h"
+#import "AccountRuleDetailViewController.h"
 
 typedef enum{
     CellTagMessage = 1,
@@ -24,11 +28,11 @@ typedef enum{
     SwitchTagSound
 }SwitchTag;
 
-@interface MatchSettingViewController ()
+@interface GameSettingViewController ()
 
 @end
 
-@implementation MatchSettingViewController
+@implementation GameSettingViewController
 @synthesize switchCell = _switchCell;
 
 #pragma 私有函数
@@ -97,7 +101,6 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
     self.title = LocalString(@"Setting");
     [self initUIButton];
 }
@@ -118,7 +121,7 @@ typedef enum{
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -163,12 +166,34 @@ typedef enum{
         [object setOn:isOn];
         
         return cell;   
-    }else{
+    }else if(indexPath.section == 2){
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ToNextVCCell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"比赛规则";
+        // 填充真正规则名称
+        cell.detailTextLabel.text = self.ruleInUse.name;
+        
+        return cell;
+    }
+    else{
         return nil;
     }
 }
 
 #pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2) {
+        if ([self.ruleInUse.name isEqualToString:kMatchModeAccount]) {
+            AccountRuleDetailViewController * vc = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            vc.editable = NO;
+            vc.rule = self.ruleInUse;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+}
 
 #pragma alert delete
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

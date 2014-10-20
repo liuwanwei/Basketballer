@@ -16,7 +16,7 @@
 #import "TimeStopPromptView.h"
 #import "StartMatchView.h"
 #import "NewActionViewController.h"
-#import "MatchSettingViewController.h"
+#import "GameSettingViewController.h"
 #import "SoundManager.h"
 #import "BaseRule.h"
 #import "PlayerFoulStatisticViewController.h"
@@ -334,7 +334,6 @@ typedef enum {
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
-    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     [self presentModalViewController:nav animated:YES];
 }
 
@@ -359,7 +358,8 @@ typedef enum {
 - (void)showGameSettingController {
     self.navigationController.navigationBarHidden = NO;
 
-    MatchSettingViewController * controller = [[MatchSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    GameSettingViewController * controller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    controller.ruleInUse = _match.rule;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -382,7 +382,6 @@ typedef enum {
     [controller reloadActionsInMatch];
     
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
-    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
     
     [self presentModalViewController:nav animated:YES];
 }

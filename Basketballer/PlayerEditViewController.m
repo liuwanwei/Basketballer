@@ -23,7 +23,6 @@
 //    newPlayer.parentWhoPresentedMe = self;
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:newPlayer];
-    [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
 
     [self presentModalViewController:nav animated:YES];
 }

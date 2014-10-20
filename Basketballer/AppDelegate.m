@@ -129,15 +129,6 @@ typedef enum {
     [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
-// 初始化所有子Tab中导航栏的效果（顶部）
-- (void)initNavigationBarBgColor{
-    return; //TODO
-//    NSArray * navControllers = self.tabBarController.viewControllers;
-//    for (UINavigationController * nav in navControllers) {
-//        [[Feature defaultFeature] customNavigationBar:nav.navigationBar];
-//    }
-}
-
 // 初始化TabBar的效果（屏幕底部的TabBar）
 - (void)initTabBar {
     NSArray * titles = [NSArray arrayWithObjects:
@@ -164,7 +155,6 @@ typedef enum {
     [[TeamManager defaultManager] loadTeams];
     [[CustomRuleManager defaultInstance] loadRules];
     
-    [self initNavigationBarBgColor];
     [self initTabBar];
     [self initNotificationBodyArray];
     

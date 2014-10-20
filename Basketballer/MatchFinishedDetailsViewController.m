@@ -44,7 +44,6 @@
     [super viewDidLoad];
     self.title= LocalString(@"Result");
     [self initDoneButton];
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 }
 
 - (void)viewDidUnload

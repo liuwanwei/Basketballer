@@ -41,7 +41,7 @@
 		3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */; };
 		3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C35FA4915EE5970006B2470 /* MoreViewController.m */; };
 		3C40A813163641E500619526 /* buttonDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A812163641E500619526 /* buttonDelete.png */; };
-		3C40A82A1637753200619526 /* AccountRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8291637753100619526 /* AccountRule.m */; };
+		3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8291637753100619526 /* OnlyPointRule.m */; };
 		3C40A8321637C14100619526 /* AccountRuleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */; };
 		3C40A8361637ECD700619526 /* periodButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A8341637ECD700619526 /* periodButtonBackground.png */; };
 		3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83D1637F7CC00619526 /* TabBarMatch.png */; };
@@ -116,7 +116,7 @@
 		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
 		E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */; };
 		E62D383415E633E4004AA543 /* Fiba3pbRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D383315E633E3004AA543 /* Fiba3pbRule.m */; };
-		E62D383A15E6748E004AA543 /* MatchSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D383915E6748D004AA543 /* MatchSettingViewController.m */; };
+		E62D383A15E6748E004AA543 /* GameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D383915E6748D004AA543 /* GameSettingViewController.m */; };
 		E62D384515EB5DBC004AA543 /* RuleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D384415EB5DBC004AA543 /* RuleDetailViewController.m */; };
 		E658146C15DF4F8E007B4F7E /* BaseRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E658146B15DF4F8E007B4F7E /* BaseRule.m */; };
 		E658147015DF5AC0007B4F7E /* FibaRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E658146F15DF5AC0007B4F7E /* FibaRule.m */; };
@@ -299,8 +299,8 @@
 		3C35FA4915EE5970006B2470 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3C40A812163641E500619526 /* buttonDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonDelete.png; path = Resources/images/buttonDelete.png; sourceTree = "<group>"; };
-		3C40A8281637753100619526 /* AccountRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountRule.h; sourceTree = "<group>"; };
-		3C40A8291637753100619526 /* AccountRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountRule.m; sourceTree = "<group>"; };
+		3C40A8281637753100619526 /* OnlyPointRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyPointRule.h; sourceTree = "<group>"; };
+		3C40A8291637753100619526 /* OnlyPointRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyPointRule.m; sourceTree = "<group>"; };
 		3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountRuleDetailViewController.h; sourceTree = "<group>"; };
 		3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountRuleDetailViewController.m; sourceTree = "<group>"; };
 		3C40A8341637ECD700619526 /* periodButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = periodButtonBackground.png; path = Resources/images/periodButtonBackground.png; sourceTree = "<group>"; };
@@ -394,8 +394,8 @@
 		E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurroundingsViewController.xib; sourceTree = "<group>"; };
 		E62D383215E633E2004AA543 /* Fiba3pbRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fiba3pbRule.h; sourceTree = "<group>"; };
 		E62D383315E633E3004AA543 /* Fiba3pbRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fiba3pbRule.m; sourceTree = "<group>"; };
-		E62D383815E6748D004AA543 /* MatchSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchSettingViewController.h; sourceTree = "<group>"; };
-		E62D383915E6748D004AA543 /* MatchSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchSettingViewController.m; sourceTree = "<group>"; };
+		E62D383815E6748D004AA543 /* GameSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingViewController.h; sourceTree = "<group>"; };
+		E62D383915E6748D004AA543 /* GameSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingViewController.m; sourceTree = "<group>"; };
 		E62D384315EB5DBB004AA543 /* RuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleDetailViewController.h; sourceTree = "<group>"; };
 		E62D384415EB5DBC004AA543 /* RuleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleDetailViewController.m; sourceTree = "<group>"; };
 		E658146A15DF4F8E007B4F7E /* BaseRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRule.h; sourceTree = "<group>"; };
@@ -861,8 +861,8 @@
 				3CC1683A15A2E71400A2AB44 /* GameHistoryViewController.m */,
 				3CC5633215F09BCB0026A7E8 /* MatchFinishedDetailsViewController.h */,
 				3CC5633315F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m */,
-				E62D383815E6748D004AA543 /* MatchSettingViewController.h */,
-				E62D383915E6748D004AA543 /* MatchSettingViewController.m */,
+				E62D383815E6748D004AA543 /* GameSettingViewController.h */,
+				E62D383915E6748D004AA543 /* GameSettingViewController.m */,
 				3C35FA4815EE5970006B2470 /* MoreViewController.h */,
 				3C35FA4915EE5970006B2470 /* MoreViewController.m */,
 				E6E032BC15CF73E800AF91CB /* NewActionViewController.h */,
@@ -1144,8 +1144,8 @@
 			children = (
 				E6BFB4DA15E2111A008E9BC6 /* NbaRule.h */,
 				E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */,
-				3C40A8281637753100619526 /* AccountRule.h */,
-				3C40A8291637753100619526 /* AccountRule.m */,
+				3C40A8281637753100619526 /* OnlyPointRule.h */,
+				3C40A8291637753100619526 /* OnlyPointRule.m */,
 				FB76CB951883D31300F07B53 /* AmateurRule.h */,
 				FB76CB961883D31300F07B53 /* AmateurRule.m */,
 				E658146A15DF4F8E007B4F7E /* BaseRule.h */,
@@ -1474,7 +1474,7 @@
 				FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */,
 				FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */,
 				FB957D3B19E24719007FC3DA /* GameHistoryCell.m in Sources */,
-				E62D383A15E6748E004AA543 /* MatchSettingViewController.m in Sources */,
+				E62D383A15E6748E004AA543 /* GameSettingViewController.m in Sources */,
 				3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */,
 				3C5207D615EB53090079D5DB /* PlaySoundView.m in Sources */,
 				FB957D2319DEF65E007FC3DA /* RosterViewController.m in Sources */,
@@ -1485,7 +1485,7 @@
 				3CC5633415F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m in Sources */,
 				3C06651E15F5AF2700B1DCB8 /* PlaySoundViewController.m in Sources */,
 				3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */,
-				3C40A82A1637753200619526 /* AccountRule.m in Sources */,
+				3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */,
 				3C40A8321637C14100619526 /* AccountRuleDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

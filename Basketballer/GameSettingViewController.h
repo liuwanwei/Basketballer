@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MatchSettingViewController : UITableViewController <UIAlertViewDelegate>
+@class BaseRule;
+
+@interface GameSettingViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableViewCell * switchCell;
+
+@property (nonatomic, strong) BaseRule * ruleInUse;
 
 @end
 

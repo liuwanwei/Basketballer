@@ -127,8 +127,6 @@ typedef enum{
     [self.startMatchButton setTitle:LocalString(@"Done") forState:UIControlStateNormal];
     [self checkStartMatchButtonEnabled];
     
-    [[Feature defaultFeature] customNavigationBar:self.navigationController.navigationBar];
-    
     [self makeRoundedView:_homeImageView withRadius:3.0];
     [self makeRoundedView:_guestImageView withRadius:3.0];
     

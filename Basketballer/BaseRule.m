@@ -15,7 +15,7 @@
 #import "GameSetting.h"
 #import "TeamStatistics.h"
 #import "MatchUnderWay.h"
-#import "AccountRule.h"
+#import "OnlyPointRule.h"
 #import "AmateurRule.h"
 
 @implementation BaseRule
@@ -30,15 +30,13 @@
 // 工厂接口，通过规则名字生成规则
 + (BaseRule *)ruleWithMode:(NSString *)mode{
      if ([mode isEqualToString:kMatchModeFiba]){
-         return [[FibaRule alloc] init];
+         return [[FibaRule alloc] initWithName:mode];
      }else if([mode isEqualToString:kMatchModeTpb]){
-         return [[Fiba3pbRule alloc] init];
+         return [[Fiba3pbRule alloc] initWithName:mode];
      }else if([mode isEqualToString:kMatchModeAccount]) {
-        return [[AccountRule alloc] init];
-     }else if([mode isEqualToString:kMatchModeAmateur20] ||
-              [mode isEqualToString:kMatchModeAmateur15] ||
-              [mode isEqualToString:kMatchModeAmateur25]){
-         return [[AmateurRule alloc] initWithMode:mode];
+         return [[OnlyPointRule alloc] initWithName:mode];
+     }else if([mode hasPrefix:kMatchModeAmateur]){
+         return [[AmateurRule alloc] initWithName:mode];
      }else {
          NSArray * rules  = [[CustomRuleManager defaultInstance] rules];
          for (Rule * rule in rules) {
@@ -50,6 +48,14 @@
          NSLog(@"找不到自定义比赛规则: %@", mode);
          return [[BaseRule alloc] init];
      }
+}
+
+- (id)initWithName:(NSString *)name{
+    if (self = [super init]) {
+        self.name = name;
+    }
+    
+    return self;
 }
 
 // 每个周期有多长时间，单位（秒）。

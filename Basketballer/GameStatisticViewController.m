@@ -154,8 +154,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[Feature defaultFeature] initNavleftBarItemWithController:self];
 
     UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showUMSnsController)];
     self.navigationItem.rightBarButtonItem = item;
@@ -206,9 +204,6 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-// FIXME: CTRL + 6 试试看
-// TODO:  CTRL + 6 再试一次
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

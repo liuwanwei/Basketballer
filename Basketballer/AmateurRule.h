@@ -7,14 +7,12 @@
 //
 //
 
-#import "FibaRule.h"
+#import "BaseRule.h"
 
 @interface AmateurRule : BaseRule
 
 // 单个比赛单元长度，单位：秒。
 @property (nonatomic, assign) NSInteger periodLength;
 
-
-- (id)initWithMode:(NSString *)mode;
 
 @end

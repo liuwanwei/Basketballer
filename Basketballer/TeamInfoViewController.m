@@ -174,9 +174,6 @@
         [self.navigationController.viewControllers count] == 1) {
         // 自身是UINavagationController中的RootViewController时，展示左侧“取消”按钮
         self.navigationItem.leftBarButtonItem = _cancelItem;
-    }else{
-        // 否则展示统一的“返回”按钮
-        [[Feature defaultFeature] initNavleftBarItemWithController:self];
     }
     
     if (self.operateMode == Insert) {

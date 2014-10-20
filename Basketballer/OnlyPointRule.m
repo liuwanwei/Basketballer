@@ -6,9 +6,9 @@
 //
 //
 
-#import "AccountRule.h"
+#import "OnlyPointRule.h"
 
-@implementation AccountRule
+@implementation OnlyPointRule
 
 - (NSInteger)regularPeriodNumber{
     return 4;

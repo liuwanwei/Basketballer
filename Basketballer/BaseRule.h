@@ -26,6 +26,9 @@ typedef enum{
 
 @interface BaseRule : NSObject
 
+// 规则名称
+@property (nonatomic, copy) NSString * name;
+
 // 常规比赛打几个周期。
 @property (nonatomic) NSInteger regularPeriodNumber;
 
@@ -41,8 +44,11 @@ typedef enum{
 // 夺取胜利需要达到的分数。（三人篮球模式有效）
 @property (nonatomic) NSInteger winningPoints;
 
-
 /****************** methods ******************/
+
++ (BaseRule *)ruleWithMode:(NSString *)mode;
+
+- (id)initWithName:(NSString *)name;
 
 // 每个周期有多长时间，单位（秒）。
 - (NSInteger)timeLengthForPeriod:(MatchPeriod)period;
@@ -59,6 +65,5 @@ typedef enum{
 // 判断是否需要马上结束比赛。
 - (BOOL)isGameOver;
 
-+ (BaseRule *)ruleWithMode:(NSString *)mode;
 
 @end

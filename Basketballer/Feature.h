@@ -17,9 +17,6 @@
 
 + (Feature *)defaultFeature;
 
-- (void)customNavigationBar:(UINavigationBar *)navigationBar;
-- (void)initNavleftBarItemWithController:(UIViewController *)controller;
-
 - (UIColor *)cellTextColor;
 - (UIColor *)cellDetailTextColor;
 

@@ -68,11 +68,9 @@
 
 - (void)loadMatchHistory{
     if (_historyType == HistoryTypeTeam) {
-        [[Feature defaultFeature] initNavleftBarItemWithController:self];
         self.history = [[MatchManager defaultManager] dateGroupForMatches:self.matches];
         self.title = LocalString(@"Record");
     }else {
-        [[Feature defaultFeature] customNavigationBar:self.navigationController.navigationBar];
         self.matches = [[MatchManager defaultManager] matchesArray];
         self.history = [[MatchManager defaultManager] dateGroupForMatches:self.matches];
         self.title = LocalString(@"Histories");

@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 
 // 比赛模式定义。
+#define kMatchModeAmateur               @"Amateur"
 #define kMatchModeAmateur25             @"Amateur-25"           // 业余：上下半场各25分钟模式。
 #define kMatchModeAmateur20             @"Amateur-20"           // 业余：上下半场各20分钟模式。
 #define kMatchModeAmateur15             @"Amateur-15"           // 业余：上下半场各15分钟模式。
 #define kMatchModeAmateurSimple15       @"AmateurSimple-15"     // 业余：只有一节15分钟模式。
 #define kMatchModeFiba                  @"FIBA"                 // FIBA 标准模式。
 #define kMatchModeTpb                   @"TPB"                  // FIBA Three player basketball match
-#define kMatchModeAccount               @"Account"              // 简单计分模式。
+#define kMatchModeAccount               @"简单记分"              // 简单计分模式。
 
 
 #define kPlayerStatistics               @"PlayerStatistics"

@@ -11,23 +11,23 @@
 
 @implementation AmateurRule
 
-- (id)initWithMode:(NSString *)mode{
+- (id)initWithName:(NSString *)name{
     if (self = [super init]) {
         self.foulLimitForTeam = 4;
         self.foulLimitForPlayer = 4;
         self.offenceTimeLimit = 24;
         
         // 半场长度定义，单位：秒。
-        if ([mode isEqualToString:kMatchModeAmateur25]) {
+        if ([name isEqualToString:kMatchModeAmateur25]) {
             self.periodLength = (25 * 60);
             self.regularPeriodNumber = 2;
-        }else if([mode isEqualToString:kMatchModeAmateur20]){
+        }else if([name isEqualToString:kMatchModeAmateur20]){
             self.periodLength = (20 * 60);
             self.regularPeriodNumber = 2;
-        }else if([mode isEqualToString:kMatchModeAmateur15]){
+        }else if([name isEqualToString:kMatchModeAmateur15]){
             self.periodLength = (15 * 60);
             self.regularPeriodNumber = 2;
-        }else if([mode isEqualToString:kMatchModeAmateurSimple15]){
+        }else if([name isEqualToString:kMatchModeAmateurSimple15]){
             self.periodLength = (15 * 60);
             self.regularPeriodNumber = 1;
         }

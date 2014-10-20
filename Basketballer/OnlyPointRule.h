@@ -8,6 +8,6 @@
 
 #import "BaseRule.h"
 
-@interface AccountRule : BaseRule
+@interface OnlyPointRule : BaseRule
 
 @end
