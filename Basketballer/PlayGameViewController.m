@@ -120,6 +120,15 @@ typedef enum {
         self.hostTimeoutLabel.text = [_match.home.timeouts stringValue];
         self.guestTimeoutLabel.text = [_match.guest.timeouts stringValue];
         [self updateControlButtonUI];
+        
+        UIColor * redColor = [UIColor colorWithRed:220/255.0 green:29/255.0 blue:29/255.0 alpha:1.0];
+        NSInteger timeoutLimit = [_match.rule timeoutLimitBeforeEndOfPeriod:_match.period];
+        if ([_match.home.timeouts integerValue] == timeoutLimit) {
+            self.hostTimeoutLabel.textColor = redColor;
+        }
+        if ([_match.guest.timeouts integerValue] == timeoutLimit) {
+            self.guestTimeoutLabel.textColor = redColor;
+        }
     }
 }
 
@@ -167,6 +176,14 @@ typedef enum {
 - (void)handleAddFoulMessage:(NSNotification *)note {
     self.hostFoulLabel.text = [_match.home.fouls stringValue];
     self.guestFoulLabel.text = [_match.guest.fouls stringValue];
+    
+    UIColor * redColor = [UIColor colorWithRed:220/255.0 green:29/255.0 blue:29/255.0 alpha:1.0];
+    if ([_match.home.fouls integerValue] > [_match.rule foulLimitForTeam]) {
+        self.hostFoulLabel.textColor = redColor;
+    }
+    if ([_match.guest.fouls integerValue] > [_match.rule foulLimitForTeam]) {
+        self.guestFoulLabel.textColor = redColor;
+    }
 }
 
 - (void)handleAddPlayerActionMessage:(NSNotification *)note {
@@ -188,6 +205,12 @@ typedef enum {
     self.guestFoulLabel.text = @"0";
     self.hostTimeoutLabel.text = @"0";
     self.guestTimeoutLabel.text = @"0";
+    
+    UIColor * grayColor = [UIColor colorWithRed:85/255.0 green:85/255.0 blue:85/255.0 alpha:1.0];
+    self.hostFoulLabel.textColor = grayColor;
+    self.guestFoulLabel.textColor = grayColor;
+    self.hostTimeoutLabel.textColor = grayColor;
+    self.guestTimeoutLabel.textColor = grayColor;
 }
 
 - (void)enterSettingView{
