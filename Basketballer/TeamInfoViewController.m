@@ -74,15 +74,17 @@
     if ([notification.name isEqualToString:kTextSavedMsg]) {
         if (notification.userInfo != nil) {
             NSString * teamName = [notification.userInfo objectForKey:kEditTeamName];
-            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            self.teamName = teamName;
-            
-            cell.detailTextLabel.text = teamName;
-            
-            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-            
-            [self refreshRightBarButtonItem];
+            if (teamName != nil) {
+                NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+                self.teamName = teamName;
+                
+                cell.detailTextLabel.text = teamName;
+                
+                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+                [self refreshRightBarButtonItem];
+            }
         }
     }
 }
