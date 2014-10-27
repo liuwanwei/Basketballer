@@ -472,6 +472,8 @@ typedef enum {
         [_gamePeroidButton setHidden:YES];
     }
     
+    self.gameHostScoreLable.text = @"0";
+    self.gameGuestScoreLable.text = @"0";
     [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
     [self.soundButton setTitle:LocalString(@"SoundEffect") forState:UIControlStateNormal];
     [self.foulLabel setText:LocalString(@"Foul")];
