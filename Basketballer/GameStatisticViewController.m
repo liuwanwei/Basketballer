@@ -18,8 +18,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StatisticSectionHeaderView.h"
 #import "StatisticCell.h"
-#import "UMSocial.h"
-#import "UMSocialScreenShoter.h"
+//#import "UMSocial.h"
+//#import "UMSocialScreenShoter.h"
 
 #define useAppkey @"503f331d527015516a000055"
 
@@ -82,17 +82,18 @@
     return result;
 }
 
-- (void)showUMSnsController {    
-    UIImage * viewImage = [[UMSocialScreenShoterDefault screenShoter] getScreenShot];
-    
-    // TODO: 等待微信开发平台账号审核通过后，集成分享到朋友圈和讨论组功能
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:useAppkey
-                                      shareText:[self snsString]
-                                     shareImage:viewImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession, UMShareToWechatTimeline,nil]
-                                       delegate:nil];
-}
+// TODO: 分享到微博和朋友圈同时开发完善，先屏蔽掉分享到微博
+//- (void)showUMSnsController {    
+//    UIImage * viewImage = [[UMSocialScreenShoterDefault screenShoter] getScreenShot];
+//    
+//    // TODO: 等待微信开发平台账号审核通过后，集成分享到朋友圈和讨论组功能
+//    [UMSocialSnsService presentSnsIconSheetView:self
+//                                         appKey:useAppkey
+//                                      shareText:[self snsString]
+//                                     shareImage:viewImage
+//                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession, UMShareToWechatTimeline,nil]
+//                                       delegate:nil];
+//}
 
 #pragma UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -101,7 +102,7 @@
             [self deleteMatch];
         }else if(buttonIndex == actionSheet.firstOtherButtonIndex){
             // 分享到新浪微博。
-            [self showUMSnsController];
+//            [self showUMSnsController];
         }else if(buttonIndex == actionSheet.firstOtherButtonIndex + 1){
             // 分享到“周边比赛”。
         }
@@ -155,8 +156,8 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showUMSnsController)];
-    self.navigationItem.rightBarButtonItem = item;
+//    UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showUMSnsController)];
+//    self.navigationItem.rightBarButtonItem = item;
     
     self.tableView.delegate = self;
     

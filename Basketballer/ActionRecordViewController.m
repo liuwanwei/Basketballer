@@ -49,6 +49,8 @@
     self.guestImageView.layer.borderColor = [[UIColor colorWithRed:221 green:221 blue:221 alpha:1.0] CGColor];
     self.guestImageView.image = [[ImageManager defaultInstance] imageForName:_guestTeam.profileURL];
     self.guestLabel.text = _guestTeam.name;
+    
+    self.actionRecordLabel.text = LocalString(@"ActionRecords");
 }
 
 - (void)initData {

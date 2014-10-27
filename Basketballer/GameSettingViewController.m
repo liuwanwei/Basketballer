@@ -169,7 +169,7 @@ typedef enum{
     }else if(indexPath.section == 2){
         UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ToNextVCCell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"比赛规则";
+        cell.textLabel.text = LocalString(@"Rule");
         // 填充真正规则名称
         cell.detailTextLabel.text = self.ruleInUse.name;
         

@@ -357,7 +357,8 @@ typedef enum {
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
-    [self presentModalViewController:nav animated:YES];
+//    [self presentModalViewController:nav animated:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 /*
@@ -406,7 +407,8 @@ typedef enum {
     
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
     
-    [self presentModalViewController:nav animated:YES];
+//    [self presentModalViewController:nav animated:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)initTeam {
@@ -469,6 +471,11 @@ typedef enum {
         [self updatePeriodLabel];
         [_gamePeroidButton setHidden:YES];
     }
+    
+    [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
+    [self.soundButton setTitle:LocalString(@"SoundEffect") forState:UIControlStateNormal];
+    [self.foulLabel setText:LocalString(@"Foul")];
+    [self.timeoutLabel setText:LocalString(@"Timeout")];
 }
 
 #pragma 类成员变量
@@ -596,7 +603,7 @@ typedef enum {
 - (IBAction)controlGame:(id)sender {
     if (_match.state == MatchStateTimeout ||
         _match.state == MatchStateQuarterTime) {
-        [self showAlertViewWithTitle:LocalString(@"Alert") message:@"正在暂停状态，是否继续比赛？" delegate:self tag:AlertViewTagMatchBegin cancelButtonTitle:LocalString(@"Cancel") otherButtonTitle:LocalString(@"Ok")];
+        [self showAlertViewWithTitle:LocalString(LocalString(@"Alert")) message:LocalString(@"BreakTimeout") delegate:self tag:AlertViewTagMatchBegin cancelButtonTitle:LocalString(@"Cancel") otherButtonTitle:LocalString(@"Ok")];
         
         return;
     }

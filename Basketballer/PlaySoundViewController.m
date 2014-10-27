@@ -23,7 +23,8 @@
 @synthesize cancelButton = _cancelButton;
 
 - (IBAction)back:(id)sender {
-    [[AppDelegate delegate].playGameViewController dismissModalViewControllerAnimated:YES];
+//    [[AppDelegate delegate].playGameViewController dismissModalViewControllerAnimated:YES];
+    [[AppDelegate delegate].playGameViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)initNavitem {

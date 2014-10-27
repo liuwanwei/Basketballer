@@ -116,7 +116,8 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePickerController.allowsEditing = YES;
-        [self presentModalViewController:imagePickerController animated:YES];
+//        [self presentModalViewController:imagePickerController animated:YES];
+        [self presentViewController:imagePickerController animated:YES completion:nil];
     }
 }
 
@@ -126,7 +127,8 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePickerController.allowsEditing = YES;
-        [self presentModalViewController:imagePickerController animated:YES];
+//        [self presentModalViewController:imagePickerController animated:YES];
+        [self presentViewController:imagePickerController animated:YES completion:nil];
     }
 }
 
@@ -344,7 +346,8 @@
     
     [self refreshRightBarButtonItem];
     
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -24,7 +24,8 @@
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:newPlayer];
 
-    [self presentModalViewController:nav animated:YES];
+//    [self presentModalViewController:nav animated:YES];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)playerChangedNotification:(NSNotification *)notification{

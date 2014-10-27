@@ -22,14 +22,18 @@
 @property (nonatomic, weak) IBOutlet UILabel * gameGuestScoreLable;
 @property (nonatomic, weak) IBOutlet UIButton * gamePeroidButton;
 @property (nonatomic, weak) IBOutlet UIButton * controlButton;
+@property (nonatomic, weak) IBOutlet UIButton * settingButton;
+@property (nonatomic, weak) IBOutlet UIButton * soundButton;
 @property (nonatomic, weak) IBOutlet UIImageView * hostImageView;    // 主队球队头像
 @property (nonatomic, weak) IBOutlet UIImageView * guestImageView;   // 客队球队头像
 @property (nonatomic, weak) IBOutlet UILabel * hostNameLabel;   // 主队队名
 @property (nonatomic, weak) IBOutlet UILabel * guestNameLabel;      // 客队队名
 @property (nonatomic, weak) IBOutlet UILabel * hostFoulLabel;   // 主队犯规次数
 @property (nonatomic, weak) IBOutlet UILabel * guestFoulLabel;  // 客队犯规次数
+@property (nonatomic, weak) IBOutlet UILabel * foulLabel;       // 犯规区域名字
 @property (nonatomic, weak) IBOutlet UILabel * hostTimeoutLabel;    // 主队暂停次数
 @property (nonatomic, weak) IBOutlet UILabel * guestTimeoutLabel;   // 客队暂停次数
+@property (nonatomic, weak) IBOutlet UILabel * timeoutLabel;        // 暂停区域名字
 @property (nonatomic, weak) IBOutlet UIView * foulView; // 犯规背景区域
 @property (nonatomic, weak) IBOutlet UIView * timeoutView;  // 暂停背景区域
 @property (nonatomic, weak) IBOutlet UIImageView * teamBackgroundImageView; // 球队背景图

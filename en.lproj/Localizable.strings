@@ -30,6 +30,7 @@
 
 "Fiba5PlayerMode" = "5-Player Mode";
 "Fiba3PlayerMode" = "3-Player Mode";
+"SimpleAccountPlayerMode" = "Points only";
 
 "Name" = "Name";
 "Number" = "Number";
@@ -87,9 +88,10 @@
 "NewStatistic" = "New Statistics";
 "Alert" = "Alert";
 "Ok" = "OK";
-"AlreadyTimeouted" = "We are already in timeout state!";
-"AlreadyPaused" = "We are already in Pausing state!";
+"AlreadyTimeouted" = "Already in timeout state!";
+"AlreadyPaused" = "Already in Pausing state!";
 "NoTimeout" = "No available timeouts left!";
+"BreakTimeout" = "Break the timeout state and return to game?";
 
 //"PlayerStatisticsViewHeader" = "号码           得分    犯规    三分    罚球";
 "PlayerStatisticsViewHeader" = "Number     PTS  PF       3PT   FT";

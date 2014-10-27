@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView * guestImageView;
 @property (nonatomic, weak) IBOutlet UILabel * hostLabel;
 @property (nonatomic, weak) IBOutlet UILabel * guestLabel;
+@property (nonatomic, weak) IBOutlet UILabel * actionRecordLabel;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 
 @end

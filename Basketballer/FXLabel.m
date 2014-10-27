@@ -253,7 +253,7 @@
     if (self.adjustsFontSizeToFitWidth && self.numberOfLines == 1)
     {
         textRect.size = [self.text sizeWithFont:self.font
-                                    minFontSize:self.minimumFontSize
+                                    minFontSize:self.minimumScaleFactor
                                  actualFontSize:&fontSize
                                        forWidth:rect.size.width
                                   lineBreakMode:self.lineBreakMode];
@@ -276,12 +276,12 @@
     //set position
     switch (self.textAlignment)
     {
-        case UITextAlignmentCenter:
+        case NSTextAlignmentCenter:
         {
             textRect.origin.x = rect.origin.x + (rect.size.width - textRect.size.width) / 2.0f;
             break;
         }
-        case UITextAlignmentRight:
+        case NSTextAlignmentRight:
         {
             textRect.origin.x = textRect.origin.x + rect.size.width - textRect.size.width;
             break;

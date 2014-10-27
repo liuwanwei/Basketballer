@@ -19,7 +19,8 @@
 @implementation MatchFinishedDetailsViewController
 
 - (void)back {
-    [[AppDelegate delegate].playGameViewController dismissModalViewControllerAnimated:NO];
+//    [[AppDelegate delegate].playGameViewController dismissModalViewControllerAnimated:NO];
+    [[AppDelegate delegate].playGameViewController dismissViewControllerAnimated:NO completion:nil];
     [[AppDelegate delegate].playGameViewController dismissView];
 }
 

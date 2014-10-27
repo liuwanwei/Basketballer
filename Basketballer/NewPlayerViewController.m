@@ -204,13 +204,15 @@
 - (void)notificationMessage:(NSNotification *)notification{
     if ([notification.name isEqualToString:kTextSavedMsg]) {
         NSDictionary * userInfo = notification.userInfo;
-        NSString * text = [userInfo objectForKey:kTextSavedMsg];
+        NSString * text = nil;
         if ((text = [userInfo objectForKey:kEditPlayerName]) != nil) {
             NSLog(@"球员名字 %@", text);
             self.playerName = text;
         }else if((text = [userInfo objectForKey:kEditPlayerNumber]) != nil){
             NSLog(@"球衣号码 %@", text);
             self.playerNumber = [NSNumber numberWithInteger:[text integerValue]];
+        }else{
+            text = [userInfo objectForKey:kTextSavedMsg];
         }
     
         UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:_lastSelectedIndexPath];
@@ -249,7 +251,8 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePickerController.allowsEditing = YES;
-        [self presentModalViewController:imagePickerController animated:YES];
+//        [self presentModalViewController:imagePickerController animated:YES];
+        [self presentViewController:imagePickerController animated:YES completion:nil];
     }
 }
 
@@ -259,7 +262,8 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePickerController.allowsEditing = YES;
-        [self presentModalViewController:imagePickerController animated:YES];
+//        [self presentModalViewController:imagePickerController animated:YES];
+        [self presentViewController:imagePickerController animated:YES completion:nil];
     }
 }
 
@@ -276,7 +280,8 @@
     
     [self refreshRighBarButtonItem];
     
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
