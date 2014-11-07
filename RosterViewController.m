@@ -1,8 +1,8 @@
 //
-//  RosterViewController.m
+//  RRCollectionViewController.m
 //  Basketballer
 //
-//  Created by sungeo on 14-9-27.
+//  Created by sungeo on 14/11/7.
 //
 //
 
@@ -16,6 +16,7 @@
 #define kRosterCell         @"RosterCell"
 
 @interface RosterViewController (){
+    
     NSArray * _players;
     BOOL _removeMode;
 }
@@ -29,7 +30,8 @@
         NSLog(@"收到队员更新消息");
         _players = [[PlayerManager defaultManager] playersForTeam:self.teamId];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.cv reloadData];
+            [self.collectionView reloadData];
+            //            [self.cv reloadData];
         });
     }
 }
@@ -38,12 +40,12 @@
     [super viewDidLoad];
     
     _players = [[PlayerManager defaultManager] playersForTeam:self.teamId];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerChangedNotification:) name:kPlayerChangedNotification object:nil];
     
     // 调用dequeueReusableCellWithReuseIdentifier之前注册自定义Cell Nib。
     // 由于是通过nib创建测cell，所以必须用这个接口注册，而不是registerClass:接口。
-    [self.cv registerNib:[UINib nibWithNibName:@"RosterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kRosterCell];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"RosterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kRosterCell];
 }
 
 - (void)viewDidUnload{
@@ -136,7 +138,8 @@
     }else if(indexPath.row == (playerCount + 1)){
         // 删除队员状态切换
         _removeMode = ! _removeMode;
-        [self.cv reloadData];
+        [self.collectionView reloadData];
+        //        [self.cv reloadData];
     }
 }
 
@@ -156,13 +159,84 @@ static Player * sPlayerToRemove = nil;
 }
 
 
-/*
-#pragma mark - Navigation
+//static NSString * const reuseIdentifier = @"Cell";
+//
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    
+//    // Uncomment the following line to preserve selection between presentations
+//    // self.clearsSelectionOnViewWillAppear = NO;
+//    
+//    // Register cell classes
+//    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+//    
+//    // Do any additional setup after loading the view.
+//}
+//
+//- (void)didReceiveMemoryWarning {
+//    [super didReceiveMemoryWarning];
+//    // Dispose of any resources that can be recreated.
+//}
+//
+///*
+//#pragma mark - Navigation
+//
+//// In a storyboard-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    // Get the new view controller using [segue destinationViewController].
+//    // Pass the selected object to the new view controller.
+//}
+//*/
+//
+//#pragma mark <UICollectionViewDataSource>
+//
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//#warning Incomplete method implementation -- Return the number of sections
+//    return 0;
+//}
+//
+//
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//#warning Incomplete method implementation -- Return the number of items in the section
+//    return 0;
+//}
+//
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+//    
+//    // Configure the cell
+//    
+//    return cell;
+//}
+//
+//#pragma mark <UICollectionViewDelegate>
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/*
+// Uncomment this method to specify if the specified item should be highlighted during tracking
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
+}
+*/
+
+/*
+// Uncomment this method to specify if the specified item should be selected
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+*/
+
+/*
+// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
+	return NO;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+	return NO;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+	
 }
 */
 

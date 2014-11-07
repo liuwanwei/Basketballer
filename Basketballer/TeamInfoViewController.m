@@ -18,6 +18,7 @@
 #import "Feature.h"
 #import "AppDelegate.h"
 #import "RosterViewController.h"
+#import "RosterViewController.h"
 #import "ImageCell.h"
 #import "TextEditorViewController.h"
 
@@ -310,6 +311,7 @@
         history.historyType = HistoryTypeTeam;
         [self.navigationController pushViewController:history animated:YES];
     }else if(indexPath.section == 2 && indexPath.row == 0){
+//        RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
         RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
 
         playerList.teamId = _team.id;
