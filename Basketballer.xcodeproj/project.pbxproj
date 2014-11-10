@@ -226,6 +226,9 @@
 		FB957D3619E166A0007FC3DA /* remove_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3519E166A0007FC3DA /* remove_circle.png */; };
 		FB957D3819E167EE007FC3DA /* remove_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D3719E167EE007FC3DA /* remove_dark.png */; };
 		FB957D3B19E24719007FC3DA /* GameHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3A19E24719007FC3DA /* GameHistoryCell.m */; };
+		FBB902801A1062D500CB7FD3 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB9027C1A1062D500CB7FD3 /* libMobClickLibrary.a */; };
+		FBB902811A1062D500CB7FD3 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBB9027F1A1062D500CB7FD3 /* README.txt */; };
+		FBB902831A10639C00CB7FD3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB902821A10639C00CB7FD3 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -539,6 +542,11 @@
 		FB957D3719E167EE007FC3DA /* remove_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_dark.png; sourceTree = "<group>"; };
 		FB957D3919E24719007FC3DA /* GameHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryCell.h; sourceTree = "<group>"; };
 		FB957D3A19E24719007FC3DA /* GameHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryCell.m; sourceTree = "<group>"; };
+		FBB9027C1A1062D500CB7FD3 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		FBB9027D1A1062D500CB7FD3 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		FBB9027E1A1062D500CB7FD3 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		FBB9027F1A1062D500CB7FD3 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		FBB902821A10639C00CB7FD3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -546,6 +554,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBB902831A10639C00CB7FD3 /* libz.dylib in Frameworks */,
 				3C08CC7415F1AC4B00AE699F /* QuartzCore.framework in Frameworks */,
 				3C5207D315EB52A80079D5DB /* AVFoundation.framework in Frameworks */,
 				3CCAE46115BE3B440030C302 /* MapKit.framework in Frameworks */,
@@ -555,6 +564,7 @@
 				3CC1681215A2E52A00A2AB44 /* Foundation.framework in Frameworks */,
 				3CC1681415A2E52A00A2AB44 /* CoreGraphics.framework in Frameworks */,
 				3CC1681615A2E52A00A2AB44 /* CoreData.framework in Frameworks */,
+				FBB902801A1062D500CB7FD3 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +684,6 @@
 			children = (
 				3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */,
 				E65C9D0915F488FA00DCE645 /* Localizable.strings */,
-				3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */,
 				3CC1681715A2E52B00A2AB44 /* Basketballer */,
 				FB1BA9301884E44300978359 /* Basketballer Tests */,
 				3CC1680E15A2E52A00A2AB44 /* Frameworks */,
@@ -694,6 +703,7 @@
 		3CC1680E15A2E52A00A2AB44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBB902821A10639C00CB7FD3 /* libz.dylib */,
 				3C5207D215EB52A80079D5DB /* AVFoundation.framework */,
 				3CCAE46015BE3B440030C302 /* MapKit.framework */,
 				3CCAE41715BD4C900030C302 /* CoreLocation.framework */,
@@ -710,6 +720,7 @@
 		3CC1681715A2E52B00A2AB44 /* Basketballer */ = {
 			isa = PBXGroup;
 			children = (
+				FBB9027B1A1062D500CB7FD3 /* Umeng */,
 				3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */,
 				3CC1683815A2E6EE00A2AB44 /* Classes */,
 				E68D110315A2F7020074982D /* DataStore */,
@@ -968,6 +979,7 @@
 		FB1BA9301884E44300978359 /* Basketballer Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */,
 				FB1BA9401884E58300978359 /* AmateurRuleTest.m */,
 				FB1BA9361884E44300978359 /* Basketballer_Tests.m */,
 				FB1BA9311884E44300978359 /* Supporting Files */,
@@ -1033,6 +1045,17 @@
 			);
 			name = Entity;
 			sourceTree = "<group>";
+		};
+		FBB9027B1A1062D500CB7FD3 /* Umeng */ = {
+			isa = PBXGroup;
+			children = (
+				FBB9027C1A1062D500CB7FD3 /* libMobClickLibrary.a */,
+				FBB9027D1A1062D500CB7FD3 /* MobClick.h */,
+				FBB9027E1A1062D500CB7FD3 /* MobClickSocialAnalytics.h */,
+				FBB9027F1A1062D500CB7FD3 /* README.txt */,
+			);
+			path = Umeng;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -1206,6 +1229,7 @@
 				E6F1E35115ECEB5900FED24B /* TwoPoints@2x.png in Resources */,
 				3C765CD715EC6C0700235664 /* music.png in Resources */,
 				3CB8C77215EDF27D00091D52 /* PlayerActionCell.xib in Resources */,
+				FBB902811A1062D500CB7FD3 /* README.txt in Resources */,
 				E6F1E36915EF533D00FED24B /* BasketballBlueWhite.png in Resources */,
 				E6F1E36A15EF533D00FED24B /* BasketballBlueWhite@2x.png in Resources */,
 				E6F1E36D15EF542800FED24B /* BasketballBlueRed.png in Resources */,
@@ -1469,7 +1493,10 @@
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Umeng",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1489,7 +1516,10 @@
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Umeng",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

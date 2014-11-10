@@ -15,6 +15,7 @@
 #import "Feature.h"
 #import "MatchUnderWay.h"
 #import "WellKnownSaying.h"
+#import "MobClick.h"
 #import <UIKit/UIKit.h>
 
 typedef enum {
@@ -161,6 +162,10 @@ typedef enum {
     application.statusBarStyle = UIStatusBarStyleDefault;
     
     //[[WellKnownSaying defaultSaying] requestSaying];
+    
+    [MobClick startWithAppkey:@"54602bcbfd98c5e602002428" reportPolicy:BATCH   channelId:@""];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
     
 //    [self.window addSubview:self.tabBarController.view];
     [self.window setRootViewController:self.tabBarController];

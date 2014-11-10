@@ -28,6 +28,7 @@
 #import "PlaySoundViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PlayerActionViewController.h"
+#import "MobClick.h"
 #import "ImageManager.h"
 #import "UIImageView+Additional.h"
 
@@ -517,10 +518,14 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    [MobClick beginLogPageView:_match.matchMode];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [MobClick endLogPageView:_match.matchMode];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
