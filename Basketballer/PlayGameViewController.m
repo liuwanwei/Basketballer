@@ -480,6 +480,12 @@ typedef enum {
     [self.timeoutLabel setText:LocalString(@"Timeout")];
 }
 
+- (NSString *)pageName {
+    NSString * pageName = @"PlatGame_";
+    pageName = [pageName stringByAppendingString:_match.matchMode];
+    return pageName;
+}
+
 #pragma 类成员变量
 - (void)initWithHostTeam:(Team *)hostTeam andGuestTeam:(Team *)guestTeam {
     _match = [MatchUnderWay defaultMatch];
@@ -516,11 +522,13 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
     self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

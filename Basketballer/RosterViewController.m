@@ -24,6 +24,11 @@
 
 @implementation RosterViewController
 
+- (NSString *)pageName {
+    NSString * pageName = @"Roster";
+    return pageName;
+}
+
 - (void)playerChangedNotification:(NSNotification *)notification{
     if ([notification.name isEqualToString:kPlayerChangedNotification]) {
         NSLog(@"收到队员更新消息");
@@ -50,6 +55,16 @@
     [super viewDidUnload];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -40,6 +40,13 @@ typedef enum{
     [alertView show];
 }
 
+- (NSString *)pageName {
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    NSString * pageName = @"PlayerAction_";
+    pageName = [pageName stringByAppendingString:match.matchMode];
+    return pageName;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.title = LocalString(@"SelectPlayer");
@@ -51,6 +58,16 @@ typedef enum{
 //    }else {
 //        self.title = @"选择球员";
 //    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{

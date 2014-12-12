@@ -45,6 +45,13 @@ typedef enum{
 @synthesize guestImageView = _guestImageView;
 @synthesize startMatchButton = _startMatchButton;
 
+- (NSString *)pageName {
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    NSString * pageName = @"ChooseTeam_";
+    pageName = [pageName stringByAppendingString:match.matchMode];
+    return pageName;
+}
+
 - (void)checkStartMatchButtonEnabled {
     if (_homeTeam == nil || _guestTeam == nil) {
         [self.startMatchButton setBackgroundImage:nil forState:UIControlStateNormal];
@@ -132,6 +139,16 @@ typedef enum{
     
     // 添加新球队后，刷新球队数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTeams) name:kTeamChanged object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (void)viewDidUnload

@@ -21,8 +21,6 @@
 //#import "UMSocial.h"
 //#import "UMSocialScreenShoter.h"
 
-#define useAppkey @"503f331d527015516a000055"
-
 @interface GameStatisticViewController (){
     NSString * _homePoints;
     NSString * _guestPoints;
@@ -50,6 +48,11 @@
 @synthesize actionItem = _actionItem;
 @synthesize trashItem = _trashItem;
 @synthesize match = _match;
+
+- (NSString *)pageName {
+    NSString * pageName = @"GameStatistic";
+    return pageName;
+}
 
 - (NSString *)thoroughfareWithAdress:(NSString *)address {
     NSString * thoroughfare = nil;
@@ -197,8 +200,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [MobClick beginLogPageView:[self pageName]];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

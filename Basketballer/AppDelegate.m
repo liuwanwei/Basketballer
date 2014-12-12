@@ -16,6 +16,7 @@
 #import "MatchUnderWay.h"
 #import "WellKnownSaying.h"
 #import <UIKit/UIKit.h>
+#import "MobClick.h"
 
 typedef enum {
     NotificationBodyForCommonTimeout = 0,
@@ -159,6 +160,10 @@ typedef enum {
     [self initNotificationBodyArray];
     
     application.statusBarStyle = UIStatusBarStyleDefault;
+    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    [MobClick startWithAppkey:kAppKeyOfUMeng reportPolicy:BATCH channelId:nil];
     
     //[[WellKnownSaying defaultSaying] requestSaying];
     

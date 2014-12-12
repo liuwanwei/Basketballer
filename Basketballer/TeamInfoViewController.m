@@ -132,6 +132,16 @@
     }
 }
 
+- (NSString *)pageName {
+    NSString * pageName = @"TeamInfo_";
+    if (Insert == self.operateMode) {
+        pageName = [pageName stringByAppendingString:@"insert"];
+    }else {
+        pageName = [pageName stringByAppendingString:@"edit"];
+    }
+    return pageName;
+}
+
 #pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -185,6 +195,13 @@
     }else{
         self.title = LocalString(@"TeamInfo");
     }
+    
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

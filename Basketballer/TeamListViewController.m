@@ -49,6 +49,11 @@
     [self.tableView reloadData];
 }
 
+- (NSString *)pageName {
+    NSString * pageName = @"TeamList";
+    return pageName;
+}
+
 #pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -73,6 +78,16 @@
     [[Feature defaultFeature] hideExtraCellLineForTableView:self.tableView];
     
     self.title = LocalString(@"Teams");
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (void)viewDidUnload

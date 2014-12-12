@@ -76,6 +76,13 @@
     }
 }
 
+- (NSString *)pageName {
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    NSString * pageName = @"ActionRecord_";
+    pageName = [pageName stringByAppendingString:match.matchMode];
+    return pageName;
+}
+
 #pragma 事件函数
 -(void) swip:(UISwipeGestureRecognizer *)swip {
     [self.navigationController popViewControllerAnimated:YES];
@@ -141,10 +148,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
