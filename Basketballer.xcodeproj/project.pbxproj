@@ -367,8 +367,6 @@
 		7914D01A19E7D1DB008499A3 /* game_playing_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_playing_background@2x.png"; path = "Resources/images/game_playing_background@2x.png"; sourceTree = "<group>"; };
 		7914D01B19E7D1DB008499A3 /* game_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_setting@2x.png"; path = "Resources/images/game_setting@2x.png"; sourceTree = "<group>"; };
 		7914D01C19E7D1DC008499A3 /* game_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_start@2x.png"; path = "Resources/images/game_start@2x.png"; sourceTree = "<group>"; };
-		7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = library/libMobClickLibrary.a; sourceTree = "<group>"; };
-		7998CBB11A37D7FB00F6759A /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = library/MobClick.h; sourceTree = "<group>"; };
 		79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_off@2x.png"; path = "Resources/images/game_menu_off@2x.png"; sourceTree = "<group>"; };
 		79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_on@2x.png"; path = "Resources/images/game_menu_on@2x.png"; sourceTree = "<group>"; };
 		79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_easy_background@2x.png"; path = "Resources/images/game_easy_background@2x.png"; sourceTree = "<group>"; };
@@ -646,8 +644,7 @@
 		3C121F7615A43D290062BECD /* library */ = {
 			isa = PBXGroup;
 			children = (
-				7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */,
-				7998CBB11A37D7FB00F6759A /* MobClick.h */,
+				FBB9027B1A1062D500CB7FD3 /* Umeng */,
 				FB957D0919DA8657007FC3DA /* category */,
 				E6F1E36315EF41F200FED24B /* WellKnownSaying.h */,
 				E6F1E36415EF41F200FED24B /* WellKnownSaying.m */,
@@ -724,7 +721,6 @@
 		3CC1681715A2E52B00A2AB44 /* Basketballer */ = {
 			isa = PBXGroup;
 			children = (
-				FBB9027B1A1062D500CB7FD3 /* Umeng */,
 				3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */,
 				3CC1683815A2E6EE00A2AB44 /* Classes */,
 				E68D110315A2F7020074982D /* DataStore */,
@@ -1445,7 +1441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1477,7 +1473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1496,14 +1492,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1519,14 +1515,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
