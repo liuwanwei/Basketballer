@@ -34,6 +34,12 @@
 @synthesize matches = _matches;
 @synthesize historyType = _historyType;
 
+#pragma 私有函数
+- (NSString *)pageName {
+    NSString * pageName = @"GameHistory";
+    return pageName;
+}
+
 #pragma 事件函数
 
 - (void)showGameHistoriesMapView {
@@ -114,6 +120,16 @@
     [super viewDidUnload];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

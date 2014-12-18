@@ -105,6 +105,8 @@
 		7914D02219E7D1DC008499A3 /* game_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01B19E7D1DB008499A3 /* game_setting@2x.png */; };
 		7914D02319E7D1DC008499A3 /* game_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01C19E7D1DC008499A3 /* game_start@2x.png */; };
 		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
+		7998CBB21A37D7FB00F6759A /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */; };
+		7998CBB41A37D82B00F6759A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7998CBB31A37D82B00F6759A /* libz.dylib */; };
 		79E33AE919E8CB9500AC46DE /* game_menu_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */; };
 		79E33AEA19E8CB9500AC46DE /* game_menu_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */; };
 		79E33AEC19E8D3D800AC46DE /* game_easy_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */; };
@@ -367,6 +369,9 @@
 		7914D01A19E7D1DB008499A3 /* game_playing_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_playing_background@2x.png"; path = "Resources/images/game_playing_background@2x.png"; sourceTree = "<group>"; };
 		7914D01B19E7D1DB008499A3 /* game_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_setting@2x.png"; path = "Resources/images/game_setting@2x.png"; sourceTree = "<group>"; };
 		7914D01C19E7D1DC008499A3 /* game_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_start@2x.png"; path = "Resources/images/game_start@2x.png"; sourceTree = "<group>"; };
+		7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = library/libMobClickLibrary.a; sourceTree = "<group>"; };
+		7998CBB11A37D7FB00F6759A /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = library/MobClick.h; sourceTree = "<group>"; };
+		7998CBB31A37D82B00F6759A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_off@2x.png"; path = "Resources/images/game_menu_off@2x.png"; sourceTree = "<group>"; };
 		79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_on@2x.png"; path = "Resources/images/game_menu_on@2x.png"; sourceTree = "<group>"; };
 		79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_easy_background@2x.png"; path = "Resources/images/game_easy_background@2x.png"; sourceTree = "<group>"; };
@@ -644,6 +649,8 @@
 		3C121F7615A43D290062BECD /* library */ = {
 			isa = PBXGroup;
 			children = (
+				7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */,
+				7998CBB11A37D7FB00F6759A /* MobClick.h */,
 				FB957D0919DA8657007FC3DA /* category */,
 				E6F1E36315EF41F200FED24B /* WellKnownSaying.h */,
 				E6F1E36415EF41F200FED24B /* WellKnownSaying.m */,
@@ -787,18 +794,12 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FB8A220D19E5102700213057 /* StatisticCell.h */,
-				FB8A220E19E5102700213057 /* StatisticCell.m */,
-				FB8A220A19E43ADF00213057 /* StatisticSectionHeaderView.h */,
-				FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */,
-				FB8A220519E3FE7100213057 /* StatisticCompareCell.h */,
-				FB8A220619E3FE7100213057 /* StatisticCompareCell.m */,
-				FB957D3919E24719007FC3DA /* GameHistoryCell.h */,
-				FB957D3A19E24719007FC3DA /* GameHistoryCell.m */,
 				3C07F40F1635194A00A2D645 /* AboutUsViewController.h */,
 				3C07F4101635194A00A2D645 /* AboutUsViewController.m */,
 				3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */,
 				3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */,
+				79E33AF119EA12F000AC46DE /* ActionRecordCell.h */,
+				79E33AF219EA12F000AC46DE /* ActionRecordCell.m */,
 				3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */,
 				3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */,
 				FB957D1A19DEF65E007FC3DA /* AppDelegate.h */,
@@ -808,16 +809,18 @@
 				E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */,
 				FB957D1019DA914E007FC3DA /* CustomRuleViewController.h */,
 				FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */,
-				E68D117715A5F28F0074982D /* GameStatisticViewController.h */,
-				E68D117815A5F2900074982D /* GameStatisticViewController.m */,
+				FB957D3919E24719007FC3DA /* GameHistoryCell.h */,
+				FB957D3A19E24719007FC3DA /* GameHistoryCell.m */,
 				3CCAE45615BE25790030C302 /* GameHistoryMapViewController.h */,
 				3CCAE45715BE25790030C302 /* GameHistoryMapViewController.m */,
 				3CC1683915A2E71400A2AB44 /* GameHistoryViewController.h */,
 				3CC1683A15A2E71400A2AB44 /* GameHistoryViewController.m */,
-				3CC5633215F09BCB0026A7E8 /* MatchFinishedDetailsViewController.h */,
-				3CC5633315F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m */,
 				E62D383815E6748D004AA543 /* GameSettingViewController.h */,
 				E62D383915E6748D004AA543 /* GameSettingViewController.m */,
+				E68D117715A5F28F0074982D /* GameStatisticViewController.h */,
+				E68D117815A5F2900074982D /* GameStatisticViewController.m */,
+				3CC5633215F09BCB0026A7E8 /* MatchFinishedDetailsViewController.h */,
+				3CC5633315F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m */,
 				3C35FA4815EE5970006B2470 /* MoreViewController.h */,
 				3C35FA4915EE5970006B2470 /* MoreViewController.m */,
 				E6E032BC15CF73E800AF91CB /* NewActionViewController.h */,
@@ -859,6 +862,12 @@
 				3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */,
 				3C2B1B3115C68F3400BAB6BE /* StartMatchView.h */,
 				3C2B1B3215C68F3400BAB6BE /* StartMatchView.m */,
+				FB8A220D19E5102700213057 /* StatisticCell.h */,
+				FB8A220E19E5102700213057 /* StatisticCell.m */,
+				FB8A220519E3FE7100213057 /* StatisticCompareCell.h */,
+				FB8A220619E3FE7100213057 /* StatisticCompareCell.m */,
+				FB8A220A19E43ADF00213057 /* StatisticSectionHeaderView.h */,
+				FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */,
 				E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */,
 				E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */,
 				E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */,
@@ -873,8 +882,6 @@
 				3CC9129D15B1C477003C74D4 /* TimeoutPromptView.m */,
 				3C13E49615C192A900F4307C /* TimeStopPromptView.h */,
 				3C13E49715C192A900F4307C /* TimeStopPromptView.m */,
-				79E33AF119EA12F000AC46DE /* ActionRecordCell.h */,
-				79E33AF219EA12F000AC46DE /* ActionRecordCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1104,7 +1111,7 @@
 				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					3CC1680A15A2E52A00A2AB44 = {
-						DevelopmentTeam = UD8763N3M5;
+						DevelopmentTeam = L3232NJXLT;
 					};
 					FB1BA92A1884E44200978359 = {
 						TestTargetID = 3CC1680A15A2E52A00A2AB44;
@@ -1487,7 +1494,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Wanwei Liu (KWR2YNQ2Y2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
@@ -1496,6 +1503,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
+					"$(PROJECT_DIR)/Basketballer/library",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1510,7 +1518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
@@ -1519,6 +1527,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
+					"$(PROJECT_DIR)/Basketballer/library",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

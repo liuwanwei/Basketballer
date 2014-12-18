@@ -89,6 +89,14 @@ typedef enum{
     [[GameSetting defaultSetting] setEnableAutoPromptSound:sender.on];
 }
 
+- (NSString *)pageName {
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    NSString * pageName = @"GameSetting_";
+    pageName = [pageName stringByAppendingString:match.matchMode];
+    return pageName;
+}
+
+#pragma 事件函数
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -103,6 +111,16 @@ typedef enum{
     [super viewDidLoad];
     self.title = LocalString(@"Setting");
     [self initUIButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (void)viewDidUnload

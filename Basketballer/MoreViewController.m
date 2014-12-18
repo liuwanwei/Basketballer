@@ -15,7 +15,6 @@
 #define kAppVersion     @"1.12"
 #define kEMail          @"liuwanwei@gmail.com"
 #define kAppKeyOfApple  559738184
-#define kAppKeyOfUMeng  @"503f331d527015516a000055"
 
 @interface MoreViewController () {
     NSArray * _rowsInSection;

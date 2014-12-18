@@ -17,6 +17,7 @@
 #import "WellKnownSaying.h"
 #import "MobClick.h"
 #import <UIKit/UIKit.h>
+#import "MobClick.h"
 
 typedef enum {
     NotificationBodyForCommonTimeout = 0,

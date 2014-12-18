@@ -33,6 +33,14 @@
     self.navigationItem.leftBarButtonItem = item;
 }
 
+- (NSString *)pageName {
+    MatchUnderWay * match = [MatchUnderWay defaultMatch];
+    NSString * pageName = @"PlaySound_";
+    pageName = [pageName stringByAppendingString:match.matchMode];
+    return pageName;
+}
+
+#pragma 事件函数
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,6 +50,16 @@
     //[_cancelButton setTitle:LocalString(@"Cancel") forState:UIControlStateNormal];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:[self pageName]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:[self pageName]];
 }
 
 - (void)viewDidUnload

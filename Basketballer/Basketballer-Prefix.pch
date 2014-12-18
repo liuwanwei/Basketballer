@@ -12,4 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
+    #import "MobClick.h"
 #endif
+
+#define kAppKeyOfUMeng  @"503f331d527015516a000055"
