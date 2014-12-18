@@ -14,6 +14,6 @@
 @dynamic id;
 @dynamic name;
 @dynamic profileURL;
-@dynamic deleted;
+@dynamic userDeleted;
 
 @end

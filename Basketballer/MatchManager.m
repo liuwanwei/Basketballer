@@ -126,12 +126,12 @@ static MatchManager * sDefaultManager;
     // 删除比赛时，如球队已经被删除并且再无比赛记录，此时可以彻底删除球队。
     TeamManager * tm = [TeamManager defaultManager];
     Team * team = [tm teamWithId:[NSNumber numberWithInteger:homeTeamId]];
-    if ([team.deleted integerValue] == TeamDeleted) {
+    if ([team.userDeleted integerValue] == TeamDeleted) {
         [tm deleteTeam:team];
     }
     
     team = [tm teamWithId:[NSNumber numberWithInteger:guestTeamId]];
-    if ([team.deleted integerValue] == TeamDeleted) {
+    if ([team.userDeleted integerValue] == TeamDeleted) {
         [tm deleteTeam:team];
     }
 

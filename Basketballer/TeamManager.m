@@ -101,7 +101,7 @@ static TeamManager * sDefaultManager;
     }else{
         NSMutableArray * availableTeams = nil;
         for (Team * team in _allTeams) {
-            if ([team.deleted integerValue] != TeamDeleted) {
+            if ([team.userDeleted integerValue] != TeamDeleted) {
                 if (nil == availableTeams) {
                     availableTeams = [[NSMutableArray alloc] init];
                 }
@@ -139,7 +139,7 @@ static TeamManager * sDefaultManager;
 }
 
 - (NSString *)teamNameWithDeletedStatus:(Team *)team{
-    if ([team.deleted integerValue] == TeamDeleted) {
+    if ([team.userDeleted integerValue] == TeamDeleted) {
         static NSString * deletedAffix = @"(已删除)";
         NSString * name = [NSString stringWithFormat:@"%@%@", team.name, deletedAffix];
         return name;
@@ -218,7 +218,7 @@ static TeamManager * sDefaultManager;
     }else{
         // 并不真的删除球队，而是修改删除标记。
         NSLog(@"mark team as deleted: %@", team.name);
-        team.deleted = [NSNumber numberWithInteger:1];    
+        team.userDeleted = [NSNumber numberWithInteger:1];
     }
     
     [self resetAvailableTeams];
