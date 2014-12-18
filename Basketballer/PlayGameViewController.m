@@ -219,9 +219,9 @@ typedef enum {
 }
 
 - (void)updateTimeCountDownLable{
-    NSInteger timeLeftSeconds = _match.countdownSeconds;
-    NSInteger minutesLeft = timeLeftSeconds / 60;
-    NSInteger secondsLeft = timeLeftSeconds % 60;
+    int timeLeftSeconds = (int)_match.countdownSeconds;
+    int minutesLeft = timeLeftSeconds / 60;
+    int secondsLeft = timeLeftSeconds % 60;
     NSString * timeLeftString = [NSString stringWithFormat:@"%.2d : %.2d",minutesLeft, secondsLeft];
     self.gameTimeLabel.text = timeLeftString;
 }
@@ -580,11 +580,11 @@ typedef enum {
     // UIButton tag 主队分别为1、2、3、4、5；客队为101、102、103、104、105
     if (tag > kTeamTag) {
         _selectTeamId = self.guestTeam.id;
-        _selectActionType = tag - kTeamTag;
+        _selectActionType = (ActionType)(tag - kTeamTag);
         self.selectedStatistics = _match.guest;
     }else {
         _selectTeamId = self.hostTeam.id;
-        _selectActionType = tag;
+        _selectActionType = (ActionType)tag;
         self.selectedStatistics = _match.home;
     }
     

@@ -114,7 +114,7 @@ static ActionManager * sActionManager;
         
         NSNumber * object = [summaryArray objectAtIndex:aPeriod];
         if (nil == object) {
-            object = [[NSNumber alloc] initWithInt:addition];
+            object = [[NSNumber alloc] initWithInteger:addition];
         }else{
             NSInteger oldValue = [object integerValue];
             object = [NSNumber numberWithInteger:oldValue + addition];
@@ -217,7 +217,7 @@ static ActionManager * sActionManager;
 
 - (NSMutableDictionary *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions{
     NSInteger teamId = [team integerValue];
-    NSInteger pts = 0, pf = 0, threePM = 0, ft = 0;
+    int pts = 0, pf = 0, threePM = 0, ft = 0;
     for (Action * action in actions) {
         NSInteger tempPeriod = [action.period integerValue];
         NSInteger tempTeamId = [action.team integerValue];
@@ -255,7 +255,7 @@ static ActionManager * sActionManager;
 
 // 目前只计算全场技术统计，但暂时保留period参数，因为我还不确定个人单节技术统计是否真的没有必要。
 - (NSMutableDictionary *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions{
-    NSInteger pts = 0, pf = 0, threePM = 0, ft = 0;
+    int pts = 0, pf = 0, threePM = 0, ft = 0;
     for(Action * action in actions){
         if (playerId != nil && [action.player isEqualToNumber:playerId]) {
             switch([action.type integerValue]){

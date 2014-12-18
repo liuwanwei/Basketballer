@@ -105,7 +105,7 @@ static MatchManager * sDefaultManager;
 
 - (void)postMatchChangedNotification:(NSInteger)matchId{
     // 发送比赛结束消息。
-    NSNumber * idObject = [NSNumber numberWithInt:matchId];
+    NSNumber * idObject = [NSNumber numberWithInteger:matchId];
     NSNotification * notification = [NSNotification notificationWithName:kMatchChanged object:idObject];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
 }

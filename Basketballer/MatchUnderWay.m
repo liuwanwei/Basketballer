@@ -127,7 +127,7 @@ static MatchUnderWay * sDefaultMatch = nil;
 - (BOOL)deleteWrongAction:(Action *)action{
     // 更新实时技术统计缓存TeamStatistics中的信息。
     TeamStatistics * statistics = [self statisticsForTeam:action.team];
-    if([statistics subtractStatistic:[action.type integerValue]]){
+    if([statistics subtractStatistic:(ActionType)[action.type integerValue]]){
         ActionManager * am = [ActionManager defaultManager];
         return [am deleteAction:action];
     }else{
@@ -135,7 +135,7 @@ static MatchUnderWay * sDefaultMatch = nil;
     }
 }
 
-- (void)setPeriod:(NSInteger)period{        
+- (void)setPeriod:(MatchPeriod)period{
     // 进入下一节时，清零犯规和暂停计数。
     if (period != _period || MatchPeriodUnplayed == period) {        
         if ([self.rule isTimeoutExpiredBeforePeriod:period]) {

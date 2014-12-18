@@ -84,7 +84,7 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    NSInteger fouls = 0;
+    int fouls = 0;
     NSMutableDictionary * data;
     UILabel * numberLabel = nil;
     UILabel * foulLabel = nil;
@@ -107,7 +107,7 @@ typedef enum{
         if (playersSize > 0 && indexPath.row < playersSize) {
             player = [self.players objectAtIndex:indexPath.row];
             //号码
-            numberLabel.text = [NSString stringWithFormat:@"%.2d", [player.number integerValue]];
+            numberLabel.text = [NSString stringWithFormat:@"%.2d", [player.number intValue]];
             //姓名
             nameLabel.text = player.name;
         }

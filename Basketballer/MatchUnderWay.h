@@ -38,7 +38,7 @@
 @property (nonatomic) MatchState state;
 
 // 当前所处节数。请调用者废弃自己定义的变量
-@property (nonatomic) NSInteger period;
+@property (nonatomic) MatchPeriod period;
 
 // 当前比赛状态的开始日期
 @property (nonatomic ,strong) NSDate * matchStateStartDate;

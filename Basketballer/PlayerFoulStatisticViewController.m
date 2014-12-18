@@ -29,7 +29,7 @@
     ActionManager * am = [ActionManager defaultManager];
     Player * player = [self.players objectAtIndex:indexPath.row];
     NSMutableDictionary * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
-    NSInteger fouls = [[data objectForKey:kPersonalFouls] intValue];
+    int fouls = [[data objectForKey:kPersonalFouls] intValue];
     
     cell.detailTextLabel.text = [cell.detailTextLabel.text stringByAppendingFormat:@" (%d)", fouls];
     

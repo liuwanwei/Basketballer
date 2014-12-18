@@ -88,7 +88,7 @@
     }
     
        //时间
-    NSInteger time = [action.time intValue];
+    int time = [action.time intValue];
     self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d", time/60,time%60];
 }
 

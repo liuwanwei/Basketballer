@@ -59,7 +59,7 @@
 - (void)updateTimeoutCountdownLabel:(NSInteger) time{
     NSInteger minuteLeft = time / 60;
     NSInteger secondLeft = time % 60;
-    NSString * timeLeftString = [NSString stringWithFormat:@"%.2d : %.2d",minuteLeft, secondLeft];
+    NSString * timeLeftString = [NSString stringWithFormat:@"%.2d : %.2d",(int)minuteLeft, (int)secondLeft];
     self.timeoutTimeLabel.text = timeLeftString;
 }
 

@@ -105,8 +105,6 @@
 		7914D02219E7D1DC008499A3 /* game_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01B19E7D1DB008499A3 /* game_setting@2x.png */; };
 		7914D02319E7D1DC008499A3 /* game_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01C19E7D1DC008499A3 /* game_start@2x.png */; };
 		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
-		7998CBB21A37D7FB00F6759A /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */; };
-		7998CBB41A37D82B00F6759A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7998CBB31A37D82B00F6759A /* libz.dylib */; };
 		79E33AE919E8CB9500AC46DE /* game_menu_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */; };
 		79E33AEA19E8CB9500AC46DE /* game_menu_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */; };
 		79E33AEC19E8D3D800AC46DE /* game_easy_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */; };
@@ -371,7 +369,6 @@
 		7914D01C19E7D1DC008499A3 /* game_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_start@2x.png"; path = "Resources/images/game_start@2x.png"; sourceTree = "<group>"; };
 		7998CBB01A37D7FB00F6759A /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = library/libMobClickLibrary.a; sourceTree = "<group>"; };
 		7998CBB11A37D7FB00F6759A /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = library/MobClick.h; sourceTree = "<group>"; };
-		7998CBB31A37D82B00F6759A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_off@2x.png"; path = "Resources/images/game_menu_off@2x.png"; sourceTree = "<group>"; };
 		79E33AE819E8CB9500AC46DE /* game_menu_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_menu_on@2x.png"; path = "Resources/images/game_menu_on@2x.png"; sourceTree = "<group>"; };
 		79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_easy_background@2x.png"; path = "Resources/images/game_easy_background@2x.png"; sourceTree = "<group>"; };
@@ -1503,7 +1500,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
-					"$(PROJECT_DIR)/Basketballer/library",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1527,7 +1523,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
-					"$(PROJECT_DIR)/Basketballer/library",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

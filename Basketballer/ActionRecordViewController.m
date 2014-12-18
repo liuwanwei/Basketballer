@@ -247,7 +247,7 @@
     }
     
     NSMutableDictionary * dic = [_actionRecords objectAtIndex:section];
-    NSString * peroid = [[MatchUnderWay defaultMatch] nameForPeriod:[[[dic allKeys] objectAtIndex:0] integerValue]];
+    NSString * peroid = [[MatchUnderWay defaultMatch] nameForPeriod:(MatchPeriod)[[[dic allKeys] objectAtIndex:0] integerValue]];
     UILabel * label = (UILabel *)[header viewWithTag:1];
     label.text = peroid;
     

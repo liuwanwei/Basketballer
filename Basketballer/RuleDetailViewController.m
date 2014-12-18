@@ -258,15 +258,15 @@
 
 - (NSString *)readableTime:(NSInteger)seconds{
     if (seconds % 60 == 0) {
-        return [NSString stringWithFormat:@"%d%@", seconds/60, LocalString(@"Minutes")];
+        return [NSString stringWithFormat:@"%d%@", (int)seconds/60, LocalString(@"Minutes")];
     }else{
-        return [NSString stringWithFormat:@"%d%@", seconds, LocalString(@"Seconds")];
+        return [NSString stringWithFormat:@"%d%@", (int)seconds, LocalString(@"Seconds")];
     }
 }
 
 - (NSString *)regularPeriodNumber{
     NSInteger number = [self.rule regularPeriodNumber];
-    return [NSString stringWithFormat:@"%d%@", number, LocalString(@"Period")];
+    return [NSString stringWithFormat:@"%d%@", (int)number, LocalString(@"Period")];
 }
  
 - (NSString *)periodTimeLength{
@@ -295,16 +295,16 @@
 }
 
 - (NSString *)playerFoulLimit{
-    return [NSString stringWithFormat:@"%d", [self.rule foulLimitForPlayer]];
+    return [NSString stringWithFormat:@"%d", (int)[self.rule foulLimitForPlayer]];
 }
             
 - (NSString *)teamFoulLimit{
-    return [NSString stringWithFormat:@"%d", [self.rule foulLimitForTeam]];
+    return [NSString stringWithFormat:@"%d", (int)[self.rule foulLimitForTeam]];
 }
     
 - (NSString *)timeoutLimitForPeriod:(MatchPeriod)period{
     if ([self.rule isKindOfClass:[FibaRule class]]) {
-        NSString * limit = [NSString stringWithFormat:@"%d%@", [self.rule timeoutLimitBeforeEndOfPeriod:period], LocalString(@"Seconds")];
+        NSString * limit = [NSString stringWithFormat:@"%d%@", (int)[self.rule timeoutLimitBeforeEndOfPeriod:period], LocalString(@"Seconds")];
         return limit;
     }else if([self.rule isKindOfClass:[Fiba3pbRule class]]){
         return LocalString(@"Forbidden");
