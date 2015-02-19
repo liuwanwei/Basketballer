@@ -117,9 +117,15 @@ static MatchUnderWay * sDefaultMatch = nil;
         notification = [NSNotification notificationWithName:kAddFoulMessage object:teamId];
     }else if([ActionManager isTimeoutAction:action]){
         notification = [NSNotification notificationWithName:kAddTimeoutMessage object:teamId];
+    }else if(ActionTypeRebound == action){
+        notification = [NSNotification notificationWithName:kAddReboundMessage object:teamId];
+    }else if(ActionTypeAssist == action){
+        notification = [NSNotification notificationWithName:kAddAssistMessage object:teamId];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    if (notification) {
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
     
     return YES;
 }

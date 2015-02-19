@@ -66,7 +66,12 @@
         case ActionTypeTimeoutRegular:
             actionStr = LocalString(@"TO");
             break;
-            
+        case ActionTypeRebound:
+            actionStr = LocalString(@"REB");
+            break;
+        case ActionTypeAssist:
+            actionStr = LocalString(@"AST");
+            break;
         default:
             break;
     }

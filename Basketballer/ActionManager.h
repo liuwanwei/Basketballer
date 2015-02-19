@@ -24,10 +24,12 @@
 #define kGuest              @"guest"
 
 #define kTimeoutMessage     @"kTimeout"
-#define kAddScoreMessage    @"kAddScore"
-#define kAddFoulMessage     @"kAddFoul"
-#define kAddTimeoutMessage  @"kAddTimeout"
-#define kDeleteActionMessage @"kDeleteAction"
+#define kAddScoreMessage    @"AddScore"
+#define kAddFoulMessage     @"AddFoul"
+#define kAddTimeoutMessage  @"AddTimeout"
+#define kAddAssistMessage   @"AddAssist"
+#define kAddReboundMessage  @"AddRebound"
+#define kDeleteActionMessage @"DeleteAction"
 
 // 计算技术统计时使用。
 #define kName               @"name"
@@ -35,16 +37,6 @@
 #define kPersonalFouls      @"PersonalFouls"
 #define k3PointMade         @"3PointMade"
 #define kFreeThrow          @"FreeThrow"
-
-// TODO 暂时放到这里。
-// 技术统计cell（MatchPartSummarCell）中控件的tag。
-typedef enum {
-    UICellName          = 1,
-    UICellPoints        = 2,
-    UICellFouls         = 3,
-    UICellThreePoints   = 4,
-    UICellFreeThrows    = 5
-}UIMatchPartSummaryCellTag;
 
 typedef enum {
     ActionTypeNone      = -1,
@@ -55,7 +47,10 @@ typedef enum {
     ActionTypeFoul      = 4,        // 犯规。
     ActionTypeTimeoutRegular = 5,   // 常规暂停。
     ActionTypeTimeoutShort = 6,     // 短暂停。
-    ActionTypeTimeoutOfficial = 7   // 官方暂停。
+    ActionTypeTimeoutOfficial = 7,  // 官方暂停。
+    ActionTypeRebound   = 8,        // 篮板
+    ActionTypeAssist    = 9,        // 助攻
+    ActionTypeBlock     = 10,       // 盖帽
 }ActionType;
 
 @class TeamStatistics;

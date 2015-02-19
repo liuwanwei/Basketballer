@@ -589,7 +589,8 @@ typedef enum {
     }
     
     // 检查是否允许暂停
-    if (ActionTypeTimeoutRegular == _selectActionType && ![self timeoutEnableWithTeamStatistics:self.selectedStatistics]) {
+    if (ActionTypeTimeoutRegular == _selectActionType &&
+        ![self timeoutEnableWithTeamStatistics:self.selectedStatistics]) {
         return;
     }
     

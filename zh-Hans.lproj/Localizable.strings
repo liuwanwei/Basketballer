@@ -87,6 +87,8 @@
 "1PTS" = "1 分";
 "PF" = "犯规";
 "TO" = "暂停";
+"REB" = "篮板";
+"AST" = "助攻";
 "Select" = "请选择";
 "ResumeTimer" = "继续计时";
 "NewStatistic" = "添加技术统计";
