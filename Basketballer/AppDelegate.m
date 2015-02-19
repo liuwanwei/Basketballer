@@ -14,7 +14,6 @@
 #import "GameSetting.h"
 #import "Feature.h"
 #import "MatchUnderWay.h"
-#import "WellKnownSaying.h"
 #import "MobClick.h"
 #import <UIKit/UIKit.h>
 #import "MobClick.h"
@@ -161,8 +160,6 @@ typedef enum {
     [self initNotificationBodyArray];
     
     application.statusBarStyle = UIStatusBarStyleDefault;
-    
-    //[[WellKnownSaying defaultSaying] requestSaying];
     
     [MobClick startWithAppkey:@"54602bcbfd98c5e602002428" reportPolicy:BATCH   channelId:@""];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];

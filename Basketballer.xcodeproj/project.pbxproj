@@ -187,7 +187,6 @@
 		E6F1E34F15ECEB5900FED24B /* ThreePoints@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F1E34B15ECEB5900FED24B /* ThreePoints@2x.png */; };
 		E6F1E35015ECEB5900FED24B /* TimeoutAction@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F1E34C15ECEB5900FED24B /* TimeoutAction@2x.png */; };
 		E6F1E35115ECEB5900FED24B /* TwoPoints@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F1E34D15ECEB5900FED24B /* TwoPoints@2x.png */; };
-		E6F1E36515EF41F300FED24B /* WellKnownSaying.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F1E36415EF41F200FED24B /* WellKnownSaying.m */; };
 		E6F1E36915EF533D00FED24B /* BasketballBlueWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F1E36715EF533D00FED24B /* BasketballBlueWhite.png */; };
 		E6F1E36A15EF533D00FED24B /* BasketballBlueWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F1E36815EF533D00FED24B /* BasketballBlueWhite@2x.png */; };
 		E6F1E36D15EF542800FED24B /* BasketballBlueRed.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F1E36B15EF542800FED24B /* BasketballBlueRed.png */; };
@@ -484,8 +483,6 @@
 		E6F1E34B15ECEB5900FED24B /* ThreePoints@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThreePoints@2x.png"; sourceTree = "<group>"; };
 		E6F1E34C15ECEB5900FED24B /* TimeoutAction@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TimeoutAction@2x.png"; sourceTree = "<group>"; };
 		E6F1E34D15ECEB5900FED24B /* TwoPoints@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TwoPoints@2x.png"; sourceTree = "<group>"; };
-		E6F1E36315EF41F200FED24B /* WellKnownSaying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WellKnownSaying.h; sourceTree = "<group>"; };
-		E6F1E36415EF41F200FED24B /* WellKnownSaying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WellKnownSaying.m; sourceTree = "<group>"; };
 		E6F1E36715EF533D00FED24B /* BasketballBlueWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BasketballBlueWhite.png; sourceTree = "<group>"; };
 		E6F1E36815EF533D00FED24B /* BasketballBlueWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BasketballBlueWhite@2x.png"; sourceTree = "<group>"; };
 		E6F1E36B15EF542800FED24B /* BasketballBlueRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BasketballBlueRed.png; sourceTree = "<group>"; };
@@ -648,8 +645,6 @@
 			children = (
 				FBB9027B1A1062D500CB7FD3 /* Umeng */,
 				FB957D0919DA8657007FC3DA /* category */,
-				E6F1E36315EF41F200FED24B /* WellKnownSaying.h */,
-				E6F1E36415EF41F200FED24B /* WellKnownSaying.m */,
 				3CCAE41415BD3E4F0030C302 /* LocationManager.h */,
 				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
 				3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */,
@@ -1397,7 +1392,6 @@
 				E62D384515EB5DBC004AA543 /* RuleDetailViewController.m in Sources */,
 				FB8A220719E3FE7100213057 /* StatisticCompareCell.m in Sources */,
 				3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */,
-				E6F1E36515EF41F300FED24B /* WellKnownSaying.m in Sources */,
 				3CC5633415F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m in Sources */,
 				3C06651E15F5AF2700B1DCB8 /* PlaySoundViewController.m in Sources */,
 				3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */,

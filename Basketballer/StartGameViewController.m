@@ -21,7 +21,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ActionManager.h"
 #import "MatchUnderWay.h"
-#import "WellKnownSaying.h"
 #import "AccountRuleDetailViewController.h"
 
 #import "FibaRule.h"
@@ -53,32 +52,6 @@
     // RGB(81, 86, 132)
     return [UIColor colorWithRed:0.317647 green:0.337254 blue:0.517647 alpha:1.0];
 }
-
-// 展示“名言警句”，暂时关闭。
-- (void)updateSaying:(NSDictionary *)saying{
-    if (saying) {
-        UILabel * wordsLabel = (UILabel *)[self.inspirationView viewWithTag:1];
-        UILabel * whomLabel = (UILabel *)[self.inspirationView viewWithTag:2];
-        UILabel * slash = (UILabel *)[self.inspirationView viewWithTag:3];
-        
-        NSString * words = [saying objectForKey:kWords];
-        wordsLabel.text = words;
-        
-        NSString * whom = [saying objectForKey:kWhom];
-        whomLabel.text = whom;
-        
-        wordsLabel.hidden = NO;
-        whomLabel.hidden = NO;
-        slash.hidden = NO;
-    }
-}
-
-//- (void)newSayingComing:(NSNotification *)notification{
-//    NSDictionary * saying = [[WellKnownSaying defaultSaying] lastSaying];
-//    if (nil != saying) {
-//        [self updateSayingWithWords:saying];
-//    }
-//}
 
 #pragma 类成员函数
 
@@ -125,13 +98,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    //NSDictionary * saying = [[WellKnownSaying defaultSaying] oneSaying];
-    //[self updateSaying:saying];
 }
 
 // 处理自定义规则消息
