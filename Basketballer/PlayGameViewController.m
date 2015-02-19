@@ -31,6 +31,7 @@
 #import "MobClick.h"
 #import "ImageManager.h"
 #import "UIImageView+Additional.h"
+#import <MBProgressHUD.h>
 
 typedef enum {
     AlertViewTagMatchFinish = 0,
@@ -197,6 +198,17 @@ typedef enum {
     [self.navigationController popToViewController:viewController animated:YES];
     
     [_match addActionForTeam:_selectTeamId forPlayer:playerId withAction:_selectActionType];
+    
+    [self toast:@"乔丹 得分+1"];// TODO: 用实际的内容
+}
+
+- (void)toast:(NSString *)title{
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = title;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:1.0f];
 }
 
 /*初始化暂停、犯规显示数据。
@@ -607,6 +619,7 @@ typedef enum {
         [self.navigationController pushViewController:playerList animated:YES];
     }else {
         [_match addActionForTeam:_selectTeamId forPlayer:nil withAction:_selectActionType];
+        [self toast:@"公牛 犯规+1"];// TODO: 用实际的
     }
 }
 

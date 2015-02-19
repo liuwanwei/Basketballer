@@ -87,7 +87,7 @@
                     <rect key="frame" x="128" y="448" width="30" height="4"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（向左滑动删除记录）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-fd-yUZ">
-                    <rect key="frame" x="100" y="82" width="120" height="14.5"/>
+                    <rect key="frame" x="100" y="82" width="120" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
@@ -113,11 +113,11 @@
                 <constraint firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="128" id="61"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="3lR-GB-BPK"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="10" secondAttribute="top" constant="152" id="4Bj-FC-7Fb"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8" symbolic="YES" id="7gs-TF-M9j"/>
-                <constraint firstItem="23" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="O6d-Qk-p8p"/>
-                <constraint firstItem="23" firstAttribute="top" secondItem="10" secondAttribute="top" id="YXt-eE-n2M"/>
-                <constraint firstItem="23" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="agC-0m-f2A"/>
-                <constraint firstItem="23" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="mJs-Fs-QGq"/>
+                <constraint firstItem="23" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="Jj5-hD-JZk"/>
+                <constraint firstItem="23" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="rFH-Xh-Ki8"/>
+                <constraint firstItem="23" firstAttribute="top" secondItem="10" secondAttribute="top" id="uMH-yD-E1M"/>
+                <constraint firstItem="23" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="xe9-dw-z5f"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8" symbolic="YES" id="ygK-FC-oDS"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="top" secondItem="29" secondAttribute="bottom" constant="3" id="zM9-FX-Xt4"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
