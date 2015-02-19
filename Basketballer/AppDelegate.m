@@ -146,7 +146,7 @@ typedef enum {
     NSInteger size = self.tabBarController.tabBar.items.count;
     for (NSInteger index = 0; index < size; index++) {
         UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:index];
-        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIFont fontWithName:@"Arial" size:11.0],UITextAttributeFont,nil] forState:UIControlStateNormal];
+        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont fontWithName:@"Arial" size:11.0],NSFontAttributeName,nil] forState:UIControlStateNormal];
         item.title = [titles objectAtIndex:index];
     }
 }

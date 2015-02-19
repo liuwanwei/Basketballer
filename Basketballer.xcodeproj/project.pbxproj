@@ -36,7 +36,6 @@
 		3C13E49B15C192DB00F4307C /* TimeStopPromptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C13E49A15C192DB00F4307C /* TimeStopPromptView.xib */; };
 		3C163C9E15DB3F4100552546 /* backNavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C163C9C15DB3F4100552546 /* backNavigationBar.png */; };
 		3C163C9F15DB3F4100552546 /* backNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C163C9D15DB3F4100552546 /* backNavigationBar@2x.png */; };
-		3C163CA715DB893100552546 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C163CA615DB893100552546 /* FXLabel.m */; };
 		3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3215C68F3400BAB6BE /* StartMatchView.m */; };
 		3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */; };
 		3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C35FA4915EE5970006B2470 /* MoreViewController.m */; };
@@ -96,6 +95,7 @@
 		3CF94EEC15DE3B320093EAA7 /* tabbarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF94EEA15DE3B320093EAA7 /* tabbarBackground@2x.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
+		7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */; };
 		7914D01519E67B31008499A3 /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914D01419E67B31008499A3 /* UIImageView+Additional.m */; };
 		7914D01D19E7D1DC008499A3 /* game_music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01619E7D1DB008499A3 /* game_music@2x.png */; };
 		7914D01E19E7D1DC008499A3 /* game_page_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01719E7D1DB008499A3 /* game_page_off@2x.png */; };
@@ -242,6 +242,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Basketballer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C06651C15F5AF2700B1DCB8 /* PlaySoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySoundViewController.h; sourceTree = "<group>"; };
 		3C06651D15F5AF2700B1DCB8 /* PlaySoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySoundViewController.m; sourceTree = "<group>"; };
 		3C06652F15F5FBE600B1DCB8 /* defence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = defence.wav; path = Resources/music/defence.wav; sourceTree = "<group>"; };
@@ -277,8 +278,6 @@
 		3C13E49A15C192DB00F4307C /* TimeStopPromptView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeStopPromptView.xib; sourceTree = "<group>"; };
 		3C163C9C15DB3F4100552546 /* backNavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backNavigationBar.png; path = Resources/images/backNavigationBar.png; sourceTree = "<group>"; };
 		3C163C9D15DB3F4100552546 /* backNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backNavigationBar@2x.png"; path = "Resources/images/backNavigationBar@2x.png"; sourceTree = "<group>"; };
-		3C163CA515DB893100552546 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
-		3C163CA615DB893100552546 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		3C2B1B3115C68F3400BAB6BE /* StartMatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMatchView.h; sourceTree = "<group>"; };
 		3C2B1B3215C68F3400BAB6BE /* StartMatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartMatchView.m; sourceTree = "<group>"; };
 		3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartMatchView.xib; sourceTree = "<group>"; };
@@ -358,6 +357,7 @@
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartGameViewController.xib; sourceTree = "<group>"; };
+		5E8918FA55ABDB8B782374E1 /* Pods-Basketballer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basketballer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Basketballer/Pods-Basketballer.release.xcconfig"; sourceTree = "<group>"; };
 		7914D01319E67B31008499A3 /* UIImageView+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additional.h"; sourceTree = "<group>"; };
 		7914D01419E67B31008499A3 /* UIImageView+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additional.m"; sourceTree = "<group>"; };
 		7914D01619E7D1DB008499A3 /* game_music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_music@2x.png"; path = "Resources/images/game_music@2x.png"; sourceTree = "<group>"; };
@@ -374,6 +374,7 @@
 		79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_recording_background@2x.png"; path = "Resources/images/game_recording_background@2x.png"; sourceTree = "<group>"; };
 		79E33AF119EA12F000AC46DE /* ActionRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordCell.h; sourceTree = "<group>"; };
 		79E33AF219EA12F000AC46DE /* ActionRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRecordCell.m; sourceTree = "<group>"; };
+		B0127007879EC2697FD9997C /* Pods-Basketballer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basketballer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Basketballer/Pods-Basketballer.debug.xcconfig"; sourceTree = "<group>"; };
 		E62222A715ECA692003FCDD3 /* DefaultGuestTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultGuestTeam.png; sourceTree = "<group>"; };
 		E62222A815ECA692003FCDD3 /* DefaultHomeTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultHomeTeam.png; sourceTree = "<group>"; };
 		E6275FBA15C0E69900FBE247 /* SurroundingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurroundingsViewController.h; sourceTree = "<group>"; };
@@ -565,6 +566,7 @@
 				3CC1681415A2E52A00A2AB44 /* CoreGraphics.framework in Frameworks */,
 				3CC1681615A2E52A00A2AB44 /* CoreData.framework in Frameworks */,
 				FBB902801A1062D500CB7FD3 /* libMobClickLibrary.a in Frameworks */,
+				7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,8 +650,6 @@
 				FB957D0919DA8657007FC3DA /* category */,
 				E6F1E36315EF41F200FED24B /* WellKnownSaying.h */,
 				E6F1E36415EF41F200FED24B /* WellKnownSaying.m */,
-				3C163CA515DB893100552546 /* FXLabel.h */,
-				3C163CA615DB893100552546 /* FXLabel.m */,
 				3CCAE41415BD3E4F0030C302 /* LocationManager.h */,
 				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
 				3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */,
@@ -689,6 +689,7 @@
 				FB1BA9301884E44300978359 /* Basketballer Tests */,
 				3CC1680E15A2E52A00A2AB44 /* Frameworks */,
 				3CC1680C15A2E52A00A2AB44 /* Products */,
+				892034BEC007CCBE8DD5BA66 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -714,6 +715,7 @@
 				3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */,
 				3CC1681515A2E52A00A2AB44 /* CoreData.framework */,
 				FB1BA92C1884E44300978359 /* XCTest.framework */,
+				0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -877,6 +879,15 @@
 				3C13E49715C192A900F4307C /* TimeStopPromptView.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		892034BEC007CCBE8DD5BA66 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0127007879EC2697FD9997C /* Pods-Basketballer.debug.xcconfig */,
+				5E8918FA55ABDB8B782374E1 /* Pods-Basketballer.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		E68D110315A2F7020074982D /* DataStore */ = {
@@ -1064,9 +1075,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "Basketballer" */;
 			buildPhases = (
+				DAC87DAFD8D83542763128CD /* Check Pods Manifest.lock */,
 				3CC1680715A2E52A00A2AB44 /* Sources */,
 				3CC1680815A2E52A00A2AB44 /* Frameworks */,
 				3CC1680915A2E52A00A2AB44 /* Resources */,
+				15DB2DB03C88DA8B5E483B61 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1278,6 +1291,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		15DB2DB03C88DA8B5E483B61 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Basketballer/Pods-Basketballer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAC87DAFD8D83542763128CD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3CC1680715A2E52A00A2AB44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1334,7 +1380,6 @@
 				E6914F6515D4E5DB002CAEE0 /* PlayerStatisticsViewController.m in Sources */,
 				E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */,
 				E6914F8915DA22ED002CAEE0 /* ChooseTeamViewController.m in Sources */,
-				3C163CA715DB893100552546 /* FXLabel.m in Sources */,
 				E658146C15DF4F8E007B4F7E /* BaseRule.m in Sources */,
 				E658147015DF5AC0007B4F7E /* FibaRule.m in Sources */,
 				E6BFB4DC15E2111A008E9BC6 /* NbaRule.m in Sources */,
@@ -1484,6 +1529,7 @@
 		};
 		3CC1682915A2E52B00A2AB44 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0127007879EC2697FD9997C /* Pods-Basketballer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1497,9 +1543,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1507,6 +1554,7 @@
 		};
 		3CC1682A15A2E52B00A2AB44 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E8918FA55ABDB8B782374E1 /* Pods-Basketballer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1520,9 +1568,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Umeng",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
