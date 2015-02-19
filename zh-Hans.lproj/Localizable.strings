@@ -67,7 +67,9 @@
 
 "Match" = "比赛";
 "Foul" = "犯规";
+"TeamFoul" = "全队犯规";
 "Timeout" = "暂停";
+"TeamFoul" = "全队暂停";
 "StartMatch" = "开始比赛";
 "SoundEffect" = "音效";
 "Setting" = "设置";

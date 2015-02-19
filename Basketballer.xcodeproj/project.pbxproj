@@ -198,6 +198,7 @@
 		FB1BA9351884E44300978359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB1BA9331884E44300978359 /* InfoPlist.strings */; };
 		FB1BA9371884E44300978359 /* Basketballer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9361884E44300978359 /* Basketballer_Tests.m */; };
 		FB1BA9411884E58300978359 /* AmateurRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9401884E58300978359 /* AmateurRuleTest.m */; };
+		FB292DFD1A95FD2A00792680 /* game_playing_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FB292DFC1A95FD2A00792680 /* game_playing_bg.png */; };
 		FB3C77BE1A0CA03300CAA3C8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3C77BC1A0CA03300CAA3C8 /* RosterViewController.m */; };
 		FB3C77BF1A0CA03300CAA3C8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB3C77BD1A0CA03300CAA3C8 /* RosterViewController.xib */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
@@ -497,6 +498,7 @@
 		FB1BA9361884E44300978359 /* Basketballer_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Basketballer_Tests.m; sourceTree = "<group>"; };
 		FB1BA9381884E44300978359 /* Basketballer Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basketballer Tests-Prefix.pch"; sourceTree = "<group>"; };
 		FB1BA9401884E58300978359 /* AmateurRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRuleTest.m; sourceTree = "<group>"; };
+		FB292DFC1A95FD2A00792680 /* game_playing_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_playing_bg.png; path = Images/game_playing_bg.png; sourceTree = "<group>"; };
 		FB3C77BB1A0CA03300CAA3C8 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RosterViewController.h; path = ../RosterViewController.h; sourceTree = "<group>"; };
 		FB3C77BC1A0CA03300CAA3C8 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RosterViewController.m; path = ../RosterViewController.m; sourceTree = "<group>"; };
 		FB3C77BD1A0CA03300CAA3C8 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RosterViewController.xib; path = ../RosterViewController.xib; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				FB292DFC1A95FD2A00792680 /* game_playing_bg.png */,
 				79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */,
 				79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */,
 				79E33AEB19E8D3D800AC46DE /* game_easy_background@2x.png */,
@@ -1191,6 +1194,7 @@
 				79E33AF019EA0E2B00AC46DE /* game_recording_background@2x.png in Resources */,
 				E6E032B715CBDA5600AF91CB /* Icon.png in Resources */,
 				FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */,
+				FB292DFD1A95FD2A00792680 /* game_playing_bg.png in Resources */,
 				FB928FD119D6BA8A00F76DC6 /* player_profile.png in Resources */,
 				E6E032B815CBDA5600AF91CB /* Icon@2x.png in Resources */,
 				E6E032CF15CFC0CA00AF91CB /* NewPlayerViewController.xib in Resources */,
