@@ -82,7 +82,7 @@ typedef enum{
 }
 
 - (void)statisticsSwitchValueChanged:(UISwitch *)sender{
-    [[GameSetting defaultSetting] setEnablePlayerStatistics:sender.on];
+//    [[GameSetting defaultSetting] setEnablePlayerStatistics:sender.on];
 }
 
 - (void)soundSwitchValueChanged:(UISwitch *)sender{
@@ -173,7 +173,7 @@ typedef enum{
         UISwitch * object = (UISwitch *)[cell.contentView viewWithTag:CellTagSwitch];
         if (0 == indexPath.section) {
             label.text = LocalString(@"PlayerStatistic");
-            isOn = [GameSetting defaultSetting].enablePlayerStatistics;            
+//            isOn = [GameSetting defaultSetting].enablePlayerStatistics;            
             [object addTarget:self action:@selector(statisticsSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
         }else if(1 == indexPath.section){
             isOn = [GameSetting defaultSetting].enableAutoPromptSound;

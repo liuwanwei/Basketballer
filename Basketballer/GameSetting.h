@@ -19,7 +19,8 @@
 #define kMatchModeAccount               @"简单记分"              // 简单计分模式。
 
 
-#define kPlayerStatistics               @"PlayerStatistics"
+#define kHomeTeamPlayerStatistics       @"HomeTeamPlayerStatistics"
+#define kGuestTeamPlayerStatistics      @"GuestTeamPlayerStatistics"
 #define kAutoPromptSound                @"AutoPromptSound"
 
 @interface GameSetting : NSObject
@@ -31,9 +32,12 @@
 @property (nonatomic, readonly) NSArray * gameModes;
 @property (nonatomic, readonly) NSArray * gameModeNames;                  
   
+// 是否开启主、客队球员技术统计。
+@property (nonatomic) BOOL enableHomeTeamPlayerStatistics;
+@property (nonatomic) BOOL enableGuestTeamPlayerStatistics;
 
-@property (nonatomic) BOOL enablePlayerStatistics;              // 是否开启球员技术统计。
-@property (nonatomic) BOOL enableAutoPromptSound;               // 是否开启自动提示声音。
+// 是否开启自动提示声音。
+@property (nonatomic) BOOL enableAutoPromptSound;
 
 + (GameSetting *) defaultSetting;
 

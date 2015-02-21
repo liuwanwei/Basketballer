@@ -1,13 +1,16 @@
 PODS:
   - FXLabel (1.5.8)
   - MBProgressHUD (0.9)
+  - XLForm (2.1.0)
 
 DEPENDENCIES:
   - FXLabel (~> 1.5.8)
   - MBProgressHUD (~> 0.9)
+  - XLForm (~> 2.1.0)
 
 SPEC CHECKSUMS:
   FXLabel: d7c2cb1d2903d7a7ac04855d470ecf2079f4881e
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b
 
 COCOAPODS: 0.35.0

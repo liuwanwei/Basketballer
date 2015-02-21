@@ -28,7 +28,7 @@
 
 
 // 工厂接口，通过规则名字生成规则
-+ (BaseRule *)ruleWithMode:(NSString *)mode{
++ (instancetype)ruleWithMode:(NSString *)mode{
      if ([mode isEqualToString:kMatchModeFiba]){
          return [[FibaRule alloc] initWithName:mode];
      }else if([mode isEqualToString:kMatchModeTpb]){

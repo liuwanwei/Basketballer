@@ -28,7 +28,8 @@
 
 - (void)testExample
 {
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    id obj = @(1);
+    XCTAssertNotNil(obj, @"nil is id");
 }
 
 @end

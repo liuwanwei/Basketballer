@@ -15,8 +15,9 @@
 #import "AppDelegate.h"
 #import "TimeStopPromptView.h"
 #import "StartMatchView.h"
-#import "NewActionViewController.h"
-#import "GameSettingViewController.h"
+//#import "NewActionViewController.h"
+//#import "GameSettingViewController.h"
+#import "GameSettingFormViewController.h"
 #import "SoundManager.h"
 #import "BaseRule.h"
 #import "PlayerFoulStatisticViewController.h"
@@ -45,7 +46,7 @@ typedef enum {
 @interface PlayGameViewController() {
     ActionManager * _actionManager;
     MatchUnderWay * _match;
-    NewActionViewController * _actionViewController;
+//    NewActionViewController * _actionViewController;
     TimeoutPromptView * _timeoutPromptView;
     
     NSNumber * _selectTeamId;
@@ -77,16 +78,16 @@ typedef enum {
     [alertView show];
 }
 
-- (void)showNewActionViewForTeam:(Team *)team withTeamStatistics:(TeamStatistics *)statistics {
-    if (_actionViewController == nil) {
-        _actionViewController = [[NewActionViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    }
-    
-    _actionViewController.team = team;
-    _actionViewController.statistics = statistics;
-    self.selectedStatistics = statistics;
-    [self.navigationController pushViewController:_actionViewController animated:YES];
-}
+//- (void)showNewActionViewForTeam:(Team *)team withTeamStatistics:(TeamStatistics *)statistics {
+//    if (_actionViewController == nil) {
+//        _actionViewController = [[NewActionViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    }
+//    
+//    _actionViewController.team = team;
+//    _actionViewController.statistics = statistics;
+//    self.selectedStatistics = statistics;
+//    [self.navigationController pushViewController:_actionViewController animated:YES];
+//}
 
 - (void)showPlayerFoulStatisticViewControllerForTeam:(Team *)team {
   
@@ -394,8 +395,10 @@ typedef enum {
 /*显示比赛设置界面:非编辑状态*/
 - (void)showGameSettingController {
     self.navigationController.navigationBarHidden = NO;
+    
+    GameSettingFormViewController * controller = [[GameSettingFormViewController alloc] init];
 
-    GameSettingViewController * controller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    GameSettingViewController * controller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     controller.ruleInUse = _match.rule;
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -587,14 +590,19 @@ typedef enum {
     }
     
     NSInteger tag = sender.tag;
+    BOOL isHomeTeam = NO;
     _selectTeamId = 0;
     
     // UIButton tag 主队分别为1、2、3、4、5；客队为101、102、103、104、105
     if (tag > kTeamTag) {
+        // 客队
+        isHomeTeam = NO;
         _selectTeamId = self.guestTeam.id;
         _selectActionType = (ActionType)(tag - kTeamTag);
         self.selectedStatistics = _match.guest;
     }else {
+        // 主队
+        isHomeTeam = YES;
         _selectTeamId = self.hostTeam.id;
         _selectActionType = (ActionType)tag;
         self.selectedStatistics = _match.home;
@@ -607,7 +615,8 @@ typedef enum {
     }
     
     // 球员开关打开时，记得分和犯规需要进入球员列表。
-    if ([GameSetting defaultSetting].enablePlayerStatistics
+    if (((isHomeTeam && [GameSetting defaultSetting].enableHomeTeamPlayerStatistics) ||
+        (!isHomeTeam && [GameSetting defaultSetting].enableGuestTeamPlayerStatistics))
         && ActionTypeTimeoutRegular != _selectActionType) {
         NSArray * players = [[PlayerManager defaultManager] playersForTeam:_selectTeamId];
         PlayerActionViewController * playerList = [[PlayerActionViewController alloc] initWithStyle:UITableViewStylePlain];

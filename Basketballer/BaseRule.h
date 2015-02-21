@@ -46,7 +46,7 @@ typedef enum{
 
 /****************** methods ******************/
 
-+ (BaseRule *)ruleWithMode:(NSString *)mode;
++ (instancetype)ruleWithMode:(NSString *)mode;
 
 - (id)initWithName:(NSString *)name;
 

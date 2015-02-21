@@ -24,9 +24,6 @@ static GameSetting * gameSettings;
 @synthesize gameModes = _gameModes;
 @synthesize gameModeNames = _gameModeNames;
 
-@synthesize enablePlayerStatistics = _enablePlayerStatistics;
-@synthesize enableAutoPromptSound = _enableAutoPromptSound;
-
 + (GameSetting *)defaultSetting{
     if (gameSettings == nil) {
         gameSettings = [[GameSetting alloc] init];
@@ -87,8 +84,13 @@ static GameSetting * gameSettings;
     return [self.dictionaryStore objectForKey:key];
 }
 
-- (BOOL)enablePlayerStatistics{
-    NSNumber * enabled = [self parameterForKey:kPlayerStatistics];
+- (BOOL)enableHomeTeamPlayerStatistics{
+    NSNumber * enabled = [self parameterForKey:kHomeTeamPlayerStatistics];
+    return [enabled boolValue];
+}
+
+- (BOOL)enableGuestTeamPlayerStatistics{
+    NSNumber * enabled = [self parameterForKey:kGuestTeamPlayerStatistics];
     return [enabled boolValue];
 }
 
@@ -97,11 +99,18 @@ static GameSetting * gameSettings;
     return [enabled boolValue];
 }
 
-- (void)setEnablePlayerStatistics:(BOOL)enablePlayerStatistics{
+- (void)setEnableHomeTeamPlayerStatistics:(BOOL)enablePlayerStatistics{
     NSNumber * number = [NSNumber numberWithBool:enablePlayerStatistics];
-    [self.dictionaryStore setObject:number forKey:kPlayerStatistics];
+    [self.dictionaryStore setObject:number forKey:kHomeTeamPlayerStatistics];
     [self syncToStore];
 }
+
+- (void)setEnableGuestTeamPlayerStatistics:(BOOL)enablePlayerStatistics{
+    NSNumber * number = [NSNumber numberWithBool:enablePlayerStatistics];
+    [self.dictionaryStore setObject:number forKey:kGuestTeamPlayerStatistics];
+    [self syncToStore];
+}
+
 
 - (void)setEnableAutoPromptSound:(BOOL)enableAutoPromptSound{
     NSNumber * number = [NSNumber numberWithBool:enableAutoPromptSound];
