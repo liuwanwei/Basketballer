@@ -64,6 +64,8 @@ static SoundManager * sSoundManager;
 }
 
 - (void)playSoundWithFileName:(NSString *)fileName {
+    [self stop];
+    
     NSURL *url = [[NSBundle mainBundle] URLForResource: fileName
                                            withExtension: @"wav"];
     NSError  *error;  
@@ -73,6 +75,13 @@ static SoundManager * sSoundManager;
         NSLog(@"播放失败");  
     else  
         [_audioPlayer  play];  
+}
+
+- (void)stop{
+    if (_audioPlayer) {
+        [_audioPlayer stop];
+        _audioPlayer = nil;
+    }
 }
 
 @end

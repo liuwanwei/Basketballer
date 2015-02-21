@@ -368,11 +368,14 @@ typedef enum {
 }
 
 - (IBAction)showPlaySoundController:(id)sender {
+    self.navigationController.navigationBarHidden = NO;
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
-    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
+    [self.navigationController pushViewController:playSoundViewController animated:YES];
+    
+//    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
 //    [self presentModalViewController:nav animated:YES];
-    [self presentViewController:nav animated:YES completion:nil];
+//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 /*
@@ -524,6 +527,8 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回比赛" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    
     _testSwitch = NO;
     
     [self initTeam];

@@ -21,5 +21,6 @@
 - (void)playSound;
 - (void)playMatchStartSound;
 - (void)playSoundWithFileName:(NSString *)fileName;
+- (void)stop;
 
 @end

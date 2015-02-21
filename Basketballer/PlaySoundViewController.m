@@ -22,17 +22,6 @@
 @synthesize tableView = _tableView;
 @synthesize cancelButton = _cancelButton;
 
-- (IBAction)back:(id)sender {
-//    [[AppDelegate delegate].playGameViewController dismissModalViewControllerAnimated:YES];
-    [[AppDelegate delegate].playGameViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)initNavitem {
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)];
-    
-    self.navigationItem.leftBarButtonItem = item;
-}
-
 - (NSString *)pageName {
     MatchUnderWay * match = [MatchUnderWay defaultMatch];
     NSString * pageName = @"PlaySound_";
@@ -46,8 +35,7 @@
     [super viewDidLoad];
     _soundManager = [SoundManager defaultManager];
     self.title = LocalString(@"SoundEffect");
-    [self initNavitem];
-    //[_cancelButton setTitle:LocalString(@"Cancel") forState:UIControlStateNormal];
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
@@ -76,15 +64,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    static NSArray * arr = nil;
+    if (arr == nil) {
+        arr = @[@"营造气氛", @"背景音乐",@"其它"];
+    }
+    
+    return arr[section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
         return _soundManager.soundsArray.count;
-    }else {
+    }else if(section == 1) {
         return _soundManager.backgroundArray.count;
+    }else if(section == 2){
+        return 1;
+    }else{
+        return 0;
     }
 }
 
@@ -98,10 +99,11 @@
     }
     if (indexPath.section == 0) {
         cell.textLabel.text = [_soundManager.soundsArray objectAtIndex:indexPath.row];
-    }else {
+    }else if(indexPath.section == 1){
         cell.textLabel.text = [_soundManager.backgroundArray objectAtIndex:indexPath.row];
+    }else{
+        cell.textLabel.text = @"停止播放";
     }
-    
     
     return cell;
 }
@@ -113,12 +115,15 @@
     NSString * soundName = nil;
     if (indexPath.section == 0) {
         soundName = [_soundManager.soundsArray objectAtIndex:indexPath.row];
-    }else {
+    }else if(indexPath.section == 1){
         soundName = [_soundManager.backgroundArray objectAtIndex:indexPath.row];
+    }else {
+        [_soundManager stop];
     }
     
-    [_soundManager playSoundWithFileName:soundName];
-    [self back:nil];
+    if (soundName) {
+        [_soundManager playSoundWithFileName:soundName];
+    }
 }
 
 @end

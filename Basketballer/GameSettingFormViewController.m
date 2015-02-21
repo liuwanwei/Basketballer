@@ -7,6 +7,7 @@
 //
 
 #import "GameSettingFormViewController.h"
+#import "RuleDetailViewController.h"
 #import "PlayGameViewController.h" // TODO: 应该通过Notification通信
 #import "GameSetting.h"
 #import "MatchUnderWay.h"
@@ -15,6 +16,7 @@
 NSString * const kSwitchBoolHomeTeamPlayer = @"switchBoolHomeTeamPlayer";
 NSString * const kSwitchBoolGuestTeamPlayer = @"switchBoolGuestTeamPlayer";
 NSString * const kSwitchBoolSoundEffect = @"switchBoolSoundEffect";
+NSString * const kGameRules = @"gameRule";
 NSString * const kButtonStop = @"buttonStop";
 
 @implementation GameSettingFormViewController
@@ -61,6 +63,13 @@ NSString * const kButtonStop = @"buttonStop";
     [sectionSound addFormRow:row];
     [form addFormSection:sectionSound];
     
+    // 比赛规则
+    XLFormSectionDescriptor * sectionRule = [XLFormSectionDescriptor formSectionWithTitle:nil];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kGameRules rowType:XLFormRowDescriptorTypeButton title:LocalString(@"Rule")];
+    row.buttonViewController = [RuleDetailViewController class];
+    [sectionRule addFormRow:row];
+    [form addFormSection:sectionRule];
+    
     // 结束比赛按钮
     XLFormSectionDescriptor * sectionStop = [XLFormSectionDescriptor formSectionWithTitle:nil];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonStop rowType:XLFormRowDescriptorTypeButton title:LocalString(@"FinishMatch")];
@@ -71,6 +80,14 @@ NSString * const kButtonStop = @"buttonStop";
     self.form = form;
 
 }
+
+//- (void)showRuleDetails:(id)sender{
+//    RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    vc.editable = NO;
+//    vc.rule = self.ruleInUse;
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//}
 
 - (void)finishButtonClicked:(id)sender{
     PlayGameViewController * playViewController = [[AppDelegate delegate] playGameViewController];

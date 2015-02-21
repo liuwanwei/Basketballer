@@ -15,6 +15,7 @@
 #import "CustomRuleViewController.h"
 #import "AppDelegate.h"
 #import "Feature.h"
+#import "MatchUnderWay.h"
 
 @interface RuleDetailViewController (){
     NSArray * _ruleTypeHeader;
@@ -135,6 +136,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (self.rule == nil) {
+        self.rule = [MatchUnderWay defaultMatch].rule;
+    }
     
     [self makeRuleDetailString];
     
