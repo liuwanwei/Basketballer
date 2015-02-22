@@ -22,9 +22,6 @@
 //#import "UMSocialScreenShoter.h"
 
 @interface GameStatisticViewController (){
-    NSString * _homePoints;
-    NSString * _guestPoints;
-    
     Team * _homeTeam;
     Team * _guestTeam;
     
@@ -217,6 +214,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     _sectionHeaders = [NSMutableArray arrayWithObjects:
+                       @"每节得分",
                        LocalString(@"MatchDetailViewHeader"),
                        LocalString(@"HomeStatisticHeader"),
                        LocalString(@"GuestStatisticHeader"), nil];
@@ -233,11 +231,14 @@
     if ([header isKindOfClass:[StatisticSectionHeaderView class]]) {
         switch (section) {
             case 0:
+                [header changeToPeriodStatistics];
                 break;
             case 1:
-                header.nameLabel.text = @"主队队员";//_homeTeam.name;
                 break;
             case 2:
+                header.nameLabel.text = @"主队队员";//_homeTeam.name;
+                break;
+            case 3:
                 header.nameLabel.text = @"客队队员";//_guestTeam.name;
                 break;
             default:
@@ -257,9 +258,12 @@
             rows = 2;
             break;
         case 1:
-            rows = _homeTeamPlayers.count;
+            rows = 2;
             break;
         case 2:
+            rows = _homeTeamPlayers.count;
+            break;
+        case 3:
             rows = _guestTeamPlayers.count;
             break;
         default:
@@ -267,30 +271,6 @@
     }
     
     return rows;
-}
-
-- (void)setStatisticsForCell:(StatisticCell *)cell atIndexPath:(NSIndexPath *)indexPath{
-    ActionManager * am = [ActionManager defaultManager];
-    Statistics * statistics = nil;
-    if (indexPath.section == 0) {
-        Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
-        statistics = [am statisticsForTeam:teamInfo.id inPeriod:MatchPeriodAll inActions:_actionsInMatch];
-        statistics.name = teamInfo.name;
-    }
-//    else{
-//        NSInteger period = indexPath.section - 2;
-//        if (indexPath.row == 1) {
-//            // 主队第period节技术统计。
-//            statistics = [am statisticsForTeam:_match.homeTeam inPeriod:period inActions:_actionsInMatch];
-//            [statistics setObject:_homeTeam.name forKey:kName];
-//        }else{
-//            // 客队第period节技术统计。
-//            statistics = [am statisticsForTeam:_match.guestTeam inPeriod:period inActions:_actionsInMatch];
-//            [statistics setObject:_guestTeam.name forKey:kName];
-//        }
-//    }
-    
-    [cell setStatistic:statistics];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -302,33 +282,41 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil] lastObject];
     }
 
-    if(indexPath.section == 0){
+    ActionManager * am = [ActionManager defaultManager];
+    
+    if (indexPath.section == 0) {
+        Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
+        
+        // 设置每一节的得分信息
+        NSDictionary * dict = [am periodPointsForTeam:teamInfo.id inActions:_actionsInMatch];
+        [cell setPeriodPoints:dict withTeamName:teamInfo.name];
+        
+        // 设置总分信息
+        NSNumber * points = (indexPath.row == 0 ? _match.homePoints : _match.guestPoints);
+        [cell setTotalPoints:points];
+        
+    }else if(indexPath.section == 1){
         // 球队技术统计。
         // 在xib中设置UITableViewCell的reuseIdentifier。
-        [self setStatisticsForCell:cell atIndexPath:indexPath];
-    }else{
+        
+        Statistics * statistics = nil;
+        Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
+        statistics = [am statisticsForTeam:teamInfo.id inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+        statistics.name = teamInfo.name;
+        
+        [cell setStatistic:statistics];
+        
+    }else if(indexPath.section == 2 || indexPath.section == 3){
         ActionManager * am = [ActionManager defaultManager];
         NSArray * players = (indexPath.section == 1 ? _homeTeamPlayers : _guestTeamPlayers);
         Player * player = [players objectAtIndex:indexPath.row];
         Statistics * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
         data.name = player.name;
-//        [data setObject:player.name forKey:kName];
+        
         [cell setStatistic:data];
     }
     
     return cell;
 }
-
-#pragma mark UITableViewDelegate
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 1) {
-//        NSNumber * team = indexPath.row == 0 ? _match.homeTeam : _match.guestTeam;
-//        PlayerStatisticsViewController * viewController = [[PlayerStatisticsViewController alloc] initWithStyle:UITableViewStylePlain];
-//        [viewController initWithTeamId:team];
-//        viewController.actionsInMatch = _actionsInMatch;
-//        viewController.title = [[TeamManager defaultManager] teamWithId:team].name;
-//        [self.navigationController pushViewController:viewController animated:YES];
-//    }
-//}
 
 @end

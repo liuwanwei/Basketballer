@@ -21,5 +21,8 @@
 @property (nonatomic, weak) IBOutlet UILabel * foulLabel;
 
 - (void)setStatistic:(Statistics *)statistics;
+
+- (void)setPeriodPoints:(NSDictionary *)dictionary withTeamName:(NSString *)teamName;
+- (void)setTotalPoints:(NSNumber *)points;
     
 @end

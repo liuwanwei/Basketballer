@@ -18,11 +18,14 @@
 }
 */
 
-- (void)hideStatisticLabel{
-    self.pointsLabel.hidden = YES;
-    self.threePointsLabel.hidden = YES;
-    self.freeThrowLabel.hidden = YES;
-    self.foulLabel.hidden = YES;
+
+- (void)changeToPeriodStatistics{
+    self.pointsLabel.text = @"1st";
+    self.reboundsLabel.text = @"2nd";
+    self.assistsLabel.text = @"3rd";
+    self.threePointsLabel.text = @"4th";
+    self.freeThrowLabel.text = @"加时";
+    self.foulLabel.text = @"总分";
 }
 
 @end

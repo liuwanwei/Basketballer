@@ -248,12 +248,48 @@ static ActionManager * sActionManager;
     for (Action * action in actions) {
         NSInteger tempPeriod = [action.period integerValue];
         NSInteger tempTeamId = [action.team integerValue];
+        
         if (tempTeamId == teamId && (MatchPeriodAll == period || tempPeriod == period)) {
             [self addAction:action toStatistics:statistics];
         }
     }
     
     return statistics;
+}
+
+- (NSDictionary *)periodPointsForTeam:(NSNumber *)team inActions:(NSArray *)actions{
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+    NSInteger teamId = [team integerValue];
+    
+    for (Action * action in actions) {
+        NSInteger tempTeamId = [action.team integerValue];
+        ActionType actionType = (ActionType)[action.type integerValue];
+        if (tempTeamId != teamId || ![[self class] isPointAction:actionType]) {
+            continue;
+        }
+        
+        if ([action.period integerValue] >= MatchPeriodOvertime) {
+            // 计算加时赛总得分
+            Statistics * overTime = dict[@(MatchPeriodOvertime)];
+            if (overTime == nil) {
+                overTime = [[Statistics alloc] init];
+                dict[@(MatchPeriodOvertime)] = overTime;
+            }
+            [self addAction:action toStatistics:overTime];
+            
+        }else{
+            // 结算每个小结得分
+            id statistics = dict[action.period];
+            if (dict[action.period] == nil) {
+                statistics = [[Statistics alloc] init];
+                dict[action.period] = statistics;
+            }
+            [self addAction:action toStatistics:statistics];
+
+        }
+    }
+    
+    return dict;
 }
 
 // 目前只计算全场技术统计，但暂时保留period参数，因为我还不确定个人单节技术统计是否真的没有必要。

@@ -100,10 +100,12 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="assistsLabel" destination="Ecq-7Z-XUk" id="eyg-Cf-oiU"/>
                 <outlet property="foulLabel" destination="JO5-OS-zDm" id="rzl-aZ-BIL"/>
                 <outlet property="freeThrowLabel" destination="r2T-cf-CYb" id="SCF-B6-Q4D"/>
                 <outlet property="nameLabel" destination="CJ9-sC-cyH" id="dlj-bJ-tAq"/>
                 <outlet property="pointsLabel" destination="R7s-jn-BP6" id="Mnd-dW-Cma"/>
+                <outlet property="reboundsLabel" destination="7ft-Wf-pWA" id="MF5-Af-PBM"/>
                 <outlet property="threePointsLabel" destination="fRV-tj-f2G" id="GDu-wx-NP4"/>
             </connections>
             <point key="canvasLocation" x="241" y="218"/>

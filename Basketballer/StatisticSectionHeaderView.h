@@ -12,10 +12,12 @@
 
 @property (nonatomic, weak) IBOutlet UILabel * nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * pointsLabel;
+@property (nonatomic, weak) IBOutlet UILabel * reboundsLabel;
+@property (nonatomic, weak) IBOutlet UILabel * assistsLabel;
 @property (nonatomic, weak) IBOutlet UILabel * threePointsLabel;
 @property (nonatomic, weak) IBOutlet UILabel * freeThrowLabel;
 @property (nonatomic, weak) IBOutlet UILabel * foulLabel;
 
-- (void)hideStatisticLabel;
+- (void)changeToPeriodStatistics;
 
 @end

@@ -84,6 +84,8 @@ typedef enum {
 // 获取球队在某个阶段的技术统计汇总信息。
 - (Statistics *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions;
 
+- (NSDictionary *)periodPointsForTeam:(NSNumber *)team inActions:(NSArray *)actions;
+
 // 获取球员全场的技术统计信息。
 - (Statistics *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions;
 
