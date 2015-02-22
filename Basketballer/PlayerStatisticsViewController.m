@@ -46,9 +46,9 @@
     
     ActionManager * am = [ActionManager defaultManager];
     Player * player = [self.players objectAtIndex:indexPath.row];
-    NSMutableDictionary * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
+    Statistics * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
 //    NSString * stringNumber = [NSString stringWithFormat:@"%02d", [player.number integerValue]];
-    [data setObject:player.name forKey:kName];
+    data.name = player.name;
 //    [GameStatisticViewController setDataForCell:cell withStatistics:data];
     
     return cell;

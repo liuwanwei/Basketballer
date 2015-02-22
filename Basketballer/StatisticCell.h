@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class Statistics;
+
 @interface StatisticCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * pointsLabel;
+@property (nonatomic, weak) IBOutlet UILabel * reboundsLabel;
+@property (nonatomic, weak) IBOutlet UILabel * assistLabel;
 @property (nonatomic, weak) IBOutlet UILabel * threePointsLabel;
 @property (nonatomic, weak) IBOutlet UILabel * freeThrowLabel;
 @property (nonatomic, weak) IBOutlet UILabel * foulLabel;
 
-- (void)setStatistic:(NSDictionary *)statistics;
+- (void)setStatistic:(Statistics *)statistics;
     
 @end

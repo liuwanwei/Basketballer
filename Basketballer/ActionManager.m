@@ -241,76 +241,66 @@ static ActionManager * sActionManager;
     return _documentURL;
 }
 
-- (NSMutableDictionary *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions{
+- (Statistics *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions{
+    Statistics * statistics = [[Statistics alloc] init];
     NSInteger teamId = [team integerValue];
-    int pts = 0, pf = 0, threePM = 0, ft = 0;
+    
     for (Action * action in actions) {
         NSInteger tempPeriod = [action.period integerValue];
         NSInteger tempTeamId = [action.team integerValue];
         if (tempTeamId == teamId && (MatchPeriodAll == period || tempPeriod == period)) {
-            NSInteger actionType = [action.type integerValue];
-            switch (actionType) {
-                case ActionType1Point:
-                    pts ++;
-                    ft ++;
-                    break;
-                case ActionType2Points:
-                    pts += 2;
-                    break;
-                case ActionType3Points:
-                    pts += 3;
-                    threePM += 3;
-                    break;
-                case ActionTypeFoul:
-                    pf += 1;
-                    break;
-                default:
-                    break;
-            }
+            [self addAction:action toStatistics:statistics];
         }
     }
     
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", pts] forKey:kPoints];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", pf] forKey:kPersonalFouls];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", threePM] forKey:k3PointMade];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", ft] forKey:kFreeThrow];
-    
-    return dictionary;
+    return statistics;
 }
 
 // 目前只计算全场技术统计，但暂时保留period参数，因为我还不确定个人单节技术统计是否真的没有必要。
-- (NSMutableDictionary *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions{
-    int pts = 0, pf = 0, threePM = 0, ft = 0;
+- (Statistics *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions{
+    Statistics * statistics = [[Statistics alloc] init];
     for(Action * action in actions){
         if (playerId != nil && [action.player isEqualToNumber:playerId]) {
-            switch([action.type integerValue]){
-                case ActionType1Point:
-                    pts ++;
-                    ft ++;
-                    break;
-                case ActionType2Points:
-                    pts += 2;
-                    break;
-                case ActionType3Points:
-                    pts += 3;
-                    threePM += 3;
-                    break;
-                case ActionTypeFoul:
-                    pf += 1;
-                    break;
-                default:
-                    break;
-            }
+            [self addAction:action toStatistics:statistics];
         }
     }
+
+    return statistics;
+}
+
+- (void)addAction:(Action *)action toStatistics:(Statistics *)statistics{
+    ActionType actionType = (ActionType)[action.type integerValue];
     
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", pts] forKey:kPoints];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", pf] forKey:kPersonalFouls];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", threePM] forKey:k3PointMade];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", ft] forKey:kFreeThrow];
-    return dictionary;
+    switch(actionType){
+        case ActionType1Point:
+            statistics.points ++;
+            statistics.freeThrows ++;
+            break;
+        case ActionType2Points:
+            statistics.points += 2;
+            break;
+        case ActionType3Points:
+            statistics.points += 3;
+            statistics.threePoints += 3;
+            break;
+        case ActionTypeRebound:
+            statistics.rebounds ++;
+            break;
+        case ActionTypeAssist:
+            statistics.assistants ++;
+            break;
+        case ActionTypeFoul:
+            statistics.fouls ++;
+            break;
+        case ActionTypeTimeoutOfficial:
+        case ActionTypeTimeoutRegular:
+        case ActionTypeTimeoutShort:
+            statistics.timeouts ++;
+            break;
+        default:
+            NSLog(@"未处理的技术统计类型");
+            break;
+    }
 }
 
 @end

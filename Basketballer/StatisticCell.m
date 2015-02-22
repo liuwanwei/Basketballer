@@ -21,12 +21,14 @@
     // Configure the view for the selected state
 }
 
-- (void)setStatistic:(NSDictionary *)statistics{
-    self.nameLabel.text = [statistics objectForKey:kName];
-    self.pointsLabel.text = [statistics objectForKey:kPoints];
-    self.foulLabel.text = [statistics objectForKey:kPersonalFouls];
-    self.threePointsLabel.text = [statistics objectForKey:k3PointMade];
-    self.freeThrowLabel.text = [statistics objectForKey:kFreeThrow];
+- (void)setStatistic:(Statistics *)statistics{
+    self.nameLabel.text = statistics.name;
+    self.pointsLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.points];
+    self.reboundsLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.rebounds];
+    self.assistLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.assistants];
+    self.foulLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.fouls];
+    self.threePointsLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.threePoints];
+    self.freeThrowLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.freeThrows];
 }
 
 

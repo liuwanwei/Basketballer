@@ -12,6 +12,7 @@
 #import "Action.h"
 #import "Match.h"
 #import "Player.h"
+#import "Statistics.h"
 
 #define kActionEntity       @"Action"
 #define kMatchField         @"match"
@@ -34,6 +35,8 @@
 // 计算技术统计时使用。
 #define kName               @"name"
 #define kPoints             @"Points"
+#define kRebounds           @"Rebounds"
+#define kAssists            @"Assists"
 #define kPersonalFouls      @"PersonalFouls"
 #define k3PointMade         @"3PointMade"
 #define kFreeThrow          @"FreeThrow"
@@ -79,10 +82,10 @@ typedef enum {
 - (NSMutableArray *)summaryForFilter:(NSInteger)filter withTeam:(NSInteger)team inActions:(NSArray *)actions;
 
 // 获取球队在某个阶段的技术统计汇总信息。
-- (NSMutableDictionary *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions;
+- (Statistics *)statisticsForTeam:(NSNumber *)team inPeriod:(NSInteger)period inActions:(NSArray *)actions;
 
 // 获取球员全场的技术统计信息。
-- (NSMutableDictionary *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions;
+- (Statistics *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions;
 
 - (BOOL)deleteAction:(Action *)action;
 - (void)deleteActionsInMatch:(NSInteger)matchId;

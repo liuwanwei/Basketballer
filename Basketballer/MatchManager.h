@@ -52,7 +52,7 @@ typedef enum {
 
 - (NSArray *)matchesWithTeamId:(NSInteger) teamId;
 
-- (NSDictionary *)statisticsForTeam:(NSInteger) teamId onDate:(NSDate *)date;
+//- (NSDictionary *)statisticsForTeam:(NSInteger) teamId onDate:(NSDate *)date;
 
 // 声明比赛结束。
 - (void)stopMatch:(Match *)match;

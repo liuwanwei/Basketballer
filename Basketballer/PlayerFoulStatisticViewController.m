@@ -28,10 +28,10 @@
     
     ActionManager * am = [ActionManager defaultManager];
     Player * player = [self.players objectAtIndex:indexPath.row];
-    NSMutableDictionary * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
-    int fouls = [[data objectForKey:kPersonalFouls] intValue];
+    Statistics * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
+    NSInteger fouls = data.fouls;
     
-    cell.detailTextLabel.text = [cell.detailTextLabel.text stringByAppendingFormat:@" (%d)", fouls];
+    cell.detailTextLabel.text = [cell.detailTextLabel.text stringByAppendingFormat:@" (%d)", (int)fouls];
     
     if ([MatchUnderWay defaultMatch].rule.foulLimitForPlayer < fouls) {
         cell.detailTextLabel.textColor = [UIColor redColor];

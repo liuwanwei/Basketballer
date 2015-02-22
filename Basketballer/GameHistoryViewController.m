@@ -104,6 +104,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:nil action:nil];
+    
     [self loadMatchHistory];
     
     self.tableView.rowHeight = 100.0f;

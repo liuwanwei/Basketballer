@@ -84,8 +84,8 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    int fouls = 0;
-    NSMutableDictionary * data;
+    NSInteger fouls = 0;
+    Statistics * data;
     UILabel * numberLabel = nil;
     UILabel * foulLabel = nil;
     Player * player;
@@ -119,11 +119,11 @@ typedef enum{
     if (playersSize > 0 && indexPath.row < playersSize) {
         ActionManager * am = [ActionManager defaultManager];
         data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
-        fouls = [[data objectForKey:kPersonalFouls] intValue];
+        fouls = data.fouls;
         if (_actionType == ActionTypeFoul) {
             //犯规数
             foulLabel = (UILabel *)[cell.contentView viewWithTag:PlayerCellTagFoul]; 
-            foulLabel.text = [NSString stringWithFormat:@"%d", fouls];
+            foulLabel.text = [NSString stringWithFormat:@"%d", (int)fouls];
         }
     }
     

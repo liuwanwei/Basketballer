@@ -95,8 +95,8 @@ static MatchUnderWay * sDefaultMatch = nil;
         }
     }else if([ActionManager isFoulAction:action]){
         // 超过个人最大犯规次数后，需要罚下该球员。
-        NSMutableDictionary * playerStatistics = [am statisticsForPlayer:player inActions:am.actionArray];
-        NSInteger personalFouls = [[playerStatistics objectForKey:kPersonalFouls] integerValue];
+        Statistics * playerStatistics = [am statisticsForPlayer:player inActions:am.actionArray];
+        NSInteger personalFouls = playerStatistics.fouls;
         if(personalFouls > self.rule.foulLimitForPlayer){
             if (_delegate != nil){   
                 if([_delegate respondsToSelector:@selector(FoulsBeyondLimitForPlayer:)]) {

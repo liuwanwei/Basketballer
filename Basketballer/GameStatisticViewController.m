@@ -67,8 +67,8 @@
 - (NSString *)snsString {
     NSString * result = nil;
     ActionManager * am = [ActionManager defaultManager];
-    NSMutableDictionary * homeStatistics;
-    NSMutableDictionary * guestStatistics;
+    Statistics * homeStatistics;
+    Statistics * guestStatistics;
     homeStatistics = [am statisticsForTeam:_match.homeTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
     guestStatistics = [am statisticsForTeam:_match.guestTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
     
@@ -79,9 +79,9 @@
     result = [result stringByAppendingString:_guestTeam.name];
     result = [result stringByAppendingString:@" "];
     
-    result = [result stringByAppendingString:[homeStatistics objectForKey:kPoints]];
+    result = [result stringByAppendingString:[NSString stringWithFormat:@"%d", (int)homeStatistics.points]];
     result = [result stringByAppendingString:@" : "];
-    result = [result stringByAppendingString:[guestStatistics objectForKey:kPoints]];
+    result = [result stringByAppendingString:[NSString stringWithFormat:@"%d", (int)guestStatistics.points]];
     return result;
 }
 
@@ -235,10 +235,10 @@
             case 0:
                 break;
             case 1:
-                header.nameLabel.text = _homeTeam.name;
+                header.nameLabel.text = @"主队队员";//_homeTeam.name;
                 break;
             case 2:
-                header.nameLabel.text = _guestTeam.name;
+                header.nameLabel.text = @"客队队员";//_guestTeam.name;
                 break;
             default:
                 break;
@@ -271,11 +271,11 @@
 
 - (void)setStatisticsForCell:(StatisticCell *)cell atIndexPath:(NSIndexPath *)indexPath{
     ActionManager * am = [ActionManager defaultManager];
-    NSMutableDictionary * statistics;
+    Statistics * statistics = nil;
     if (indexPath.section == 0) {
         Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
         statistics = [am statisticsForTeam:teamInfo.id inPeriod:MatchPeriodAll inActions:_actionsInMatch];
-        [statistics setObject:teamInfo.name forKey:kName];
+        statistics.name = teamInfo.name;
     }
 //    else{
 //        NSInteger period = indexPath.section - 2;
@@ -310,8 +310,9 @@
         ActionManager * am = [ActionManager defaultManager];
         NSArray * players = (indexPath.section == 1 ? _homeTeamPlayers : _guestTeamPlayers);
         Player * player = [players objectAtIndex:indexPath.row];
-        NSMutableDictionary * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
-        [data setObject:player.name forKey:kName];
+        Statistics * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
+        data.name = player.name;
+//        [data setObject:player.name forKey:kName];
         [cell setStatistic:data];
     }
     

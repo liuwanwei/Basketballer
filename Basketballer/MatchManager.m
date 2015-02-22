@@ -173,35 +173,35 @@ static MatchManager * sDefaultManager;
     return [dateString isEqualToString:otherString];    
 }
 
-- (NSInteger)winnerForMatch:(Match *)match{
-    NSNumber * winner;
-    NSComparisonResult result = [match.homePoints compare:match.guestPoints];
-    winner = (result == NSOrderedDescending ? match.homeTeam : match.guestTeam);
-    return [winner integerValue];
-}
+//- (NSInteger)winnerForMatch:(Match *)match{
+//    NSNumber * winner;
+//    NSComparisonResult result = [match.homePoints compare:match.guestPoints];
+//    winner = (result == NSOrderedDescending ? match.homeTeam : match.guestTeam);
+//    return [winner integerValue];
+//}
 
 // date == nil : 获取球队历史总战绩。
 // date == 某天 : 获取某天球队的总战绩。
-- (NSDictionary *)statisticsForTeam:(NSInteger)teamId onDate:(NSDate *)date{    
-    NSInteger winnings = 0, losings = 0;
-    NSArray * matches = [self matchesWithTeamId:teamId];
-    for (Match * match in matches) {
-        if (date == nil || [self date:match.date equalToDate:date]) {
-            if ([self winnerForMatch:match] == teamId) {
-                winnings ++;
-            }else{
-                losings ++;
-            }
-        }
-    }
-    
-    NSNumber * winningCount = [NSNumber numberWithInteger:winnings];
-    NSNumber * losingCount = [NSNumber numberWithInteger:losings];
-    
-    NSDictionary * result = [NSDictionary dictionaryWithObjectsAndKeys:winningCount, kWinning, losingCount, kLosing, nil];
-
-    return result;
-}
+//- (NSDictionary *)statisticsForTeam:(NSInteger)teamId onDate:(NSDate *)date{    
+//    NSInteger winnings = 0, losings = 0;
+//    NSArray * matches = [self matchesWithTeamId:teamId];
+//    for (Match * match in matches) {
+//        if (date == nil || [self date:match.date equalToDate:date]) {
+//            if ([self winnerForMatch:match] == teamId) {
+//                winnings ++;
+//            }else{
+//                losings ++;
+//            }
+//        }
+//    }
+//    
+//    NSNumber * winningCount = [NSNumber numberWithInteger:winnings];
+//    NSNumber * losingCount = [NSNumber numberWithInteger:losings];
+//    
+//    NSDictionary * result = [NSDictionary dictionaryWithObjectsAndKeys:winningCount, kWinning, losingCount, kLosing, nil];
+//
+//    return result;
+//}
 
 
 @end
