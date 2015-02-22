@@ -346,7 +346,7 @@ typedef enum {
     if (_timeoutPromptView == nil) {
          _timeoutPromptView = [[TimeoutPromptView alloc] initWithFrame:CGRectZero];
     }
-    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, 320.0, 190.0);
+    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, 320.0, 144.0);
     _timeoutPromptView.mode = mode;
     [_timeoutPromptView updateLayout];
     [self.view addSubview:_timeoutPromptView];

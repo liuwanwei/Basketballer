@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">13F34</string>
-		<string key="IBDocument.InterfaceBuilderVersion">6245</string>
-		<string key="IBDocument.AppKitVersion">1265.21</string>
-		<string key="IBDocument.HIToolboxVersion">698.00</string>
+		<int key="IBDocument.SystemTarget">1792</int>
+		<string key="IBDocument.SystemVersion">14A389</string>
+		<string key="IBDocument.InterfaceBuilderVersion">6254</string>
+		<string key="IBDocument.AppKitVersion">1343.14</string>
+		<string key="IBDocument.HIToolboxVersion">755.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">6238</string>
+			<string key="NS.object.0">6247</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="822857434">
 						<reference key="NSNextResponder" ref="317766682"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 190}</string>
+						<string key="NSFrameSize">{320, 144}</string>
 						<reference key="NSSuperview" ref="317766682"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="476781862"/>
@@ -48,13 +48,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">game_pauseing_background.png</string>
+							<string key="NSResourceName">game_playing_bg.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="476781862">
 						<reference key="NSNextResponder" ref="317766682"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 190}</string>
+						<string key="NSFrameSize">{320, 144}</string>
 						<reference key="NSSuperview" ref="317766682"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -85,7 +85,7 @@
 						<bool key="useAutomaticPreferredMaxLayoutWidth">YES</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 190}</string>
+				<string key="NSFrameSize">{320, 144}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="822857434"/>
@@ -229,7 +229,7 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../Basketballer/TimeoutPromptView.h</string>
+						<string key="minorKey">Basketballer/TimeoutPromptView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -250,7 +250,7 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../Basketballer/TimeoutPromptView.m</string>
+						<string key="minorKey">Basketballer/TimeoutPromptView.m</string>
 					</object>
 				</object>
 			</array>
@@ -316,10 +316,6 @@
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">NO</bool>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1280" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
 			<integer value="4600" key="NS.object.0"/>
@@ -327,8 +323,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">game_pauseing_background.png</string>
-			<string key="NS.object.0">{320, 190}</string>
+			<string key="NS.key.0">game_playing_bg.png</string>
+			<string key="NS.object.0">{640, 305}</string>
 		</object>
 	</data>
 </archive>
