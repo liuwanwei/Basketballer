@@ -49,7 +49,8 @@ typedef enum {
 //    NewActionViewController * _actionViewController;
     TimeoutPromptView * _timeoutPromptView;
     
-    NSNumber * _selectTeamId;
+//    NSNumber * _selectTeamId;
+    Team * _selectedTeam;
     ActionType _selectActionType;
 }
 @end
@@ -198,15 +199,24 @@ typedef enum {
     UIViewController * viewController = (UIViewController *)[[AppDelegate delegate] playGameViewController];
     [self.navigationController popToViewController:viewController animated:YES];
     
-    [_match addActionForTeam:_selectTeamId forPlayer:playerId withAction:_selectActionType];
-    
-    [self toast:@"乔丹 得分+1"];// TODO: 用实际的内容
+    [_match addActionForTeam:_selectedTeam.id forPlayer:playerId withAction:_selectActionType];
+    [self toastForTeam:_selectedTeam.name forPlayer:playerId withAction:_selectActionType];
 }
 
-- (void)toast:(NSString *)title{
+- (void)toastForTeam:(NSString *)teamName forPlayer:(NSNumber *)playerId withAction:(ActionType)actionType{
+    NSString * msg = nil;
+    if (playerId != nil) {
+        msg = [[PlayerManager defaultManager] playerWithId:playerId].name;
+    }else{
+        msg = teamName;
+    }
+    
+    msg = [msg stringByAppendingString:@" "];
+    msg = [msg stringByAppendingString:[ActionManager descriptionForActionType:actionType]];
+    
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = title;
+    hud.labelText = msg;
     hud.margin = 10.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:1.0f];
@@ -328,8 +338,6 @@ typedef enum {
     }else {
         [_match deleteMatch];
         [self dismissView];
-        /*NSString * message = LocalString(@"SaveMatchPrompt");
-        [self showAlertViewWithTitle:LocalString(@"AbandonGame") withMessage:message withCancel:YES withAlertViewTag:AlertViewTagMatchFinish];*/
     }
 }
 
@@ -372,10 +380,6 @@ typedef enum {
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
     [self.navigationController pushViewController:playSoundViewController animated:YES];
-    
-//    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playSoundViewController];
-//    [self presentModalViewController:nav animated:YES];
-//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 /*
@@ -594,46 +598,46 @@ typedef enum {
         return;
     }
     
+    GameSetting * gameSetting = [GameSetting defaultSetting];
     NSInteger tag = sender.tag;
-    BOOL isHomeTeam = NO;
-    _selectTeamId = 0;
+    BOOL playerStatisticsOn = NO;
     
     // UIButton tag 主队分别为1、2、3、4、5；客队为101、102、103、104、105
     if (tag > kTeamTag) {
         // 客队
-        isHomeTeam = NO;
-        _selectTeamId = self.guestTeam.id;
+        playerStatisticsOn = gameSetting.enableGuestTeamPlayerStatistics;
+        _selectedTeam = self.guestTeam;
         _selectActionType = (ActionType)(tag - kTeamTag);
         self.selectedStatistics = _match.guest;
+        
     }else {
         // 主队
-        isHomeTeam = YES;
-        _selectTeamId = self.hostTeam.id;
+        playerStatisticsOn = gameSetting.enableHomeTeamPlayerStatistics;
+        _selectedTeam = self.hostTeam;
         _selectActionType = (ActionType)tag;
         self.selectedStatistics = _match.home;
     }
     
-    // 检查是否允许暂停
+    // 检查是否还有剩余暂停次数
     if (ActionTypeTimeoutRegular == _selectActionType &&
         ![self timeoutEnableWithTeamStatistics:self.selectedStatistics]) {
         return;
     }
     
     // 球员开关打开时，记得分和犯规需要进入球员列表。
-    if (((isHomeTeam && [GameSetting defaultSetting].enableHomeTeamPlayerStatistics) ||
-        (!isHomeTeam && [GameSetting defaultSetting].enableGuestTeamPlayerStatistics))
-        && ActionTypeTimeoutRegular != _selectActionType) {
-        NSArray * players = [[PlayerManager defaultManager] playersForTeam:_selectTeamId];
+    if (playerStatisticsOn && ActionTypeTimeoutRegular != _selectActionType) {
+        NSArray * players = [[PlayerManager defaultManager] playersForTeam:_selectedTeam.id];
         PlayerActionViewController * playerList = [[PlayerActionViewController alloc] initWithStyle:UITableViewStylePlain];
         playerList.players = players;
-        playerList.teamId = _selectTeamId;
+        playerList.teamId = _selectedTeam.id;
         playerList.actionType = _selectActionType;
         
         self.navigationController.navigationBarHidden = NO;
         [self.navigationController pushViewController:playerList animated:YES];
+        
     }else {
-        [_match addActionForTeam:_selectTeamId forPlayer:nil withAction:_selectActionType];
-        [self toast:@"公牛 犯规+1"];// TODO: 用实际的
+        [_match addActionForTeam:_selectedTeam.id forPlayer:nil withAction:_selectActionType];
+        [self toastForTeam:_selectedTeam.name forPlayer:nil withAction:_selectActionType];
     }
 }
 

@@ -65,6 +65,8 @@ typedef enum {
 + (BOOL)isPointAction:(ActionType)actionType;
 + (BOOL)isFoulAction:(ActionType)actionType;
 
++ (NSString *)descriptionForActionType:(ActionType)actionType;
+
 // 一场比赛中的所有动作。
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId;
 

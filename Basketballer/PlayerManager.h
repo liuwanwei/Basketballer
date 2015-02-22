@@ -14,7 +14,7 @@
 
 @interface PlayerManager : BaseManager
 
-+ (PlayerManager *)defaultManager;
++ (instancetype)defaultManager;
 - (NSArray *)playersForTeam:(NSNumber *)teamId;
 
 - (Player *)addPlayerForTeam:(NSNumber *)teamId withNumber:(NSNumber *)number withName:(NSString *)name;

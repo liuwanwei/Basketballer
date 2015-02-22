@@ -8,14 +8,18 @@
 
 #import "PlayerManager.h"
 
-static PlayerManager * sDefaultManager = nil;
-
 @implementation PlayerManager
 
-+ (PlayerManager *)defaultManager{
-    if (sDefaultManager == nil) {
-        sDefaultManager = [[PlayerManager alloc] init];
-    }
++ (instancetype)defaultManager{
+    static PlayerManager * sDefaultManager = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (sDefaultManager == nil) {
+            sDefaultManager = [[PlayerManager alloc] init];
+        }
+    });
+    
     
     return sDefaultManager;
 }

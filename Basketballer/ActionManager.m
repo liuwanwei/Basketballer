@@ -55,11 +55,37 @@ static ActionManager * sActionManager;
     return (actionType == ActionTypeFoul);
 }
 
-- (id)init{
-    if (self = [super init]) {
++ (NSString *)descriptionForActionType:(ActionType)actionType{
+    NSString * desc = nil;
+    switch (actionType) {
+        case ActionType1Point:
+            desc = @"得分+1";
+            break;
+        case ActionType2Points:
+            desc = @"得分+2";
+            break;
+        case ActionType3Points:
+            desc = @"得分+3";
+            break;
+        case ActionTypeAssist:
+            desc = @"助攻+1";
+            break;
+        case ActionTypeRebound:
+            desc = @"篮板+1";
+            break;
+        case ActionTypeFoul:
+            desc = @"犯规+1";
+            break;
+        case ActionTypeTimeoutShort:
+        case ActionTypeTimeoutOfficial:
+        case ActionTypeTimeoutRegular:
+            desc = @"暂停+1";
+            break;
+        default:
+            break;
     }
     
-    return self;
+    return desc;
 }
 
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId{
