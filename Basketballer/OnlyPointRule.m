@@ -14,4 +14,12 @@
     return 4;
 }
 
+- (NSInteger)timeLengthForPeriod:(MatchPeriod)period{
+    return 0;
+}
+
+- (NSInteger)restTimeLengthAfterPeriod:(MatchPeriod)period{
+    return 60;
+}
+
 @end

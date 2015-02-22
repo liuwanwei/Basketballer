@@ -47,10 +47,10 @@ NSString * const kButtonStop = @"buttonStop";
     
     // 球员统计开关
     XLFormRowDescriptor * row;
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBoolHomeTeamPlayer rowType:XLFormRowDescriptorTypeBooleanSwitch title:LocalString(@"PlayerStatistic1")];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBoolHomeTeamPlayer rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"主队队员技术统计"];
     row.value = [NSNumber numberWithBool:gameSetting.enableHomeTeamPlayerStatistics];
     [sectionTeamPlayer addFormRow:row];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBoolGuestTeamPlayer rowType:XLFormRowDescriptorTypeBooleanSwitch title:LocalString(@"PlayerStatistic2")];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBoolGuestTeamPlayer rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"客队队员技术统计"];
     row.value = [NSNumber numberWithBool:gameSetting.enableGuestTeamPlayerStatistics];
     [sectionTeamPlayer addFormRow:row];
     [form addFormSection:sectionTeamPlayer];
@@ -74,20 +74,13 @@ NSString * const kButtonStop = @"buttonStop";
     XLFormSectionDescriptor * sectionStop = [XLFormSectionDescriptor formSectionWithTitle:nil];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonStop rowType:XLFormRowDescriptorTypeButton title:LocalString(@"FinishMatch")];
     row.action.formSelector = @selector(finishButtonClicked:);
+    [row.cellConfig setObject:[UIColor redColor] forKey:@"textLabel.color"];
     [sectionStop addFormRow:row];
     [form addFormSection:sectionStop];
     
     self.form = form;
 
 }
-
-//- (void)showRuleDetails:(id)sender{
-//    RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//    vc.editable = NO;
-//    vc.rule = self.ruleInUse;
-//    [self.navigationController pushViewController:vc animated:YES];
-//
-//}
 
 - (void)finishButtonClicked:(id)sender{
     PlayGameViewController * playViewController = [[AppDelegate delegate] playGameViewController];
