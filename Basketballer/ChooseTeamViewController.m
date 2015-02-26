@@ -130,6 +130,8 @@ typedef enum{
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)];
     self.navigationItem.leftBarButtonItem = item;
+    item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTeam:)];
+    self.navigationItem.rightBarButtonItem = item;
     
     [self.startMatchButton setTitle:LocalString(@"Done") forState:UIControlStateNormal];
     [self checkStartMatchButtonEnabled];
@@ -164,16 +166,12 @@ typedef enum{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 1;
-    }else{
-        NSArray * teams = [TeamManager defaultManager].teams;
-        return teams.count;
-    }
+    NSArray * teams = [TeamManager defaultManager].teams;
+    return teams.count;
 }
 
 - (UIImageView *)profileImageViewInCell:(UITableViewCell *)cell{
@@ -181,7 +179,7 @@ typedef enum{
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (1 == section) {
+    if (0 == section) {
         return LocalString(@"SelectTeamGuide");
     }else{
         return nil;
@@ -190,21 +188,9 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell * cell;
+    UITableViewCell * cell = nil;
     // 这个ID必须跟xib中设置的保持一致。
     if (indexPath.section == 0) {
-        static NSString * Identifier = @"NewTeamCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Identifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = LocalString(@"AddTeam");
-        
-        return cell;
-    }else{
         UIImageView * profileImageView;
         static NSString *CellIdentifier = @"TeamSelectionCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -236,9 +222,9 @@ typedef enum{
         // 球队名称。
         UILabel * label = (UILabel *)[cell viewWithTag:TeamCellTagName];
         label.text = team.name;
-        
-        return cell;
     }
+    
+    return cell;
 }
 
 - (BOOL)isCellSelected:(UITableViewCell *)cell{
@@ -302,32 +288,32 @@ typedef enum{
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        // 添加新球队
-        TeamInfoViewController * editTeam = [[TeamInfoViewController alloc] initWithNibName:@"TeamInfoViewController" bundle:nil];
-        editTeam.operateMode = Insert;
-        editTeam.popViewControllerWhenFinished = YES;
-        [self.navigationController pushViewController:editTeam animated:YES];
+- (void)addNewTeam:(id)sender{
+    // 添加新球队
+    TeamInfoViewController * editTeam = [[TeamInfoViewController alloc] initWithNibName:@"TeamInfoViewController" bundle:nil];
+    editTeam.operateMode = Insert;
+    editTeam.popViewControllerWhenFinished = YES;
+    [self.navigationController pushViewController:editTeam animated:YES];
+}
 
-    }else{
-        UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-        Team * team = [[[TeamManager defaultManager] teams] objectAtIndex:indexPath.row];
-        BOOL toBeSelected = [self isCellSelected:cell] ? NO : YES;
-        
-        if (toBeSelected && _homeTeam && _guestTeam) {
-            // 两支参赛队都已选择，不能继续添加。
-            return;
-        }
-        
-        [self selectTeam:team withFlag:toBeSelected atIndexPath:indexPath];
-        
-        // 更新Cell的选中状态。
-        [self updateSelectedMark:toBeSelected forCell:cell];
-        
-        // 更新最下方面板中的图片。
-        [self updateTeamsPanel];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    Team * team = [[[TeamManager defaultManager] teams] objectAtIndex:indexPath.row];
+    BOOL toBeSelected = [self isCellSelected:cell] ? NO : YES;
+    
+    if (toBeSelected && _homeTeam && _guestTeam) {
+        // 两支参赛队都已选择，不能继续添加。
+        return;
     }
+    
+    [self selectTeam:team withFlag:toBeSelected atIndexPath:indexPath];
+    
+    // 更新Cell的选中状态。
+    [self updateSelectedMark:toBeSelected forCell:cell];
+    
+    // 更新最下方面板中的图片。
+    [self updateTeamsPanel];
 }
 
 
