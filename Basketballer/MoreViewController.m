@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 #import "AboutUsViewController.h"
 
-#define kAppVersion     @"1.12"
 #define kEMail          @"liuwanwei@gmail.com"
 #define kAppKeyOfApple  559738184
 
@@ -34,13 +33,19 @@
                                      LocalString(@"Version"), 
                                      nil];
     _rowsInSection = [NSArray arrayWithObjects:rowsInFirstSection, rowsInSecondSection, nil];
-    _contentInSecondSection = [NSArray arrayWithObjects:kAppVersion, kEMail, nil];
+    
+    // 读取App版本并显示
+    NSDictionary * info =[[NSBundle mainBundle] infoDictionary];
+    NSString * version = info[@"CFBundleShortVersionString"];
+    NSString * build = info[@"CFBundleVersion"];
+    NSString * versionBuild = [NSString stringWithFormat:@"v%@(%@)", version, build];
+    _contentInSecondSection = [NSArray arrayWithObjects:versionBuild, kEMail, nil];
 }
 
 - (void)initTableView {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    self.tableView.rowHeight = 48.0f;
+//    self.tableView.backgroundColor = [UIColor whiteColor];
+//    self.tableView.rowHeight = 48.0f;
 }
 
 #pragma 事件函数
