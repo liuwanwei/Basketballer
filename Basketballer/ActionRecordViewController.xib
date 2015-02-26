@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActionRecordViewController">
@@ -26,7 +25,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                 </imageView>
                 <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="0.0" y="152" width="320" height="288"/>
+                    <rect key="frame" x="0.0" y="152" width="320" height="291"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
@@ -81,13 +80,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="30">
-                    <rect key="frame" x="162" y="448" width="30" height="4"/>
+                    <rect key="frame" x="162" y="451" width="30" height="4"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="31">
-                    <rect key="frame" x="128" y="448" width="30" height="4"/>
+                    <rect key="frame" x="128" y="451" width="30" height="4"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（向左滑动删除记录）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-fd-yUZ">
-                    <rect key="frame" x="100" y="82" width="120" height="15"/>
+                    <rect key="frame" x="100" y="82" width="120" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
@@ -97,23 +96,23 @@
             <constraints>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="42"/>
                 <constraint firstItem="28" firstAttribute="centerX" secondItem="26" secondAttribute="centerX" id="44"/>
-                <constraint firstItem="31" firstAttribute="leading" secondItem="10" secondAttribute="leading" constant="128" id="46"/>
                 <constraint firstItem="29" firstAttribute="top" secondItem="10" secondAttribute="top" constant="58" id="47"/>
                 <constraint firstAttribute="trailing" secondItem="28" secondAttribute="trailing" constant="7" id="48"/>
                 <constraint firstItem="31" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8" symbolic="YES" id="49"/>
                 <constraint firstItem="27" firstAttribute="leading" secondItem="10" secondAttribute="leading" constant="10" id="50"/>
                 <constraint firstItem="27" firstAttribute="top" secondItem="10" secondAttribute="top" constant="104" id="51"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="10" secondAttribute="top" constant="44" id="53"/>
-                <constraint firstItem="30" firstAttribute="bottom" secondItem="10" secondAttribute="bottomMargin" id="55"/>
                 <constraint firstItem="25" firstAttribute="centerX" secondItem="27" secondAttribute="centerX" id="56"/>
                 <constraint firstItem="25" firstAttribute="bottom" secondItem="26" secondAttribute="bottom" id="57"/>
                 <constraint firstItem="28" firstAttribute="baseline" secondItem="27" secondAttribute="baseline" id="58"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="26" secondAttribute="top" id="59"/>
                 <constraint firstItem="31" firstAttribute="top" secondItem="30" secondAttribute="top" id="60"/>
-                <constraint firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="128" id="61"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="3lR-GB-BPK"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="10" secondAttribute="top" constant="152" id="4Bj-FC-7Fb"/>
+                <constraint firstAttribute="centerX" secondItem="30" secondAttribute="centerX" constant="-17" id="6Rq-YU-WHZ"/>
                 <constraint firstItem="23" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="Jj5-hD-JZk"/>
+                <constraint firstAttribute="centerX" secondItem="31" secondAttribute="centerX" constant="17" id="WcZ-rv-e5j"/>
+                <constraint firstAttribute="bottom" secondItem="30" secondAttribute="bottom" constant="5" id="d7r-Z3-gLG"/>
                 <constraint firstItem="23" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="rFH-Xh-Ki8"/>
                 <constraint firstItem="23" firstAttribute="top" secondItem="10" secondAttribute="top" id="uMH-yD-E1M"/>
                 <constraint firstItem="23" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="xe9-dw-z5f"/>

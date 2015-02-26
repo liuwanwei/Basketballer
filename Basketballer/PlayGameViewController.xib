@@ -492,10 +492,10 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-hL-ecn">
-                    <rect key="frame" x="126" y="466" width="30" height="4"/>
+                    <rect key="frame" x="128" y="471" width="30" height="4"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dwl-5U-p4t">
-                    <rect key="frame" x="160" y="466" width="30" height="4"/>
+                    <rect key="frame" x="162" y="471" width="30" height="4"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74">
                     <rect key="frame" x="242" y="438" width="58" height="36"/>
@@ -555,7 +555,6 @@
                 <constraint firstItem="y8a-Uq-FgF" firstAttribute="trailing" secondItem="niF-Js-hSD" secondAttribute="trailing" id="Atp-MG-DTH"/>
                 <constraint firstItem="88" firstAttribute="centerY" secondItem="58" secondAttribute="centerY" id="CDJ-TW-sFZ"/>
                 <constraint firstItem="87" firstAttribute="top" secondItem="86" secondAttribute="bottom" constant="10" id="DOk-E9-0LJ"/>
-                <constraint firstItem="gWQ-hL-ecn" firstAttribute="top" secondItem="111" secondAttribute="bottom" constant="-8" id="FLB-yp-HZ2"/>
                 <constraint firstItem="pqd-S9-hlY" firstAttribute="centerX" secondItem="88" secondAttribute="centerX" id="LV8-jF-JVC"/>
                 <constraint firstItem="pqd-S9-hlY" firstAttribute="top" secondItem="88" secondAttribute="bottom" constant="10" id="Qq6-Ac-krJ"/>
                 <constraint firstAttribute="bottom" secondItem="74" secondAttribute="bottom" constant="6" id="R8n-TA-Gxe"/>
@@ -571,7 +570,7 @@
                 <constraint firstItem="111" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="cDy-iD-rBV"/>
                 <constraint firstItem="86" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="18" id="g8b-N2-iv1"/>
                 <constraint firstItem="87" firstAttribute="centerY" secondItem="90" secondAttribute="centerY" id="gCY-ih-njN"/>
-                <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="19" id="jo5-BD-e75"/>
+                <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="17" id="jo5-BD-e75"/>
                 <constraint firstItem="86" firstAttribute="top" secondItem="80" secondAttribute="bottom" constant="10" id="m4a-mV-f2g"/>
                 <constraint firstItem="s2h-Nl-hBw" firstAttribute="centerY" secondItem="n0C-xI-TTS" secondAttribute="centerY" id="meA-o6-7FW"/>
                 <constraint firstAttribute="trailing" secondItem="89" secondAttribute="trailing" constant="18" id="nb4-6g-EJs"/>
@@ -583,7 +582,8 @@
                 <constraint firstItem="80" firstAttribute="top" secondItem="1" secondAttribute="top" id="tpz-HO-pKM"/>
                 <constraint firstItem="0mV-pt-4Eg" firstAttribute="centerX" secondItem="91" secondAttribute="centerX" id="x1D-ku-4GH"/>
                 <constraint firstItem="80" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="xPp-zZ-vXc"/>
-                <constraint firstAttribute="centerX" secondItem="Dwl-5U-p4t" secondAttribute="centerX" constant="-15" id="ydG-3I-vps"/>
+                <constraint firstAttribute="bottom" secondItem="gWQ-hL-ecn" secondAttribute="bottom" constant="5" id="y1H-Nd-5eE"/>
+                <constraint firstAttribute="centerX" secondItem="Dwl-5U-p4t" secondAttribute="centerX" constant="-17" id="ydG-3I-vps"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="68" y="107"/>
