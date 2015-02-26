@@ -222,6 +222,7 @@
     }   
 }
 
+#define SectionHeaderHeight         20.0f
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     static NSString * headerIdentifier = @"header";
     UITableViewHeaderFooterView * header = nil;
@@ -229,19 +230,22 @@
 
     if (header == nil) {
         header = [[UITableViewHeaderFooterView alloc]initWithReuseIdentifier:headerIdentifier];
-        [header setFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 25)];
+        [header setFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, SectionHeaderHeight)];
+//        header.backgroundColor = [UIColor lightTextColor];
 
-        UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 25)];
+        UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, SectionHeaderHeight)];
         backgroundView.backgroundColor = [UIColor clearColor];
         header.backgroundView = backgroundView;
         
-        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 25)];
-        label.font = [UIFont systemFontOfSize:17];
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, SectionHeaderHeight - 2)];
+        label.font = [UIFont systemFontOfSize:14];
         label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [[UIColor alloc] initWithRed:91/255.0 green:179/255.0 blue:240/255.0 alpha:1];
         label.tag = 1;
         [header addSubview:label];
         
-        UIView * sepraterView = [[UIView alloc] initWithFrame:CGRectMake(0, 24, self.tableView.bounds.size.width, 1)];
+        UIView * sepraterView = [[UIView alloc] initWithFrame:CGRectMake(0, SectionHeaderHeight - 1, self.tableView.bounds.size.width, 1)];
         sepraterView.backgroundColor = [[UIColor alloc] initWithRed:231/255.0 green:230/255.0 blue:231/255.0 alpha:1];
         [header addSubview:sepraterView];
     }
@@ -255,6 +259,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 25.0;
+    return SectionHeaderHeight;
 }
 @end
