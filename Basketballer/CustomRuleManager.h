@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSMutableArray * rules;
 
-+ (CustomRuleManager *)defaultInstance;
++ (instancetype)defaultInstance;
 
 - (void)loadRules;
 

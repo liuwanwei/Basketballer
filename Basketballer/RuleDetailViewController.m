@@ -27,15 +27,6 @@
 @implementation RuleDetailViewController
 @synthesize rule = _rule;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    if(self = [super initWithStyle:style]){
-        self.editable = YES;
-    }
-    
-    return self;
-}
-
 - (void)makeRuleDetailString{
     NSArray * _timeRules;
     NSArray * _foulRules;
@@ -136,11 +127,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (self.rule == nil) {
-        self.rule = [MatchUnderWay defaultMatch].rule;
-    }
-    
+
     [self makeRuleDetailString];
     
     self.title = LocalString(@"Rule");

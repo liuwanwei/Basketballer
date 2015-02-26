@@ -14,7 +14,7 @@
 
 @implementation CustomRuleManager
 
-+ (CustomRuleManager *)defaultInstance{
++ (instancetype)defaultInstance{
     static CustomRuleManager * sInstance = nil;
     
     static dispatch_once_t onceToken;
@@ -43,9 +43,9 @@
         return nil;
     }
     
-    BOOL newRule = false;
+    BOOL newRule = NO;
     if (fibaRule.model == nil) {
-        newRule = true;
+        newRule = YES;
     }
     
     Rule * rule = nil;

@@ -21,7 +21,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ActionManager.h"
 #import "MatchUnderWay.h"
-#import "AccountRuleDetailViewController.h"
+#import "PointsRuleDetailViewController.h"
 
 #import "FibaRule.h"
 #import "CustomRuleViewController.h"
@@ -219,6 +219,7 @@
         [[AppDelegate delegate] presentModelViewController:nav];
     }else if(indexPath.section == 2){
         CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        vc.createMode = YES;
         
         NSArray * rules = [[CustomRuleManager defaultInstance] rules];
         if (indexPath.row >= rules.count) {
@@ -243,26 +244,27 @@
     if (indexPath.section == 0 || indexPath.section == 1) {
         NSInteger index = [self gameModeIndexForIndexPath:indexPath];
         
-//        NSString * title = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:index];
         NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:index];
         UITableViewController * details;
         
         if ([mode isEqualToString:kMatchModePoints]) {
-            details = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            details = [[PointsRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         }else {
             details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
             ((RuleDetailViewController *)details).rule = [BaseRule ruleWithMode:mode];
         }
-//        details.hidesBottomBarWhenPushed = YES;
-//        details.title = title;
+
         [self.navigationController pushViewController:details animated:YES];
+        
     }else{
         NSArray * rules = [[CustomRuleManager defaultInstance] rules];
         FibaCustomRule * rule = [[FibaCustomRule alloc] initWithRuleModel:[rules objectAtIndex:indexPath.row]];
+        
         RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         vc.rule = rule;
+        vc.editable = YES;
         vc.title = rule.name;
-//        vc.hidesBottomBarWhenPushed = YES;
+
         [self.navigationController pushViewController:vc animated:YES];
     }
     

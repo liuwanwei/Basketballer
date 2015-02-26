@@ -16,27 +16,28 @@
 
 @interface CustomRuleViewController (){
     NSIndexPath * _lastChoosedIndexPath;
+    FibaCustomRule * _newRule;
 }
 
 @end
 
 @implementation CustomRuleViewController
 
-- (BOOL)allParametersSupplied{
+- (void)checkAllParametersSupplied{
     if (self.rule != nil &&
         self.rule.name != nil &&
         checkSetValue(self.rule.periodTimeLength) &&
         checkSetValue(self.rule.periodRestTimeLength) &&
         checkSetValue(self.rule.halfTimeRestTimeLength) &&
         checkSetValue(self.rule.overTimeLength)){
-        return true;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        
     }else{
-        return false;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 
 - (void)save{
-    
     // 保存比赛规则
     [[CustomRuleManager defaultInstance] customRuleWithFibaRule:self.rule];
     [self.navigationController popViewControllerAnimated:YES];
@@ -47,8 +48,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.createMode) {
+        _newRule = [[FibaCustomRule alloc] init];
+        self.rule = _newRule;
+    }
+    
     self.title = LocalString(@"Custom");
     self.clearsSelectionOnViewWillAppear = NO;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
+    [self checkAllParametersSupplied];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textSavedNotification:) name:kTextSavedMsg object:nil];
 }
@@ -136,9 +145,6 @@
     if ([notification.name isEqualToString:kTextSavedMsg]) {
         NSString * text = [notification.userInfo objectForKey:kTextSavedMsg];
         if (nil != text) {
-            if (self.rule == nil) {
-                self.rule = [[FibaCustomRule alloc] init];
-            }
             
             if (_lastChoosedIndexPath.section == 0) {
                 // 修改了名字
@@ -170,12 +176,8 @@
                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:_lastChoosedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
             
-            // 输入完毕后导航栏右侧“保存”按钮
-            if ([self allParametersSupplied]) {
-                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
-            }else{
-                self.navigationItem.rightBarButtonItem = nil;
-            }
+            // 输入完毕后检查是否打开导航栏右侧“保存”按钮
+            [self checkAllParametersSupplied];
         }
     }
 }
@@ -198,48 +200,5 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

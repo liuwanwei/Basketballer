@@ -13,6 +13,6 @@
 @interface RuleDetailViewController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) BOOL editable;
-@property (nonatomic, weak) BaseRule * rule;
+@property (nonatomic, strong) BaseRule * rule;
 
 @end

@@ -6,14 +6,14 @@
 //
 //
 
-#import "AccountRuleDetailViewController.h"
+#import "PointsRuleDetailViewController.h"
 #import "Feature.h"
 
-@interface AccountRuleDetailViewController ()
+@interface PointsRuleDetailViewController ()
 
 @end
 
-@implementation AccountRuleDetailViewController
+@implementation PointsRuleDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

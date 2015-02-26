@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountRuleDetailViewController : UITableViewController
+@interface PointsRuleDetailViewController : UITableViewController
 
 @end

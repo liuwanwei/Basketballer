@@ -39,7 +39,7 @@
 		3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C35FA4915EE5970006B2470 /* MoreViewController.m */; };
 		3C40A813163641E500619526 /* buttonDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A812163641E500619526 /* buttonDelete.png */; };
 		3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8291637753100619526 /* OnlyPointRule.m */; };
-		3C40A8321637C14100619526 /* AccountRuleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */; };
+		3C40A8321637C14100619526 /* PointsRuleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */; };
 		3C40A8361637ECD700619526 /* periodButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A8341637ECD700619526 /* periodButtonBackground.png */; };
 		3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83D1637F7CC00619526 /* TabBarMatch.png */; };
 		3C40A8401637F7CC00619526 /* TabBarMatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */; };
@@ -282,8 +282,8 @@
 		3C40A812163641E500619526 /* buttonDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonDelete.png; path = Resources/images/buttonDelete.png; sourceTree = "<group>"; };
 		3C40A8281637753100619526 /* OnlyPointRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyPointRule.h; sourceTree = "<group>"; };
 		3C40A8291637753100619526 /* OnlyPointRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyPointRule.m; sourceTree = "<group>"; };
-		3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountRuleDetailViewController.h; sourceTree = "<group>"; };
-		3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountRuleDetailViewController.m; sourceTree = "<group>"; };
+		3C40A8301637C14100619526 /* PointsRuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsRuleDetailViewController.h; sourceTree = "<group>"; };
+		3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsRuleDetailViewController.m; sourceTree = "<group>"; };
 		3C40A8341637ECD700619526 /* periodButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = periodButtonBackground.png; path = Resources/images/periodButtonBackground.png; sourceTree = "<group>"; };
 		3C40A83D1637F7CC00619526 /* TabBarMatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarMatch.png; sourceTree = "<group>"; };
 		3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarMatch@2x.png"; sourceTree = "<group>"; };
@@ -785,8 +785,8 @@
 			children = (
 				3C07F40F1635194A00A2D645 /* AboutUsViewController.h */,
 				3C07F4101635194A00A2D645 /* AboutUsViewController.m */,
-				3C40A8301637C14100619526 /* AccountRuleDetailViewController.h */,
-				3C40A8311637C14100619526 /* AccountRuleDetailViewController.m */,
+				3C40A8301637C14100619526 /* PointsRuleDetailViewController.h */,
+				3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */,
 				79E33AF119EA12F000AC46DE /* ActionRecordCell.h */,
 				79E33AF219EA12F000AC46DE /* ActionRecordCell.m */,
 				3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */,
@@ -1395,7 +1395,7 @@
 				3C06651E15F5AF2700B1DCB8 /* PlaySoundViewController.m in Sources */,
 				3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */,
 				3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */,
-				3C40A8321637C14100619526 /* AccountRuleDetailViewController.m in Sources */,
+				3C40A8321637C14100619526 /* PointsRuleDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

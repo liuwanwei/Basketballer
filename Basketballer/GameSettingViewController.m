@@ -16,7 +16,7 @@
 #import "Feature.h"
 #import "Rule.h"
 #import "GameSetting.h"
-#import "AccountRuleDetailViewController.h"
+#import "PointsRuleDetailViewController.h"
 
 typedef enum{
     CellTagMessage = 1,
@@ -203,7 +203,7 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
         if ([self.ruleInUse.name isEqualToString:kMatchModePoints]) {
-            AccountRuleDetailViewController * vc = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            PointsRuleDetailViewController * vc = [[PointsRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
