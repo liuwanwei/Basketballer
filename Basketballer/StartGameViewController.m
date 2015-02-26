@@ -245,20 +245,25 @@
         NSInteger index = [self gameModeIndexForIndexPath:indexPath];
         
         NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:index];
-        UITableViewController * details;
-        
         if ([mode isEqualToString:kMatchModePoints]) {
+            // 记分模式
+            PointsRuleDetailViewController * details;
             details = [[PointsRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:details animated:YES];
+            
         }else {
+            // Fiba模式
+            RuleDetailViewController * details;
             details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            ((RuleDetailViewController *)details).rule = [BaseRule ruleWithMode:mode];
+            details.rule = [BaseRule ruleWithName:mode];
+            [self.navigationController pushViewController:details animated:YES];
         }
-
-        [self.navigationController pushViewController:details animated:YES];
         
     }else{
+        // 自定义模式
         NSArray * rules = [[CustomRuleManager defaultInstance] rules];
-        FibaCustomRule * rule = [[FibaCustomRule alloc] initWithRuleModel:[rules objectAtIndex:indexPath.row]];
+        Rule * ruleModel = rules[indexPath.row];
+        BaseRule * rule = [BaseRule ruleWithName:ruleModel.name];
         
         RuleDetailViewController * vc = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         vc.rule = rule;

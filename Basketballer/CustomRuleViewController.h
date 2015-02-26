@@ -14,7 +14,7 @@
 
 @interface CustomRuleViewController : UITableViewController
 
-@property (nonatomic, weak) FibaCustomRule * rule;
+@property (nonatomic, weak) FibaCustomRule * customRule;
 @property (nonatomic) BOOL createMode;
 
 @end

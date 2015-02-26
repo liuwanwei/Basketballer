@@ -176,7 +176,7 @@ static MatchUnderWay * sDefaultMatch = nil;
         ActionManager * am = [ActionManager defaultManager];
         am.actionArray = [[NSMutableArray alloc] init];
         
-        self.rule = [BaseRule ruleWithMode:self.matchMode];
+        self.rule = [BaseRule ruleWithName:self.matchMode];
         _home = [TeamStatistics newStatisticsForTeam:homeTeamId withMode:_matchMode withRule:self.rule];
         _guest = [TeamStatistics newStatisticsForTeam:guestTeamId withMode:_matchMode withRule:self.rule];
         

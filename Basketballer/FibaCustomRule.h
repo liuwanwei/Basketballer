@@ -23,7 +23,7 @@
 // 规则对应的core data对象
 @property (nonatomic, strong) Rule * model;
 
-- (id)initWithRuleModel:(Rule *)model;
+- (instancetype)initWithRuleModel:(Rule *)model;
 
 + (FibaCustomRule *)objectFromDictionary:(NSDictionary *)dictionary;
 

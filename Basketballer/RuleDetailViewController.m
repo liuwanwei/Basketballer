@@ -25,7 +25,6 @@
 @end
 
 @implementation RuleDetailViewController
-@synthesize rule = _rule;
 
 - (void)makeRuleDetailString{
     NSArray * _timeRules;
@@ -68,7 +67,7 @@
 // 修改自定义规则
 - (void)modifyCustomRule{
     CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    vc.rule = (FibaCustomRule *)self.rule;
+    vc.customRule = (FibaCustomRule *)self.rule;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -127,6 +126,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(self.rule == nil){
+        // 正在比赛时查看规则
+        self.rule = [[MatchUnderWay defaultMatch] rule];
+    }
 
     [self makeRuleDetailString];
     

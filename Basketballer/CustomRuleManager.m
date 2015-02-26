@@ -9,6 +9,7 @@
 #import "CustomRuleManager.h"
 #import "Rule.h"
 #import "FibaCustomRule.h"
+#import <TMCache.h>
 
 #define kCustomRuleEntity       @"Rule"
 
@@ -38,6 +39,40 @@
     }
 }
 
+- (NSString *)cacheKeyWithName:(NSString *)name{
+    return [NSString stringWithFormat:@"rule-%@", name];
+}
+
+
+- (FibaCustomRule *)customRuleWithName:(NSString *)name{
+    FibaCustomRule * rule = nil;
+    
+    // 先搜索缓存
+    TMMemoryCache * cache = [TMMemoryCache sharedCache];
+    NSString * key = [self cacheKeyWithName:name];
+    rule = [cache objectForKey:key];
+    if (rule) {
+        return rule;
+    }
+    
+    // 缓存没有时创建
+    for (Rule * ruleModel in self.rules) {
+        if ([ruleModel.name isEqualToString:name]) {
+            rule = [[FibaCustomRule alloc] initWithRuleModel:ruleModel];
+            break;
+        }
+    }
+
+    // 写入缓存
+    if (rule) {
+        [cache setObject:rule forKey:key];
+    }
+
+    return rule;
+}
+
+
+// TODO: 需要注释，否则长久以后看不懂
 - (Rule *)customRuleWithFibaRule:(FibaCustomRule *)fibaRule{
     if (fibaRule == nil) {
         return nil;
@@ -56,6 +91,8 @@
     }else{
         // 修改规则
         rule = fibaRule.model;
+        // 删除缓存的旧规则对象
+        [[TMMemoryCache sharedCache] removeObjectForKey:[self cacheKeyWithName:rule.name]];
     }
     
     rule.name = fibaRule.name;
@@ -72,6 +109,9 @@
         [self.rules addObject:rule];
     }
     
+    // 更新缓存
+    [[TMMemoryCache sharedCache] setObject:fibaRule forKey:[self cacheKeyWithName:fibaRule.name]];
+    
     return rule;
 }
 
@@ -79,6 +119,10 @@
     if (! [self deleteFromStore:rule synchronized:YES]) {
         return NO;
     }
+    
+    // 清除缓存，如果有的话
+    NSString * key = [self cacheKeyWithName:rule.name];
+    [[TMMemoryCache sharedCache] removeObjectForKey:key];
     
     [self.rules removeObject:rule];
     

@@ -11,7 +11,7 @@
 
 @implementation FibaCustomRule
 
-- (id)initWithRuleModel:(Rule *)model{
+- (instancetype)initWithRuleModel:(Rule *)model{
     if (self = [super init]) {
         self.name = model.name;
         self.periodTimeLength = model.periodTimeLength;

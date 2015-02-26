@@ -18,6 +18,8 @@
 
 - (void)loadRules;
 
+- (FibaCustomRule *)customRuleWithName:(NSString *)name;
+
 - (Rule *)customRuleWithFibaRule:(FibaCustomRule *)rule;
 
 - (BOOL)deleteRule:(Rule *)rule;

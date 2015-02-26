@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TMCache.h>
 
 #define TimeoutLimitNone        -1
 
@@ -46,7 +47,7 @@ typedef enum{
 
 /****************** methods ******************/
 
-+ (instancetype)ruleWithMode:(NSString *)mode;
++ (instancetype)ruleWithName:(NSString *)name;
 
 - (id)initWithName:(NSString *)name;
 

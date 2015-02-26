@@ -26,29 +26,34 @@
 @synthesize offenceTimeLimit = _offenceTimeLimit;
 @synthesize winningPoints = _winningPoints;
 
-
 // 工厂接口，通过规则名字生成规则
-+ (instancetype)ruleWithMode:(NSString *)mode{
-     if ([mode isEqualToString:kMatchModeFiba]){
-         return [[FibaRule alloc] initWithName:mode];
-     }else if([mode isEqualToString:kMatchModeTpb]){
-         return [[Fiba3pbRule alloc] initWithName:mode];
-     }else if([mode isEqualToString:kMatchModePoints]) {
-         return [[OnlyPointRule alloc] initWithName:mode];
-     }else if([mode hasPrefix:kMatchModeAmateur]){
-         return [[AmateurRule alloc] initWithName:mode];
-     }else {
-         NSArray * rules  = [[CustomRuleManager defaultInstance] rules];
-         for (Rule * rule in rules) {
-             if ([rule.name isEqualToString:mode]) {
-                 return [[FibaCustomRule alloc] initWithRuleModel:rule];
-             }
-         }
-         
-         NSLog(@"找不到自定义比赛规则: %@", mode);
-         return [[BaseRule alloc] init];
-     }
++ (instancetype)ruleWithName:(NSString *)name{
+    if (name == nil) {
+        return nil;
+    }
+        
+    BaseRule * rule = nil;
+    
+    if ([name isEqualToString:kMatchModeFiba]){
+        rule = [[FibaRule alloc] initWithName:name];
+    }else if([name isEqualToString:kMatchModeTpb]){
+        rule = [[Fiba3pbRule alloc] initWithName:name];
+    }else if([name isEqualToString:kMatchModePoints]) {
+        rule = [[OnlyPointRule alloc] initWithName:name];
+    }else if([name hasPrefix:kMatchModeAmateur]){
+        rule = [[AmateurRule alloc] initWithName:name];
+    }else {
+        CustomRuleManager * manager = [CustomRuleManager defaultInstance];
+        rule = [manager customRuleWithName:name];
+    }
+    
+    if (rule == nil) {
+        NSLog(@"找不到自定义比赛规则: %@", name);
+    }
+    
+    return rule;
 }
+
 
 - (id)initWithName:(NSString *)name{
     if (self = [super init]) {

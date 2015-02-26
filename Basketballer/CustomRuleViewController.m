@@ -14,22 +14,22 @@
 
 #define checkSetValue(property)   ((property != nil) && ([property integerValue] != 0))
 
-@interface CustomRuleViewController (){
-    NSIndexPath * _lastChoosedIndexPath;
-    FibaCustomRule * _newRule;
-}
+@interface CustomRuleViewController ()
+
+@property (nonatomic, strong) NSIndexPath * lastChoosedIndexPath;
+@property (nonatomic, strong) FibaCustomRule * createdcustomRule;
 
 @end
 
 @implementation CustomRuleViewController
 
 - (void)checkAllParametersSupplied{
-    if (self.rule != nil &&
-        self.rule.name != nil &&
-        checkSetValue(self.rule.periodTimeLength) &&
-        checkSetValue(self.rule.periodRestTimeLength) &&
-        checkSetValue(self.rule.halfTimeRestTimeLength) &&
-        checkSetValue(self.rule.overTimeLength)){
+    if (self.customRule != nil &&
+        self.customRule.name != nil &&
+        checkSetValue(self.customRule.periodTimeLength) &&
+        checkSetValue(self.customRule.periodRestTimeLength) &&
+        checkSetValue(self.customRule.halfTimeRestTimeLength) &&
+        checkSetValue(self.customRule.overTimeLength)){
         self.navigationItem.rightBarButtonItem.enabled = YES;
         
     }else{
@@ -39,7 +39,7 @@
 
 - (void)save{
     // 保存比赛规则
-    [[CustomRuleManager defaultInstance] customRuleWithFibaRule:self.rule];
+    [[CustomRuleManager defaultInstance] customRuleWithFibaRule:self.customRule];
     [self.navigationController popViewControllerAnimated:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kRuleChangedNotification object:nil];
@@ -49,8 +49,9 @@
     [super viewDidLoad];
     
     if (self.createMode) {
-        _newRule = [[FibaCustomRule alloc] init];
-        self.rule = _newRule;
+        // 新建时，需要用strong类型的指针指向要创建的自定义规则
+        self.createdcustomRule = [[FibaCustomRule alloc] init];
+        self.customRule = self.createdcustomRule;
     }
     
     self.title = LocalString(@"Custom");
@@ -108,26 +109,26 @@
     
     if (indexPath.section == 0) {
         cell.textLabel.text = LocalString(@"RuleName");
-        cell.detailTextLabel.text = self.rule.name;
+        cell.detailTextLabel.text = self.customRule.name;
     }else if(indexPath.section == 1){
         NSString * labelText = nil;
         NSString * detailText = nil;
         switch (indexPath.row) {
             case 0:
                 labelText = LocalString(@"PeriodLength");
-                detailText = [self.rule.periodTimeLength stringValue];
+                detailText = [self.customRule.periodTimeLength stringValue];
                 break;
             case 1:
                 labelText = LocalString(@"PeriodIntervalLength");
-                detailText = [self.rule.periodRestTimeLength stringValue];
+                detailText = [self.customRule.periodRestTimeLength stringValue];
                 break;
             case 2:
                 labelText = LocalString(@"HalfTimeIntervalLength");
-                detailText = [self.rule.halfTimeRestTimeLength stringValue];
+                detailText = [self.customRule.halfTimeRestTimeLength stringValue];
                 break;
             case 3:
                 labelText = LocalString(@"ExtraPeriodLength");
-                detailText = [self.rule.overTimeLength stringValue];
+                detailText = [self.customRule.overTimeLength stringValue];
                 break;
             default:
                 break;
@@ -148,21 +149,21 @@
             
             if (_lastChoosedIndexPath.section == 0) {
                 // 修改了名字
-                self.rule.name = text;
+                self.customRule.name = text;
             }else if(_lastChoosedIndexPath.section == 1){
                 NSNumber * value = [NSNumber numberWithInteger:[text integerValue]];
                 switch (_lastChoosedIndexPath.row) {
                     case 0:
-                        self.rule.periodTimeLength = value;
+                        self.customRule.periodTimeLength = value;
                         break;
                     case 1:
-                        self.rule.periodRestTimeLength = value;
+                        self.customRule.periodRestTimeLength = value;
                         break;
                     case 2:
-                        self.rule.halfTimeRestTimeLength = value;
+                        self.customRule.halfTimeRestTimeLength = value;
                         break;
                     case 3:
-                        self.rule.overTimeLength = value;
+                        self.customRule.overTimeLength = value;
                         break;
                     default:
                         break;
