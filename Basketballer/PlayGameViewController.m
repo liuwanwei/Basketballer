@@ -565,8 +565,6 @@ typedef enum {
     
     [self reversePlayButton];
     [[SoundManager defaultManager] playMatchStartSound];
-    
-    self.operationButton.enabled = YES;
 }
 
 - (IBAction)showActionRecordController:(id)sender {
@@ -666,7 +664,7 @@ typedef enum {
         otherButton = @"结束本节";
     }
     
-    UIActionSheet * ac = [[UIActionSheet alloc] initWithTitle:@"比赛操作" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:otherButton, nil];
+    UIActionSheet * ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:otherButton, nil];
     [ac showInView:self.view];
 }
 
