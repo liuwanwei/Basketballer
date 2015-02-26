@@ -28,9 +28,6 @@
     NSArray * _homeTeamPlayers;
     NSArray * _guestTeamPlayers;
     
-    // 比赛若是上下半场，指向_twohalfDescriptions；若是四节，指向_fourQuarterDescriptions.
-    NSArray * _periodNameArray;       
-    
     NSMutableArray * _sectionHeaders;
     
     NSMutableArray * _actionsInMatch;
@@ -142,7 +139,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _periodNameArray = [NSArray arrayWithObjects:@"第一节", @"第二节", @"第三节", @"第四节", nil];
     }
     return self;
 }
@@ -198,7 +194,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:[self pageName]];
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+//    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -222,9 +218,9 @@
     return _sectionHeaders.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [_sectionHeaders objectAtIndex:section];
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return [_sectionHeaders objectAtIndex:section];
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     StatisticSectionHeaderView * header = [[[NSBundle mainBundle] loadNibNamed:@"StatisticSectionHeaderView" owner:self options:nil] lastObject];

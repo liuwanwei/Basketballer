@@ -100,13 +100,10 @@
 "NoTimeout" = "暂停已用完！";
 
 "PlayerStatisticsViewHeader" = "号码           得分    犯规    三分    罚球";
-//"PlayerStatisticsViewHeader" = "Number     PTS  PF       3PT   FT";
 
 "PlayerFoulViewHeader" = "号码                  姓名              犯规数";
-//"PlayerFoulViewHeader" = "Number         Name           Fouls";
 
 "MatchDetailViewHeader" = "技术统计    得分   犯规    三分   罚球";
-//"MatchDetailViewHeader" = "STATS        PTS      PF    3PT    FT";
 
 "SelectPlayer" = "选择队员";
 "Others..." = "其他队员...";

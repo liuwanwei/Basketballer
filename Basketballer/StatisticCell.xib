@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -21,63 +21,45 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="得分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3">
-                        <rect key="frame" x="75" y="6" width="35" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="26"/>
-                        </constraints>
+                        <rect key="frame" x="73" y="6" width="35.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="篮板" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18">
-                        <rect key="frame" x="115" y="6" width="35" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="21"/>
-                        </constraints>
+                        <rect key="frame" x="113.5" y="6" width="36" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" text="犯规" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                        <rect key="frame" x="277" y="7" width="35" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="20"/>
-                        </constraints>
+                        <rect key="frame" x="276.5" y="7" width="35.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="left" text="三分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                        <rect key="frame" x="195" y="6" width="36" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="47"/>
-                        </constraints>
+                        <rect key="frame" x="195" y="6" width="35.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="left" text="罚球" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                        <rect key="frame" x="236" y="6" width="36" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="25"/>
-                        </constraints>
+                        <rect key="frame" x="235.5" y="6" width="36" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="助攻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                        <rect key="frame" x="155" y="6" width="35" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="22"/>
-                        </constraints>
+                        <rect key="frame" x="154.5" y="6" width="35.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="球队" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                        <rect key="frame" x="8" y="6" width="72" height="17"/>
+                        <rect key="frame" x="8" y="6" width="60" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="72" id="23"/>
+                            <constraint firstAttribute="width" constant="60" id="23"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,6 +69,9 @@
                 <constraints>
                     <constraint firstItem="4" firstAttribute="leading" secondItem="12" secondAttribute="trailing" constant="5" id="0r3-Ra-GnW"/>
                     <constraint firstItem="18" firstAttribute="leading" secondItem="3" secondAttribute="trailing" constant="5" id="4Ii-uD-7rO"/>
+                    <constraint firstItem="12" firstAttribute="width" secondItem="5" secondAttribute="width" id="89s-Ma-tG9"/>
+                    <constraint firstItem="4" firstAttribute="width" secondItem="12" secondAttribute="width" id="8Sm-Gl-dSV"/>
+                    <constraint firstItem="3" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="5" id="8eg-9y-DOS"/>
                     <constraint firstItem="12" firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="ED3-qk-FyG"/>
                     <constraint firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="GK5-5U-8eq"/>
                     <constraint firstItem="12" firstAttribute="leading" secondItem="5" secondAttribute="trailing" constant="5" id="Jfw-97-ocs"/>
@@ -96,9 +81,13 @@
                     <constraint firstItem="3" firstAttribute="centerY" secondItem="18" secondAttribute="centerY" id="Wbf-Ce-5tv"/>
                     <constraint firstItem="5" firstAttribute="centerY" secondItem="19" secondAttribute="centerY" id="XZU-hG-hwY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4" secondAttribute="trailing" id="dT1-Bw-dPT"/>
+                    <constraint firstItem="19" firstAttribute="width" secondItem="18" secondAttribute="width" id="fRy-Sz-jeE"/>
+                    <constraint firstItem="5" firstAttribute="width" secondItem="19" secondAttribute="width" id="j9O-kJ-Ri3"/>
                     <constraint firstItem="5" firstAttribute="centerY" secondItem="12" secondAttribute="centerY" id="k6a-gL-OC9"/>
                     <constraint firstItem="6" firstAttribute="leading" secondItem="L61-Lh-yzN" secondAttribute="leadingMargin" id="o98-Sf-bmh"/>
                     <constraint firstItem="5" firstAttribute="leading" secondItem="19" secondAttribute="trailing" constant="5" id="vjb-6A-XP3"/>
+                    <constraint firstItem="6" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="yAp-Wr-slY"/>
+                    <constraint firstItem="18" firstAttribute="width" secondItem="3" secondAttribute="width" id="yXh-6t-3po"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

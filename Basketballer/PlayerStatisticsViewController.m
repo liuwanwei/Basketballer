@@ -20,9 +20,9 @@
 @synthesize tvCell = _tvCell;
 @synthesize actionsInMatch = _actionsInMatch;
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return LocalString(@"PlayerStatisticsViewHeader");
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return LocalString(@"PlayerStatisticsViewHeader");
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     StatisticSectionHeaderView * header = [[[NSBundle mainBundle] loadNibNamed:@"StatisticSectionHeaderView" owner:self options:nil] lastObject];
