@@ -135,11 +135,11 @@
 "Period3" = "第三节";
 "Period4" = "第四节";
 "Overtime"= "加时赛";
-"Period1End" = "第一节结束";
-"Period2End" = "第二节结束";
-"Period3End" = "第三节结束";
-"Period4End" = "第四节结束";
-"OvertimeEnd"= "加时赛结束";
+"Period1End" = "第一节结束，开始节间休息";
+"Period2End" = "第二节结束，开始节间休息";
+"Period3End" = "第三节结束，开始节间休息";
+"Period4End" = "第四节结束，开始节间休息";
+"OvertimeEnd"= "加时小节结束，节间休息";
 "TimeoutTimeUp" = "暂停时间到！";
 "RestTimeUp" = "休息时间到!";
 "CheckApp" = "查看应用";

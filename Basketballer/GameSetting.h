@@ -16,7 +16,7 @@
 #define kMatchModeAmateurSimple15       @"AmateurSimple-15"     // 业余：只有一节15分钟模式。
 #define kMatchModeFiba                  @"FIBA"                 // FIBA 标准模式。
 #define kMatchModeTpb                   @"TPB"                  // FIBA Three player basketball match
-#define kMatchModeAccount               @"简单记分"              // 简单计分模式。
+#define kMatchModePoints                @"简单记分"              // 简单计分模式。
 
 
 #define kHomeTeamPlayerStatistics       @"HomeTeamPlayerStatistics"

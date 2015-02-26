@@ -25,7 +25,7 @@
     TeamStatistics * statistics = nil;
     if ([mode isEqualToString:kMatchModeFiba] ||
         (![mode isEqualToString:kMatchModeTpb]
-         && ![mode isEqualToString:kMatchModeAccount])){
+         && ![mode isEqualToString:kMatchModePoints])){
         statistics = [[FibaTeamStatistics alloc] initWithTeamId:teamId];
         statistics.rule = rule;
     }else{
@@ -35,10 +35,6 @@
     
     return statistics;    
 }
-//
-//- (ActionType)checkAutoTimeout:(MatchPeriod)period atTime:(NSInteger)time{
-//    return ActionTypeNone;
-//}
 
 - (id)initWithTeamId:(NSNumber *)teamId{
     if (self = [super init]) {

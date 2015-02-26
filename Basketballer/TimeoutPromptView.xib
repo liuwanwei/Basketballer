@@ -12,6 +12,7 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
+			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUIView</string>
@@ -57,7 +58,7 @@
 						<string key="NSFrameSize">{320, 144}</string>
 						<reference key="NSSuperview" ref="317766682"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="581425551"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -83,6 +84,32 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="useAutomaticPreferredMaxLayoutWidth">YES</bool>
+					</object>
+					<object class="IBUIButton" id="581425551">
+						<reference key="NSNextResponder" ref="317766682"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{124, 96}, {72, 44}}</string>
+						<reference key="NSSuperview" ref="317766682"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">结束计时</string>
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">1</int>
+							<double key="pointSize">16</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">HelveticaNeue</string>
+							<double key="NSSize">16</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 144}</string>
@@ -111,6 +138,15 @@
 					</object>
 					<int key="connectionID">23</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">stopButtonClicked:</string>
+						<reference key="source" ref="581425551"/>
+						<reference key="destination" ref="317766682"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">50</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -137,6 +173,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="476781862"/>
 							<reference ref="822857434"/>
+							<reference ref="581425551"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -150,6 +187,11 @@
 						<reference key="object" ref="822857434"/>
 						<reference key="parent" ref="317766682"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">48</int>
+						<reference key="object" ref="581425551"/>
+						<reference key="parent" ref="317766682"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -161,13 +203,14 @@
 				<string key="16.IBPersistedLastKnownCanvasPosition">{189, 144}</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">47</int>
+			<int key="maxID">50</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -237,6 +280,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="resumeGame:">UIButton</string>
 						<string key="showPlaySoundView:">id</string>
+						<string key="stopButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="resumeGame:">
@@ -245,6 +289,10 @@
 						</object>
 						<object class="IBActionInfo" key="showPlaySoundView:">
 							<string key="name">showPlaySoundView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="stopButtonClicked:">
+							<string key="name">stopButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

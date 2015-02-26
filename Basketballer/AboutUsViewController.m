@@ -20,7 +20,7 @@
 @implementation AboutUsViewController
 
 - (void)initArray {
-    _array = [[NSArray alloc] initWithObjects:@"刘万伟",@"毛_宇",nil];
+    _array = [[NSArray alloc] initWithObjects:@"勤快的天蓬",@"毛_宇",nil];
     _arrayNumber = [[NSArray alloc] initWithObjects:@"iharbor",@"1733875695",nil];
 }
 

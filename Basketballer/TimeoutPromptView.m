@@ -67,19 +67,35 @@
     _timeoutCountDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeoutCountDown) userInfo:nil repeats:YES];
 }
 
+// 停止暂停计数器
 - (void)stopTimeoutCountdown {
     [_timeoutCountDownTimer invalidate];
 }
 
+- (void)stopTimeout:(BOOL)prompt{
+    [self stopTimeoutCountdown];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
+    
+    if (prompt) {
+        // 提示继续计时
+        [self showAlertView];
+    }else{
+        // 不提示直接开始计时
+        [[[AppDelegate delegate] playGameViewController] startGame];
+    }
+}
+
+// 停止暂停
+- (IBAction)stopButtonClicked:(id)sender{
+    [self stopTimeout:YES];
+}
+
 - (void)updateTimeoutCountDown {
+    _match.timeoutCountdownSeconds --;
     [self updateTimeoutCountdownLabel:_match.timeoutCountdownSeconds];
     if(_match.timeoutCountdownSeconds  <= 0) {
-        [self stopTimeoutCountdown];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
-        [self showAlertView];
+        [self stopTimeout:YES];
     }
-    
-    _match.timeoutCountdownSeconds --;
 }
 
 #pragma 类成员函数

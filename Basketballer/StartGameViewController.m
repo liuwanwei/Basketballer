@@ -247,7 +247,7 @@
         NSString * mode = [[[GameSetting defaultSetting] gameModes] objectAtIndex:index];
         UITableViewController * details;
         
-        if ([mode isEqualToString:kMatchModeAccount]) {
+        if ([mode isEqualToString:kMatchModePoints]) {
             details = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
         }else {
             details = [[RuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];

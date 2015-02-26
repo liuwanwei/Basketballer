@@ -1,14 +1,17 @@
 PODS:
+  - AVOSCloud (2.6.10.2)
   - FXLabel (1.5.8)
   - MBProgressHUD (0.9)
   - XLForm (2.1.0)
 
 DEPENDENCIES:
+  - AVOSCloud (~> 2.6.10.2)
   - FXLabel (~> 1.5.8)
   - MBProgressHUD (~> 0.9)
   - XLForm (~> 2.1.0)
 
 SPEC CHECKSUMS:
+  AVOSCloud: 903429163bce9feabb4473ab07ea30ed47ba5db1
   FXLabel: d7c2cb1d2903d7a7ac04855d470ecf2079f4881e
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b

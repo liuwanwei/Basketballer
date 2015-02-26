@@ -86,7 +86,7 @@ typedef enum {
         UILocalNotification * newNotification = nil;
         NSString * body;
         MatchUnderWay * match = [MatchUnderWay defaultMatch];
-        if ([match.matchMode isEqualToString:kMatchModeAccount]) {
+        if ([match.matchMode isEqualToString:kMatchModePoints]) {
             return;
         }
         

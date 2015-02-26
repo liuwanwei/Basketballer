@@ -58,7 +58,7 @@ static GameSetting * gameSettings;
 
 - (NSArray *)gameModes{
     if (_gameModes == nil) {
-        _gameModes = [NSArray arrayWithObjects:kMatchModeFiba, kMatchModeTpb,kMatchModeAccount, nil];
+        _gameModes = [NSArray arrayWithObjects:kMatchModeFiba, kMatchModeTpb,kMatchModePoints, nil];
     }
     
     return _gameModes;

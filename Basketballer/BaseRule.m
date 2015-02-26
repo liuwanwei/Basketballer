@@ -33,7 +33,7 @@
          return [[FibaRule alloc] initWithName:mode];
      }else if([mode isEqualToString:kMatchModeTpb]){
          return [[Fiba3pbRule alloc] initWithName:mode];
-     }else if([mode isEqualToString:kMatchModeAccount]) {
+     }else if([mode isEqualToString:kMatchModePoints]) {
          return [[OnlyPointRule alloc] initWithName:mode];
      }else if([mode hasPrefix:kMatchModeAmateur]){
          return [[AmateurRule alloc] initWithName:mode];

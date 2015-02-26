@@ -885,13 +885,14 @@
 		E68D110315A2F7020074982D /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				FB957D2E19DFA23E007FC3DA /* Rule */,
+				FB957D2F19DFA2C2007FC3DA /* Entity */,
 				E6E1D94B15AA87F800CB0C0E /* ActionManager.h */,
 				E6E1D94C15AA87F800CB0C0E /* ActionManager.m */,
 				E6E1D95715AB1E1A00CB0C0E /* BaseManager.h */,
 				E6E1D95815AB1E1A00CB0C0E /* BaseManager.m */,
 				FB957D1419DAB640007FC3DA /* CustomRuleManager.h */,
 				FB957D1519DAB640007FC3DA /* CustomRuleManager.m */,
-				FB957D2F19DFA2C2007FC3DA /* Entity */,
 				E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */,
 				E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */,
 				E68D111C15A3DA0C0074982D /* GameSetting.h */,
@@ -904,7 +905,6 @@
 				E6E032A515C98CB600AF91CB /* MatchUnderWay.m */,
 				E6E032C215CFB44000AF91CB /* PlayerManager.h */,
 				E6E032C315CFB44100AF91CB /* PlayerManager.m */,
-				FB957D2E19DFA23E007FC3DA /* Rule */,
 				E6E1D95415AB183500CB0C0E /* TeamManager.h */,
 				E6E1D95515AB183500CB0C0E /* TeamManager.m */,
 				E69255F015B3EA7500CBF606 /* TeamStatistics.h */,
@@ -1030,8 +1030,6 @@
 				FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */,
 				E658146E15DF5AC0007B4F7E /* FibaRule.h */,
 				E658146F15DF5AC0007B4F7E /* FibaRule.m */,
-				FB957D1719DAB876007FC3DA /* Rule.h */,
-				FB957D1819DAB876007FC3DA /* Rule.m */,
 			);
 			name = Rule;
 			sourceTree = "<group>";
@@ -1047,6 +1045,8 @@
 				E6E032C615CFBC2500AF91CB /* Player.m */,
 				E69255FC15B551EA00CBF606 /* Team.h */,
 				E69255FD15B551EA00CBF606 /* Team.m */,
+				FB957D1719DAB876007FC3DA /* Rule.h */,
+				FB957D1819DAB876007FC3DA /* Rule.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";

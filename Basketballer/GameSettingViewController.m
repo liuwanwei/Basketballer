@@ -47,11 +47,12 @@ typedef enum{
     PlayGameViewController * playViewController = [[AppDelegate delegate] playGameViewController];
     if (nil != playViewController) {
         NSString * title;
-        if ([[MatchUnderWay defaultMatch].matchMode isEqualToString:kMatchModeAccount]) {
+        if ([[MatchUnderWay defaultMatch].matchMode isEqualToString:kMatchModePoints]) {
             title = LocalString(@"FinishMatch");
         }else {
             title = LocalString(@"AbandonGame");
         }
+        
         if (YES == playViewController.gameStart) {
             [self showAlertViewWithTitle:title withMessage:LocalString(@"SaveMatchPrompt")];
         }else {
@@ -63,7 +64,7 @@ typedef enum{
 - (void)initUIButton {
     
     NSString * buttonTitle;
-    if ([[MatchUnderWay defaultMatch].matchMode isEqualToString:kMatchModeAccount]) {
+    if ([[MatchUnderWay defaultMatch].matchMode isEqualToString:kMatchModePoints]) {
         buttonTitle = LocalString(@"FinishMatch");
     }else {
         buttonTitle = LocalString(@"AbandonGame");
@@ -201,7 +202,7 @@ typedef enum{
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
-        if ([self.ruleInUse.name isEqualToString:kMatchModeAccount]) {
+        if ([self.ruleInUse.name isEqualToString:kMatchModePoints]) {
             AccountRuleDetailViewController * vc = [[AccountRuleDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:vc animated:YES];
         }else{

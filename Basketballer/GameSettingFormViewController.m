@@ -70,48 +70,16 @@ NSString * const kButtonStop = @"buttonStop";
     [sectionRule addFormRow:row];
     [form addFormSection:sectionRule];
     
-    // 结束比赛按钮
-    XLFormSectionDescriptor * sectionStop = [XLFormSectionDescriptor formSectionWithTitle:nil];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonStop rowType:XLFormRowDescriptorTypeButton title:LocalString(@"FinishMatch")];
-    row.action.formSelector = @selector(finishButtonClicked:);
-    [row.cellConfig setObject:[UIColor redColor] forKey:@"textLabel.color"];
-    [sectionStop addFormRow:row];
-    [form addFormSection:sectionStop];
+//    // 结束比赛按钮
+//    XLFormSectionDescriptor * sectionStop = [XLFormSectionDescriptor formSectionWithTitle:nil];
+//    row = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonStop rowType:XLFormRowDescriptorTypeButton title:LocalString(@"FinishMatch")];
+//    row.action.formSelector = @selector(finishButtonClicked:);
+//    [row.cellConfig setObject:[UIColor redColor] forKey:@"textLabel.color"];
+//    [sectionStop addFormRow:row];
+//    [form addFormSection:sectionStop];
     
     self.form = form;
 
-}
-
-- (void)finishButtonClicked:(id)sender{
-    PlayGameViewController * playViewController = [[AppDelegate delegate] playGameViewController];
-    if (nil != playViewController) {
-        NSString * title;
-        if ([[MatchUnderWay defaultMatch].matchMode isEqualToString:kMatchModeAccount]) {
-            title = LocalString(@"FinishMatch");
-        }else {
-            title = LocalString(@"AbandonGame");
-        }
-        if (YES == playViewController.gameStart) {
-            UIAlertView * alertView;
-            alertView = [[UIAlertView alloc] initWithTitle:title message:LocalString(@"SaveMatchPrompt") delegate:self cancelButtonTitle:LocalString(@"Cancel")  otherButtonTitles:LocalString(@"Save"),LocalString(@"Abandon") , nil];
-            
-            [alertView show];
-        }else {
-            [playViewController stopGame:MatchStateStopped withWinTeam:nil];
-        }
-    }
-}
-
-#pragma alert delete
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        PlayGameViewController * playViewController = [[AppDelegate delegate] playGameViewController];
-        if (buttonIndex == alertView.firstOtherButtonIndex) {
-            [playViewController stopGame:MatchStateFinished withWinTeam:nil];
-        }else {
-            [playViewController stopGame:MatchStateStopped withWinTeam:nil];
-        }
-    }
 }
 
 
