@@ -235,21 +235,6 @@
                         <action selector="addAction:" destination="-1" eventType="touchUpInside" id="DRt-CV-Da7"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mV-pt-4Eg" userLabel="blockRight">
-                    <rect key="frame" x="238" y="277" width="64" height="31"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="+1篮板" backgroundImage="game_menu_off.png">
-                        <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted" backgroundImage="game_menu_on.png">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="Obh-PN-cQl"/>
-                    </connections>
-                </button>
                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-xI-TTS" userLabel="assistLeft">
                     <rect key="frame" x="18" y="318" width="64" height="31"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -310,13 +295,36 @@
                         <action selector="addAction:" destination="-1" eventType="touchUpInside" id="cWX-iT-AYV"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                    <rect key="frame" x="144" y="236" width="31" height="30"/>
+                <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mV-pt-4Eg" userLabel="blockRight">
+                    <rect key="frame" x="238" y="277" width="64" height="31"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="+1篮板" backgroundImage="game_menu_off.png">
+                        <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="game_menu_on.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="Obh-PN-cQl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-Nl-hBw" userLabel="assistRight">
+                    <rect key="frame" x="238" y="318" width="64" height="31"/>
+                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="+1助攻" backgroundImage="game_menu_off.png">
+                        <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="game_menu_on.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="oOm-xq-XrC"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niF-Js-hSD" userLabel="View(Foul)">
                     <rect key="frame" x="0.0" y="359" width="320" height="31"/>
                     <subviews>
@@ -491,10 +499,19 @@
                         <action selector="showSettingController:" destination="-1" eventType="touchUpInside" id="e1H-Mr-cv8"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-hL-ecn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-hL-ecn" userLabel="on">
                     <rect key="frame" x="128" y="471" width="30" height="4"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dwl-5U-p4t">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wb-n8-Jev">
+                    <rect key="frame" x="145" y="441" width="30" height="30"/>
+                    <state key="normal" title="操作">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="operationMenuClicked:" destination="-2" eventType="touchUpInside" id="4Rb-lW-sSW"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dwl-5U-p4t" userLabel="off">
                     <rect key="frame" x="162" y="471" width="30" height="4"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74">
@@ -515,30 +532,13 @@
                         <action selector="showPlaySoundController:" destination="-1" eventType="touchUpInside" id="75"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-Nl-hBw" userLabel="assistRight">
-                    <rect key="frame" x="238" y="318" width="64" height="31"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="58">
+                    <rect key="frame" x="144" y="236" width="31" height="30"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="+1助攻" backgroundImage="game_menu_off.png">
-                        <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted" backgroundImage="game_menu_on.png">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="oOm-xq-XrC"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wb-n8-Jev">
-                    <rect key="frame" x="145" y="441" width="30" height="30"/>
-                    <state key="normal" title="操作">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="operationMenuClicked:" destination="-2" eventType="touchUpInside" id="4Rb-lW-sSW"/>
-                    </connections>
-                </button>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -567,7 +567,6 @@
                 <constraint firstItem="y8a-Uq-FgF" firstAttribute="centerX" secondItem="6wb-n8-Jev" secondAttribute="centerX" id="aO8-st-8z9"/>
                 <constraint firstAttribute="bottom" secondItem="111" secondAttribute="bottom" constant="6" id="aYQ-1B-IW0"/>
                 <constraint firstItem="0mV-pt-4Eg" firstAttribute="centerY" secondItem="pqd-S9-hlY" secondAttribute="centerY" id="c9t-li-3yr"/>
-                <constraint firstItem="111" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="cDy-iD-rBV"/>
                 <constraint firstItem="86" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="18" id="g8b-N2-iv1"/>
                 <constraint firstItem="87" firstAttribute="centerY" secondItem="90" secondAttribute="centerY" id="gCY-ih-njN"/>
                 <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="17" id="jo5-BD-e75"/>
