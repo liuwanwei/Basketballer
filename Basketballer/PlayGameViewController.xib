@@ -271,7 +271,10 @@
                     <rect key="frame" x="0.0" y="234" width="320" height="30.5"/>
                     <subviews>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88" userLabel="+3PtsLeft">
-                            <rect key="frame" x="18" y="0.0" width="64" height="31"/>
+                            <rect key="frame" x="18" y="0.0" width="68" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="Sxq-9x-9fs"/>
+                            </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="+3 Pts" backgroundImage="game_menu_off.png">
@@ -286,7 +289,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91" userLabel="+3PtsRight">
-                            <rect key="frame" x="238" y="0.0" width="64" height="31"/>
+                            <rect key="frame" x="234" y="0.0" width="68" height="31"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="+3 Pts" backgroundImage="game_menu_off.png">
@@ -360,9 +363,9 @@
                     <rect key="frame" x="0.0" y="315" width="320" height="30.5"/>
                     <subviews>
                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-xI-TTS" userLabel="assistLeft">
-                            <rect key="frame" x="18" y="-0.5" width="64" height="31"/>
+                            <rect key="frame" x="18" y="-0.5" width="68" height="31"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="64" id="lj2-qe-Sab"/>
+                                <constraint firstAttribute="width" constant="68" id="lj2-qe-Sab"/>
                             </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -378,7 +381,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-Nl-hBw" userLabel="assistRight">
-                            <rect key="frame" x="238" y="0.0" width="64" height="31"/>
+                            <rect key="frame" x="234" y="0.0" width="68" height="31"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="+1助攻" backgroundImage="game_menu_off.png">
