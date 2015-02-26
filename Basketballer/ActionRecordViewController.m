@@ -131,7 +131,7 @@
     [self.view addGestureRecognizer:swip];
     
     self.tableView.delegate = self;
-    self.tableView.rowHeight = 60.0;
+//    self.tableView.rowHeight = 60.0;
     
     [self initView];
     [self initData];
