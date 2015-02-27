@@ -7,7 +7,6 @@
 //
 
 #import "GameStatisticViewController.h"
-//#import "ActionRecordViewController.h"
 #import "PlayerStatisticsViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
@@ -18,8 +17,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StatisticSectionHeaderView.h"
 #import "StatisticCell.h"
-//#import "UMSocial.h"
-//#import "UMSocialScreenShoter.h"
+
+typedef enum{
+    SectionPeriodPoints     = 0,
+    SectionTeamStatistics   = 1,
+    SectionHomeTeamPlayers  = 2,
+    SectionGuestTeamPlayers = 3,
+}SectionIndex;
 
 @interface GameStatisticViewController (){
     Team * _homeTeam;
@@ -184,13 +188,6 @@
     }
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:[self pageName]];
@@ -226,15 +223,15 @@
     StatisticSectionHeaderView * header = [[[NSBundle mainBundle] loadNibNamed:@"StatisticSectionHeaderView" owner:self options:nil] lastObject];
     if ([header isKindOfClass:[StatisticSectionHeaderView class]]) {
         switch (section) {
-            case 0:
+            case SectionPeriodPoints:
                 [header changeToPeriodStatistics];
                 break;
-            case 1:
+            case SectionTeamStatistics:
                 break;
-            case 2:
+            case SectionHomeTeamPlayers:
                 header.nameLabel.text = @"主队队员";//_homeTeam.name;
                 break;
-            case 3:
+            case SectionGuestTeamPlayers:
                 header.nameLabel.text = @"客队队员";//_guestTeam.name;
                 break;
             default:
@@ -250,16 +247,16 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger rows = 0;
     switch (section) {
-        case 0:
+        case SectionPeriodPoints:
             rows = 2;
             break;
-        case 1:
+        case SectionTeamStatistics:
             rows = 2;
             break;
-        case 2:
+        case SectionHomeTeamPlayers:
             rows = _homeTeamPlayers.count;
             break;
-        case 3:
+        case SectionGuestTeamPlayers:
             rows = _guestTeamPlayers.count;
             break;
         default:
@@ -280,7 +277,7 @@
 
     ActionManager * am = [ActionManager defaultManager];
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == SectionPeriodPoints) {
         Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
         
         // 设置每一节的得分信息
@@ -291,9 +288,8 @@
         NSNumber * points = (indexPath.row == 0 ? _match.homePoints : _match.guestPoints);
         [cell setTotalPoints:points];
         
-    }else if(indexPath.section == 1){
-        // 球队技术统计。
-        // 在xib中设置UITableViewCell的reuseIdentifier。
+    }else if(indexPath.section == SectionTeamStatistics){
+        // 球队技术统计：在xib中设置UITableViewCell的reuseIdentifier。
         
         Statistics * statistics = nil;
         Team * teamInfo = (indexPath.row == 0 ? _homeTeam : _guestTeam);
@@ -302,9 +298,10 @@
         
         [cell setStatistic:statistics];
         
-    }else if(indexPath.section == 2 || indexPath.section == 3){
+    }else if(indexPath.section == SectionHomeTeamPlayers ||
+             indexPath.section == SectionGuestTeamPlayers){
         ActionManager * am = [ActionManager defaultManager];
-        NSArray * players = (indexPath.section == 1 ? _homeTeamPlayers : _guestTeamPlayers);
+        NSArray * players = (indexPath.section == SectionHomeTeamPlayers ? _homeTeamPlayers : _guestTeamPlayers);
         Player * player = [players objectAtIndex:indexPath.row];
         Statistics * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
         data.name = player.name;

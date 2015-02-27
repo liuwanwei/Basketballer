@@ -189,7 +189,6 @@
 		FB1BA92D1884E44300978359 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1BA92C1884E44300978359 /* XCTest.framework */; };
 		FB1BA92E1884E44300978359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		FB1BA92F1884E44300978359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
-		FB1BA9351884E44300978359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB1BA9331884E44300978359 /* InfoPlist.strings */; };
 		FB1BA9371884E44300978359 /* Basketballer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9361884E44300978359 /* Basketballer_Tests.m */; };
 		FB292DFD1A95FD2A00792680 /* game_playing_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FB292DFC1A95FD2A00792680 /* game_playing_bg.png */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
@@ -313,7 +312,6 @@
 		3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3CC1681515A2E52A00A2AB44 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3CC1681915A2E52B00A2AB44 /* Basketballer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Basketballer-Info.plist"; sourceTree = "<group>"; };
-		3CC1681B15A2E52B00A2AB44 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3CC1681D15A2E52B00A2AB44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3CC1681F15A2E52B00A2AB44 /* Basketballer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basketballer-Prefix.pch"; sourceTree = "<group>"; };
 		3CC1682115A2E52B00A2AB44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -380,7 +378,6 @@
 		E658146B15DF4F8E007B4F7E /* BaseRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRule.m; sourceTree = "<group>"; };
 		E658146E15DF5AC0007B4F7E /* FibaRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibaRule.h; sourceTree = "<group>"; };
 		E658146F15DF5AC0007B4F7E /* FibaRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaRule.m; sourceTree = "<group>"; };
-		E65C9D0815F488FA00DCE645 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E65C9D0A15F4891700DCE645 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E65C9D1115F5D65600DCE645 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E65FF05215C455F200E96D6A /* ImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
@@ -479,7 +476,6 @@
 		FB1BA92B1884E44300978359 /* BasketballerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketballerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FB1BA9321884E44300978359 /* Basketballer Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Basketballer Tests-Info.plist"; sourceTree = "<group>"; };
-		FB1BA9341884E44300978359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FB1BA9361884E44300978359 /* Basketballer_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Basketballer_Tests.m; sourceTree = "<group>"; };
 		FB1BA9381884E44300978359 /* Basketballer Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basketballer Tests-Prefix.pch"; sourceTree = "<group>"; };
 		FB1BA9401884E58300978359 /* AmateurRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRuleTest.m; sourceTree = "<group>"; };
@@ -983,7 +979,6 @@
 			isa = PBXGroup;
 			children = (
 				FB1BA9321884E44300978359 /* Basketballer Tests-Info.plist */,
-				FB1BA9331884E44300978359 /* InfoPlist.strings */,
 				FB1BA9381884E44300978359 /* Basketballer Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -1110,7 +1105,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				"zh-Hans",
 			);
 			mainGroup = 3CC1680015A2E52A00A2AB44;
@@ -1265,7 +1259,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB1BA9351884E44300978359 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1405,7 +1398,6 @@
 		3CC1681A15A2E52B00A2AB44 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3CC1681B15A2E52B00A2AB44 /* en */,
 				E65C9D1115F5D65600DCE645 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
@@ -1414,18 +1406,9 @@
 		E65C9D0915F488FA00DCE645 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E65C9D0815F488FA00DCE645 /* en */,
 				E65C9D0A15F4891700DCE645 /* zh-Hans */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		FB1BA9331884E44300978359 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB1BA9341884E44300978359 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1464,7 +1447,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "9d2b145b-d72c-4b66-ba7f-c1f323c9a73b";
+				PROVISIONING_PROFILE = "e4431f8f-2ee4-4f70-8d4e-d20c88e26ffb";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -1496,7 +1479,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "9d2b145b-d72c-4b66-ba7f-c1f323c9a73b";
+				PROVISIONING_PROFILE = "e4431f8f-2ee4-4f70-8d4e-d20c88e26ffb";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -1521,7 +1504,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9d2b145b-d72c-4b66-ba7f-c1f323c9a73b";
+				PROVISIONING_PROFILE = "e4431f8f-2ee4-4f70-8d4e-d20c88e26ffb";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1546,7 +1529,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9d2b145b-d72c-4b66-ba7f-c1f323c9a73b";
+				PROVISIONING_PROFILE = "e4431f8f-2ee4-4f70-8d4e-d20c88e26ffb";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
