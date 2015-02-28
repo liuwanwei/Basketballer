@@ -9,6 +9,7 @@
 #import "GameStatisticViewController.h"
 #import "ActionManager.h"
 #import "TeamManager.h"
+#import "PlayerManager.h"
 #import "MatchManager.h"
 #import "AppDelegate.h"
 #import "Feature.h"
