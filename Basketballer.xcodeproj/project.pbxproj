@@ -193,6 +193,7 @@
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
+		FB7DFF9A1AA170C7008F6AB8 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
 		FB8457581A99FE7A00227408 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457571A99FE7A00227408 /* Statistics.m */; };
 		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
@@ -483,6 +484,7 @@
 		FB7DFF531A9EE830008F6AB8 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
 		FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
 		FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterViewController.xib; sourceTree = "<group>"; };
+		FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "left_arrow@2x.png"; path = "Images/left_arrow@2x.png"; sourceTree = "<group>"; };
 		FB8457451A98B5AD00227408 /* GameSettingFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingFormViewController.h; sourceTree = "<group>"; };
 		FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingFormViewController.m; sourceTree = "<group>"; };
 		FB8457561A99FE7A00227408 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */,
 				FB292DFC1A95FD2A00792680 /* game_playing_bg.png */,
 				79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */,
 				79E33AED19E8D5EA00AC46DE /* game_pauseing_background@2x.png */,
@@ -1212,6 +1215,7 @@
 				E6F1E35015ECEB5900FED24B /* TimeoutAction@2x.png in Resources */,
 				FB957D3819E167EE007FC3DA /* remove_dark.png in Resources */,
 				E6F1E35115ECEB5900FED24B /* TwoPoints@2x.png in Resources */,
+				FB7DFF9A1AA170C7008F6AB8 /* left_arrow@2x.png in Resources */,
 				3C765CD715EC6C0700235664 /* music.png in Resources */,
 				3CB8C77215EDF27D00091D52 /* PlayerActionCell.xib in Resources */,
 				FBB902811A1062D500CB7FD3 /* README.txt in Resources */,

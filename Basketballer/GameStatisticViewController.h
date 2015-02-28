@@ -27,7 +27,7 @@
 
 @property (nonatomic, weak) Match * match;
 
-- (void)reloadActionsInMatch;
+//- (void)reloadActionsInMatch;
 
 - (IBAction)showActionMenu;
 - (IBAction)deleteMatch;

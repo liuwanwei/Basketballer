@@ -10,6 +10,7 @@
 #import "ActionManager.h"
 #import "TeamManager.h"
 #import "MatchUnderWay.h"
+#import "MatchFinishedDetailsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Feature.h"
 #import "AppDelegate.h"
@@ -90,6 +91,21 @@
 
 - (IBAction)backToMatch:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)realtimeStatistics:(id)sender{
+    Match * match = [[MatchUnderWay defaultMatch] match];
+    if (match == nil) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"比赛未开始" message:@"开始比赛后，才能看到技术统计" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [av show];
+        return;
+    }
+    
+    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];
+    controller.match = match;
+    
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 //- (NSMutableArray *)actionsForTeam:(NSNumber *)teamId inActions:(NSArray *)allActions{

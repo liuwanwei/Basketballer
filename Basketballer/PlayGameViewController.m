@@ -410,14 +410,10 @@ typedef enum {
 
 // 显示比赛结束详情界面
 - (void)showMatchFinishedDetailsController {
-    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];
-    
+    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];    
     controller.match = _match.match;
-    [controller reloadActionsInMatch];
     
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
-    
-//    [self presentModalViewController:nav animated:YES];
     [self presentViewController:nav animated:YES completion:nil];
 }
 
@@ -570,9 +566,6 @@ typedef enum {
     [[SoundManager defaultManager] playMatchStartSound];
 }
 
-- (IBAction)showActionRecordController:(id)sender {
-    [self swip:nil];
-}
 
 - (IBAction)changePeriod:(UIButton *)sender {
     _match.period = _match.period == MatchPeriodFourth ? MatchPeriodFirst : _match.period % _match.rule.regularPeriodNumber + 1;

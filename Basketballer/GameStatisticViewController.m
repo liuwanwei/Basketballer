@@ -62,26 +62,26 @@ typedef enum{
     return thoroughfare;
 }
 
-- (NSString *)snsString {
-    NSString * result = nil;
-    ActionManager * am = [ActionManager defaultManager];
-    Statistics * homeStatistics;
-    Statistics * guestStatistics;
-    homeStatistics = [am statisticsForTeam:_match.homeTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
-    guestStatistics = [am statisticsForTeam:_match.guestTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
-    
-    result = LocalString(@"SNSShareMatchResult");
-    result = [result stringByAppendingString:@" "];
-    result = [result stringByAppendingString:_homeTeam.name];
-    result = [result stringByAppendingString:@" vs "];
-    result = [result stringByAppendingString:_guestTeam.name];
-    result = [result stringByAppendingString:@" "];
-    
-    result = [result stringByAppendingString:[NSString stringWithFormat:@"%d", (int)homeStatistics.points]];
-    result = [result stringByAppendingString:@" : "];
-    result = [result stringByAppendingString:[NSString stringWithFormat:@"%d", (int)guestStatistics.points]];
-    return result;
-}
+//- (NSString *)snsString {
+//    NSString * result = nil;
+//    ActionManager * am = [ActionManager defaultManager];
+//    Statistics * homeStatistics;
+//    Statistics * guestStatistics;
+//    homeStatistics = [am statisticsForTeam:_match.homeTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+//    guestStatistics = [am statisticsForTeam:_match.guestTeam inPeriod:MatchPeriodAll inActions:_actionsInMatch];
+//    
+//    result = LocalString(@"SNSShareMatchResult");
+//    result = [result stringByAppendingString:@" "];
+//    result = [result stringByAppendingString:_homeTeam.name];
+//    result = [result stringByAppendingString:@" vs "];
+//    result = [result stringByAppendingString:_guestTeam.name];
+//    result = [result stringByAppendingString:@" "];
+//    
+//    result = [result stringByAppendingString:[NSString stringWithFormat:@"%d", (int)homeStatistics.points]];
+//    result = [result stringByAppendingString:@" : "];
+//    result = [result stringByAppendingString:[NSString stringWithFormat:@"%d", (int)guestStatistics.points]];
+//    return result;
+//}
 
 // TODO: 分享到微博和朋友圈同时开发完善，先屏蔽掉分享到微博
 //- (void)showUMSnsController {    
@@ -134,7 +134,7 @@ typedef enum{
 - (void)reloadActionsInMatch{
     _actionsInMatch = [[ActionManager defaultManager] actionsForMatch:[_match.id integerValue]];
     
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
     
 }
 
@@ -155,11 +155,11 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    UIBarButtonItem  * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showUMSnsController)];
-//    self.navigationItem.rightBarButtonItem = item;
     
     self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self reloadActionsInMatch];
     
     TeamManager * tm = [TeamManager defaultManager];
     _homeTeam = [tm teamWithId:_match.homeTeam];

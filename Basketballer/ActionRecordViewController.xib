@@ -88,27 +88,30 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UI2-I8-yvs" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="420" width="320" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7o-Qa-gLx">
-                            <rect key="frame" x="8" y="5" width="30" height="30"/>
-                            <state key="normal" title="返回"/>
+                        <button opaque="NO" alpha="0.29999999999999966" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7o-Qa-gLx">
+                            <rect key="frame" x="8" y="-2" width="44" height="44"/>
+                            <state key="normal" image="left_arrow.png"/>
                             <connections>
                                 <action selector="backToMatch:" destination="-1" eventType="touchUpInside" id="V3h-C7-vIT"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-Eo-IRI">
-                            <rect key="frame" x="115" y="5" width="90" height="30"/>
-                            <state key="normal" title="查看技术统计">
+                            <rect key="frame" x="130" y="5" width="60" height="30"/>
+                            <state key="normal" title="技术统计">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="realtimeStatistics:" destination="-2" eventType="touchUpInside" id="dqj-UU-PTd"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="31">
-                            <rect key="frame" x="153.5" y="31" width="5" height="4"/>
+                            <rect key="frame" x="153" y="31" width="5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="5" id="mGt-B0-Riv"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="30">
-                            <rect key="frame" x="161.5" y="31" width="5" height="4"/>
+                            <rect key="frame" x="161" y="31" width="5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="5" id="fMQ-Xp-lhd"/>
                             </constraints>
@@ -164,6 +167,7 @@
         <image name="game_page_off.png" width="30" height="4"/>
         <image name="game_page_on.png" width="30" height="4"/>
         <image name="game_recording_background.png" width="320" height="152"/>
+        <image name="left_arrow.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

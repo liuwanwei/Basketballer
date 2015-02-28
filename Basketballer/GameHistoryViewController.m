@@ -22,7 +22,6 @@
 #import "TeamInfoViewController.h"
 
 @interface GameHistoryViewController (){
-    GameStatisticViewController * _gameDetailsViewController;
     UINavigationController * _gameHistoriesMapViewController;
     
     NSDateFormatter * _dateFormatter;
@@ -236,7 +235,7 @@
     Match * match = [self matchForIndexPath:indexPath];
     
     vc.match = match;
-    [vc reloadActionsInMatch];
+//    [vc reloadActionsInMatch];
     [self.navigationController pushViewController:vc animated:YES];
     
     // 用于删除比赛后，收到删除消息，刷新当前界面。

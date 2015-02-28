@@ -37,7 +37,8 @@
 @property (nonatomic, weak) IBOutlet UIImageView * teamBackgroundImageView; // 球队背景图
 @property (nonatomic, weak) IBOutlet UIButton * settingButton;
 @property (nonatomic, weak) IBOutlet UIButton * operationButton;
-@property (nonatomic, weak) IBOutlet UIButton * soundButton;
+@property (nonatomic, weak) IBOutlet UIButton * statisticButton;
+@property (nonatomic, weak) IBOutlet UIButton * musicButton;
 
 @property (nonatomic, weak) NSTimer * timeCountDownTimer;
 @property (nonatomic, weak) Team * hostTeam;
@@ -50,7 +51,6 @@
 - (void)startGame;
 - (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId;
 
-- (IBAction)showActionRecordController:(id)sender;
 - (IBAction)showActionRecord:(id)sender;
 - (IBAction)changePeriod:(UIButton *)sender;
 - (IBAction)addAction:(UIButton *)sender;
