@@ -101,11 +101,13 @@
         return;
     }
     
-    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];
+    self.navigationController.navigationBarHidden = NO;
+    GameStatisticViewController * controller = [[GameStatisticViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];
     controller.match = match;
+    [self.navigationController pushViewController:controller animated:YES];
     
-    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
-    [self presentViewController:nav animated:YES completion:nil];
+//    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
+//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 //- (NSMutableArray *)actionsForTeam:(NSNumber *)teamId inActions:(NSArray *)allActions{
@@ -169,6 +171,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:[self pageName]];
+    
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

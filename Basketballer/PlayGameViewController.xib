@@ -571,15 +571,9 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="showSettingController:" destination="-1" eventType="touchUpInside" id="e1H-Mr-cv8"/>
+                        <action selector="showGameSettingView:" destination="-1" eventType="touchUpInside" id="PHa-nU-Qe8"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-hL-ecn" userLabel="on">
-                    <rect key="frame" x="161" y="471" width="5" height="4"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="5" id="vgM-6Z-FLV"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wb-n8-Jev">
                     <rect key="frame" x="145" y="441" width="30" height="30"/>
                     <state key="normal" title="结束">
@@ -589,8 +583,14 @@
                         <action selector="operationMenuClicked:" destination="-2" eventType="touchUpInside" id="4Rb-lW-sSW"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-hL-ecn" userLabel="on">
+                    <rect key="frame" x="153.5" y="471" width="5" height="4"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="5" id="vgM-6Z-FLV"/>
+                    </constraints>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dwl-5U-p4t" userLabel="off">
-                    <rect key="frame" x="153" y="471" width="5" height="4"/>
+                    <rect key="frame" x="161.5" y="471" width="5" height="4"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="5" id="Xa2-hD-4bO"/>
                     </constraints>
@@ -658,7 +658,7 @@
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="height" secondItem="niF-Js-hSD" secondAttribute="height" id="geF-BC-RFV"/>
                 <constraint firstItem="2fB-s5-oMg" firstAttribute="top" secondItem="JMB-FL-2dU" secondAttribute="bottom" constant="10" id="hXo-TV-RVi"/>
                 <constraint firstAttribute="centerX" secondItem="JMB-FL-2dU" secondAttribute="centerX" id="jUw-NY-gkl"/>
-                <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="-4" id="jo5-BD-e75"/>
+                <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="4" id="jo5-BD-e75"/>
                 <constraint firstItem="niF-Js-hSD" firstAttribute="height" secondItem="y8a-Uq-FgF" secondAttribute="height" id="mBG-Dr-NiW"/>
                 <constraint firstItem="111" firstAttribute="top" secondItem="y8a-Uq-FgF" secondAttribute="bottom" constant="10" id="mOO-cQ-0IZ"/>
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="pgI-me-EW5"/>
@@ -672,7 +672,7 @@
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="top" secondItem="sVi-lc-fW6" secondAttribute="bottom" constant="10" id="wZg-K1-Wul"/>
                 <constraint firstItem="80" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="xPp-zZ-vXc"/>
                 <constraint firstAttribute="bottom" secondItem="gWQ-hL-ecn" secondAttribute="bottom" constant="5" id="y1H-Nd-5eE"/>
-                <constraint firstAttribute="centerX" secondItem="Dwl-5U-p4t" secondAttribute="centerX" constant="4" id="ydG-3I-vps"/>
+                <constraint firstAttribute="centerX" secondItem="Dwl-5U-p4t" secondAttribute="centerX" constant="-4" id="ydG-3I-vps"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="68" y="107"/>

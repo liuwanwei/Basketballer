@@ -88,15 +88,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UI2-I8-yvs" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="420" width="320" height="40"/>
                     <subviews>
-                        <button opaque="NO" alpha="0.29999999999999966" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7o-Qa-gLx">
-                            <rect key="frame" x="8" y="-2" width="44" height="44"/>
-                            <state key="normal" image="left_arrow.png"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7o-Qa-gLx">
+                            <rect key="frame" x="20" y="5" width="60" height="30"/>
+                            <state key="normal" title="返回比赛"/>
                             <connections>
                                 <action selector="backToMatch:" destination="-1" eventType="touchUpInside" id="V3h-C7-vIT"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-Eo-IRI">
-                            <rect key="frame" x="130" y="5" width="60" height="30"/>
+                            <rect key="frame" x="240" y="5" width="60" height="30"/>
                             <state key="normal" title="技术统计">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -104,16 +104,16 @@
                                 <action selector="realtimeStatistics:" destination="-2" eventType="touchUpInside" id="dqj-UU-PTd"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="31">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="off">
                             <rect key="frame" x="153" y="31" width="5" height="4"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="5" id="mGt-B0-Riv"/>
+                                <constraint firstAttribute="width" constant="5" id="fMQ-Xp-lhd"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="30">
-                            <rect key="frame" x="161" y="31" width="5" height="4"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="on">
+                            <rect key="frame" x="161.5" y="31" width="5" height="4"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="5" id="fMQ-Xp-lhd"/>
+                                <constraint firstAttribute="width" constant="5" id="mGt-B0-Riv"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -121,13 +121,13 @@
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="adJ-Eo-IRI" secondAttribute="centerY" id="3ph-Mw-KJ5"/>
                         <constraint firstAttribute="centerY" secondItem="q7o-Qa-gLx" secondAttribute="centerY" id="7fU-OG-YGu"/>
-                        <constraint firstItem="30" firstAttribute="centerX" secondItem="adJ-Eo-IRI" secondAttribute="centerX" constant="4" id="CFD-Tn-XR7"/>
-                        <constraint firstAttribute="centerX" secondItem="adJ-Eo-IRI" secondAttribute="centerX" id="Nvy-28-BFq"/>
-                        <constraint firstItem="31" firstAttribute="centerX" secondItem="adJ-Eo-IRI" secondAttribute="centerX" constant="-4" id="Nxq-1a-CBC"/>
+                        <constraint firstAttribute="trailing" secondItem="adJ-Eo-IRI" secondAttribute="trailing" constant="20" id="CHc-R8-ayC"/>
+                        <constraint firstAttribute="centerX" secondItem="30" secondAttribute="centerX" constant="4" id="SRa-qF-XjF"/>
                         <constraint firstAttribute="bottom" secondItem="31" secondAttribute="bottom" constant="5" id="ZFf-qh-v7h"/>
                         <constraint firstAttribute="height" constant="40" id="lzg-7G-yg8"/>
+                        <constraint firstAttribute="centerX" secondItem="31" secondAttribute="centerX" constant="-4" id="nse-1a-lom"/>
                         <constraint firstItem="30" firstAttribute="top" secondItem="31" secondAttribute="top" id="w9T-gS-N79"/>
-                        <constraint firstItem="q7o-Qa-gLx" firstAttribute="leading" secondItem="UI2-I8-yvs" secondAttribute="leading" constant="8" id="xZf-Ic-Nic"/>
+                        <constraint firstItem="q7o-Qa-gLx" firstAttribute="leading" secondItem="UI2-I8-yvs" secondAttribute="leading" constant="20" id="xZf-Ic-Nic"/>
                         <constraint firstItem="30" firstAttribute="bottom" secondItem="31" secondAttribute="bottom" id="xfO-jU-im2"/>
                     </constraints>
                 </view>
@@ -167,7 +167,6 @@
         <image name="game_page_off.png" width="30" height="4"/>
         <image name="game_page_on.png" width="30" height="4"/>
         <image name="game_recording_background.png" width="320" height="152"/>
-        <image name="left_arrow.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

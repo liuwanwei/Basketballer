@@ -54,7 +54,7 @@
 - (IBAction)showActionRecord:(id)sender;
 - (IBAction)changePeriod:(UIButton *)sender;
 - (IBAction)addAction:(UIButton *)sender;
-- (IBAction)showSettingController:(id)sender;
+- (IBAction)showGameSettingView:(id)sender;
 - (IBAction)controlGame:(id)sender;
 
 - (void)pauseCountdownTime;

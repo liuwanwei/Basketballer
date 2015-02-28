@@ -225,10 +225,6 @@ typedef enum {
     self.guestTimeoutLabel.textColor = grayColor;
 }
 
-- (void)enterSettingView{
-    [self showGameSettingController];
-}
-
 - (void)updateTimeCountDownLable{
     int timeLeftSeconds = (int)_match.countdownSeconds;
     int minutesLeft = timeLeftSeconds / 60;
@@ -358,6 +354,15 @@ typedef enum {
     startMatchView.alpha = 0.8;
 }
 
+// 显示比赛设置界面:非编辑状态
+- (IBAction)showGameSettingView:(id)sender {
+    self.navigationController.navigationBarHidden = NO;
+    
+    GameSettingFormViewController * controller = [[GameSettingFormViewController alloc] init];
+    controller.ruleInUse = _match.rule;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 // 进入比赛数据记录界面
 - (IBAction)showActionRecord:(id)sender {
     ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
@@ -387,15 +392,6 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddFoulMessage:) name:kAddFoulMessage object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddPlayerActionMessage:) name:kActionDetermined object:nil];
-}
-
-/*显示比赛设置界面:非编辑状态*/
-- (void)showGameSettingController {
-    self.navigationController.navigationBarHidden = NO;
-    
-    GameSettingFormViewController * controller = [[GameSettingFormViewController alloc] init];
-    controller.ruleInUse = _match.rule;
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)swip:(UISwipeGestureRecognizer *)swip {
@@ -621,10 +617,6 @@ typedef enum {
         [_match addActionForTeam:_selectedTeam.id forPlayer:nil withAction:_selectActionType];
         [self toastForTeam:_selectedTeam.name forPlayer:nil withAction:_selectActionType];
     }
-}
-
-- (IBAction)showSettingController:(id)sender {
-    [self showGameSettingController];
 }
 
 // 计时器操作，开始或停止计时
