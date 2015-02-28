@@ -51,7 +51,7 @@
 - (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId;
 
 - (IBAction)showActionRecordController:(id)sender;
-- (IBAction)showPlaySoundController:(id)sender;
+- (IBAction)showActionRecord:(id)sender;
 - (IBAction)changePeriod:(UIButton *)sender;
 - (IBAction)addAction:(UIButton *)sender;
 - (IBAction)showSettingController:(id)sender;

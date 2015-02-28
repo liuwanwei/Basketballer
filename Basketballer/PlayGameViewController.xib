@@ -575,7 +575,10 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="gWQ-hL-ecn" userLabel="on">
-                    <rect key="frame" x="128" y="471" width="30" height="4"/>
+                    <rect key="frame" x="161.5" y="471" width="5" height="4"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="5" id="vgM-6Z-FLV"/>
+                    </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wb-n8-Jev">
                     <rect key="frame" x="145" y="441" width="30" height="30"/>
@@ -587,7 +590,10 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dwl-5U-p4t" userLabel="off">
-                    <rect key="frame" x="162" y="471" width="30" height="4"/>
+                    <rect key="frame" x="153" y="471" width="5" height="4"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="5" id="Xa2-hD-4bO"/>
+                    </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74">
                     <rect key="frame" x="242" y="438" width="58" height="36"/>
@@ -596,7 +602,7 @@
                         <constraint firstAttribute="width" constant="58" id="fJF-aZ-sfx"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="音效">
+                    <state key="normal" title="数据">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -604,16 +610,12 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="showPlaySoundController:" destination="-1" eventType="touchUpInside" id="75"/>
+                        <action selector="showActionRecord:" destination="-1" eventType="touchUpInside" id="OUI-qw-EpU"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                    <rect key="frame" x="144" y="236" width="31" height="30"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music.png" translatesAutoresizingMaskIntoConstraints="NO" id="kJG-aq-Kah">
+                    <rect key="frame" x="140" y="250" width="40" height="40"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -633,7 +635,6 @@
                 <constraint firstItem="sVi-lc-fW6" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="LiW-1A-woG"/>
                 <constraint firstAttribute="bottom" secondItem="74" secondAttribute="bottom" constant="6" id="R8n-TA-Gxe"/>
                 <constraint firstItem="kty-bC-zAG" firstAttribute="top" secondItem="2fB-s5-oMg" secondAttribute="bottom" constant="10" id="T5G-uR-Yvc"/>
-                <constraint firstAttribute="centerX" secondItem="58" secondAttribute="centerX" id="VSK-CL-JO7"/>
                 <constraint firstItem="gWQ-hL-ecn" firstAttribute="bottom" secondItem="Dwl-5U-p4t" secondAttribute="bottom" id="VSg-XF-RbS"/>
                 <constraint firstItem="111" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="Xyc-KZ-RsW"/>
                 <constraint firstItem="y8a-Uq-FgF" firstAttribute="top" secondItem="niF-Js-hSD" secondAttribute="bottom" constant="10" id="ZXc-u5-2HN"/>
@@ -641,18 +642,19 @@
                 <constraint firstAttribute="bottom" secondItem="111" secondAttribute="bottom" constant="6" id="aYQ-1B-IW0"/>
                 <constraint firstItem="niF-Js-hSD" firstAttribute="top" secondItem="YdX-ZZ-6bi" secondAttribute="bottom" constant="10" id="d4C-rp-tX3"/>
                 <constraint firstItem="kty-bC-zAG" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="d7x-g5-v0s"/>
+                <constraint firstAttribute="centerY" secondItem="kJG-aq-Kah" secondAttribute="centerY" constant="-30" id="eZ9-WE-AxN"/>
                 <constraint firstItem="JMB-FL-2dU" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="gIy-TR-QEO"/>
                 <constraint firstItem="sVi-lc-fW6" firstAttribute="top" secondItem="kty-bC-zAG" secondAttribute="bottom" constant="10" id="gJP-MQ-KCG"/>
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="height" secondItem="niF-Js-hSD" secondAttribute="height" id="geF-BC-RFV"/>
+                <constraint firstAttribute="centerX" secondItem="kJG-aq-Kah" secondAttribute="centerX" id="gvm-iy-n4w"/>
                 <constraint firstItem="2fB-s5-oMg" firstAttribute="top" secondItem="JMB-FL-2dU" secondAttribute="bottom" constant="10" id="hXo-TV-RVi"/>
                 <constraint firstAttribute="centerX" secondItem="JMB-FL-2dU" secondAttribute="centerX" id="jUw-NY-gkl"/>
-                <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="17" id="jo5-BD-e75"/>
+                <constraint firstAttribute="centerX" secondItem="gWQ-hL-ecn" secondAttribute="centerX" constant="-4" id="jo5-BD-e75"/>
                 <constraint firstItem="niF-Js-hSD" firstAttribute="height" secondItem="y8a-Uq-FgF" secondAttribute="height" id="mBG-Dr-NiW"/>
                 <constraint firstItem="111" firstAttribute="top" secondItem="y8a-Uq-FgF" secondAttribute="bottom" constant="10" id="mOO-cQ-0IZ"/>
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="pgI-me-EW5"/>
                 <constraint firstItem="y8a-Uq-FgF" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="tGF-IC-Nmh"/>
                 <constraint firstAttribute="trailing" secondItem="74" secondAttribute="trailing" constant="20" id="tTQ-OB-qSg"/>
-                <constraint firstAttribute="centerY" secondItem="58" secondAttribute="centerY" constant="-11" id="tbM-uP-BLd"/>
                 <constraint firstAttribute="centerX" secondItem="niF-Js-hSD" secondAttribute="centerX" id="teV-pD-rF0"/>
                 <constraint firstItem="80" firstAttribute="top" secondItem="1" secondAttribute="top" id="tpz-HO-pKM"/>
                 <constraint firstItem="2fB-s5-oMg" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="vDs-qc-nSo"/>
@@ -660,7 +662,7 @@
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="top" secondItem="sVi-lc-fW6" secondAttribute="bottom" constant="10" id="wZg-K1-Wul"/>
                 <constraint firstItem="80" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="xPp-zZ-vXc"/>
                 <constraint firstAttribute="bottom" secondItem="gWQ-hL-ecn" secondAttribute="bottom" constant="5" id="y1H-Nd-5eE"/>
-                <constraint firstAttribute="centerX" secondItem="Dwl-5U-p4t" secondAttribute="centerX" constant="-17" id="ydG-3I-vps"/>
+                <constraint firstAttribute="centerX" secondItem="Dwl-5U-p4t" secondAttribute="centerX" constant="4" id="ydG-3I-vps"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="68" y="107"/>
@@ -673,6 +675,7 @@
         <image name="game_page_on.png" width="30" height="4"/>
         <image name="game_playing_bg.png" width="640" height="305"/>
         <image name="game_start.png" width="60" height="60"/>
+        <image name="music.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

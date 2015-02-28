@@ -350,8 +350,7 @@ typedef enum {
     }
 }
 
-/*显示开始计时View。
- 比赛开始前显示一次。*/
+/*显示开始计时View。比赛开始前显示一次。*/
 - (void)showStartMatchView {
     StartMatchView * startMatchView = [[StartMatchView alloc] initWithFrame:CGRectMake(0.0, 395.0, 320.0, 65.0)];
     startMatchView.backgroundColor = [UIColor blackColor];
@@ -359,7 +358,14 @@ typedef enum {
     startMatchView.alpha = 0.8;
 }
 
-- (IBAction)showPlaySoundController:(id)sender {
+// 进入比赛数据记录界面
+- (IBAction)showActionRecord:(id)sender {
+    ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
+    [self.navigationController pushViewController:actionRecordontroller animated:YES];    
+}
+
+// 进入背景音乐选择界面
+- (IBAction)showMusicView:(id)sender{
     self.navigationController.navigationBarHidden = NO;
     PlaySoundViewController * playSoundViewController = [[PlaySoundViewController alloc] initWithNibName:@"PlaySoundViewController" bundle:nil];
     
@@ -388,15 +394,12 @@ typedef enum {
     self.navigationController.navigationBarHidden = NO;
     
     GameSettingFormViewController * controller = [[GameSettingFormViewController alloc] init];
-
-//    GameSettingViewController * controller = [[GameSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     controller.ruleInUse = _match.rule;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)swip:(UISwipeGestureRecognizer *)swip {
-    ActionRecordViewController * actionRecordontroller = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
-    [self.navigationController pushViewController:actionRecordontroller animated:YES];
+    [self showActionRecord:nil];
 }
 
 - (void)addSwipeGesture {
@@ -482,7 +485,7 @@ typedef enum {
     self.gameHostScoreLable.text = @"0";
     self.gameGuestScoreLable.text = @"0";
     [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
-    [self.soundButton setTitle:LocalString(@"SoundEffect") forState:UIControlStateNormal];
+//    [self.soundButton setTitle:LocalString(@"SoundEffect") forState:UIControlStateNormal];
     [self.foulLabel setText:LocalString(@"Foul")];
     [self.timeoutLabel setText:LocalString(@"Timeout")];
 }

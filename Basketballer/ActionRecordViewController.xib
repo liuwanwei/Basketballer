@@ -24,15 +24,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_recording_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                 </imageView>
-                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="0.0" y="152" width="320" height="291"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="19"/>
-                        <outlet property="delegate" destination="-1" id="20"/>
-                    </connections>
-                </tableView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25">
                     <rect key="frame" x="35" y="44" width="50" height="50"/>
                     <constraints>
@@ -79,18 +70,64 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="30">
-                    <rect key="frame" x="162" y="451" width="30" height="4"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="31">
-                    <rect key="frame" x="128" y="451" width="30" height="4"/>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（向左滑动删除记录）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-fd-yUZ">
                     <rect key="frame" x="100" y="82" width="120" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <rect key="frame" x="0.0" y="152" width="320" height="268"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="19"/>
+                        <outlet property="delegate" destination="-1" id="20"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UI2-I8-yvs" userLabel="Bottom View">
+                    <rect key="frame" x="0.0" y="420" width="320" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7o-Qa-gLx">
+                            <rect key="frame" x="8" y="5" width="30" height="30"/>
+                            <state key="normal" title="返回"/>
+                            <connections>
+                                <action selector="backToMatch:" destination="-1" eventType="touchUpInside" id="V3h-C7-vIT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-Eo-IRI">
+                            <rect key="frame" x="115" y="5" width="90" height="30"/>
+                            <state key="normal" title="查看技术统计">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="31">
+                            <rect key="frame" x="153.5" y="31" width="5" height="4"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="5" id="mGt-B0-Riv"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="30">
+                            <rect key="frame" x="161.5" y="31" width="5" height="4"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="5" id="fMQ-Xp-lhd"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="adJ-Eo-IRI" secondAttribute="centerY" id="3ph-Mw-KJ5"/>
+                        <constraint firstAttribute="centerY" secondItem="q7o-Qa-gLx" secondAttribute="centerY" id="7fU-OG-YGu"/>
+                        <constraint firstItem="30" firstAttribute="centerX" secondItem="adJ-Eo-IRI" secondAttribute="centerX" constant="4" id="CFD-Tn-XR7"/>
+                        <constraint firstAttribute="centerX" secondItem="adJ-Eo-IRI" secondAttribute="centerX" id="Nvy-28-BFq"/>
+                        <constraint firstItem="31" firstAttribute="centerX" secondItem="adJ-Eo-IRI" secondAttribute="centerX" constant="-4" id="Nxq-1a-CBC"/>
+                        <constraint firstAttribute="bottom" secondItem="31" secondAttribute="bottom" constant="5" id="ZFf-qh-v7h"/>
+                        <constraint firstAttribute="height" constant="40" id="lzg-7G-yg8"/>
+                        <constraint firstItem="30" firstAttribute="top" secondItem="31" secondAttribute="top" id="w9T-gS-N79"/>
+                        <constraint firstItem="q7o-Qa-gLx" firstAttribute="leading" secondItem="UI2-I8-yvs" secondAttribute="leading" constant="8" id="xZf-Ic-Nic"/>
+                        <constraint firstItem="30" firstAttribute="bottom" secondItem="31" secondAttribute="bottom" id="xfO-jU-im2"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -98,7 +135,6 @@
                 <constraint firstItem="28" firstAttribute="centerX" secondItem="26" secondAttribute="centerX" id="44"/>
                 <constraint firstItem="29" firstAttribute="top" secondItem="10" secondAttribute="top" constant="58" id="47"/>
                 <constraint firstAttribute="trailing" secondItem="28" secondAttribute="trailing" constant="7" id="48"/>
-                <constraint firstItem="31" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8" symbolic="YES" id="49"/>
                 <constraint firstItem="27" firstAttribute="leading" secondItem="10" secondAttribute="leading" constant="10" id="50"/>
                 <constraint firstItem="27" firstAttribute="top" secondItem="10" secondAttribute="top" constant="104" id="51"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="10" secondAttribute="top" constant="44" id="53"/>
@@ -106,15 +142,15 @@
                 <constraint firstItem="25" firstAttribute="bottom" secondItem="26" secondAttribute="bottom" id="57"/>
                 <constraint firstItem="28" firstAttribute="baseline" secondItem="27" secondAttribute="baseline" id="58"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="26" secondAttribute="top" id="59"/>
-                <constraint firstItem="31" firstAttribute="top" secondItem="30" secondAttribute="top" id="60"/>
+                <constraint firstItem="4" firstAttribute="width" secondItem="UI2-I8-yvs" secondAttribute="width" id="0BA-Gm-UiV"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="3lR-GB-BPK"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="10" secondAttribute="top" constant="152" id="4Bj-FC-7Fb"/>
-                <constraint firstAttribute="centerX" secondItem="30" secondAttribute="centerX" constant="-17" id="6Rq-YU-WHZ"/>
                 <constraint firstItem="23" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="Jj5-hD-JZk"/>
-                <constraint firstAttribute="centerX" secondItem="31" secondAttribute="centerX" constant="17" id="WcZ-rv-e5j"/>
-                <constraint firstAttribute="bottom" secondItem="30" secondAttribute="bottom" constant="5" id="d7r-Z3-gLG"/>
+                <constraint firstItem="UI2-I8-yvs" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="hi5-fg-jDd"/>
+                <constraint firstItem="UI2-I8-yvs" firstAttribute="top" secondItem="4" secondAttribute="bottom" id="on3-wc-fye"/>
                 <constraint firstItem="23" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="rFH-Xh-Ki8"/>
                 <constraint firstItem="23" firstAttribute="top" secondItem="10" secondAttribute="top" id="uMH-yD-E1M"/>
+                <constraint firstAttribute="bottom" secondItem="UI2-I8-yvs" secondAttribute="bottom" id="wPo-Lg-Gv6"/>
                 <constraint firstItem="23" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="xe9-dw-z5f"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8" symbolic="YES" id="ygK-FC-oDS"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="top" secondItem="29" secondAttribute="bottom" constant="3" id="zM9-FX-Xt4"/>

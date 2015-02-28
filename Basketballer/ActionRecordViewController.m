@@ -85,6 +85,10 @@
 
 #pragma 事件函数
 -(void) swip:(UISwipeGestureRecognizer *)swip {
+    [self backToMatch:nil];
+}
+
+- (IBAction)backToMatch:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 

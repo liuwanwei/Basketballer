@@ -1,0 +1,3 @@
+[submodule "BDFoundation"]
+	path = BDFoundation
+	url = https://github.com/liuwanwei/BDFoundation.git

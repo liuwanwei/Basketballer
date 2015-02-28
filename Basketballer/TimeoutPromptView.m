@@ -196,7 +196,6 @@
 }
 
 - (IBAction)showPlaySoundView:(id)sender {
-    //[[[AppDelegate delegate] playGameViewController] showPlaySoundController];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
