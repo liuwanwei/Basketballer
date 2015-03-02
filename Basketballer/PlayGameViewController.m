@@ -13,7 +13,6 @@
 #import "TimeoutPromptView.h"
 #import "ActionRecordViewController.h"
 #import "AppDelegate.h"
-#import "TimeStopPromptView.h"
 #import "StartMatchView.h"
 #import "GameSettingFormViewController.h"
 #import "SoundManager.h"
@@ -21,7 +20,6 @@
 #import "PlayerFoulStatisticViewController.h"
 #import "PlayerManager.h"
 #import "TeamManager.h"
-#import "PlaySoundView.h"
 #import "MatchFinishedDetailsViewController.h"
 #import "Feature.h"
 #import "PlaySoundViewController.h"
@@ -463,7 +461,7 @@ typedef enum {
         [self.gamePeroidButton setHidden:NO];
         [self.gamePeroidLabel setHidden:YES];
         [self startGame];
-//        self.teamBackgroundImageView.image = [UIImage imageNamed:@"game_easy_background"];
+
     }else {
         if ([kMatchModeTpb isEqualToString:_match.matchMode]) {
             [self.timeoutView setHidden:YES];
