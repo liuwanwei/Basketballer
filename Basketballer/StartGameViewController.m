@@ -28,12 +28,10 @@
 #import "NSDictionary+dictionaryWithObject.h"
 
 @interface StartGameViewController () {
-//    NSArray * _sectionsTitle;
     Team * _hostTeam;
     Team * _guestTeam;
     NSInteger _curClickRowIndex;
     
-//    NSString * __weak _gameMode;
     SingleChoiceViewController * _chooseGameModeView;
     
     NSArray * _modeDetailArray;
@@ -44,7 +42,6 @@
 @synthesize inspirationView = _teamsView;
 @synthesize label1 = _label1;
 @synthesize label2 = _label2;
-//@synthesize matchModeCell = _matchModeCell;
 
 #pragma 私有函数
 
@@ -67,21 +64,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    _sectionsTitle = [NSArray arrayWithObjects:@"主队", @"客队" ,@"竞技规则",nil];
-//    _gameMode = [[[GameSetting defaultSetting] gameModeNames] objectAtIndex:0];
-    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor whiteColor];
     
-    /*[[NSBundle mainBundle] loadNibNamed:@"Inspiration" owner:self options:nil];
-    CGRect frame = self.inspirationView.frame;
-    frame.size.height = 160;
-    self.inspirationView.frame = frame;
-    self.tableView.tableFooterView = self.inspirationView;
-    
-    _modeDetailArray = [NSArray arrayWithObjects:
-                      @"We Are Basketball！", 
-                      @"无兄弟，不篮球！", nil];*/
     self.tableView.rowHeight = 60;
     self.title = NSLocalizedString(@"Start", nil);
     
@@ -195,14 +180,6 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSArray * rules = [[CustomRuleManager defaultInstance] rules];
-//    if (indexPath.section == 2 && indexPath.row >= rules.count) {
-//        CustomRuleViewController * vc = [[CustomRuleViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else{
-//        [self tableView:self.tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
-//    }
-    
     GameSetting * gs = [GameSetting defaultSetting];
     MatchUnderWay * match = [MatchUnderWay defaultMatch];
     

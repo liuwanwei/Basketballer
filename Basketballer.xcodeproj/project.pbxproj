@@ -193,6 +193,7 @@
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
 		FB7DFF9A1AA170C7008F6AB8 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */; };
+		FB7DFFA01AA3F741008F6AB8 /* TextEditorFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
 		FB8457581A99FE7A00227408 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457571A99FE7A00227408 /* Statistics.m */; };
 		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
@@ -210,8 +211,6 @@
 		FB957D1919DAB876007FC3DA /* Rule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1819DAB876007FC3DA /* Rule.m */; };
 		FB957D2119DEF65E007FC3DA /* RosterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1C19DEF65E007FC3DA /* RosterCollectionViewCell.m */; };
 		FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB957D1D19DEF65E007FC3DA /* RosterCollectionViewCell.xib */; };
-		FB957D2819DEF679007FC3DA /* TextEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D2619DEF679007FC3DA /* TextEditorViewController.m */; };
-		FB957D2919DEF679007FC3DA /* TextEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2719DEF679007FC3DA /* TextEditorViewController.xib */; };
 		FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2A19DEF6BB007FC3DA /* roster_add.png */; };
 		FB957D2D19DEF6BB007FC3DA /* roster_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FB957D2B19DEF6BB007FC3DA /* roster_delete.png */; };
 		FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3119DFA4DF007FC3DA /* ImageManager.m */; };
@@ -482,6 +481,8 @@
 		FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
 		FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterViewController.xib; sourceTree = "<group>"; };
 		FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "left_arrow@2x.png"; path = "Images/left_arrow@2x.png"; sourceTree = "<group>"; };
+		FB7DFF9E1AA3F741008F6AB8 /* TextEditorFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditorFormViewController.h; sourceTree = "<group>"; };
+		FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditorFormViewController.m; sourceTree = "<group>"; };
 		FB8457451A98B5AD00227408 /* GameSettingFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingFormViewController.h; sourceTree = "<group>"; };
 		FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingFormViewController.m; sourceTree = "<group>"; };
 		FB8457561A99FE7A00227408 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
@@ -512,9 +513,6 @@
 		FB957D1B19DEF65E007FC3DA /* RosterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterCollectionViewCell.h; sourceTree = "<group>"; };
 		FB957D1C19DEF65E007FC3DA /* RosterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterCollectionViewCell.m; sourceTree = "<group>"; };
 		FB957D1D19DEF65E007FC3DA /* RosterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterCollectionViewCell.xib; sourceTree = "<group>"; };
-		FB957D2519DEF679007FC3DA /* TextEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditorViewController.h; sourceTree = "<group>"; };
-		FB957D2619DEF679007FC3DA /* TextEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditorViewController.m; sourceTree = "<group>"; };
-		FB957D2719DEF679007FC3DA /* TextEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditorViewController.xib; sourceTree = "<group>"; };
 		FB957D2A19DEF6BB007FC3DA /* roster_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_add.png; sourceTree = "<group>"; };
 		FB957D2B19DEF6BB007FC3DA /* roster_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roster_delete.png; sourceTree = "<group>"; };
 		FB957D3019DFA4DF007FC3DA /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
@@ -768,6 +766,8 @@
 		3CC1683815A2E6EE00A2AB44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FB7DFF9E1AA3F741008F6AB8 /* TextEditorFormViewController.h */,
+				FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */,
 				FB7DFF531A9EE830008F6AB8 /* RosterViewController.h */,
 				FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */,
 				FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */,
@@ -839,9 +839,6 @@
 				3C121F6315A3E9C00062BECD /* TeamInfoViewController.m */,
 				3CBA0BF815AE7726003505BC /* TeamListViewController.h */,
 				3CBA0BF915AE7726003505BC /* TeamListViewController.m */,
-				FB957D2519DEF679007FC3DA /* TextEditorViewController.h */,
-				FB957D2619DEF679007FC3DA /* TextEditorViewController.m */,
-				FB957D2719DEF679007FC3DA /* TextEditorViewController.xib */,
 				3CC9129C15B1C477003C74D4 /* TimeoutPromptView.h */,
 				3CC9129D15B1C477003C74D4 /* TimeoutPromptView.m */,
 				3C13E49615C192A900F4307C /* TimeStopPromptView.h */,
@@ -1179,7 +1176,6 @@
 				E6914F9015DB2E8B002CAEE0 /* CellBlueSelected@2x.png in Resources */,
 				E6914F9115DB2E8B002CAEE0 /* CellNotSelected.png in Resources */,
 				E6914F9215DB2E8B002CAEE0 /* CellNotSelected@2x.png in Resources */,
-				FB957D2919DEF679007FC3DA /* TextEditorViewController.xib in Resources */,
 				E6914F9515DB2ECC002CAEE0 /* TeamsPanelDotRect.png in Resources */,
 				E6914F9615DB2ECC002CAEE0 /* TeamsPanelDotRect@2x.png in Resources */,
 				3C163C9E15DB3F4100552546 /* backNavigationBar.png in Resources */,
@@ -1303,13 +1299,13 @@
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoryViewController.m in Sources */,
 				3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */,
+				FB7DFFA01AA3F741008F6AB8 /* TextEditorFormViewController.m in Sources */,
 				3C121F6515A3E9C00062BECD /* TeamInfoViewController.m in Sources */,
 				E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */,
 				E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */,
 				E68D116815A53CE50074982D /* MatchManager.m in Sources */,
 				E68D117A15A5F2910074982D /* GameStatisticViewController.m in Sources */,
 				FB8457581A99FE7A00227408 /* Statistics.m in Sources */,
-				FB957D2819DEF679007FC3DA /* TextEditorViewController.m in Sources */,
 				E6E1D94D15AA87F800CB0C0E /* ActionManager.m in Sources */,
 				E6E1D95615AB183500CB0C0E /* TeamManager.m in Sources */,
 				FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */,

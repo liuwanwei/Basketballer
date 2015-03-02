@@ -16,6 +16,5 @@
 @property (nonatomic, weak) IBOutlet UIView * inspirationView;
 @property (nonatomic ,weak) IBOutlet FXLabel * label1;
 @property (nonatomic ,weak) IBOutlet FXLabel * label2;
-//@property (nonatomic, weak) IBOutlet UITableViewCell * matchModeCell;
 
 @end

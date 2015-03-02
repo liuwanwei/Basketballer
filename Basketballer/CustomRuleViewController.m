@@ -10,7 +10,7 @@
 #import "FibaCustomRule.h"
 #import "CustomRuleManager.h"
 #import "AppDelegate.h"
-#import "TextEditorViewController.h"
+#import "TextEditorFormViewController.h"
 
 #define checkSetValue(property)   ((property != nil) && ([property integerValue] != 0))
 
@@ -186,17 +186,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _lastChoosedIndexPath = indexPath;
     
-    TextEditorViewController * vc = [[TextEditorViewController alloc] initWithNibName:@"TextEditorViewController" bundle:nil];
+    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    TextEditorFormViewController * vc = [[TextEditorFormViewController alloc] initWithTitle:cell.textLabel.text];
+    
+    vc.textToEdit = cell.detailTextLabel.text;
     
     if (indexPath.section == 0) {
         vc.keyboardType = UIKeyboardTypeNamePhonePad;
     }else{
         vc.keyboardType = UIKeyboardTypeNumberPad;
     }
-    
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    vc.text = cell.detailTextLabel.text;
-    vc.title = cell.textLabel.text;
+
     
     [self.navigationController pushViewController:vc animated:YES];
 }

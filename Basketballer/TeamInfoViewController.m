@@ -11,7 +11,6 @@
 #import "ImageManager.h"
 #import "MatchManager.h"
 #import "PlayerManager.h"
-//#import "PlayerEditViewController.h"
 #import "Feature.h"
 #import "GameHistoryViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -20,7 +19,7 @@
 #import "RosterViewController.h"
 #import "RosterViewController.h"
 #import "ImageCell.h"
-#import "TextEditorViewController.h"
+#import "TextEditorFormViewController.h"
 
 @interface TeamInfoViewController() {
     NSArray * _matchesOfTeam;
@@ -315,12 +314,11 @@
         [self showActionSheet];
     }else if(indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        TextEditorViewController * vc = [[TextEditorViewController alloc] initWithNibName:@"TextEditorViewController" bundle:nil];
-        vc.keyboardType = UIKeyboardTypeNamePhonePad;
-        vc.text = cell.detailTextLabel.text;
-        vc.title = LocalString(@"TeamName");
-        vc.textkey = kEditTeamName;
-        [self.navigationController pushViewController:vc animated:YES];
+        TextEditorFormViewController * form = [[TextEditorFormViewController alloc] initWithTitle:LocalString(@"TeamName")];
+        form.keyboardType = UIKeyboardTypeNamePhonePad;
+        form.textToEdit = cell.detailTextLabel.text;
+        form.textKeyword = kEditTeamName;
+        [self.navigationController pushViewController:form animated:YES];
         
     }else if(indexPath.section == 1 && indexPath.row == 0){
         GameHistoryViewController * history = [[GameHistoryViewController alloc] initWithNibName:@"GameHistoryViewController" bundle:nil];
@@ -328,7 +326,6 @@
         history.historyType = HistoryTypeTeam;
         [self.navigationController pushViewController:history animated:YES];
     }else if(indexPath.section == 2 && indexPath.row == 0){
-//        RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
         RosterViewController * playerList = [[RosterViewController alloc] initWithNibName:@"RosterViewController" bundle:nil];
 
         playerList.teamId = _team.id;

@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "Feature.h"
 #import "ImageCell.h"
-#import "TextEditorViewController.h"
+#import "TextEditorFormViewController.h"
 
 @interface NewPlayerViewController (){
     UIBarButtonItem * _saveItem;
@@ -167,19 +167,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (indexPath.row == 0 || indexPath.row == 1) {
-            TextEditorViewController * vc = [[TextEditorViewController alloc] initWithNibName:@"TextEditorViewController" bundle:nil];
-            
+            TextEditorFormViewController * vc = nil;
             // 设置文本界面标题
             if (indexPath.row == 0) {
-                vc.title = LocalString(@"PlayerName");
+                vc = [[TextEditorFormViewController alloc] initWithTitle:LocalString(@"PlayerName")];
                 vc.keyboardType = UIKeyboardTypeNamePhonePad;
-                vc.text = self.playerName;
-                vc.textkey = kEditPlayerName;
+                vc.textToEdit = self.playerName;
+                vc.textKeyword = kEditPlayerName;
             }else{
-                vc.title = LocalString(@"PlayerNumber");
+                vc = [[TextEditorFormViewController alloc] initWithTitle:LocalString(@"PlayerNumber")];
                 vc.keyboardType = UIKeyboardTypeNumberPad;
-                vc.text = [self.playerNumber stringValue];
-                vc.textkey = kEditPlayerNumber;
+                vc.textToEdit = [self.playerNumber stringValue];
+                vc.textKeyword = kEditPlayerNumber;
             }
             
             _lastSelectedIndexPath = indexPath;
