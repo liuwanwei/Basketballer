@@ -67,7 +67,7 @@ static SoundManager * sSoundManager;
     [self stop];
     
     NSURL *url = [[NSBundle mainBundle] URLForResource: fileName
-                                           withExtension: @"wav"];
+                                           withExtension: @"mp3"];
     NSError  *error;  
     _audioPlayer  = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];  
     _audioPlayer.numberOfLoops  = 0;  

@@ -8,15 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C06651E15F5AF2700B1DCB8 /* PlaySoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C06651D15F5AF2700B1DCB8 /* PlaySoundViewController.m */; };
-		3C06653115F5FBE600B1DCB8 /* defence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06652F15F5FBE600B1DCB8 /* defence.wav */; };
 		3C06653415F6022300B1DCB8 /* PlaySoundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653315F6022300B1DCB8 /* PlaySoundViewController.xib */; };
-		3C06653C15F64C9D00B1DCB8 /* Background1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653515F64C9D00B1DCB8 /* Background1.wav */; };
-		3C06653D15F64C9D00B1DCB8 /* Background2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653615F64C9D00B1DCB8 /* Background2.wav */; };
-		3C06653E15F64C9D00B1DCB8 /* Background3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653715F64C9D00B1DCB8 /* Background3.wav */; };
-		3C06653F15F64C9D00B1DCB8 /* Background4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653815F64C9D00B1DCB8 /* Background4.wav */; };
-		3C06654015F64C9D00B1DCB8 /* MVP.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653915F64C9D00B1DCB8 /* MVP.wav */; };
-		3C06654115F64C9D00B1DCB8 /* Offence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653A15F64C9D00B1DCB8 /* Offence.wav */; };
-		3C06654215F64C9D00B1DCB8 /* Rock You.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653B15F64C9D00B1DCB8 /* Rock You.wav */; };
 		3C06655D15F7494000B1DCB8 /* music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C06655C15F7494000B1DCB8 /* music@2x.png */; };
 		3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C07F4101635194A00A2D645 /* AboutUsViewController.m */; };
 		3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F4111635194A00A2D645 /* AboutUsViewController.xib */; };
@@ -42,7 +34,6 @@
 		3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
 		3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE815F9950B00EB97EF /* ArrowRight.png */; };
 		3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */; };
-		3C5207CB15EB50360079D5DB /* buzzer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C5207C915EB50360079D5DB /* buzzer.wav */; };
 		3C5207CC15EB50360079D5DB /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C5207CA15EB50360079D5DB /* horn.wav */; };
 		3C5207D315EB52A80079D5DB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5207D215EB52A80079D5DB /* AVFoundation.framework */; };
 		3C765CD715EC6C0700235664 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C765CD515EC6C0700235664 /* music.png */; };
@@ -180,6 +171,13 @@
 		FB7DFF9A1AA170C7008F6AB8 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */; };
 		FB7DFFA01AA3F741008F6AB8 /* TextEditorFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */; };
 		FB7DFFA21AA4088C008F6AB8 /* player_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA11AA4088C008F6AB8 /* player_profile.png */; };
+		FB7DFFAA1AA42106008F6AB8 /* Background1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */; };
+		FB7DFFAB1AA42106008F6AB8 /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */; };
+		FB7DFFAC1AA42106008F6AB8 /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */; };
+		FB7DFFAD1AA42106008F6AB8 /* Background4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */; };
+		FB7DFFAE1AA42106008F6AB8 /* MVP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */; };
+		FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */; };
+		FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
 		FB8457581A99FE7A00227408 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457571A99FE7A00227408 /* Statistics.m */; };
 		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
@@ -219,15 +217,7 @@
 		0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Basketballer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C06651C15F5AF2700B1DCB8 /* PlaySoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySoundViewController.h; sourceTree = "<group>"; };
 		3C06651D15F5AF2700B1DCB8 /* PlaySoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySoundViewController.m; sourceTree = "<group>"; };
-		3C06652F15F5FBE600B1DCB8 /* defence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = defence.wav; path = Resources/music/defence.wav; sourceTree = "<group>"; };
 		3C06653315F6022300B1DCB8 /* PlaySoundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaySoundViewController.xib; sourceTree = "<group>"; };
-		3C06653515F64C9D00B1DCB8 /* Background1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Background1.wav; path = Resources/music/Background1.wav; sourceTree = "<group>"; };
-		3C06653615F64C9D00B1DCB8 /* Background2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Background2.wav; path = Resources/music/Background2.wav; sourceTree = "<group>"; };
-		3C06653715F64C9D00B1DCB8 /* Background3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Background3.wav; path = Resources/music/Background3.wav; sourceTree = "<group>"; };
-		3C06653815F64C9D00B1DCB8 /* Background4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Background4.wav; path = Resources/music/Background4.wav; sourceTree = "<group>"; };
-		3C06653915F64C9D00B1DCB8 /* MVP.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = MVP.wav; path = Resources/music/MVP.wav; sourceTree = "<group>"; };
-		3C06653A15F64C9D00B1DCB8 /* Offence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Offence.wav; path = Resources/music/Offence.wav; sourceTree = "<group>"; };
-		3C06653B15F64C9D00B1DCB8 /* Rock You.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Rock You.wav"; path = "Resources/music/Rock You.wav"; sourceTree = "<group>"; };
 		3C06655C15F7494000B1DCB8 /* music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "music@2x.png"; path = "Resources/images/music@2x.png"; sourceTree = "<group>"; };
 		3C07F40F1635194A00A2D645 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		3C07F4101635194A00A2D645 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
@@ -261,7 +251,6 @@
 		3C42824015B7C32200903F9D /* MatchModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchModeCell.xib; sourceTree = "<group>"; };
 		3C446BE815F9950B00EB97EF /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowRight.png; path = Resources/images/ArrowRight.png; sourceTree = "<group>"; };
 		3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ArrowRight@2x.png"; path = "Resources/images/ArrowRight@2x.png"; sourceTree = "<group>"; };
-		3C5207C915EB50360079D5DB /* buzzer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer.wav; path = Resources/music/buzzer.wav; sourceTree = "<group>"; };
 		3C5207CA15EB50360079D5DB /* horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = horn.wav; path = Resources/music/horn.wav; sourceTree = "<group>"; };
 		3C5207D215EB52A80079D5DB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3C765CD515EC6C0700235664 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = music.png; path = Resources/images/music.png; sourceTree = "<group>"; };
@@ -449,6 +438,13 @@
 		FB7DFF9E1AA3F741008F6AB8 /* TextEditorFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditorFormViewController.h; sourceTree = "<group>"; };
 		FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditorFormViewController.m; sourceTree = "<group>"; };
 		FB7DFFA11AA4088C008F6AB8 /* player_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player_profile.png; path = Resources/images/player_profile.png; sourceTree = "<group>"; };
+		FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background1.mp3; path = Resources/music/Background1.mp3; sourceTree = "<group>"; };
+		FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background2.mp3; path = Resources/music/Background2.mp3; sourceTree = "<group>"; };
+		FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background3.mp3; path = Resources/music/Background3.mp3; sourceTree = "<group>"; };
+		FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background4.mp3; path = Resources/music/Background4.mp3; sourceTree = "<group>"; };
+		FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MVP.mp3; path = Resources/music/MVP.mp3; sourceTree = "<group>"; };
+		FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Offence.mp3; path = Resources/music/Offence.mp3; sourceTree = "<group>"; };
+		FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Rock You.mp3"; path = "Resources/music/Rock You.mp3"; sourceTree = "<group>"; };
 		FB8457451A98B5AD00227408 /* GameSettingFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingFormViewController.h; sourceTree = "<group>"; };
 		FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingFormViewController.m; sourceTree = "<group>"; };
 		FB8457561A99FE7A00227408 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
@@ -597,15 +593,13 @@
 		3C12203015A6D9C60062BECD /* music */ = {
 			isa = PBXGroup;
 			children = (
-				3C06653515F64C9D00B1DCB8 /* Background1.wav */,
-				3C06653615F64C9D00B1DCB8 /* Background2.wav */,
-				3C06653715F64C9D00B1DCB8 /* Background3.wav */,
-				3C06653815F64C9D00B1DCB8 /* Background4.wav */,
-				3C06653915F64C9D00B1DCB8 /* MVP.wav */,
-				3C06653A15F64C9D00B1DCB8 /* Offence.wav */,
-				3C06653B15F64C9D00B1DCB8 /* Rock You.wav */,
-				3C06652F15F5FBE600B1DCB8 /* defence.wav */,
-				3C5207C915EB50360079D5DB /* buzzer.wav */,
+				FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */,
+				FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */,
+				FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */,
+				FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */,
+				FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */,
+				FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */,
+				FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */,
 				3C5207CA15EB50360079D5DB /* horn.wav */,
 				3C12203115A6D9DA0062BECD /* sendmsg.caf */,
 			);
@@ -1061,6 +1055,7 @@
 				FB957D2C19DEF6BB007FC3DA /* roster_add.png in Resources */,
 				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
 				E68D118515A684B30074982D /* StatisticCell.xib in Resources */,
+				FB7DFFAE1AA42106008F6AB8 /* MVP.mp3 in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
@@ -1078,10 +1073,12 @@
 				79E33AE919E8CB9500AC46DE /* game_menu_off@2x.png in Resources */,
 				3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */,
 				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
+				FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */,
 				E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */,
 				3C2B1B3815C68FF700BAB6BE /* StartMatchView.xib in Resources */,
 				3CE1875915C6DA9900A17E4F /* resume.png in Resources */,
 				3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */,
+				FB7DFFAB1AA42106008F6AB8 /* Background2.mp3 in Resources */,
 				E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */,
 				E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */,
 				79E33AF019EA0E2B00AC46DE /* game_recording_background@2x.png in Resources */,
@@ -1094,6 +1091,7 @@
 				3CD9BFC515D49999000DA8E8 /* ZhiHuArrowRight@2x.png in Resources */,
 				E6914F7E15D8C986002CAEE0 /* TeamSelectionCell.xib in Resources */,
 				E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */,
+				FB7DFFAC1AA42106008F6AB8 /* Background3.mp3 in Resources */,
 				E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */,
 				E6914F8F15DB2E8B002CAEE0 /* CellBlueSelected.png in Resources */,
 				7914D02019E7D1DC008499A3 /* game_pause@2x.png in Resources */,
@@ -1102,10 +1100,12 @@
 				E6914F9215DB2E8B002CAEE0 /* CellNotSelected@2x.png in Resources */,
 				E6914F9515DB2ECC002CAEE0 /* TeamsPanelDotRect.png in Resources */,
 				E6914F9615DB2ECC002CAEE0 /* TeamsPanelDotRect@2x.png in Resources */,
+				FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */,
 				3C163C9E15DB3F4100552546 /* backNavigationBar.png in Resources */,
 				3C163C9F15DB3F4100552546 /* backNavigationBar@2x.png in Resources */,
 				3C890F9115DC76870048B21C /* TabBarBarBg@2x.png in Resources */,
 				3C890F9215DC76870048B21C /* TabBarBg.png in Resources */,
+				FB7DFFAD1AA42106008F6AB8 /* Background4.mp3 in Resources */,
 				3C890FA315DCA1550048B21C /* btnBlue.png in Resources */,
 				3C890FA415DCA1550048B21C /* btnBlue@2x.png in Resources */,
 				7914D02219E7D1DC008499A3 /* game_setting@2x.png in Resources */,
@@ -1113,7 +1113,6 @@
 				3CF94EEC15DE3B320093EAA7 /* tabbarBackground@2x.png in Resources */,
 				3C0FC8E115E78015002620F8 /* timeout.png in Resources */,
 				3C0FC8E215E78015002620F8 /* timeout@2x.png in Resources */,
-				3C5207CB15EB50360079D5DB /* buzzer.wav in Resources */,
 				3C5207CC15EB50360079D5DB /* horn.wav in Resources */,
 				E62222A915ECA692003FCDD3 /* DefaultGuestTeam.png in Resources */,
 				E62222AA15ECA692003FCDD3 /* DefaultHomeTeam.png in Resources */,
@@ -1142,15 +1141,7 @@
 				79E33AEA19E8CB9500AC46DE /* game_menu_on@2x.png in Resources */,
 				FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */,
 				FB957D2D19DEF6BB007FC3DA /* roster_delete.png in Resources */,
-				3C06653115F5FBE600B1DCB8 /* defence.wav in Resources */,
 				3C06653415F6022300B1DCB8 /* PlaySoundViewController.xib in Resources */,
-				3C06653C15F64C9D00B1DCB8 /* Background1.wav in Resources */,
-				3C06653D15F64C9D00B1DCB8 /* Background2.wav in Resources */,
-				3C06653E15F64C9D00B1DCB8 /* Background3.wav in Resources */,
-				3C06653F15F64C9D00B1DCB8 /* Background4.wav in Resources */,
-				3C06654015F64C9D00B1DCB8 /* MVP.wav in Resources */,
-				3C06654115F64C9D00B1DCB8 /* Offence.wav in Resources */,
-				3C06654215F64C9D00B1DCB8 /* Rock You.wav in Resources */,
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C06655D15F7494000B1DCB8 /* music@2x.png in Resources */,
 				3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */,
@@ -1160,6 +1151,7 @@
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
 				3C40A8361637ECD700619526 /* periodButtonBackground.png in Resources */,
 				3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */,
+				FB7DFFAA1AA42106008F6AB8 /* Background1.mp3 in Resources */,
 				3C40A8401637F7CC00619526 /* TabBarMatch@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
