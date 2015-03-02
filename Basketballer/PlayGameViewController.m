@@ -36,7 +36,7 @@ typedef enum {
     AlertViewTagMatchBegin = 3,
 }AlertViewTag;
 
-#define kTeamTag    100
+#define kGuestTeamTag        100
 
 @interface PlayGameViewController() {
     ActionManager * _actionManager;
@@ -57,9 +57,7 @@ typedef enum {
 @synthesize timeCountDownTimer = _timeCountDownTimer;
 @synthesize hostTeam = _hostTeam;
 @synthesize guestTeam = _guestTeam;
-@synthesize testSwitch = _testSwitch;
 @synthesize selectedStatistics = _selectedStatistics;
-@synthesize gameStart = _gameStart;
 @synthesize gamePeroidButton = _gamePeroidButton;
 
 
@@ -74,7 +72,7 @@ typedef enum {
     [self setTitle:LocalString(@"PlayGameViewTitle")];
 }
 
-- (void)resetCountdownTime:(MatchPeriod) period{
+- (void)resetPeriodCountdownTime:(MatchPeriod) period{
     _match.countdownSeconds = [_match.rule timeLengthForPeriod:period];
 }
 
@@ -138,7 +136,7 @@ typedef enum {
         }else {
             _match.period ++; 
         }
-        [self resetCountdownTime:_match.period];
+        [self resetPeriodCountdownTime:_match.period];
         [self updateCountdownTime];
         [self initTimeoutAndFoulView];
         [self updateCurrentPeriod];
@@ -146,7 +144,7 @@ typedef enum {
     
     [_timeoutPromptView updateLayout];
     [self hideTimeoutPromptView];
-    [[SoundManager defaultManager] playSound];
+    [[SoundManager defaultManager] playHornSound];
     [self updateTitle:LocalString(@"ResumeTimer")];
 }
 
@@ -174,8 +172,7 @@ typedef enum {
         playerId = note.object;
     }
     
-    UIViewController * viewController = (UIViewController *)[[AppDelegate delegate] playGameViewController];
-    [self.navigationController popToViewController:viewController animated:YES];
+    [self.navigationController popToViewController:self animated:YES];
     
     [_match addActionForTeam:_selectedTeam.id forPlayer:playerId withAction:_selectActionType];
     [self toastForTeam:_selectedTeam.name forPlayer:playerId withAction:_selectActionType];
@@ -201,8 +198,7 @@ typedef enum {
     [hud hide:YES afterDelay:1.0f];
 }
 
-/*初始化暂停、犯规显示数据。
- 用途：当本节比赛结束时调用。*/
+// 初始化暂停、犯规显示数据，当本节比赛结束时调用。*/
 - (void)initTimeoutAndFoulView {
     self.hostFoulLabel.text = @"0";
     self.guestFoulLabel.text = @"0";
@@ -262,16 +258,17 @@ typedef enum {
     
     if(_match.countdownSeconds <= 0) {
         [self stopTimeCountDown];
-        [[SoundManager defaultManager] playSound];
+        [[SoundManager defaultManager] playHornSound];
+        
         if ([_match.rule isGameOver] == NO) {
+            // 一节比赛结束，进入节间休息倒计时
             _match.state = MatchStatePeriodFinished;
             [self reversePlayButton];
-    
-            // 节间休息倒计时。
+            
             NSString * message = [self titleForEndOfPeriod:_match.period];
             [self showAlertViewWithTitle:LocalString(@"StartCountdown") message:message tag:AlertViewTagMatchTimeout cancelButtonTitle:LocalString(@"No") otherButtonTitle:LocalString(@"Yes")];
         }else {
-            // 比赛结束处理
+            // 整场比赛时间到，比赛结束处理
             [self updateTitle:LocalString(@"Finish")];
             _match.state = MatchStateFinished;
             [self stopGame:MatchStateFinished withWinTeam:nil];
@@ -283,6 +280,7 @@ typedef enum {
     [self.timeCountDownTimer invalidate];
 }
 
+// 关闭比赛界面
 - (void)dismissView{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
@@ -293,13 +291,46 @@ typedef enum {
     [LocationManager defaultManager].delegate = nil;
 }
 
+// 显示暂停或节间休息子界面
+- (void)showTimeoutPrompt:(NSInteger) mode {
+    if (_timeoutPromptView == nil) {
+         _timeoutPromptView = [[TimeoutPromptView alloc] initWithFrame:CGRectZero];
+    }
+    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, 320.0, 144.0);
+    _timeoutPromptView.mode = mode;
+    [_timeoutPromptView updateLayout];
+    [self.view addSubview:_timeoutPromptView];
+    [self.view bringSubviewToFront:self.controlButton];
+    if (mode == PromptModeTimeout || mode == PromptModeQuarterTime) {
+        [_timeoutPromptView startTimeoutCountdown];
+        [[SoundManager defaultManager] playHornSound];
+    }
+}
+
+// 隐藏暂停或节间休息子界面
+- (void)hideTimeoutPromptView {
+    if (nil != _timeoutPromptView) {
+        [_timeoutPromptView stopTimeoutCountdown];
+        [_timeoutPromptView removeFromSuperview];
+    }
+}
+
+// 显示比赛设置界面
+- (IBAction)showGameSettingView:(id)sender {
+    self.navigationController.navigationBarHidden = NO;
+    
+    GameSettingFormViewController * controller = [[GameSettingFormViewController alloc] init];
+    controller.ruleInUse = _match.rule;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+// 结束比赛按下处理
 - (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId{
-    if (_gameStart == NO) {
+    if (![_match matchStarted]) {
         [self dismissView];
         return;
     }
     
-    _gameStart = NO;
     [self stopTimeCountDown];
     [_timeoutPromptView stopTimeoutCountdown];
     [_match stopMatchWithState:mode];
@@ -312,47 +343,6 @@ typedef enum {
     }
 }
 
-/*
- 显示暂停或比赛单节/半场休息提示view
- */
-- (void)showTimeoutPrompt:(NSInteger) mode {
-    if (_timeoutPromptView == nil) {
-         _timeoutPromptView = [[TimeoutPromptView alloc] initWithFrame:CGRectZero];
-    }
-    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, 320.0, 144.0);
-    _timeoutPromptView.mode = mode;
-    [_timeoutPromptView updateLayout];
-    [self.view addSubview:_timeoutPromptView];
-    [self.view bringSubviewToFront:self.controlButton];
-    if (mode == PromptModeTimeout || mode == PromptModeRest) {
-        [_timeoutPromptView startTimeoutCountdown];
-        [[SoundManager defaultManager] playSound];
-    }
-}
-
-- (void)hideTimeoutPromptView {
-    if (nil != _timeoutPromptView) {
-        [_timeoutPromptView stopTimeoutCountdown];
-        [_timeoutPromptView removeFromSuperview];
-    }
-}
-
-/*显示开始计时View。比赛开始前显示一次。*/
-- (void)showStartMatchView {
-    StartMatchView * startMatchView = [[StartMatchView alloc] initWithFrame:CGRectMake(0.0, 395.0, 320.0, 65.0)];
-    startMatchView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:startMatchView];
-    startMatchView.alpha = 0.8;
-}
-
-// 显示比赛设置界面:非编辑状态
-- (IBAction)showGameSettingView:(id)sender {
-    self.navigationController.navigationBarHidden = NO;
-    
-    GameSettingFormViewController * controller = [[GameSettingFormViewController alloc] init];
-    controller.ruleInUse = _match.rule;
-    [self.navigationController pushViewController:controller animated:YES];
-}
 
 // 进入比赛数据记录界面
 - (IBAction)showActionRecord:(id)sender {
@@ -424,9 +414,11 @@ typedef enum {
         _match.state == MatchStateTimeoutFinished ||
         _match.state == MatchStateQuarterTime) {
         [self showAlertViewWithTitle:LocalString(@"Alert") message:LocalString(@"AlreadyTimeouted") tag:0 cancelButtonTitle:LocalString(@"Ok") otherButtonTitle:nil];
+        
     }else if (_match.state == MatchStatePeriodFinished ||
               _match.state == MatchStateQuarterTimeFinished) {
         [self showAlertViewWithTitle:LocalString(@"Alert") message:LocalString(@"AlreadyPaused") tag:0 cancelButtonTitle:LocalString(@"Ok") otherButtonTitle:nil];
+        
     }else if ([teamStatistics.timeouts intValue] <
               [_match.rule timeoutLimitBeforeEndOfPeriod:_match.period]) {
         result = YES;
@@ -459,7 +451,7 @@ typedef enum {
         if ([kMatchModeTpb isEqualToString:_match.matchMode]) {
             [self.timeoutView setHidden:YES];
         }
-        [self resetCountdownTime:MatchPeriodFirst];
+        [self resetPeriodCountdownTime:MatchPeriodFirst];
         [self updateCountdownTime];
         [self updateCurrentPeriod];
         [_gamePeroidButton setHidden:YES];
@@ -504,8 +496,6 @@ typedef enum {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回比赛" style:UIBarButtonItemStyleBordered target:nil action:nil];
     
-    _testSwitch = NO;
-    
     [self initTeam];
     [self initView];
     
@@ -535,9 +525,8 @@ typedef enum {
 }
 
 - (void)startGame {
-    if(!_gameStart) {
+    if(! [_match matchStarted]) {
         [_match startNewMatch];
-        _gameStart = YES;
         _match.period ++;
     }
     
@@ -576,11 +565,11 @@ typedef enum {
     BOOL playerStatisticsOn = NO;
     
     // UIButton tag 主队分别为1、2、3、4、5；客队为101、102、103、104、105
-    if (tag > kTeamTag) {
+    if (tag > kGuestTeamTag) {
         // 客队
         playerStatisticsOn = gameSetting.enableGuestTeamPlayerStatistics;
         _selectedTeam = self.guestTeam;
-        _selectActionType = (ActionType)(tag - kTeamTag);
+        _selectActionType = (ActionType)(tag - kGuestTeamTag);
         self.selectedStatistics = _match.guest;
         
     }else {
@@ -615,25 +604,19 @@ typedef enum {
 }
 
 // 计时器操作，开始或停止计时
-- (IBAction)controlMatchTime:(id)sender {
-    if (_match.state == MatchStateTimeout ||
-        _match.state == MatchStateQuarterTime) {
-        return [self showAlertViewWithTitle:LocalString(@"Alert")
-                                    message:LocalString(@"BreakTimeout")
-                                        tag:AlertViewTagMatchBegin
-                          cancelButtonTitle:LocalString(@"Cancel")
-                           otherButtonTitle:LocalString(@"Ok")];
-    }
-    
+- (IBAction)controlNeatMatchTime:(id)sender {
     switch (_match.state) {
         case MatchStatePeriodFinished:
+            // 单节比赛结束后，手动进入节间休息时的处理
             _match.state = MatchStateQuarterTime;
-            [self showTimeoutPrompt:PromptModeRest];
+            [self showTimeoutPrompt:PromptModeQuarterTime];
             break;
         case MatchStatePlaying:
+            // 暂停比赛时间倒计时
             [self pauseCountdownTime];
             break;
         default:
+            // 继续比赛时间倒计时
             [self hideTimeoutPromptView];
             [self startGame];
             break;
@@ -657,7 +640,7 @@ typedef enum {
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
         // 结束比赛
-        if (YES == self.gameStart) {
+        if ([_match matchStarted]) {
             // 比赛已经开始，结束前提示是否保存比赛
             UIAlertView * alertView;
             alertView = [[UIAlertView alloc] initWithTitle:LocalString(@"FinishMatch")
@@ -679,6 +662,7 @@ typedef enum {
     }
 }
 
+// 对UIAlertView使用上进行一层封装
 - (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message tag:(NSInteger)tag cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitle:(NSString *)otherButtonTitle {
     
     UIAlertView * alertView;
@@ -702,10 +686,11 @@ typedef enum {
         }
         
     }else if (alertView.tag == AlertViewTagMatchTimeout){
-        //
+        // 单节时间到，提示是否并进入节间休息
         if (buttonIndex == alertView.firstOtherButtonIndex) {
+            // 确认的话，进入节间休息，否则停留在MatchStatePeriodFinished状态
             _match.state = MatchStateQuarterTime;
-            [self showTimeoutPrompt:PromptModeRest];
+            [self showTimeoutPrompt:PromptModeQuarterTime];
         }
         
     }else if (alertView.tag == AlertViewTagMatchBegin) {
@@ -718,7 +703,7 @@ typedef enum {
                 }else {
                     _match.period ++;
                 }
-                [self resetCountdownTime:_match.period];
+                [self resetPeriodCountdownTime:_match.period];
                 [self updateCountdownTime];
                 [self initTimeoutAndFoulView];
                 [self updateCurrentPeriod];
@@ -744,8 +729,9 @@ typedef enum {
     [self showAlertViewWithTitle:LocalString(@"Alert") message:message tag:AlertViewTagMatchNormal cancelButtonTitle:nil otherButtonTitle:LocalString(@"Ok")];
 }
 
+// 某个球队达到了赢球比分，历史中的一种玩法，现在已经废除
 - (void)attainWinningPointsForTeam:(NSNumber *)teamId {
-    [[SoundManager defaultManager] playSound];
+    [[SoundManager defaultManager] playHornSound];
     [self stopGame:MatchStateFinished withWinTeam:teamId];
 }
 

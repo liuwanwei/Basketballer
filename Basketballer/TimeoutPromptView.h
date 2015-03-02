@@ -13,9 +13,8 @@
 #define kTimeoutOverMessage @"kTimeoutOver"
 
 typedef enum{
-    PromptModeTimeout = 0,
-    PromptModeRest = 1,
-    PromptModeNormal = 2
+    PromptModeTimeout       = 0,      // 暂停
+    PromptModeQuarterTime   = 1,      // 节间休息，包括半场休息
 }PromptMode;
 
 @interface TimeoutPromptView : UIView<UIAlertViewDelegate>

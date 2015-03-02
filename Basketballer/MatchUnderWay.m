@@ -187,15 +187,23 @@ static MatchUnderWay * sDefaultMatch = nil;
 
 - (BOOL)startNewMatch{
     _match = [[MatchManager defaultManager] newMatchWithMode:_matchMode
-                                                 andHomeTeam:_home.teamId andGuestTeam:_guest.teamId];
-    return _match == nil ? NO : YES;
+                                                 andHomeTeam:_home.teamId
+                                                andGuestTeam:_guest.teamId];
+    _match.state = [NSNumber numberWithInteger:MatchStatePlaying];
+    self.state = MatchStatePlaying;
+    
+    return YES;
+}
 
+- (BOOL)matchStarted{
+    return self.state == MatchStatePlaying;
 }
 
 - (void)stopMatchWithState:(NSInteger)state{
     [self finishMatch];
     
     _match.state = [NSNumber numberWithInteger:state];
+    self.state = MatchStatePrepare;
     
     [[MatchManager defaultManager] stopMatch:_match];
 }
@@ -208,8 +216,6 @@ static MatchUnderWay * sDefaultMatch = nil;
     
     _home = nil;
     _guest = nil;
-    
-    self.state = MatchStatePrepare;
 }
 
 - (void)deleteMatch{

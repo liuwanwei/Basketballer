@@ -1,6 +1,6 @@
 //
 //  TeamStatistics.h
-//  Basketballer
+//  记录跟球队相关的数据统计，包括球队总得分、全队犯规、暂停
 //
 //  Created by Liu Wanwei on 12-7-16.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.

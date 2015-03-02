@@ -18,7 +18,7 @@
 
 + (SoundManager *)defaultManager;
 
-- (void)playSound;
+- (void)playHornSound;
 - (void)playMatchStartSound;
 - (void)playSoundWithFileName:(NSString *)fileName;
 - (void)stop;

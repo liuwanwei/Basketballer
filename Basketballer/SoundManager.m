@@ -48,7 +48,7 @@ static SoundManager * sSoundManager;
     return self;
 }
 
-- (void)playSound {
+- (void)playHornSound {
      //AudioServicesPlayAlertSound (self.soundFileObject);
     if ([GameSetting defaultSetting].enableAutoPromptSound == YES) {
         [self playSoundWithFileName:@"horn"];

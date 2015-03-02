@@ -41,6 +41,7 @@
     [alertView show];
 }
 
+// 这个函数只调用一次，用于获取本次倒计时的起始秒数，所以应该通过init方式传过来。
 - (NSInteger)getTimeoutLength {
     if(_mode == PromptModeTimeout) {
         AppDelegate * delegate = [AppDelegate delegate];
@@ -48,11 +49,7 @@
     }else {
         _match.timeoutCountdownSeconds = [_match.rule restTimeLengthAfterPeriod:_match.period];        
     }
-    
-    if ([AppDelegate delegate].playGameViewController.testSwitch == YES) {  
-        _match.timeoutCountdownSeconds = 5;
-    }
-    
+        
     return _match.timeoutCountdownSeconds;
 }
 

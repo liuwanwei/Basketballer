@@ -45,9 +45,6 @@
 @property (nonatomic, weak) Team * guestTeam;
 @property (nonatomic, weak) TeamStatistics * selectedStatistics;
 
-@property (nonatomic) BOOL testSwitch;
-@property (nonatomic) BOOL gameStart;
-
 - (void)startGame;
 - (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId;
 
@@ -55,7 +52,7 @@
 - (IBAction)changePeriod:(UIButton *)sender;
 - (IBAction)addAction:(UIButton *)sender;
 - (IBAction)showGameSettingView:(id)sender;
-- (IBAction)controlMatchTime:(id)sender;
+- (IBAction)controlNeatMatchTime:(id)sender;
 
 - (void)pauseCountdownTime;
 
