@@ -11,7 +11,7 @@
 #import "LocationManager.h"
 #import <MapKit/MapKit.h>
 #import "MatchUnderWay.h"
-//@class  OperateGameView;
+
 @class  TeamStatistics;
 
 @interface PlayGameViewController : UIViewController <UIActionSheetDelegate,UIAlertViewDelegate,FoulActionDelegate,LocationManagerDelegate>
@@ -55,12 +55,10 @@
 - (IBAction)changePeriod:(UIButton *)sender;
 - (IBAction)addAction:(UIButton *)sender;
 - (IBAction)showGameSettingView:(id)sender;
-- (IBAction)controlGame:(id)sender;
+- (IBAction)controlMatchTime:(id)sender;
 
 - (void)pauseCountdownTime;
 
-//- (void)showNewActionViewForTeam:(Team *)team withTeamStatistics:(TeamStatistics *)statistics;
-- (void)showPlayerFoulStatisticViewControllerForTeam:(Team *)team;
 - (void)initWithHostTeam:(Team *)hostTeam andGuestTeam:(Team *)guestTeam;
 
 - (void)dismissView;

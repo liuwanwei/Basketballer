@@ -71,7 +71,6 @@
 		3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */; };
 		3CD9BFC415D49999000DA8E8 /* ZhiHuArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9BFC215D49999000DA8E8 /* ZhiHuArrowRight.png */; };
 		3CD9BFC515D49999000DA8E8 /* ZhiHuArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9BFC315D49999000DA8E8 /* ZhiHuArrowRight@2x.png */; };
-		3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE39F315E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m */; };
 		3CE1875915C6DA9900A17E4F /* resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875715C6DA9900A17E4F /* resume.png */; };
 		3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875815C6DA9900A17E4F /* resume@2x.png */; };
 		3CF94EEB15DE3B320093EAA7 /* tabbarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CF94EE915DE3B320093EAA7 /* tabbarBackground.png */; };
@@ -299,8 +298,6 @@
 		3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
 		3CD9BFC215D49999000DA8E8 /* ZhiHuArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZhiHuArrowRight.png; path = Resources/images/ZhiHuArrowRight.png; sourceTree = "<group>"; };
 		3CD9BFC315D49999000DA8E8 /* ZhiHuArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ZhiHuArrowRight@2x.png"; path = "Resources/images/ZhiHuArrowRight@2x.png"; sourceTree = "<group>"; };
-		3CDE39F215E75FCF003A7FD3 /* PlayerFoulStatisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerFoulStatisticViewController.h; sourceTree = "<group>"; };
-		3CDE39F315E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerFoulStatisticViewController.m; sourceTree = "<group>"; };
 		3CE1875715C6DA9900A17E4F /* resume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = resume.png; path = Resources/images/resume.png; sourceTree = "<group>"; };
 		3CE1875815C6DA9900A17E4F /* resume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "resume@2x.png"; path = "Resources/images/resume@2x.png"; sourceTree = "<group>"; };
 		3CF94EE915DE3B320093EAA7 /* tabbarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabbarBackground.png; path = Resources/images/tabbarBackground.png; sourceTree = "<group>"; };
@@ -750,8 +747,6 @@
 				E6914F6115D4E5AC002CAEE0 /* PlayerActionViewController.m */,
 				E6914F6615D4E640002CAEE0 /* PlayerEditViewController.h */,
 				E6914F6715D4E641002CAEE0 /* PlayerEditViewController.m */,
-				3CDE39F215E75FCF003A7FD3 /* PlayerFoulStatisticViewController.h */,
-				3CDE39F315E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m */,
 				E6E032C815CFC00000AF91CB /* PlayerListViewController.h */,
 				E6E032C915CFC00100AF91CB /* PlayerListViewController.m */,
 				3CC1687B15A2F70E00A2AB44 /* PlayGameViewController.h */,
@@ -1262,7 +1257,6 @@
 				FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */,
 				FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */,
 				FB957D3B19E24719007FC3DA /* GameHistoryCell.m in Sources */,
-				3CDE39F415E75FD0003A7FD3 /* PlayerFoulStatisticViewController.m in Sources */,
 				E62D384515EB5DBC004AA543 /* RuleDetailViewController.m in Sources */,
 				FB8A220719E3FE7100213057 /* StatisticCompareCell.m in Sources */,
 				3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */,

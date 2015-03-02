@@ -26,7 +26,7 @@ typedef enum {
     MatchStatePlaying,              // 比赛计时进行中。
     MatchStateTimeout,              // 比赛暂停中。
     MatchStateTimeoutFinished,      // 比赛暂停结束。
-    MatchStateTimeoutTemp,          // 比赛临时暂停。
+    MatchStateTimeoutTemp,          // 比赛临时暂停（临时停表）。
     MatchStatePeriodFinished,       // 比赛单节结束。
     MatchStateQuarterTime,          // 比赛节间休息中。
     MatchStateQuarterTimeFinished,  // 比赛节间休息结束。
