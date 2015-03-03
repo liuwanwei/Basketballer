@@ -24,7 +24,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_recording_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25" userLabel="主队头像">
                     <rect key="frame" x="35" y="44" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="62"/>
@@ -32,8 +32,8 @@
                     </constraints>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="26">
-                    <rect key="frame" x="238" y="44" width="50" height="50"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="26" userLabel="客队头像">
+                    <rect key="frame" x="235" y="44" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="64"/>
                     </constraints>
@@ -51,7 +51,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洛杉矶湖人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28">
-                    <rect key="frame" x="213" y="107" width="100" height="18"/>
+                    <rect key="frame" x="210" y="104" width="100" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="40"/>
                     </constraints>
@@ -61,7 +61,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="裁判记录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29">
-                    <rect key="frame" x="125" y="58" width="71" height="21"/>
+                    <rect key="frame" x="125" y="61" width="71" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="71" id="65"/>
                         <constraint firstAttribute="height" constant="21" id="66"/>
@@ -71,7 +71,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（向左滑动删除记录）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-fd-yUZ">
-                    <rect key="frame" x="100" y="82" width="120" height="14.5"/>
+                    <rect key="frame" x="100" y="85" width="120" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <nil key="highlightedColor"/>
@@ -111,7 +111,7 @@
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="on">
-                            <rect key="frame" x="161.5" y="31" width="5" height="4"/>
+                            <rect key="frame" x="161" y="31" width="5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="5" id="mGt-B0-Riv"/>
                             </constraints>
@@ -136,25 +136,28 @@
             <constraints>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="42"/>
                 <constraint firstItem="28" firstAttribute="centerX" secondItem="26" secondAttribute="centerX" id="44"/>
-                <constraint firstItem="29" firstAttribute="top" secondItem="10" secondAttribute="top" constant="58" id="47"/>
-                <constraint firstAttribute="trailing" secondItem="28" secondAttribute="trailing" constant="7" id="48"/>
                 <constraint firstItem="27" firstAttribute="leading" secondItem="10" secondAttribute="leading" constant="10" id="50"/>
-                <constraint firstItem="27" firstAttribute="top" secondItem="10" secondAttribute="top" constant="104" id="51"/>
-                <constraint firstItem="25" firstAttribute="top" secondItem="10" secondAttribute="top" constant="44" id="53"/>
                 <constraint firstItem="25" firstAttribute="centerX" secondItem="27" secondAttribute="centerX" id="56"/>
                 <constraint firstItem="25" firstAttribute="bottom" secondItem="26" secondAttribute="bottom" id="57"/>
-                <constraint firstItem="28" firstAttribute="baseline" secondItem="27" secondAttribute="baseline" id="58"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="26" secondAttribute="top" id="59"/>
                 <constraint firstItem="4" firstAttribute="width" secondItem="UI2-I8-yvs" secondAttribute="width" id="0BA-Gm-UiV"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="3lR-GB-BPK"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="10" secondAttribute="top" constant="152" id="4Bj-FC-7Fb"/>
+                <constraint firstItem="29" firstAttribute="centerY" secondItem="25" secondAttribute="centerY" constant="3" id="61U-dv-EVN"/>
+                <constraint firstItem="28" firstAttribute="top" secondItem="26" secondAttribute="bottom" constant="10" id="Ce3-Nr-F3J"/>
+                <constraint firstItem="23" firstAttribute="centerY" secondItem="29" secondAttribute="centerY" id="G8a-vk-xal"/>
+                <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="35" id="H5U-sj-d79"/>
                 <constraint firstItem="23" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="Jj5-hD-JZk"/>
+                <constraint firstItem="27" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="10" id="c2q-bb-Hut"/>
+                <constraint firstAttribute="centerX" secondItem="23" secondAttribute="centerX" id="gzc-n9-3Wt"/>
                 <constraint firstItem="UI2-I8-yvs" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="hi5-fg-jDd"/>
+                <constraint firstItem="25" firstAttribute="leading" secondItem="10" secondAttribute="leading" constant="35" id="nlx-Qt-Zdg"/>
                 <constraint firstItem="UI2-I8-yvs" firstAttribute="top" secondItem="4" secondAttribute="bottom" id="on3-wc-fye"/>
                 <constraint firstItem="23" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="rFH-Xh-Ki8"/>
                 <constraint firstItem="23" firstAttribute="top" secondItem="10" secondAttribute="top" id="uMH-yD-E1M"/>
                 <constraint firstAttribute="bottom" secondItem="UI2-I8-yvs" secondAttribute="bottom" id="wPo-Lg-Gv6"/>
                 <constraint firstItem="23" firstAttribute="centerX" secondItem="29" secondAttribute="centerX" id="xe9-dw-z5f"/>
+                <constraint firstItem="23" firstAttribute="leading" secondItem="10" secondAttribute="leading" id="y1D-jb-jxj"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="8" symbolic="YES" id="ygK-FC-oDS"/>
                 <constraint firstItem="uIT-fd-yUZ" firstAttribute="top" secondItem="29" secondAttribute="bottom" constant="3" id="zM9-FX-Xt4"/>
             </constraints>

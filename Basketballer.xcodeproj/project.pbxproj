@@ -177,6 +177,7 @@
 		FB7DFFAE1AA42106008F6AB8 /* MVP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */; };
 		FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */; };
 		FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */; };
+		FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
 		FB8457581A99FE7A00227408 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457571A99FE7A00227408 /* Statistics.m */; };
 		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
@@ -442,6 +443,7 @@
 		FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MVP.mp3; path = Resources/music/MVP.mp3; sourceTree = "<group>"; };
 		FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Offence.mp3; path = Resources/music/Offence.mp3; sourceTree = "<group>"; };
 		FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Rock You.mp3"; path = "Resources/music/Rock You.mp3"; sourceTree = "<group>"; };
+		FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		FB8457451A98B5AD00227408 /* GameSettingFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingFormViewController.h; sourceTree = "<group>"; };
 		FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingFormViewController.m; sourceTree = "<group>"; };
 		FB8457561A99FE7A00227408 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				892034BEC007CCBE8DD5BA66 /* Pods */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		3CC1680C15A2E52A00A2AB44 /* Products */ = {
 			isa = PBXGroup;
@@ -701,6 +704,7 @@
 				3C2B1B3715C68FF700BAB6BE /* StartMatchView.xib */,
 				3C06653315F6022300B1DCB8 /* PlaySoundViewController.xib */,
 				FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */,
+				FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -1097,6 +1101,7 @@
 				E6914F9615DB2ECC002CAEE0 /* TeamsPanelDotRect@2x.png in Resources */,
 				FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */,
 				3C163C9E15DB3F4100552546 /* backNavigationBar.png in Resources */,
+				FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */,
 				3C163C9F15DB3F4100552546 /* backNavigationBar@2x.png in Resources */,
 				3C890F9115DC76870048B21C /* TabBarBarBg@2x.png in Resources */,
 				3C890F9215DC76870048B21C /* TabBarBg.png in Resources */,
