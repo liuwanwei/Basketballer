@@ -1,6 +1,7 @@
 PODS:
   - AVOSCloud (2.6.10.2)
   - FXLabel (1.5.8)
+  - Masonry (0.6.1)
   - MBProgressHUD (0.9)
   - TMCache (1.2.3)
   - XLForm (2.1.0)
@@ -8,6 +9,7 @@ PODS:
 DEPENDENCIES:
   - AVOSCloud (~> 2.6.10.2)
   - FXLabel (~> 1.5.8)
+  - Masonry (~> 0.6.1)
   - MBProgressHUD (~> 0.9)
   - TMCache (~> 1.2.3)
   - XLForm (~> 2.1.0)
@@ -15,6 +17,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AVOSCloud: 903429163bce9feabb4473ab07ea30ed47ba5db1
   FXLabel: d7c2cb1d2903d7a7ac04855d470ecf2079f4881e
+  Masonry: 2cb49fd14d203d2db5ca6bb017135b235dde9980
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   TMCache: 11589ef8c40909114a5e60132711c9a559e01d97
   XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <XLForm.h>
 
-@interface MoreViewController : UITableViewController
+@interface MoreViewController : XLFormViewController <UIAlertViewDelegate>
 
 @end
