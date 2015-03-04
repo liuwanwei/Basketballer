@@ -179,6 +179,7 @@
 		FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */; };
 		FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */; };
 		FB7DFFB51AA59CBB008F6AB8 /* HowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */; };
+		FB7DFFB91AA6BCDE008F6AB8 /* launchImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFB81AA6BCDE008F6AB8 /* launchImage.jpg */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
 		FB8457581A99FE7A00227408 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457571A99FE7A00227408 /* Statistics.m */; };
 		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
@@ -447,6 +448,7 @@
 		FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		FB7DFFB31AA59CBB008F6AB8 /* HowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToViewController.h; sourceTree = "<group>"; };
 		FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToViewController.m; sourceTree = "<group>"; };
+		FB7DFFB81AA6BCDE008F6AB8 /* launchImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launchImage.jpg; sourceTree = "<group>"; };
 		FB8457451A98B5AD00227408 /* GameSettingFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingFormViewController.h; sourceTree = "<group>"; };
 		FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingFormViewController.m; sourceTree = "<group>"; };
 		FB8457561A99FE7A00227408 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				FB7DFFB81AA6BCDE008F6AB8 /* launchImage.jpg */,
 				FB7DFFA11AA4088C008F6AB8 /* player_profile.png */,
 				FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */,
 				FB292DFC1A95FD2A00792680 /* game_playing_bg.png */,
@@ -1107,6 +1110,7 @@
 				FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */,
 				3C163C9E15DB3F4100552546 /* backNavigationBar.png in Resources */,
 				FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */,
+				FB7DFFB91AA6BCDE008F6AB8 /* launchImage.jpg in Resources */,
 				3C163C9F15DB3F4100552546 /* backNavigationBar@2x.png in Resources */,
 				3C890F9115DC76870048B21C /* TabBarBarBg@2x.png in Resources */,
 				3C890F9215DC76870048B21C /* TabBarBg.png in Resources */,
