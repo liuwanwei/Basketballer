@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="H8h-LV-eCx">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startpage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="H8h-LV-eCx">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
@@ -28,6 +28,6 @@
         </view>
     </objects>
     <resources>
-        <image name="launchImage.jpg" width="544" height="970"/>
+        <image name="startpage.jpg" width="375" height="667"/>
     </resources>
 </document>
