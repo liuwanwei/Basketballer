@@ -163,7 +163,7 @@
 - (id)initWithFrame:(CGRect)frame {
     NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"TimeoutPromptView" owner:self options:nil];
     self = [nib objectAtIndex:0];
-    self.frame = frame;
+//    self.frame = frame;
     _match = [MatchUnderWay defaultMatch];
     
     self.soundEffectLabel.text = LocalString(@"SoundEffect");

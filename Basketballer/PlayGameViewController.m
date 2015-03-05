@@ -296,11 +296,14 @@ typedef enum {
     if (_timeoutPromptView == nil) {
          _timeoutPromptView = [[TimeoutPromptView alloc] initWithFrame:CGRectZero];
     }
-    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, 320.0, 144.0);
+    
+    // 如果使用AutoLayout，必须指定它在父窗口中的位置，需要在添加到父窗口后，手工写constraints
+    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, ([UIScreen mainScreen].bounds.size.width), 144.0);
     _timeoutPromptView.mode = mode;
     [_timeoutPromptView updateLayout];
     [self.view addSubview:_timeoutPromptView];
     [self.view bringSubviewToFront:self.controlButton];
+    
     if (mode == PromptModeTimeout || mode == PromptModeQuarterTime) {
         [_timeoutPromptView startTimeoutCountdown];
         [[SoundManager defaultManager] playHornSound];
