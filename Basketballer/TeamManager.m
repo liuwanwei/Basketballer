@@ -207,8 +207,9 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     
     UIImage * teamProfile = image;
     
-    if ([self queryTeamWithName:name] != nil) {
-        return nil;
+    Team * existedTeam = [self queryTeamWithName:name];
+    if (existedTeam != nil) {
+        return existedTeam;
     }    
     
     Team * team = (Team *)[NSEntityDescription insertNewObjectForEntityForName:kTeamEntity 

@@ -7,6 +7,7 @@
 //
 
 #import "BCGameHistoryViewController.h"
+#import "BCPrepareGameViewController.h"
 #import "GameStatisticViewController.h"
 #import "MatchManager.h"
 #import "TeamManager.h"
@@ -40,6 +41,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)newGameClicked:(id)sender{
+    BCPrepareGameViewController * vc = [[BCPrepareGameViewController alloc] init];
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController: vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)historyChangedHandler:(NSNotification *)notification{

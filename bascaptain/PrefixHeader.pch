@@ -14,4 +14,9 @@
 
 #define LocalString(key)  NSLocalizedString(key, nil)
 
+//StoryBoard
+#define STORYBOARD(name) (UIStoryboard *)[UIStoryboard storyboardWithName:name bundle:nil]
+#define STORYBOARDVC(name, identifier) [(STORYBOARD(name)) instantiateViewControllerWithIdentifier:identifier]
+
+
 #endif

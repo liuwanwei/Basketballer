@@ -31,7 +31,7 @@
                     <navigationItem key="navigationItem" title="比赛记录" id="WSf-xT-elL">
                         <barButtonItem key="rightBarButtonItem" title="新的比赛" id="yiD-ZA-jIK">
                             <connections>
-                                <segue destination="ZKp-bh-fUm" kind="presentation" identifier="ToPlayGameView" id="RkF-xq-581"/>
+                                <action selector="newGameClicked:" destination="aJx-vo-fm5" id="vwz-Xa-nou"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -43,7 +43,7 @@
         <!--比赛-->
         <scene sceneID="6Ib-sf-G1E">
             <objects>
-                <viewController id="fdj-gE-RsG" userLabel="比赛" customClass="BCPlayGameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BCPlayGameViewController" id="fdj-gE-RsG" userLabel="比赛" customClass="BCPlayGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BBq-1L-bMA"/>
                         <viewControllerLayoutGuide type="bottom" id="P5P-Pz-JUj"/>
@@ -52,8 +52,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-YK-gMs" userLabel="球队信息">
-                                <rect key="frame" x="0.0" y="20" width="600" height="64"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-YK-gMs" userLabel="球队信息">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_playing_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="OAg-H7-e2O" userLabel="背景图">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
@@ -82,10 +82,16 @@
                                         <rect key="frame" x="275" y="31" width="50" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="QPw-ta-qh3"/>
+                                            <constraint firstAttribute="width" constant="50" id="wo3-0e-tgF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="QPw-ta-qh3"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="103" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67B-vM-yFc" userLabel="主队比分">
                                         <rect key="frame" x="51" y="11" width="224" height="41"/>
@@ -231,8 +237,8 @@
                                     <constraint firstItem="b1B-r9-4eE" firstAttribute="leading" secondItem="v36-Ze-hf2" secondAttribute="leading" constant="18" id="sft-Q8-qNN"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6sI-22-5Vq">
-                                <rect key="frame" x="0.0" y="84" width="600" height="467"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6sI-22-5Vq">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -254,159 +260,150 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="guestTeamHead" destination="zkL-NM-RLb" id="pAj-sg-Pz6"/>
-                        <outlet property="homeTeamHead" destination="fQF-ZF-dDw" id="zvc-Gg-9kJ"/>
+                        <outlet property="controlButton" destination="JaW-vg-QhA" id="mSj-uG-0nj"/>
+                        <outlet property="gameGuestScoreLable" destination="GUh-bb-aEo" id="cpj-LS-ZY2"/>
+                        <outlet property="gameHostScoreLable" destination="67B-vM-yFc" id="9zk-3V-BLi"/>
+                        <outlet property="gamePeroidLabel" destination="agJ-2Y-PS6" id="uet-Ti-On0"/>
+                        <outlet property="gameTimeLabel" destination="9jQ-pW-Dsn" id="CYS-H8-5ya"/>
+                        <outlet property="guestImageView" destination="zkL-NM-RLb" id="cRx-rE-Hvq"/>
+                        <outlet property="guestNameLabel" destination="13n-wn-LsY" id="waq-aB-E6q"/>
+                        <outlet property="hostImageView" destination="fQF-ZF-dDw" id="N5o-kK-4dE"/>
+                        <outlet property="hostNameLabel" destination="K4N-sv-gg8" id="Yfq-v3-XW0"/>
                         <outlet property="tableView" destination="6sI-22-5Vq" id="1C6-Xq-pat"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVh-Fd-yun" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2999" y="-685"/>
+            <point key="canvasLocation" x="2306" y="-685"/>
         </scene>
         <!--我的球队-->
         <scene sceneID="3dj-ET-CfO">
             <objects>
-                <tableViewController id="AR2-yB-Yvy" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="d6e-KI-hxl">
+                <tableViewController id="AR2-yB-Yvy" customClass="BCMyPlayersViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="d6e-KI-hxl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection id="Dl5-M7-haO">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mqd-pA-BLt">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqd-pA-BLt" id="zJy-NN-0OT">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player_profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="a4M-kP-bfO">
-                                                    <rect key="frame" x="8" y="10" width="40" height="40"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="流川枫" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHm-Z6-kdX">
-                                                    <rect key="frame" x="62" y="5" width="51" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="场均: 22.3分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgj-Jg-Ifb">
-                                                    <rect key="frame" x="62" y="28" width="94" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.1个篮板" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtf-aa-gOt">
-                                                    <rect key="frame" x="171" y="28" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.8次助攻" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BL-FT-SFm">
-                                                    <rect key="frame" x="251" y="28" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9e-wj-4YB">
-                                                    <rect key="frame" x="171" y="5" width="27" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3CK-zT-HrQ">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3CK-zT-HrQ" id="FWa-pP-h1F">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player_profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="VH2-m6-EuE">
-                                                    <rect key="frame" x="8" y="10" width="40" height="40"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="樱木花道" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqE-gk-IaA">
-                                                    <rect key="frame" x="62" y="5" width="68" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="场均: 22.3分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSF-lA-jf5">
-                                                    <rect key="frame" x="62" y="28" width="94" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.1个篮板" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFF-79-i1o">
-                                                    <rect key="frame" x="171" y="28" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.8次助攻" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkj-5A-OXr">
-                                                    <rect key="frame" x="251" y="28" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8n-dC-8rV">
-                                                    <rect key="frame" x="171" y="5" width="27" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vmn-nL-HPp">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vmn-nL-HPp" id="9ad-7Q-ZQf">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player_profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y6v-D3-0gy">
-                                                    <rect key="frame" x="8" y="10" width="40" height="40"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="赤木刚宪" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svR-e1-27o">
-                                                    <rect key="frame" x="62" y="5" width="68" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="场均: 22.3分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wI-6g-mjH">
-                                                    <rect key="frame" x="62" y="28" width="94" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.1个篮板" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IH-ez-tqw">
-                                                    <rect key="frame" x="171" y="28" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.8次助攻" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHh-xQ-wEi">
-                                                    <rect key="frame" x="251" y="28" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjX-As-bex">
-                                                    <rect key="frame" x="171" y="5" width="27" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyPlayerListCell" id="mqd-pA-BLt" customClass="BCMyPlayerListCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mqd-pA-BLt" id="zJy-NN-0OT">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player_profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="a4M-kP-bfO">
+                                            <rect key="frame" x="8" y="10" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Nwa-cy-HuJ"/>
+                                                <constraint firstAttribute="width" secondItem="a4M-kP-bfO" secondAttribute="height" multiplier="1:1" id="jGH-Ij-vK3"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="流川枫" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHm-Z6-kdX">
+                                            <rect key="frame" x="53" y="10" width="60" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="IbY-p7-lEL"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="场均: 22.3分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgj-Jg-Ifb">
+                                            <rect key="frame" x="53" y="34" width="167" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="94" id="e7f-bF-WOX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="e7f-bF-WOX"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.1个篮板" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtf-aa-gOt">
+                                            <rect key="frame" x="225" y="34" width="167" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="67" id="ngM-zZ-fPN"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="ngM-zZ-fPN"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.8次助攻" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BL-FT-SFm">
+                                            <rect key="frame" x="392" y="34" width="167" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="67" id="wWI-4L-cwZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="wWI-4L-cwZ"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9e-wj-4YB">
+                                            <rect key="frame" x="171" y="10" width="80" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="eRE-1U-oje"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bHm-Z6-kdX" firstAttribute="centerY" secondItem="r9e-wj-4YB" secondAttribute="centerY" id="23r-qt-Jkc"/>
+                                        <constraint firstItem="tgj-Jg-Ifb" firstAttribute="leading" secondItem="bHm-Z6-kdX" secondAttribute="leading" id="656-DL-HuA"/>
+                                        <constraint firstAttribute="centerY" secondItem="a4M-kP-bfO" secondAttribute="centerY" id="67f-6S-Ght"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1BL-FT-SFm" secondAttribute="trailing" id="D0a-Lo-01X"/>
+                                        <constraint firstItem="bHm-Z6-kdX" firstAttribute="top" secondItem="a4M-kP-bfO" secondAttribute="top" id="DJ5-RJ-0pD"/>
+                                        <constraint firstItem="a4M-kP-bfO" firstAttribute="leading" secondItem="zJy-NN-0OT" secondAttribute="leadingMargin" id="Fbg-w6-EfZ"/>
+                                        <constraint firstItem="tgj-Jg-Ifb" firstAttribute="bottom" secondItem="a4M-kP-bfO" secondAttribute="bottom" id="STJ-J1-UIp"/>
+                                        <constraint firstItem="jtf-aa-gOt" firstAttribute="leading" secondItem="tgj-Jg-Ifb" secondAttribute="trailing" constant="5" id="U4I-Zk-JDU"/>
+                                        <constraint firstItem="1BL-FT-SFm" firstAttribute="centerY" secondItem="jtf-aa-gOt" secondAttribute="centerY" id="Xo3-az-QdD"/>
+                                        <constraint firstItem="jtf-aa-gOt" firstAttribute="width" secondItem="tgj-Jg-Ifb" secondAttribute="width" id="Zkr-M1-xXp"/>
+                                        <constraint firstItem="jtf-aa-gOt" firstAttribute="centerY" secondItem="tgj-Jg-Ifb" secondAttribute="centerY" id="fdl-7B-hqQ"/>
+                                        <constraint firstItem="r9e-wj-4YB" firstAttribute="leading" secondItem="bHm-Z6-kdX" secondAttribute="trailing" constant="58" id="kLq-8F-ObD"/>
+                                        <constraint firstItem="jtf-aa-gOt" firstAttribute="width" secondItem="1BL-FT-SFm" secondAttribute="width" id="oFH-Ip-5Wq"/>
+                                        <constraint firstItem="bHm-Z6-kdX" firstAttribute="leading" secondItem="a4M-kP-bfO" secondAttribute="trailing" constant="5" id="rh5-hF-17n"/>
+                                        <constraint firstItem="1BL-FT-SFm" firstAttribute="leading" secondItem="jtf-aa-gOt" secondAttribute="trailing" id="w4Z-pb-qaG"/>
+                                        <constraint firstItem="tgj-Jg-Ifb" firstAttribute="leading" secondItem="a4M-kP-bfO" secondAttribute="trailing" constant="14" id="xeU-ar-QP9"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="xeU-ar-QP9"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageViewHead" destination="a4M-kP-bfO" id="KD8-LM-1df"/>
+                                    <outlet property="labelAverageAssists" destination="1BL-FT-SFm" id="32U-sD-MFU"/>
+                                    <outlet property="labelAveragePoints" destination="tgj-Jg-Ifb" id="4ah-lT-1l6"/>
+                                    <outlet property="labelAverageRebounds" destination="jtf-aa-gOt" id="Qr0-Xe-nkT"/>
+                                    <outlet property="labelName" destination="bHm-Z6-kdX" id="cgV-qC-Fgt"/>
+                                    <outlet property="labelNumber" destination="r9e-wj-4YB" id="tyV-aY-A7y"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="AR2-yB-Yvy" id="GzS-H9-RWm"/>
                             <outlet property="delegate" destination="AR2-yB-Yvy" id="gU6-76-956"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="我的球队" id="faz-qw-FKR">
-                        <barButtonItem key="rightBarButtonItem" title="添加队员" id="fXS-gI-v1h"/>
+                        <barButtonItem key="rightBarButtonItem" title="添加队员" id="fXS-gI-v1h">
+                            <connections>
+                                <action selector="addPlayer:" destination="AR2-yB-Yvy" id="Q98-LV-d1z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ty1-TL-uuJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,24 +513,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2eD-YW-xxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="729"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DXL-88-8RY">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZKp-bh-fUm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1FO-2h-KOm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fdj-gE-RsG" kind="relationship" relationship="rootViewController" id="o40-wo-pmG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IBb-PE-rut" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2261" y="-685"/>
         </scene>
     </scenes>
     <resources>
