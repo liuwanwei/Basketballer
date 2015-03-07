@@ -27,8 +27,6 @@ typedef enum {
 
 @interface GameHistoryViewController : UITableViewController
 
-//@property (nonatomic, weak) IBOutlet UITableViewCell * tvCell;
-
 @property (nonatomic, strong) NSArray * matches;
 @property (nonatomic, strong) NSDictionary * history;
 @property (nonatomic, strong) NSArray * historyGroupKeys;

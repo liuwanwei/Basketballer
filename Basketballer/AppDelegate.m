@@ -153,7 +153,7 @@ typedef enum {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[MatchManager defaultManager] loadMatches];
-    [[TeamManager defaultManager] loadTeams];
+    [[TeamManager defaultManager] loadTeams:NO];
     [[CustomRuleManager defaultInstance] loadRules];
     
     [self initTabBar];

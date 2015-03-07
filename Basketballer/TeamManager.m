@@ -11,8 +11,10 @@
 #import "AppDelegate.h"
 #import "PlayerManager.h"
 #import "ImageManager.h"
+#import <TMCache.h>
 
 static TeamManager * sDefaultManager;
+static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
 
 @interface TeamManager (){
     NSMutableArray * _allTeams;
@@ -68,14 +70,11 @@ static TeamManager * sDefaultManager;
     [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:32] withName:@"马龙"];
 }
 
-- (void)loadTeams{
+- (void)loadTeams:(BOOL)needMyTeam{
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kTeamEntity];
     
     NSSortDescriptor * sortDescripter = [[NSSortDescriptor alloc] initWithKey:kTeamIdField ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescripter];
-    
-//    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"%K == 0", kTeamDeleted];
-//    request.predicate = predicate;
     
     NSError * error = nil;
     NSMutableArray * result = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
@@ -86,11 +85,48 @@ static TeamManager * sDefaultManager;
     }
     
     if (result.count == 0) {
+        // 首次运行创建默认数据
+        
         _allTeams = [[NSMutableArray alloc] init];
-        // 由于从不删除球队（只是修改enable标志）所以此处只会被执行一次
+        // 放心！！！由于从不删除球队（只是修改enable标志）所以此处只会被执行一次
         [self createDefaultTeams];
+
+        // 自动创建“我的球队”
+        if (needMyTeam) {
+            [self createMyTeam];
+        }
+        
     }else {
-        _allTeams = result;        
+        _allTeams = result;
+    }
+    
+    if (needMyTeam) {
+        [self initMyTeam];
+    }
+}
+
+// 自动创建自己球队（队长版使用），只会调用一次
+- (void)createMyTeam{
+    Team * team = [self newTeam:@"我的球队" withImage:nil];
+    [[TMDiskCache sharedCache] setObject:team.id forKey:kAutoCreatedMyTeamId];
+    
+    PlayerManager * pm = [PlayerManager defaultManager];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:23] withName:@"李雷"];
+    [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:33] withName:@"韩梅梅"];
+}
+
+- (void)initMyTeam{
+    // 提取“我的球队”
+    NSNumber * myTeamId = (NSNumber *)[[TMDiskCache sharedCache] objectForKey:kAutoCreatedMyTeamId];
+    if (myTeamId != nil) {
+        NSEnumerator * enurator = [_allTeams objectEnumerator];
+        Team * object;
+        while ((object = [enurator nextObject]) != nil) {
+            if ([object.id isEqualToNumber:myTeamId]) {
+                self.myTeam = object;
+                break;
+            }
+        }
     }
 }
 
@@ -184,7 +220,7 @@ static TeamManager * sDefaultManager;
 
     // 球队标识图片。
     if (nil == teamProfile) {
-        teamProfile = [UIImage imageNamed:@"DefaultTeamProfile"];
+        teamProfile = [UIImage imageNamed:@"TabBarTeam"];
     }
 
 

@@ -22,10 +22,11 @@
 @interface TeamManager : BaseManager
 
 @property (nonatomic, strong) NSMutableArray * teams;
+@property (nonatomic, weak) Team * myTeam;
 
 + (TeamManager *)defaultManager;
 
-- (void)loadTeams;
+- (void)loadTeams:(BOOL)needMyTeam;
 
 // 查询球队。
 - (Team *)queryTeamWithName:(NSString *)name;   // Deprecated, use "teamWithName:" instead.

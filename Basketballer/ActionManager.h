@@ -41,19 +41,28 @@
 #define k3PointMade         @"3PointMade"
 #define kFreeThrow          @"FreeThrow"
 
+#define ActionTypeDetailsBase        10000
+
 typedef enum {
     ActionTypeNone      = -1,
     ActionTypePoints    = 0,        // 用于搜索所有得分类型事件，并非用于添加、删除事件。
     ActionType1Point    = 1,        // 罚球得分。
+    ActionType1PointMissed    = (ActionTypeDetailsBase + ActionType1Point),
     ActionType2Points   = 2,        // 两分球。
+    ActionType2PointMissed    = (ActionTypeDetailsBase + ActionType2Points),
     ActionType3Points   = 3,        // 三分球。
+    ActionType3PointMissed    = (ActionTypeDetailsBase + ActionType3Points),
     ActionTypeFoul      = 4,        // 犯规。
     ActionTypeTimeoutRegular = 5,   // 常规暂停。
     ActionTypeTimeoutShort = 6,     // 短暂停。
     ActionTypeTimeoutOfficial = 7,  // 官方暂停。
     ActionTypeRebound   = 8,        // 篮板
+    ActionTypeReboundForeField = (ActionTypeDetailsBase + ActionTypeRebound),
+    ActionTypeReboundBackField = (ActionTypeDetailsBase + ActionTypeRebound + 1),
     ActionTypeAssist    = 9,        // 助攻
     ActionTypeBlock     = 10,       // 盖帽
+    ActionTypeMiss      = 11,       // 失误
+    ActionTypeSteal     = 12,       // 抢断
 }ActionType;
 
 @class TeamStatistics;
