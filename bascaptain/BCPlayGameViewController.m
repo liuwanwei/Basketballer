@@ -291,15 +291,26 @@ typedef enum {
     }
     
     // 如果使用AutoLayout，必须指定它在父窗口中的位置，需要在添加到父窗口后，手工写constraints
-    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, ([UIScreen mainScreen].bounds.size.width), 144.0);
+    _timeoutPromptView.frame = CGRectMake(0.0, 0.0, ([UIScreen mainScreen].bounds.size.width), 84.0f);
     _timeoutPromptView.mode = mode;
     [_timeoutPromptView updateLayout];
     [self.view addSubview:_timeoutPromptView];
     [self.view bringSubviewToFront:self.controlButton];
     
+    self.controlButton.enabled = NO;
+    
     if (mode == PromptModeTimeout || mode == PromptModeQuarterTime) {
         [_timeoutPromptView startTimeoutCountdown];
         [[SoundManager defaultManager] playHornSound];
+    }
+}
+
+// 隐藏暂停或节间休息子界面
+- (void)hideTimeoutPromptView {
+    if (nil != _timeoutPromptView) {
+        [_timeoutPromptView stopTimeoutCountdown];
+        [_timeoutPromptView removeFromSuperview];
+        self.controlButton.enabled = YES;
     }
 }
 
@@ -322,14 +333,6 @@ typedef enum {
     [_timeoutPromptView updateLayout];
     [self hideTimeoutPromptView];
 //    [[SoundManager defaultManager] playHornSound];
-}
-
-// 隐藏暂停或节间休息子界面
-- (void)hideTimeoutPromptView {
-    if (nil != _timeoutPromptView) {
-        [_timeoutPromptView stopTimeoutCountdown];
-        [_timeoutPromptView removeFromSuperview];
-    }
 }
 
 
@@ -380,7 +383,7 @@ typedef enum {
     [hud hide:YES afterDelay:0.8];
 }
 
-- (IBAction)stopGameClicked:(id)sender{
+- (IBAction)leftButtonClicked:(id)sender{
     // 有节数的话，要显示“结束本节”，否则只显示“结束比赛”
     NSString * otherButton = nil;
     if (_match.state == MatchStatePlaying) {
@@ -389,13 +392,6 @@ typedef enum {
     
     UIActionSheet * ac = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:otherButton, nil];
     [ac showInView:self.view];
-}
-
-
-// 弹出操作菜单
-- (IBAction)leftButtonClicked:(id)sender{
-    UIActionSheet * actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"结束比赛" otherButtonTitles:@"结束本节", @"比赛设置", nil];
-    [actionSheet showInView:self.view];
 }
 
 // 查看数据

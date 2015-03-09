@@ -16,19 +16,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10:59" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                    <rect key="frame" x="0.0" y="48" width="320" height="48"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48">
-                    <rect key="frame" x="124" y="96" width="72" height="44"/>
+                    <rect key="frame" x="124" y="96" width="72" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="72" id="61"/>
-                        <constraint firstAttribute="height" constant="44" id="62"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="结束暂停">
+                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -38,18 +38,18 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="47" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="51"/>
-                <constraint firstItem="5" firstAttribute="top" secondItem="47" secondAttribute="top" id="52"/>
-                <constraint firstAttribute="bottom" secondItem="48" secondAttribute="bottom" constant="4" id="53"/>
+                <constraint firstAttribute="bottom" secondItem="48" secondAttribute="bottom" id="53"/>
                 <constraint firstItem="48" firstAttribute="centerX" secondItem="5" secondAttribute="centerX" id="54"/>
-                <constraint firstItem="5" firstAttribute="leading" secondItem="47" secondAttribute="leading" id="55"/>
                 <constraint firstAttribute="trailing" secondItem="47" secondAttribute="trailing" id="56"/>
-                <constraint firstItem="5" firstAttribute="top" secondItem="16" secondAttribute="top" id="57"/>
-                <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" id="58"/>
                 <constraint firstItem="47" firstAttribute="leading" secondItem="16" secondAttribute="leading" id="59"/>
-                <constraint firstItem="5" firstAttribute="bottom" secondItem="47" secondAttribute="bottom" id="60"/>
+                <constraint firstAttribute="centerY" secondItem="5" secondAttribute="centerY" id="2Bu-ym-XYB"/>
+                <constraint firstItem="48" firstAttribute="top" secondItem="5" secondAttribute="bottom" id="DKS-Gr-WQB"/>
+                <constraint firstItem="47" firstAttribute="top" secondItem="16" secondAttribute="top" id="KUC-4F-cwY"/>
+                <constraint firstAttribute="bottom" secondItem="47" secondAttribute="bottom" id="P7X-Tq-8c4"/>
                 <constraint firstAttribute="centerY" secondItem="47" secondAttribute="centerY" id="Uec-Z4-gIz"/>
+                <constraint firstItem="5" firstAttribute="leading" secondItem="16" secondAttribute="leading" id="ceB-ns-mbc"/>
                 <constraint firstAttribute="centerX" secondItem="47" secondAttribute="centerX" id="oHh-31-LId"/>
+                <constraint firstAttribute="centerX" secondItem="5" secondAttribute="centerX" id="zdM-RT-WeC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
