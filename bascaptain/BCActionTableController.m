@@ -108,7 +108,7 @@ typedef enum {
     if ([self.rowDescriptions[indexPath.row][1] boolValue]) {
         // 需要增加右侧双控按钮
         BCMultiActionView * view = [[BCMultiActionView alloc] initInView:cell.contentView];
-        [view setLeftText:self.rowDescriptions[indexPath.row][2] rightText:self.rowDescriptions[indexPath.row][3]];
+        [view setLeftButtonText:self.rowDescriptions[indexPath.row][2] rightButtonText:self.rowDescriptions[indexPath.row][3]];
         
         [view.buttonLeft addTarget:self action:@selector(leftItemClicked:) forControlEvents:UIControlEventTouchUpInside];
         view.buttonLeft.tag = [self.actionTypes[indexPath.row][0] integerValue];

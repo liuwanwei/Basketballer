@@ -9,6 +9,8 @@
 #import "BCMultiActionView.h"
 #import <Masonry.h>
 
+static const CGFloat ActionViewWidth = 140.f;
+
 @implementation BCMultiActionView
 
 - (id)initInView:(UIView *)view{
@@ -20,32 +22,36 @@
         __weak UIView * superView = view;
         [self mas_makeConstraints:^(MASConstraintMaker * make){
             make.right.equalTo(superView.mas_right).offset(-8.0f);
-            make.width.equalTo(@120);
+            make.width.equalTo(@(ActionViewWidth));
             make.centerY.equalTo(superView.mas_centerY);
         }];
         
         // 初始化右边两个按钮，从右到左
         _buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self setBackgroundImageForButton:_buttonRight];
         [self addSubview:_buttonRight];
         superView = self;
         [_buttonRight mas_makeConstraints:^(MASConstraintMaker * make){
             make.trailing.equalTo(superView.mas_right);
             make.centerY.equalTo(superView.mas_centerY);
-            make.width.equalTo(@60);
+            make.width.equalTo(@(ActionViewWidth / 2));
             make.height.equalTo(superView.mas_height);
         }];
         
+        // 分割线
         _seperator = [[UIView alloc] init];
         _seperator.backgroundColor = [UIColor blueColor];
+        _seperator.hidden = YES;
         [self addSubview:_seperator];
         [_seperator mas_makeConstraints:^(MASConstraintMaker * make){
-            make.trailing.equalTo(_buttonRight.mas_left).offset(-5.0f); // TODO: 验证应填正填负
+            make.trailing.equalTo(_buttonRight.mas_left).offset(-5.0f);
             make.width.equalTo(@1);
             make.height.equalTo(superView.mas_height);
             make.centerY.equalTo(superView.mas_centerY);
         }];
         
         _buttonLeft = [[UIButton alloc] init];
+        [self setBackgroundImageForButton:_buttonLeft];
         [self addSubview:_buttonLeft];
         [_buttonLeft mas_makeConstraints:^(MASConstraintMaker * make){
             make.trailing.equalTo(_seperator.mas_left).offset(-5.0f);
@@ -59,13 +65,22 @@
     return self;
 }
 
-- (void)setLeftText:(NSString *)leftText rightText:(NSString *)rightText{
-    [self.buttonLeft setTitle:leftText forState:UIControlStateNormal];
-    [self.buttonLeft setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.buttonLeft setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
+- (void)setBackgroundImageForButton:(UIButton *)button{
+    [button setBackgroundImage:[UIImage imageNamed:@"game_menu_on"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"game_menu_off"] forState:UIControlStateHighlighted];
+}
+
+- (void)setLeftButtonText:(NSString *)leftText rightButtonText:(NSString *)rightText{
+    [self setText:leftText forButton:_buttonLeft];
+    [self setText:rightText forButton:_buttonRight];
+}
+
+- (void)setText:(NSString *)text forButton:(UIButton *)button{
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    button.titleLabel.font = [UIFont systemFontOfSize:17.f];
     
-    [self.buttonRight setTitle:rightText forState:UIControlStateNormal];
-    [self.buttonRight setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button setTitle:text forState:UIControlStateNormal];
 }
 
 @end

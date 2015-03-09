@@ -15,6 +15,6 @@
 @property (nonatomic, strong) UIView * seperator;
 
 - (id)initInView:(UIView *)view;
-- (void)setLeftText:(NSString *)leftText rightText:(NSString *)rightText;
+- (void)setLeftButtonText:(NSString *)leftText rightButtonText:(NSString *)rightText;
 
 @end
