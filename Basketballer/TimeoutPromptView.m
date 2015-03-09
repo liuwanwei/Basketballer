@@ -44,9 +44,11 @@
 // 这个函数只调用一次，用于获取本次倒计时的起始秒数，所以应该通过init方式传过来。
 - (NSInteger)getTimeoutLength {
     if(_mode == PromptModeTimeout) {
+        // 暂停时间长度
         AppDelegate * delegate = [AppDelegate delegate];
         _match.timeoutCountdownSeconds = delegate.playGameViewController.selectedStatistics.timeoutLength;
     }else {
+        // 节间休息时间长度
         _match.timeoutCountdownSeconds = [_match.rule restTimeLengthAfterPeriod:_match.period];        
     }
         
@@ -71,14 +73,14 @@
 
 - (void)stopTimeout:(BOOL)prompt{
     [self stopTimeoutCountdown];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kTimeoutOverMessage object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:TimeoutPromptViewTimeOver object:nil];
     
     if (prompt) {
         // 提示继续计时
         [self showAlertView];
     }else{
         // 不提示直接开始计时
-        [[[AppDelegate delegate] playGameViewController] startGame];
+        [self postMessage:TimeoutPromptViewStartGame];
     }
 }
 
@@ -128,7 +130,7 @@
             [self.resumeMathBgButton setEnabled:YES];
             [self.statePromptLabel setHidden:NO];
             break;
-        case MatchStateQuarterTime:
+        case MatchStateQuarterRestTime:
         case MatchStateTimeout:
             [self.timeoutTimeLabel setHidden:NO];
             [self.resumeMathButton setHidden:YES];
@@ -141,7 +143,7 @@
             [self.soundEffectLabel setHidden:YES];
             break;
         case MatchStateTimeoutFinished:
-        case MatchStateQuarterTimeFinished:
+        case MatchStateQuarterRestTimeFinished:
             self.backgroundColor = [UIColor clearColor];
             [self.resumeMathButton setHidden:NO];
             [self.resumeMathButton setEnabled:YES];
@@ -179,15 +181,15 @@
 - (IBAction)resumeGame:(UIButton *)sender {
     switch (_match.state) {
         case MatchStatePeriodFinished:
-            _match.state = MatchStateQuarterTime;
+            _match.state = MatchStateQuarterRestTime;
             [self updateLayout];
             [self startTimeoutCountdown];
             break;
         case MatchStatePlaying:
-            [[[AppDelegate delegate] playGameViewController] pauseCountdownTime];
+            [self postMessage:TimeoutPromptViewPauseGame];
             break;
         default:
-            [[[AppDelegate delegate] playGameViewController] startGame];
+            [self postMessage:TimeoutPromptViewStartGame];
             break;
     }
 }
@@ -197,8 +199,12 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == alertView.firstOtherButtonIndex) {
-        [[[AppDelegate delegate] playGameViewController] startGame];
+        [self postMessage:TimeoutPromptViewStartGame];
     }
+}
+
+- (void)postMessage:(NSString *)message{
+    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
 @end

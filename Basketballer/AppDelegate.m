@@ -99,7 +99,7 @@ typedef enum {
             newNotification = [[UILocalNotification alloc] init];
             body = [_notificationBodyForCommon objectAtIndex:NotificationBodyForCommonTimeout];
             newNotification.fireDate = [match timeoutFinishingDate];
-        }else if (match.state == MatchStateQuarterTime) {
+        }else if (match.state == MatchStateQuarterRestTime) {
             newNotification = [[UILocalNotification alloc] init];
             body = [_notificationBodyForCommon objectAtIndex:NotificationBodyForCommonQuarterTime];
             newNotification.fireDate = [match timeoutFinishingDate];

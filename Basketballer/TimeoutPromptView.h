@@ -10,7 +10,9 @@
 #import "MatchUnderWay.h"
 #import "PlayGameViewController.h"
 
-#define kTimeoutOverMessage @"kTimeoutOver"
+#define TimeoutPromptViewTimeOver           @"TimeoutPromptViewTimeOver"
+#define TimeoutPromptViewStartGame          @"TimeoutPromptViewStartGame"
+#define TimeoutPromptViewPauseGame          @"TimeoutPromptViewPauseGame"
 
 typedef enum{
     PromptModeTimeout       = 0,      // 暂停

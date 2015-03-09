@@ -196,7 +196,7 @@ static MatchUnderWay * sDefaultMatch = nil;
 }
 
 - (BOOL)matchStarted{
-    return self.state == MatchStatePlaying;
+    return (_state != MatchStatePrepare && _state != MatchStateStopped && _state != MatchStateFinished);
 }
 
 - (void)stopMatchWithState:(NSInteger)state{

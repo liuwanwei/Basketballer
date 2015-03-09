@@ -60,6 +60,9 @@ typedef enum {
 @synthesize selectedStatistics = _selectedStatistics;
 @synthesize gamePeroidButton = _gamePeroidButton;
 
+- (void)pauseCountdownTimeNote:(NSNotification *)note{
+    [self pauseCountdownTime];
+}
 
 - (void)pauseCountdownTime {
     _match.state = MatchStateTimeoutTemp;
@@ -129,8 +132,8 @@ typedef enum {
 - (void)handleTimeoutOverMessage:(NSNotification *)note {    
     if (_match.state == MatchStateTimeout) {
         _match.state = MatchStateTimeoutFinished;
-    }else if (_match.state == MatchStateQuarterTime){
-        _match.state = MatchStateQuarterTimeFinished;
+    }else if (_match.state == MatchStateQuarterRestTime){
+        _match.state = MatchStateQuarterRestTimeFinished;
         if (_match.period == _match.rule.regularPeriodNumber - 1) {
             _match.period = MatchPeriodOvertime;
         }else {
@@ -365,17 +368,20 @@ typedef enum {
  注册消息处理函数
  */
 - (void)registerNotificationHandler {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessage:) name:kAddTimeoutMessage object:nil];
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(handleMessage:) name:kAddTimeoutMessage object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimeoutOverMessage:) name:kTimeoutOverMessage object:nil];
+    [nc addObserver:self selector:@selector(handleAddScoreMessage:) name:kAddScoreMessage object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddScoreMessage:) name:kAddScoreMessage object:nil];
+    [nc addObserver:self selector:@selector(handleDeleteActionMessage:) name:kDeleteActionMessage object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDeleteActionMessage:) name:kDeleteActionMessage object:nil];
+    [nc addObserver:self selector:@selector(handleAddFoulMessage:) name:kAddFoulMessage object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddFoulMessage:) name:kAddFoulMessage object:nil];
+    [nc addObserver:self selector:@selector(handleAddPlayerActionMessage:) name:kActionDetermined object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAddPlayerActionMessage:) name:kActionDetermined object:nil];
+    [nc addObserver:self selector:@selector(handleTimeoutOverMessage:) name:TimeoutPromptViewTimeOver object:nil];    
+    [nc addObserver:self selector:@selector(startGameNote:) name:TimeoutPromptViewStartGame object:nil];
+    [nc addObserver:self selector:@selector(pauseCountdownTimeNote:) name:TimeoutPromptViewPauseGame object:nil];
 }
 
 - (void)swip:(UISwipeGestureRecognizer *)swip {
@@ -415,11 +421,11 @@ typedef enum {
     BOOL result = NO;
     if (_match.state == MatchStateTimeout ||
         _match.state == MatchStateTimeoutFinished ||
-        _match.state == MatchStateQuarterTime) {
+        _match.state == MatchStateQuarterRestTime) {
         [self showAlertViewWithTitle:LocalString(@"Alert") message:LocalString(@"AlreadyTimeouted") tag:0 cancelButtonTitle:LocalString(@"Ok") otherButtonTitle:nil];
         
     }else if (_match.state == MatchStatePeriodFinished ||
-              _match.state == MatchStateQuarterTimeFinished) {
+              _match.state == MatchStateQuarterRestTimeFinished) {
         [self showAlertViewWithTitle:LocalString(@"Alert") message:LocalString(@"AlreadyPaused") tag:0 cancelButtonTitle:LocalString(@"Ok") otherButtonTitle:nil];
         
     }else if ([teamStatistics.timeouts intValue] <
@@ -527,6 +533,10 @@ typedef enum {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)startGameNote:(NSNotification *)note{
+    [self startGame];
+}
+
 - (void)startGame {
     if(! [_match matchStarted]) {
         [_match startNewMatch];
@@ -611,7 +621,7 @@ typedef enum {
     switch (_match.state) {
         case MatchStatePeriodFinished:
             // 单节比赛结束后，手动进入节间休息时的处理
-            _match.state = MatchStateQuarterTime;
+            _match.state = MatchStateQuarterRestTime;
             [self showTimeoutPrompt:PromptModeQuarterTime];
             break;
         case MatchStatePlaying:
@@ -692,15 +702,15 @@ typedef enum {
         // 单节时间到，提示是否并进入节间休息
         if (buttonIndex == alertView.firstOtherButtonIndex) {
             // 确认的话，进入节间休息，否则停留在MatchStatePeriodFinished状态
-            _match.state = MatchStateQuarterTime;
+            _match.state = MatchStateQuarterRestTime;
             [self showTimeoutPrompt:PromptModeQuarterTime];
         }
         
     }else if (alertView.tag == AlertViewTagMatchBegin) {
         // 开始比赛
         if (buttonIndex == alertView.firstOtherButtonIndex) {
-            if (_match.state == MatchStateQuarterTime){
-                _match.state = MatchStateQuarterTimeFinished;
+            if (_match.state == MatchStateQuarterRestTime){
+                _match.state = MatchStateQuarterRestTimeFinished;
                 if (_match.period == _match.rule.regularPeriodNumber - 1) {
                     _match.period = MatchPeriodOvertime;
                 }else {

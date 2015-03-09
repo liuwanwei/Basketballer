@@ -47,6 +47,9 @@
     BCPrepareGameViewController * vc = [[BCPrepareGameViewController alloc] init];
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController: vc];
     [self presentViewController:nav animated:YES completion:nil];
+    
+//    UISearchController * search = [[UISearchController alloc] initWithSearchResultsController:vc];
+//    [self presentViewController:search animated:YES completion:nil];
 }
 
 - (void)historyChangedHandler:(NSNotification *)notification{
