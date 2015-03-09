@@ -196,6 +196,7 @@ typedef enum {
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = msg;
+    hud.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
     hud.margin = 10.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:1.0f];
