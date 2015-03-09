@@ -28,7 +28,7 @@
                             <outlet property="delegate" destination="aJx-vo-fm5" id="NOc-YJ-JzH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="比赛记录" id="WSf-xT-elL">
+                    <navigationItem key="navigationItem" title="比赛" id="WSf-xT-elL">
                         <barButtonItem key="rightBarButtonItem" title="新的比赛" id="yiD-ZA-jIK">
                             <connections>
                                 <action selector="newGameClicked:" destination="aJx-vo-fm5" id="vwz-Xa-nou"/>
@@ -287,7 +287,7 @@
             </objects>
             <point key="canvasLocation" x="2306" y="-685"/>
         </scene>
-        <!--我的球队-->
+        <!--队员-->
         <scene sceneID="3dj-ET-CfO">
             <objects>
                 <tableViewController id="AR2-yB-Yvy" customClass="BCMyPlayersViewController" sceneMemberID="viewController">
@@ -409,7 +409,7 @@
                             <outlet property="delegate" destination="AR2-yB-Yvy" id="gU6-76-956"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的球队" id="faz-qw-FKR">
+                    <navigationItem key="navigationItem" title="队员" id="faz-qw-FKR">
                         <barButtonItem key="rightBarButtonItem" title="添加队员" id="fXS-gI-v1h">
                             <connections>
                                 <action selector="addPlayer:" destination="AR2-yB-Yvy" id="Q98-LV-d1z"/>
@@ -429,6 +429,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Lqd-1F-3LY" userLabel="顶视图">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1t3-Xb-ZEU">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -468,11 +473,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--比赛记录-->
+        <!--比赛-->
         <scene sceneID="tK6-N4-kss">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SeT-9e-yog" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="比赛记录" image="TabBarHistory.png" id="dEc-ic-v1q"/>
+                    <tabBarItem key="tabBarItem" title="比赛" image="TabBarHistory.png" id="dEc-ic-v1q"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MPV-tu-4To">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -487,11 +492,11 @@
             </objects>
             <point key="canvasLocation" x="750" y="-685"/>
         </scene>
-        <!--我的球队-->
+        <!--队员-->
         <scene sceneID="cw4-oj-9tx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0WH-hs-tca" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的球队" image="TabBarTeam.png" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="队员" image="TabBarTeam.png" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BC2-K9-3Hv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -506,11 +511,11 @@
             </objects>
             <point key="canvasLocation" x="750" y="0.0"/>
         </scene>
-        <!--我-->
+        <!--球队-->
         <scene sceneID="7Df-pi-jn3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ois-Kx-Goa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="TabBarSetting.png" id="hPf-UC-5M3"/>
+                    <tabBarItem key="tabBarItem" title="球队" image="TabBarSetting.png" id="hPf-UC-5M3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="URm-aJ-Cze">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

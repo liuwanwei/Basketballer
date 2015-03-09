@@ -101,7 +101,7 @@ typedef enum {
 #pragma mark Table view delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = nil;
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     
     cell.textLabel.text = self.rowDescriptions[indexPath.row][0];
     
@@ -116,6 +116,7 @@ typedef enum {
         view.buttonRight.tag = [self.actionTypes[indexPath.row][1] integerValue];
     }else{
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.detailTextLabel.text = @"点击添加";
     }
     
     return cell;
