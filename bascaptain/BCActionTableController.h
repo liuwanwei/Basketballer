@@ -6,6 +6,9 @@
 //
 //
 
+#define AddPlayerActionNote     @"AddPlayerActionNode"
+#define AddPlayerActionKey      @"AddPlayerAction"
+
 #import <Foundation/Foundation.h>
 
 @interface BCActionTableController : NSObject <UITableViewDataSource, UITableViewDelegate>

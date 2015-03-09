@@ -15,6 +15,8 @@
 #import "SoundManager.h"
 #import "MatchUnderWay.h"
 #import "ImageManager.h"
+#import "PlayerManager.h"
+#import "BCPlayerAction.h"
 #import "TimeoutPromptView.h"
 #import <MBProgressHUD.h>
 
@@ -25,6 +27,7 @@ typedef enum {
     AlertViewTagMatchTimeout = 1,
     AlertViewTagMatchNormal = 2,
     AlertViewTagMatchBegin = 3,
+    AlertViewTagGuestTeamScore = 4,
 }AlertViewTag;
 
 
@@ -99,6 +102,11 @@ typedef enum {
     self.guestImageView.layer.borderColor = [[UIColor colorWithRed:221 green:221 blue:221 alpha:1.0] CGColor];
     self.guestImageView.image = [[ImageManager defaultInstance] imageForName:self.guestTeam.profileURL];
     self.guestNameLabel.text = self.guestTeam.name;
+    
+    UITapGestureRecognizer * singleTap =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addGuestTeamScore:)];
+    [singleTap setNumberOfTapsRequired:1];
+    [self.guestImageView setUserInteractionEnabled:YES];
+    [self.guestImageView addGestureRecognizer:singleTap];
 }
 
 - (void)initSubViews{
@@ -116,6 +124,7 @@ typedef enum {
     [nc addObserver:self selector:@selector(starGameNote:) name:TimeoutPromptViewStartGame object:nil];
     [nc addObserver:self selector:@selector(pauseGameNote:) name:TimeoutPromptViewPauseGame object:nil];
     [nc addObserver:self selector:@selector(addScoreNote:) name:kAddScoreMessage object:nil];
+    [nc addObserver:self selector:@selector(addPlayerActionNote:) name:AddPlayerActionNote object:nil];
 }
 
 - (void)removeNotificationHandler{
@@ -217,6 +226,19 @@ typedef enum {
     [self updatePoints];
 }
 
+- (void)addPlayerActionNote:(NSNotification *)note{
+    NSDictionary * userInfo = note.userInfo;
+    if (userInfo) {
+        BCPlayerAction * playerAction = userInfo[AddPlayerActionKey];
+        if (playerAction) {
+            ActionType actionType = (ActionType)[playerAction.action integerValue];
+            [self.match addActionForTeam:playerAction.teamId forPlayer:playerAction.playerId withAction:actionType];
+            NSString * message = [self messageForTeam:self.homeTeam.name playerId:playerAction.playerId action:actionType];
+            [self showToastPrompt:message];
+        }
+    }
+}
+
 // 更新顶部显示的比分
 - (void)updatePoints{
     self.gameHostScoreLable.text = [_match.home.points stringValue];
@@ -274,6 +296,13 @@ typedef enum {
     [alertView show];
 }
 
+- (void)addGuestTeamScore:(id)sender{
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"添加客队得分" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一分", @"两分", @"三分", nil];
+    alertView.tag = AlertViewTagGuestTeamScore;
+    [alertView show];
+}
+
+
 #pragma mark - Alert View delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == AlertViewTagMatchFinish) {
@@ -294,6 +323,21 @@ typedef enum {
             [self showTimeoutPrompt:PromptModeQuarterTime];
         }
         
+    }else if(alertView.tag == AlertViewTagGuestTeamScore){
+        ActionType type = ActionTypeNone;
+        if (buttonIndex == alertView.firstOtherButtonIndex) {
+            type = ActionType1Point;
+        }else if(buttonIndex == alertView.firstOtherButtonIndex + 1){
+            type = ActionType2Points;
+        }else if(buttonIndex == alertView.firstOtherButtonIndex + 2){
+            type = ActionType3Points;
+        }
+        
+        if (type != ActionTypeNone) {
+            [self.match addActionForTeam:self.guestTeam.id forPlayer:nil withAction:type];
+            NSString * message = [self messageForTeam:self.guestTeam.name playerId:nil action:type];
+            [self showToastPrompt:message];
+        }
     }
 }
 
@@ -384,6 +428,22 @@ typedef enum {
     }
 }
 
+// 合成技术统计提示信息
+- (NSString *)messageForTeam:(NSString *)teamName playerId:(NSNumber *)playerId action:(ActionType)action{
+    NSString * msg = nil;
+    if (playerId != nil) {
+        msg = [[PlayerManager defaultManager] playerWithId:playerId].name;
+    }else{
+        msg = teamName;
+    }
+    
+    msg = [msg stringByAppendingString:@" "];
+    msg = [msg stringByAppendingString:[ActionManager descriptionForActionType:action]];
+    
+    return msg;
+}
+
+// 屏幕中间显示定制的提示文字
 - (void)showToastPrompt:(NSString *)message{
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
@@ -442,7 +502,5 @@ typedef enum {
         // TODO: 比赛设置
     }
 }
-
-
 
 @end

@@ -173,6 +173,8 @@
 		FB3BB4181AAAB9B700296428 /* BCMyPlayerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4161AAAB54B00296428 /* BCMyPlayerListCell.m */; };
 		FB3BB41B1AAAE4C300296428 /* BCPrepareGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB41A1AAAE4C300296428 /* BCPrepareGameViewController.m */; };
 		FB3BB41C1AAAE93100296428 /* BCPrepareGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB41A1AAAE4C300296428 /* BCPrepareGameViewController.m */; };
+		FB3BB4221AAD95E600296428 /* BCPlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4211AAD95E600296428 /* BCPlayerAction.m */; };
+		FB3BB4231AAD984700296428 /* BCPlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4211AAD95E600296428 /* BCPlayerAction.m */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
@@ -640,6 +642,8 @@
 		FB3BB4161AAAB54B00296428 /* BCMyPlayerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMyPlayerListCell.m; sourceTree = "<group>"; };
 		FB3BB4191AAAE4C300296428 /* BCPrepareGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPrepareGameViewController.h; sourceTree = "<group>"; };
 		FB3BB41A1AAAE4C300296428 /* BCPrepareGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPrepareGameViewController.m; sourceTree = "<group>"; };
+		FB3BB4201AAD95E600296428 /* BCPlayerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPlayerAction.h; sourceTree = "<group>"; };
+		FB3BB4211AAD95E600296428 /* BCPlayerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPlayerAction.m; sourceTree = "<group>"; };
 		FB76CB951883D31300F07B53 /* AmateurRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmateurRule.h; sourceTree = "<group>"; };
 		FB76CB961883D31300F07B53 /* AmateurRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRule.m; sourceTree = "<group>"; };
 		FB7DFF531A9EE830008F6AB8 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
@@ -1225,6 +1229,8 @@
 				FB3BB4141AAAB2B200296428 /* Images */,
 				FBB22B791AA97F37008EAC03 /* AppDelegate.h */,
 				FBB22B7A1AA97F37008EAC03 /* AppDelegate.m */,
+				FB3BB4201AAD95E600296428 /* BCPlayerAction.h */,
+				FB3BB4211AAD95E600296428 /* BCPlayerAction.m */,
 				FBB22B7C1AA97F37008EAC03 /* BCGameHistoryViewController.h */,
 				FBB22B7D1AA97F37008EAC03 /* BCGameHistoryViewController.m */,
 				FBB22C8E1AA99752008EAC03 /* BCPlayGameViewController.h */,
@@ -1722,6 +1728,7 @@
 				FB8A220F19E5102700213057 /* StatisticCell.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */,
+				FB3BB4221AAD95E600296428 /* BCPlayerAction.m in Sources */,
 				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
 				3CCAE45915BE25790030C302 /* GameHistoryMapViewController.m in Sources */,
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
@@ -1783,6 +1790,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB3BB4231AAD984700296428 /* BCPlayerAction.m in Sources */,
 				FB3BB41C1AAAE93100296428 /* BCPrepareGameViewController.m in Sources */,
 				FB3BB4181AAAB9B700296428 /* BCMyPlayerListCell.m in Sources */,
 				FB3BB4131AA9B7FD00296428 /* BCMultiActionView.m in Sources */,

@@ -107,7 +107,7 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
 
 // 自动创建自己球队（队长版使用），只会调用一次
 - (void)createMyTeam{
-    Team * team = [self newTeam:@"我的球队" withImage:nil];
+    Team * team = [self newTeam:@"我的球队" withImage:[UIImage imageNamed:@"DefaultHomeTeam"]];
     [[TMDiskCache sharedCache] setObject:team.id forKey:kAutoCreatedMyTeamId];
     
     PlayerManager * pm = [PlayerManager defaultManager];
@@ -221,9 +221,8 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
 
     // 球队标识图片。
     if (nil == teamProfile) {
-        teamProfile = [UIImage imageNamed:@"TabBarTeam"];
+        teamProfile = [UIImage imageNamed:@"DefaultHomeTeam"];
     }
-
 
     NSString * path = [[ImageManager defaultInstance] saveImage:teamProfile withProfileType:kProfileTypeTeam withObjectId:team.id];
     team.profileURL = path;

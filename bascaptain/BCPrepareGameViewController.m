@@ -80,7 +80,7 @@ NSString * const kOpponentNameRow = @"OpponentNameRow";
     BCPlayGameViewController * vc = [sb instantiateViewControllerWithIdentifier:@"BCPlayGameViewController"];
     vc.hidesBottomBarWhenPushed = YES;
     vc.hostTeam = [[TeamManager defaultManager] myTeam];
-    vc.guestTeam = [[TeamManager defaultManager] newTeam:opponent withImage:nil];
+    vc.guestTeam = [[TeamManager defaultManager] newTeam:opponent withImage:[UIImage imageNamed:@"DefaultGuestTeam"]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

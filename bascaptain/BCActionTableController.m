@@ -10,6 +10,7 @@
 #import "BCMultiActionView.h"
 #import "PlayerActionViewController.h"
 #import "ActionManager.h"
+#import "BCPlayerAction.h"
 #import "MatchUnderWay.h"
 #import "TeamManager.h"
 #import <MBProgressHUD.h>
@@ -166,34 +167,17 @@ typedef enum {
         playerId = note.object;
     }
     
+    // 退出队员选择界面
     [self.superViewController.navigationController popToViewController:self.superViewController animated:YES];
     
-    ActionType action = (ActionType)[self.selectedActionType integerValue];
-    [self.match addActionForTeam:self.myTeam.id forPlayer:playerId withAction:action];
-    [self toastForTeam:self.myTeam.name forPlayer:playerId withAction:action];
-}
-
-
-// TODO: 跟PlayGameViewController和BCPlayGameViewController中差不多，考虑合并
-- (void)toastForTeam:(NSString *)teamName forPlayer:(NSNumber *)playerId withAction:(ActionType)actionType{
-    NSString * msg = nil;
-    if (playerId != nil) {
-        msg = [[PlayerManager defaultManager] playerWithId:playerId].name;
-    }else{
-        msg = teamName;
-    }
+    BCPlayerAction * playerAction = [[BCPlayerAction alloc] init];
+    playerAction.playerId = playerId;
+    playerAction.teamId = self.myTeam.id;
+    playerAction.action = self.selectedActionType;
     
-    msg = [msg stringByAppendingString:@" "];
-    msg = [msg stringByAppendingString:[ActionManager descriptionForActionType:actionType]];
-    
-    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.superViewController.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = msg;
-    hud.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
-    hud.margin = 10.f;
-    hud.removeFromSuperViewOnHide = YES;
-    [hud hide:YES afterDelay:1.0f];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AddPlayerActionNote
+                                                        object:nil
+                                                      userInfo:@{AddPlayerActionKey:playerAction}];
 }
-
 
 @end
