@@ -56,7 +56,7 @@ static ActionManager * sActionManager;
 }
 
 + (NSString *)descriptionForActionType:(ActionType)actionType{
-    NSString * desc = nil;
+    NSString * desc = @"Unknown~";
     switch (actionType) {
         case ActionType1Point:
             desc = @"得分+1";

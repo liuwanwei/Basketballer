@@ -61,6 +61,7 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.actionListController clearRowSelection];
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -114,6 +115,7 @@ typedef enum {
     [nc addObserver:self selector:@selector(promptViewTimeOverNote:) name:TimeoutPromptViewTimeOver object:nil];
     [nc addObserver:self selector:@selector(starGameNote:) name:TimeoutPromptViewStartGame object:nil];
     [nc addObserver:self selector:@selector(pauseGameNote:) name:TimeoutPromptViewPauseGame object:nil];
+    [nc addObserver:self selector:@selector(addScoreNote:) name:kAddScoreMessage object:nil];
 }
 
 - (void)removeNotificationHandler{
@@ -210,6 +212,17 @@ typedef enum {
         [self dismissView];
     }
 }
+
+- (void)addScoreNote:(NSNotification *)note{
+    [self updatePoints];
+}
+
+// 更新顶部显示的比分
+- (void)updatePoints{
+    self.gameHostScoreLable.text = [_match.home.points stringValue];
+    self.gameGuestScoreLable.text = [_match.guest.points stringValue];
+}
+
 
 // 显示比赛结束详情界面
 - (void)showMatchFinishedDetailsController {

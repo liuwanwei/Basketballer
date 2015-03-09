@@ -13,4 +13,6 @@
 @property (nonatomic, weak) UITableView * tableView;
 @property (nonatomic, weak) UIViewController * superViewController;
 
+- (void)clearRowSelection;
+
 @end

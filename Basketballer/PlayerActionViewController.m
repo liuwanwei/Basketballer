@@ -144,14 +144,11 @@ typedef enum{
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController * viewController = (UIViewController *)[[AppDelegate delegate] playGameViewController];
     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.tag == PlayerCellActionUnEnabled) {
         [self showAlertView:LocalString(@"OperationForbidden")];
         return;
     }
-    
-    [self.navigationController popToViewController:viewController animated:YES];
     
     NSNumber * number = nil;
     if (indexPath.row < self.players.count) {
