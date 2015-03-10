@@ -131,6 +131,7 @@ typedef enum {
     [nc addObserver:self selector:@selector(pauseGameNote:) name:TimeoutPromptViewPauseGame object:nil];
     [nc addObserver:self selector:@selector(addScoreNote:) name:kAddScoreMessage object:nil];
     [nc addObserver:self selector:@selector(addPlayerActionNote:) name:AddPlayerActionNote object:nil];
+    [nc addObserver:self selector:@selector(deleteActionNote:) name:kDeleteActionMessage object:nil];
 }
 
 - (void)removeNotificationHandler{
@@ -241,6 +242,10 @@ typedef enum {
             [self showToastPrompt:message];
         }
     }
+}
+
+- (void)deleteActionNote:(NSNotification *)note{
+    [self updatePoints];
 }
 
 // 更新顶部显示的比分
