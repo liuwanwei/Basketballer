@@ -184,20 +184,24 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     }
 }
 
-// 发送球队修改通知。
-- (void)sendTeamChangedNotification{
-    NSLog(@"before send %@", kTeamChanged);    
-    NSNotification * notification = [NSNotification notificationWithName:kTeamChanged object:nil];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-}
-
-- (BOOL)synchroniseToStore{
-    BOOL ret = [super synchroniseToStore];
-    if (ret) {
-        [self sendTeamChangedNotification];
+- (BOOL)synchroniseToStoreWithTeam:(Team *)team{
+    if ([super synchroniseToStore]) {
+        
+        // 发送球队修改通知。
+        NSLog(@"before send %@", kTeamChanged);
+        NSNotification * note;
+        if (! team) {
+            note = [NSNotification notificationWithName:kTeamChanged object:nil];
+        }else{
+            note = [NSNotification notificationWithName:kTeamChanged object:nil userInfo:@{ChangedTeamObject:team}];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+        
+        return YES;
     }
     
-    return ret;
+    return NO;
 }
 
 - (Team *)newTeam:(NSString *)name withImage:(UIImage *)image{
@@ -231,7 +235,7 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     [_allTeams insertObject:team atIndex:_allTeams.count];
     [self resetAvailableTeams];    
     
-    if (! [self synchroniseToStore]) {
+    if (! [self synchroniseToStoreWithTeam:team]) {
         [_allTeams removeObject:team];
         return nil;
     }
@@ -259,13 +263,13 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     
     [self resetAvailableTeams];
     
-    return [self synchroniseToStore];
+    return [self synchroniseToStoreWithTeam:nil];
 }
 
 - (BOOL)modifyTeam:(Team *)team withNewName:(NSString *)name{
     team.name = name;
     
-    return [self synchroniseToStore];
+    return [self synchroniseToStoreWithTeam:team];
 }
 
 - (BOOL)modifyTeam:(Team *)team withNewImage:(UIImage *)image{
@@ -276,7 +280,7 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     // 不改变图片路径，直接保存图片数据（覆盖到原路径中）。
     [[ImageManager defaultInstance] saveProfileImage:image toURL:[NSURL URLWithString:team.profileURL]];
     
-    return [self synchroniseToStore];
+    return [self synchroniseToStoreWithTeam:team];
 }
 
 

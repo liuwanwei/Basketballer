@@ -43,6 +43,8 @@ typedef enum {
 
 @implementation BCPlayGameViewController
 
+#pragma mark - View controller events
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -76,6 +78,10 @@ typedef enum {
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc{
+    [self removeNotificationHandler];
 }
 
 - (void)initMatch{
@@ -128,14 +134,14 @@ typedef enum {
 }
 
 - (void)removeNotificationHandler{
-    // TODO: 移除侦听的消息
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dismissView{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Timer control
+#pragma mark - Timer control 比赛时间定时器控制
 
 // 重置小节倒计时定时器
 - (void)resetPeriodCountdownTime:(MatchPeriod) period{
@@ -167,7 +173,7 @@ typedef enum {
     [self.timeCountDownTimer invalidate];
 }
 
-#pragma mark - Game neat time contorl
+#pragma mark - Game time button 比赛时间控制按钮消息处理
 
 - (IBAction)gameTimeButtonClicked:(id)sender {
     switch (_match.state) {
@@ -257,10 +263,8 @@ typedef enum {
 
 
 
-/*
- 定时器执行函数：比赛倒计时时间。
- 1秒刷新下时间，当倒计时为0时，结束本节或整场的比赛
- */
+
+// 定时器执行函数：比赛倒计时时间。1秒刷新下时间，当倒计时为0时，结束本节或整场的比赛
 - (void)updateTimeCountDown {
     _match.countdownSeconds --;
     [self updateCountdownTime];
@@ -275,18 +279,18 @@ typedef enum {
             [self stopGame:MatchStateFinished withWinTeam:nil];
             
         }else {
-            // 一节比赛结束，进入节间休息倒计时
+            // 一节比赛结束
             _match.state = MatchStatePeriodFinished;
             [self reversePlayButton];
             
-//            NSString * message = [self titleForEndOfPeriod:_match.period];
-            [self showAlertViewWithTitle:@"本节比赛结束" message:@"点击确定进入节间休息" tag:AlertViewTagMatchTimeout cancelButtonTitle:nil otherButtonTitle:LocalString(@"Yes")];
+            // 询问是否进入节间休息倒计时
+            [self showAlertViewWithTitle:@"本节比赛结束" message:@"马上进入节间休息？" tag:AlertViewTagMatchTimeout cancelButtonTitle:nil otherButtonTitle:LocalString(@"Yes")];
 
         }
     }
 }
 
-// 对UIAlertView使用上进行一层封装
+// 对UIAlertView使用进行封装
 - (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message tag:(NSInteger)tag cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitle:(NSString *)otherButtonTitle {
     
     UIAlertView * alertView;
@@ -296,8 +300,13 @@ typedef enum {
     [alertView show];
 }
 
+// 询问客队得分数目
 - (void)addGuestTeamScore:(id)sender{
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"添加客队得分" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"一分", @"两分", @"三分", nil];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"客队得分"
+                                                         message:nil
+                                                        delegate:self
+                                               cancelButtonTitle:@"取消"
+                                               otherButtonTitles:@"一分", @"两分", @"三分", nil];
     alertView.tag = AlertViewTagGuestTeamScore;
     [alertView show];
 }
@@ -316,7 +325,7 @@ typedef enum {
         }
         
     }else if (alertView.tag == AlertViewTagMatchTimeout){
-        // 单节时间到，提示是否进入节间休息，用户反馈处理消息处理
+        // 提示是否进入节间休息的用户反馈处理（发生在单节时间到时）
         if (buttonIndex == alertView.firstOtherButtonIndex) {
             // 确认的话，进入节间休息，否则停留在MatchStatePeriodFinished状态
             _match.state = MatchStateQuarterRestTime;
@@ -324,6 +333,7 @@ typedef enum {
         }
         
     }else if(alertView.tag == AlertViewTagGuestTeamScore){
+        // 添加客队得分
         ActionType type = ActionTypeNone;
         if (buttonIndex == alertView.firstOtherButtonIndex) {
             type = ActionType1Point;
@@ -467,7 +477,7 @@ typedef enum {
     [ac showInView:self.view];
 }
 
-// 查看数据
+// 查看比赛数据
 - (IBAction)rightButtonClicked:(id)sender{
     ActionRecordViewController * vc = [[ActionRecordViewController alloc] initWithNibName:@"ActionRecordViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];

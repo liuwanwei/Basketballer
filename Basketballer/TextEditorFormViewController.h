@@ -13,11 +13,12 @@
 
 @interface TextEditorFormViewController : XLFormViewController
 
-@property (nonatomic) NSInteger keyboardType;           // [in]
-@property (nonatomic, copy) NSString * textKeyword;     // [in]
+@property (nonatomic) NSInteger keyboardType;           // [in] 键盘类型，跟系统提供的保持一致
+@property (nonatomic, copy) NSString * textKeyword;     // [in] 用来区分编辑同一界面不同文本的情况，
+                                                        //      作为NSDictionary的key填充到NSNotification.userInfo中
 @property (nonatomic, copy) NSString * textToEdit;      // [in/out]
 
-
+// 必须初始化时制定标题
 - (instancetype)initWithTitle:(NSString *)title;
 
 @end

@@ -7,11 +7,14 @@
 //
 
 #import "BCMyPlayerListCell.h"
+#import "ImageManager.h"
 
 @implementation BCMyPlayerListCell
 
 - (void)awakeFromNib {
     // Initialization code
+    self.imageViewHead.layer.cornerRadius = self.imageViewHead.frame.size.width / 2;
+    self.imageViewHead.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,7 +25,8 @@
 
 - (void)showPlayer:(Player *)player{
     self.labelName.text = player.name;
-    self.labelNumber.text = [player.number stringValue];
+    self.labelNumber.text = [NSString stringWithFormat:@"%@号", player.number];
+    self.imageViewHead.image = [[ImageManager defaultInstance] imageForName:player.profileURL];
 }
 
 @end

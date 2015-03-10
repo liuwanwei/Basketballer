@@ -46,7 +46,7 @@ static MatchManager * sDefaultManager;
 
 - (NSDictionary *)dateGroupForMatches:(NSArray *)matches{
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
 
     NSMutableDictionary * history = nil;
     const NSInteger count = matches.count;

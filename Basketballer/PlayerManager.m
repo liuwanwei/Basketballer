@@ -7,6 +7,7 @@
 //
 
 #import "PlayerManager.h"
+#import "ImageManager.h"
 
 @implementation PlayerManager
 
@@ -79,6 +80,11 @@
     newOne.team = [teamId copy];
     newOne.number = number;
     newOne.name = name;
+    
+    // 球员默认头像。
+    UIImage * defaultImage = [UIImage imageNamed:@"player_profile"];
+    NSString * path = [[ImageManager defaultInstance] saveImage:defaultImage withProfileType:kProfileTypePlayer withObjectId:newOne.id];
+    newOne.profileURL = path;
     
     if(! [self synchroniseToStore]){
         return nil;

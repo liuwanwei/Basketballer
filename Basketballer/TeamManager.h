@@ -16,6 +16,7 @@
 #define kTeamDeleted    @"deleted"
 
 #define kTeamChanged    @"TeamChangedNotification"
+#define ChangedTeamObject @"ChangedTeamObject"
 
 #define TeamDeleted     1
 

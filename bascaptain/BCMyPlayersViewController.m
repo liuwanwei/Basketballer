@@ -27,7 +27,14 @@
     self.myTeam = [[TeamManager defaultManager] myTeam];
     self.players = [[PlayerManager defaultManager] playersForTeam:self.myTeam.id];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myPlayerChanged:) name:kPlayerChangedNotification object:nil];
+    // 隐藏多余的cell
+    UIView * view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = view;
+    
+    // 注册消息处理函数
+    NSNotificationCenter * nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(myPlayerChanged:) name:kPlayerChangedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
