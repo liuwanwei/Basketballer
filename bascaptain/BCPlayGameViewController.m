@@ -217,15 +217,13 @@ typedef enum {
     }
     
     [self stopTimeCountDown];
-//    [_timeoutPromptView stopTimeoutCountdown];
     [_match stopMatchWithState:mode];
     
-    if (mode == MatchStateFinished) {
-        [self showMatchFinishedDetailsController];
-    }else {
+    if (mode != MatchStateFinished) {
         [_match deleteMatch];
-        [self dismissView];
     }
+    
+    [self dismissView];
 }
 
 - (void)addScoreNote:(NSNotification *)note{
