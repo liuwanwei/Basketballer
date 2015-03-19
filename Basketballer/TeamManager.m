@@ -13,7 +13,6 @@
 #import "ImageManager.h"
 #import <TMCache.h>
 
-static TeamManager * sDefaultManager;
 static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
 
 @interface TeamManager (){
@@ -30,23 +29,16 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
 
 @synthesize teams = _teams;
 
-+ (TeamManager *)defaultManager{
-    if (sDefaultManager == nil) {
-        sDefaultManager = [[TeamManager alloc] init];
-    }
++ (instancetype)defaultManager{
+    static TeamManager * sDefaultManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (sDefaultManager == nil) {
+            sDefaultManager = [[TeamManager alloc] init];
+        }
+    });
     
     return sDefaultManager;
-}
-
-- (id)init{
-    if (self = [super init]) {
-//        _teamProfilePrefix = @"TeamProfile_";
-//        _teamProfileExtension = @".png";
-        
-//        _imageCache = [[NSMutableDictionary alloc] init];
-    }
-    
-    return self;
 }
 
 - (void)createDefaultTeams{
@@ -70,6 +62,7 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     [pm addPlayerForTeam:team.id withNumber:[NSNumber numberWithInt:32] withName:@"马龙"];
 }
 
+// 查询所有球队
 - (void)loadTeams:(BOOL)needMyTeam{
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kTeamEntity];
     
@@ -152,7 +145,7 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
 }
 
 // 根据球队名称查询球队记录。
-- (Team *)queryTeamWithName:(NSString *)name{
+- (Team *)teamWithName:(NSString *)name{
     for (Team * team in _allTeams) {
         if ([team.name isEqualToString:name]) {
             return team;
@@ -161,28 +154,24 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     return nil;
 }
 
-- (Team *)teamWithName:(NSString *)name{
-    return [self queryTeamWithName:name];
-}
-
 - (Team *)teamWithId:(NSNumber *)id{
     for (Team * team in _allTeams){
-        if ([team.id integerValue] == [id integerValue]){
+        if ([team.id compare:id] == NSOrderedSame){
             return team;
         }
     }
     return nil;
 }
 
-- (NSString *)teamNameWithDeletedStatus:(Team *)team{
-    if ([team.userDeleted integerValue] == TeamDeleted) {
-        static NSString * deletedAffix = @"(已删除)";
-        NSString * name = [NSString stringWithFormat:@"%@%@", team.name, deletedAffix];
-        return name;
-    }else{
-        return team.name;
-    }
-}
+//- (NSString *)teamNameWithDeletedStatus:(Team *)team{
+//    if ([team.userDeleted integerValue] == TeamDeleted) {
+//        static NSString * deletedAffix = @"(已删除)";
+//        NSString * name = [NSString stringWithFormat:@"%@%@", team.name, deletedAffix];
+//        return name;
+//    }else{
+//        return team.name;
+//    }
+//}
 
 - (BOOL)synchroniseToStoreWithTeam:(Team *)team{
     if ([super synchroniseToStore]) {
@@ -211,7 +200,8 @@ static NSString * kAutoCreatedMyTeamId = @"AutoCreatedMyTeamId";
     
     UIImage * teamProfile = image;
     
-    Team * existedTeam = [self queryTeamWithName:name];
+    // 有同名球队时，直接返回该球队
+    Team * existedTeam = [self teamWithName:name];
     if (existedTeam != nil) {
         return existedTeam;
     }    

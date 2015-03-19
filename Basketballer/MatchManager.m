@@ -27,6 +27,7 @@ static MatchManager * sDefaultManager;
     return sDefaultManager;
 }
 
+// 取出所有比赛
 - (void)loadMatches{
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kMatchEntity];
 

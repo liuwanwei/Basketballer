@@ -29,7 +29,7 @@
     self.assistLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.assistants];
     self.foulLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.fouls];
     self.threePointsLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.threePoints];
-    self.freeThrowLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.freeThrows];
+    self.freeThrowLabel.text = [NSString stringWithFormat:@"%d", (int)statistics.onePoint];
 }
 
 // ----------------- 下面用来展示球队每节得分

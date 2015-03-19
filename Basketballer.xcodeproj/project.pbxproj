@@ -179,6 +179,8 @@
 		FB3BB4271AAE918A00296428 /* BCMyTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4251AAE8D1700296428 /* BCMyTeamViewController.m */; };
 		FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
 		FB3BB42A1AAE9E8B00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
+		FB3BB42D1AAFCDB700296428 /* BCGameStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB42C1AAFCDB700296428 /* BCGameStatisticsViewController.m */; };
+		FB3BB4301AAFCEBC00296428 /* BCStatisticsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB42F1AAFCEBC00296428 /* BCStatisticsTableViewController.m */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
@@ -651,6 +653,10 @@
 		FB3BB4241AAE8D1700296428 /* BCMyTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMyTeamViewController.h; sourceTree = "<group>"; };
 		FB3BB4251AAE8D1700296428 /* BCMyTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMyTeamViewController.m; sourceTree = "<group>"; };
 		FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = HomepageBg.jpg; path = Images/HomepageBg.jpg; sourceTree = "<group>"; };
+		FB3BB42B1AAFCDB700296428 /* BCGameStatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCGameStatisticsViewController.h; sourceTree = "<group>"; };
+		FB3BB42C1AAFCDB700296428 /* BCGameStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCGameStatisticsViewController.m; sourceTree = "<group>"; };
+		FB3BB42E1AAFCEBC00296428 /* BCStatisticsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCStatisticsTableViewController.h; sourceTree = "<group>"; };
+		FB3BB42F1AAFCEBC00296428 /* BCStatisticsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCStatisticsTableViewController.m; sourceTree = "<group>"; };
 		FB76CB951883D31300F07B53 /* AmateurRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmateurRule.h; sourceTree = "<group>"; };
 		FB76CB961883D31300F07B53 /* AmateurRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRule.m; sourceTree = "<group>"; };
 		FB7DFF531A9EE830008F6AB8 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
@@ -1182,6 +1188,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		FB8D1A1E1AB1413F00E65BA6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		FB957D0919DA8657007FC3DA /* category */ = {
 			isa = PBXGroup;
 			children = (
@@ -1235,12 +1248,17 @@
 			isa = PBXGroup;
 			children = (
 				FB3BB4141AAAB2B200296428 /* Images */,
+				FB8D1A1E1AB1413F00E65BA6 /* Models */,
 				FBB22B791AA97F37008EAC03 /* AppDelegate.h */,
 				FBB22B7A1AA97F37008EAC03 /* AppDelegate.m */,
 				FB3BB4201AAD95E600296428 /* BCPlayerAction.h */,
 				FB3BB4211AAD95E600296428 /* BCPlayerAction.m */,
 				FBB22B7C1AA97F37008EAC03 /* BCGameHistoryViewController.h */,
 				FBB22B7D1AA97F37008EAC03 /* BCGameHistoryViewController.m */,
+				FB3BB42B1AAFCDB700296428 /* BCGameStatisticsViewController.h */,
+				FB3BB42C1AAFCDB700296428 /* BCGameStatisticsViewController.m */,
+				FB3BB42E1AAFCEBC00296428 /* BCStatisticsTableViewController.h */,
+				FB3BB42F1AAFCEBC00296428 /* BCStatisticsTableViewController.m */,
 				FBB22C8E1AA99752008EAC03 /* BCPlayGameViewController.h */,
 				FBB22C8F1AA99752008EAC03 /* BCPlayGameViewController.m */,
 				FB3BB4191AAAE4C300296428 /* BCPrepareGameViewController.h */,
@@ -1720,6 +1738,7 @@
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
 				FB3BB4111AA9AFA400296428 /* BCMultiActionView.m in Sources */,
 				FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */,
+				FB3BB42D1AAFCDB700296428 /* BCGameStatisticsViewController.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoryViewController.m in Sources */,
 				3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */,
@@ -1749,6 +1768,7 @@
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
 				3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */,
 				E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */,
+				FB3BB4301AAFCEBC00296428 /* BCStatisticsTableViewController.m in Sources */,
 				E65FF05D15C6261F00E96D6A /* Feature.m in Sources */,
 				FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */,
 				3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */,

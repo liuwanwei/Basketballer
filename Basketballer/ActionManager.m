@@ -61,17 +61,38 @@ static ActionManager * sActionManager;
         case ActionType1Point:
             desc = @"得分+1";
             break;
+        case ActionType1PointMissed:
+            desc = @"罚球未进";
+            break;
         case ActionType2Points:
             desc = @"得分+2";
             break;
+        case ActionType2PointMissed:
+            desc = @"投篮未进";
+            break;
         case ActionType3Points:
             desc = @"得分+3";
+            break;
+        case ActionType3PointMissed:
+            desc = @"三分未进";
             break;
         case ActionTypeAssist:
             desc = @"助攻+1";
             break;
         case ActionTypeRebound:
             desc = @"篮板+1";
+            break;
+        case ActionTypeReboundBackField:
+            desc = @"后场篮板+1";
+            break;
+        case ActionTypeReboundForeField:
+            desc = @"前场篮板+1";
+            break;
+        case ActionTypeMiss:
+            desc = @"失误+1";
+            break;
+        case ActionTypeSteal:
+            desc = @"抢断+1";
             break;
         case ActionTypeFoul:
             desc = @"犯规+1";
@@ -88,6 +109,7 @@ static ActionManager * sActionManager;
     return desc;
 }
 
+// 取出一场比赛中的所有技术统计
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId{
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kActionEntity];
     
@@ -310,7 +332,7 @@ static ActionManager * sActionManager;
     switch(actionType){
         case ActionType1Point:
             statistics.points ++;
-            statistics.freeThrows ++;
+            statistics.onePoint ++;
             break;
         case ActionType2Points:
             statistics.points += 2;

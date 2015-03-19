@@ -25,6 +25,7 @@
     return sDefaultManager;
 }
 
+// 查询球队中的队员：number == nil时，查询所有队员；number != nil时，查询某个队员
 - (NSArray *)playersForTeam:(NSNumber *)teamId andNumber:(NSNumber *)number{    
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kPlayerEntity];
     
@@ -146,6 +147,7 @@
     return YES;
 }
 
+// 查询某个队员：id，队员对象id
 - (Player *)playerWithId:(NSNumber *)id {
     Player * player = nil;
     
