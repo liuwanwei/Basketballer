@@ -608,6 +608,7 @@ typedef enum {
         playerList.teamId = _selectedTeam.id;
         playerList.actionType = _selectActionType;
         
+        playerList.title = LocalString(@"SelectPlayer");
         self.navigationController.navigationBarHidden = NO;
         [self.navigationController pushViewController:playerList animated:YES];
         

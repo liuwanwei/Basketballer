@@ -53,6 +53,8 @@ typedef enum {
     ActionType3Points   = 3,        // 三分球。
     ActionType3PointMissed    = (ActionTypeDetailsBase + ActionType3Points),
     ActionTypeFoul      = 4,        // 犯规。
+    ActionTypeOffenciveFoul   = (ActionTypeDetailsBase + ActionTypeFoul),
+    ActionTypeDefenciveFoul   = (ActionTypeDetailsBase + ActionTypeFoul + 1),
     ActionTypeTimeoutRegular = 5,   // 常规暂停。
     ActionTypeTimeoutShort = 6,     // 短暂停。
     ActionTypeTimeoutOfficial = 7,  // 官方暂停。

@@ -414,6 +414,7 @@
 		FBB902801A1062D500CB7FD3 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB9027C1A1062D500CB7FD3 /* libMobClickLibrary.a */; };
 		FBB902811A1062D500CB7FD3 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBB9027F1A1062D500CB7FD3 /* README.txt */; };
 		FBB902831A10639C00CB7FD3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB902821A10639C00CB7FD3 /* libz.dylib */; };
+		FBF0F71D1ABC612B00EBC44C /* ActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F71C1ABC612B00EBC44C /* ActionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -735,6 +736,9 @@
 		FBB9027E1A1062D500CB7FD3 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		FBB9027F1A1062D500CB7FD3 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		FBB902821A10639C00CB7FD3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		FBF0F71A1ABB1E5900EBC44C /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = SOURCE_ROOT; };
+		FBF0F71B1ABC612B00EBC44C /* ActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionCell.h; sourceTree = "<group>"; };
+		FBF0F71C1ABC612B00EBC44C /* ActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1249,6 +1253,7 @@
 			children = (
 				FB3BB4141AAAB2B200296428 /* Images */,
 				FB8D1A1E1AB1413F00E65BA6 /* Models */,
+				FBF0F71A1ABB1E5900EBC44C /* Macro.h */,
 				FBB22B791AA97F37008EAC03 /* AppDelegate.h */,
 				FBB22B7A1AA97F37008EAC03 /* AppDelegate.m */,
 				FB3BB4201AAD95E600296428 /* BCPlayerAction.h */,
@@ -1265,6 +1270,8 @@
 				FB3BB41A1AAAE4C300296428 /* BCPrepareGameViewController.m */,
 				FB3BB40C1AA9A86C00296428 /* BCActionTableController.h */,
 				FB3BB40D1AA9A86C00296428 /* BCActionTableController.m */,
+				FBF0F71B1ABC612B00EBC44C /* ActionCell.h */,
+				FBF0F71C1ABC612B00EBC44C /* ActionCell.m */,
 				FB3BB40F1AA9AFA400296428 /* BCMultiActionView.h */,
 				FB3BB4101AA9AFA400296428 /* BCMultiActionView.m */,
 				FBB22B7F1AA97F37008EAC03 /* BCMyPlayersViewController.h */,
@@ -1783,6 +1790,7 @@
 				E6E032CE15CFC0CA00AF91CB /* NewPlayerViewController.m in Sources */,
 				FB7DFFB51AA59CBB008F6AB8 /* HowToViewController.m in Sources */,
 				E68C515415D25B0100F52002 /* Action.m in Sources */,
+				FBF0F71D1ABC612B00EBC44C /* ActionCell.m in Sources */,
 				FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */,
 				79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */,
 				E6914F6215D4E5AD002CAEE0 /* PlayerActionViewController.m in Sources */,

@@ -35,7 +35,6 @@ typedef enum{
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.title = LocalString(@"SelectPlayer");
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPlayer:)];
     self.navigationItem.rightBarButtonItem = item;

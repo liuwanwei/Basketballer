@@ -8,10 +8,14 @@
 
 #import "BCMultiActionView.h"
 #import <Masonry.h>
+#import "Macro.h"
 
-static const CGFloat ActionViewWidth = 140.f;
+static const CGFloat ActionViewWidth = 200.f;
 
-@implementation BCMultiActionView
+@implementation BCMultiActionView{
+    NSArray * _buttons;
+    NSArray * _seperators;
+}
 
 - (id)initInView:(UIView *)view{
     if (self = [super init]) {
@@ -28,7 +32,6 @@ static const CGFloat ActionViewWidth = 140.f;
         
         // 初始化右边两个按钮，从右到左
         _buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self setBackgroundImageForButton:_buttonRight];
         [self addSubview:_buttonRight];
         superView = self;
         [_buttonRight mas_makeConstraints:^(MASConstraintMaker * make){
@@ -39,19 +42,9 @@ static const CGFloat ActionViewWidth = 140.f;
         }];
         
         // 分割线
-        _seperator = [[UIView alloc] init];
-        _seperator.backgroundColor = [UIColor blueColor];
-        _seperator.hidden = YES;
-        [self addSubview:_seperator];
-        [_seperator mas_makeConstraints:^(MASConstraintMaker * make){
-            make.trailing.equalTo(_buttonRight.mas_left).offset(-5.0f);
-            make.width.equalTo(@1);
-            make.height.equalTo(superView.mas_height);
-            make.centerY.equalTo(superView.mas_centerY);
-        }];
+        [self addSeperatorBesidesRightView:_buttonRight];
         
         _buttonLeft = [[UIButton alloc] init];
-        [self setBackgroundImageForButton:_buttonLeft];
         [self addSubview:_buttonLeft];
         [_buttonLeft mas_makeConstraints:^(MASConstraintMaker * make){
             make.trailing.equalTo(_seperator.mas_left).offset(-5.0f);
@@ -59,15 +52,44 @@ static const CGFloat ActionViewWidth = 140.f;
             make.width.equalTo(_buttonRight.mas_width);
             make.height.equalTo(superView.mas_height);
         }];
-
     }
     
     return self;
 }
 
+- (void)addSeperatorBesidesRightView:(UIView *)rightView{
+    __weak UIView * superView = self;
+    
+    _seperator = [[UIView alloc] init];
+    _seperator.hidden = YES;
+    [self addSubview:_seperator];
+    [_seperator mas_makeConstraints:^(MASConstraintMaker * make){
+        make.trailing.equalTo(rightView.mas_left).offset(-5.0f);
+        make.width.equalTo(@1);
+        make.height.equalTo(superView.mas_height);
+        make.centerY.equalTo(superView.mas_centerY);
+    }];
+}
+
 - (void)setBackgroundImageForButton:(UIButton *)button{
-    [button setBackgroundImage:[UIImage imageNamed:@"game_menu_on"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"game_menu_off"] forState:UIControlStateHighlighted];
+    // 设置圆角：直径为按钮高度
+    CGFloat radius = self.bounds.size.height / 2;
+    button.layer.cornerRadius = radius;
+    button.clipsToBounds = YES;
+//    NSLog(@"height %d, radius %.1f", (int)self.bounds.size.height, radius);
+    
+    // 设置背景色
+    [button setBackgroundColor:RGB(0x5c, 0xb3, 0xf0)];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
+}
+
+- (void)updateActionButton{
+    // 调用后，圆角化按钮时才能得到高度
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    
+    [self setBackgroundImageForButton:_buttonLeft];
+    [self setBackgroundImageForButton:_buttonRight];
 }
 
 - (void)setLeftButtonText:(NSString *)leftText rightButtonText:(NSString *)rightText{

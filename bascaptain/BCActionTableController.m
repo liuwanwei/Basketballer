@@ -28,6 +28,14 @@ typedef enum {
     BCActionIndexFouls,
 }BCActionIndex;
 
+typedef enum{
+    BCRowDescriptionIndexActionTitle = 0,
+    BCRowDescriptionIndexActionEnabled,
+    BCRowDescriptionIndexAction1,
+    BCRowDescriptionIndexAction2,
+    
+}ActionRowDescriptionIndex;
+
 @interface BCActionTableController()
 
 @property (nonatomic, strong) NSArray * rowDescriptions;
@@ -46,11 +54,11 @@ typedef enum {
         self.rowDescriptions = @[@[@"罚球", @(YES), @"得分", @"未进"],
                              @[@"两分", @(YES), @"得分", @"未进"],
                              @[@"三分", @(YES), @"得分", @"未进"],
-                             @[@"篮板", @(YES), @"后场", @"前场"],
+                             @[@"篮板", @(YES), @"后场篮板", @"前场篮板"],
                              @[@"助攻", @(NO)],
                              @[@"抢断", @(NO)],
                              @[@"失误", @(NO)],
-                             @[@"犯规", @(NO)],
+                             @[@"犯规", @(YES), @"防守犯规", @"进攻犯规"],
                              ];
         
         self.actionTypes = @[@[@(ActionType1Point), @(ActionType1PointMissed)],
@@ -60,7 +68,7 @@ typedef enum {
                              @[@(ActionTypeAssist)],
                              @[@(ActionTypeSteal)],
                              @[@(ActionTypeMiss)],
-                             @[@(ActionTypeFoul)]
+                             @[@(ActionTypeDefenciveFoul), @(ActionTypeOffenciveFoul)],
                              ];
         
         self.myTeam = [[TeamManager defaultManager] myTeam];
@@ -82,6 +90,7 @@ typedef enum {
     _tableView.dataSource = self;
 }
 
+// 清除cell选中效果
 - (void)clearRowSelection{
     if (self.selectedIndexPath != nil) {
         [self.tableView deselectRowAtIndexPath:self.selectedIndexPath animated:YES];
@@ -98,6 +107,8 @@ typedef enum {
     return 8;
 }
 
+static const NSInteger BCMultiActionViewTag = 3213;
+
 #pragma mark Table view delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = nil;
@@ -105,15 +116,21 @@ typedef enum {
     
     cell.textLabel.text = self.rowDescriptions[indexPath.row][0];
     
-    if ([self.rowDescriptions[indexPath.row][1] boolValue]) {
+    NSArray * rowDescription = self.rowDescriptions[indexPath.row];
+    if ([rowDescription[BCRowDescriptionIndexActionEnabled] boolValue]) {
         // 需要增加右侧双控按钮
         BCMultiActionView * view = [[BCMultiActionView alloc] initInView:cell.contentView];
-        [view setLeftButtonText:self.rowDescriptions[indexPath.row][2] rightButtonText:self.rowDescriptions[indexPath.row][3]];
+        view.tag = BCMultiActionViewTag;
+        [view setLeftButtonText:rowDescription[BCRowDescriptionIndexAction1]
+                rightButtonText:rowDescription[BCRowDescriptionIndexAction2]];
         
-        [view.buttonLeft addTarget:self action:@selector(leftItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [view.buttonLeft addTarget:self action:@selector(leftItemClicked:)
+                  forControlEvents:UIControlEventTouchUpInside];
         view.buttonLeft.tag = [self.actionTypes[indexPath.row][0] integerValue];
-        [view.buttonRight addTarget:self action:@selector(rightItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [view.buttonRight addTarget:self action:@selector(rightItemClicked:)
+                   forControlEvents:UIControlEventTouchUpInside];
         view.buttonRight.tag = [self.actionTypes[indexPath.row][1] integerValue];
+        
     }else{
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.detailTextLabel.text = @"点击添加";
@@ -122,13 +139,25 @@ typedef enum {
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 刷新带按钮的cell的内容，否则倒角效果显示不出来
+    if ([self.rowDescriptions[indexPath.row][BCRowDescriptionIndexActionEnabled] boolValue]) {
+        UIView * subView = [cell.contentView viewWithTag:BCMultiActionViewTag];
+        if (subView != nil) {
+            [((BCMultiActionView *)subView) updateActionButton];
+        }
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (![self.rowDescriptions[indexPath.row][1] boolValue]) {
-        // 只有一个选项的行
+        // 只有一个选项的行，缓存
         self.selectedIndexPath = [indexPath copy];
-        NSNumber * actionType = self.actionTypes[indexPath.row][0];
-        [self addAction:actionType];
+        [self addAction:self.actionTypes[indexPath.row][0]];
+        
     }else{
+        // 超过一个选项时，必须点击按钮
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -145,6 +174,7 @@ typedef enum {
     [self addAction:@(tag)];
 }
 
+// 添加技术统计
 - (void)addAction:(NSNumber *)actionType{
     self.match = [MatchUnderWay defaultMatch];
     if (self.match == nil || ![self.match matchStarted]) {
@@ -158,6 +188,7 @@ typedef enum {
     vc.players = [[PlayerManager defaultManager] playersForTeam:_myTeam.id];
     vc.teamId = _myTeam.id;
     vc.actionType = (NSInteger)actionType;
+    vc.title = [NSString stringWithFormat:@"%@", actionType];
     [self.superViewController.navigationController pushViewController:vc animated:YES];
 }
 
