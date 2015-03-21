@@ -15,6 +15,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView * hostImageView;
 @property (nonatomic, weak) IBOutlet UIImageView * guestImageView;
+@property (nonatomic, weak) IBOutlet UIImageView * guestNoticeCircle;
 @property (nonatomic, weak) IBOutlet UILabel * hostNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * guestNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * gameHostScoreLable;

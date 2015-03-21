@@ -54,7 +54,7 @@ NSString * const kOpponentNameRow = @"OpponentNameRow";
     [form addFormSection:section];
     
     XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:kOpponentNameRow rowType:XLFormRowDescriptorTypeText title:@"对手名字："];
-    row.value = @"test";// FIXME
+    row.value = @"客场球队";// FIXME
     [section addFormRow:row];
     
 //    section = [XLFormSectionDescriptor formSection];

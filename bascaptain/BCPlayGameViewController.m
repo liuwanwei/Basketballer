@@ -18,16 +18,20 @@
 #import "PlayerManager.h"
 #import "BCPlayerAction.h"
 #import "TimeoutPromptView.h"
+#import "BCSettings.h"
 #import <MBProgressHUD.h>
+#import <TMCache.h>
 
 #define LocalString(key)  NSLocalizedString(key, nil)
 
+// UIAlertView tag
 typedef enum {
     AlertViewTagMatchFinish = 0,
     AlertViewTagMatchTimeout = 1,
     AlertViewTagMatchNormal = 2,
     AlertViewTagMatchBegin = 3,
     AlertViewTagGuestTeamScore = 4,
+    AlertViewTagGuestTeamScoreNotice = 5,
 }AlertViewTag;
 
 
@@ -68,6 +72,14 @@ typedef enum {
     [super viewWillAppear:animated];
     [self.actionListController clearRowSelection];
     self.navigationController.navigationBarHidden = YES;
+    
+    if (NO == [[BCSettings defaultInstance] guestTeamAddScroreNoticeFlag]) {
+        self.guestNoticeCircle.hidden = NO;
+        [self.view bringSubviewToFront:self.guestNoticeCircle];
+        
+    }else{
+        self.guestNoticeCircle.hidden = YES;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -303,8 +315,21 @@ typedef enum {
     [alertView show];
 }
 
-// 询问客队得分数目
+//  添加客队得分
 - (void)addGuestTeamScore:(id)sender{
+    if (NO == [[BCSettings defaultInstance] guestTeamAddScroreNoticeFlag]) {
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"在此添加客队得分" message:@"客队得分包括罚球、两分、三分，如需统计更多客队得分，请到AppStore搜索下载 篮球助手" delegate:self cancelButtonTitle:nil otherButtonTitles:@"我知道了", nil];
+        alertView.tag = AlertViewTagGuestTeamScoreNotice;
+        [alertView show];
+        return;
+        
+    }else{
+        [self showGuestTeamScoreInput];
+    }
+}
+
+// 显示客队得分输入界面
+- (void)showGuestTeamScoreInput{
     UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"客队得分"
                                                          message:nil
                                                         delegate:self
@@ -351,6 +376,10 @@ typedef enum {
             NSString * message = [self messageForTeam:self.guestTeam.name playerId:nil action:type];
             [self showToastPrompt:message];
         }
+    }else if(alertView.tag == AlertViewTagGuestTeamScoreNotice){
+        [[BCSettings defaultInstance] setGuestTeamAddScroreNoticeFlag:YES];
+        self.guestNoticeCircle.hidden = YES;
+        [self showGuestTeamScoreInput];
     }
 }
 

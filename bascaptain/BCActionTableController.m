@@ -187,8 +187,8 @@ static const NSInteger BCMultiActionViewTag = 3213;
     PlayerActionViewController * vc = [[PlayerActionViewController alloc] initWithStyle:UITableViewStylePlain];
     vc.players = [[PlayerManager defaultManager] playersForTeam:_myTeam.id];
     vc.teamId = _myTeam.id;
-    vc.actionType = (NSInteger)actionType;
-    vc.title = [NSString stringWithFormat:@"%@", actionType];
+    vc.actionType = [actionType integerValue];
+    vc.title = [ActionManager descriptionForActionType:[actionType integerValue]];
     [self.superViewController.navigationController pushViewController:vc animated:YES];
 }
 

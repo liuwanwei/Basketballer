@@ -415,6 +415,10 @@
 		FBB902811A1062D500CB7FD3 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBB9027F1A1062D500CB7FD3 /* README.txt */; };
 		FBB902831A10639C00CB7FD3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB902821A10639C00CB7FD3 /* libz.dylib */; };
 		FBF0F71D1ABC612B00EBC44C /* ActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F71C1ABC612B00EBC44C /* ActionCell.m */; };
+		FBF0F7211ABD140800EBC44C /* notice_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF0F7201ABD140800EBC44C /* notice_dot@2x.png */; };
+		FBF0F7221ABD184F00EBC44C /* notice_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF0F7201ABD140800EBC44C /* notice_dot@2x.png */; };
+		FBF0F7251ABD193200EBC44C /* BCSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F7241ABD193200EBC44C /* BCSettings.m */; };
+		FBF0F7261ABD1A3E00EBC44C /* BCSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F7241ABD193200EBC44C /* BCSettings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -739,6 +743,9 @@
 		FBF0F71A1ABB1E5900EBC44C /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = SOURCE_ROOT; };
 		FBF0F71B1ABC612B00EBC44C /* ActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionCell.h; sourceTree = "<group>"; };
 		FBF0F71C1ABC612B00EBC44C /* ActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionCell.m; sourceTree = "<group>"; };
+		FBF0F7201ABD140800EBC44C /* notice_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notice_dot@2x.png"; path = "Images/notice_dot@2x.png"; sourceTree = "<group>"; };
+		FBF0F7231ABD193200EBC44C /* BCSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSettings.h; sourceTree = "<group>"; };
+		FBF0F7241ABD193200EBC44C /* BCSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1187,6 +1194,7 @@
 		FB3BB4141AAAB2B200296428 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FBF0F7201ABD140800EBC44C /* notice_dot@2x.png */,
 				FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */,
 			);
 			name = Images;
@@ -1195,6 +1203,8 @@
 		FB8D1A1E1AB1413F00E65BA6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FBF0F7231ABD193200EBC44C /* BCSettings.h */,
+				FBF0F7241ABD193200EBC44C /* BCSettings.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1429,6 +1439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBF0F7211ABD140800EBC44C /* notice_dot@2x.png in Resources */,
 				3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */,
 				3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */,
 				3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */,
@@ -1556,6 +1567,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBF0F7221ABD184F00EBC44C /* notice_dot@2x.png in Resources */,
 				FB3BB42A1AAE9E8B00296428 /* HomepageBg.jpg in Resources */,
 				FBB22C8C1AA987E9008EAC03 /* BCLaunchScreen.xib in Resources */,
 				FBB22C8B1AA98510008EAC03 /* Main.storyboard in Resources */,
@@ -1767,6 +1779,7 @@
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptView.m in Sources */,
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 				FB8A220F19E5102700213057 /* StatisticCell.m in Sources */,
+				FBF0F7251ABD193200EBC44C /* BCSettings.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */,
 				FB3BB4221AAD95E600296428 /* BCPlayerAction.m in Sources */,
@@ -1834,6 +1847,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBF0F7261ABD1A3E00EBC44C /* BCSettings.m in Sources */,
 				FB3BB4271AAE918A00296428 /* BCMyTeamViewController.m in Sources */,
 				FB3BB4231AAD984700296428 /* BCPlayerAction.m in Sources */,
 				FB3BB41C1AAAE93100296428 /* BCPrepareGameViewController.m in Sources */,

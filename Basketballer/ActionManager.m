@@ -97,8 +97,18 @@ static ActionManager * sActionManager;
         case ActionTypeFoul:
             desc = @"犯规+1";
             break;
+        case ActionTypeOffenciveFoul:
+            desc = @"进攻犯规+1";
+            break;
+        case ActionTypeDefenciveFoul:
+            desc = @"防守犯规+1";
+            break;
         case ActionTypeTimeoutShort:
+            desc = @"短暂停+1";     // NBA
+            break;
         case ActionTypeTimeoutOfficial:
+            desc = @"官方暂停+1";   // NBA
+            break;
         case ActionTypeTimeoutRegular:
             desc = @"暂停+1";
             break;
