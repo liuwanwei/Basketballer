@@ -227,7 +227,7 @@
                     <rect key="frame" x="0.0" y="181" width="320" height="37"/>
                     <subviews>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90" userLabel="+2PtsRight">
-                            <rect key="frame" x="18" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+2 分">
@@ -271,7 +271,7 @@
                     <rect key="frame" x="0.0" y="218" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88" userLabel="+3PtsLeft">
-                            <rect key="frame" x="18" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+3 分">
@@ -286,7 +286,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91" userLabel="+3PtsRight">
-                            <rect key="frame" x="222" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+3 分">
@@ -325,7 +325,7 @@
                     <rect key="frame" x="0.0" y="254" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqd-S9-hlY" userLabel="blockLeft">
-                            <rect key="frame" x="18" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.5" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1篮板">
@@ -340,7 +340,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mV-pt-4Eg" userLabel="blockRight">
-                            <rect key="frame" x="222" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.5" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1篮板">
@@ -369,7 +369,7 @@
                     <rect key="frame" x="0.0" y="291" width="320" height="36"/>
                     <subviews>
                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-xI-TTS" userLabel="assistLeft">
-                            <rect key="frame" x="18" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1助攻">
@@ -384,7 +384,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-Nl-hBw" userLabel="assistRight">
-                            <rect key="frame" x="222" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1助攻">
@@ -428,7 +428,7 @@
                     <rect key="frame" x="0.0" y="327" width="320" height="36"/>
                     <subviews>
                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWF-bZ-Hkt" userLabel="left">
-                            <rect key="frame" x="18" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1失误">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -439,7 +439,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peO-qr-9RI" userLabel="right">
-                            <rect key="frame" x="222" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.0" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1失误">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -464,7 +464,7 @@
                     <rect key="frame" x="0.0" y="363" width="320" height="36"/>
                     <subviews>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93">
-                            <rect key="frame" x="18" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1犯规">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -478,25 +478,25 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96">
-                            <rect key="frame" x="186" y="6" width="42" height="24"/>
+                            <rect key="frame" x="186" y="8" width="42" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="W8V-aV-iLY"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98">
-                            <rect key="frame" x="92" y="6" width="42" height="24"/>
+                            <rect key="frame" x="92" y="8" width="42" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="zbe-oo-Sjf"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94">
-                            <rect key="frame" x="222" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.0" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1犯规">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
@@ -513,7 +513,7 @@
                                 <constraint firstAttribute="height" constant="20" id="ogZ-fm-Qbf"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -539,7 +539,7 @@
                     <rect key="frame" x="0.0" y="399" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="105">
-                            <rect key="frame" x="18" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.5" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1暂停">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
@@ -558,11 +558,11 @@
                                 <constraint firstAttribute="width" constant="52" id="gsO-At-HUc"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="104" userLabel="+1暂停">
-                            <rect key="frame" x="222" y="-0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.5" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+暂停">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
@@ -576,20 +576,20 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="108">
-                            <rect key="frame" x="92" y="6" width="42" height="24"/>
+                            <rect key="frame" x="92" y="8" width="42" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="ZP3-9x-tf5"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="106">
-                            <rect key="frame" x="186" y="6" width="42" height="24"/>
+                            <rect key="frame" x="186" y="8" width="42" height="20.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="42" id="WQF-41-4Qy"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

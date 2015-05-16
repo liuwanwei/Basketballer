@@ -490,18 +490,18 @@ typedef enum {
             UIButton * controlButton = (UIButton *)controlView;
             
             [controlButton setTitleColor:MainColor forState:UIControlStateNormal];
-            if (controlButton.tag < GuestTeamTag) {
-                controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            }else{
-                controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-            }
-            
        
             // 给控制按钮加阴影效果的代码，只在iPad下打开，避免界面过于空虚
             if (isPad) {
-                [controlButton setBackgroundColor:RGB(0xd5,0xd5,0xdb)];
+                [controlButton setBackgroundColor:[UIColor lightTextColor]];
                 controlButton.layer.cornerRadius = 12;
                 controlButton.clipsToBounds = YES;
+            }else{
+                if (controlButton.tag < GuestTeamTag) {
+                    controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+                }else{
+                    controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+                }
             }
         }
     }
