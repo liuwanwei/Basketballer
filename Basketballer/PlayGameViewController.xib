@@ -398,7 +398,7 @@
                                 <action selector="addAction:" destination="-1" eventType="touchUpInside" id="oOm-xq-XrC"/>
                             </connections>
                         </button>
-                        <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-Nd-kJp" userLabel="声音">
+                        <button hidden="YES" opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRU-Nd-kJp" userLabel="声音">
                             <rect key="frame" x="144" y="2" width="30.5" height="30.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="MRU-Nd-kJp" secondAttribute="height" multiplier="1:1" id="2fh-JS-joc"/>
@@ -656,7 +656,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="6wb-n8-Jev" secondAttribute="centerX" id="9Io-32-oz4"/>
                         <constraint firstAttribute="trailing" secondItem="74" secondAttribute="trailing" constant="10" id="J7k-CF-atG"/>

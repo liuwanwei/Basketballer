@@ -37,7 +37,8 @@ typedef enum {
     AlertViewTagMatchBegin = 3,
 }AlertViewTag;
 
-#define kGuestTeamTag        100
+#define GuestTeamTag        100
+#define MainColor            [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90]
 
 @interface PlayGameViewController() {
     ActionManager * _actionManager;
@@ -197,7 +198,7 @@ typedef enum {
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = msg;
-    hud.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+    hud.color = MainColor;
     hud.margin = 10.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:1.0f];
@@ -474,20 +475,30 @@ typedef enum {
 //    [self.foulLabel setText:LocalString(@"Foul")];
 //    [self.timeoutLabel setText:LocalString(@"Timeout")];
 
-    // 给控制按钮加阴影效果的代码，只在iPad下打开，避免界面过于空虚
-    if (isPad) {
-        NSMutableArray * controls = [@[] mutableCopy];
-        for (UIView * subView in self.view.subviews) {
-            for (UIView * subsubView in subView.subviews) {
-                if (subsubView.tag > 0) {
-                    [controls addObject:subsubView];
-                }
+    NSMutableArray * controls = [@[] mutableCopy];
+    for (UIView * subView in self.view.subviews) {
+        for (UIView * subsubView in subView.subviews) {
+            if (subsubView.tag > 0) {
+                [controls addObject:subsubView];
             }
         }
-        
-        for (UIView * controlView in controls) {
-            if ([controlView isKindOfClass:[UIButton class]]) {
-                UIButton * controlButton = (UIButton *)controlView;
+    }
+
+    // 定制控制按钮的外观
+    for (UIView * controlView in controls) {
+        if ([controlView isKindOfClass:[UIButton class]]) {
+            UIButton * controlButton = (UIButton *)controlView;
+            
+            [controlButton setTitleColor:MainColor forState:UIControlStateNormal];
+            if (controlButton.tag < GuestTeamTag) {
+                controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            }else{
+                controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+            }
+            
+       
+            // 给控制按钮加阴影效果的代码，只在iPad下打开，避免界面过于空虚
+            if (isPad) {
                 [controlButton setBackgroundColor:RGB(0xd5,0xd5,0xdb)];
                 controlButton.layer.cornerRadius = 12;
                 controlButton.clipsToBounds = YES;
@@ -601,11 +612,11 @@ typedef enum {
     BOOL playerStatisticsOn = NO;
     
     // UIButton tag 主队分别为1、2、3、4、5；客队为101、102、103、104、105
-    if (tag > kGuestTeamTag) {
+    if (tag > GuestTeamTag) {
         // 客队
         playerStatisticsOn = gameSetting.enableGuestTeamPlayerStatistics;
         _selectedTeam = self.guestTeam;
-        _selectActionType = (ActionType)(tag - kGuestTeamTag);
+        _selectActionType = (ActionType)(tag - GuestTeamTag);
         self.selectedStatistics = _match.guest;
         
     }else {

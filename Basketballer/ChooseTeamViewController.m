@@ -148,6 +148,15 @@ typedef enum{
     [MobClick beginLogPageView:[self pageName]];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    // FIXME: 测试用，默认自动选中前两队
+    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    [self startMatchTouched:self.startMatchButton];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:[self pageName]];
@@ -263,19 +272,15 @@ typedef enum{
     selectedView.image = image;
 }
 
-- (NSInteger)selectedIndexAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.section;
-}
-
 - (void)selectTeam:(Team *)team withFlag:(BOOL)selected atIndexPath:(NSIndexPath *)indexPath{
     if (selected) {
         // 添加选中的球队信息。
         if (_homeTeam == nil) {
             _homeTeam = team;
-            _homeTeamIndex = [self selectedIndexAtIndexPath:indexPath];
+            _homeTeamIndex = indexPath.row;
         }else if(_guestTeam == nil){
             _guestTeam = team;
-            _guestTeamIndex = [self selectedIndexAtIndexPath:indexPath];
+            _guestTeamIndex = indexPath.row;
         }
     }else{
         
