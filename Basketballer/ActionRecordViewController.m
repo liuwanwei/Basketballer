@@ -153,7 +153,9 @@
     [self.view addGestureRecognizer:swip];
     
     self.tableView.delegate = self;
-//    self.tableView.rowHeight = 60.0;
+    UIView * footerView = [[UIView alloc] initWithFrame:CGRectZero];
+    footerView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footerView;
     
     [self initView];
     [self initData];

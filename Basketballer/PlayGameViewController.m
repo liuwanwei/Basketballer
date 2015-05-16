@@ -27,6 +27,7 @@
 #import "MobClick.h"
 #import "ImageManager.h"
 #import "UIImageView+Additional.h"
+#import "Macro.h"
 #import <MBProgressHUD.h>
 
 typedef enum {
@@ -472,6 +473,27 @@ typedef enum {
     [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
 //    [self.foulLabel setText:LocalString(@"Foul")];
 //    [self.timeoutLabel setText:LocalString(@"Timeout")];
+
+    // 给控制按钮加阴影效果的代码，只在iPad下打开，避免界面过于空虚
+    if (isPad) {
+        NSMutableArray * controls = [@[] mutableCopy];
+        for (UIView * subView in self.view.subviews) {
+            for (UIView * subsubView in subView.subviews) {
+                if (subsubView.tag > 0) {
+                    [controls addObject:subsubView];
+                }
+            }
+        }
+        
+        for (UIView * controlView in controls) {
+            if ([controlView isKindOfClass:[UIButton class]]) {
+                UIButton * controlButton = (UIButton *)controlView;
+                [controlButton setBackgroundColor:RGB(0xd5,0xd5,0xdb)];
+                controlButton.layer.cornerRadius = 12;
+                controlButton.clipsToBounds = YES;
+            }
+        }
+    }
 }
 
 - (NSString *)pageName {
