@@ -165,22 +165,14 @@
 		FB1BA9371884E44300978359 /* Basketballer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BA9361884E44300978359 /* Basketballer_Tests.m */; };
 		FB292DFD1A95FD2A00792680 /* game_playing_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FB292DFC1A95FD2A00792680 /* game_playing_bg.png */; };
 		FB3BB40B1AA99B6000296428 /* BCPlayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22C8F1AA99752008EAC03 /* BCPlayGameViewController.m */; };
-		FB3BB40E1AA9A86C00296428 /* BCActionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB40D1AA9A86C00296428 /* BCActionTableController.m */; };
-		FB3BB4111AA9AFA400296428 /* BCMultiActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4101AA9AFA400296428 /* BCMultiActionView.m */; };
 		FB3BB4121AA9B7EE00296428 /* BCActionTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB40D1AA9A86C00296428 /* BCActionTableController.m */; };
 		FB3BB4131AA9B7FD00296428 /* BCMultiActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4101AA9AFA400296428 /* BCMultiActionView.m */; };
-		FB3BB4171AAAB54B00296428 /* BCMyPlayerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4161AAAB54B00296428 /* BCMyPlayerListCell.m */; };
 		FB3BB4181AAAB9B700296428 /* BCMyPlayerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4161AAAB54B00296428 /* BCMyPlayerListCell.m */; };
-		FB3BB41B1AAAE4C300296428 /* BCPrepareGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB41A1AAAE4C300296428 /* BCPrepareGameViewController.m */; };
 		FB3BB41C1AAAE93100296428 /* BCPrepareGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB41A1AAAE4C300296428 /* BCPrepareGameViewController.m */; };
-		FB3BB4221AAD95E600296428 /* BCPlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4211AAD95E600296428 /* BCPlayerAction.m */; };
 		FB3BB4231AAD984700296428 /* BCPlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4211AAD95E600296428 /* BCPlayerAction.m */; };
-		FB3BB4261AAE8D1700296428 /* BCMyTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4251AAE8D1700296428 /* BCMyTeamViewController.m */; };
 		FB3BB4271AAE918A00296428 /* BCMyTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4251AAE8D1700296428 /* BCMyTeamViewController.m */; };
 		FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
 		FB3BB42A1AAE9E8B00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
-		FB3BB42D1AAFCDB700296428 /* BCGameStatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB42C1AAFCDB700296428 /* BCGameStatisticsViewController.m */; };
-		FB3BB4301AAFCEBC00296428 /* BCStatisticsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB42F1AAFCEBC00296428 /* BCStatisticsTableViewController.m */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
@@ -410,14 +402,12 @@
 		FBB22C8A1AA983C9008EAC03 /* BCMyPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B801AA97F37008EAC03 /* BCMyPlayersViewController.m */; };
 		FBB22C8B1AA98510008EAC03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB22B821AA97F37008EAC03 /* Main.storyboard */; };
 		FBB22C8C1AA987E9008EAC03 /* BCLaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBB22B871AA97F37008EAC03 /* BCLaunchScreen.xib */; };
-		FBB22C901AA99752008EAC03 /* BCPlayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22C8F1AA99752008EAC03 /* BCPlayGameViewController.m */; };
 		FBB902801A1062D500CB7FD3 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB9027C1A1062D500CB7FD3 /* libMobClickLibrary.a */; };
 		FBB902811A1062D500CB7FD3 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBB9027F1A1062D500CB7FD3 /* README.txt */; };
 		FBB902831A10639C00CB7FD3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FBB902821A10639C00CB7FD3 /* libz.dylib */; };
 		FBF0F71D1ABC612B00EBC44C /* ActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F71C1ABC612B00EBC44C /* ActionCell.m */; };
 		FBF0F7211ABD140800EBC44C /* notice_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF0F7201ABD140800EBC44C /* notice_dot@2x.png */; };
 		FBF0F7221ABD184F00EBC44C /* notice_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF0F7201ABD140800EBC44C /* notice_dot@2x.png */; };
-		FBF0F7251ABD193200EBC44C /* BCSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F7241ABD193200EBC44C /* BCSettings.m */; };
 		FBF0F7261ABD1A3E00EBC44C /* BCSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0F7241ABD193200EBC44C /* BCSettings.m */; };
 /* End PBXBuildFile section */
 
@@ -1755,9 +1745,7 @@
 			files = (
 				3CC1681E15A2E52B00A2AB44 /* main.m in Sources */,
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
-				FB3BB4111AA9AFA400296428 /* BCMultiActionView.m in Sources */,
 				FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */,
-				FB3BB42D1AAFCDB700296428 /* BCGameStatisticsViewController.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoryViewController.m in Sources */,
 				3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */,
@@ -1779,16 +1767,13 @@
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptView.m in Sources */,
 				3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */,
 				FB8A220F19E5102700213057 /* StatisticCell.m in Sources */,
-				FBF0F7251ABD193200EBC44C /* BCSettings.m in Sources */,
 				E69255FE15B551EA00CBF606 /* Team.m in Sources */,
 				FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */,
-				FB3BB4221AAD95E600296428 /* BCPlayerAction.m in Sources */,
 				3CCAE41615BD3E4F0030C302 /* LocationManager.m in Sources */,
 				3CCAE45915BE25790030C302 /* GameHistoryMapViewController.m in Sources */,
 				E6E9691B15BE40050073C5B8 /* Match.m in Sources */,
 				3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */,
 				E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */,
-				FB3BB4301AAFCEBC00296428 /* BCStatisticsTableViewController.m in Sources */,
 				E65FF05D15C6261F00E96D6A /* Feature.m in Sources */,
 				FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */,
 				3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */,
@@ -1799,7 +1784,6 @@
 				E6E032CA15CFC00200AF91CB /* PlayerListViewController.m in Sources */,
 				FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */,
 				FB957D2119DEF65E007FC3DA /* RosterCollectionViewCell.m in Sources */,
-				FB3BB41B1AAAE4C300296428 /* BCPrepareGameViewController.m in Sources */,
 				E6E032CE15CFC0CA00AF91CB /* NewPlayerViewController.m in Sources */,
 				FB7DFFB51AA59CBB008F6AB8 /* HowToViewController.m in Sources */,
 				E68C515415D25B0100F52002 /* Action.m in Sources */,
@@ -1810,11 +1794,9 @@
 				E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */,
 				E6914F8915DA22ED002CAEE0 /* ChooseTeamViewController.m in Sources */,
 				E658146C15DF4F8E007B4F7E /* BaseRule.m in Sources */,
-				FB3BB40E1AA9A86C00296428 /* BCActionTableController.m in Sources */,
 				E658147015DF5AC0007B4F7E /* FibaRule.m in Sources */,
 				E6BFB4DC15E2111A008E9BC6 /* NbaRule.m in Sources */,
 				E6F7682D15E36F3C006E5D4E /* FibaTeamStatistics.m in Sources */,
-				FBB22C901AA99752008EAC03 /* BCPlayGameViewController.m in Sources */,
 				3C0BD4C815E36AD800EEAB0B /* SoundManager.m in Sources */,
 				FB957D1919DAB876007FC3DA /* Rule.m in Sources */,
 				FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */,
@@ -1828,10 +1810,8 @@
 				3CC5633415F09BCB0026A7E8 /* MatchFinishedDetailsViewController.m in Sources */,
 				3C06651E15F5AF2700B1DCB8 /* PlaySoundViewController.m in Sources */,
 				3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */,
-				FB3BB4261AAE8D1700296428 /* BCMyTeamViewController.m in Sources */,
 				3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */,
 				3C40A8321637C14100619526 /* PointsRuleDetailViewController.m in Sources */,
-				FB3BB4171AAAB54B00296428 /* BCMyPlayerListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,7 +2045,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e4431f8f-2ee4-4f70-8d4e-d20c88e26ffb";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2090,7 +2070,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "345d5109-ec01-4b15-ad70-ca6d515e6fd4";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};

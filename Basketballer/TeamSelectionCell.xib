@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseTeamViewController">
@@ -27,29 +27,35 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="left" text="五岳剑派" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16">
-                        <rect key="frame" x="69" y="17" width="183" height="21"/>
+                        <rect key="frame" x="69" y="19" width="188" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="28"/>
-                            <constraint firstAttribute="width" constant="183" id="29"/>
+                            <constraint firstAttribute="height" constant="16" id="28"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" image="CellNotSelected.png" translatesAutoresizingMaskIntoConstraints="NO" id="18">
-                        <rect key="frame" x="269" y="12" width="31" height="31"/>
+                        <rect key="frame" x="273" y="12" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="31" id="egL-h7-4H3"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="16" firstAttribute="leading" secondItem="17" secondAttribute="trailing" constant="13" id="YWS-NH-hM6"/>
+                    <constraint firstItem="18" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="16" id="hUX-Oa-7lq"/>
+                    <constraint firstAttribute="centerY" secondItem="17" secondAttribute="centerY" constant="-0.25" id="nZq-5f-bJH"/>
+                    <constraint firstAttribute="centerY" secondItem="16" secondAttribute="centerY" constant="0.75" id="pKi-hq-Kxz"/>
+                </constraints>
             </tableViewCellContentView>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="20" id="5C8-j6-17D"/>
-                <constraint firstItem="18" firstAttribute="centerY" secondItem="15" secondAttribute="centerY" constant="-0.5" id="5PD-w2-R65"/>
-                <constraint firstItem="17" firstAttribute="top" secondItem="15" secondAttribute="top" constant="4" id="8N3-6U-tLQ"/>
+                <constraint firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="16" id="5C8-j6-17D"/>
+                <constraint firstItem="18" firstAttribute="centerY" secondItem="15" secondAttribute="centerY" id="5PD-w2-R65"/>
                 <constraint firstItem="17" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="8" id="Whq-hT-aJK"/>
-                <constraint firstItem="16" firstAttribute="centerY" secondItem="18" secondAttribute="centerY" id="kpb-cw-e2q"/>
-                <constraint firstItem="16" firstAttribute="centerX" secondItem="15" secondAttribute="centerX" id="w2x-Ho-anb"/>
             </constraints>
+            <point key="canvasLocation" x="80" y="207"/>
         </tableViewCell>
     </objects>
     <resources>
