@@ -17,6 +17,7 @@
 #import "UIImageView+Additional.h"
 #import "ImageManager.h"
 #import "ActionRecordCell.h"
+#import "UIImage+Tint.h"
 
 @interface ActionRecordViewController () {
     CGPoint _touchBeganPoint;
@@ -51,7 +52,10 @@
     self.guestImageView.image = [[ImageManager defaultInstance] imageForName:_guestTeam.profileURL];
     self.guestLabel.text = _guestTeam.name;
     
-    self.actionRecordLabel.text = LocalString(@"ActionRecords");
+//    self.actionRecordLabel.text = LocalString(@"ActionRecords");
+    UIImage * image = [UIImage imageNamed:@"left_arrow"];
+    image = [image imageWithTintColor:[UIColor whiteColor]];
+    [self.backButton setImage:image forState:UIControlStateNormal];
 }
 
 - (void)initData {
@@ -185,6 +189,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)backButtonClicked:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

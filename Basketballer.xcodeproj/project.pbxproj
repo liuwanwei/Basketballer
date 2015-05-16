@@ -78,7 +78,6 @@
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */; };
-		7914D01519E67B31008499A3 /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914D01419E67B31008499A3 /* UIImageView+Additional.m */; };
 		7914D01E19E7D1DC008499A3 /* game_page_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01719E7D1DB008499A3 /* game_page_off@2x.png */; };
 		7914D01F19E7D1DC008499A3 /* game_page_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01819E7D1DB008499A3 /* game_page_on@2x.png */; };
 		7914D02019E7D1DC008499A3 /* game_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01919E7D1DB008499A3 /* game_pause@2x.png */; };
@@ -173,6 +172,9 @@
 		FB3BB4271AAE918A00296428 /* BCMyTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4251AAE8D1700296428 /* BCMyTeamViewController.m */; };
 		FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
 		FB3BB42A1AAE9E8B00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
+		FB4B46161B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46111B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m */; };
+		FB4B46171B0775CA00D9203E /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46131B0775CA00D9203E /* UIImage+Tint.m */; };
+		FB4B46181B0775CA00D9203E /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46151B0775CA00D9203E /* UIImageView+Additional.m */; };
 		FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB76CB961883D31300F07B53 /* AmateurRule.m */; };
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
@@ -198,7 +200,6 @@
 		FB8A220F19E5102700213057 /* StatisticCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220E19E5102700213057 /* StatisticCell.m */; };
 		FB8AA9F619FD294C005C6347 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8AA9F519FD294C005C6347 /* Images.xcassets */; };
 		FB928FD419D7245100F76DC6 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB928FD319D7245100F76DC6 /* ImageCell.m */; };
-		FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */; };
 		FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */; };
 		FB957D1219DA914E007FC3DA /* CustomRuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1119DA914E007FC3DA /* CustomRuleViewController.m */; };
 		FB957D1619DAB640007FC3DA /* CustomRuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D1519DAB640007FC3DA /* CustomRuleManager.m */; };
@@ -243,7 +244,6 @@
 		FBB22BE01AA9832C008EAC03 /* StatisticSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8A220B19E43ADF00213057 /* StatisticSectionHeaderView.m */; };
 		FBB22BE11AA9832C008EAC03 /* StartMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B1B3215C68F3400BAB6BE /* StartMatchView.m */; };
 		FBB22BE21AA9832C008EAC03 /* MatchUnderWay.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E032A515C98CB600AF91CB /* MatchUnderWay.m */; };
-		FBB22BE31AA9832C008EAC03 /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 7914D01419E67B31008499A3 /* UIImageView+Additional.m */; };
 		FBB22BE41AA9832C008EAC03 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E032C315CFB44100AF91CB /* PlayerManager.m */; };
 		FBB22BE51AA9832C008EAC03 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E032C615CFBC2500AF91CB /* Player.m */; };
 		FBB22BE61AA9832C008EAC03 /* PlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E032C915CFC00100AF91CB /* PlayerListViewController.m */; };
@@ -252,7 +252,6 @@
 		FBB22BE91AA9832C008EAC03 /* NewPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E032CC15CFC0C900AF91CB /* NewPlayerViewController.m */; };
 		FBB22BEA1AA9832C008EAC03 /* HowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */; };
 		FBB22BEB1AA9832C008EAC03 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C515315D25AFF00F52002 /* Action.m */; };
-		FBB22BEC1AA9832C008EAC03 /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */; };
 		FBB22BED1AA9832C008EAC03 /* ActionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E33AF219EA12F000AC46DE /* ActionRecordCell.m */; };
 		FBB22BEE1AA9832C008EAC03 /* PlayerActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F6115D4E5AC002CAEE0 /* PlayerActionViewController.m */; };
 		FBB22BEF1AA9832C008EAC03 /* PlayerEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6914F6715D4E641002CAEE0 /* PlayerEditViewController.m */; };
@@ -515,8 +514,6 @@
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartGameViewController.xib; sourceTree = "<group>"; };
 		5E8918FA55ABDB8B782374E1 /* Pods-Basketballer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basketballer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Basketballer/Pods-Basketballer.release.xcconfig"; sourceTree = "<group>"; };
-		7914D01319E67B31008499A3 /* UIImageView+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additional.h"; sourceTree = "<group>"; };
-		7914D01419E67B31008499A3 /* UIImageView+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additional.m"; sourceTree = "<group>"; };
 		7914D01719E7D1DB008499A3 /* game_page_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_page_off@2x.png"; path = "Resources/images/game_page_off@2x.png"; sourceTree = "<group>"; };
 		7914D01819E7D1DB008499A3 /* game_page_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_page_on@2x.png"; path = "Resources/images/game_page_on@2x.png"; sourceTree = "<group>"; };
 		7914D01919E7D1DB008499A3 /* game_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_pause@2x.png"; path = "Resources/images/game_pause@2x.png"; sourceTree = "<group>"; };
@@ -652,6 +649,12 @@
 		FB3BB42C1AAFCDB700296428 /* BCGameStatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCGameStatisticsViewController.m; sourceTree = "<group>"; };
 		FB3BB42E1AAFCEBC00296428 /* BCStatisticsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCStatisticsTableViewController.h; sourceTree = "<group>"; };
 		FB3BB42F1AAFCEBC00296428 /* BCStatisticsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCStatisticsTableViewController.m; sourceTree = "<group>"; };
+		FB4B46101B0775CA00D9203E /* NSDictionary+dictionaryWithObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithObject.h"; sourceTree = "<group>"; };
+		FB4B46111B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+dictionaryWithObject.m"; sourceTree = "<group>"; };
+		FB4B46121B0775CA00D9203E /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		FB4B46131B0775CA00D9203E /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+		FB4B46141B0775CA00D9203E /* UIImageView+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additional.h"; sourceTree = "<group>"; };
+		FB4B46151B0775CA00D9203E /* UIImageView+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additional.m"; sourceTree = "<group>"; };
 		FB76CB951883D31300F07B53 /* AmateurRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmateurRule.h; sourceTree = "<group>"; };
 		FB76CB961883D31300F07B53 /* AmateurRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmateurRule.m; sourceTree = "<group>"; };
 		FB7DFF531A9EE830008F6AB8 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
@@ -687,8 +690,6 @@
 		FB8AA9F519FD294C005C6347 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB928FD219D7245100F76DC6 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
 		FB928FD319D7245100F76DC6 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
-		FB957D0A19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithObject.h"; sourceTree = "<group>"; };
-		FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+dictionaryWithObject.m"; sourceTree = "<group>"; };
 		FB957D0D19DA882B007FC3DA /* FibaCustomRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibaCustomRule.h; sourceTree = "<group>"; };
 		FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaCustomRule.m; sourceTree = "<group>"; };
 		FB957D1019DA914E007FC3DA /* CustomRuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRuleViewController.h; sourceTree = "<group>"; };
@@ -844,11 +845,11 @@
 			name = Image;
 			sourceTree = "<group>";
 		};
-		3C121F7615A43D290062BECD /* library */ = {
+		3C121F7615A43D290062BECD /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FB4B460F1B0775CA00D9203E /* Category */,
 				FBB9027B1A1062D500CB7FD3 /* Umeng */,
-				FB957D0919DA8657007FC3DA /* category */,
 				3CCAE41415BD3E4F0030C302 /* LocationManager.h */,
 				3CCAE41515BD3E4F0030C302 /* LocationManager.m */,
 				3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */,
@@ -858,7 +859,7 @@
 				3C0BD4C615E36AD800EEAB0B /* SoundManager.h */,
 				3C0BD4C715E36AD800EEAB0B /* SoundManager.m */,
 			);
-			name = library;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		3C12203015A6D9C60062BECD /* music */ = {
@@ -928,7 +929,7 @@
 				3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */,
 				3CC1683815A2E6EE00A2AB44 /* Classes */,
 				E68D110315A2F7020074982D /* DataStore */,
-				3C121F7615A43D290062BECD /* library */,
+				3C121F7615A43D290062BECD /* Helper */,
 				3CC1683315A2E5E400A2AB44 /* Resources */,
 				FB8AA9F519FD294C005C6347 /* Images.xcassets */,
 				3CC1681815A2E52B00A2AB44 /* Supporting Files */,
@@ -1190,6 +1191,19 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		FB4B460F1B0775CA00D9203E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				FB4B46101B0775CA00D9203E /* NSDictionary+dictionaryWithObject.h */,
+				FB4B46111B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m */,
+				FB4B46121B0775CA00D9203E /* UIImage+Tint.h */,
+				FB4B46131B0775CA00D9203E /* UIImage+Tint.m */,
+				FB4B46141B0775CA00D9203E /* UIImageView+Additional.h */,
+				FB4B46151B0775CA00D9203E /* UIImageView+Additional.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		FB8D1A1E1AB1413F00E65BA6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1197,17 +1211,6 @@
 				FBF0F7241ABD193200EBC44C /* BCSettings.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		FB957D0919DA8657007FC3DA /* category */ = {
-			isa = PBXGroup;
-			children = (
-				FB957D0A19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.h */,
-				FB957D0B19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m */,
-				7914D01319E67B31008499A3 /* UIImageView+Additional.h */,
-				7914D01419E67B31008499A3 /* UIImageView+Additional.m */,
-			);
-			name = category;
 			sourceTree = "<group>";
 		};
 		FB957D2E19DFA23E007FC3DA /* Rule */ = {
@@ -1743,12 +1746,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB4B46171B0775CA00D9203E /* UIImage+Tint.m in Sources */,
 				3CC1681E15A2E52B00A2AB44 /* main.m in Sources */,
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
 				FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */,
 				3CC1682515A2E52B00A2AB44 /* Basketballer.xcdatamodeld in Sources */,
 				3CC1683C15A2E71400A2AB44 /* GameHistoryViewController.m in Sources */,
 				3CC1687E15A2F70E00A2AB44 /* PlayGameViewController.m in Sources */,
+				FB4B46181B0775CA00D9203E /* UIImageView+Additional.m in Sources */,
 				FB7DFFA01AA3F741008F6AB8 /* TextEditorFormViewController.m in Sources */,
 				3C121F6515A3E9C00062BECD /* TeamInfoViewController.m in Sources */,
 				E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */,
@@ -1778,17 +1783,16 @@
 				FB8A220C19E43ADF00213057 /* StatisticSectionHeaderView.m in Sources */,
 				3C2B1B3315C68F3500BAB6BE /* StartMatchView.m in Sources */,
 				E6E032A615C98CB600AF91CB /* MatchUnderWay.m in Sources */,
-				7914D01519E67B31008499A3 /* UIImageView+Additional.m in Sources */,
 				E6E032C415CFB44100AF91CB /* PlayerManager.m in Sources */,
 				E6E032C715CFBC2500AF91CB /* Player.m in Sources */,
 				E6E032CA15CFC00200AF91CB /* PlayerListViewController.m in Sources */,
 				FB76CB971883D31300F07B53 /* AmateurRule.m in Sources */,
 				FB957D2119DEF65E007FC3DA /* RosterCollectionViewCell.m in Sources */,
 				E6E032CE15CFC0CA00AF91CB /* NewPlayerViewController.m in Sources */,
+				FB4B46161B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m in Sources */,
 				FB7DFFB51AA59CBB008F6AB8 /* HowToViewController.m in Sources */,
 				E68C515415D25B0100F52002 /* Action.m in Sources */,
 				FBF0F71D1ABC612B00EBC44C /* ActionCell.m in Sources */,
-				FB957D0C19DA867A007FC3DA /* NSDictionary+dictionaryWithObject.m in Sources */,
 				79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */,
 				E6914F6215D4E5AD002CAEE0 /* PlayerActionViewController.m in Sources */,
 				E6914F6815D4E641002CAEE0 /* PlayerEditViewController.m in Sources */,
@@ -1872,7 +1876,6 @@
 				FBB22BE01AA9832C008EAC03 /* StatisticSectionHeaderView.m in Sources */,
 				FBB22BE11AA9832C008EAC03 /* StartMatchView.m in Sources */,
 				FBB22BE21AA9832C008EAC03 /* MatchUnderWay.m in Sources */,
-				FBB22BE31AA9832C008EAC03 /* UIImageView+Additional.m in Sources */,
 				FBB22BE41AA9832C008EAC03 /* PlayerManager.m in Sources */,
 				FBB22BE51AA9832C008EAC03 /* Player.m in Sources */,
 				FBB22BE61AA9832C008EAC03 /* PlayerListViewController.m in Sources */,
@@ -1881,7 +1884,6 @@
 				FBB22BE91AA9832C008EAC03 /* NewPlayerViewController.m in Sources */,
 				FBB22BEA1AA9832C008EAC03 /* HowToViewController.m in Sources */,
 				FBB22BEB1AA9832C008EAC03 /* Action.m in Sources */,
-				FBB22BEC1AA9832C008EAC03 /* NSDictionary+dictionaryWithObject.m in Sources */,
 				FBB22BED1AA9832C008EAC03 /* ActionRecordCell.m in Sources */,
 				FBB22BEE1AA9832C008EAC03 /* PlayerActionViewController.m in Sources */,
 				FBB22BEF1AA9832C008EAC03 /* PlayerEditViewController.m in Sources */,

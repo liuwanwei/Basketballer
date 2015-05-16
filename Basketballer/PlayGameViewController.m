@@ -398,11 +398,12 @@ typedef enum {
 
 // 显示比赛结束详情界面
 - (void)showMatchFinishedDetailsController {
-    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc] initWithNibName:@"GameStatisticViewController" bundle:nil];    
+    MatchFinishedDetailsViewController * controller = [[MatchFinishedDetailsViewController alloc]
+                                                       initWithNibName:@"GameStatisticViewController" bundle:nil];
     controller.match = _match.match;
     
-    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
-    [self presentViewController:nav animated:YES completion:nil];
+    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)initTeam {

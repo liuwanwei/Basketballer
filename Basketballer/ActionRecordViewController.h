@@ -16,5 +16,6 @@
 @property (nonatomic, weak) IBOutlet UILabel * guestLabel;
 @property (nonatomic, weak) IBOutlet UILabel * actionRecordLabel;
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
+@property (nonatomic, weak) IBOutlet UIButton * backButton;
 
 @end
