@@ -327,6 +327,7 @@ static ActionManager * sActionManager;
 // 目前只计算全场技术统计，但暂时保留period参数，因为我还不确定个人单节技术统计是否真的没有必要。
 - (Statistics *)statisticsForPlayer:(NSNumber *)playerId inActions:(NSArray *)actions{
     Statistics * statistics = [[Statistics alloc] init];
+    statistics.playerId = playerId;
     for(Action * action in actions){
         if (playerId != nil && [action.player isEqualToNumber:playerId]) {
             [self addAction:action toStatistics:statistics];

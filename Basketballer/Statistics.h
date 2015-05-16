@@ -10,6 +10,7 @@
 
 @interface Statistics : NSObject
 
+@property (nonatomic, strong) NSNumber * playerId;
 @property (nonatomic, copy) NSString * name;
 
 // 得分

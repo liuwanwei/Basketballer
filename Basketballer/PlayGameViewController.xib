@@ -325,7 +325,7 @@
                     <rect key="frame" x="0.0" y="254" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqd-S9-hlY" userLabel="blockLeft">
-                            <rect key="frame" x="18" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1篮板">
@@ -340,7 +340,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mV-pt-4Eg" userLabel="blockRight">
-                            <rect key="frame" x="222" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.0" width="80" height="36"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1篮板">
@@ -539,7 +539,7 @@
                     <rect key="frame" x="0.0" y="399" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="105">
-                            <rect key="frame" x="18" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="18" y="0.0" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+1暂停">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
@@ -562,7 +562,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="104" userLabel="+1暂停">
-                            <rect key="frame" x="222" y="0.5" width="80" height="36"/>
+                            <rect key="frame" x="222" y="0.0" width="80" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="+暂停">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
@@ -616,12 +616,12 @@
                     <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="111">
-                            <rect key="frame" x="10" y="4" width="58" height="36"/>
+                            <rect key="frame" x="10" y="2" width="65" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="111" secondAttribute="height" multiplier="29:18" id="DfX-EN-zHg"/>
-                                <constraint firstAttribute="width" constant="58" id="vTJ-pg-VDz"/>
+                                <constraint firstAttribute="width" constant="65" id="vTJ-pg-VDz"/>
                             </constraints>
-                            <state key="normal" title="设置">
+                            <state key="normal" title="比赛设置">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -638,13 +638,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74">
-                            <rect key="frame" x="252" y="4" width="58" height="36"/>
+                            <rect key="frame" x="245" y="2" width="65" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="74" secondAttribute="height" multiplier="29:18" id="dSo-ml-2wf"/>
-                                <constraint firstAttribute="width" constant="58" id="fJF-aZ-sfx"/>
+                                <constraint firstAttribute="width" constant="65" id="fJF-aZ-sfx"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="数据">
+                            <state key="normal" title="实时数据">
                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>

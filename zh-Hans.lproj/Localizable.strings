@@ -94,7 +94,7 @@
 "NewStatistic" = "添加技术统计";
 "Alert" = "警告";
 "Ok" = "确定";
-"AlreadyTimeouted" = "正在暂停状态！";
+"AlreadyTimeouted" = "正在暂停中！";
 "AlreadyPaused" = "正在停止计时状态！";
 "BreakTimeout" = "正在暂停状态，是否马上继续比赛？";
 "NoTimeout" = "暂停已用完！";

@@ -10,7 +10,6 @@
 
 @interface PlayerActionViewController : PlayerListViewController
 
-@property (nonatomic, strong) NSArray * actionsInMatch;
 @property (nonatomic) NSInteger actionType;
 
 @property (nonatomic, weak) IBOutlet UITableViewCell * playerActionCell;

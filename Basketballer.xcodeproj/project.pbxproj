@@ -1329,9 +1329,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3CC1680A15A2E52A00A2AB44 /* Basketballer */ = {
+		3CC1680A15A2E52A00A2AB44 /* 篮球技术统计 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "Basketballer" */;
+			buildConfigurationList = 3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "篮球技术统计" */;
 			buildPhases = (
 				DAC87DAFD8D83542763128CD /* Check Pods Manifest.lock */,
 				3CC1680715A2E52A00A2AB44 /* Sources */,
@@ -1343,7 +1343,7 @@
 			);
 			dependencies = (
 			);
-			name = Basketballer;
+			name = "篮球技术统计";
 			productName = Basketballer;
 			productReference = 3CC1680B15A2E52A00A2AB44 /* Basketballer.app */;
 			productType = "com.apple.product-type.application";
@@ -1417,7 +1417,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3CC1680A15A2E52A00A2AB44 /* Basketballer */,
+				3CC1680A15A2E52A00A2AB44 /* 篮球技术统计 */,
 				FB1BA92A1884E44200978359 /* BasketballerTests */,
 				FBB22BBD1AA9832C008EAC03 /* CaptaionVesrion */,
 			);
@@ -1913,7 +1913,7 @@
 /* Begin PBXTargetDependency section */
 		FB1BA93A1884E44300978359 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3CC1680A15A2E52A00A2AB44 /* Basketballer */;
+			target = 3CC1680A15A2E52A00A2AB44 /* 篮球技术统计 */;
 			targetProxy = FB1BA9391884E44300978359 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2057,8 +2057,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
@@ -2197,7 +2197,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "Basketballer" */ = {
+		3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "篮球技术统计" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3CC1682915A2E52B00A2AB44 /* Debug */,

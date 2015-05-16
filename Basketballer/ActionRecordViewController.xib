@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActionRecordViewController">
@@ -104,13 +104,13 @@
                                 <action selector="realtimeStatistics:" destination="-2" eventType="touchUpInside" id="dqj-UU-PTd"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="off">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="30" userLabel="off">
                             <rect key="frame" x="153" y="31" width="5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="5" id="fMQ-Xp-lhd"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="on">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_page_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="31" userLabel="on">
                             <rect key="frame" x="161" y="31" width="5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="5" id="mGt-B0-Riv"/>

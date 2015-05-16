@@ -22,12 +22,13 @@ typedef enum{
     PlayerCellTagFoul = 3,
 }PlayerCellTag;
 
-@interface PlayerActionViewController ()
+@interface PlayerActionViewController (){
+    NSArray * _actionsInMatch;
+}
 
 @end
 
 @implementation PlayerActionViewController
-@synthesize actionsInMatch = _actionsInMatch;
 @synthesize actionType = _actionType;
 @synthesize playerActionCell = _playerActionCell;
 
@@ -40,6 +41,10 @@ typedef enum{
     self.navigationItem.rightBarButtonItem = item;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerChanged:) name:kPlayerChangedNotification object:nil];
+    
+    self.tableView.tableHeaderView = [self headerView];
+    
+    _actionsInMatch = [ActionManager defaultManager].actionArray;
 }
 
 - (void)addPlayer:(id)sender{
@@ -79,6 +84,27 @@ typedef enum{
     return pageName;
 }
 
+- (UIView *)headerView{
+    const CGFloat ViewHeight = 30;
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, ViewHeight)];
+    view.backgroundColor = [UIColor clearColor];
+    
+    const CGFloat LeftMargin = 16;
+    const CGFloat TopMargin = 5;
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(LeftMargin, TopMargin, self.view.bounds.size.width - LeftMargin * 2, ViewHeight - TopMargin * 2)];
+    label.textColor = [UIColor lightGrayColor];
+    label.font = [UIFont systemFontOfSize:14.0f];
+    label.text = @"点击右上角加号快速添加队员";
+    [view addSubview:label];
+    
+    UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, ViewHeight - 1, self.view.bounds.size.width, 1.0)];
+    bottomLine.backgroundColor = [UIColor lightGrayColor];
+    bottomLine.alpha = 0.2;
+    [view addSubview:bottomLine];
+    
+    return view;
+}
+
 
 #pragma mark - Table view data source
 
@@ -103,8 +129,8 @@ typedef enum{
     UILabel * foulLabel = (UILabel *)[cell.contentView viewWithTag:PlayerCellTagFoul];
     
     if(indexPath.row == self.players.count){
-        numberLabel.text = LocalString(@"Others...");
-        nameLabel.text = nil;
+        numberLabel.text = LocalString(@"xx");
+        nameLabel.text = @"其他队员";
         foulLabel.text = nil;
         
     }else{

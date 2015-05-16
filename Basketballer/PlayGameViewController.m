@@ -31,17 +31,16 @@
 #import <MBProgressHUD.h>
 
 typedef enum {
-    AlertViewTagMatchFinish = 0,
-    AlertViewTagMatchTimeout = 1,
-    AlertViewTagMatchNormal = 2,
-    AlertViewTagMatchBegin = 3,
+    AlertViewTagMatchFinish = 1,
+    AlertViewTagMatchTimeout = 2,
+    AlertViewTagMatchNormal = 3,
+    AlertViewTagMatchBegin = 4,
 }AlertViewTag;
 
 #define GuestTeamTag        100
 #define MainColor            [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90]
 
 @interface PlayGameViewController() {
-    ActionManager * _actionManager;
     MatchUnderWay * _match;
     TimeoutPromptView * _timeoutPromptView;
     
@@ -471,7 +470,7 @@ typedef enum {
     
     self.gameHostScoreLable.text = @"0";
     self.gameGuestScoreLable.text = @"0";
-    [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
+//    [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
 //    [self.foulLabel setText:LocalString(@"Foul")];
 //    [self.timeoutLabel setText:LocalString(@"Timeout")];
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -20,8 +20,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="马布里" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="名字">
-                        <rect key="frame" x="100" y="11" width="120" height="20.5"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="马布里" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5" userLabel="名字">
+                        <rect key="frame" x="184" y="11" width="120" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="HPI-m6-Si1"/>
                         </constraints>
@@ -29,16 +29,16 @@
                         <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="其他球员" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="号码">
-                        <rect key="frame" x="23" y="11" width="70" height="20.5"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="号码">
+                        <rect key="frame" x="24" y="11" width="70" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="Kdh-lI-RgK"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" text="5次犯规" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="犯规数">
-                        <rect key="frame" x="252" y="11" width="60" height="20.5"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" text="5次犯规" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6" userLabel="犯规数">
+                        <rect key="frame" x="130" y="11" width="60" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="8"/>
                         </constraints>
@@ -49,11 +49,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="5" secondAttribute="centerY" id="9xT-yt-AbV"/>
-                    <constraint firstItem="6" firstAttribute="trailing" secondItem="pqF-74-F56" secondAttribute="trailingMargin" id="CuG-M9-VwG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5" secondAttribute="trailing" constant="8" id="Kdc-Mp-VU6"/>
                     <constraint firstAttribute="centerY" secondItem="4" secondAttribute="centerY" id="Vqj-R0-ybR"/>
-                    <constraint firstAttribute="centerX" secondItem="5" secondAttribute="centerX" id="reh-uM-56v"/>
+                    <constraint firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="p8n-mW-0ue"/>
                     <constraint firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="u6U-0J-7C0"/>
-                    <constraint firstItem="4" firstAttribute="leading" secondItem="pqF-74-F56" secondAttribute="leadingMargin" constant="15" id="w2v-CJ-uLz"/>
+                    <constraint firstItem="4" firstAttribute="leading" secondItem="pqF-74-F56" secondAttribute="leadingMargin" constant="16" id="w2v-CJ-uLz"/>
                 </constraints>
             </tableViewCellContentView>
         </tableViewCell>
