@@ -61,7 +61,7 @@
 "PlayerInfoFormatter" = "%.2d 号";
 
 "ChooseTeam" = "选择球队";
-"SelectTeamGuide" = "请选择两支比赛球队（点击加号快速添加球队）";
+"SelectTeamGuide" = "选择比赛球队（点击加号快速添加球队）";
 "Finish" = "结束";
 "Done" = "完成";
 

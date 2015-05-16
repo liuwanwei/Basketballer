@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -47,6 +48,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="79">
                             <rect key="frame" x="30" y="22" width="50" height="50"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="50" id="66g-DF-Xz5"/>
                                 <constraint firstAttribute="width" secondItem="79" secondAttribute="height" multiplier="1:1" id="rcK-Zj-LYb"/>
                             </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -54,6 +56,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="81">
                             <rect key="frame" x="240" y="22" width="50" height="50"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="50" id="6x6-q1-vsc"/>
                                 <constraint firstAttribute="width" secondItem="81" secondAttribute="height" multiplier="1:1" id="lUJ-1t-sG4"/>
                             </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -65,7 +68,7 @@
                             </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="洛杉矶湖人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83">
@@ -75,7 +78,7 @@
                             </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="10:20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6">
@@ -92,7 +95,7 @@
                             <rect key="frame" x="147" y="25" width="25.5" height="17"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiP-X8-vJP" userLabel="1STButton">
@@ -112,6 +115,7 @@
                             <rect key="frame" x="136" y="82" width="46" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="110" secondAttribute="height" multiplier="1:1" id="3wO-cU-tyw"/>
+                                <constraint firstAttribute="height" constant="46" id="TIN-9H-h9t"/>
                             </constraints>
                             <state key="normal" backgroundImage="game_start.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -160,9 +164,7 @@
                         <constraint firstItem="83" firstAttribute="top" secondItem="81" secondAttribute="bottom" constant="5" id="eOT-kP-Asm"/>
                         <constraint firstItem="110" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="10" id="fcl-Dd-jSR"/>
                         <constraint firstItem="83" firstAttribute="centerX" secondItem="81" secondAttribute="centerX" id="nNQ-HO-fFW"/>
-                        <constraint firstAttribute="width" secondItem="81" secondAttribute="width" multiplier="32:5" id="nNX-Z7-Q7E"/>
                         <constraint firstAttribute="trailing" secondItem="81" secondAttribute="trailing" constant="30" id="qd3-mI-hph"/>
-                        <constraint firstItem="110" firstAttribute="height" secondItem="80" secondAttribute="height" multiplier="6:19" id="rT7-S3-JoO"/>
                         <constraint firstItem="51" firstAttribute="top" secondItem="83" secondAttribute="bottom" id="rci-lT-r6W"/>
                         <constraint firstItem="82" firstAttribute="leading" secondItem="80" secondAttribute="leading" constant="5" id="sAw-oU-CXl"/>
                         <constraint firstItem="79" firstAttribute="leading" secondItem="80" secondAttribute="leading" constant="30" id="sJB-5e-grc"/>
@@ -172,17 +174,16 @@
                         <constraint firstAttribute="centerY" secondItem="81" secondAttribute="centerY" constant="25" id="yES-cp-vwz"/>
                         <constraint firstItem="110" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="yVQ-RI-tGV"/>
                         <constraint firstItem="gpO-TL-oWn" firstAttribute="top" secondItem="80" secondAttribute="top" id="ylA-eu-qqk"/>
-                        <constraint firstAttribute="width" secondItem="79" secondAttribute="width" multiplier="32:5" id="zcX-PQ-LvE"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMB-FL-2dU" userLabel="罚球">
                     <rect key="frame" x="0.0" y="144" width="320" height="37.5"/>
                     <subviews>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89" userLabel="+1PtsRight">
-                            <rect key="frame" x="234" y="3.5" width="68" height="31"/>
+                            <rect key="frame" x="222" y="2" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1 Pts" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1 Pts">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -194,13 +195,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86" userLabel="+1PtsLeft">
-                            <rect key="frame" x="18" y="3.5" width="68" height="31"/>
+                            <rect key="frame" x="18" y="-2" width="80" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="68" id="Z3z-FD-5zh"/>
+                                <constraint firstAttribute="height" constant="40" id="GUr-Wj-gyw"/>
                             </constraints>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1 Pts" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1 分">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <state key="highlighted" backgroundImage="game_menu_on.png">
@@ -215,6 +216,7 @@
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="89" secondAttribute="centerY" id="6P0-o6-TPF"/>
                         <constraint firstItem="86" firstAttribute="leading" secondItem="JMB-FL-2dU" secondAttribute="leading" constant="18" id="G7i-aZ-rkU"/>
+                        <constraint firstAttribute="width" secondItem="86" secondAttribute="width" multiplier="4:1" id="Quj-ZR-El5"/>
                         <constraint firstItem="89" firstAttribute="width" secondItem="86" secondAttribute="width" id="WsZ-W7-P8x"/>
                         <constraint firstAttribute="trailing" secondItem="89" secondAttribute="trailing" constant="18" id="ls2-Ua-ccH"/>
                         <constraint firstAttribute="centerY" secondItem="86" secondAttribute="centerY" id="pjO-AE-yuv"/>
@@ -224,13 +226,10 @@
                     <rect key="frame" x="0.0" y="181" width="320" height="37"/>
                     <subviews>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90" userLabel="+2PtsRight">
-                            <rect key="frame" x="18" y="3" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="PMy-nI-965"/>
-                            </constraints>
+                            <rect key="frame" x="18" y="2" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+2 Pts" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+2 分">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -242,10 +241,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87" userLabel="+2PtsLeft">
-                            <rect key="frame" x="234" y="3" width="68" height="31"/>
+                            <rect key="frame" x="222" y="2" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+2 Pts" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+2 Pts">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -270,13 +269,10 @@
                     <rect key="frame" x="0.0" y="218" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88" userLabel="+3PtsLeft">
-                            <rect key="frame" x="18" y="3" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="Sxq-9x-9fs"/>
-                            </constraints>
+                            <rect key="frame" x="18" y="2" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+3 Pts" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+3 分">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -288,10 +284,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91" userLabel="+3PtsRight">
-                            <rect key="frame" x="234" y="3" width="68" height="31"/>
+                            <rect key="frame" x="222" y="2" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+3 Pts" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+3 Pts">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -302,9 +298,9 @@
                                 <action selector="addAction:" destination="-1" eventType="touchUpInside" id="cWX-iT-AYV"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPI-1h-kka" userLabel="seperator">
+                        <view hidden="YES" alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPI-1h-kka" userLabel="seperator">
                             <rect key="frame" x="120" y="35" width="80" height="2"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="byU-2M-cMy"/>
                                 <constraint firstAttribute="height" constant="2" id="yPN-pX-dBX"/>
@@ -326,13 +322,10 @@
                     <rect key="frame" x="0.0" y="254" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqd-S9-hlY" userLabel="blockLeft">
-                            <rect key="frame" x="18" y="2" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="zjT-za-aTj"/>
-                            </constraints>
+                            <rect key="frame" x="18" y="1" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1篮板" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1篮板">
                                 <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -344,10 +337,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mV-pt-4Eg" userLabel="blockRight">
-                            <rect key="frame" x="234" y="2" width="68" height="31"/>
+                            <rect key="frame" x="222" y="1" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1篮板" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1篮板">
                                 <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -372,13 +365,10 @@
                     <rect key="frame" x="0.0" y="291" width="320" height="36"/>
                     <subviews>
                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-xI-TTS" userLabel="assistLeft">
-                            <rect key="frame" x="18" y="2.5" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="lj2-qe-Sab"/>
-                            </constraints>
+                            <rect key="frame" x="18" y="1" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1助攻" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1助攻">
                                 <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -390,10 +380,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-Nl-hBw" userLabel="assistRight">
-                            <rect key="frame" x="234" y="2.5" width="68" height="31"/>
+                            <rect key="frame" x="222" y="1" width="80" height="33"/>
                             <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1助攻" backgroundImage="game_menu_off.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1助攻">
                                 <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -433,23 +423,17 @@
                     <rect key="frame" x="0.0" y="327" width="320" height="36"/>
                     <subviews>
                         <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWF-bZ-Hkt" userLabel="left">
-                            <rect key="frame" x="18" y="2.5" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="dES-9T-tpW"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1失误" backgroundImage="game_menu_off.png">
+                            <rect key="frame" x="18" y="1" width="80" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1失误">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" tag="110" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peO-qr-9RI" userLabel="right">
-                            <rect key="frame" x="234" y="2.5" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="f5Z-ME-EPN"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1失误" backgroundImage="game_menu_off.png">
+                        <button opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peO-qr-9RI" userLabel="right">
+                            <rect key="frame" x="222" y="1" width="80" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1失误">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -458,6 +442,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="peO-qr-9RI" secondAttribute="centerY" id="4BV-ub-GK5"/>
+                        <constraint firstItem="peO-qr-9RI" firstAttribute="width" secondItem="MWF-bZ-Hkt" secondAttribute="width" id="fX9-FP-rnQ"/>
                         <constraint firstAttribute="trailing" secondItem="peO-qr-9RI" secondAttribute="trailing" constant="18" id="jaB-fR-2k9"/>
                         <constraint firstItem="MWF-bZ-Hkt" firstAttribute="leading" secondItem="Yao-su-cHJ" secondAttribute="leading" constant="18" id="krX-lO-a3u"/>
                         <constraint firstAttribute="centerY" secondItem="MWF-bZ-Hkt" secondAttribute="centerY" id="zJr-A4-zIe"/>
@@ -467,12 +452,9 @@
                     <rect key="frame" x="0.0" y="363" width="320" height="36"/>
                     <subviews>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93">
-                            <rect key="frame" x="18" y="2" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="CZr-rJ-jax"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1犯规" backgroundImage="game_menu_off.png">
+                            <rect key="frame" x="18" y="1" width="80" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1犯规">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -501,13 +483,10 @@
                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94">
-                            <rect key="frame" x="234" y="2" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="QmV-da-Xuo"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1犯规" backgroundImage="game_menu_off.png">
+                        <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94">
+                            <rect key="frame" x="222" y="1" width="80" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1犯规">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -515,28 +494,29 @@
                                 <action selector="addAction:" destination="-1" eventType="touchUpInside" id="2VN-eO-lu5"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全队犯规" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="犯规总数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97">
                             <rect key="frame" x="134" y="8" width="52" height="20"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="52" id="dGW-sY-cpv"/>
                                 <constraint firstAttribute="height" constant="20" id="ogZ-fm-Qbf"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="98" secondAttribute="centerY" id="0tr-p7-nMf"/>
+                        <constraint firstItem="93" firstAttribute="width" secondItem="niF-Js-hSD" secondAttribute="width" multiplier="1:4" id="2t1-7L-efb"/>
                         <constraint firstAttribute="centerY" secondItem="97" secondAttribute="centerY" id="4ZT-TO-bQB"/>
                         <constraint firstAttribute="centerY" secondItem="94" secondAttribute="centerY" id="Dpq-IG-5kt"/>
                         <constraint firstItem="96" firstAttribute="leading" secondItem="97" secondAttribute="trailing" id="G9Y-p1-42b"/>
                         <constraint firstItem="97" firstAttribute="leading" secondItem="98" secondAttribute="trailing" id="IJX-vQ-haZ"/>
+                        <constraint firstItem="94" firstAttribute="width" secondItem="93" secondAttribute="width" id="ToQ-ay-b9n"/>
                         <constraint firstAttribute="trailing" secondItem="94" secondAttribute="trailing" constant="18" id="dDG-v7-3XH"/>
                         <constraint firstItem="93" firstAttribute="leading" secondItem="niF-Js-hSD" secondAttribute="leading" constant="18" id="dyE-19-LIH"/>
                         <constraint firstAttribute="centerY" secondItem="96" secondAttribute="centerY" id="fqL-oa-eLb"/>
-                        <constraint firstItem="94" firstAttribute="leading" secondItem="96" secondAttribute="trailing" constant="6" id="h6e-pi-CCs"/>
-                        <constraint firstItem="98" firstAttribute="leading" secondItem="93" secondAttribute="trailing" constant="6" id="owI-Wg-Dqe"/>
                         <constraint firstAttribute="centerY" secondItem="93" secondAttribute="centerY" id="rVx-8G-TwW"/>
                         <constraint firstAttribute="centerX" secondItem="97" secondAttribute="centerX" id="ujA-R0-C2R"/>
                     </constraints>
@@ -546,12 +526,9 @@
                     <rect key="frame" x="0.0" y="399" width="320" height="36.5"/>
                     <subviews>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="105">
-                            <rect key="frame" x="18" y="2" width="68" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="9gF-DN-ukG"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+1暂停" backgroundImage="game_menu_off.png">
+                            <rect key="frame" x="18" y="1" width="80" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+1暂停">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -562,16 +539,19 @@
                                 <action selector="addAction:" destination="-1" eventType="touchUpInside" id="sj4-g4-Yf1"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全队暂停" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="107">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂停总数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="107">
                             <rect key="frame" x="134" y="10" width="52" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="52" id="gsO-At-HUc"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="104" userLabel="+1暂停">
-                            <rect key="frame" x="234" y="2" width="68" height="31"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="+暂停" backgroundImage="game_menu_off.png">
+                            <rect key="frame" x="222" y="1" width="80" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="+暂停">
                                 <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -611,10 +591,9 @@
                         <constraint firstItem="107" firstAttribute="centerY" secondItem="106" secondAttribute="centerY" id="M9A-aK-lli"/>
                         <constraint firstItem="108" firstAttribute="centerY" secondItem="107" secondAttribute="centerY" id="Q6O-LV-YGb"/>
                         <constraint firstAttribute="centerX" secondItem="107" secondAttribute="centerX" id="SR9-2h-hFe"/>
-                        <constraint firstItem="104" firstAttribute="leading" secondItem="106" secondAttribute="trailing" constant="6" id="VGX-bD-8wl"/>
-                        <constraint firstItem="108" firstAttribute="leading" secondItem="105" secondAttribute="trailing" constant="6" id="XtR-4E-KyP"/>
                         <constraint firstItem="107" firstAttribute="leading" secondItem="108" secondAttribute="trailing" id="bEO-Dp-upy"/>
                         <constraint firstAttribute="centerY" secondItem="105" secondAttribute="centerY" id="fRy-5K-ftH"/>
+                        <constraint firstItem="105" firstAttribute="width" secondItem="104" secondAttribute="width" id="iM9-QB-JEL"/>
                         <constraint firstItem="106" firstAttribute="leading" secondItem="107" secondAttribute="trailing" id="pUT-O4-KY8"/>
                     </constraints>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -680,6 +659,7 @@
                 <constraint firstAttribute="centerX" secondItem="y8a-Uq-FgF" secondAttribute="centerX" id="0R9-tV-DLA"/>
                 <constraint firstItem="kty-bC-zAG" firstAttribute="height" secondItem="sVi-lc-fW6" secondAttribute="height" id="0rL-Wk-JkU"/>
                 <constraint firstAttribute="centerX" secondItem="80" secondAttribute="centerX" id="3VZ-dx-pWF"/>
+                <constraint firstItem="88" firstAttribute="width" secondItem="90" secondAttribute="width" id="3js-lv-VKc"/>
                 <constraint firstItem="kty-bC-zAG" firstAttribute="height" secondItem="2fB-s5-oMg" secondAttribute="height" id="6BW-6y-Vum"/>
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="height" secondItem="Yao-su-cHJ" secondAttribute="height" id="6pl-Xj-XRW"/>
                 <constraint firstItem="niF-Js-hSD" firstAttribute="top" secondItem="Yao-su-cHJ" secondAttribute="bottom" id="75V-KK-PTF"/>
@@ -689,12 +669,16 @@
                 <constraint firstItem="Yao-su-cHJ" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Ar7-Xf-Hmw"/>
                 <constraint firstAttribute="centerX" secondItem="kty-bC-zAG" secondAttribute="centerX" id="BuA-hg-6o7"/>
                 <constraint firstItem="Yao-su-cHJ" firstAttribute="top" secondItem="YdX-ZZ-6bi" secondAttribute="bottom" id="CHd-5g-8S3"/>
+                <constraint firstItem="93" firstAttribute="width" secondItem="105" secondAttribute="width" id="DMb-fI-6A1"/>
                 <constraint firstAttribute="centerX" secondItem="sVi-lc-fW6" secondAttribute="centerX" id="Dgb-wm-ZAI"/>
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="height" secondItem="sVi-lc-fW6" secondAttribute="height" id="FN6-hI-LeZ"/>
                 <constraint firstItem="Yao-su-cHJ" firstAttribute="height" secondItem="niF-Js-hSD" secondAttribute="height" id="FXu-8H-GhL"/>
                 <constraint firstItem="6ZU-al-KTy" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="G9C-x6-Prq"/>
                 <constraint firstItem="6ZU-al-KTy" firstAttribute="top" secondItem="y8a-Uq-FgF" secondAttribute="bottom" id="I0l-gc-5ST"/>
                 <constraint firstAttribute="centerX" secondItem="YdX-ZZ-6bi" secondAttribute="centerX" id="Iy0-Kz-XYz"/>
+                <constraint firstItem="n0C-xI-TTS" firstAttribute="width" secondItem="MWF-bZ-Hkt" secondAttribute="width" id="JRr-Gd-CpH"/>
+                <constraint firstItem="90" firstAttribute="width" secondItem="86" secondAttribute="width" id="JtH-PZ-eZ2"/>
+                <constraint firstItem="pqd-S9-hlY" firstAttribute="width" secondItem="88" secondAttribute="width" id="L2N-cQ-g7V"/>
                 <constraint firstAttribute="centerX" secondItem="2fB-s5-oMg" secondAttribute="centerX" id="LSc-Zy-rad"/>
                 <constraint firstItem="sVi-lc-fW6" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="LiW-1A-woG"/>
                 <constraint firstItem="kty-bC-zAG" firstAttribute="top" secondItem="2fB-s5-oMg" secondAttribute="bottom" id="T5G-uR-Yvc"/>
@@ -707,6 +691,7 @@
                 <constraint firstItem="2fB-s5-oMg" firstAttribute="top" secondItem="JMB-FL-2dU" secondAttribute="bottom" id="hXo-TV-RVi"/>
                 <constraint firstAttribute="centerX" secondItem="JMB-FL-2dU" secondAttribute="centerX" id="jUw-NY-gkl"/>
                 <constraint firstItem="niF-Js-hSD" firstAttribute="height" secondItem="y8a-Uq-FgF" secondAttribute="height" id="mBG-Dr-NiW"/>
+                <constraint firstItem="n0C-xI-TTS" firstAttribute="width" secondItem="pqd-S9-hlY" secondAttribute="width" id="mfd-RP-wxt"/>
                 <constraint firstItem="YdX-ZZ-6bi" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="pgI-me-EW5"/>
                 <constraint firstItem="y8a-Uq-FgF" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="tGF-IC-Nmh"/>
                 <constraint firstAttribute="centerX" secondItem="niF-Js-hSD" secondAttribute="centerX" id="teV-pD-rF0"/>
@@ -721,7 +706,6 @@
         </view>
     </objects>
     <resources>
-        <image name="game_menu_off.png" width="64" height="31"/>
         <image name="game_menu_on.png" width="64" height="31"/>
         <image name="game_playing_bg.png" width="640" height="305"/>
         <image name="game_start.png" width="60" height="60"/>

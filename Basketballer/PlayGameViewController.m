@@ -470,8 +470,8 @@ typedef enum {
     self.gameHostScoreLable.text = @"0";
     self.gameGuestScoreLable.text = @"0";
     [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
-    [self.foulLabel setText:LocalString(@"Foul")];
-    [self.timeoutLabel setText:LocalString(@"Timeout")];
+//    [self.foulLabel setText:LocalString(@"Foul")];
+//    [self.timeoutLabel setText:LocalString(@"Timeout")];
 }
 
 - (NSString *)pageName {
