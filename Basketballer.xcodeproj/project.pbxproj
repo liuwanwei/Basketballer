@@ -14,16 +14,12 @@
 		3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */; };
 		3C08CC7415F1AC4B00AE699F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */; };
 		3C0BD4C815E36AD800EEAB0B /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BD4C715E36AD800EEAB0B /* SoundManager.m */; };
-		3C0FC8E115E78015002620F8 /* timeout.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC8DF15E78015002620F8 /* timeout.png */; };
-		3C0FC8E215E78015002620F8 /* timeout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC8E015E78015002620F8 /* timeout@2x.png */; };
 		3C121F6515A3E9C00062BECD /* TeamInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C121F6315A3E9C00062BECD /* TeamInfoViewController.m */; };
 		3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */; };
-		3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3C12203115A6D9DA0062BECD /* sendmsg.caf */; };
 		3C35FA4A15EE5970006B2470 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C35FA4915EE5970006B2470 /* MoreViewController.m */; };
 		3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8291637753100619526 /* OnlyPointRule.m */; };
 		3C40A8321637C14100619526 /* PointsRuleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */; };
 		3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
-		3C5207CC15EB50360079D5DB /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C5207CA15EB50360079D5DB /* horn.wav */; };
 		3C5207D315EB52A80079D5DB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5207D215EB52A80079D5DB /* AVFoundation.framework */; };
 		3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */; };
 		3C82955A15B3B2A300A5E7E7 /* ActionRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C82955815B3B2A300A5E7E7 /* ActionRecordViewController.m */; };
@@ -53,13 +49,9 @@
 		3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE45815BE25790030C302 /* GameHistoryMapViewController.xib */; };
 		3CCAE46115BE3B440030C302 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCAE46015BE3B440030C302 /* MapKit.framework */; };
 		3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */; };
-		3CE1875915C6DA9900A17E4F /* resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875715C6DA9900A17E4F /* resume.png */; };
-		3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875815C6DA9900A17E4F /* resume@2x.png */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */; };
-		7914D02019E7D1DC008499A3 /* game_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01919E7D1DB008499A3 /* game_pause@2x.png */; };
-		7914D02319E7D1DC008499A3 /* game_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01C19E7D1DC008499A3 /* game_start@2x.png */; };
 		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
 		79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E33AF219EA12F000AC46DE /* ActionRecordCell.m */; };
 		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
@@ -120,14 +112,6 @@
 		FB7DFF561A9EE830008F6AB8 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF541A9EE830008F6AB8 /* RosterViewController.m */; };
 		FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
 		FB7DFFA01AA3F741008F6AB8 /* TextEditorFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */; };
-		FB7DFFA21AA4088C008F6AB8 /* player_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA11AA4088C008F6AB8 /* player_profile.png */; };
-		FB7DFFAA1AA42106008F6AB8 /* Background1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */; };
-		FB7DFFAB1AA42106008F6AB8 /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */; };
-		FB7DFFAC1AA42106008F6AB8 /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */; };
-		FB7DFFAD1AA42106008F6AB8 /* Background4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */; };
-		FB7DFFAE1AA42106008F6AB8 /* MVP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */; };
-		FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */; };
-		FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */; };
 		FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */; };
 		FB7DFFB51AA59CBB008F6AB8 /* HowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
@@ -227,11 +211,9 @@
 		FBB22C151AA9832C008EAC03 /* StatisticSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */; };
 		FBB22C161AA9832C008EAC03 /* TeamInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */; };
 		FBB22C181AA9832C008EAC03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
-		FBB22C191AA9832C008EAC03 /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3C12203115A6D9DA0062BECD /* sendmsg.caf */; };
 		FBB22C1A1AA9832C008EAC03 /* GameHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D116E15A591AA0074982D /* GameHistoryCell.xib */; };
 		FBB22C1C1AA9832C008EAC03 /* GameStatisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D117915A5F2900074982D /* GameStatisticViewController.xib */; };
 		FBB22C1D1AA9832C008EAC03 /* StatisticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118415A684B30074982D /* StatisticCell.xib */; };
-		FBB22C1E1AA9832C008EAC03 /* MVP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */; };
 		FBB22C1F1AA9832C008EAC03 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		FBB22C201AA9832C008EAC03 /* TeamListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA0BFA15AE7726003505BC /* TeamListViewController.xib */; };
 		FBB22C211AA9832C008EAC03 /* TeamRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */; };
@@ -242,34 +224,20 @@
 		FBB22C281AA9832C008EAC03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8AA9F519FD294C005C6347 /* Images.xcassets */; };
 		FBB22C2E1AA9832C008EAC03 /* GameHistoryMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE45815BE25790030C302 /* GameHistoryMapViewController.xib */; };
 		FBB22C2F1AA9832C008EAC03 /* SurroundingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */; };
-		FBB22C301AA9832C008EAC03 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */; };
 		FBB22C311AA9832C008EAC03 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65FF05215C455F200E96D6A /* ImageCell.xib */; };
-		FBB22C331AA9832C008EAC03 /* resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875715C6DA9900A17E4F /* resume.png */; };
-		FBB22C341AA9832C008EAC03 /* resume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875815C6DA9900A17E4F /* resume@2x.png */; };
-		FBB22C351AA9832C008EAC03 /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */; };
 		FBB22C3A1AA9832C008EAC03 /* RosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB957D1D19DEF65E007FC3DA /* RosterCollectionViewCell.xib */; };
 		FBB22C3D1AA9832C008EAC03 /* NewPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E032CD15CFC0CA00AF91CB /* NewPlayerViewController.xib */; };
 		FBB22C401AA9832C008EAC03 /* TeamSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F7D15D8C986002CAEE0 /* TeamSelectionCell.xib */; };
 		FBB22C411AA9832C008EAC03 /* Inspiration.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F7F15D9EB43002CAEE0 /* Inspiration.xib */; };
-		FBB22C421AA9832C008EAC03 /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */; };
 		FBB22C431AA9832C008EAC03 /* ChooseTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6914F8815DA22EC002CAEE0 /* ChooseTeamViewController.xib */; };
-		FBB22C451AA9832C008EAC03 /* game_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01919E7D1DB008499A3 /* game_pause@2x.png */; };
-		FBB22C4B1AA9832C008EAC03 /* Offence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */; };
 		FBB22C4D1AA9832C008EAC03 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */; };
-		FBB22C511AA9832C008EAC03 /* Background4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */; };
-		FBB22C571AA9832C008EAC03 /* timeout.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC8DF15E78015002620F8 /* timeout.png */; };
-		FBB22C581AA9832C008EAC03 /* timeout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC8E015E78015002620F8 /* timeout@2x.png */; };
-		FBB22C591AA9832C008EAC03 /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C5207CA15EB50360079D5DB /* horn.wav */; };
 		FBB22C651AA9832C008EAC03 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
 		FBB22C6A1AA9832C008EAC03 /* PlayerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB8C77115EDF27C00091D52 /* PlayerActionCell.xib */; };
 		FBB22C6B1AA9832C008EAC03 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBB9027F1A1062D500CB7FD3 /* README.txt */; };
-		FBB22C701AA9832C008EAC03 /* player_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA11AA4088C008F6AB8 /* player_profile.png */; };
-		FBB22C721AA9832C008EAC03 /* game_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7914D01C19E7D1DC008499A3 /* game_start@2x.png */; };
 		FBB22C741AA9832C008EAC03 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
 		FBB22C761AA9832C008EAC03 /* PlaySoundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C06653315F6022300B1DCB8 /* PlaySoundViewController.xib */; };
 		FBB22C7B1AA9832C008EAC03 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F4111635194A00A2D645 /* AboutUsViewController.xib */; };
 		FBB22C7D1AA9832C008EAC03 /* GameHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */; };
-		FBB22C801AA9832C008EAC03 /* Background1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */; };
 		FBB22C881AA983C9008EAC03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B7A1AA97F37008EAC03 /* AppDelegate.m */; };
 		FBB22C891AA983C9008EAC03 /* BCGameHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B7D1AA97F37008EAC03 /* BCGameHistoryViewController.m */; };
 		FBB22C8A1AA983C9008EAC03 /* BCMyPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B801AA97F37008EAC03 /* BCMyPlayersViewController.m */; };
@@ -306,12 +274,9 @@
 		3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3C0BD4C615E36AD800EEAB0B /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		3C0BD4C715E36AD800EEAB0B /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
-		3C0FC8DF15E78015002620F8 /* timeout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timeout.png; path = Resources/images/timeout.png; sourceTree = "<group>"; };
-		3C0FC8E015E78015002620F8 /* timeout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "timeout@2x.png"; path = "Resources/images/timeout@2x.png"; sourceTree = "<group>"; };
 		3C121F6215A3E9C00062BECD /* TeamInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamInfoViewController.h; sourceTree = "<group>"; };
 		3C121F6315A3E9C00062BECD /* TeamInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoViewController.m; sourceTree = "<group>"; };
 		3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamInfoViewController.xib; sourceTree = "<group>"; };
-		3C12203115A6D9DA0062BECD /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sendmsg.caf; path = Resources/music/sendmsg.caf; sourceTree = "<group>"; };
 		3C35FA4815EE5970006B2470 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		3C35FA4915EE5970006B2470 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -320,7 +285,6 @@
 		3C40A8301637C14100619526 /* PointsRuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsRuleDetailViewController.h; sourceTree = "<group>"; };
 		3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsRuleDetailViewController.m; sourceTree = "<group>"; };
 		3C42824015B7C32200903F9D /* MatchModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchModeCell.xib; sourceTree = "<group>"; };
-		3C5207CA15EB50360079D5DB /* horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = horn.wav; path = Resources/music/horn.wav; sourceTree = "<group>"; };
 		3C5207D215EB52A80079D5DB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionRecordCell.xib; sourceTree = "<group>"; };
 		3C82955715B3B2A300A5E7E7 /* ActionRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordViewController.h; sourceTree = "<group>"; };
@@ -361,14 +325,10 @@
 		3CCAE46015BE3B440030C302 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3CCAE4AD15BEF0600030C302 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
 		3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
-		3CE1875715C6DA9900A17E4F /* resume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = resume.png; path = Resources/images/resume.png; sourceTree = "<group>"; };
-		3CE1875815C6DA9900A17E4F /* resume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "resume@2x.png"; path = "Resources/images/resume@2x.png"; sourceTree = "<group>"; };
 		3CFE1D1A15AC175E00247B80 /* StartGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGameViewController.h; sourceTree = "<group>"; };
 		3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGameViewController.m; sourceTree = "<group>"; };
 		3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartGameViewController.xib; sourceTree = "<group>"; };
 		5E8918FA55ABDB8B782374E1 /* Pods-Basketballer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basketballer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Basketballer/Pods-Basketballer.release.xcconfig"; sourceTree = "<group>"; };
-		7914D01919E7D1DB008499A3 /* game_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_pause@2x.png"; path = "Resources/images/game_pause@2x.png"; sourceTree = "<group>"; };
-		7914D01C19E7D1DC008499A3 /* game_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "game_start@2x.png"; path = "Resources/images/game_start@2x.png"; sourceTree = "<group>"; };
 		79E33AF119EA12F000AC46DE /* ActionRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionRecordCell.h; sourceTree = "<group>"; };
 		79E33AF219EA12F000AC46DE /* ActionRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionRecordCell.m; sourceTree = "<group>"; };
 		B0127007879EC2697FD9997C /* Pods-Basketballer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basketballer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Basketballer/Pods-Basketballer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -476,14 +436,6 @@
 		FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterViewController.xib; sourceTree = "<group>"; };
 		FB7DFF9E1AA3F741008F6AB8 /* TextEditorFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditorFormViewController.h; sourceTree = "<group>"; };
 		FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditorFormViewController.m; sourceTree = "<group>"; };
-		FB7DFFA11AA4088C008F6AB8 /* player_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player_profile.png; path = Resources/images/player_profile.png; sourceTree = "<group>"; };
-		FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background1.mp3; path = Resources/music/Background1.mp3; sourceTree = "<group>"; };
-		FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background2.mp3; path = Resources/music/Background2.mp3; sourceTree = "<group>"; };
-		FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background3.mp3; path = Resources/music/Background3.mp3; sourceTree = "<group>"; };
-		FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background4.mp3; path = Resources/music/Background4.mp3; sourceTree = "<group>"; };
-		FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = MVP.mp3; path = Resources/music/MVP.mp3; sourceTree = "<group>"; };
-		FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Offence.mp3; path = Resources/music/Offence.mp3; sourceTree = "<group>"; };
-		FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Rock You.mp3"; path = "Resources/music/Rock You.mp3"; sourceTree = "<group>"; };
 		FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		FB7DFFB31AA59CBB008F6AB8 /* HowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToViewController.h; sourceTree = "<group>"; };
 		FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToViewController.m; sourceTree = "<group>"; };
@@ -601,20 +553,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C121F6715A437530062BECD /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				FB7DFFA11AA4088C008F6AB8 /* player_profile.png */,
-				7914D01919E7D1DB008499A3 /* game_pause@2x.png */,
-				7914D01C19E7D1DC008499A3 /* game_start@2x.png */,
-				3C0FC8DF15E78015002620F8 /* timeout.png */,
-				3C0FC8E015E78015002620F8 /* timeout@2x.png */,
-				3CE1875715C6DA9900A17E4F /* resume.png */,
-				3CE1875815C6DA9900A17E4F /* resume@2x.png */,
-			);
-			name = Image;
-			sourceTree = "<group>";
-		};
 		3C121F7615A43D290062BECD /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,22 +568,6 @@
 				3C0BD4C715E36AD800EEAB0B /* SoundManager.m */,
 			);
 			name = Helper;
-			sourceTree = "<group>";
-		};
-		3C12203015A6D9C60062BECD /* music */ = {
-			isa = PBXGroup;
-			children = (
-				FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */,
-				FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */,
-				FB7DFFA51AA42106008F6AB8 /* Background3.mp3 */,
-				FB7DFFA61AA42106008F6AB8 /* Background4.mp3 */,
-				FB7DFFA71AA42106008F6AB8 /* MVP.mp3 */,
-				FB7DFFA81AA42106008F6AB8 /* Offence.mp3 */,
-				FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */,
-				3C5207CA15EB50360079D5DB /* horn.wav */,
-				3C12203115A6D9DA0062BECD /* sendmsg.caf */,
-			);
-			name = music;
 			sourceTree = "<group>";
 		};
 		3CC1680015A2E52A00A2AB44 = {
@@ -723,8 +645,6 @@
 			children = (
 				E6914F7A15D72B20002CAEE0 /* Cell */,
 				3CC1683515A2E60200A2AB44 /* xib */,
-				3C12203015A6D9C60062BECD /* music */,
-				3C121F6715A437530062BECD /* Image */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1169,11 +1089,9 @@
 				FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
 				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
-				3C12203215A6D9DA0062BECD /* sendmsg.caf in Resources */,
 				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
 				E68D118515A684B30074982D /* StatisticCell.xib in Resources */,
-				FB7DFFAE1AA42106008F6AB8 /* MVP.mp3 in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
@@ -1184,36 +1102,22 @@
 				FB8AA9F619FD294C005C6347 /* Images.xcassets in Resources */,
 				3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */,
 				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
-				FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */,
 				E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */,
-				3CE1875915C6DA9900A17E4F /* resume.png in Resources */,
-				3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */,
-				FB7DFFAB1AA42106008F6AB8 /* Background2.mp3 in Resources */,
 				FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */,
 				E6E032CF15CFC0CA00AF91CB /* NewPlayerViewController.xib in Resources */,
 				E6914F7E15D8C986002CAEE0 /* TeamSelectionCell.xib in Resources */,
 				E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */,
-				FB7DFFAC1AA42106008F6AB8 /* Background3.mp3 in Resources */,
 				E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */,
-				7914D02019E7D1DC008499A3 /* game_pause@2x.png in Resources */,
-				FB7DFFAF1AA42106008F6AB8 /* Offence.mp3 in Resources */,
 				FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */,
-				FB7DFFAD1AA42106008F6AB8 /* Background4.mp3 in Resources */,
 				FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */,
-				3C0FC8E115E78015002620F8 /* timeout.png in Resources */,
-				3C0FC8E215E78015002620F8 /* timeout@2x.png in Resources */,
-				3C5207CC15EB50360079D5DB /* horn.wav in Resources */,
 				FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */,
 				3CB8C77215EDF27D00091D52 /* PlayerActionCell.xib in Resources */,
 				FBB902811A1062D500CB7FD3 /* README.txt in Resources */,
-				FB7DFFA21AA4088C008F6AB8 /* player_profile.png in Resources */,
-				7914D02319E7D1DC008499A3 /* game_start@2x.png in Resources */,
 				FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */,
 				3C06653415F6022300B1DCB8 /* PlaySoundViewController.xib in Resources */,
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
-				FB7DFFAA1AA42106008F6AB8 /* Background1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1236,11 +1140,9 @@
 				FBB22C151AA9832C008EAC03 /* StatisticSectionHeaderView.xib in Resources */,
 				FBB22C161AA9832C008EAC03 /* TeamInfoViewController.xib in Resources */,
 				FBB22C181AA9832C008EAC03 /* Default-568h@2x.png in Resources */,
-				FBB22C191AA9832C008EAC03 /* sendmsg.caf in Resources */,
 				FBB22C1A1AA9832C008EAC03 /* GameHistoryCell.xib in Resources */,
 				FBB22C1C1AA9832C008EAC03 /* GameStatisticViewController.xib in Resources */,
 				FBB22C1D1AA9832C008EAC03 /* StatisticCell.xib in Resources */,
-				FBB22C1E1AA9832C008EAC03 /* MVP.mp3 in Resources */,
 				FBB22C1F1AA9832C008EAC03 /* StartGameViewController.xib in Resources */,
 				FBB22C201AA9832C008EAC03 /* TeamListViewController.xib in Resources */,
 				FBB22C211AA9832C008EAC03 /* TeamRecordCell.xib in Resources */,
@@ -1251,34 +1153,20 @@
 				FBB22C281AA9832C008EAC03 /* Images.xcassets in Resources */,
 				FBB22C2E1AA9832C008EAC03 /* GameHistoryMapViewController.xib in Resources */,
 				FBB22C2F1AA9832C008EAC03 /* SurroundingsViewController.xib in Resources */,
-				FBB22C301AA9832C008EAC03 /* Rock You.mp3 in Resources */,
 				FBB22C311AA9832C008EAC03 /* ImageCell.xib in Resources */,
-				FBB22C331AA9832C008EAC03 /* resume.png in Resources */,
-				FBB22C341AA9832C008EAC03 /* resume@2x.png in Resources */,
-				FBB22C351AA9832C008EAC03 /* Background2.mp3 in Resources */,
 				FBB22C3A1AA9832C008EAC03 /* RosterCollectionViewCell.xib in Resources */,
 				FBB22C3D1AA9832C008EAC03 /* NewPlayerViewController.xib in Resources */,
 				FBB22C401AA9832C008EAC03 /* TeamSelectionCell.xib in Resources */,
 				FBB22C411AA9832C008EAC03 /* Inspiration.xib in Resources */,
-				FBB22C421AA9832C008EAC03 /* Background3.mp3 in Resources */,
 				FBB22C431AA9832C008EAC03 /* ChooseTeamViewController.xib in Resources */,
-				FBB22C451AA9832C008EAC03 /* game_pause@2x.png in Resources */,
-				FBB22C4B1AA9832C008EAC03 /* Offence.mp3 in Resources */,
 				FBB22C4D1AA9832C008EAC03 /* Launch Screen.xib in Resources */,
-				FBB22C511AA9832C008EAC03 /* Background4.mp3 in Resources */,
-				FBB22C571AA9832C008EAC03 /* timeout.png in Resources */,
-				FBB22C581AA9832C008EAC03 /* timeout@2x.png in Resources */,
-				FBB22C591AA9832C008EAC03 /* horn.wav in Resources */,
 				FBB22C651AA9832C008EAC03 /* RosterViewController.xib in Resources */,
 				FBB22C6A1AA9832C008EAC03 /* PlayerActionCell.xib in Resources */,
 				FBB22C6B1AA9832C008EAC03 /* README.txt in Resources */,
-				FBB22C701AA9832C008EAC03 /* player_profile.png in Resources */,
-				FBB22C721AA9832C008EAC03 /* game_start@2x.png in Resources */,
 				FBB22C741AA9832C008EAC03 /* StatisticCompareCell.xib in Resources */,
 				FBB22C761AA9832C008EAC03 /* PlaySoundViewController.xib in Resources */,
 				FBB22C7B1AA9832C008EAC03 /* AboutUsViewController.xib in Resources */,
 				FBB22C7D1AA9832C008EAC03 /* GameHistoryViewController.xib in Resources */,
-				FBB22C801AA9832C008EAC03 /* Background1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

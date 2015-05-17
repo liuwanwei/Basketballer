@@ -23,12 +23,12 @@ typedef enum{
 
 @property (nonatomic) NSInteger mode;
 @property (nonatomic, weak) IBOutlet UILabel * timeoutTimeLabel;
-@property (nonatomic, weak) IBOutlet UILabel * statePromptLabel;
-@property (nonatomic, weak) IBOutlet UILabel * soundEffectLabel;
-@property (nonatomic, weak) IBOutlet UIButton * resumeMathButton;
-@property (nonatomic, weak) IBOutlet UIButton * resumeMathBgButton;
-@property (nonatomic, weak) IBOutlet UIButton * soundButton;
-@property (nonatomic ,weak) IBOutlet UIButton * soundBgButton;
+//@property (nonatomic, weak) IBOutlet UILabel * statePromptLabel;
+//@property (nonatomic, weak) IBOutlet UILabel * soundEffectLabel;
+//@property (nonatomic, weak) IBOutlet UIButton * resumeMathButton;
+//@property (nonatomic, weak) IBOutlet UIButton * resumeMathBgButton;
+//@property (nonatomic, weak) IBOutlet UIButton * soundButton;
+//@property (nonatomic ,weak) IBOutlet UIButton * soundBgButton;
 
 - (IBAction)resumeGame:(id)sender;
 - (IBAction)showPlaySoundView:(id)sender;

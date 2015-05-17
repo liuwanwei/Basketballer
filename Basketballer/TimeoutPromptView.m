@@ -23,12 +23,6 @@
 @implementation TimeoutPromptView
 @synthesize mode = _mode;
 @synthesize timeoutTimeLabel = _timeoutTimeLabel;
-@synthesize soundEffectLabel = _soundEffectLabel;
-@synthesize resumeMathButton = _resumeMathButton;
-@synthesize resumeMathBgButton = _resumeMathBgButton;
-@synthesize soundButton = _soundButton;
-@synthesize soundBgButton = _soundBgButton;
-@synthesize statePromptLabel = _statePromptLabel;
 
 #pragma 私有函数
 - (void)showAlertView{
@@ -99,60 +93,28 @@
 
 #pragma 类成员函数
 - (void)updateLayout {
-    UIImage * playImage = [UIImage imageNamed:@"resume"];
-    UIImage * timeoutImage = nil;
-    [self.resumeMathButton setBackgroundImage:playImage forState:UIControlStateNormal];
-    [self.statePromptLabel setText:LocalString(@"StartMatch")];
-    [self.soundButton setHidden:YES];
-    [self.soundButton setEnabled:NO];
     switch (_match.state) {
         case MatchStatePrepare:
             self.backgroundColor = [UIColor clearColor];
             [self.timeoutTimeLabel setHidden:YES];
-            [self.statePromptLabel setText:LocalString(@"StartMatch")];
             break;
         case MatchStateTimeoutTemp:
             self.backgroundColor = [UIColor clearColor];
             break;
         case MatchStatePlaying:
             self.backgroundColor = [UIColor clearColor];
-            timeoutImage = [UIImage imageNamed:@"timeout"];
-            [self.resumeMathButton setBackgroundImage:timeoutImage forState:UIControlStateNormal];
-            [self.resumeMathButton setEnabled:YES];
-            [self.resumeMathBgButton setEnabled:YES];
-            [self.statePromptLabel setText:LocalString(@"Pause")];
             break;
         case MatchStatePeriodFinished:
             self.backgroundColor = [UIColor clearColor];
             [self.timeoutTimeLabel setHidden:YES];
-            [self.resumeMathButton setHidden:NO];
-            [self.resumeMathButton setEnabled:YES];
-            [self.resumeMathBgButton setEnabled:YES];
-            [self.statePromptLabel setHidden:NO];
             break;
         case MatchStateQuarterRestTime:
         case MatchStateTimeout:
             [self.timeoutTimeLabel setHidden:NO];
-            [self.resumeMathButton setHidden:YES];
-            [self.statePromptLabel setHidden:YES];
-            [self.resumeMathButton setEnabled:NO];
-            [self.resumeMathBgButton setEnabled:NO];
-            [self.soundButton setHidden:YES];
-            [self.soundButton setEnabled:NO];
-            [self.soundBgButton setEnabled:NO];
-            [self.soundEffectLabel setHidden:YES];
             break;
         case MatchStateTimeoutFinished:
         case MatchStateQuarterRestTimeFinished:
             self.backgroundColor = [UIColor clearColor];
-            [self.resumeMathButton setHidden:NO];
-            [self.resumeMathButton setEnabled:YES];
-            [self.resumeMathBgButton setEnabled:YES];
-            [self.statePromptLabel setHidden:NO];
-            [self.soundButton setHidden:YES];
-            [self.soundButton setEnabled:NO];
-            [self.soundBgButton setEnabled:YES];
-            [self.soundEffectLabel setHidden:NO];
             [self.timeoutTimeLabel setHidden:YES];
             break;
         default:
@@ -165,10 +127,7 @@
 - (id)initWithFrame:(CGRect)frame {
     NSArray * nib =[[NSBundle mainBundle] loadNibNamed:@"TimeoutPromptView" owner:self options:nil];
     self = [nib objectAtIndex:0];
-//    self.frame = frame;
     _match = [MatchUnderWay defaultMatch];
-    
-    self.soundEffectLabel.text = LocalString(@"SoundEffect");
     
     return self;
 }
