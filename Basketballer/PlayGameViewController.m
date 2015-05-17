@@ -13,7 +13,6 @@
 #import "TimeoutPromptView.h"
 #import "ActionRecordViewController.h"
 #import "AppDelegate.h"
-#import "StartMatchView.h"
 #import "GameSettingFormViewController.h"
 #import "SoundManager.h"
 #import "BaseRule.h"

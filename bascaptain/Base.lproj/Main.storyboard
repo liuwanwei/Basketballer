@@ -55,7 +55,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-YK-gMs" userLabel="球队信息">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_playing_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="OAg-H7-e2O" userLabel="背景图">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_game_header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OAg-H7-e2O" userLabel="背景图">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultHomeTeam.png" translatesAutoresizingMaskIntoConstraints="NO" id="fQF-ZF-dDw" userLabel="主队头像">
@@ -736,9 +736,9 @@
         <image name="TabBarHistory.png" width="24" height="24"/>
         <image name="TabBarSetting.png" width="24" height="24"/>
         <image name="TabBarTeam.png" width="30" height="30"/>
-        <image name="game_playing_bg.png" width="640" height="305"/>
         <image name="game_start.png" width="60" height="60"/>
         <image name="notice_dot.png" width="7" height="7"/>
+        <image name="play_game_header_bg" width="320" height="152"/>
         <image name="player_profile.png" width="122" height="140"/>
         <image name="tabbarBackground.png" width="1" height="49"/>
     </resources>

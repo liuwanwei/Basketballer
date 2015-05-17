@@ -42,7 +42,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80" userLabel="TopHeader">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_playing_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="gpO-TL-oWn">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_game_header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="gpO-TL-oWn">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="79">
@@ -749,9 +749,9 @@
         </view>
     </objects>
     <resources>
-        <image name="game_playing_bg.png" width="640" height="305"/>
         <image name="game_start.png" width="60" height="60"/>
         <image name="music.png" width="40" height="40"/>
+        <image name="play_game_header_bg" width="320" height="152"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
