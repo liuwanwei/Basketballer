@@ -493,9 +493,10 @@ typedef enum {
        
             // 给控制按钮加阴影效果的代码，只在iPad下打开，避免界面过于空虚
             if (isPad) {
-                [controlButton setBackgroundColor:[UIColor lightTextColor]];
-                controlButton.layer.cornerRadius = 12;
-                controlButton.clipsToBounds = YES;
+//                [controlButton setBackgroundColor:[UIColor lightTextColor]];
+//                controlButton.layer.cornerRadius = 12;
+//                controlButton.clipsToBounds = YES;
+                controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
             }else{
                 if (controlButton.tag < GuestTeamTag) {
                     controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

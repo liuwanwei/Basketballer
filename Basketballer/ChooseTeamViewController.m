@@ -152,9 +152,15 @@ typedef enum{
     [super viewDidAppear:animated];
     
     // FIXME: 测试用，默认自动选中前两队
-    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    [self startMatchTouched:self.startMatchButton];
+    static BOOL DebugMode = NO;
+    
+    DebugMode = YES;
+    
+    if (DebugMode) {
+        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [self startMatchTouched:self.startMatchButton];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

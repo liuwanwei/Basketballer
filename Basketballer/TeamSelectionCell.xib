@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFill" image="DefaultTeamProfile.png" translatesAutoresizingMaskIntoConstraints="NO" id="17">
+                    <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="17">
                         <rect key="frame" x="8" y="4" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="26"/>
@@ -60,7 +60,6 @@
     </objects>
     <resources>
         <image name="CellNotSelected.png" width="31" height="31"/>
-        <image name="DefaultTeamProfile.png" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
