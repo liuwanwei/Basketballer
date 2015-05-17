@@ -130,7 +130,6 @@
 		FB7DFFB01AA42106008F6AB8 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA91AA42106008F6AB8 /* Rock You.mp3 */; };
 		FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */; };
 		FB7DFFB51AA59CBB008F6AB8 /* HowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */; };
-		FB7DFFBB1AA6FCA7008F6AB8 /* startpage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFBA1AA6FCA7008F6AB8 /* startpage@2x.jpg */; };
 		FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */; };
 		FB8457581A99FE7A00227408 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8457571A99FE7A00227408 /* Statistics.m */; };
 		FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220319E3FD9500213057 /* StatisticCompareCell.xib */; };
@@ -261,7 +260,6 @@
 		FBB22C571AA9832C008EAC03 /* timeout.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC8DF15E78015002620F8 /* timeout.png */; };
 		FBB22C581AA9832C008EAC03 /* timeout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC8E015E78015002620F8 /* timeout@2x.png */; };
 		FBB22C591AA9832C008EAC03 /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C5207CA15EB50360079D5DB /* horn.wav */; };
-		FBB22C5D1AA9832C008EAC03 /* startpage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFBA1AA6FCA7008F6AB8 /* startpage@2x.jpg */; };
 		FBB22C651AA9832C008EAC03 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFF551A9EE830008F6AB8 /* RosterViewController.xib */; };
 		FBB22C6A1AA9832C008EAC03 /* PlayerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB8C77115EDF27C00091D52 /* PlayerActionCell.xib */; };
 		FBB22C6B1AA9832C008EAC03 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FBB9027F1A1062D500CB7FD3 /* README.txt */; };
@@ -489,7 +487,6 @@
 		FB7DFFB11AA59261008F6AB8 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		FB7DFFB31AA59CBB008F6AB8 /* HowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToViewController.h; sourceTree = "<group>"; };
 		FB7DFFB41AA59CBB008F6AB8 /* HowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToViewController.m; sourceTree = "<group>"; };
-		FB7DFFBA1AA6FCA7008F6AB8 /* startpage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "startpage@2x.jpg"; path = "Resources/images/startpage@2x.jpg"; sourceTree = "<group>"; };
 		FB8457451A98B5AD00227408 /* GameSettingFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingFormViewController.h; sourceTree = "<group>"; };
 		FB8457461A98B5AD00227408 /* GameSettingFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingFormViewController.m; sourceTree = "<group>"; };
 		FB8457561A99FE7A00227408 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
@@ -607,7 +604,6 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				FB7DFFBA1AA6FCA7008F6AB8 /* startpage@2x.jpg */,
 				FB7DFFA11AA4088C008F6AB8 /* player_profile.png */,
 				7914D01919E7D1DB008499A3 /* game_pause@2x.png */,
 				7914D01C19E7D1DC008499A3 /* game_start@2x.png */,
@@ -1207,7 +1203,6 @@
 				3C0FC8E115E78015002620F8 /* timeout.png in Resources */,
 				3C0FC8E215E78015002620F8 /* timeout@2x.png in Resources */,
 				3C5207CC15EB50360079D5DB /* horn.wav in Resources */,
-				FB7DFFBB1AA6FCA7008F6AB8 /* startpage@2x.jpg in Resources */,
 				FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */,
 				3CB8C77215EDF27D00091D52 /* PlayerActionCell.xib in Resources */,
 				FBB902811A1062D500CB7FD3 /* README.txt in Resources */,
@@ -1274,7 +1269,6 @@
 				FBB22C571AA9832C008EAC03 /* timeout.png in Resources */,
 				FBB22C581AA9832C008EAC03 /* timeout@2x.png in Resources */,
 				FBB22C591AA9832C008EAC03 /* horn.wav in Resources */,
-				FBB22C5D1AA9832C008EAC03 /* startpage@2x.jpg in Resources */,
 				FBB22C651AA9832C008EAC03 /* RosterViewController.xib in Resources */,
 				FBB22C6A1AA9832C008EAC03 /* PlayerActionCell.xib in Resources */,
 				FBB22C6B1AA9832C008EAC03 /* README.txt in Resources */,

@@ -194,6 +194,7 @@ typedef enum {
     msg = [msg stringByAppendingString:[ActionManager descriptionForActionType:actionType]];
     
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.cornerRadius = 20.;
     hud.mode = MBProgressHUDModeText;
     hud.labelText = msg;
     hud.color = MainColor;
@@ -470,10 +471,13 @@ typedef enum {
     
     self.gameHostScoreLable.text = @"0";
     self.gameGuestScoreLable.text = @"0";
+
+    // 暂时以 Xib 中设计的为准，以后做多语言时再考虑差异化
 //    [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
 //    [self.foulLabel setText:LocalString(@"Foul")];
 //    [self.timeoutLabel setText:LocalString(@"Timeout")];
 
+    // 查询所有 action 控制按钮
     NSMutableArray * controls = [@[] mutableCopy];
     for (UIView * subView in self.view.subviews) {
         for (UIView * subsubView in subView.subviews) {
@@ -490,11 +494,8 @@ typedef enum {
             
             [controlButton setTitleColor:MainColor forState:UIControlStateNormal];
        
-            // 给控制按钮加阴影效果的代码，只在iPad下打开，避免界面过于空虚
+            // 给控制按钮加特殊效果的代码，只在iPad下打开，避免界面过于空虚
             if (isPad) {
-//                [controlButton setBackgroundColor:[UIColor lightTextColor]];
-//                controlButton.layer.cornerRadius = 12;
-//                controlButton.clipsToBounds = YES;
                 controlButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
             }else{
                 if (controlButton.tag < GuestTeamTag) {
