@@ -12,7 +12,6 @@
 		3C06655D15F7494000B1DCB8 /* music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C06655C15F7494000B1DCB8 /* music@2x.png */; };
 		3C07F4121635194A00A2D645 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C07F4101635194A00A2D645 /* AboutUsViewController.m */; };
 		3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F4111635194A00A2D645 /* AboutUsViewController.xib */; };
-		3C07F41516351F5100A2D645 /* weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41416351F5100A2D645 /* weibo@2x.png */; };
 		3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */; };
 		3C08CC7415F1AC4B00AE699F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */; };
 		3C0BD4C815E36AD800EEAB0B /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0BD4C715E36AD800EEAB0B /* SoundManager.m */; };
@@ -29,8 +28,6 @@
 		3C40A82A1637753200619526 /* OnlyPointRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8291637753100619526 /* OnlyPointRule.m */; };
 		3C40A8321637C14100619526 /* PointsRuleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */; };
 		3C40A8361637ECD700619526 /* periodButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A8341637ECD700619526 /* periodButtonBackground.png */; };
-		3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83D1637F7CC00619526 /* TabBarMatch.png */; };
-		3C40A8401637F7CC00619526 /* TabBarMatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */; };
 		3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
 		3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE815F9950B00EB97EF /* ArrowRight.png */; };
 		3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */; };
@@ -95,8 +92,6 @@
 		E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E65C9D0915F488FA00DCE645 /* Localizable.strings */; };
 		E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65FF05215C455F200E96D6A /* ImageCell.xib */; };
 		E65FF05D15C6261F00E96D6A /* Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = E65FF05C15C6261F00E96D6A /* Feature.m */; };
-		E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */; };
-		E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */; };
 		E68C515415D25B0100F52002 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C515315D25AFF00F52002 /* Action.m */; };
 		E68D111E15A3DA0C0074982D /* GameSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D111D15A3DA0C0074982D /* GameSetting.m */; };
 		E68D116215A4245A0074982D /* SingleChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68D116115A4245A0074982D /* SingleChoiceViewController.m */; };
@@ -116,12 +111,6 @@
 		E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = E69255F115B3EA7500CBF606 /* TeamStatistics.m */; };
 		E69255FE15B551EA00CBF606 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = E69255FD15B551EA00CBF606 /* Team.m */; };
 		E6BFB4DC15E2111A008E9BC6 /* NbaRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */; };
-		E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE715B9597900324713 /* TabBarHistory.png */; };
-		E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */; };
-		E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE915B9597900324713 /* TabBarSetting.png */; };
-		E6CEFCF015B9597900324713 /* TabBarSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */; };
-		E6CEFCF115B9597900324713 /* TabBarTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEB15B9597900324713 /* TabBarTeam.png */; };
-		E6CEFCF215B9597900324713 /* TabBarTeam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */; };
 		E6E032A615C98CB600AF91CB /* MatchUnderWay.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E032A515C98CB600AF91CB /* MatchUnderWay.m */; };
 		E6E032B715CBDA5600AF91CB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E032B515CBDA5600AF91CB /* Icon.png */; };
 		E6E032B815CBDA5600AF91CB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E032B615CBDA5600AF91CB /* Icon@2x.png */; };
@@ -280,13 +269,7 @@
 		FBB22C231AA9832C008EAC03 /* ActionRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955415B3AF6400A5E7E7 /* ActionRecordCell.xib */; };
 		FBB22C241AA9832C008EAC03 /* ActionRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C82955915B3B2A300A5E7E7 /* ActionRecordViewController.xib */; };
 		FBB22C251AA9832C008EAC03 /* MatchModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C42824015B7C32200903F9D /* MatchModeCell.xib */; };
-		FBB22C261AA9832C008EAC03 /* TabBarHistory.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE715B9597900324713 /* TabBarHistory.png */; };
-		FBB22C271AA9832C008EAC03 /* TabBarHistory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */; };
 		FBB22C281AA9832C008EAC03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB8AA9F519FD294C005C6347 /* Images.xcassets */; };
-		FBB22C291AA9832C008EAC03 /* TabBarSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCE915B9597900324713 /* TabBarSetting.png */; };
-		FBB22C2A1AA9832C008EAC03 /* TabBarSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */; };
-		FBB22C2B1AA9832C008EAC03 /* TabBarTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEB15B9597900324713 /* TabBarTeam.png */; };
-		FBB22C2C1AA9832C008EAC03 /* TabBarTeam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */; };
 		FBB22C2D1AA9832C008EAC03 /* game_menu_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AE719E8CB9500AC46DE /* game_menu_off@2x.png */; };
 		FBB22C2E1AA9832C008EAC03 /* GameHistoryMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCAE45815BE25790030C302 /* GameHistoryMapViewController.xib */; };
 		FBB22C2F1AA9832C008EAC03 /* SurroundingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */; };
@@ -296,8 +279,6 @@
 		FBB22C331AA9832C008EAC03 /* resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875715C6DA9900A17E4F /* resume.png */; };
 		FBB22C341AA9832C008EAC03 /* resume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE1875815C6DA9900A17E4F /* resume@2x.png */; };
 		FBB22C351AA9832C008EAC03 /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA41AA42106008F6AB8 /* Background2.mp3 */; };
-		FBB22C361AA9832C008EAC03 /* ZhiHuNavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */; };
-		FBB22C371AA9832C008EAC03 /* ZhiHuNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */; };
 		FBB22C381AA9832C008EAC03 /* game_recording_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E33AEF19EA0E2B00AC46DE /* game_recording_background@2x.png */; };
 		FBB22C391AA9832C008EAC03 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E032B515CBDA5600AF91CB /* Icon.png */; };
 		FBB22C3A1AA9832C008EAC03 /* RosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB957D1D19DEF65E007FC3DA /* RosterCollectionViewCell.xib */; };
@@ -342,12 +323,9 @@
 		FBB22C791AA9832C008EAC03 /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE815F9950B00EB97EF /* ArrowRight.png */; };
 		FBB22C7A1AA9832C008EAC03 /* ArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */; };
 		FBB22C7B1AA9832C008EAC03 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F4111635194A00A2D645 /* AboutUsViewController.xib */; };
-		FBB22C7C1AA9832C008EAC03 /* weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41416351F5100A2D645 /* weibo@2x.png */; };
 		FBB22C7D1AA9832C008EAC03 /* GameHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */; };
 		FBB22C7E1AA9832C008EAC03 /* periodButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A8341637ECD700619526 /* periodButtonBackground.png */; };
-		FBB22C7F1AA9832C008EAC03 /* TabBarMatch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83D1637F7CC00619526 /* TabBarMatch.png */; };
 		FBB22C801AA9832C008EAC03 /* Background1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB7DFFA31AA42106008F6AB8 /* Background1.mp3 */; };
-		FBB22C811AA9832C008EAC03 /* TabBarMatch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */; };
 		FBB22C881AA983C9008EAC03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B7A1AA97F37008EAC03 /* AppDelegate.m */; };
 		FBB22C891AA983C9008EAC03 /* BCGameHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B7D1AA97F37008EAC03 /* BCGameHistoryViewController.m */; };
 		FBB22C8A1AA983C9008EAC03 /* BCMyPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB22B801AA97F37008EAC03 /* BCMyPlayersViewController.m */; };
@@ -381,7 +359,6 @@
 		3C07F40F1635194A00A2D645 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		3C07F4101635194A00A2D645 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		3C07F4111635194A00A2D645 /* AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsViewController.xib; sourceTree = "<group>"; };
-		3C07F41416351F5100A2D645 /* weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo@2x.png"; sourceTree = "<group>"; };
 		3C07F41B163545FA00A2D645 /* GameHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameHistoryViewController.xib; sourceTree = "<group>"; };
 		3C08CC7315F1AC4B00AE699F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3C0BD4C615E36AD800EEAB0B /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
@@ -405,8 +382,6 @@
 		3C40A8301637C14100619526 /* PointsRuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsRuleDetailViewController.h; sourceTree = "<group>"; };
 		3C40A8311637C14100619526 /* PointsRuleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsRuleDetailViewController.m; sourceTree = "<group>"; };
 		3C40A8341637ECD700619526 /* periodButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = periodButtonBackground.png; path = Resources/images/periodButtonBackground.png; sourceTree = "<group>"; };
-		3C40A83D1637F7CC00619526 /* TabBarMatch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarMatch.png; sourceTree = "<group>"; };
-		3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarMatch@2x.png"; sourceTree = "<group>"; };
 		3C42824015B7C32200903F9D /* MatchModeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchModeCell.xib; sourceTree = "<group>"; };
 		3C446BE815F9950B00EB97EF /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowRight.png; path = Resources/images/ArrowRight.png; sourceTree = "<group>"; };
 		3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ArrowRight@2x.png"; path = "Resources/images/ArrowRight@2x.png"; sourceTree = "<group>"; };
@@ -491,8 +466,6 @@
 		E65FF05215C455F200E96D6A /* ImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		E65FF05B15C6261F00E96D6A /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
 		E65FF05C15C6261F00E96D6A /* Feature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feature.m; sourceTree = "<group>"; };
-		E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZhiHuNavigationBar.png; sourceTree = "<group>"; };
-		E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZhiHuNavigationBar@2x.png"; sourceTree = "<group>"; };
 		E68C515215D25AFD00F52002 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 		E68C515315D25AFF00F52002 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Action.m; sourceTree = "<group>"; };
 		E68D111C15A3DA0C0074982D /* GameSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetting.h; sourceTree = "<group>"; };
@@ -524,12 +497,6 @@
 		E6BFB4DA15E2111A008E9BC6 /* NbaRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NbaRule.h; sourceTree = "<group>"; };
 		E6BFB4DB15E2111A008E9BC6 /* NbaRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NbaRule.m; sourceTree = "<group>"; };
 		E6CEFCBF15B90A6400324713 /* ConfiguratorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfiguratorViewController.h; sourceTree = "<group>"; };
-		E6CEFCE715B9597900324713 /* TabBarHistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarHistory.png; sourceTree = "<group>"; };
-		E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarHistory@2x.png"; sourceTree = "<group>"; };
-		E6CEFCE915B9597900324713 /* TabBarSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarSetting.png; sourceTree = "<group>"; };
-		E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarSetting@2x.png"; sourceTree = "<group>"; };
-		E6CEFCEB15B9597900324713 /* TabBarTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarTeam.png; sourceTree = "<group>"; };
-		E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarTeam@2x.png"; sourceTree = "<group>"; };
 		E6E032A415C98CB400AF91CB /* MatchUnderWay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchUnderWay.h; sourceTree = "<group>"; };
 		E6E032A515C98CB600AF91CB /* MatchUnderWay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchUnderWay.m; sourceTree = "<group>"; };
 		E6E032B515CBDA5600AF91CB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -722,6 +689,8 @@
 		3C121F6715A437530062BECD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				3C163C9C15DB3F4100552546 /* backNavigationBar.png */,
+				3C163C9D15DB3F4100552546 /* backNavigationBar@2x.png */,
 				FB7DFFBA1AA6FCA7008F6AB8 /* startpage@2x.jpg */,
 				FB7DFFA11AA4088C008F6AB8 /* player_profile.png */,
 				FB7DFF991AA170C7008F6AB8 /* left_arrow@2x.png */,
@@ -734,10 +703,7 @@
 				7914D01919E7D1DB008499A3 /* game_pause@2x.png */,
 				7914D01B19E7D1DB008499A3 /* game_setting@2x.png */,
 				7914D01C19E7D1DC008499A3 /* game_start@2x.png */,
-				3C40A83D1637F7CC00619526 /* TabBarMatch.png */,
-				3C40A83E1637F7CC00619526 /* TabBarMatch@2x.png */,
 				3C40A8341637ECD700619526 /* periodButtonBackground.png */,
-				3C07F41416351F5100A2D645 /* weibo@2x.png */,
 				3C446BE815F9950B00EB97EF /* ArrowRight.png */,
 				3C446BE915F9950B00EB97EF /* ArrowRight@2x.png */,
 				3C06655C15F7494000B1DCB8 /* music@2x.png */,
@@ -868,7 +834,6 @@
 			children = (
 				E6914F7A15D72B20002CAEE0 /* Cell */,
 				3CC1683515A2E60200A2AB44 /* xib */,
-				E6CEFCD215B9571400324713 /* BarImage */,
 				3C12203015A6D9C60062BECD /* music */,
 				3C121F6715A437530062BECD /* Image */,
 			);
@@ -1039,23 +1004,6 @@
 				3CB8C77115EDF27C00091D52 /* PlayerActionCell.xib */,
 			);
 			name = Cell;
-			sourceTree = "<group>";
-		};
-		E6CEFCD215B9571400324713 /* BarImage */ = {
-			isa = PBXGroup;
-			children = (
-				3C163C9C15DB3F4100552546 /* backNavigationBar.png */,
-				3C163C9D15DB3F4100552546 /* backNavigationBar@2x.png */,
-				E65FF07315C78A0E00E96D6A /* ZhiHuNavigationBar.png */,
-				E65FF07415C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png */,
-				E6CEFCE715B9597900324713 /* TabBarHistory.png */,
-				E6CEFCE815B9597900324713 /* TabBarHistory@2x.png */,
-				E6CEFCE915B9597900324713 /* TabBarSetting.png */,
-				E6CEFCEA15B9597900324713 /* TabBarSetting@2x.png */,
-				E6CEFCEB15B9597900324713 /* TabBarTeam.png */,
-				E6CEFCEC15B9597900324713 /* TabBarTeam@2x.png */,
-			);
-			name = BarImage;
 			sourceTree = "<group>";
 		};
 		FB1BA9301884E44300978359 /* Basketballer Tests */ = {
@@ -1348,13 +1296,7 @@
 				3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */,
 				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
-				E6CEFCED15B9597900324713 /* TabBarHistory.png in Resources */,
-				E6CEFCEE15B9597900324713 /* TabBarHistory@2x.png in Resources */,
 				FB8AA9F619FD294C005C6347 /* Images.xcassets in Resources */,
-				E6CEFCEF15B9597900324713 /* TabBarSetting.png in Resources */,
-				E6CEFCF015B9597900324713 /* TabBarSetting@2x.png in Resources */,
-				E6CEFCF115B9597900324713 /* TabBarTeam.png in Resources */,
-				E6CEFCF215B9597900324713 /* TabBarTeam@2x.png in Resources */,
 				79E33AE919E8CB9500AC46DE /* game_menu_off@2x.png in Resources */,
 				3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */,
 				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
@@ -1364,8 +1306,6 @@
 				3CE1875915C6DA9900A17E4F /* resume.png in Resources */,
 				3CE1875A15C6DA9900A17E4F /* resume@2x.png in Resources */,
 				FB7DFFAB1AA42106008F6AB8 /* Background2.mp3 in Resources */,
-				E65FF07515C78A0E00E96D6A /* ZhiHuNavigationBar.png in Resources */,
-				E65FF07615C78A0E00E96D6A /* ZhiHuNavigationBar@2x.png in Resources */,
 				79E33AF019EA0E2B00AC46DE /* game_recording_background@2x.png in Resources */,
 				E6E032B715CBDA5600AF91CB /* Icon.png in Resources */,
 				FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */,
@@ -1412,12 +1352,9 @@
 				3C446BEA15F9950B00EB97EF /* ArrowRight.png in Resources */,
 				3C446BEB15F9950B00EB97EF /* ArrowRight@2x.png in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
-				3C07F41516351F5100A2D645 /* weibo@2x.png in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
 				3C40A8361637ECD700619526 /* periodButtonBackground.png in Resources */,
-				3C40A83F1637F7CC00619526 /* TabBarMatch.png in Resources */,
 				FB7DFFAA1AA42106008F6AB8 /* Background1.mp3 in Resources */,
-				3C40A8401637F7CC00619526 /* TabBarMatch@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,13 +1390,7 @@
 				FBB22C231AA9832C008EAC03 /* ActionRecordCell.xib in Resources */,
 				FBB22C241AA9832C008EAC03 /* ActionRecordViewController.xib in Resources */,
 				FBB22C251AA9832C008EAC03 /* MatchModeCell.xib in Resources */,
-				FBB22C261AA9832C008EAC03 /* TabBarHistory.png in Resources */,
-				FBB22C271AA9832C008EAC03 /* TabBarHistory@2x.png in Resources */,
 				FBB22C281AA9832C008EAC03 /* Images.xcassets in Resources */,
-				FBB22C291AA9832C008EAC03 /* TabBarSetting.png in Resources */,
-				FBB22C2A1AA9832C008EAC03 /* TabBarSetting@2x.png in Resources */,
-				FBB22C2B1AA9832C008EAC03 /* TabBarTeam.png in Resources */,
-				FBB22C2C1AA9832C008EAC03 /* TabBarTeam@2x.png in Resources */,
 				FBB22C2D1AA9832C008EAC03 /* game_menu_off@2x.png in Resources */,
 				FBB22C2E1AA9832C008EAC03 /* GameHistoryMapViewController.xib in Resources */,
 				FBB22C2F1AA9832C008EAC03 /* SurroundingsViewController.xib in Resources */,
@@ -1469,8 +1400,6 @@
 				FBB22C331AA9832C008EAC03 /* resume.png in Resources */,
 				FBB22C341AA9832C008EAC03 /* resume@2x.png in Resources */,
 				FBB22C351AA9832C008EAC03 /* Background2.mp3 in Resources */,
-				FBB22C361AA9832C008EAC03 /* ZhiHuNavigationBar.png in Resources */,
-				FBB22C371AA9832C008EAC03 /* ZhiHuNavigationBar@2x.png in Resources */,
 				FBB22C381AA9832C008EAC03 /* game_recording_background@2x.png in Resources */,
 				FBB22C391AA9832C008EAC03 /* Icon.png in Resources */,
 				FBB22C3A1AA9832C008EAC03 /* RosterCollectionViewCell.xib in Resources */,
@@ -1515,12 +1444,9 @@
 				FBB22C791AA9832C008EAC03 /* ArrowRight.png in Resources */,
 				FBB22C7A1AA9832C008EAC03 /* ArrowRight@2x.png in Resources */,
 				FBB22C7B1AA9832C008EAC03 /* AboutUsViewController.xib in Resources */,
-				FBB22C7C1AA9832C008EAC03 /* weibo@2x.png in Resources */,
 				FBB22C7D1AA9832C008EAC03 /* GameHistoryViewController.xib in Resources */,
 				FBB22C7E1AA9832C008EAC03 /* periodButtonBackground.png in Resources */,
-				FBB22C7F1AA9832C008EAC03 /* TabBarMatch.png in Resources */,
 				FBB22C801AA9832C008EAC03 /* Background1.mp3 in Resources */,
-				FBB22C811AA9832C008EAC03 /* TabBarMatch@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
