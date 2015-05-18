@@ -151,10 +151,10 @@ typedef enum{
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    // FIXME: 测试用，默认自动选中前两队
     static BOOL DebugMode = NO;
-    
-    DebugMode = YES;
+
+    // FIXME: 测试用，默认自动选中前两队
+//    DebugMode = YES;
     
     if (DebugMode) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
