@@ -173,9 +173,7 @@ typedef enum {
     NSNumber * playerId = nil;
     if (nil != note) {
         playerId = note.object;
-    }
-    
-    [self.navigationController popToViewController:self animated:YES];
+    }    
     
     [_match addActionForTeam:_selectedTeam.id forPlayer:playerId withAction:_selectActionType];
     [self toastForTeam:_selectedTeam.name forPlayer:playerId withAction:_selectActionType];
@@ -641,11 +639,17 @@ typedef enum {
         playerList.players = players;
         playerList.teamId = _selectedTeam.id;
         playerList.actionType = _selectActionType;
-        
         playerList.title = LocalString(@"SelectPlayer");
-        self.navigationController.navigationBarHidden = NO;
-        [self.navigationController pushViewController:playerList animated:YES];
         
+        if (isPad) {
+            UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:playerList];
+            nav.modalPresentationStyle = playerList.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:nav animated:YES completion:nil];
+
+        }else{
+            self.navigationController.navigationBarHidden = NO;
+            [self.navigationController pushViewController:playerList animated:YES];
+        }
     }else {
         [_match addActionForTeam:_selectedTeam.id forPlayer:nil withAction:_selectActionType];
         [self toastForTeam:_selectedTeam.name forPlayer:nil withAction:_selectActionType];

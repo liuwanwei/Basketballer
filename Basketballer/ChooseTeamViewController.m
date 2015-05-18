@@ -154,7 +154,7 @@ typedef enum{
     static BOOL DebugMode = NO;
 
     // FIXME: 测试用，默认自动选中前两队
-//    DebugMode = YES;
+    DebugMode = YES;
     
     if (DebugMode) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

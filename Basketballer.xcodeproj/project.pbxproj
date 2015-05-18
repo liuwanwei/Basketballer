@@ -295,7 +295,7 @@
 		3CBA0BF815AE7726003505BC /* TeamListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamListViewController.h; sourceTree = "<group>"; };
 		3CBA0BF915AE7726003505BC /* TeamListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamListViewController.m; sourceTree = "<group>"; };
 		3CBA0BFA15AE7726003505BC /* TeamListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamListViewController.xib; sourceTree = "<group>"; };
-		3CC1680B15A2E52A00A2AB44 /* Basketballer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Basketballer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CC1680B15A2E52A00A2AB44 /* 篮球记分助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "篮球记分助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CC1680F15A2E52A00A2AB44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3CC1681115A2E52A00A2AB44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3CC1681315A2E52A00A2AB44 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -590,7 +590,7 @@
 		3CC1680C15A2E52A00A2AB44 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3CC1680B15A2E52A00A2AB44 /* Basketballer.app */,
+				3CC1680B15A2E52A00A2AB44 /* 篮球记分助手.app */,
 				FB1BA92B1884E44300978359 /* BasketballerTests.xctest */,
 				FBB22C861AA9832C008EAC03 /* 篮球队长.app */,
 			);
@@ -998,7 +998,7 @@
 			);
 			name = "篮球记分助手";
 			productName = Basketballer;
-			productReference = 3CC1680B15A2E52A00A2AB44 /* Basketballer.app */;
+			productReference = 3CC1680B15A2E52A00A2AB44 /* 篮球记分助手.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FB1BA92A1884E44200978359 /* BasketballerTests */ = {

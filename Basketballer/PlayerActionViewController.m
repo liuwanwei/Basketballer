@@ -45,6 +45,15 @@ typedef enum{
     self.tableView.tableHeaderView = [self headerView];
     
     _actionsInMatch = [ActionManager defaultManager].actionArray;
+    
+    if (self.modalPresentationStyle == UIModalPresentationFormSheet) {
+        UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissPresentedForm:)];
+        self.navigationItem.leftBarButtonItem = item;
+    }
+}
+
+- (void)dismissPresentedForm:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)addPlayer:(id)sender{
@@ -189,6 +198,12 @@ typedef enum{
     NSNotification * notification;
     notification = [NSNotification notificationWithName:kActionDetermined object:number];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
+    
+    if (self.modalPresentationStyle == UIModalPresentationFormSheet) {
+        [self dismissPresentedForm:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end
