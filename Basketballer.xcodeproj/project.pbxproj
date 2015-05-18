@@ -982,9 +982,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3CC1680A15A2E52A00A2AB44 /* 比赛记分助手 */ = {
+		3CC1680A15A2E52A00A2AB44 /* 篮球记分助手 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "比赛记分助手" */;
+			buildConfigurationList = 3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "篮球记分助手" */;
 			buildPhases = (
 				DAC87DAFD8D83542763128CD /* Check Pods Manifest.lock */,
 				3CC1680715A2E52A00A2AB44 /* Sources */,
@@ -996,7 +996,7 @@
 			);
 			dependencies = (
 			);
-			name = "比赛记分助手";
+			name = "篮球记分助手";
 			productName = Basketballer;
 			productReference = 3CC1680B15A2E52A00A2AB44 /* Basketballer.app */;
 			productType = "com.apple.product-type.application";
@@ -1070,7 +1070,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3CC1680A15A2E52A00A2AB44 /* 比赛记分助手 */,
+				3CC1680A15A2E52A00A2AB44 /* 篮球记分助手 */,
 				FB1BA92A1884E44200978359 /* BasketballerTests */,
 				FBB22BBD1AA9832C008EAC03 /* CaptaionVesrion */,
 			);
@@ -1407,7 +1407,7 @@
 /* Begin PBXTargetDependency section */
 		FB1BA93A1884E44300978359 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3CC1680A15A2E52A00A2AB44 /* 比赛记分助手 */;
+			target = 3CC1680A15A2E52A00A2AB44 /* 篮球记分助手 */;
 			targetProxy = FB1BA9391884E44300978359 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1691,7 +1691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "比赛记分助手" */ = {
+		3CC1682815A2E52B00A2AB44 /* Build configuration list for PBXNativeTarget "篮球记分助手" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3CC1682915A2E52B00A2AB44 /* Debug */,
