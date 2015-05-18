@@ -58,7 +58,7 @@ static LocationManager * sLocationManager;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSDate * date = newLocation.timestamp;
     NSTimeInterval howRecent = [date timeIntervalSinceNow];
-    if (abs(howRecent) < 5) {
+    if (fabs(howRecent) < 5) {
         NSMutableDictionary * locations = [[NSMutableDictionary alloc] initWithCapacity:0];
         CLLocation * changeLocation = [[CLLocation alloc] initWithLatitude:[newLocation coordinate].latitude - 0.0011 longitude:[newLocation coordinate].longitude + 0.006 ];
         //获取位置信息
