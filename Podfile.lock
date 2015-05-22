@@ -1,6 +1,42 @@
 PODS:
   - AVOSCloud (2.6.10.2)
   - FXLabel (1.5.8)
+  - GLPubSub (1.0.1)
+  - libextobjc (0.4.1):
+    - libextobjc/EXTADT (= 0.4.1)
+    - libextobjc/EXTConcreteProtocol (= 0.4.1)
+    - libextobjc/EXTKeyPathCoding (= 0.4.1)
+    - libextobjc/EXTNil (= 0.4.1)
+    - libextobjc/EXTSafeCategory (= 0.4.1)
+    - libextobjc/EXTScope (= 0.4.1)
+    - libextobjc/EXTSelectorChecking (= 0.4.1)
+    - libextobjc/EXTSynthesize (= 0.4.1)
+    - libextobjc/NSInvocation+EXT (= 0.4.1)
+    - libextobjc/NSMethodSignature+EXT (= 0.4.1)
+    - libextobjc/RuntimeExtensions (= 0.4.1)
+    - libextobjc/UmbrellaHeader (= 0.4.1)
+  - libextobjc/EXTADT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSInvocation+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSMethodSignature+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4.1)
+  - libextobjc/UmbrellaHeader (0.4.1)
   - Masonry (0.6.1)
   - MBProgressHUD (0.9)
   - TMCache (1.2.3)
@@ -9,6 +45,8 @@ PODS:
 DEPENDENCIES:
   - AVOSCloud (~> 2.6.10.2)
   - FXLabel (~> 1.5.8)
+  - GLPubSub (~> 1.0.1)
+  - libextobjc (~> 0.4.1)
   - Masonry (~> 0.6.1)
   - MBProgressHUD (~> 0.9)
   - TMCache (~> 1.2.3)
@@ -17,6 +55,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AVOSCloud: 2c507c2f48a49c8b55f115273fb49e315c85f94f
   FXLabel: 14f7d4abb0eb531a0824b327a86f5b790171207f
+  GLPubSub: 22b669b29cb4daf4e27e339b3d773a986f585b69
+  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
   TMCache: 5f68bc38d741aa8df4c63131b847522783665d81

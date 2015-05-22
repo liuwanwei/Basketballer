@@ -27,6 +27,8 @@
 #import "ImageManager.h"
 #import "UIImageView+Additional.h"
 #import "Macro.h"
+#import <NSObject+GLPubSub.h>
+#import <EXTScope.h>
 #import <MBProgressHUD.h>
 
 typedef enum {
@@ -166,17 +168,6 @@ typedef enum {
 // 犯规消息处理函数
 - (void)handleAddFoulMessage:(NSNotification *)note {
     [self updateFouls];
-}
-
-// 队员操作消息处理
-- (void)handleAddPlayerActionMessage:(NSNotification *)note {
-    NSNumber * playerId = nil;
-    if (nil != note) {
-        playerId = note.object;
-    }    
-    
-    [_match addActionForTeam:_selectedTeam.id forPlayer:playerId withAction:_selectActionType];
-    [self toastForTeam:_selectedTeam.name forPlayer:playerId withAction:_selectActionType];
 }
 
 // Toast方式提示刚刚完成的操作
@@ -377,11 +368,28 @@ typedef enum {
     
     [nc addObserver:self selector:@selector(handleAddFoulMessage:) name:kAddFoulMessage object:nil];
     
-    [nc addObserver:self selector:@selector(handleAddPlayerActionMessage:) name:kActionDetermined object:nil];
-    
     [nc addObserver:self selector:@selector(handleTimeoutOverMessage:) name:TimeoutPromptViewTimeOver object:nil];    
     [nc addObserver:self selector:@selector(startGameNote:) name:TimeoutPromptViewStartGame object:nil];
     [nc addObserver:self selector:@selector(pauseCountdownTimeNote:) name:TimeoutPromptViewPauseGame object:nil];
+
+    @weakify(self);
+    [self subscribe:kActionDetermined handler:^(GLEvent * event){
+        @strongify(self);
+        if (nil != event.data) {
+            NSDictionary * userInfo = (NSDictionary *)event.data;
+            NSNumber * playerId = userInfo[@"playerId"];
+            NSNumber * actionType = userInfo[@"actionType"];
+            
+            if ([playerId isKindOfClass:[NSNull class]]) {
+                playerId = nil;
+            }
+            
+            ActionType action = (ActionType)[actionType integerValue];
+            [_match addActionForTeam:_selectedTeam.id forPlayer:playerId withAction:action];
+            [self toastForTeam:_selectedTeam.name forPlayer:playerId withAction:action];
+        }
+        
+    }];
 }
 
 - (void)swip:(UISwipeGestureRecognizer *)swip {

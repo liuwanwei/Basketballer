@@ -7,10 +7,11 @@
 //
 
 #import "PlayerEditViewController.h"
+#import "ActionManager.h"
 
 @interface PlayerActionViewController : PlayerListViewController
 
-@property (nonatomic) NSInteger actionType;
+@property (nonatomic) ActionType actionType;
 
 @property (nonatomic, weak) IBOutlet UITableViewCell * playerActionCell;
 @end

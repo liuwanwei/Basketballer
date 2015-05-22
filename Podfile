@@ -8,6 +8,8 @@ pod 'XLForm', '~> 2.1.0'
 pod 'TMCache', '~> 1.2.3'
 pod 'AVOSCloud', '~> 2.6.10.2'
 pod 'Masonry', '~> 0.6.1'
+pod 'GLPubSub', '~> 1.0.1'
+pod 'libextobjc', '~> 0.4.1'
 end
 
 target 'BasketballerTests' do

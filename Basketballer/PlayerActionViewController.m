@@ -10,11 +10,11 @@
 #import "NewPlayerViewController.h"
 #import "AppDelegate.h"
 #import "MatchUnderWay.h"
+#import "PointsActionCell.h"
+#import <NSObject+GLPubSub.h>
+#import <EXTScope.h>
 
-typedef enum{
-    PlayerCellActionEnabled = 0,    
-    PlayerCellActionUnEnabled = 1,    
-}PlayerCellAction;
+static NSString * const CellIdentifier = @"PointsActionCell";
 
 typedef enum{
     PlayerCellTagNumber = 1,
@@ -23,7 +23,6 @@ typedef enum{
 }PlayerCellTag;
 
 @interface PlayerActionViewController (){
-    NSArray * _actionsInMatch;
 }
 
 @end
@@ -44,12 +43,24 @@ typedef enum{
     
     self.tableView.tableHeaderView = [self headerView];
     
-    _actionsInMatch = [ActionManager defaultManager].actionArray;
-    
     if (self.modalPresentationStyle == UIModalPresentationFormSheet) {
         UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissPresentedForm:)];
         self.navigationItem.leftBarButtonItem = item;
     }
+    
+    [self.tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier ];
+    
+    @weakify(self);
+    [self subscribe:DismissPlayerActionView handler:^(GLEvent * event){
+        @strongify(self);
+        [self publish:kActionDetermined data:event.data];
+        
+        if (self.modalPresentationStyle == UIModalPresentationFormSheet) {
+            [self dismissPresentedForm:nil];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 - (void)dismissPresentedForm:(id)sender{
@@ -122,88 +133,42 @@ typedef enum{
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell;
-    
-    static NSString *CellIdentifier = @"PlayerActionCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"PlayerActionCell" owner:self options:nil];
-        cell = _playerActionCell;
-        self.playerActionCell = nil;
-    }
-    
-    UILabel * numberLabel = (UILabel *)[cell.contentView viewWithTag:PlayerCellTagNumber];;
-    UILabel * nameLabel = (UILabel *)[cell.contentView viewWithTag:PlayerCellTagName];
-    UILabel * foulLabel = (UILabel *)[cell.contentView viewWithTag:PlayerCellTagFoul];
+    PointsActionCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(indexPath.row == self.players.count){
-        numberLabel.text = LocalString(@"xx");
-        nameLabel.text = @"其他队员";
-        foulLabel.text = nil;
+        [cell customWithActionType:_actionType andPlayer:nil];
         
     }else{
         Player * player = [self.players objectAtIndex:indexPath.row];
-        numberLabel.text = [player.number stringValue];
-        nameLabel.text = player.name;
-        
-        // 设置该球员犯规数
-        if (_actionType == ActionTypeFoul) {
-            ActionManager * am = [ActionManager defaultManager];
-            Statistics * data = [am statisticsForPlayer:player.id inActions:_actionsInMatch];
-            NSInteger fouls = data.fouls;
-            foulLabel.text = [NSString stringWithFormat:@"犯规：%d", (int)fouls];
-            
-            if ([MatchUnderWay defaultMatch].rule.foulLimitForPlayer < fouls) {
-                // 球员超出犯规次数，理应被罚出场，名字显示红色
-                nameLabel.textColor = [UIColor redColor];
-                
-                // 球员超出犯规次数，犯规数显示红色
-                if (_actionType == ActionTypeFoul) {
-                    foulLabel.textColor = [UIColor redColor];
-                }
-                
-                // 设置不允许添加技术统计标识
-                cell.tag = PlayerCellActionUnEnabled;
-                
-            }else{
-                cell.tag = PlayerCellActionEnabled;
-            }
-        }else{
-            foulLabel.text = nil;
-        }
+        [cell customWithActionType:_actionType andPlayer:player];        
     }
 
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.tag == PlayerCellActionUnEnabled) {
-        [self showAlertView:LocalString(@"OperationForbidden")];
-        return;
-    }
-    
-    NSNumber * number = nil;
-    if (indexPath.row < self.players.count) {
-        // 获取球员id，在消息通知里使用。
-        Player * player = [self.players objectAtIndex:indexPath.row];
-        number = player.id;
-    }else{
-        // 选中最后一行"其他球员"，number默认值就是nil
-    }
-    
-    // 这里只是选择球员，假如犯规次数已到，应该在上一个NewActionViewController界面就提示。
-    // 犯规次数达到罚球次数时，弹出罚球提示对话框，也应该在NewActionViewController中进行。
-    NSNotification * notification;
-    notification = [NSNotification notificationWithName:kActionDetermined object:number];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-    
-    if (self.modalPresentationStyle == UIModalPresentationFormSheet) {
-        [self dismissPresentedForm:nil];
-    }else{
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return;
+//    
+//    Player * player = nil;
+//    if (indexPath.row < self.players.count) {
+//        // 获取球员id，在消息通知里使用。
+//        player = [self.players objectAtIndex:indexPath.row];
+//    }else{
+//        // 选中最后一行"其他球员"，number默认值就是nil
+//    }
+//    
+//    [self addActionForPlayer:player];
+//}
+//
+//- (void)addActionForPlayer:(Player *)player{
+//    // 这里只是选择球员，假如犯规次数已到，应该在上一个NewActionViewController界面就提示。
+//    // 犯规次数达到罚球次数时，弹出罚球提示对话框，也应该在NewActionViewController中进行。
+//    NSNotification * notification;
+//    notification = [NSNotification notificationWithName:kActionDetermined object:player.number];
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+//}
+
+
 
 @end
