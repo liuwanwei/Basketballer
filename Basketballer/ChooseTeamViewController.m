@@ -53,11 +53,31 @@ typedef enum{
 }
 
 - (void)checkStartMatchButtonEnabled {
+    static CAShapeLayer * sShapeLayer = nil;
+    
     if (_homeTeam == nil || _guestTeam == nil) {
-        [self.startMatchButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [sShapeLayer removeFromSuperlayer];
+
         self.startMatchButton.enabled = NO;
     }else {
-        [self.startMatchButton setBackgroundImage:[UIImage imageNamed:@"btnBlue"] forState:UIControlStateNormal];
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            if (sShapeLayer == nil) {
+                CAShapeLayer * layer = [CAShapeLayer layer];
+                CGSize radii = CGSizeMake(5, 30);
+                UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:self.startMatchButton.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:radii];
+                layer.path = path.CGPath;
+                layer.frame = self.startMatchButton.bounds;
+                layer.fillColor = [MainColor CGColor];
+                layer.strokeColor = [[UIColor clearColor] CGColor];
+                
+                sShapeLayer = layer;
+            }
+        });
+        
+        [self.startMatchButton.layer insertSublayer:sShapeLayer atIndex:0];
+
         self.startMatchButton.enabled = YES;
     }
 }
@@ -154,7 +174,7 @@ typedef enum{
     static BOOL DebugMode = NO;
 
     // FIXME: 测试用，默认自动选中前两队
-    DebugMode = YES;
+//    DebugMode = YES;
     
     if (DebugMode) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

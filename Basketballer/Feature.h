@@ -10,6 +10,8 @@
 
 #define IOS_7 ([[UIDevice currentDevice].systemVersion doubleValue] > 6.2)
 
+#define MainColor            [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90]
+
 @interface Feature : NSObject
 
 @property (strong, nonatomic, readonly) UIColor * weChatTableBgColor;

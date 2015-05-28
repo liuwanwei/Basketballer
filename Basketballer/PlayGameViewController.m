@@ -39,7 +39,6 @@ typedef enum {
 }AlertViewTag;
 
 #define GuestTeamTag        100
-#define MainColor            [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90]
 
 @interface PlayGameViewController() {
     MatchUnderWay * _match;
