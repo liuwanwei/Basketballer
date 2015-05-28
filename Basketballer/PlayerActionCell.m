@@ -6,7 +6,7 @@
 //
 //
 
-#import "PointsActionCell.h"
+#import "PlayerActionCell.h"
 #import "MatchUnderWay.h"
 #import "Player.h"
 #import <NSObject+GLPubSub.h>
@@ -20,7 +20,7 @@ typedef enum{
 }PlayerCellAction;
 
 
-@implementation PointsActionCell{
+@implementation PlayerActionCell{
     id _leftButtonTarget;
     id _rightButtonTarget;
     
@@ -140,25 +140,18 @@ typedef enum{
     if ([ActionManager isPointAction:type]) {
         NSString * desc = nil;
         if (type == ActionType1Point) {
-            desc = @"一分";
+            desc = @"1分";
         }else if(type == ActionType2Points){
-            desc = @"两分";
+            desc = @"2分";
         }else if(type == ActionType3Points){
-            desc = @"三分";
+            desc = @"3分";
         }
         [self.buttonRight setTitle:desc forState:UIControlStateNormal];
-        
-//        [self.buttonLeft setBackgroundColor:[UIColor yellowColor]];
         
     }else{
         [self disableLeftButton];
         
-        NSString * desc = [ActionManager descriptionForActionType:type];
-        NSRange range;
-        range.location = 0;
-        range.length = [desc length] - 2;
-        desc = [desc substringWithRange:range];
-        [self.buttonRight setTitle:desc forState:UIControlStateNormal];
+        [self.buttonRight setTitle:@"+1" forState:UIControlStateNormal];
     }
 }
 

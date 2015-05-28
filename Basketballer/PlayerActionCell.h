@@ -14,7 +14,7 @@ extern NSString * const DismissPlayerActionView;
 
 @class Player;
 
-@interface PointsActionCell : UITableViewCell
+@interface PlayerActionCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * labelNumber;
 @property (nonatomic, weak) IBOutlet UILabel * labelName;

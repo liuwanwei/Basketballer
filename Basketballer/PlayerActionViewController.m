@@ -10,11 +10,11 @@
 #import "NewPlayerViewController.h"
 #import "AppDelegate.h"
 #import "MatchUnderWay.h"
-#import "PointsActionCell.h"
+#import "PlayerActionCell.h"
 #import <NSObject+GLPubSub.h>
 #import <EXTScope.h>
 
-static NSString * const CellIdentifier = @"PointsActionCell";
+static NSString * const CellIdentifier = @"PlayerActionCell";
 
 typedef enum{
     PlayerCellTagNumber = 1,
@@ -35,6 +35,8 @@ typedef enum{
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.title = [ActionManager shortDescriptionForActionType:_actionType];
     
     UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPlayer:)];
     self.navigationItem.rightBarButtonItem = item;
@@ -133,7 +135,7 @@ typedef enum{
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PointsActionCell *cell;
+    PlayerActionCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(indexPath.row == self.players.count){

@@ -81,6 +81,7 @@ typedef enum {
 
 // 动作对应的名字
 + (NSString *)descriptionForActionType:(ActionType)actionType;
++ (NSString *)shortDescriptionForActionType:(ActionType)actionType;
 
 // 一场比赛中的所有动作。
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId;

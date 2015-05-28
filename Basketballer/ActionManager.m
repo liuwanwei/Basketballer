@@ -119,6 +119,19 @@ static ActionManager * sActionManager;
     return desc;
 }
 
++ (NSString *)shortDescriptionForActionType:(ActionType)actionType{
+    NSString * description = [[self class] descriptionForActionType:actionType];
+    if (description && description.length > 2) {
+        NSRange range;
+        range.location = 0;
+        range.length = [description length] - 2;
+        description = [description substringWithRange:range];
+        return description;
+    }else{
+        return nil;
+    }
+}
+
 // 取出一场比赛中的所有技术统计
 - (NSMutableArray *)actionsForMatch:(NSInteger)matchId{
     NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:kActionEntity];
