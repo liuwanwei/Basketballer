@@ -50,7 +50,6 @@
 		3CCAE4AF15BEF0600030C302 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAE4AE15BEF0600030C302 /* MapAnnotation.m */; };
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
-		52DCFA85C1FBF48085BBFA03 /* libPods-篮球记分助手.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F89B95B91DD6C684AD8DC8 /* libPods-篮球记分助手.a */; };
 		7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */; };
 		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
 		79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E33AF219EA12F000AC46DE /* ActionRecordCell.m */; };
@@ -522,7 +521,6 @@
 				3CC1681615A2E52A00A2AB44 /* CoreData.framework in Frameworks */,
 				FBB902801A1062D500CB7FD3 /* libMobClickLibrary.a in Frameworks */,
 				7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */,
-				52DCFA85C1FBF48085BBFA03 /* libPods-篮球记分助手.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

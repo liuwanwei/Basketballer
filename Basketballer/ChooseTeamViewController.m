@@ -68,14 +68,13 @@ typedef enum{
                 CGSize radii = CGSizeMake(5, 30);
                 UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:self.startMatchButton.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:radii];
                 layer.path = path.CGPath;
-                layer.frame = self.startMatchButton.bounds;
                 layer.fillColor = [MainColor CGColor];
-                layer.strokeColor = [[UIColor clearColor] CGColor];
                 
                 sShapeLayer = layer;
             }
         });
         
+        // 这里不能用 layer.mask，因为我还要修改区域背景的颜色，layer.mask 只有 alpha 通道用来拦截图形。
         [self.startMatchButton.layer insertSublayer:sShapeLayer atIndex:0];
 
         self.startMatchButton.enabled = YES;
@@ -174,7 +173,7 @@ typedef enum{
     static BOOL DebugMode = NO;
 
     // FIXME: 测试用，默认自动选中前两队
-//    DebugMode = YES;
+    DebugMode = YES;
     
     if (DebugMode) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

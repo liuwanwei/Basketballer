@@ -231,12 +231,11 @@
                             destructiveButtonTitle:nil
                             otherButtonTitles:LocalString(@"FromLibrary"), LocalString(@"Snapshot"), nil];
     
-    [menu showInView:[UIApplication sharedApplication].keyWindow];
+    [menu showInView:self.view];
 }
 
 #pragma mark - ActionSheet view delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 0) {
         [self showPhotoAlbum];
     }else if(buttonIndex == 1){

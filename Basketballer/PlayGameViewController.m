@@ -477,11 +477,6 @@ typedef enum {
     self.gameHostScoreLable.text = @"0";
     self.gameGuestScoreLable.text = @"0";
 
-    // 暂时以 Xib 中设计的为准，以后做多语言时再考虑差异化
-//    [self.settingButton setTitle:LocalString(@"Setting") forState:UIControlStateNormal];
-//    [self.foulLabel setText:LocalString(@"Foul")];
-//    [self.timeoutLabel setText:LocalString(@"Timeout")];
-
     // 查询所有 action 控制按钮
     NSMutableArray * controls = [@[] mutableCopy];
     for (UIView * subView in self.view.subviews) {
@@ -514,7 +509,7 @@ typedef enum {
 }
 
 - (NSString *)pageName {
-    NSString * pageName = @"PlatGame_";
+    NSString * pageName = @"PlayGame_";
     pageName = [pageName stringByAppendingString:_match.matchMode];
     return pageName;
 }

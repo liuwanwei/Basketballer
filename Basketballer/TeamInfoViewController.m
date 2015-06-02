@@ -107,7 +107,7 @@
             destructiveButtonTitle:nil 
             otherButtonTitles:LocalString(@"FromLibrary"), LocalString(@"Snapshot"), nil];
     
-    [menu showInView:[UIApplication sharedApplication].keyWindow];
+    [menu showInView:self.view];
 }
 
 - (void)showPhotoAlbum {

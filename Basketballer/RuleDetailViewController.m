@@ -102,12 +102,12 @@
                             destructiveButtonTitle:LocalString(@"DeleteRule")
                             otherButtonTitles:LocalString(@"ModifyRule"), nil];
     
-    [menu showInView:[UIApplication sharedApplication].keyWindow];
+    [menu showInView:self.view];
 
 }
 
 #pragma mark - ActionSheet view delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(buttonIndex == actionSheet.destructiveButtonIndex) {
         [self deleteCustomRule];
     }else if(buttonIndex == actionSheet.firstOtherButtonIndex){
