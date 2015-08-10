@@ -104,6 +104,12 @@
 		FB3BB4271AAE918A00296428 /* BCMyTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB3BB4251AAE8D1700296428 /* BCMyTeamViewController.m */; };
 		FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
 		FB3BB42A1AAE9E8B00296428 /* HomepageBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB3BB4281AAE9E3C00296428 /* HomepageBg.jpg */; };
+		FB469C181B26DD3000D5021E /* PlayerActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8519021B0EB72800C08F61 /* PlayerActionCell.m */; };
+		FB469C191B26DD7700D5021E /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46151B0775CA00D9203E /* UIImageView+Additional.m */; };
+		FB469C1A1B26DE7A00D5021E /* PlayerActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8518FD1B0EB49100C08F61 /* PlayerActionCell.xib */; };
+		FB469C1B1B26DF2400D5021E /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46111B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m */; };
+		FB469C1C1B26DF2400D5021E /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46131B0775CA00D9203E /* UIImage+Tint.m */; };
+		FB469C1D1B26DF2400D5021E /* UIImageView+Additional.h in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46141B0775CA00D9203E /* UIImageView+Additional.h */; };
 		FB4B46161B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46111B0775CA00D9203E /* NSDictionary+dictionaryWithObject.m */; };
 		FB4B46171B0775CA00D9203E /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46131B0775CA00D9203E /* UIImage+Tint.m */; };
 		FB4B46181B0775CA00D9203E /* UIImageView+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4B46151B0775CA00D9203E /* UIImageView+Additional.m */; };
@@ -1146,6 +1152,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB469C1A1B26DE7A00D5021E /* PlayerActionCell.xib in Resources */,
 				FBF0F7221ABD184F00EBC44C /* notice_dot@2x.png in Resources */,
 				FB3BB42A1AAE9E8B00296428 /* HomepageBg.jpg in Resources */,
 				FBB22C8C1AA987E9008EAC03 /* BCLaunchScreen.xib in Resources */,
@@ -1338,6 +1345,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB469C1B1B26DF2400D5021E /* NSDictionary+dictionaryWithObject.m in Sources */,
+				FB469C1C1B26DF2400D5021E /* UIImage+Tint.m in Sources */,
+				FB469C1D1B26DF2400D5021E /* UIImageView+Additional.h in Sources */,
+				FB469C191B26DD7700D5021E /* UIImageView+Additional.m in Sources */,
+				FB469C181B26DD3000D5021E /* PlayerActionCell.m in Sources */,
 				FBF0F7261ABD1A3E00EBC44C /* BCSettings.m in Sources */,
 				FB3BB4271AAE918A00296428 /* BCMyTeamViewController.m in Sources */,
 				FB3BB4231AAD984700296428 /* BCPlayerAction.m in Sources */,
