@@ -18,6 +18,7 @@
 NSString * const kHowto = @"HowTo";
 NSString * const kRateMe = @"RateMe";
 NSString * const kAboutUs = @"AboutUs";
+NSString * const kAppRec = @"AppRec";
 NSString * const kVesrion = @"Version";
 
 @implementation MoreViewController
@@ -61,6 +62,13 @@ NSString * const kVesrion = @"Version";
     // 关于我们
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kAboutUs rowType:XLFormRowDescriptorTypeButton title:LocalString(@"AboutUs")];
     row.action.viewControllerStoryboardId = @"AboutUsTableView";
+    [section addFormRow:row];
+    
+    // 应用推荐
+    section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kAppRec rowType:XLFormRowDescriptorTypeButton title:@"我们的其他 Apps"];
+    row.action.viewControllerStoryboardId = @"AppRecommandation";
     [section addFormRow:row];
     
     // 新的section

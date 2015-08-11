@@ -22,10 +22,11 @@
     self.title = @"关于我们";
     
     // 读取App版本并显示
-    NSDictionary * info =[[NSBundle mainBundle] infoDictionary];
-    NSString * version = info[@"CFBundleShortVersionString"];
-    NSString * build = info[@"CFBundleVersion"];
-    self.versionLabel.text = [NSString stringWithFormat:@"v%@(%@)", version, build];
+//    NSDictionary * info =[[NSBundle mainBundle] infoDictionary];
+//    NSString * version = info[@"CFBundleShortVersionString"];
+//    NSString * build = info[@"CFBundleVersion"];
+//    self.versionLabel.text = [NSString stringWithFormat:@"v%@(%@)", version, build];
+    self.versionLabel.text = @"";
 }
 
 - (void)didReceiveMemoryWarning {

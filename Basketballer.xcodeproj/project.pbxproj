@@ -95,6 +95,9 @@
 		FB121B261B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */; };
 		FB121B271B79A01700ED4F82 /* weibo-head-毛宇.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B241B79A01700ED4F82 /* weibo-head-毛宇.jpeg */; };
 		FB121B281B79A01700ED4F82 /* weibo-head-iHarbor.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */; };
+		FB121B2B1B79A75800ED4F82 /* recommend_hiit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B291B79A75800ED4F82 /* recommend_hiit.jpg */; };
+		FB121B2C1B79A75800ED4F82 /* recommend_zhengduoyan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B2A1B79A75800ED4F82 /* recommend_zhengduoyan.jpg */; };
+		FB121B2F1B79A7F300ED4F82 /* AppRecommandationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB121B2E1B79A7F300ED4F82 /* AppRecommandationViewController.m */; };
 		FB1BA92D1884E44300978359 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1BA92C1884E44300978359 /* XCTest.framework */; };
 		FB1BA92E1884E44300978359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		FB1BA92F1884E44300978359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
@@ -414,6 +417,10 @@
 		FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "weibo-head-黄厚宇.jpeg"; sourceTree = "<group>"; };
 		FB121B241B79A01700ED4F82 /* weibo-head-毛宇.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "weibo-head-毛宇.jpeg"; sourceTree = "<group>"; };
 		FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "weibo-head-iHarbor.jpeg"; sourceTree = "<group>"; };
+		FB121B291B79A75800ED4F82 /* recommend_hiit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = recommend_hiit.jpg; sourceTree = "<group>"; };
+		FB121B2A1B79A75800ED4F82 /* recommend_zhengduoyan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = recommend_zhengduoyan.jpg; sourceTree = "<group>"; };
+		FB121B2D1B79A7F300ED4F82 /* AppRecommandationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppRecommandationViewController.h; sourceTree = "<group>"; };
+		FB121B2E1B79A7F300ED4F82 /* AppRecommandationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppRecommandationViewController.m; sourceTree = "<group>"; };
 		FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer2.xcdatamodel; sourceTree = "<group>"; };
 		FB1BA92B1884E44300978359 /* BasketballerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketballerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -702,6 +709,8 @@
 		3CC1683815A2E6EE00A2AB44 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB121B2D1B79A7F300ED4F82 /* AppRecommandationViewController.h */,
+				FB121B2E1B79A7F300ED4F82 /* AppRecommandationViewController.m */,
 				FB96A9361B7997A3008FDCCA /* AboutUsTableViewController.h */,
 				FB96A9371B7997A3008FDCCA /* AboutUsTableViewController.m */,
 				FB7DFF9E1AA3F741008F6AB8 /* TextEditorFormViewController.h */,
@@ -813,6 +822,8 @@
 		FB121B221B79A00900ED4F82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FB121B291B79A75800ED4F82 /* recommend_hiit.jpg */,
+				FB121B2A1B79A75800ED4F82 /* recommend_zhengduoyan.jpg */,
 				FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */,
 				FB121B241B79A01700ED4F82 /* weibo-head-毛宇.jpeg */,
 				FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */,
@@ -1139,6 +1150,7 @@
 				E68D118515A684B30074982D /* StatisticCell.xib in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
+				FB121B2B1B79A75800ED4F82 /* recommend_hiit.jpg in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
 				3CC912A015B1C477003C74D4 /* TimeoutPromptView.xib in Resources */,
 				3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */,
@@ -1163,6 +1175,7 @@
 				FB121B261B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg in Resources */,
 				FB121B271B79A01700ED4F82 /* weibo-head-毛宇.jpeg in Resources */,
 				3C06653415F6022300B1DCB8 /* PlaySoundViewController.xib in Resources */,
+				FB121B2C1B79A75800ED4F82 /* recommend_zhengduoyan.jpg in Resources */,
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
@@ -1312,6 +1325,7 @@
 				E6E1D95915AB1E1A00CB0C0E /* BaseManager.m in Sources */,
 				3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */,
 				FB8457471A98B5AD00227408 /* GameSettingFormViewController.m in Sources */,
+				FB121B2F1B79A7F300ED4F82 /* AppRecommandationViewController.m in Sources */,
 				3CBA0BFB15AE7726003505BC /* TeamListViewController.m in Sources */,
 				E69255F215B3EA7500CBF606 /* TeamStatistics.m in Sources */,
 				3CC9129F15B1C477003C74D4 /* TimeoutPromptView.m in Sources */,
