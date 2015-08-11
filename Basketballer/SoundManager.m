@@ -40,7 +40,7 @@ static SoundManager * sSoundManager;
         self.soundFileURLRef = (__bridge CFURLRef)tapSound;
         AudioServicesCreateSystemSoundID (self.soundFileURLRef, &_soundFileObject);*/
         
-        _soundsArray = [[NSArray alloc] initWithObjects:@"Offence",@"Rock You",@"MVP", nil];
+        _soundsArray = [[NSArray alloc] initWithObjects:@"进攻号角",@"We'll Rock You",@"MVP, MVP", nil];
         
         _backgroundArray = [[NSArray alloc] initWithObjects:@"Background1",@"Background2",@"Background3",@"Background4", nil];
     }

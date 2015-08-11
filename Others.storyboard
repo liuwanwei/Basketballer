@@ -194,8 +194,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RE4-6b-TEp" id="6cP-F2-z9v">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="recommend_hiit.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-eN-nio">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_hiit.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-eN-nio">
+                                                    <rect key="frame" x="112.5" y="0.0" width="375" height="299.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="375" id="pBf-Wj-ILD"/>
                                                         <constraint firstAttribute="height" constant="300" id="qvx-sX-Av0"/>
@@ -223,8 +223,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RD5-hj-vMl" id="O95-dY-UCW">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="recommend_zhengduoyan.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-hg-cXm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_zhengduoyan.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-hg-cXm">
+                                                    <rect key="frame" x="112.5" y="0.0" width="375" height="299.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="375" id="AIG-za-xeu"/>
                                                         <constraint firstAttribute="height" constant="300" id="Rd6-oc-Pl6"/>

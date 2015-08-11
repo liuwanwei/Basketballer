@@ -70,7 +70,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     static NSArray * arr = nil;
     if (arr == nil) {
-        arr = @[@"营造气氛", @"背景音乐",@"其它"];
+        arr = @[@"营造气氛", @"背景音乐",@""];
     }
     
     return arr[section];

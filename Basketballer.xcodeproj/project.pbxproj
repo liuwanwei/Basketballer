@@ -98,6 +98,15 @@
 		FB121B2B1B79A75800ED4F82 /* recommend_hiit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B291B79A75800ED4F82 /* recommend_hiit.jpg */; };
 		FB121B2C1B79A75800ED4F82 /* recommend_zhengduoyan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B2A1B79A75800ED4F82 /* recommend_zhengduoyan.jpg */; };
 		FB121B2F1B79A7F300ED4F82 /* AppRecommandationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB121B2E1B79A7F300ED4F82 /* AppRecommandationViewController.m */; };
+		FB121B3A1B79D27300ED4F82 /* Background1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B311B79D27300ED4F82 /* Background1.mp3 */; };
+		FB121B3B1B79D27300ED4F82 /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B321B79D27300ED4F82 /* Background2.mp3 */; };
+		FB121B3C1B79D27300ED4F82 /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B331B79D27300ED4F82 /* Background3.mp3 */; };
+		FB121B3D1B79D27300ED4F82 /* Background4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B341B79D27300ED4F82 /* Background4.mp3 */; };
+		FB121B3E1B79D27300ED4F82 /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB121B351B79D27300ED4F82 /* horn.wav */; };
+		FB121B3F1B79D27300ED4F82 /* MVP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B361B79D27300ED4F82 /* MVP.mp3 */; };
+		FB121B401B79D27300ED4F82 /* Offence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B371B79D27300ED4F82 /* Offence.mp3 */; };
+		FB121B411B79D27300ED4F82 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B381B79D27300ED4F82 /* Rock You.mp3 */; };
+		FB121B421B79D27300ED4F82 /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = FB121B391B79D27300ED4F82 /* sendmsg.caf */; };
 		FB1BA92D1884E44300978359 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1BA92C1884E44300978359 /* XCTest.framework */; };
 		FB1BA92E1884E44300978359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		FB1BA92F1884E44300978359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
@@ -421,6 +430,15 @@
 		FB121B2A1B79A75800ED4F82 /* recommend_zhengduoyan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = recommend_zhengduoyan.jpg; sourceTree = "<group>"; };
 		FB121B2D1B79A7F300ED4F82 /* AppRecommandationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppRecommandationViewController.h; sourceTree = "<group>"; };
 		FB121B2E1B79A7F300ED4F82 /* AppRecommandationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppRecommandationViewController.m; sourceTree = "<group>"; };
+		FB121B311B79D27300ED4F82 /* Background1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background1.mp3; sourceTree = "<group>"; };
+		FB121B321B79D27300ED4F82 /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background2.mp3; sourceTree = "<group>"; };
+		FB121B331B79D27300ED4F82 /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background3.mp3; sourceTree = "<group>"; };
+		FB121B341B79D27300ED4F82 /* Background4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background4.mp3; sourceTree = "<group>"; };
+		FB121B351B79D27300ED4F82 /* horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = horn.wav; sourceTree = "<group>"; };
+		FB121B361B79D27300ED4F82 /* MVP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MVP.mp3; sourceTree = "<group>"; };
+		FB121B371B79D27300ED4F82 /* Offence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Offence.mp3; sourceTree = "<group>"; };
+		FB121B381B79D27300ED4F82 /* Rock You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rock You.mp3"; sourceTree = "<group>"; };
+		FB121B391B79D27300ED4F82 /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sendmsg.caf; sourceTree = "<group>"; };
 		FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer2.xcdatamodel; sourceTree = "<group>"; };
 		FB1BA92B1884E44300978359 /* BasketballerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketballerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -675,6 +693,7 @@
 		3CC1683315A2E5E400A2AB44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB121B301B79D27300ED4F82 /* MusicSound */,
 				FB121B221B79A00900ED4F82 /* Images */,
 				3CC1683515A2E60200A2AB44 /* xib */,
 			);
@@ -829,6 +848,22 @@
 				FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		FB121B301B79D27300ED4F82 /* MusicSound */ = {
+			isa = PBXGroup;
+			children = (
+				FB121B311B79D27300ED4F82 /* Background1.mp3 */,
+				FB121B321B79D27300ED4F82 /* Background2.mp3 */,
+				FB121B331B79D27300ED4F82 /* Background3.mp3 */,
+				FB121B341B79D27300ED4F82 /* Background4.mp3 */,
+				FB121B351B79D27300ED4F82 /* horn.wav */,
+				FB121B361B79D27300ED4F82 /* MVP.mp3 */,
+				FB121B371B79D27300ED4F82 /* Offence.mp3 */,
+				FB121B381B79D27300ED4F82 /* Rock You.mp3 */,
+				FB121B391B79D27300ED4F82 /* sendmsg.caf */,
+			);
+			path = MusicSound;
 			sourceTree = "<group>";
 		};
 		FB1BA9301884E44300978359 /* Basketballer Tests */ = {
@@ -1142,17 +1177,21 @@
 				3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */,
 				3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */,
 				3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */,
+				FB121B401B79D27300ED4F82 /* Offence.mp3 in Resources */,
 				FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
 				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
+				FB121B411B79D27300ED4F82 /* Rock You.mp3 in Resources */,
 				E68D118515A684B30074982D /* StatisticCell.xib in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
 				FB121B2B1B79A75800ED4F82 /* recommend_hiit.jpg in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
 				3CC912A015B1C477003C74D4 /* TimeoutPromptView.xib in Resources */,
+				FB121B3B1B79D27300ED4F82 /* Background2.mp3 in Resources */,
+				FB121B3A1B79D27300ED4F82 /* Background1.mp3 in Resources */,
 				3C82955515B3AF6400A5E7E7 /* ActionRecordCell.xib in Resources */,
 				3C82955B15B3B2A300A5E7E7 /* ActionRecordViewController.xib in Resources */,
 				3C42824115B7C32200903F9D /* MatchModeCell.xib in Resources */,
@@ -1160,9 +1199,12 @@
 				3CCAE45A15BE25790030C302 /* GameHistoryMapViewController.xib in Resources */,
 				E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */,
 				E65FF05315C455F300E96D6A /* ImageCell.xib in Resources */,
+				FB121B3F1B79D27300ED4F82 /* MVP.mp3 in Resources */,
 				FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */,
 				E6E032CF15CFC0CA00AF91CB /* NewPlayerViewController.xib in Resources */,
 				FB8518FE1B0EB49100C08F61 /* PlayerActionCell.xib in Resources */,
+				FB121B3D1B79D27300ED4F82 /* Background4.mp3 in Resources */,
+				FB121B3C1B79D27300ED4F82 /* Background3.mp3 in Resources */,
 				E6914F7E15D8C986002CAEE0 /* TeamSelectionCell.xib in Resources */,
 				E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */,
 				E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */,
@@ -1170,6 +1212,7 @@
 				FB121B281B79A01700ED4F82 /* weibo-head-iHarbor.jpeg in Resources */,
 				FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */,
 				FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */,
+				FB121B3E1B79D27300ED4F82 /* horn.wav in Resources */,
 				FBB902811A1062D500CB7FD3 /* README.txt in Resources */,
 				FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */,
 				FB121B261B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg in Resources */,
@@ -1180,6 +1223,7 @@
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
 				FB121B211B799F1600ED4F82 /* Others.storyboard in Resources */,
+				FB121B421B79D27300ED4F82 /* sendmsg.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
