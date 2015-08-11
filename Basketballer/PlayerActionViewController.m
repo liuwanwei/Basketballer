@@ -83,11 +83,20 @@ typedef enum{
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:[self pageName]];
+    NSLog(@"23 %@", NSStringFromSelector(_cmd));
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:[self pageName]];
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 - (void)showAlertView:(NSString *)message {

@@ -36,15 +36,7 @@ NSString * const kVesrion = @"Version";
     self.form = form;
 
     XLFormSectionDescriptor * section;
-    
-    // 新的section
-    section = [XLFormSectionDescriptor formSection];
-    [form addFormSection:section];
-
-    // 使用说明
-    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:kHowto rowType:XLFormRowDescriptorTypeButton title:@"使用说明"];
-    row.buttonViewController = [HowToViewController class];
-    [section addFormRow:row];
+    XLFormRowDescriptor * row;
     
     // 新的section
     section = [XLFormSectionDescriptor formSection];
@@ -55,8 +47,8 @@ NSString * const kVesrion = @"Version";
     [row.cellConfig setObject:@(NSTextAlignmentLeft) forKey:@"textLabel.textAlignment"];
     [row.cellConfig setObject:@(UITableViewCellAccessoryDisclosureIndicator) forKey:@"accessoryType"];
     row.action.formBlock = ^(XLFormRowDescriptor * sender){
-        NSString * blabla = @"非常感谢您给这个App评分，但要是因为误操作点了这里，请立即点“取消”，免得浪费您的时间。";
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"真的要评分吗大人？"
+        NSString * blabla = @"非常感谢您给这个没有任何盈利点的 App 评分，但要是因为误操作点了这里，请点“取消”";
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"请给五星好评鼓励开发者"
                                                          message:blabla
                                                         delegate:self
                                                cancelButtonTitle:@"取消"
@@ -68,7 +60,7 @@ NSString * const kVesrion = @"Version";
     
     // 关于我们
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kAboutUs rowType:XLFormRowDescriptorTypeButton title:LocalString(@"AboutUs")];
-    row.buttonViewController = [AboutUsViewController class];
+    row.action.viewControllerStoryboardId = @"AboutUsTableView";
     [section addFormRow:row];
     
     // 新的section
@@ -107,5 +99,10 @@ NSString * const kVesrion = @"Version";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }
+
+- (UIStoryboard *)storyboardForRow:(XLFormRowDescriptor *)formRow{
+    return [UIStoryboard storyboardWithName:@"Others" bundle:nil];
+}
+
 
 @end

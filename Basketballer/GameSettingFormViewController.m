@@ -66,7 +66,7 @@ NSString * const kButtonStop = @"buttonStop";
     // 比赛规则
     XLFormSectionDescriptor * sectionRule = [XLFormSectionDescriptor formSectionWithTitle:nil];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kGameRules rowType:XLFormRowDescriptorTypeButton title:LocalString(@"Rule")];
-    row.buttonViewController = [RuleDetailViewController class];
+    row.action.viewControllerClass = [RuleDetailViewController class];
     [sectionRule addFormRow:row];
     [form addFormSection:sectionRule];
     

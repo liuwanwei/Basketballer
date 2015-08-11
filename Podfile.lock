@@ -40,7 +40,7 @@ PODS:
   - Masonry (0.6.1)
   - MBProgressHUD (0.9)
   - TMCache (1.2.3)
-  - XLForm (2.1.0)
+  - XLForm (3.0.0)
 
 DEPENDENCIES:
   - AVOSCloud (~> 2.6.10.2)
@@ -50,7 +50,7 @@ DEPENDENCIES:
   - Masonry (~> 0.6.1)
   - MBProgressHUD (~> 0.9)
   - TMCache (~> 1.2.3)
-  - XLForm (~> 2.1.0)
+  - XLForm (~> 3.0.0)
 
 SPEC CHECKSUMS:
   AVOSCloud: 2c507c2f48a49c8b55f115273fb49e315c85f94f
@@ -60,6 +60,6 @@ SPEC CHECKSUMS:
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
   TMCache: 5f68bc38d741aa8df4c63131b847522783665d81
-  XLForm: ba9e657a360a810ab1f64cc2cd6307fd99a86866
+  XLForm: 10fc7eb9e2d5df21a515fa3a794f4e26319abd0e
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.37.2

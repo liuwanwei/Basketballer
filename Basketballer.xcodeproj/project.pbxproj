@@ -91,6 +91,7 @@
 		E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E1D97615AED57700CB0C0E /* TeamRecordCell.xib */; };
 		E6E9691B15BE40050073C5B8 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691A15BE40050073C5B8 /* Match.m */; };
 		E6F7682D15E36F3C006E5D4E /* FibaTeamStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */; };
+		FB121B211B799F1600ED4F82 /* Others.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB121B201B799F1600ED4F82 /* Others.storyboard */; };
 		FB1BA92D1884E44300978359 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1BA92C1884E44300978359 /* XCTest.framework */; };
 		FB1BA92E1884E44300978359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		FB1BA92F1884E44300978359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
@@ -138,6 +139,7 @@
 		FB957D2219DEF65E007FC3DA /* RosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB957D1D19DEF65E007FC3DA /* RosterCollectionViewCell.xib */; };
 		FB957D3219DFA4DF007FC3DA /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3119DFA4DF007FC3DA /* ImageManager.m */; };
 		FB957D3B19E24719007FC3DA /* GameHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D3A19E24719007FC3DA /* GameHistoryCell.m */; };
+		FB96A9381B7997A3008FDCCA /* AboutUsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB96A9371B7997A3008FDCCA /* AboutUsTableViewController.m */; };
 		FBB22BC01AA9832C008EAC03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1681D15A2E52B00A2AB44 /* main.m */; };
 		FBB22BC21AA9832C008EAC03 /* FibaCustomRule.m in Sources */ = {isa = PBXBuildFile; fileRef = FB957D0E19DA882B007FC3DA /* FibaCustomRule.m */; };
 		FBB22BC31AA9832C008EAC03 /* Basketballer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1682315A2E52B00A2AB44 /* Basketballer.xcdatamodeld */; };
@@ -405,6 +407,7 @@
 		E6E9691A15BE40050073C5B8 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibaTeamStatistics.h; sourceTree = "<group>"; };
 		E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaTeamStatistics.m; sourceTree = "<group>"; };
+		FB121B201B799F1600ED4F82 /* Others.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Others.storyboard; sourceTree = "<group>"; };
 		FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer2.xcdatamodel; sourceTree = "<group>"; };
 		FB1BA92B1884E44300978359 /* BasketballerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketballerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -479,6 +482,8 @@
 		FB957D3119DFA4DF007FC3DA /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		FB957D3919E24719007FC3DA /* GameHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryCell.h; sourceTree = "<group>"; };
 		FB957D3A19E24719007FC3DA /* GameHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryCell.m; sourceTree = "<group>"; };
+		FB96A9361B7997A3008FDCCA /* AboutUsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsTableViewController.h; sourceTree = "<group>"; };
+		FB96A9371B7997A3008FDCCA /* AboutUsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsTableViewController.m; sourceTree = "<group>"; };
 		FBB22B761AA97F37008EAC03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBB22B771AA97F37008EAC03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBB22B791AA97F37008EAC03 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -585,6 +590,7 @@
 				3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */,
 				E65C9D0915F488FA00DCE645 /* Localizable.strings */,
 				3CC1681715A2E52B00A2AB44 /* Basketballer */,
+				FB121B201B799F1600ED4F82 /* Others.storyboard */,
 				FB1BA9301884E44300978359 /* Basketballer Tests */,
 				FBB22B741AA97F37008EAC03 /* bascaptain */,
 				FBB22B911AA97F38008EAC03 /* bascaptainTests */,
@@ -689,6 +695,8 @@
 		3CC1683815A2E6EE00A2AB44 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FB96A9361B7997A3008FDCCA /* AboutUsTableViewController.h */,
+				FB96A9371B7997A3008FDCCA /* AboutUsTableViewController.m */,
 				FB7DFF9E1AA3F741008F6AB8 /* TextEditorFormViewController.h */,
 				FB7DFF9F1AA3F741008F6AB8 /* TextEditorFormViewController.m */,
 				FB7DFF531A9EE830008F6AB8 /* RosterViewController.h */,
@@ -1064,7 +1072,7 @@
 		3CC1680215A2E52A00A2AB44 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					3CC1680A15A2E52A00A2AB44 = {
 						DevelopmentTeam = UD8763N3M5;
@@ -1138,6 +1146,7 @@
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,
+				FB121B211B799F1600ED4F82 /* Others.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB4B46171B0775CA00D9203E /* UIImage+Tint.m in Sources */,
+				FB96A9381B7997A3008FDCCA /* AboutUsTableViewController.m in Sources */,
 				3CC1681E15A2E52B00A2AB44 /* main.m in Sources */,
 				3CC1682215A2E52B00A2AB44 /* AppDelegate.m in Sources */,
 				FB957D0F19DA882B007FC3DA /* FibaCustomRule.m in Sources */,
@@ -1492,6 +1502,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1530,6 +1541,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1552,8 +1564,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
@@ -1564,7 +1576,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e4431f8f-2ee4-4f70-8d4e-d20c88e26ffb";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1577,8 +1589,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
@@ -1589,7 +1601,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "345d5109-ec01-4b15-ad70-ca6d515e6fd4";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;

@@ -4,7 +4,7 @@
 target 'Basketballer' do
 pod 'FXLabel', '~> 1.5.8'
 pod 'MBProgressHUD', '~> 0.9'
-pod 'XLForm', '~> 2.1.0'
+pod 'XLForm', '~> 3.0.0'
 pod 'TMCache', '~> 1.2.3'
 pod 'AVOSCloud', '~> 2.6.10.2'
 pod 'Masonry', '~> 0.6.1'
