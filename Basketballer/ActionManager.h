@@ -63,7 +63,7 @@ typedef enum {
     ActionTypeReboundBackField = (ActionTypeDetailsBase + ActionTypeRebound + 1),
     ActionTypeAssist    = 9,        // 助攻
     ActionTypeBlock     = 10,       // 盖帽
-    ActionTypeMiss      = 11,       // 失误
+    ActionTypeTurnOver  = 11,       // 失误
     ActionTypeSteal     = 12,       // 抢断
 }ActionType;
 

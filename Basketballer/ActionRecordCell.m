@@ -49,37 +49,13 @@
 - (void)setAction:(Action *)action {
     _action = action;
     
-    NSString * actionStr;
-    switch ([action.type intValue]) {
-        case ActionType1Point:
-            actionStr = LocalString(@"1PTS");
-            break;
-        case ActionType2Points:
-            actionStr = LocalString(@"2PTS");
-            break;
-        case ActionType3Points:
-            actionStr = LocalString(@"3PTS");
-            break;
-        case ActionTypeFoul:
-            actionStr = LocalString(@"PF");
-            break;
-        case ActionTypeTimeoutRegular:
-            actionStr = LocalString(@"TO");
-            break;
-        case ActionTypeRebound:
-            actionStr = LocalString(@"REB");
-            break;
-        case ActionTypeAssist:
-            actionStr = LocalString(@"AST");
-            break;
-        default:
-            break;
-    }
+    ActionType actionType = (ActionType)[action.type integerValue];
+    NSString * actionStr = [ActionManager descriptionForActionType:actionType];
     
     NSString * playerStr = @"";
     if (nil != action.player) {
         Player * player = [[PlayerManager defaultManager] playerWithId:action.player];
-        playerStr = player.name;
+        playerStr = [NSString stringWithFormat:@"%@号", player.number];
     }
     
     if (self.hostId == action.team) {

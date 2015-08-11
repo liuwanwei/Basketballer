@@ -67,7 +67,7 @@ typedef enum{
                              @[@(ActionTypeReboundBackField), @(ActionTypeReboundForeField)],
                              @[@(ActionTypeAssist)],
                              @[@(ActionTypeSteal)],
-                             @[@(ActionTypeMiss)],
+                             @[@(ActionTypeTurnOver)],
                              @[@(ActionTypeDefenciveFoul), @(ActionTypeOffenciveFoul)],
                              ];
         

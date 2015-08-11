@@ -257,8 +257,8 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qi0-la-rFk">
-                            <rect key="frame" x="145" y="6" width="30" height="30"/>
-                            <state key="normal" title="设置">
+                            <rect key="frame" x="130" y="6" width="60" height="30"/>
+                            <state key="normal" title="比赛设置">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -682,7 +682,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOo-mD-7f9">
                     <rect key="frame" x="130" y="150" width="60" height="30"/>
-                    <state key="normal" title="统计历史">
+                    <state key="normal" title="裁判记录">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

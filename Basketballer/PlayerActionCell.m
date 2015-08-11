@@ -10,7 +10,7 @@
 #import "MatchUnderWay.h"
 #import "Player.h"
 #import <NSObject+GLPubSub.h>
-#import "AppDelegate.h" // FIXME: 哪怕放到 pch 文件呢也比这儿强
+#import "AppDelegate.h"
 
 NSString * const DismissPlayerActionView = @"DismissPlayerActionView";
 

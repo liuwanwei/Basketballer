@@ -59,58 +59,58 @@ static ActionManager * sActionManager;
     NSString * desc = @"Unknown~";
     switch (actionType) {
         case ActionType1Point:
-            desc = @"得分+1";
+            desc = @"罚球+1分";
             break;
         case ActionType1PointMissed:
             desc = @"罚球未进";
             break;
         case ActionType2Points:
-            desc = @"得分+2";
+            desc = @"投篮+2分";
             break;
         case ActionType2PointMissed:
             desc = @"投篮未进";
             break;
         case ActionType3Points:
-            desc = @"得分+3";
+            desc = @"三分+3分";
             break;
         case ActionType3PointMissed:
             desc = @"三分未进";
             break;
         case ActionTypeAssist:
-            desc = @"助攻+1";
+            desc = @"助攻";
             break;
         case ActionTypeRebound:
-            desc = @"篮板+1";
+            desc = @"篮板";
             break;
         case ActionTypeReboundBackField:
-            desc = @"后场篮板+1";
+            desc = @"后场篮板";
             break;
         case ActionTypeReboundForeField:
-            desc = @"前场篮板+1";
+            desc = @"前场篮板";
             break;
-        case ActionTypeMiss:
-            desc = @"失误+1";
+        case ActionTypeTurnOver:
+            desc = @"失误";
             break;
         case ActionTypeSteal:
-            desc = @"抢断+1";
+            desc = @"抢断";
             break;
         case ActionTypeFoul:
-            desc = @"犯规+1";
+            desc = @"犯规";
             break;
         case ActionTypeOffenciveFoul:
-            desc = @"进攻犯规+1";
+            desc = @"进攻犯规";
             break;
         case ActionTypeDefenciveFoul:
-            desc = @"防守犯规+1";
+            desc = @"防守犯规";
             break;
         case ActionTypeTimeoutShort:
-            desc = @"短暂停+1";     // NBA
+            desc = @"短暂停";     // NBA
             break;
         case ActionTypeTimeoutOfficial:
-            desc = @"官方暂停+1";   // NBA
+            desc = @"官方暂停";   // NBA
             break;
         case ActionTypeTimeoutRegular:
-            desc = @"暂停+1";
+            desc = @"常规暂停";
             break;
         default:
             break;
@@ -120,16 +120,28 @@ static ActionManager * sActionManager;
 }
 
 + (NSString *)shortDescriptionForActionType:(ActionType)actionType{
-    NSString * description = [[self class] descriptionForActionType:actionType];
-    if (description && description.length > 2) {
-        NSRange range;
-        range.location = 0;
-        range.length = [description length] - 2;
-        description = [description substringWithRange:range];
-        return description;
-    }else{
-        return nil;
+    switch (actionType) {
+        case ActionType1Point:
+            return @"罚球";
+        case ActionType2Points:
+            return @"投篮";
+        case ActionType3Points:
+            return @"三分球";
+        case ActionTypeRebound:
+            return @"篮板";
+        case ActionTypeAssist:
+            return @"助攻";
+        case ActionTypeTurnOver:
+            return @"失误";
+        case ActionTypeFoul:
+            return @"犯规";
+        case ActionTypeSteal:
+            return @"抢断";               // 暂未支持
+        default:
+            break;
     }
+    
+    return @"Miss";
 }
 
 // 取出一场比赛中的所有技术统计
