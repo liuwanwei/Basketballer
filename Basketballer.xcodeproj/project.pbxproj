@@ -92,6 +92,9 @@
 		E6E9691B15BE40050073C5B8 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E9691A15BE40050073C5B8 /* Match.m */; };
 		E6F7682D15E36F3C006E5D4E /* FibaTeamStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */; };
 		FB121B211B799F1600ED4F82 /* Others.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB121B201B799F1600ED4F82 /* Others.storyboard */; };
+		FB121B261B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */; };
+		FB121B271B79A01700ED4F82 /* weibo-head-毛宇.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B241B79A01700ED4F82 /* weibo-head-毛宇.jpeg */; };
+		FB121B281B79A01700ED4F82 /* weibo-head-iHarbor.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */; };
 		FB1BA92D1884E44300978359 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1BA92C1884E44300978359 /* XCTest.framework */; };
 		FB1BA92E1884E44300978359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		FB1BA92F1884E44300978359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
@@ -408,6 +411,9 @@
 		E6F7682B15E36F3B006E5D4E /* FibaTeamStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FibaTeamStatistics.h; sourceTree = "<group>"; };
 		E6F7682C15E36F3B006E5D4E /* FibaTeamStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FibaTeamStatistics.m; sourceTree = "<group>"; };
 		FB121B201B799F1600ED4F82 /* Others.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Others.storyboard; sourceTree = "<group>"; };
+		FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "weibo-head-黄厚宇.jpeg"; sourceTree = "<group>"; };
+		FB121B241B79A01700ED4F82 /* weibo-head-毛宇.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "weibo-head-毛宇.jpeg"; sourceTree = "<group>"; };
+		FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "weibo-head-iHarbor.jpeg"; sourceTree = "<group>"; };
 		FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer2.xcdatamodel; sourceTree = "<group>"; };
 		FB1BA92B1884E44300978359 /* BasketballerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketballerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -662,6 +668,7 @@
 		3CC1683315A2E5E400A2AB44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FB121B221B79A00900ED4F82 /* Images */,
 				3CC1683515A2E60200A2AB44 /* xib */,
 			);
 			name = Resources;
@@ -801,6 +808,16 @@
 				FB8457571A99FE7A00227408 /* Statistics.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		FB121B221B79A00900ED4F82 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */,
+				FB121B241B79A01700ED4F82 /* weibo-head-毛宇.jpeg */,
+				FB121B251B79A01700ED4F82 /* weibo-head-iHarbor.jpeg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		FB1BA9301884E44300978359 /* Basketballer Tests */ = {
@@ -1138,10 +1155,13 @@
 				E6914F8015D9EB43002CAEE0 /* Inspiration.xib in Resources */,
 				E6914F8A15DA22ED002CAEE0 /* ChooseTeamViewController.xib in Resources */,
 				FB7DFFB21AA59261008F6AB8 /* Launch Screen.xib in Resources */,
+				FB121B281B79A01700ED4F82 /* weibo-head-iHarbor.jpeg in Resources */,
 				FB3BB4291AAE9E3C00296428 /* HomepageBg.jpg in Resources */,
 				FB7DFF571A9EE830008F6AB8 /* RosterViewController.xib in Resources */,
 				FBB902811A1062D500CB7FD3 /* README.txt in Resources */,
 				FB8A220419E3FD9500213057 /* StatisticCompareCell.xib in Resources */,
+				FB121B261B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg in Resources */,
+				FB121B271B79A01700ED4F82 /* weibo-head-毛宇.jpeg in Resources */,
 				3C06653415F6022300B1DCB8 /* PlaySoundViewController.xib in Resources */,
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,

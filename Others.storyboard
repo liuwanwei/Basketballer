@@ -47,7 +47,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MLp-Hw-Uzq" id="Mbc-3e-eZc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weibo-head-iHarbor" translatesAutoresizingMaskIntoConstraints="NO" id="j2I-wi-2mN">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weibo-head-iHarbor.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="j2I-wi-2mN">
                                                     <rect key="frame" x="16" y="12" width="96" height="96.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="j2I-wi-2mN" secondAttribute="height" multiplier="1:1" id="Dvf-0K-jzB"/>
@@ -87,7 +87,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kga-Fc-sZc" id="ETU-7f-6ew">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weibo-head-黄厚宇" translatesAutoresizingMaskIntoConstraints="NO" id="K1z-m5-dLI">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weibo-head-黄厚宇.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="K1z-m5-dLI">
                                                     <rect key="frame" x="16" y="12" width="96" height="96.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="K1z-m5-dLI" secondAttribute="height" multiplier="1:1" id="JeZ-Y3-weF"/>
@@ -127,7 +127,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhQ-Ws-S3j" id="8bT-P5-Mnu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weibo-head-毛宇" translatesAutoresizingMaskIntoConstraints="NO" id="M0n-e5-FHb">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weibo-head-毛宇.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="M0n-e5-FHb">
                                                     <rect key="frame" x="16" y="12" width="96" height="96.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="M0n-e5-FHb" secondAttribute="height" multiplier="1:1" id="32F-xK-X9f"/>
@@ -180,8 +180,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="weibo-head-iHarbor" width="180" height="180"/>
-        <image name="weibo-head-毛宇" width="180" height="180"/>
-        <image name="weibo-head-黄厚宇" width="180" height="180"/>
+        <image name="weibo-head-iHarbor.jpeg" width="180" height="180"/>
+        <image name="weibo-head-毛宇.jpeg" width="180" height="180"/>
+        <image name="weibo-head-黄厚宇.jpeg" width="180" height="180"/>
     </resources>
 </document>
