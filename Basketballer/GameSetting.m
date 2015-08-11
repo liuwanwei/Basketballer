@@ -50,6 +50,10 @@ static GameSetting * gameSettings;
         _dictionaryStore = [[NSMutableDictionary alloc] initWithContentsOfURL:url];        
         if (nil == _dictionaryStore) {
             _dictionaryStore = [[NSMutableDictionary alloc] init];
+            [_dictionaryStore setObject:@(YES) forKey:kHomeTeamPlayerStatistics];
+            [_dictionaryStore setObject:@(YES) forKey:kGuestTeamPlayerStatistics];
+            [self syncToStore];
+            
         }
     }
     
