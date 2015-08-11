@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="76" height="102"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player_profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="926-13-9er">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="player_profile" translatesAutoresizingMaskIntoConstraints="NO" id="926-13-9er">
                         <rect key="frame" x="-2" y="-2" width="79" height="79"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="拉塞尔" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlW-mG-rES">
@@ -49,7 +49,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="player_profile.png" width="122" height="140"/>
+        <image name="player_profile" width="64" height="64"/>
         <image name="remove_red" width="64" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
