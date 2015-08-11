@@ -104,9 +104,10 @@
 		FB121B3D1B79D27300ED4F82 /* Background4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B341B79D27300ED4F82 /* Background4.mp3 */; };
 		FB121B3E1B79D27300ED4F82 /* horn.wav in Resources */ = {isa = PBXBuildFile; fileRef = FB121B351B79D27300ED4F82 /* horn.wav */; };
 		FB121B3F1B79D27300ED4F82 /* MVP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B361B79D27300ED4F82 /* MVP.mp3 */; };
-		FB121B401B79D27300ED4F82 /* Offence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B371B79D27300ED4F82 /* Offence.mp3 */; };
-		FB121B411B79D27300ED4F82 /* Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B381B79D27300ED4F82 /* Rock You.mp3 */; };
 		FB121B421B79D27300ED4F82 /* sendmsg.caf in Resources */ = {isa = PBXBuildFile; fileRef = FB121B391B79D27300ED4F82 /* sendmsg.caf */; };
+		FB121B441B79D8B000ED4F82 /* recommend_7min.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB121B431B79D8B000ED4F82 /* recommend_7min.jpg */; };
+		FB121B471B79DA7400ED4F82 /* 进攻号角.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B451B79DA7400ED4F82 /* 进攻号角.mp3 */; };
+		FB121B481B79DA7400ED4F82 /* We'll Rock You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FB121B461B79DA7400ED4F82 /* We'll Rock You.mp3 */; };
 		FB1BA92D1884E44300978359 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1BA92C1884E44300978359 /* XCTest.framework */; };
 		FB1BA92E1884E44300978359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1681115A2E52A00A2AB44 /* Foundation.framework */; };
 		FB1BA92F1884E44300978359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC1680F15A2E52A00A2AB44 /* UIKit.framework */; };
@@ -436,9 +437,10 @@
 		FB121B341B79D27300ED4F82 /* Background4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background4.mp3; sourceTree = "<group>"; };
 		FB121B351B79D27300ED4F82 /* horn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = horn.wav; sourceTree = "<group>"; };
 		FB121B361B79D27300ED4F82 /* MVP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MVP.mp3; sourceTree = "<group>"; };
-		FB121B371B79D27300ED4F82 /* Offence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Offence.mp3; sourceTree = "<group>"; };
-		FB121B381B79D27300ED4F82 /* Rock You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rock You.mp3"; sourceTree = "<group>"; };
 		FB121B391B79D27300ED4F82 /* sendmsg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sendmsg.caf; sourceTree = "<group>"; };
+		FB121B431B79D8B000ED4F82 /* recommend_7min.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = recommend_7min.jpg; sourceTree = "<group>"; };
+		FB121B451B79DA7400ED4F82 /* 进攻号角.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "进攻号角.mp3"; sourceTree = "<group>"; };
+		FB121B461B79DA7400ED4F82 /* We'll Rock You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "We'll Rock You.mp3"; sourceTree = "<group>"; };
 		FB122EBB19E7835900DE4E17 /* Basketballer2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Basketballer2.xcdatamodel; sourceTree = "<group>"; };
 		FB1BA92B1884E44300978359 /* BasketballerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketballerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1BA92C1884E44300978359 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -841,6 +843,7 @@
 		FB121B221B79A00900ED4F82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FB121B431B79D8B000ED4F82 /* recommend_7min.jpg */,
 				FB121B291B79A75800ED4F82 /* recommend_hiit.jpg */,
 				FB121B2A1B79A75800ED4F82 /* recommend_zhengduoyan.jpg */,
 				FB121B231B79A01700ED4F82 /* weibo-head-黄厚宇.jpeg */,
@@ -853,14 +856,14 @@
 		FB121B301B79D27300ED4F82 /* MusicSound */ = {
 			isa = PBXGroup;
 			children = (
+				FB121B451B79DA7400ED4F82 /* 进攻号角.mp3 */,
+				FB121B461B79DA7400ED4F82 /* We'll Rock You.mp3 */,
 				FB121B311B79D27300ED4F82 /* Background1.mp3 */,
 				FB121B321B79D27300ED4F82 /* Background2.mp3 */,
 				FB121B331B79D27300ED4F82 /* Background3.mp3 */,
 				FB121B341B79D27300ED4F82 /* Background4.mp3 */,
 				FB121B351B79D27300ED4F82 /* horn.wav */,
 				FB121B361B79D27300ED4F82 /* MVP.mp3 */,
-				FB121B371B79D27300ED4F82 /* Offence.mp3 */,
-				FB121B381B79D27300ED4F82 /* Rock You.mp3 */,
 				FB121B391B79D27300ED4F82 /* sendmsg.caf */,
 			);
 			path = MusicSound;
@@ -1177,18 +1180,18 @@
 				3CC1681C15A2E52B00A2AB44 /* InfoPlist.strings in Resources */,
 				3CC1683715A2E61A00A2AB44 /* MainWindow.xib in Resources */,
 				3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */,
-				FB121B401B79D27300ED4F82 /* Offence.mp3 in Resources */,
 				FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
 				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
-				FB121B411B79D27300ED4F82 /* Rock You.mp3 in Resources */,
 				E68D118515A684B30074982D /* StatisticCell.xib in Resources */,
 				3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */,
+				FB121B441B79D8B000ED4F82 /* recommend_7min.jpg in Resources */,
 				3CBA0BFC15AE7726003505BC /* TeamListViewController.xib in Resources */,
 				FB121B2B1B79A75800ED4F82 /* recommend_hiit.jpg in Resources */,
 				E6E1D97715AED57700CB0C0E /* TeamRecordCell.xib in Resources */,
+				FB121B481B79DA7400ED4F82 /* We'll Rock You.mp3 in Resources */,
 				3CC912A015B1C477003C74D4 /* TimeoutPromptView.xib in Resources */,
 				FB121B3B1B79D27300ED4F82 /* Background2.mp3 in Resources */,
 				FB121B3A1B79D27300ED4F82 /* Background1.mp3 in Resources */,
@@ -1219,6 +1222,7 @@
 				FB121B271B79A01700ED4F82 /* weibo-head-毛宇.jpeg in Resources */,
 				3C06653415F6022300B1DCB8 /* PlaySoundViewController.xib in Resources */,
 				FB121B2C1B79A75800ED4F82 /* recommend_zhengduoyan.jpg in Resources */,
+				FB121B471B79DA7400ED4F82 /* 进攻号角.mp3 in Resources */,
 				E65C9D0715F488FA00DCE645 /* Localizable.strings in Resources */,
 				3C07F4131635194A00A2D645 /* AboutUsViewController.xib in Resources */,
 				3C07F41C163545FB00A2D645 /* GameHistoryViewController.xib in Resources */,

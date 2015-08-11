@@ -195,14 +195,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_hiit.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1hf-eN-nio">
-                                                    <rect key="frame" x="112.5" y="0.0" width="375" height="299.5"/>
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="299.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="375" id="pBf-Wj-ILD"/>
                                                         <constraint firstAttribute="height" constant="300" id="qvx-sX-Av0"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="pBf-Wj-ILD"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="1hf-eN-nio" firstAttribute="leading" secondItem="6cP-F2-z9v" secondAttribute="leadingMargin" id="7NA-hS-D4O"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1hf-eN-nio" secondAttribute="trailing" id="Hgh-Xx-9HQ"/>
                                                 <constraint firstItem="1hf-eN-nio" firstAttribute="top" secondItem="6cP-F2-z9v" secondAttribute="topMargin" id="Mbk-6I-a1Y"/>
                                                 <constraint firstItem="1hf-eN-nio" firstAttribute="leading" secondItem="6cP-F2-z9v" secondAttribute="leadingMargin" constant="20" id="fJD-fx-wBC"/>
                                                 <constraint firstAttribute="centerX" secondItem="1hf-eN-nio" secondAttribute="centerX" id="hRV-Es-CZe"/>
@@ -212,8 +219,8 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="Mbk-6I-a1Y"/>
-                                                    <exclude reference="xvb-cZ-ee0"/>
                                                     <exclude reference="fJD-fx-wBC"/>
+                                                    <exclude reference="xvb-cZ-ee0"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -223,15 +230,22 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RD5-hj-vMl" id="O95-dY-UCW">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_zhengduoyan.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-hg-cXm">
-                                                    <rect key="frame" x="112.5" y="0.0" width="375" height="299.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_7min.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-hg-cXm">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="299.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="375" id="AIG-za-xeu"/>
                                                         <constraint firstAttribute="height" constant="300" id="Rd6-oc-Pl6"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="AIG-za-xeu"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="OsY-hg-cXm" firstAttribute="leading" secondItem="O95-dY-UCW" secondAttribute="leadingMargin" id="7k1-8P-vJ5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OsY-hg-cXm" secondAttribute="trailing" id="Lqj-5O-5lr"/>
                                                 <constraint firstAttribute="centerX" secondItem="OsY-hg-cXm" secondAttribute="centerX" id="Owh-4x-hUe"/>
                                                 <constraint firstItem="OsY-hg-cXm" firstAttribute="leading" secondItem="O95-dY-UCW" secondAttribute="leadingMargin" constant="20" id="WBu-Lo-0t1"/>
                                                 <constraint firstItem="OsY-hg-cXm" firstAttribute="top" secondItem="O95-dY-UCW" secondAttribute="topMargin" id="ZUr-Q5-13R"/>
@@ -243,6 +257,42 @@
                                                     <exclude reference="WBu-Lo-0t1"/>
                                                     <exclude reference="ZUr-Q5-13R"/>
                                                     <exclude reference="pkX-I9-B8u"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="f4X-iD-8h0">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4X-iD-8h0" id="pQX-YB-tO8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommend_zhengduoyan.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="pKf-ZY-8hp">
+                                                    <rect key="frame" x="8" y="0.0" width="584" height="299.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="300" id="D3H-yf-kUF"/>
+                                                        <constraint firstAttribute="width" constant="375" id="M9J-Sl-b4c"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="M9J-Sl-b4c"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pKf-ZY-8hp" secondAttribute="trailing" id="1zq-e7-7ST"/>
+                                                <constraint firstItem="pKf-ZY-8hp" firstAttribute="leading" secondItem="pQX-YB-tO8" secondAttribute="leadingMargin" constant="20" id="QJI-4I-N2k"/>
+                                                <constraint firstItem="pKf-ZY-8hp" firstAttribute="top" secondItem="pQX-YB-tO8" secondAttribute="topMargin" id="S2M-6D-MdB"/>
+                                                <constraint firstAttribute="centerY" secondItem="pKf-ZY-8hp" secondAttribute="centerY" id="cQS-YU-VY6"/>
+                                                <constraint firstItem="pKf-ZY-8hp" firstAttribute="leading" secondItem="pQX-YB-tO8" secondAttribute="leadingMargin" constant="20" id="eQS-5h-F5O"/>
+                                                <constraint firstItem="pKf-ZY-8hp" firstAttribute="leading" secondItem="pQX-YB-tO8" secondAttribute="leadingMargin" id="fqt-fs-uex"/>
+                                                <constraint firstAttribute="centerX" secondItem="pKf-ZY-8hp" secondAttribute="centerX" id="hLI-Mr-5ct"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="eQS-5h-F5O"/>
+                                                    <exclude reference="S2M-6D-MdB"/>
+                                                    <exclude reference="QJI-4I-N2k"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -262,6 +312,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="recommend_7min.jpg" width="750" height="600"/>
         <image name="recommend_hiit.jpg" width="750" height="600"/>
         <image name="recommend_zhengduoyan.jpg" width="750" height="600"/>
         <image name="weibo-head-iHarbor.jpeg" width="180" height="180"/>

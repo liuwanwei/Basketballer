@@ -35,6 +35,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray * urls = @[
                        @"itms-apps://itunes.apple.com/app/id995154169",
+                       @"itms-apps://itunes.apple.com/app/id1019382088",
                        @"itms-apps://itunes.apple.com/app/id1013694558",
                        ];
     
