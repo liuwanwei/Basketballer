@@ -51,7 +51,6 @@
 		3CFE1D1D15AC175E00247B80 /* StartGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1B15AC175E00247B80 /* StartGameViewController.m */; };
 		3CFE1D1E15AC175E00247B80 /* StartGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CFE1D1C15AC175E00247B80 /* StartGameViewController.xib */; };
 		7854553721B5D508FA43DAEC /* libPods-Basketballer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD373AB73F7C8B597F763E5 /* libPods-Basketballer.a */; };
-		7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
 		79E33AF319EA12F000AC46DE /* ActionRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E33AF219EA12F000AC46DE /* ActionRecordCell.m */; };
 		E6275FBD15C0E69900FBE247 /* SurroundingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6275FBB15C0E69900FBE247 /* SurroundingsViewController.m */; };
 		E6275FBE15C0E69900FBE247 /* SurroundingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6275FBC15C0E69900FBE247 /* SurroundingsViewController.xib */; };
@@ -235,7 +234,6 @@
 		FBB22C141AA9832C008EAC03 /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC1687D15A2F70E00A2AB44 /* PlayGameViewController.xib */; };
 		FBB22C151AA9832C008EAC03 /* StatisticSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB8A220819E439CA00213057 /* StatisticSectionHeaderView.xib */; };
 		FBB22C161AA9832C008EAC03 /* TeamInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */; };
-		FBB22C181AA9832C008EAC03 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */; };
 		FBB22C1A1AA9832C008EAC03 /* GameHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D116E15A591AA0074982D /* GameHistoryCell.xib */; };
 		FBB22C1C1AA9832C008EAC03 /* GameStatisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D117915A5F2900074982D /* GameStatisticViewController.xib */; };
 		FBB22C1D1AA9832C008EAC03 /* StatisticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68D118415A684B30074982D /* StatisticCell.xib */; };
@@ -303,7 +301,6 @@
 		3C121F6415A3E9C00062BECD /* TeamInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamInfoViewController.xib; sourceTree = "<group>"; };
 		3C35FA4815EE5970006B2470 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		3C35FA4915EE5970006B2470 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
-		3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3C40A8281637753100619526 /* OnlyPointRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyPointRule.h; sourceTree = "<group>"; };
 		3C40A8291637753100619526 /* OnlyPointRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyPointRule.m; sourceTree = "<group>"; };
 		3C40A8301637C14100619526 /* PointsRuleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsRuleDetailViewController.h; sourceTree = "<group>"; };
@@ -620,7 +617,6 @@
 		3CC1680015A2E52A00A2AB44 = {
 			isa = PBXGroup;
 			children = (
-				3C364C4B1638EB8A00AC0C89 /* Default-568h@2x.png */,
 				E65C9D0915F488FA00DCE645 /* Localizable.strings */,
 				3CC1681715A2E52B00A2AB44 /* Basketballer */,
 				FB121B201B799F1600ED4F82 /* Others.storyboard */,
@@ -1182,7 +1178,6 @@
 				3CC1687F15A2F70E00A2AB44 /* PlayGameViewController.xib in Resources */,
 				FB8A220919E439CA00213057 /* StatisticSectionHeaderView.xib in Resources */,
 				3C121F6615A3E9C00062BECD /* TeamInfoViewController.xib in Resources */,
-				7987A3181884C6C90091313D /* Default-568h@2x.png in Resources */,
 				E68D116F15A591AA0074982D /* GameHistoryCell.xib in Resources */,
 				E68D117B15A5F2910074982D /* GameStatisticViewController.xib in Resources */,
 				E68D118515A684B30074982D /* StatisticCell.xib in Resources */,
@@ -1250,7 +1245,6 @@
 				FBB22C141AA9832C008EAC03 /* PlayGameViewController.xib in Resources */,
 				FBB22C151AA9832C008EAC03 /* StatisticSectionHeaderView.xib in Resources */,
 				FBB22C161AA9832C008EAC03 /* TeamInfoViewController.xib in Resources */,
-				FBB22C181AA9832C008EAC03 /* Default-568h@2x.png in Resources */,
 				FBB22C1A1AA9832C008EAC03 /* GameHistoryCell.xib in Resources */,
 				FBB22C1C1AA9832C008EAC03 /* GameStatisticViewController.xib in Resources */,
 				FBB22C1D1AA9832C008EAC03 /* StatisticCell.xib in Resources */,
@@ -1658,7 +1652,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "345d5109-ec01-4b15-ad70-ca6d515e6fd4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1671,8 +1665,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wanwei Liu (UD8763N3M5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Basketballer/Basketballer-Prefix.pch";
 				INFOPLIST_FILE = "Basketballer/Basketballer-Info.plist";
@@ -1683,7 +1677,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "345d5109-ec01-4b15-ad70-ca6d515e6fd4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;

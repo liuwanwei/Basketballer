@@ -46,7 +46,7 @@
 @property (nonatomic, weak) TeamStatistics * selectedStatistics;
 
 - (void)startGame;
-- (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId;
+- (void)stopGame:(MatchState)mode withWinTeam:(NSNumber *)teamId;
 
 - (IBAction)showActionRecord:(id)sender;
 - (IBAction)changePeriod:(UIButton *)sender;

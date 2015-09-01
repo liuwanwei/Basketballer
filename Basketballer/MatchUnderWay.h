@@ -64,7 +64,7 @@
 
 - (BOOL)startNewMatch;
 - (void)stopMatchWithState:(NSInteger)state;
-- (BOOL)matchStarted;
+- (BOOL)isMatchStart;
 - (void)finishMatch;
 - (void)deleteMatch;
 

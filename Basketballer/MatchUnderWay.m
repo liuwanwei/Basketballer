@@ -195,14 +195,16 @@ static MatchUnderWay * sDefaultMatch = nil;
     return YES;
 }
 
-- (BOOL)matchStarted{
+- (BOOL)isMatchStart{
     return (_state != MatchStatePrepare && _state != MatchStateStopped && _state != MatchStateFinished);
 }
 
 - (void)stopMatchWithState:(NSInteger)state{
     [self finishMatch];
     
-    _match.state = [NSNumber numberWithInteger:state];
+    _match.state = @(state);
+    
+    // 状态重置为初值
     self.state = MatchStatePrepare;
     
     [[MatchManager defaultManager] stopMatch:_match];

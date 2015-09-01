@@ -177,7 +177,7 @@ static const NSInteger BCMultiActionViewTag = 3213;
 // 添加技术统计
 - (void)addAction:(NSNumber *)actionType{
     self.match = [MatchUnderWay defaultMatch];
-    if (self.match == nil || ![self.match matchStarted]) {
+    if (self.match == nil || ![self.match isMatchStart]) {
         NSLog(@"比赛尚未开始");
         return;
     }

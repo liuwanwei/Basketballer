@@ -207,7 +207,7 @@ typedef enum {
 - (void)pauseGameNote:(NSNotification *)note{[self pauseGame];}
 
 - (void)startGame {
-    if(! [_match matchStarted]) {
+    if(! [_match isMatchStart]) {
         // 比赛未开始时，开始比赛并进入第一节
         [_match startNewMatch];
         _match.period ++;
@@ -224,7 +224,7 @@ typedef enum {
 
 // 结束比赛
 - (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId{
-    if (![_match matchStarted]) {
+    if (![_match isMatchStart]) {
         [self dismissView];
         return;
     }
@@ -519,7 +519,7 @@ typedef enum {
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (actionSheet.destructiveButtonIndex == buttonIndex) {
         // 结束比赛
-        if ([_match matchStarted]) {
+        if ([_match isMatchStart]) {
             // 比赛未正常结束时，由用户选择是否保存比赛数据
             UIAlertView * alertView;
             alertView = [[UIAlertView alloc] initWithTitle:LocalString(@"FinishMatch")

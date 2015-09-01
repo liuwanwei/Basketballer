@@ -263,7 +263,7 @@ typedef enum {
         }else {
             // 整场比赛时间到，比赛结束处理
             [self updateTitle:LocalString(@"Finish")];
-            _match.state = MatchStateFinished;
+//            _match.state = MatchStateFinished;
             [self stopGame:MatchStateFinished withWinTeam:nil];
         }
     }
@@ -321,17 +321,20 @@ typedef enum {
 }
 
 // 结束比赛按下处理
-- (void)stopGame:(NSInteger)mode withWinTeam:(NSNumber *)teamId{
-    if (![_match matchStarted]) {
+- (void)stopGame:(MatchState)state withWinTeam:(NSNumber *)teamId{
+    // 必须关闭定时器，释放侦听的消息，否则内存会泄露
+    [self stopTimeCountDown];
+    [_timeoutPromptView stopTimeoutCountdown];
+    [self unsubscribeAll];
+
+    if (![_match isMatchStart]) {
         [self dismissView];
         return;
     }
     
-    [self stopTimeCountDown];
-    [_timeoutPromptView stopTimeoutCountdown];
-    [_match stopMatchWithState:mode];
+    [_match stopMatchWithState:state];
     
-    if (mode == MatchStateFinished) {
+    if (state == MatchStateFinished) {
         [self showMatchFinishedDetailsController];
     }else {
         [_match deleteMatch];
@@ -389,6 +392,10 @@ typedef enum {
         }
         
     }];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)swip:(UISwipeGestureRecognizer *)swip {
@@ -573,7 +580,7 @@ typedef enum {
 }
 
 - (void)startGame {
-    if(! [_match matchStarted]) {
+    if(! [_match isMatchStart]) {
         [_match startNewMatch];
         _match.period ++;
     }
@@ -680,6 +687,11 @@ typedef enum {
     [self reversePlayButton];
 }
 
+/**
+ *  界面上“结束”按钮按下消息处理
+ *
+ *  @param sender 结束按钮 id
+ */
 - (IBAction)stopGameClicked:(id)sender{
     // 有节数的话，要显示“结束本节”，否则只显示“结束比赛”
     NSString * otherButton = nil;
@@ -694,8 +706,10 @@ typedef enum {
 #pragma mark - Action sheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        // 结束比赛
-        if ([_match matchStarted]) {
+        
+        // 点击界面中的”结束“按钮结束比赛
+        
+        if ([_match isMatchStart]) {
             // 比赛已经开始，结束前提示是否保存比赛
             UIAlertView * alertView;
             alertView = [[UIAlertView alloc] initWithTitle:LocalString(@"FinishMatch")
@@ -707,6 +721,7 @@ typedef enum {
             [alertView show];
             
         }else {
+            // 比赛还没开始，直接关闭界面
             [self stopGame:MatchStateStopped withWinTeam:nil];
         }
 
@@ -731,7 +746,9 @@ typedef enum {
 #pragma mark - Alert  view delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == AlertViewTagMatchFinish) {
-        // 真的结束比赛
+        
+        // 直接通过“结束”按钮结束比赛时确认菜单处理：保存、不保存、取消
+        
         if (buttonIndex == alertView.firstOtherButtonIndex) {
             // 保存比赛
             [self stopGame:MatchStateFinished withWinTeam:nil];
@@ -741,7 +758,9 @@ typedef enum {
         }
         
     }else if (alertView.tag == AlertViewTagMatchTimeout){
+        
         // 单节时间到，提示是否并进入节间休息
+        
         if (buttonIndex == alertView.firstOtherButtonIndex) {
             // 确认的话，进入节间休息，否则停留在MatchStatePeriodFinished状态
             _match.state = MatchStateQuarterRestTime;
